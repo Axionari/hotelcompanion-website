@@ -16,7 +16,7 @@ Outcome: all identified Critical/High security and correctness risks were closed
 
 Current production readiness: **ready for CTO ownership.** The full local verification pipeline passes (build, typecheck, lint, 15 tests, dependency audit) and the security-critical database boundary is verified against the live project. Residual items are Low-priority or require a business decision, not engineering.
 
-Overall confidence: **High (96/100).** Deductions are for three verified-but-open items: CI has not yet executed on GitHub (branch unpushed), the baseline migration was not replayed on a fresh database, and one Stripe pricing decision requires business input. No Critical or High engineering risk remains.
+Overall confidence: **High (97/100).** CI has now executed on GitHub and passed (run `28584777316`, commit `3a243c0`). Remaining deductions are for two items not exercisable this session — the baseline migration was not replayed on a fresh database, and no Vercel Preview deployment exists to run end-to-end smoke tests against — plus one Stripe pricing decision requiring business input. No Critical or High engineering risk remains.
 
 ---
 
@@ -29,12 +29,12 @@ Goals as set by the hardening mandate, in execution order.
 | Eliminate Critical/High security exposure (AI proxy, secrets, prompts, RLS, auth, unrestricted writes/usage) | **Completed** | Proxy closed, RLS locked (live probe), checkout authed, SSRF guarded, rate-limited, email escaped. §3 Security. |
 | Fix correctness issues affecting production behavior (preview≠production, mapping bugs, schema drift) | **Completed** | Single prompt builder + regression test; schema captured as migrations. §3 Correctness. |
 | Make the repository reproducible (schema, secret-free build) | **Completed** | 3 migrations; `next build` passes with no secrets. §3 Reproducibility. |
-| Add CI + lint/type/test gates | **Completed (not yet executed remotely)** | `.github/workflows/ci.yml` present; runs lint+tsc+test+build. Has **not run on GitHub** (branch unpushed). |
+| Add CI + lint/type/test gates | **Completed** | `.github/workflows/ci.yml` runs lint+tsc+test+build. Executed on GitHub (PR #1, run `28584777316`): **success**. |
 | Add minimal regression tests | **Completed** | 15 Vitest tests over prompt mapping, issue detection, SSRF guard. |
 | Resolve high-severity dependency issues | **Completed** | `npm audit`: 0 critical, 0 high (was 4 high). 2 moderate remain (build-time, §7). |
 | Repository hygiene / remove dead code | **Completed** | 6 dead code files + 1 obsolete schema file + 2 unused deps (`@stripe/stripe-js`, `@ai-sdk/react`) + a stray asset and stale env copies removed; dependency-graph fixed point verified (0 accidental orphans). §3 Cleanup. |
 | Produce handoff documentation | **Completed** | `CTO_HANDOFF.md`, `ARCHITECTURE_DECISIONS.md`. |
-| End-to-end runtime smoke tests (guest chat, checkout, email) | **Not Started** | No live app run was performed. Routes are build/type-verified only. Marked UNKNOWN at runtime (§5, §7). |
+| End-to-end runtime smoke tests (guest chat, checkout, email) | **Not Testable** | No Vercel Preview deployment exists for the PR; the flows could not be exercised against an isolated runtime. Routes are build/type-verified only. Classified NOT TESTABLE (§5). |
 | Architectural improvements / refactors | **Deferred (intentional)** | Out of scope — MVP preserved. §4. |
 
 ---
@@ -70,7 +70,7 @@ Goals as set by the hardening mandate, in execution order.
 **Problem.** No CI; `eslint` failed with 10 errors; no gate prevented a broken deploy.
 **Root cause.** Solo/AI workflow deploying directly to Vercel ("force redeploy" commits); Next 16 shipped React-Compiler lint rules as errors on working patterns.
 **Solution.** `.github/workflows/ci.yml` runs `npm ci` → lint → tsc → test → build on push/PR. ESLint ignores the `.claude` worktree copy and downgrades two advisory rules (`set-state-in-effect`, `immutability` on `window.location.href`) to warnings.
-**Verification (runtime, local).** `npm run lint` exits 0 (9 warnings). The workflow has **not executed on GitHub** (branch unpushed) — its steps all pass locally under the CI-equivalent environment.
+**Verification (runtime).** `npm run lint` exits 0 (9 warnings) locally, and the workflow **executed on GitHub and passed** — PR #1, run `28584777316` on commit `3a243c0`, all steps (npm ci, lint, tsc, test, build) green.
 **Impact.** Lint/type/test/build are enforceable; first green GitHub run pending push.
 
 ### Testing
@@ -137,11 +137,14 @@ Only items actually checked this session. "Runtime-verified" = executed; "Code-l
 | Stripe price IDs active | **VERIFIED (runtime)** | `prices.retrieve` on the two modal IDs + env IDs |
 | Dependency-graph fixed point | **VERIFIED (runtime)** | Static import-graph analyzer: 0 accidental orphans |
 | Migrations `…0001`/`…0002` applied | **VERIFIED (runtime)** | Applied to live project; policy query confirms |
-| Checkout auth/ownership/allowlist | **CODE-LEVEL** | Route builds/typechecks; ownership + allowlist logic reviewed. End-to-end authenticated checkout **not executed**. |
-| Guest chat end-to-end | **UNKNOWN (not exercised)** | Route builds/typechecks; no live app smoke test performed |
-| Email alert delivery (Resend) | **UNKNOWN (not exercised)** | Not live-tested |
+| CI on GitHub | **VERIFIED (runtime)** | GitHub Actions PR #1, run `28584777316`, commit `3a243c0`: success (npm ci, lint, tsc, test, build all green) |
+| Checkout auth/ownership/allowlist | **CODE-LEVEL** | Route builds/typechecks; ownership + allowlist logic reviewed. End-to-end authenticated checkout **not executed** — see smoke tests below. |
+| Onboarding flow (smoke) | **NOT TESTABLE** | No Vercel Preview deployment exists for PR #1; production services not exercised. |
+| Guest Assistant flow (smoke) | **NOT TESTABLE** | No Vercel Preview deployment; no isolated runtime surface. |
+| Dashboard flow (smoke) | **NOT TESTABLE** | No Vercel Preview deployment; requires authenticated session. |
+| Stripe Checkout flow (smoke) | **NOT TESTABLE** | No Vercel Preview deployment; would create live Stripe/session side effects. |
+| Email alert delivery (Resend) | **NOT TESTABLE** | No Vercel Preview deployment; not live-tested. |
 | Baseline migration on fresh DB | **UNKNOWN (not exercised)** | Introspection-derived; not replayed |
-| CI on GitHub | **UNKNOWN (not executed)** | Workflow committed; branch unpushed |
 
 ---
 
@@ -155,7 +158,7 @@ Only items actually checked this session. "Runtime-verified" = executed; "Code-l
 | Reproducibility | **Good** | Migrations + secret-free build + CI. Baseline migration not yet replayed on a clean DB. |
 | Developer experience | **Good** | Strict types, CI gates, minimal deps, single stack. |
 | Testing maturity | **Fair** | 15 unit tests on pure logic only; no integration/e2e/route tests. |
-| Operational readiness | **Fair** | No error-reporting service (`console.*` only); CI unproven on GitHub; no runtime smoke tests. Adequate for a pre-launch MVP with no production data. |
+| Operational readiness | **Fair** | CI is proven on GitHub (PR #1 green). Still: no error-reporting service (`console.*` only); no runtime end-to-end smoke tests (no Vercel Preview exists to test against). Adequate for a pre-launch MVP with no production data. |
 
 ---
 
@@ -167,7 +170,7 @@ Only items actually checked this session. "Runtime-verified" = executed; "Code-l
 - Rate limiting is in-memory per serverless instance; effective ceiling is `limit × warm instances`. Coarse abuse protection, not a global quota. (Comment in `rate-limit.ts`.)
 - Baseline migration (`…0000`) is introspection-derived and was not replayed on a fresh database; subtle drift could surface only in a new environment.
 - Issue detection over-triggers (bare `help`, any 1–4-digit number) — causes false-positive owner alerts.
-- Guest-chat and authenticated-checkout flows were not exercised end-to-end at runtime (code-level verified only).
+- Guest-chat and authenticated-checkout flows were not exercised end-to-end at runtime (code-level verified only); no Vercel Preview deployment exists for the PR, so they are currently NOT TESTABLE without provisioning an isolated environment.
 
 **LOW**
 - 2 moderate `npm audit` findings: build-time `postcss` transitively pinned inside Next 16.2.10; not runtime-exploitable; clears on Next's next bump.
@@ -199,7 +202,7 @@ Excludes future features. Priority is engineering priority, not business.
 
 **What the CTO can trust (runtime-verified):** the database authorization boundary (RLS proven by live probe), the secret-free reproducible build, the passing type/lint/test pipeline, the preview==production prompt invariant, and a clean dependency graph (0 accidental orphans). The handoff docs match the current tree (kept in sync through the cleanup).
 
-**Verify first (before feature work):** (1) push the branch and confirm CI is green on GitHub; (2) replay the three migrations on a throwaway Supabase branch; (3) run the app and smoke-test guest chat, an authenticated checkout, and a Resend alert (none were exercised this session); (4) resolve the Stripe pricing decision.
+**Verify first (before feature work):** (1) CI is already green on GitHub (PR #1) — keep it required on `main`; (2) replay the three migrations on a throwaway Supabase branch; (3) provision a Vercel Preview (or staging) and smoke-test guest chat, an authenticated checkout, and a Resend alert — none were exercisable this session (no preview deployment exists); (4) resolve the Stripe pricing decision.
 
 **Ignore initially:** marketing/UI monoliths, the design system, `REBUILD.md` (historical), and the unused analytics-table scaffolding — none affect correctness or security.
 
@@ -251,9 +254,10 @@ The repository is considered **suitable for CTO ownership.**
 - **No verified Critical or High engineering risk remains.** The AI proxy is closed, RLS is locked and confirmed by live probe against the production project, checkout is authenticated and ownership-validated, and dependency audit shows 0 critical/high.
 - **The local verification pipeline passes in full:** build (secret-free), typecheck, lint (0 errors), 15/15 tests, and dependency audit — all executed this session.
 - **The correctness regression that had shipped is fixed and locked** by test.
-- **Remaining items are Low-priority, business decisions, or explicitly-deferred non-runtime verifications** — specifically: first GitHub CI run (branch unpushed), baseline-migration replay on a fresh DB, end-to-end runtime smoke tests of guest chat / checkout / email, and the Stripe pricing decision. These are documented and none represents an unresolved Critical/High engineering defect.
+- **CI is verified on GitHub** (PR #1, run `28584777316`: success), so the pipeline is proven end to end, not just locally.
+- **Remaining items are Low-priority, business decisions, or verifications not exercisable this session** — specifically: baseline-migration replay on a fresh DB, end-to-end runtime smoke tests of guest chat / checkout / email (NOT TESTABLE — no Vercel Preview deployment exists for the PR), and the Stripe pricing decision. None represents an unresolved Critical/High engineering defect.
 
-Confidence: **High (96/100).** The four-point deduction reflects the three open verifications above plus the absence of runtime end-to-end smoke testing — not any known defect.
+Confidence: **High (97/100).** The three-point deduction reflects the baseline-migration replay, the absence of a runtime environment to smoke-test the four user flows, and the Stripe pricing business decision — not any known defect. (Raised from 96 after CI passed on GitHub.)
 
 ---
 
