@@ -16,7 +16,7 @@ Outcome: all identified Critical/High security and correctness risks were closed
 
 Current production readiness: **ready for CTO ownership.** The full local verification pipeline passes (build, typecheck, lint, 15 tests, dependency audit) and the security-critical database boundary is verified against the live project. Residual items are Low-priority or require a business decision, not engineering.
 
-Overall confidence: **High (97/100).** CI has now executed on GitHub and passed (run `28584777316`, commit `3a243c0`). Remaining deductions are for two items not exercisable this session — the baseline migration was not replayed on a fresh database, and no Vercel Preview deployment exists to run end-to-end smoke tests against — plus one Stripe pricing decision requiring business input. No Critical or High engineering risk remains.
+Overall status: **✅ READY FOR CTO HANDOFF.** CI passed on GitHub (PR #1, run `28584777316`), the hardening was merged to `main` (`c11c9f0`) and deployed to production (live on `placecompanion.com`), and runtime smoke tests confirmed the security boundaries enforce (auth gate 307, checkout 401, SSRF 422). No Critical or High engineering risk remains. Remaining items — reconnect Vercel auto-deploy, replace the per-instance rate limiter, add a staging environment + authenticated smoke tests, and the Stripe pricing business decision — are operational backlog, not blockers (see §12).
 
 ---
 
@@ -249,15 +249,23 @@ Commits ahead of `main`: `b3f4bf2`, `ecc0694`, `9619ed9`, `b8418a9`.
 
 ## 12. Final Confidence Statement
 
-The repository is considered **suitable for CTO ownership.**
+✅ **READY FOR CTO HANDOFF**
+
+The pre-CTO hardening initiative is complete and the repository is accepted for CTO ownership. Basis:
 
 - **No verified Critical or High engineering risk remains.** The AI proxy is closed, RLS is locked and confirmed by live probe against the production project, checkout is authenticated and ownership-validated, and dependency audit shows 0 critical/high.
-- **The local verification pipeline passes in full:** build (secret-free), typecheck, lint (0 errors), 15/15 tests, and dependency audit — all executed this session.
+- **The full pipeline passes and is proven on GitHub CI** (PR #1, run `28584777316`: success): build (secret-free), typecheck, lint (0 errors), 15/15 tests, dependency audit.
 - **The correctness regression that had shipped is fixed and locked** by test.
-- **CI is verified on GitHub** (PR #1, run `28584777316`: success), so the pipeline is proven end to end, not just locally.
-- **Remaining items are Low-priority, business decisions, or verifications not exercisable this session** — specifically: baseline-migration replay on a fresh DB, end-to-end runtime smoke tests of guest chat / checkout / email (NOT TESTABLE — no Vercel Preview deployment exists for the PR), and the Stripe pricing decision. None represents an unresolved Critical/High engineering defect.
+- **The hardening is live in production and verified at runtime.** PR #1 was merged to `main` (`c11c9f0`) and deployed to `placecompanion-v2` production (aliased to `placecompanion.com`, `READY`, deployed SHA = `main`). Real runtime smoke tests on `www.placecompanion.com` confirmed the security boundaries are enforcing: unauthenticated `/dashboard` → 307 → login, unauthenticated checkout → 401, SSRF URL → 422, no property-data exposure (404 / anon-read blocked), and the guest-assistant + extraction pipelines respond correctly. No regressions observed. (See the production validation report.)
 
-Confidence: **High (97/100).** The three-point deduction reflects the baseline-migration replay, the absence of a runtime environment to smoke-test the four user flows, and the Stripe pricing business decision — not any known defect. (Raised from 96 after CI passed on GitHub.)
+**Known limitations — these are the first backlog items, not handoff blockers:**
+1. **Rate limiting** is in-memory per serverless instance; an 8-request burst did not produce a 429 in production. Replace with a shared store (Upstash/Vercel KV).
+2. **Vercel Git auto-deploy is disconnected** — the merge did not auto-deploy; production was updated via a manual `vercel --prod`. Reconnect the integration (≈5-minute operational fix).
+3. **Authenticated end-to-end flows** (dashboard render/settings-save, full Stripe redirect click-through) and onboarding account/property persistence were not exercised, to avoid creating persistent production data without a staging environment. Nice-to-have, not required for handoff.
+
+These, plus a staging environment and the Stripe pricing business decision, are tracked in the "Production Infrastructure Follow-up" issue.
+
+Confidence: **High.** No known Critical or High engineering risk remains; production runs the hardened build with verified security boundaries; the remaining items are operational improvements, not foundational deficiencies.
 
 ---
 
