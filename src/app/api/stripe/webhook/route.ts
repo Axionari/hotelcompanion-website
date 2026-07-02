@@ -1,7 +1,11 @@
 import Stripe from 'stripe'
 import { createClient } from '@supabase/supabase-js'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
+// Lazily instantiated so `next build` does not require STRIPE_SECRET_KEY.
+let _stripe: Stripe | null = null
+function getStripe(): Stripe {
+  return (_stripe ??= new Stripe(process.env.STRIPE_SECRET_KEY!))
+}
 
 function getSupabase() {
   return createClient(
@@ -20,7 +24,7 @@ export async function POST(req: Request) {
 
   let event: Stripe.Event
   try {
-    event = stripe.webhooks.constructEvent(body, sig, process.env.STRIPE_WEBHOOK_SECRET!)
+    event = getStripe().webhooks.constructEvent(body, sig, process.env.STRIPE_WEBHOOK_SECRET!)
   } catch (err) {
     console.error('[stripe/webhook] signature verification failed', err)
     return Response.json({ error: 'Webhook signature verification failed' }, { status: 400 })

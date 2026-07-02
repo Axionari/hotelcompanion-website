@@ -1,5 +1,6 @@
 import { streamText } from "ai";
 import { createAnthropic } from "@ai-sdk/anthropic";
+import { clientIp, rateLimit, rateLimitResponse } from "@/lib/rate-limit";
 
 const anthropic = createAnthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -22,6 +23,10 @@ const STYLE_INSTRUCTIONS: Record<string, string> = {
 
 export async function POST(req: Request) {
   try {
+    if (!rateLimit(`preview-chat:${clientIp(req)}`, 20, 60_000)) {
+      return rateLimitResponse();
+    }
+
     const body = await req.json();
     const { messages, extracted, conversationalStyle } = body as {
       messages: ChatMessage[];
@@ -29,21 +34,24 @@ export async function POST(req: Request) {
       conversationalStyle?: string;
     };
 
-    if (!messages || !Array.isArray(messages)) {
+    if (!messages || !Array.isArray(messages) || messages.length > 60) {
       return Response.json({ error: "messages array is required" }, { status: 400 });
     }
 
-    const basePrompt =
+    // The preview prompt is unavoidably client-supplied (the property is not
+    // saved yet); caps + rate limiting bound the spend it can drive.
+    const basePrompt = (
       (extracted?.systemPrompt as string | undefined) ??
-      `You are the AI Guest Companion for ${(extracted?.hotelName as string) || "this hotel"}. Answer guest questions helpfully and concisely. Only use information you have been given. Respond in the same language the guest writes in.`;
+      `You are the AI Guest Companion for ${(extracted?.hotelName as string) || "this hotel"}. Answer guest questions helpfully and concisely. Only use information you have been given. Respond in the same language the guest writes in.`
+    ).slice(0, 8000);
 
     const styleKey = conversationalStyle || "warm_local";
     const styleInstruction = STYLE_INSTRUCTIONS[styleKey] ?? STYLE_INSTRUCTIONS.warm_local;
     const systemPrompt = `${basePrompt}\n\nCOMMUNICATION STYLE: ${styleInstruction}\n\nGUARANTEED ACCURACY: ${HALLUCINATION_GUARDRAIL}\n\nFALLBACK BEHAVIOR: ${FALLBACK_BEHAVIOR}\n\nISSUE HANDLING: ${ISSUE_HANDLING}`;
 
     const normalized = messages
-      .filter((m) => m.role === "user" || m.role === "assistant")
-      .map((m) => ({ role: m.role as "user" | "assistant", content: m.content }));
+      .filter((m) => (m.role === "user" || m.role === "assistant") && typeof m.content === "string")
+      .map((m) => ({ role: m.role as "user" | "assistant", content: m.content.slice(0, 4000) }));
 
     const result = streamText({
       model: anthropic("claude-haiku-4-5-20251001"),
