@@ -95,7 +95,9 @@ export default function AssistantClient({ property }: Props) {
         body: JSON.stringify({ messages: newMessages, sessionId: sessionId.current })
       })
 
-      const reader = res.body!.getReader()
+      if (!res.ok || !res.body) throw new Error(`Request failed (${res.status})`)
+
+      const reader = res.body.getReader()
       const decoder = new TextDecoder()
       let fullText = ''
 

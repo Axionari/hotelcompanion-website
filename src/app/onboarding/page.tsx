@@ -23,22 +23,6 @@ interface ChatMessage {
   content: string
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function buildSystemPromptFromExtracted(extracted: any): string {
-  if (!extracted) return ''
-  let prompt = `You are an AI Guest Companion for ${extracted.hotelName || 'this hotel'}.`
-  if (extracted.location) prompt += ` Located in ${extracted.location}.`
-  if (extracted.roomCount) prompt += ` The hotel has ${extracted.roomCount} rooms.`
-  prompt += '\n\nPROPERTY KNOWLEDGE:\n'
-  if (extracted.restaurant?.found) prompt += `- ${extracted.restaurant.name || 'Restaurant'}: ${extracted.restaurant.hours || ''} ${extracted.restaurant.cuisine || ''}\n`
-  if (extracted.spa?.found) prompt += `- ${extracted.spa.name || 'Spa'}: ${extracted.spa.hours || ''}. Treatments: ${extracted.spa.treatments?.join(', ') || ''}\n`
-  if (extracted.amenities?.found) prompt += `- Amenities: ${extracted.amenities.items?.join(', ') || ''}\n`
-  if (extracted.policies?.found) prompt += `- Check-in: ${extracted.policies.checkin || 'not specified'}. Check-out: ${extracted.policies.checkout || 'not specified'}\n`
-  if (extracted.nearby?.found) prompt += `- Nearby: ${extracted.nearby.items?.join(', ') || ''}\n`
-  prompt += '\nRULES: Warm concierge tone. Respond in the guest\'s language. Recommend hotel services first. Be concise but complete.'
-  return prompt
-}
-
 export default function OnboardingPage() {
   const { t } = useLang()
   const [step, setStep] = useState<1|2|3|4>(1)
@@ -183,12 +167,22 @@ export default function OnboardingPage() {
       return
     }
 
-    const systemPrompt = buildSystemPromptFromExtracted(extracted)
+    if (!authData.user) {
+      setSaveError('Could not create account. Please try again.')
+      setIsSaving(false)
+      return
+    }
+
+    // Save the exact prompt the preview used (built server-side in /api/extract),
+    // so the saved production assistant matches what was demoed.
+    const systemPrompt =
+      (extracted?.systemPrompt as string | undefined) ||
+      `You are the AI Guest Companion for ${extracted?.hotelName || 'this hotel'}. Answer guest questions concisely and helpfully. Always respond in the same language the guest writes in.`
 
     const { error: propertyError } = await supabase
       .from('properties')
       .insert({
-        user_id: authData.user!.id,
+        user_id: authData.user.id,
         hotel_name: extracted?.hotelName || 'My Hotel',
         location: extracted?.location || null,
         room_count: roomCount || extracted?.roomCount || null,

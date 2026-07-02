@@ -1,8 +1,10 @@
 import { streamText } from 'ai'
 import { createAnthropic } from '@ai-sdk/anthropic'
-import { createClient } from '@/lib/supabase/server'
+import { createServiceClient } from '@/lib/supabase/service'
 import { NextRequest } from 'next/server'
 import { Resend } from 'resend'
+import { detectIssue, extractRoomNumber, extractRoomNumberFromMessage, escapeHtml } from '@/lib/issue-detection'
+import { clientIp, rateLimit, rateLimitResponse } from '@/lib/rate-limit'
 
 const anthropic = createAnthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
 
@@ -20,36 +22,6 @@ const STYLE_INSTRUCTIONS: Record<string, string> = {
   zen_mindful: 'Calm, unhurried, thoughtful. Every response feels considered and serene.',
 }
 
-const ISSUE_KEYWORDS = [
-  'broken', 'not working', 'issue', 'problem', 'maintenance', 'leak',
-  'no hot water', 'no water', 'no electricity', 'no wifi', 'wifi not working',
-  'air conditioning', ' ac ', 'toilet', 'emergency', 'help', 'stuck', 'locked out',
-  'roto', 'no funciona', 'problema', 'fuga', 'sin agua', 'sin luz', 'sin wifi',
-  'aire acondicionado', 'emergencia', 'ayuda', 'atascado', 'cerrado', 'mantenimiento',
-  'no hay agua caliente',
-]
-
-function detectIssue(message: string): boolean {
-  const lower = message.toLowerCase()
-  return ISSUE_KEYWORDS.some(kw => lower.includes(kw))
-}
-
-const ROOM_PATTERN = /room\s*[#:]?\s*(\d+)|habitaci[oó]n\s*[#:]?\s*(\d+)|cuarto\s*[#:]?\s*(\d+)|#\s*(\d+)|\b(\d{1,4})\b/i
-
-function extractRoomNumberFromMessage(content: string): string | null {
-  const match = content.match(ROOM_PATTERN)
-  if (!match) return null
-  return match[1] ?? match[2] ?? match[3] ?? match[4] ?? match[5] ?? null
-}
-
-function extractRoomNumber(messages: Array<{ role: string; content: string }>): string | null {
-  for (const m of messages) {
-    const found = extractRoomNumberFromMessage(m.content)
-    if (found) return found
-  }
-  return null
-}
-
 function sendIssueAlert(
   alertEmail: string,
   hotelName: string,
@@ -60,7 +32,6 @@ function sendIssueAlert(
     console.error('[alert] RESEND_API_KEY is not set — cannot send alert')
     return
   }
-  console.log('[alert] sending to:', alertEmail, '| hotel:', hotelName, '| room:', roomNumber)
   const resend = new Resend(process.env.RESEND_API_KEY)
   const room = roomNumber ?? 'Not provided — assistant is asking'
   const time = new Date().toLocaleString('en-US', { timeZone: 'UTC', hour12: true })
@@ -71,15 +42,15 @@ function sendIssueAlert(
     html: `
       <h2 style="font-family:sans-serif;color:#1a1a1a">Guest Issue Alert</h2>
       <table style="font-family:sans-serif;font-size:15px;border-collapse:collapse;width:100%">
-        <tr><td style="padding:8px 0;color:#666;width:140px">Property</td><td style="padding:8px 0"><strong>${hotelName}</strong></td></tr>
-        <tr><td style="padding:8px 0;color:#666">Room Number</td><td style="padding:8px 0"><strong>${room}</strong></td></tr>
+        <tr><td style="padding:8px 0;color:#666;width:140px">Property</td><td style="padding:8px 0"><strong>${escapeHtml(hotelName)}</strong></td></tr>
+        <tr><td style="padding:8px 0;color:#666">Room Number</td><td style="padding:8px 0"><strong>${escapeHtml(room)}</strong></td></tr>
         <tr><td style="padding:8px 0;color:#666">Time</td><td style="padding:8px 0">${time} UTC</td></tr>
-        <tr><td style="padding:8px 0;color:#666;vertical-align:top">Guest Message</td><td style="padding:8px 0">${guestMessage}</td></tr>
+        <tr><td style="padding:8px 0;color:#666;vertical-align:top">Guest Message</td><td style="padding:8px 0">${escapeHtml(guestMessage)}</td></tr>
       </table>
       <p style="font-family:sans-serif;font-size:13px;color:#999;margin-top:24px">Sent by Place Companion · placecompanion.com</p>
     `,
   }).then(r => console.log('[alert] Resend response:', JSON.stringify(r)))
-  .catch(e => console.log('[alert] Resend error:', e.message, JSON.stringify(e)))
+  .catch(e => console.error('[alert] Resend error:', e.message))
 }
 
 function sendRoomUpdateAlert(
@@ -91,7 +62,6 @@ function sendRoomUpdateAlert(
     console.error('[alert] RESEND_API_KEY is not set — cannot send room update alert')
     return
   }
-  console.log('[alert] sending room UPDATE alert to:', alertEmail, '| room confirmed:', roomNumber)
   const resend = new Resend(process.env.RESEND_API_KEY)
   const time = new Date().toLocaleString('en-US', { timeZone: 'UTC', hour12: true })
   resend.emails.send({
@@ -101,14 +71,14 @@ function sendRoomUpdateAlert(
     html: `
       <h2 style="font-family:sans-serif;color:#1a1a1a">Guest Issue UPDATE — Room Confirmed</h2>
       <table style="font-family:sans-serif;font-size:15px;border-collapse:collapse;width:100%">
-        <tr><td style="padding:8px 0;color:#666;width:140px">Property</td><td style="padding:8px 0"><strong>${hotelName}</strong></td></tr>
-        <tr><td style="padding:8px 0;color:#666">Room Number</td><td style="padding:8px 0"><strong>${roomNumber}</strong></td></tr>
+        <tr><td style="padding:8px 0;color:#666;width:140px">Property</td><td style="padding:8px 0"><strong>${escapeHtml(hotelName)}</strong></td></tr>
+        <tr><td style="padding:8px 0;color:#666">Room Number</td><td style="padding:8px 0"><strong>${escapeHtml(roomNumber)}</strong></td></tr>
         <tr><td style="padding:8px 0;color:#666">Time</td><td style="padding:8px 0">${time} UTC</td></tr>
       </table>
       <p style="font-family:sans-serif;font-size:13px;color:#999;margin-top:24px">Sent by Place Companion · placecompanion.com</p>
     `,
   }).then(r => console.log('[alert] room update Resend response:', JSON.stringify(r)))
-  .catch(e => console.log('[alert] room update Resend error:', e.message, JSON.stringify(e)))
+  .catch(e => console.error('[alert] room update Resend error:', e.message))
 }
 
 function detectRevenueSignal(message: string): string | null {
@@ -126,9 +96,20 @@ export async function POST(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  if (!rateLimit(`assistant:${clientIp(req)}`, 30, 60_000)) {
+    return rateLimitResponse()
+  }
+
   const { id } = await params
   const { messages, sessionId } = await req.json()
-  const supabase = await createClient()
+
+  if (!Array.isArray(messages) || messages.length > 80 || typeof sessionId !== 'string') {
+    return Response.json({ error: 'Invalid request' }, { status: 400 })
+  }
+
+  // Guests are anonymous; all reads/writes here are server-side on behalf of
+  // the property, so use the service role instead of anon RLS policies.
+  const supabase = createServiceClient()
 
   // Fetch property
   const { data: property } = await supabase
@@ -184,8 +165,8 @@ export async function POST(
 
   // Normalize messages
   const normalized = (messages as Array<{ role: string; content: string }>)
-    .filter(m => m.role === 'user' || m.role === 'assistant')
-    .map(m => ({ role: m.role as 'user' | 'assistant', content: m.content }))
+    .filter(m => (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string')
+    .map(m => ({ role: m.role as 'user' | 'assistant', content: m.content.slice(0, 4000) }))
 
   const result = streamText({
     model: anthropic('claude-haiku-4-5-20251001'),
@@ -202,33 +183,27 @@ export async function POST(
         })
       }
       // Issue alert — fire and forget
-      console.log('[alert] onFinish — alert_email:', property.alert_email, '| last msg role:', lastUserMessage?.role)
       if (lastUserMessage?.role === 'user' && property.alert_email) {
         const allMessages = messages as Array<{ role: string; content: string }>
         const issueDetected = detectIssue(lastUserMessage.content)
-        console.log(`[alert] keyword check — message: ${lastUserMessage.content} | detected: ${issueDetected}`)
-        console.log('[alert] keywords checked:', ISSUE_KEYWORDS.join(', '))
 
         if (issueDetected) {
           // First alert — send immediately, include room number if already known
           const roomNumber = extractRoomNumber(allMessages)
           sendIssueAlert(property.alert_email, property.hotel_name, lastUserMessage.content, roomNumber)
-          // Fire and forget — log issue to DB
-          const { createServiceClient } = await import('@/lib/supabase/service')
-          const serviceSupabase = createServiceClient()
-          Promise.resolve(serviceSupabase.from('issue_logs').insert({
+          const { error: issueError } = await supabase.from('issue_logs').insert({
             property_id: id,
             guest_message: lastUserMessage.content,
             room_number: roomNumber || null,
             status: 'open'
-          })).then(() => {}).catch((e: Error) => console.error('[issue_log] insert error:', e.message))
+          })
+          if (issueError) console.error('[issue_log] insert error:', issueError.message)
         } else {
           // Check if this follow-up message contains a room number and a prior message had an issue
           const roomInThisMessage = extractRoomNumberFromMessage(lastUserMessage.content)
           if (roomInThisMessage) {
             const priorMessages = allMessages.slice(0, -1)
             const priorIssue = priorMessages.some(m => m.role === 'user' && detectIssue(m.content))
-            console.log('[alert] room number in follow-up:', roomInThisMessage, '| prior issue:', priorIssue)
             if (priorIssue) {
               sendRoomUpdateAlert(property.alert_email, property.hotel_name, roomInThisMessage)
             }

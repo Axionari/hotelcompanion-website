@@ -1,5 +1,8 @@
 import { generateText } from "ai";
 import { createAnthropic } from "@ai-sdk/anthropic";
+import { parsePublicHttpUrl, assertResolvesPublic } from "@/lib/url-guard";
+import { clientIp, rateLimit, rateLimitResponse } from "@/lib/rate-limit";
+import { buildExtractedSystemPrompt } from "@/lib/extracted-prompt";
 
 function stripHtml(html: string): string {
   return html
@@ -16,17 +19,27 @@ function stripHtml(html: string): string {
 }
 
 async function fetchUrlText(url: string): Promise<string> {
-  const res = await fetch(url, {
+  const parsed = parsePublicHttpUrl(url);
+  if (!parsed || !(await assertResolvesPublic(parsed))) {
+    throw new Error("URL is not a public http(s) address");
+  }
+  const res = await fetch(parsed, {
     headers: { "User-Agent": "Mozilla/5.0 (compatible; PlaceCompanionBot/1.0)" },
     signal: AbortSignal.timeout(10000),
   });
   if (!res.ok) throw new Error(`Failed to fetch URL: ${res.status}`);
+  const finalUrl = parsePublicHttpUrl(res.url);
+  if (res.url && !finalUrl) throw new Error("URL redirected to a non-public address");
   const html = await res.text();
   return stripHtml(html);
 }
 
 export async function POST(req: Request) {
   try {
+    if (!rateLimit(`extract:${clientIp(req)}`, 5, 60_000)) {
+      return rateLimitResponse();
+    }
+
     const anthropic = createAnthropic({
       apiKey: process.env.ANTHROPIC_API_KEY,
     });
@@ -124,39 +137,10 @@ ${sourceText}`,
       );
     }
 
-    // Build a system prompt from extracted data for use in /api/preview-chat
-    const lines: string[] = [];
-    lines.push(`You are the AI Guest Companion for ${extracted.hotelName || "this hotel"}.`);
-    if (extracted.summary) lines.push(String(extracted.summary));
-    if (extracted.location) lines.push(`Location: ${extracted.location}`);
-
-    const restaurant = extracted.restaurant as { found?: boolean; name?: string; hours?: string } | undefined;
-    if (restaurant?.found) {
-      lines.push(`Restaurant: ${restaurant.name || "on-site dining available"}${restaurant.hours ? ` (${restaurant.hours})` : ""}`);
-    }
-    const spa = extracted.spa as { found?: boolean; name?: string; hours?: string } | undefined;
-    if (spa?.found) {
-      lines.push(`Spa: ${spa.name || "spa & wellness available"}${spa.hours ? ` (${spa.hours})` : ""}`);
-    }
-    const amenities = extracted.amenities as { found?: boolean; list?: string[] } | undefined;
-    if (amenities?.found && amenities.list?.length) {
-      lines.push(`Amenities: ${amenities.list.join(", ")}`);
-    }
-    const policies = extracted.policies as { found?: boolean; checkIn?: string; checkOut?: string; other?: string } | undefined;
-    if (policies?.found) {
-      if (policies.checkIn) lines.push(`Check-in: ${policies.checkIn}`);
-      if (policies.checkOut) lines.push(`Check-out: ${policies.checkOut}`);
-      if (policies.other) lines.push(`Policies: ${policies.other}`);
-    }
-    const nearby = extracted.nearby as { found?: boolean; list?: string[] } | undefined;
-    if (nearby?.found && nearby.list?.length) {
-      lines.push(`Nearby: ${nearby.list.join(", ")}`);
-    }
-
-    lines.push("");
-    lines.push("Answer guest questions concisely and helpfully. Only use information provided above. Always respond in the same language the guest writes in.");
-
-    extracted.systemPrompt = lines.join("\n");
+    // Build the system prompt the onboarding preview will use. The saved
+    // production assistant reuses this exact string (see onboarding page), so
+    // preview and production stay identical.
+    extracted.systemPrompt = buildExtractedSystemPrompt(extracted);
 
     console.log("[extract] success, hotelName:", extracted.hotelName);
     return Response.json({ extracted });

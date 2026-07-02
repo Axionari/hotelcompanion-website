@@ -1,8 +1,7 @@
 import { streamText } from "ai";
 import { createAnthropic } from "@ai-sdk/anthropic";
-import { buildSystemPrompt } from "@/lib/build-system-prompt";
-import type { PropertyConfig } from "@/types/property";
-import { demoConfig } from "@/lib/demo-config";
+import { marazulChatConfig } from "@/lib/marazul-config";
+import { clientIp, rateLimit, rateLimitResponse } from "@/lib/rate-limit";
 
 const anthropic = createAnthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
@@ -17,41 +16,34 @@ function normalizeMessages(messages: (SimpleMessage | PartsMessage)[]) {
     .map((m) => {
       const role = m.role as "user" | "assistant";
       if ("content" in m) {
-        return { role, content: m.content };
+        return { role, content: String(m.content).slice(0, 4000) };
       }
       const text = m.parts
         .filter((p) => p.type === "text")
         .map((p) => p.text ?? "")
         .join("");
-      return { role, content: text };
+      return { role, content: text.slice(0, 4000) };
     });
 }
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    const { messages, propertyConfig, rawSystemPrompt } = body as {
-      messages: (SimpleMessage | PartsMessage)[];
-      propertyConfig?: PropertyConfig | { systemPrompt: string };
-      rawSystemPrompt?: string;
-    };
+    if (!rateLimit(`chat:${clientIp(req)}`, 20, 60_000)) {
+      return rateLimitResponse();
+    }
 
-    if (!messages || !Array.isArray(messages)) {
+    const body = await req.json();
+    const { messages } = body as { messages: (SimpleMessage | PartsMessage)[] };
+
+    if (!messages || !Array.isArray(messages) || messages.length > 60) {
       return Response.json({ error: "messages array is required" }, { status: 400 });
     }
 
-    let systemPrompt: string;
-    if (rawSystemPrompt) {
-      systemPrompt = rawSystemPrompt;
-    } else if (propertyConfig && "systemPrompt" in propertyConfig) {
-      systemPrompt = propertyConfig.systemPrompt;
-    } else {
-      systemPrompt = buildSystemPrompt((propertyConfig as PropertyConfig) ?? demoConfig);
-    }
-
+    // This endpoint only serves the public MarAzul demo. The system prompt is
+    // fixed server-side; client-supplied prompts are ignored.
     const result = streamText({
       model: anthropic("claude-haiku-4-5-20251001"),
-      system: systemPrompt,
+      system: marazulChatConfig.systemPrompt,
       messages: normalizeMessages(messages),
       maxOutputTokens: 1024,
     });
