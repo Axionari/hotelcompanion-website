@@ -41,7 +41,7 @@ Scope rule: every statement below is grounded in the repository, git history, li
 - **Server authority over AI and data.** After hardening, prompts and privileged DB access live server-side.
 
 **Intentionally deferred (MVP, not permanent):**
-- Multi-vertical support. The type system (`src/types/property.ts`) and `src/lib/build-system-prompt.ts` enumerate six verticals (`hotel_resort`, `hospital_clinic`, `airport_transport`, `residential`, `shopping_retail`, `university_campus`), but only `hotel_resort` is exercised. This is scaffolding for a planned generalization (§15, Planned).
+- Multi-vertical support. The type system (`src/types/property.ts`) enumerates six verticals (`hotel_resort`, `hospital_clinic`, `airport_transport`, `residential`, `shopping_retail`, `university_campus`), but only `hotel_resort` is exercised. This is scaffolding for a planned generalization (§15, Planned). (The per-vertical builder `build-system-prompt.ts` that consumed these was removed as dead in the final cleanup pass.)
 - Admin/command-center (`/admin`), analytics tables (`api_cost_logs`, `agent_memory_logs`, `error_logs`, `ambassador_referrals`) — the tables exist; the code paths that write/read them do not (§7, §15).
 - Observability: logging is `console.*` only. No error reporting service.
 - Test breadth: only pure-logic units are tested (§10).
@@ -150,7 +150,7 @@ flowchart LR
     app --> apix["api/ (6 route handlers)"]
     lib --> supacli["supabase/{client,server,service}.ts"]
     lib --> i18n["i18n/ (EN+ES copy)"]
-    lib --> prompts["extracted-prompt, build-system-prompt,\nissue-detection, rate-limit, url-guard"]
+    lib --> prompts["extracted-prompt, issue-detection,\nrate-limit, url-guard"]
 ```
 
 | Path | Why it exists | Notes |
@@ -173,7 +173,7 @@ flowchart LR
 - `.claude/worktrees/` — a gitignored duplicate working copy of the repo. Ignored by ESLint. Do not edit.
 - `tsconfig.tsbuildinfo` — incremental build cache (gitignored).
 
-**Dead code (verified, currently in tree):** `src/lib/build-system-prompt.ts` and `src/lib/demo-config.ts` have **zero importers** as of commit `26c3dc6` — the `/api/chat` rewrite removed their only consumers. `build-system-prompt.ts` still typechecks against `types/property.ts` but is unreachable. Recommendation in §11 (LOW).
+**Dead code:** none known. The `/api/chat` hardening rewrite (`26c3dc6`) orphaned `src/lib/build-system-prompt.ts`, `src/lib/demo-config.ts`, and `src/components/inline-demo.tsx` (whose only importer, the earlier-removed `onboarding-form.tsx`, no longer existed); all three — plus the now-unused `@ai-sdk/react` dependency — were deleted in the final cleanup pass. See §13.
 
 ---
 
@@ -249,10 +249,9 @@ flowchart LR
 ### 6.3 Conversation flow & streaming
 
 - Server: `streamText(...).toTextStreamResponse()` (Vercel AI SDK). Model `claude-haiku-4-5-20251001`, `maxOutputTokens` 512 (preview) / 1024 (chat, assistant).
-- Clients consume the stream three different ways:
-  - `AssistantClient.tsx` (guest) and `onboarding/page.tsx` (preview): manual `ReadableStream` reader.
-  - `inline-demo.tsx` (hero + onboarding preview widget): `@ai-sdk/react` `useChat` + `TextStreamChatTransport`.
-  - `chat-interface.tsx` (marketing/demo): manual reader with a `429` rate-limit branch.
+- Three client surfaces consume the stream, all via a manual `ReadableStream` reader:
+  - `AssistantClient.tsx` (guest) and `onboarding/page.tsx` (preview).
+  - `chat-interface.tsx` (marketing/demo): adds a `429` rate-limit branch.
 - The full message history is re-sent every turn (capped to 80 messages / 4,000 chars each in the assistant route). No server-side conversation truncation beyond that cap.
 
 ### 6.4 Issue detection & escalation
@@ -428,7 +427,7 @@ None outstanding after hardening. (All prior Critical/High security and the prev
 ### MEDIUM
 
 **MEDIUM-1 — Three chat UIs + duplicated guardrail constants.**
-- Impact: `chat-interface.tsx`, `inline-demo.tsx`, `AssistantClient.tsx` each reimplement streaming/rendering; `HALLUCINATION_GUARDRAIL`/`FALLBACK_BEHAVIOR`/`ISSUE_HANDLING`/`STYLE_INSTRUCTIONS` are duplicated across `/api/assistant/[id]` and `/api/preview-chat`. Changes must be made 2–3×; drift risk (already caused the fixed C1 bug class).
+- Impact: `chat-interface.tsx`, `AssistantClient.tsx`, and the `onboarding` preview each reimplement streaming/rendering; `HALLUCINATION_GUARDRAIL`/`FALLBACK_BEHAVIOR`/`ISSUE_HANDLING`/`STYLE_INSTRUCTIONS` are duplicated across `/api/assistant/[id]` and `/api/preview-chat`. Changes must be made 2–3×; drift risk (already caused the fixed C1 bug class).
 - Risk of fixing: MEDIUM (touches 4 UI surfaces).
 - Recommendation: consolidate guardrails into one module first (low risk); unify chat UI later.
 - Effort: guardrails S; UI unification L.
@@ -452,8 +451,8 @@ None outstanding after hardening. (All prior Critical/High security and the prev
 - Effort: S.
 
 ### LOW
-- **Newly-orphaned dead code:** `src/lib/build-system-prompt.ts`, `src/lib/demo-config.ts` (zero importers since `26c3dc6`). Recommendation: delete. Effort: S.
 - **Vestigial env vars:** `FIRECRAWL_API_KEY`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`, `STRIPE_PRODUCT_PORTFOLIO`. Recommendation: remove or wire. Effort: S.
+- **Pre-existing unused component:** `src/components/final-cta.tsx` (exports `FinalCTA`, imported nowhere; last changed `e954fc8` on 2026-03-12, predating the hardening work). Provably dead but left untouched — it is out of scope for the hardening cleanup and may be an intentional-but-unwired design asset. Recommendation: confirm intent, then wire or delete. Effort: S.
 - **9 ESLint warnings** — React-Compiler advisories on localStorage-hydration effects and `window.location.href` navigation; intentionally downgraded to warn. Effort: S if addressed.
 - **2 moderate `npm audit`** — build-time `postcss` transitively pinned inside Next 16.2.10; not runtime-exploitable; clears on Next's next bump. Effort: none (wait).
 - **Missing indexes** on high-cardinality FKs (`messages.property_id`, `conversations.property_id`) for future scale. Effort: S.
@@ -476,7 +475,7 @@ Format: Decision — Why — Tradeoff. Derived from repository evidence; rationa
 
 **ADR-5 Anthropic `claude-haiku-4-5`.** Why: low-latency/low-cost model sufficient for concierge Q&A and JSON extraction. Tradeoff: weaker reasoning than larger models; extraction relies on strict-JSON prompting with a single repair pass.
 
-**ADR-6 Single-vertical data model with multi-vertical scaffolding.** Why: ship hotels now; `types/property.ts` + `build-system-prompt.ts` pre-encode other verticals. Tradeoff: unused abstraction currently (and now partly dead — §11).
+**ADR-6 Single-vertical data model with multi-vertical scaffolding.** Why: ship hotels now; `types/property.ts` pre-encodes other verticals (the per-vertical builder `build-system-prompt.ts` was removed as dead in the final cleanup). Tradeoff: the type-level scaffolding remains unused.
 
 **ADR-7 i18n as a typed object, not a framework.** Why: two locales (EN/ES), full type safety, zero runtime deps. Tradeoff: no pluralization/ICU; scaling to many locales would need a real library.
 
@@ -515,7 +514,14 @@ Four commits on `handoff-hardening`. Each was built, typechecked, tested, and �
 - *Problem:* dead code, stale schema file, stray asset, stale env copies, unused dep.
 - *Files removed:* `src/lib/vertical-configs.ts`, `src/components/onboarding-form.tsx`, `src/lib/supabase/schema.sql`, `drjoseasgard.png`, `.env.local.save`, `.env.localcat`, dep `@stripe/stripe-js`.
 - *Verification:* full pipeline green post-removal.
-- *Remaining risk:* introduced two new orphans (`build-system-prompt.ts`, `demo-config.ts`) as a side effect of the `/api/chat` rewrite — documented (§11 LOW).
+- *Remaining risk:* introduced two new orphans (`build-system-prompt.ts`, `demo-config.ts`) as a side effect of the `/api/chat` rewrite. These — plus the orphaned `inline-demo.tsx` and the then-unused `@ai-sdk/react` dependency — were removed in the final cleanup pass (see below).
+
+**Final cleanup — orphan removal.**
+- *Problem:* the hardening `/api/chat` rewrite left three unreachable files (`build-system-prompt.ts`, `demo-config.ts`, `inline-demo.tsx`) and an ignored `rawSystemPrompt` field still sent by `inline-demo.tsx`; `@ai-sdk/react` became unused once `inline-demo.tsx` was orphaned.
+- *Root cause:* `inline-demo.tsx`'s only importer (`onboarding-form.tsx`) was removed in the hygiene commit; the two prompt-builder files lost their only consumer when `/api/chat` was pinned to the fixed demo prompt.
+- *Files removed:* `src/components/inline-demo.tsx`, `src/lib/build-system-prompt.ts`, `src/lib/demo-config.ts`, dep `@ai-sdk/react`.
+- *Verification:* grep confirms zero remaining references; build/tsc/lint/tests all pass; `types/property.ts` retained (still imported by `marazul-config.ts`).
+- *Remaining risk:* none.
 
 ---
 
@@ -559,7 +565,7 @@ Strictly separated. No redesign proposed.
 **Current (in code, working):** single hotel vertical; onboarding→preview→save→guest chat; Stripe subscriptions; email escalation; owner dashboard.
 
 **Planned (evidence in repo, not yet wired):**
-- Multi-vertical assistants — `types/property.ts` (six verticals) + `src/lib/build-system-prompt.ts` (per-vertical builders). Currently unused/orphaned.
+- Multi-vertical assistants — `types/property.ts` (six verticals). Currently unused type-level scaffolding; the per-vertical builder `build-system-prompt.ts` was removed as dead in the final cleanup.
 - Cost/telemetry/referrals analytics — tables `api_cost_logs`, `agent_memory_logs`, `error_logs`, `ambassador_referrals` exist with no writers.
 - Multi-demo theming — `src/lib/propertyConfigs.ts` defines `lavalise`/`condesadf`/`ahau`/`demo` skins consumed by `ThemeProvider`, implying planned per-property demo pages (the routes do not exist yet).
 

@@ -250,7 +250,7 @@ Run all inference server-side; never let the browser supply the production syste
 - `ANTHROPIC_API_KEY` must stay secret → inference is server-side.
 - **Nuance:** the browser *could* originally influence the prompt. `3e9dc19` "fix(api/chat): handle both message formats and **rawSystemPrompt**" added client-supplied prompts *deliberately*, so several demo surfaces could reuse one endpoint. It was a convenience — but it created an open, unmetered proxy.
 - Hardening (`26c3dc6`) made `/api/chat` ignore the client prompt and use the fixed `marazulChatConfig.systemPrompt`; the other routes were capped and rate-limited.
-- **Verified leftover:** `inline-demo.tsx` still *sends* `body: { rawSystemPrompt: … }` (line 66), but the server no longer reads it (`chat/route.ts` reads only `messages`). The field is now inert client-side cruft — harmless, but a future engineer will misread it as active. Safe to delete.
+- **Resolved:** `inline-demo.tsx` used to *send* `body: { rawSystemPrompt: … }` while the server ignored it (`chat/route.ts` reads only `messages`). That component was itself orphaned (its only importer, `onboarding-form.tsx`, was removed during hardening) and was deleted in the final cleanup pass, removing the ignored field entirely.
 
 ### Why this decision was reasonable (then and now)
 At demo-build time, a shared prompt-accepting endpoint was the fastest way to power multiple demo surfaces. Once the app had real cost/abuse exposure, server authority over the prompt became correct. The evolution is legitimate: flexibility first, isolation once it mattered.
@@ -259,7 +259,7 @@ At demo-build time, a shared prompt-accepting endpoint was the fastest way to po
 - `/api/preview-chat` still necessarily relays a client-supplied prompt, because onboarding previews an assistant *before* the property is saved. Bounded by input caps + rate limiting rather than eliminated (comment in `preview-chat/route.ts`).
 
 ### When this decision should be revisited
-If preview abuse becomes real: persist a draft property server-side and reference it by id instead of relaying the prompt. Also delete the dead `rawSystemPrompt` send in `inline-demo.tsx` whenever that file is next touched.
+If preview abuse becomes real: persist a draft property server-side and reference it by id instead of relaying the prompt. (The dead `rawSystemPrompt` send in `inline-demo.tsx` was removed in the final cleanup pass.)
 
 ---
 
@@ -283,7 +283,7 @@ Stream model output token-by-token.
 
 ### Context / Why
 - `streamText(...).toTextStreamResponse()` everywhere. Chat UX needs incremental output; streaming is the AI-SDK-native default.
-- Clients consume the stream three different ways (manual reader in `AssistantClient`/onboarding; `useChat` + `TextStreamChatTransport` in `inline-demo`; manual reader with a `429` branch in `chat-interface`). The `429` branch predates server-side rate limiting — UI that anticipated a limit later implemented in hardening.
+- Three client surfaces consume the stream, all via a manual `ReadableStream` reader (`AssistantClient`, `onboarding`, and `chat-interface` — the last with a `429` branch). The `429` branch predates server-side rate limiting — UI that anticipated a limit later implemented in hardening. (A fourth surface, `inline-demo.tsx`, used `@ai-sdk/react`'s `useChat`; it was orphaned and removed in the final cleanup.)
 
 ### Costs
 - Three stream-consumption implementations (see §Repository). Behavior is consistent but must be changed in three places.
@@ -503,7 +503,7 @@ Standard Next `src/` layout; centralized UI copy; server helpers in `lib/`; desi
 - **Design tokens as constants**: prevent visual drift across many agent edits (§0).
 
 ### Costs
-- **Duplication over abstraction** is a recurring convention, not an oversight: three chat UIs, duplicated guardrails, and (post-hardening side effect) two now-orphaned prompt-builder files (`build-system-prompt.ts`, `demo-config.ts`, both zero importers since `26c3dc6`).
+- **Duplication over abstraction** is a recurring convention, not an oversight: three chat/streaming surfaces (`chat-interface`, `AssistantClient`, `onboarding`) and duplicated guardrails. (The `/api/chat` rewrite also orphaned two prompt-builder files, `build-system-prompt.ts` and `demo-config.ts`; both were removed in the final cleanup.)
 - Large single files (`page.tsx` ~1,280 lines) because marketing pages were iterated as monoliths.
 
 ### Alternatives considered
@@ -521,7 +521,7 @@ Chronological, evidence-based. Decision → Reason → Impact → Status.
 | Date | Decision | Reason (evidenced) | Impact | Status |
 |---|---|---|---|---|
 | 2026-03-10 | Initial platform (Next App Router + dark design system) | `3d32e9b`; design system in `prompt.md`/`REBUILD.md` | Foundation | **ACTIVE** |
-| 2026-03-12 | AI routes; `/api/chat` accepts `rawSystemPrompt` | `3e9dc19` — one endpoint for multiple demo surfaces/message formats | Enabled demos; later a security risk | **DEPRECATED** (server ignores it now; client still sends a dead field) |
+| 2026-03-12 | AI routes; `/api/chat` accepts `rawSystemPrompt` | `3e9dc19` — one endpoint for multiple demo surfaces/message formats | Enabled demos; later a security risk | **REMOVED** (hardening made the server ignore it; the client sender `inline-demo.tsx` was deleted in final cleanup) |
 | 2026-03-12 | `/api/extract` + `/api/preview-chat` | `8b7cfe3` — onboarding "magic moment" | Self-serve onboarding | **ACTIVE** |
 | 2026-03-12 | Supabase auth + DB + dashboard (Phase 3A) | `04cce84` — auth+DB+authz in one dependency | Backend established; initial RLS over-permissive | **ACTIVE** (RLS corrected later) |
 | 2026-03-12 | Analytics/revenue signals (Phase 3B) | `f71bcb4` | `messages.revenue_signal`, dashboard | **ACTIVE** (partial) |
@@ -538,7 +538,7 @@ Chronological, evidence-based. Decision → Reason → Impact → Status.
 | 2026-07-01 | CI + deps + secret-free build | `f8d4e8b` | First automated gate; Next → 16.2.10 | **ACTIVE** (not yet run on GitHub) |
 | 2026-07-01 | Hygiene removals | `8dc7a03` | Dead code/asset/dep removed | **ACTIVE** |
 | Future | `/admin`, cost/critic/referral analytics | `REBUILD.md` intent; 4 empty tables | Not built | **PLANNED** |
-| Future | Multi-vertical assistants | `types/property.ts` 6 verticals; `build-system-prompt.ts` | Scaffolding only, now orphaned | **PLANNED/UNKNOWN** |
+| Future | Multi-vertical assistants | `types/property.ts` 6 verticals (per-vertical builder `build-system-prompt.ts` removed as dead in final cleanup) | Type-level scaffolding only | **PLANNED/UNKNOWN** |
 
 ---
 
@@ -590,7 +590,6 @@ Things deliberately postponed or simplified — with evidence they were choices,
 5. **Marketing/UI copy and design tokens.** Centralized (`translations.ts`, inline tokens); changing them cannot affect data or security.
 6. **The unused analytics tables.** Wire them up or drop them freely; nothing reads them today.
 7. **Model choice.** `claude-haiku-4-5` is a one-line change per route behind the AI SDK.
-8. **The dead `rawSystemPrompt` send in `inline-demo.tsx`.** Inert; safe to remove.
 
 ---
 
