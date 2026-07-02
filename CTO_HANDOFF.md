@@ -452,7 +452,6 @@ None outstanding after hardening. (All prior Critical/High security and the prev
 
 ### LOW
 - **Vestigial env vars:** `FIRECRAWL_API_KEY`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`, `STRIPE_PRODUCT_PORTFOLIO`. Recommendation: remove or wire. Effort: S.
-- **Pre-existing unused component:** `src/components/final-cta.tsx` (exports `FinalCTA`, imported nowhere; last changed `e954fc8` on 2026-03-12, predating the hardening work). Provably dead but left untouched — it is out of scope for the hardening cleanup and may be an intentional-but-unwired design asset. Recommendation: confirm intent, then wire or delete. Effort: S.
 - **9 ESLint warnings** — React-Compiler advisories on localStorage-hydration effects and `window.location.href` navigation; intentionally downgraded to warn. Effort: S if addressed.
 - **2 moderate `npm audit`** — build-time `postcss` transitively pinned inside Next 16.2.10; not runtime-exploitable; clears on Next's next bump. Effort: none (wait).
 - **Missing indexes** on high-cardinality FKs (`messages.property_id`, `conversations.property_id`) for future scale. Effort: S.
@@ -519,8 +518,8 @@ Four commits on `handoff-hardening`. Each was built, typechecked, tested, and �
 **Final cleanup — orphan removal.**
 - *Problem:* the hardening `/api/chat` rewrite left three unreachable files (`build-system-prompt.ts`, `demo-config.ts`, `inline-demo.tsx`) and an ignored `rawSystemPrompt` field still sent by `inline-demo.tsx`; `@ai-sdk/react` became unused once `inline-demo.tsx` was orphaned.
 - *Root cause:* `inline-demo.tsx`'s only importer (`onboarding-form.tsx`) was removed in the hygiene commit; the two prompt-builder files lost their only consumer when `/api/chat` was pinned to the fixed demo prompt.
-- *Files removed:* `src/components/inline-demo.tsx`, `src/lib/build-system-prompt.ts`, `src/lib/demo-config.ts`, dep `@ai-sdk/react`.
-- *Verification:* grep confirms zero remaining references; build/tsc/lint/tests all pass; `types/property.ts` retained (still imported by `marazul-config.ts`).
+- *Files removed:* `src/components/inline-demo.tsx`, `src/lib/build-system-prompt.ts`, `src/lib/demo-config.ts`, dep `@ai-sdk/react`. A recursive import-graph analysis to a fixed point then also flagged `src/components/final-cta.tsx` (exports `FinalCTA`, zero importers) — a superseded duplicate of the final-CTA section that is inlined bilingually via the `t.finalCta` i18n keys in `page.tsx`, `features/page.tsx`, and `about/page.tsx` — which was removed as well (it imports only `next/link`, so nothing cascaded).
+- *Verification:* a static import-graph analyzer confirms **zero accidental orphaned runtime modules** — every remaining zero-importer module is a Next.js App Router entry point (page/route/layout/not-found/middleware). Build/tsc/lint/tests/audit all pass; `types/property.ts` retained (still imported by `marazul-config.ts`).
 - *Remaining risk:* none.
 
 ---
