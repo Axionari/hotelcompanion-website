@@ -1,17 +1,27 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Menu, X } from "lucide-react";
-import { useLang } from "@/lib/i18n/LanguageContext";
+import { useCopy } from "@/lib/i18n/useCopy";
+import { globalCopy } from "@/lib/i18n/marketing/global";
 import LanguageToggle from "@/components/LanguageToggle";
+
+const NAV_LINKS: Array<{ key: "platform" | "solutions" | "enterprise" | "companionOs" | "resources" | "company"; href: string }> = [
+  { key: "platform", href: "/platform" },
+  { key: "solutions", href: "/solutions" },
+  { key: "enterprise", href: "/enterprise" },
+  { key: "companionOs", href: "/companion-os" },
+  { key: "resources", href: "/resources" },
+  { key: "company", href: "/company" },
+];
 
 export function SiteNav() {
   const [open, setOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
-  const { t, lang } = useLang();
-  const navLinkStyle = { fontSize: '15px', color: '#A8A099' };
-
+  const { nav } = useCopy(globalCopy);
+  const drawerRef = useRef<HTMLDivElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
   const lastY = useRef(0);
 
   useEffect(() => {
@@ -26,58 +36,106 @@ export function SiteNav() {
       }
       lastY.current = y;
     }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const close = useCallback(() => {
+    setOpen(false);
+    toggleRef.current?.focus();
+  }, []);
+
+  // Drawer: scroll lock + Esc + focus trap
+  useEffect(() => {
+    if (!open) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        close();
+        return;
+      }
+      if (e.key !== "Tab" || !drawerRef.current) return;
+      const focusables = drawerRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input, [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusables.length === 0) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      const active = document.activeElement;
+      if (e.shiftKey && (active === first || active === toggleRef.current)) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && active === last) {
+        e.preventDefault();
+        toggleRef.current?.focus();
+      }
+    }
+    document.addEventListener("keydown", onKeyDown);
+    drawerRef.current?.querySelector<HTMLElement>("a[href]")?.focus();
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open, close]);
+
   return (
-    <nav className={`fixed top-10 left-0 right-0 z-50 bg-[rgba(28,25,23,0.92)] backdrop-blur-xl border-b border-[rgba(232,227,220,0.06)] transition-transform duration-300 ease-in-out ${hidden ? '-translate-y-full' : 'translate-y-0'}`}>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-xl transition-transform duration-300 ease-in-out ${
+        hidden && !open ? "-translate-y-full" : "translate-y-0"
+      }`}
+      style={{ background: "rgba(14,12,11,0.9)", borderBottom: "1px solid var(--border)" }}
+    >
       <div className="max-w-6xl mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="font-serif text-[#FAF9F5] text-lg">
-          Hotel Companion
+        <Link href="/" className="font-serif text-lg" style={{ color: "var(--text)" }}>
+          {nav.wordmark}
         </Link>
 
         {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-8">
-          <Link href="/features" className="font-sans hover:text-[#E8E3DC] transition-colors" style={navLinkStyle}>{t.nav.features}</Link>
-          <Link href="/#how-it-works" className="font-sans hover:text-[#E8E3DC] transition-colors" style={navLinkStyle}>{t.nav.howItWorks}</Link>
-          <Link href="/#pricing" className="font-sans hover:text-[#E8E3DC] transition-colors" style={navLinkStyle}>{t.nav.pricing}</Link>
-          <Link href="/about" className="font-sans hover:text-[#E8E3DC] transition-colors" style={navLinkStyle}>{t.nav.about}</Link>
+        <div className="hidden lg:flex items-center gap-7">
+          {NAV_LINKS.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              className="font-sans transition-colors hover:text-[#E8E3DC]"
+              style={{ fontSize: "14px", color: "var(--text-secondary)" }}
+            >
+              {nav[l.key]}
+            </Link>
+          ))}
         </div>
 
-        {/* Desktop CTAs */}
-        <div className="hidden md:flex items-center gap-3">
-          <Link
-            href="/auth/login"
-            className="font-sans text-[#6B6560] hover:text-[#A8A099] transition-colors"
-            style={{ fontSize: '13px', padding: '4px 8px' }}
-          >
-            {t.nav.signIn}
-          </Link>
+        {/* Desktop CTA */}
+        <div className="hidden lg:flex items-center gap-4">
           <Link
             href="/demo"
-            className="font-sans flex items-center text-[#A8A099] hover:text-[#FAF9F5] border border-[rgba(232,227,220,0.15)] hover:border-[rgba(232,227,220,0.25)] transition-all"
-            style={{ background: 'transparent', borderRadius: '8px', padding: '8px 16px', fontSize: '13px', height: '36px' }}
+            className="font-sans flex items-center text-white transition-colors hover:bg-[#D4784A]"
+            style={{
+              background: "var(--accent)",
+              borderRadius: "8px",
+              height: "44px",
+              padding: "0 22px",
+              fontSize: "14px",
+              fontWeight: 600,
+            }}
           >
-            {t.nav.seeDemo}
-          </Link>
-          <Link
-            href="/onboarding"
-            className="font-sans flex items-center bg-[#C96A3A] hover:bg-[#D4784A] transition-colors text-white"
-            style={{ borderRadius: '8px', height: '48px', padding: '0 24px', fontSize: '15px', fontWeight: 600 }}
-          >
-            {t.nav.createAssistant}
+            {nav.bookDemo}
           </Link>
           <LanguageToggle />
         </div>
 
         {/* Mobile: language toggle + hamburger */}
-        <div className="flex items-center gap-3 md:hidden">
+        <div className="flex items-center gap-3 lg:hidden">
           <LanguageToggle />
           <button
-            className="text-[#E8E3DC] p-2"
-            onClick={() => setOpen(!open)}
-            aria-label="Toggle menu"
+            ref={toggleRef}
+            className="p-2.5"
+            style={{ color: "#E8E3DC", minWidth: "44px", minHeight: "44px" }}
+            onClick={() => (open ? close() : setOpen(true))}
+            aria-label={open ? nav.closeMenu : nav.openMenu}
+            aria-expanded={open}
+            aria-controls="mobile-drawer"
           >
             {open ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -86,50 +144,43 @@ export function SiteNav() {
 
       {/* Mobile drawer */}
       {open && (
-        <div className="md:hidden border-t border-[rgba(232,227,220,0.06)] bg-[rgba(28,25,23,0.98)] px-6 py-4 flex flex-col gap-1">
-          {[
-            [t.nav.features, "/features"],
-            [t.nav.howItWorks, "/#how-it-works"],
-            [t.nav.pricing, "/#pricing"],
-            [t.nav.about, "/about"],
-          ].map(([label, href]) => (
+        <div
+          id="mobile-drawer"
+          ref={drawerRef}
+          className="lg:hidden px-6 py-4 flex flex-col gap-1 overflow-y-auto"
+          style={{
+            background: "rgba(14,12,11,0.98)",
+            borderTop: "1px solid var(--border)",
+            maxHeight: "calc(100dvh - 64px)",
+          }}
+        >
+          {NAV_LINKS.map((l) => (
             <Link
-              key={label}
-              href={href}
-              className="font-sans text-base text-[#A8A099] py-3 border-b border-[rgba(232,227,220,0.06)]"
-              onClick={() => setOpen(false)}
+              key={l.href}
+              href={l.href}
+              className="font-sans text-base py-3"
+              style={{ color: "var(--text-secondary)", borderBottom: "1px solid var(--border)", minHeight: "44px" }}
+              onClick={close}
             >
-              {label}
+              {nav[l.key]}
             </Link>
           ))}
-          <div className="flex flex-col gap-3 mt-4">
-            <Link
-              href="/auth/login"
-              onClick={() => setOpen(false)}
-              className="font-sans text-[#6B6560] hover:text-[#A8A099] transition-colors"
-              style={{ fontSize: '13px', padding: '4px 8px' }}
-            >
-              {t.nav.signIn}
-            </Link>
+          <div className="flex flex-col gap-3 mt-4 pb-4">
             <Link
               href="/demo"
-              onClick={() => setOpen(false)}
-              className="font-sans flex items-center justify-center text-[#A8A099] hover:text-[#FAF9F5] border border-[rgba(232,227,220,0.15)] hover:border-[rgba(232,227,220,0.25)] transition-all"
-              style={{ background: 'transparent', borderRadius: '8px', padding: '8px 16px', fontSize: '13px', height: '36px' }}
+              onClick={close}
+              className="font-sans flex items-center justify-center text-white"
+              style={{
+                background: "var(--accent)",
+                borderRadius: "8px",
+                height: "48px",
+                padding: "0 24px",
+                fontSize: "15px",
+                fontWeight: 600,
+              }}
             >
-              {t.nav.seeDemo}
+              {nav.bookDemo}
             </Link>
-            <Link
-              href="/onboarding"
-              onClick={() => setOpen(false)}
-              className="font-sans flex items-center justify-center bg-[#C96A3A] hover:bg-[#D4784A] transition-colors text-white"
-              style={{ borderRadius: '8px', height: '48px', padding: '0 24px', fontSize: '15px', fontWeight: 600 }}
-            >
-              {t.nav.createAssistant}
-            </Link>
-            <div className="flex justify-center pt-2" style={{ borderTop: '1px solid rgba(232,227,220,0.06)' }}>
-              <LanguageToggle />
-            </div>
           </div>
         </div>
       )}
