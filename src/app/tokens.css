@@ -1,0 +1,39 @@
+/* ============================================================
+   Companion Design System (CDS) — design tokens
+   Single source of truth for color, type, spacing and motion.
+   ~75% shared family system (Restaurant Companion reference)
+   / ~25% Hotel soul. See build brief §3.
+   ============================================================ */
+
+:root {
+  /* Surfaces — layered warm-dark (ambient banding) */
+  --bg: #0e0c0b;            /* page bed */
+  --surface-1: #141311;     /* default section */
+  --surface-2: #1a1715;     /* elevated card */
+  --surface-3: #211d1a;     /* input / raised */
+
+  /* Text */
+  --text: #faf9f5;
+  --text-secondary: #a8a099;
+  --text-muted: #6b6560;
+
+  /* Lines */
+  --border: rgba(232, 227, 220, 0.08);
+
+  /* Accent — copper (family unity with Restaurant Companion) */
+  --accent: #c96a3a;
+  --accent-hover: #d4784a;
+  --accent-deep: #a9541f;
+
+  /* Status — never on primary CTAs or send actions */
+  --green: #2d9e6b;
+  --amber: #d4a84b;
+
+  /* Type — fonts are provided by next/font in layout.tsx */
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas,
+    monospace;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --reveal-duration: 240ms;
+}
