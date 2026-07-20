@@ -71,8 +71,8 @@ export default function PropertyClient({ property, conversations, issues: initia
     fetchSignals()
   }, [property.id])
 
-  const publicUrl = `https://placecompanion.com/assistant/${property.id}`
-  const embedCode = `<script src="https://placecompanion.com/widget.js" data-property="${property.id}"></script>`
+  const publicUrl = `https://hotelcompanion.ai/assistant/${property.id}`
+  const embedCode = `<script src="https://hotelcompanion.ai/widget.js" data-property="${property.id}"></script>`
   const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(publicUrl)}`
 
   const trialEnds = new Date(property.trial_ends_at)
@@ -159,7 +159,7 @@ export default function PropertyClient({ property, conversations, issues: initia
       {/* Nav */}
       <header className="px-4 md:px-8 py-5 flex justify-between items-center" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
         <Link href="/" className="font-serif text-xl" style={{ color: '#FFFFFF' }}>
-          Place Companion
+          Hotel Companion
         </Link>
       </header>
 

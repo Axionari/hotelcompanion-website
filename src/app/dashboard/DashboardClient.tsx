@@ -153,7 +153,7 @@ export default function DashboardClient({
 
   async function handleDownloadQR() {
     if (!selectedProperty) return
-    const publicUrl = `https://placecompanion.com/assistant/${selectedProperty.id}`
+    const publicUrl = `https://hotelcompanion.ai/assistant/${selectedProperty.id}`
     const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(publicUrl)}`
     const response = await fetch(qrUrl)
     const blob = await response.blob()
@@ -222,7 +222,7 @@ export default function DashboardClient({
         position: 'relative',
       }}>
         <Link href="/" className="font-serif" style={{ color: '#E8E3DC', fontSize: '17px' }}>
-          Place Companion
+          Hotel Companion
         </Link>
 
         {/* Desktop actions */}
@@ -641,8 +641,8 @@ export default function DashboardClient({
               {activeTab === 'deploy' && (
                 <div>
                   {(() => {
-                    const publicUrl = `https://placecompanion.com/assistant/${selectedProperty.id}`
-                    const embedCode = `<script src="https://placecompanion.com/widget.js" data-property="${selectedProperty.id}"></script>`
+                    const publicUrl = `https://hotelcompanion.ai/assistant/${selectedProperty.id}`
+                    const embedCode = `<script src="https://hotelcompanion.ai/widget.js" data-property="${selectedProperty.id}"></script>`
                     const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(publicUrl)}`
                     return (
                       <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: '16px' }}>

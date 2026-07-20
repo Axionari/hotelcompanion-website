@@ -36,7 +36,7 @@ export default function DemoPage() {
           style={{ borderBottom: "1px solid rgba(250,249,245,0.06)" }}
         >
           <Link href="/" className="font-serif text-xl text-[#FAF9F5]">
-            Place Companion
+            Hotel Companion
           </Link>
 
           {/* Hamburger */}
@@ -120,7 +120,7 @@ export default function DemoPage() {
           style={{ borderBottom: "1px solid rgba(250,249,245,0.06)" }}
         >
           <Link href="/" className="font-serif text-xl text-[#FAF9F5]">
-            Place Companion
+            Hotel Companion
           </Link>
           <Link
             href="/onboarding"

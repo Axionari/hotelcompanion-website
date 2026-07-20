@@ -23,7 +23,7 @@ export function SiteFooter() {
       <div className="max-w-6xl mx-auto px-4 md:px-6 py-14">
         <div className="flex flex-col md:flex-row justify-between gap-10 mb-12">
           <div>
-            <div className="font-serif text-[#E8E3DC] text-xl mb-2">Place Companion</div>
+            <div className="font-serif text-[#E8E3DC] text-xl mb-2">Hotel Companion</div>
             <p className="font-sans text-sm text-[#A8A099]">{t.footer.tagline}</p>
           </div>
           <div className="flex flex-wrap gap-x-8 gap-y-3 max-w-lg">

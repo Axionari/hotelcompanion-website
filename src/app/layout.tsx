@@ -19,9 +19,28 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Place Companion — AI Guest Companion for Hotels",
+  metadataBase: new URL("https://hotelcompanion.ai"),
+  title: {
+    default: "Hotel Companion — The Voice-First Guest Intelligence Platform for Hotels",
+    template: "%s · Hotel Companion",
+  },
   description:
-    "An intelligent AI assistant for every guest, at every hour. Place Companion knows your hotel and your destination — multilingual, live in minutes.",
+    "Understand Every Guest. Capture Every Opportunity. Hotel Companion transforms natural conversations into personalized guest experiences, operational intelligence, and coordinated execution. Powered by Companion OS.",
+  openGraph: {
+    siteName: "Hotel Companion",
+    title: "Hotel Companion — The Voice-First Guest Intelligence Platform for Hotels",
+    description:
+      "Understand Every Guest. Capture Every Opportunity. Powered by Companion OS.",
+    url: "https://hotelcompanion.ai",
+    type: "website",
+    // NEEDS REAL DATA: designed OG share image (public/og.png) not yet in repo
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Hotel Companion — The Voice-First Guest Intelligence Platform for Hotels",
+    description:
+      "Understand Every Guest. Capture Every Opportunity. Powered by Companion OS.",
+  },
 };
 
 export default function RootLayout({

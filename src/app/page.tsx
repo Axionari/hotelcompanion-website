@@ -631,7 +631,7 @@ export default function HomePage() {
                   fontFamily: 'var(--font-sans)',
                 }}
               >
-                app.placecompanion.com/dashboard
+                app.hotelcompanion.ai/dashboard
               </div>
             </div>
 

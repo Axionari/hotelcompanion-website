@@ -154,7 +154,7 @@ export default function AssistantClient({ property }: Props) {
               {property.hotel_name}
             </p>
             <p className="font-sans mt-0.5" style={{ fontSize: '12px', color: '#6B6560' }}>
-              Powered by Place Companion
+              Powered by Hotel Companion
             </p>
           </div>
           <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: '#2D9E6B' }} />
@@ -323,7 +323,7 @@ export default function AssistantClient({ property }: Props) {
           onMouseEnter={e => { (e.target as HTMLAnchorElement).style.color = '#A8A099' }}
           onMouseLeave={e => { (e.target as HTMLAnchorElement).style.color = '#6B6560' }}
         >
-          Place Companion
+          Hotel Companion
         </Link>
       </p>
     </div>

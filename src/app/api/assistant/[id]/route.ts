@@ -47,7 +47,7 @@ function sendIssueAlert(
         <tr><td style="padding:8px 0;color:#666">Time</td><td style="padding:8px 0">${time} UTC</td></tr>
         <tr><td style="padding:8px 0;color:#666;vertical-align:top">Guest Message</td><td style="padding:8px 0">${escapeHtml(guestMessage)}</td></tr>
       </table>
-      <p style="font-family:sans-serif;font-size:13px;color:#999;margin-top:24px">Sent by Place Companion · placecompanion.com</p>
+      <p style="font-family:sans-serif;font-size:13px;color:#999;margin-top:24px">Sent by Hotel Companion · hotelcompanion.ai</p>
     `,
   }).then(r => console.log('[alert] Resend response:', JSON.stringify(r)))
   .catch(e => console.error('[alert] Resend error:', e.message))
@@ -75,7 +75,7 @@ function sendRoomUpdateAlert(
         <tr><td style="padding:8px 0;color:#666">Room Number</td><td style="padding:8px 0"><strong>${escapeHtml(roomNumber)}</strong></td></tr>
         <tr><td style="padding:8px 0;color:#666">Time</td><td style="padding:8px 0">${time} UTC</td></tr>
       </table>
-      <p style="font-family:sans-serif;font-size:13px;color:#999;margin-top:24px">Sent by Place Companion · placecompanion.com</p>
+      <p style="font-family:sans-serif;font-size:13px;color:#999;margin-top:24px">Sent by Hotel Companion · hotelcompanion.ai</p>
     `,
   }).then(r => console.log('[alert] room update Resend response:', JSON.stringify(r)))
   .catch(e => console.error('[alert] room update Resend error:', e.message))

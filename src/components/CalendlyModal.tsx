@@ -65,7 +65,7 @@ export default function CalendlyModal({ onClose }: CalendlyModalProps) {
                 {lang === 'es' ? 'Demo Completa' : 'Full Demo & Walkthrough'}
               </p>
               <p className="font-sans" style={{ fontSize: '13px', color: '#6B6560' }}>
-                {lang === 'es' ? 'Ve todo lo que Place Companion puede hacer' : 'See everything Place Companion can do'}
+                {lang === 'es' ? 'Ve todo lo que Hotel Companion puede hacer' : 'See everything Hotel Companion can do'}
               </p>
             </div>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="#6B6560" strokeWidth="1.25" strokeLinecap="round"/></svg>

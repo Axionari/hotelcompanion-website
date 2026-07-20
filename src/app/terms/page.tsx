@@ -30,7 +30,7 @@ export default function TermsPage() {
               className="font-sans font-light text-[#9C9A93] leading-relaxed"
               style={{ fontSize: "17px" }}
             >
-              Place Companion provides an AI-powered guest assistant platform for hotels
+              Hotel Companion provides an AI-powered guest assistant platform for hotels
               and hospitality businesses. By creating an account, you agree to use the
               service only for lawful purposes and in accordance with these terms. You
               are responsible for the accuracy of the hotel information you provide to
@@ -49,7 +49,7 @@ export default function TermsPage() {
               className="font-sans font-light text-[#9C9A93] leading-relaxed"
               style={{ fontSize: "17px" }}
             >
-              You may not use Place Companion to provide false or misleading information
+              You may not use Hotel Companion to provide false or misleading information
               to guests, to collect personal data beyond what is necessary for guest
               assistance, or to violate any applicable laws. We reserve the right to
               suspend accounts that violate these terms without refund.
@@ -86,7 +86,7 @@ export default function TermsPage() {
               className="font-sans font-light text-[#9C9A93] leading-relaxed"
               style={{ fontSize: "17px" }}
             >
-              Place Companion is provided &ldquo;as is&rdquo; without warranties of any kind.
+              Hotel Companion is provided &ldquo;as is&rdquo; without warranties of any kind.
               We are not liable for any damages arising from incorrect information
               provided by the AI assistant, system downtime, or decisions made based
               on assistant responses. Our total liability to you shall not exceed the
@@ -107,10 +107,10 @@ export default function TermsPage() {
             >
               Questions about these terms? Email us at{" "}
               <a
-                href="mailto:hola@placecompanion.com"
+                href="mailto:hola@hotelcompanion.ai"
                 className="text-[#FAF9F5] hover:text-white transition-colors duration-200"
               >
-                hola@placecompanion.com
+                hola@hotelcompanion.ai
               </a>
               .
             </p>

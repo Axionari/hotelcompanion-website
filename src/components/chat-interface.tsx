@@ -215,7 +215,7 @@ export function ChatInterface({ config }: { config: ChatConfig }) {
                     marginRight: "auto",
                   }}
                 >
-                  <p>You&apos;ve experienced Place Companion. Ready to create your own?</p>
+                  <p>You&apos;ve experienced Hotel Companion. Ready to create your own?</p>
                   <a
                     href="/onboarding"
                     className="font-sans text-[13px] font-medium text-[#FAF9F5] bg-[#C96A3A] hover:bg-[#D4784A] h-9 px-4 rounded-md transition-colors mt-3 inline-block"

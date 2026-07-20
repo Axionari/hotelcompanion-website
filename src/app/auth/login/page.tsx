@@ -30,7 +30,7 @@ export default function LoginPage() {
       {/* Top bar */}
       <header className="px-4 md:px-8 py-5 flex justify-between items-center" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
         <Link href="/" className="font-serif text-xl" style={{ color: '#E8E3DC' }}>
-          Place Companion
+          Hotel Companion
         </Link>
       </header>
 

@@ -87,10 +87,10 @@ export default function PrivacyPage() {
             >
               For any privacy questions or data requests, contact us at{" "}
               <a
-                href="mailto:hola@placecompanion.com"
+                href="mailto:hola@hotelcompanion.ai"
                 className="text-[#FAF9F5] hover:text-white transition-colors duration-200"
               >
-                hola@placecompanion.com
+                hola@hotelcompanion.ai
               </a>
               . We will respond within 5 business days.
             </p>
