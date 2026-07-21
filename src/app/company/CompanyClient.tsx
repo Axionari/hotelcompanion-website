@@ -67,7 +67,7 @@ export default function CompanyClient() {
       ))}
 
       {/* {#company-contact} */}
-      <Section id="contact" eyebrow="08 · CONTACT" title={c.contact.title} variant="surface-2" center>
+      <Section id="contact" eyebrow="09 · CONTACT" title={c.contact.title} variant="surface-2" center>
         <div className="mt-8">
           <Lead>{c.contact.body}</Lead>
         </div>
@@ -91,7 +91,7 @@ export default function CompanyClient() {
 
       {/* {#company-final-cta} */}
       <FinalCta
-        eyebrow="09 · NEXT STEP"
+        eyebrow="10 · NEXT STEP"
         title={c.finalCta.title}
         body={c.finalCta.body}
         platform={c.finalCta.platform}

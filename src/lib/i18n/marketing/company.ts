@@ -12,8 +12,26 @@ const en = {
   },
   sections: [
     {
+      id: 'why-hotels',
+      eyebrow: '01 · WHY HOTELS',
+      title: 'Why Hotels.',
+      body: [
+        'We’ve watched front desks field the same 200 questions, every day, at every hour—not because guests are repetitive, but because the answers live in the heads of three people and nowhere else.',
+        'When those people are busy, guests wait.',
+        'When they’re off duty, guests go unanswered.',
+        'The cost isn’t just inconvenience.',
+        'It’s the room upgrade that never got offered.',
+        'The dinner reservation that never got made.',
+        'The guest who left without a review because nobody followed up.',
+        'Every missed question is a missed moment—and hotels miss hundreds of them a day.',
+        'The knowledge to answer them already exists.',
+        'Until now, it lived only in your best team member’s head—and walked out the door every time they clocked off.',
+      ],
+      coda: 'Hotel Companion exists to keep it.',
+    },
+    {
       id: 'belief',
-      eyebrow: '01 · OUR BELIEF',
+      eyebrow: '02 · OUR BELIEF',
       title: 'Hospitality Is Human. Intelligence Should Be Invisible.',
       body: [
         'Technology should never compete with hospitality. It should elevate it.',
@@ -24,7 +42,7 @@ const en = {
     },
     {
       id: 'mission',
-      eyebrow: '02 · OUR MISSION',
+      eyebrow: '03 · OUR MISSION',
       title: 'Help Every Hotel Understand Every Guest.',
       body: [
         'Hotels generate thousands of conversations every day. Most are forgotten the moment they end.',
@@ -36,7 +54,7 @@ const en = {
     },
     {
       id: 'approach',
-      eyebrow: '03 · OUR APPROACH',
+      eyebrow: '04 · OUR APPROACH',
       title: 'Built for Hospitality. Designed for Enterprise.',
       body: [
         'Hotel Companion combines the simplicity of natural conversation with the rigor of enterprise software.',
@@ -46,7 +64,7 @@ const en = {
     },
     {
       id: 'companion-os',
-      eyebrow: '04 · COMPANION OS',
+      eyebrow: '05 · COMPANION OS',
       title: 'One Platform. Unlimited Possibilities.',
       body: [
         'Hotel Companion is powered by Companion OS, Axionari’s shared intelligence platform.',
@@ -57,7 +75,7 @@ const en = {
     },
     {
       id: 'axionari',
-      eyebrow: '05 · ABOUT AXIONARI',
+      eyebrow: '06 · ABOUT AXIONARI',
       title: 'Enterprise Execution Systems.',
       body: [
         'Axionari builds intelligent systems that help organizations understand what is happening, coordinate what comes next, and continuously improve through AI.',
@@ -67,7 +85,7 @@ const en = {
     },
     {
       id: 'philosophy',
-      eyebrow: '06 · OUR PHILOSOPHY',
+      eyebrow: '07 · OUR PHILOSOPHY',
       title: 'Understanding Creates Better Execution.',
       body: [
         'Organizations already possess extraordinary knowledge.',
@@ -78,7 +96,7 @@ const en = {
     },
     {
       id: 'founding-partners',
-      eyebrow: '07 · FOUNDING PARTNERS',
+      eyebrow: '08 · FOUNDING PARTNERS',
       title: 'Building the Future Together.',
       body: [
         'We’re working closely with a limited number of hospitality organizations to shape the future of intelligent guest experiences.',
@@ -119,8 +137,26 @@ const es: typeof en = {
   },
   sections: [
     {
+      id: 'why-hotels',
+      eyebrow: '01 · POR QUÉ LOS HOTELES',
+      title: 'Por Qué los Hoteles.',
+      body: [
+        'Hemos visto a las recepciones responder las mismas 200 preguntas, cada día, a toda hora—no porque los huéspedes sean repetitivos, sino porque las respuestas viven en la cabeza de tres personas y en ningún otro lugar.',
+        'Cuando esas personas están ocupadas, los huéspedes esperan.',
+        'Cuando están fuera de turno, los huéspedes se quedan sin respuesta.',
+        'El costo no es solo la inconveniencia.',
+        'Es la mejora de habitación que nunca se ofreció.',
+        'La reservación de cena que nunca se hizo.',
+        'El huésped que se fue sin dejar reseña porque nadie dio seguimiento.',
+        'Cada pregunta perdida es un momento perdido—y los hoteles pierden cientos al día.',
+        'El conocimiento para responderlas ya existe.',
+        'Hasta ahora, vivía solo en la cabeza de tu mejor colaborador—y salía por la puerta cada vez que terminaba su turno.',
+      ],
+      coda: 'Hotel Companion existe para conservarlo.',
+    },
+    {
       id: 'belief',
-      eyebrow: '01 · NUESTRA CONVICCIÓN',
+      eyebrow: '02 · NUESTRA CONVICCIÓN',
       title: 'La Hospitalidad Es Humana. La Inteligencia Debería Ser Invisible.',
       body: [
         'La tecnología nunca debería competir con la hospitalidad. Debería elevarla.',
@@ -131,7 +167,7 @@ const es: typeof en = {
     },
     {
       id: 'mission',
-      eyebrow: '02 · NUESTRA MISIÓN',
+      eyebrow: '03 · NUESTRA MISIÓN',
       title: 'Ayudar a Cada Hotel a Entender a Cada Huésped.',
       body: [
         'Los hoteles generan miles de conversaciones cada día. La mayoría se olvidan en el momento en que terminan.',
@@ -143,7 +179,7 @@ const es: typeof en = {
     },
     {
       id: 'approach',
-      eyebrow: '03 · NUESTRO ENFOQUE',
+      eyebrow: '04 · NUESTRO ENFOQUE',
       title: 'Creado para la Hospitalidad. Diseñado para la Empresa.',
       body: [
         'Hotel Companion combina la simplicidad de la conversación natural con el rigor del software empresarial.',
@@ -153,7 +189,7 @@ const es: typeof en = {
     },
     {
       id: 'companion-os',
-      eyebrow: '04 · COMPANION OS',
+      eyebrow: '05 · COMPANION OS',
       title: 'Una Plataforma. Posibilidades Ilimitadas.',
       body: [
         'Hotel Companion está impulsado por Companion OS, la plataforma de inteligencia compartida de Axionari.',
@@ -164,7 +200,7 @@ const es: typeof en = {
     },
     {
       id: 'axionari',
-      eyebrow: '05 · SOBRE AXIONARI',
+      eyebrow: '06 · SOBRE AXIONARI',
       title: 'Sistemas de Ejecución Empresarial.',
       body: [
         'Axionari construye sistemas inteligentes que ayudan a las organizaciones a entender lo que está pasando, coordinar lo que sigue y mejorar continuamente a través de la IA.',
@@ -174,7 +210,7 @@ const es: typeof en = {
     },
     {
       id: 'philosophy',
-      eyebrow: '06 · NUESTRA FILOSOFÍA',
+      eyebrow: '07 · NUESTRA FILOSOFÍA',
       title: 'La Comprensión Crea una Mejor Ejecución.',
       body: [
         'Las organizaciones ya poseen un conocimiento extraordinario.',
@@ -185,7 +221,7 @@ const es: typeof en = {
     },
     {
       id: 'founding-partners',
-      eyebrow: '07 · SOCIOS FUNDADORES',
+      eyebrow: '08 · SOCIOS FUNDADORES',
       title: 'Construyendo el Futuro Juntos.',
       body: [
         'Trabajamos de cerca con un número limitado de organizaciones de hospitalidad para dar forma al futuro de las experiencias inteligentes para huéspedes.',
