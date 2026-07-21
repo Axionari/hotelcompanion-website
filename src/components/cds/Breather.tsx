@@ -15,12 +15,20 @@ import { useEffect, useRef, useState } from 'react'
  *  - no-JS: identical to reduced motion (the image is a plain background)
  */
 export function Breather({
+  id,
   image,
   video,
   line,
   height = 'clamp(220px, 38vh, 420px)',
   darken = 0.5,
 }: {
+  /**
+   * Anchor id, e.g. "band-home-tree". Bands sit *between* sections, so without
+   * their own id the only way to frame one is to scroll — and scrolling is
+   * exactly what does not work in an embedded preview. With an id, any band is
+   * one navigate away from being centred and screenshotted.
+   */
+  id?: string
   /** Path under /public, e.g. /assets/breathers/waterfall-swim.webp */
   image: string
   /** Basename under /assets/video (no extension) for the largest pauses.
@@ -78,7 +86,8 @@ export function Breather({
   return (
     <div
       ref={ref}
-      className="relative w-full overflow-hidden"
+      id={id}
+      className="relative w-full overflow-hidden scroll-mt-20"
       style={{ height }}
       aria-hidden={line ? undefined : 'true'}
     >

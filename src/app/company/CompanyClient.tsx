@@ -180,7 +180,7 @@ export default function CompanyClient() {
       ))}
 
       {/* {#company-contact} */}
-      <Breather image="/assets/breathers/beach-dusk-walk.webp" height="clamp(280px, 44vh, 520px)" />
+      <Breather id="band-company-dusk" image="/assets/breathers/beach-dusk-walk.webp" height="clamp(280px, 44vh, 520px)" />
 
       <Section id="contact" eyebrow="09 · CONTACT" title={c.contact.title} variant="surface-2">
         <div className="mt-8 body-lead" style={{ maxWidth: '56ch' }}>

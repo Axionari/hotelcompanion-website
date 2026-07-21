@@ -321,7 +321,7 @@ export default function PlatformClient() {
       </Section>
 
       {/* 07 · RESERVATIONS {#platform-reservations} */}
-      <Breather image="/assets/breathers/waterfall-swim.webp" />
+      <Breather id="band-platform-waterfall" image="/assets/breathers/waterfall-swim.webp" />
 
       <Section
         id="platform-reservations"

@@ -250,7 +250,7 @@ export default function HomeClient() {
         </Reveal>
       </Section>
 
-      <Breather image="/assets/breathers/giant-tree.webp" />
+      <Breather id="band-home-tree" image="/assets/breathers/giant-tree.webp" />
 
       {/* 07 · EXECUTION {#home-execution} — routing flow cards */}
       <Section eyebrow="09 · EXECUTION" title={c.execution.title} support={c.execution.lead} variant="bg">
@@ -302,7 +302,7 @@ export default function HomeClient() {
         </div>
       </Section>
 
-      <Breather image="/assets/breathers/beach-golden.webp" video="section-tropical-beach" height="clamp(280px, 44vh, 520px)" />
+      <Breather id="band-home-pause" image="/assets/breathers/beach-golden.webp" video="section-tropical-beach" height="clamp(280px, 44vh, 520px)" />
 
       {/* 10 · BOUNDARIES {#home-what-it-is-not-teaser} — statement + link to Enterprise */}
       <Section eyebrow="12 · BOUNDARIES" variant="surface-1" tight>
