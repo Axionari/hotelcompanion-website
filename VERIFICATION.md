@@ -1,7 +1,12 @@
 # VERIFICATION.md — Hotel Companion build
 
 Branch `feat/hotel-companion` · Verified 2026-07-20 against a local production build (`next build` + `next start`).
-Gates below map to build brief §11. **Not deployed** — device/Lighthouse sign-off is pending a Vercel preview.
+Gates below map to build brief §11 and the Round-2 Handoff Addendum (A2-1 … A2-6).
+**Not deployed** — device/Lighthouse sign-off is pending a Vercel preview.
+
+> **Round 2 applied.** The addendum resolved every copy-level open item from Round 1: the 8th capability
+> section, the Accessibility page, the Founding-CTA destination, the Medallia decision, and full
+> professional Spanish. See "Round 2" below.
 
 ## Build & type safety
 
@@ -15,7 +20,8 @@ Gates below map to build brief §11. **Not deployed** — device/Lighthouse sign
 ## Routes (all 200, server-rendered content confirmed)
 
 `/` · `/platform` · `/solutions` · `/enterprise` · `/companion-os` · `/resources` · `/company` · `/demo` · `/contact` ·
-`/privacy` · `/terms` · `/cookies` · `/security` · `/responsible-ai` · `/trust` · 404 · all 12 `/resources/library/*`
+`/privacy` · `/terms` · `/cookies` · `/security` · `/responsible-ai` · `/trust` · `/accessibility` · 404 ·
+all 12 `/resources/library/*`
 
 Each marketing route returns 19k–37k characters of visible text with the correct `<h1>` — **no blank-above-fold on any route**.
 
@@ -30,13 +36,14 @@ Each marketing route returns 19k–37k characters of visible text with the corre
 |---|---|
 | `Place Companion` / `placecompanion.com` | 0 hits |
 | pricing / free-trial strings (`$199`, `$599`, "Free Trial", "14-day", "cancel anytime", "No commitment", "Start Your Pilot") | 0 hits in marketing |
+| `NEEDS ES` | **0 hits** — Spanish is fully wired |
 | `chatbot` | 2 hits, both **verbatim approved copy** — `#companionos-why` ("Organizations don't need another chatbot.") and the Resources card dek. Plus essay bodies, which are approved source. |
 | capability taxonomy | single source `src/lib/capabilities.ts`, rendered only via `CapabilityGrid`. No page hand-writes the list. |
 
 ## Links
 
-- **33 unique internal link targets crawled across every page → all resolve (200/308). Zero dead links.**
-- **Every deep-link anchor verified present in rendered HTML:** `/companion-os#{voice,knowledge,memory,reasoning,workflow,operational,analytics,learning}`, `/contact#founding`, `/demo#{faq,form}`, `/resources#{library,faq,updates}`, `/solutions#{multi-property,luxury,resorts,boutique,business,enterprise-groups}`.
+- **34 unique internal link targets crawled across every page → all resolve (200/308). Zero dead links.**
+- **Every deep-link anchor verified present in rendered HTML:** `/companion-os#{voice,knowledge,memory,reasoning,workflow,operational,analytics,learning}` — **all eight now resolve to their own deep-dive section**, `/contact#founding`, `/demo#{faq,form}`, `/resources#{library,faq,updates,categories}`, `/solutions#{multi-property,luxury,resorts,boutique,business,enterprise-groups}`.
 - One dead anchor was found and fixed during verification: `/demo#faq` had no matching `id`. `Section` now also carries `scroll-mt-20` so the fixed nav never covers an anchor target.
 
 ## Three states (§3.4 / guardrail 6)
@@ -66,20 +73,53 @@ Each marketing route returns 19k–37k characters of visible text with the corre
 - Touch targets ≥44px on nav toggle, drawer links, buttons, inputs, category filters.
 - FAQ accordion buttons carry `aria-expanded`; form fields have associated `<label htmlFor>`.
 
-## Not yet verified (requires a deployed preview / real devices)
+## Round 2 (Handoff Addendum A2-1 … A2-6)
 
-- Lighthouse mobile scores on `/`, `/platform`, `/enterprise`, `/demo` (no baseline was capturable in this environment either — see AUDIT.md §7).
-- On-device passes: iOS Safari, Chrome Android, a ≤360px device.
-- Fast-scroll motion recordings at 390 and 1440 for dead-zone / mid-fade checks.
-- CLS and LCP under throttled mobile.
+| ID | Item | Result |
+|---|---|---|
+| A2-1 | Enterprise Analytics, the 8th capability | Deep-dive added to `/companion-os` between Operational Intelligence and Continuous Learning. The `#analytics` deep-link workaround is gone; all 8 capability tiles now anchor to real sections (verified in rendered HTML). Trailing sections renumbered. |
+| A2-2 | Founding Partner CTA destination | Home, Company (CTA added — it had none) and the footer all resolve to `/contact#founding`. The contact-page mailto workaround is gone. |
+| A2-3 | Accessibility page | `/accessibility` shipped bilingual; footer "Accessibility" link restored; `accessibility@hotelcompanion.ai` wired. |
+| A2-4 | Medallia $47B | Decision noted (KEEP, Eduardo verifies the citation). **No code change** — the figure is not rendered anywhere in the build, so nothing was fabricated. It stays absent until the citation is supplied. |
+| A2-5/A2-6 | Professional Spanish | Wired site-wide. `grep "NEEDS ES"` → **0 hits**. |
+
+### Spanish verification
+
+- **Copy modules:** an automated parity gate walks every `Localized` pair and asserts identical key structure plus actual translation. Result: **95–100% of content strings differ from EN on every module**; every remaining identical string is a true cognate (`Spa.`, `Golf.`, `Concierge`, `Resort`, `Boutique`, `Retail`, `Companion OS`). No structural value drifted — **every `slug`, `href`, `id` and email is byte-identical across languages**, so no ES route or anchor can break.
+- **Legal:** six documents translated with block-for-block parity (privacy 52/52, terms 70/70, cookies 36/36, security 34/34, responsible-AI 34/34, trust 19/19). `href` inventory identical.
+- **Library:** 12 Spanish essays extracted verbatim (2,200 lines, matching EN line-for-line); contamination scan clean after stripping the ES "Artículo Final →" pointer from essay 11 (the same defect as the EN pass). Slug and order parity with EN confirmed. Chain renders "SIGUIENTE ARTÍCULO →"; essay 12 shows the series-end block.
+- **Rendered-output sweep:** with `pc_lang=es`, all **18 routes** were loaded in a real browser and scanned for 15 tell-tale English strings (`Book a Demo`, `Frequently Asked Questions`, `NEXT STEP`, `Last Updated:`, `Return Home`, `Coming Soon`, `Sign In`, `Subscribe`, the endorsement lockups, …). Final result: **18/18 clean, zero English leakage.**
+- **Two leaks were found and fixed during this sweep**, both invisible to a file-level review:
+  1. `EndorsementMark` hardcoded "Powered by Companion OS." / "Powered by Axionari." in English — it leaked onto 5 pages in ES mode. Now uses the approved ES lockups ("Impulsado por Companion OS." / "Construido por Axionari.").
+  2. 57 section eyebrows were hardcoded English in the page components (`01 · CONVERSATION` …). Now translated at the `Section` boundary via a shared dictionary, so ES renders `01 · CONVERSACIÓN`.
+- **Resources filters:** ES description keys were verified against the Spanish essay index — every ES filter button resolves a description. EN likewise.
+- **EN unaffected:** English rendering re-checked on Home and an essay after all ES work.
+
+### Translator judgment calls worth a copywriter's glance
+
+These strings exist in code but had no counterpart in the copy deck, so they were authored rather than lifted:
+- UI chrome: menu open/close labels, form validation and submit-state messages, newsletter success/error, "Sign In".
+- Section eyebrow labels (the deck uses prose headings, not numbered eyebrows) — including all 12 Enterprise labels and the 15 Solutions department/segment labels.
+- `contact` channel one-line titles and `channelsTitle`/`hq.title`; `solutions` department/segment intro headings; `resources` eyebrows.
+- Two legal cross-reference link labels (Privacy→Cookies, Security→Privacy) modeled on the Trust Center's ES phrasing.
+- The ES deck's footer Legal list has 5 items where EN has 7; "IA Responsable" and "Centro de Confianza" were authored to preserve the routes rather than drop them.
+
+Also carried through faithfully as the ES deck writes them: "Front Desk" and "Front Office" both render as "Recepción"; the ES sign-off is "Construido por Axionari" where EN says "Powered by Axionari".
 
 ## Open items carried forward
 
-1. **ES translation** — every new copy module ships EN verbatim with `const es: typeof en = en` and a `NEEDS ES` comment. Type-safe (no missing keys), but the toggle currently renders English on new pages. No machine translation was shipped silently, per guardrail 8.
-2. **Imagery** — `public/` still holds only default Next.js SVGs. Flagged `NEEDS REAL DATA`: hero in-room tablet render, editorial photography, favicon, designed OG share image, logo lockups. The Home secondary CTA ("Watch Product Tour") points at `/platform` until a tour asset exists.
-3. **Medallia $47B** — not rendered anywhere; still awaiting confirmation.
-4. **Footer "Accessibility" link** — the copy deck lists it but §4 defines no `/accessibility` route. Omitted rather than shipping a dead link; needs a decision.
-5. **Founding Partner CTA** (`/contact#founding`) routed to `partners@hotelcompanion.ai` — confirm whether a dedicated intake form is wanted.
-6. **Enterprise Analytics deep-dive** — the copy deck supplies 7 capability sections, not 8. The Enterprise Analytics tile deep-links to the capability overview section; needs either new copy or confirmation of current behavior.
-7. **Self-serve `/onboarding`** (P0-4) — default applied: app routes remain functional, all self-serve CTAs and pricing removed from marketing, Sign In demoted to a footer utility link. Awaiting confirmation.
-8. **Deploy target** — Vercel project + `hotelcompanion.ai` DNS not configured from this branch.
+All are Eduardo's to provide; none block the build.
+
+1. **Resend** — verify `hotelcompanion.ai` at resend.com/domains, move `from` off `onboarding@resend.dev`, set `DEMO_REQUEST_TO`. The form works; it currently 403s sending to `sales@` because Resend is in test mode.
+2. **Imagery** — `public/` still holds only default Next SVGs. Flagged `NEEDS REAL DATA`: hero in-room tablet render, editorial photography, favicon, designed OG share image, logo lockups. The Home secondary CTA ("Watch Product Tour") points at `/platform` until a tour asset exists.
+3. **Medallia $47B** — Eduardo verifies the citation (figure, report, year) before launch. Not rendered anywhere until then.
+4. **Self-serve `/onboarding`** (P0-4) — still open. Default applied: app routes functional, zero self-serve CTAs or pricing on marketing, Sign In demoted to a footer utility link.
+5. **Legal counsel review** — both EN and ES legal/trust bodies should be reviewed before public launch (standard, and the ES deck carries the same caveat).
+6. **Vercel project + `hotelcompanion.ai` DNS** — needed for the preview so Lighthouse, on-device passes and motion recordings can be captured.
+
+## Still not verified (needs a deployed preview / real devices)
+
+- Lighthouse mobile on `/`, `/platform`, `/enterprise`, `/demo` (no baseline was capturable locally either — see AUDIT.md §7).
+- On-device passes: iOS Safari, Chrome Android, a ≤360px device.
+- Fast-scroll motion recordings at 390 and 1440 for dead-zone / mid-fade checks.
+- CLS and LCP under throttled mobile.

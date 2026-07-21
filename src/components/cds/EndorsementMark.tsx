@@ -1,10 +1,17 @@
 'use client'
 
 import Link from 'next/link'
+import { useLang } from '@/lib/i18n/LanguageContext'
+
+/* Approved family lockups, EN and ES (copy decks, global rules). */
+const LOCKUPS = {
+  en: { 'companion-os': 'Powered by Companion OS.', axionari: 'Powered by Axionari.' },
+  es: { 'companion-os': 'Impulsado por Companion OS.', axionari: 'Construido por Axionari.' },
+} as const
 
 /**
- * Family lockups (brief §6): "Powered by Companion OS." → /companion-os,
- * "Powered by Axionari." → axionari.com. No underline; accent-shift hover.
+ * Family lockups (brief §6): Companion OS → /companion-os,
+ * Axionari → axionari.com. No underline; accent-shift hover.
  */
 export function EndorsementMark({
   variant = 'companion-os',
@@ -13,7 +20,8 @@ export function EndorsementMark({
   variant?: 'companion-os' | 'axionari'
   className?: string
 }) {
-  const label = variant === 'companion-os' ? 'Powered by Companion OS.' : 'Powered by Axionari.'
+  const { lang } = useLang()
+  const label = LOCKUPS[lang][variant]
   const style = {
     color: 'var(--text-secondary)',
     textDecoration: 'none' as const,
