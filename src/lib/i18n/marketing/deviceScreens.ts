@@ -14,6 +14,7 @@ export type ScreenId =
   | 'spa'
   | 'concierge'
   | 'issue'
+  | 'followup'
 
 const en = {
   greeting: 'Good afternoon · Suite 214',
@@ -79,6 +80,19 @@ const en = {
       reply: 'I am alerting Engineering now. Could you confirm your room number?',
       stages: ['Engineering alerted', 'Room 214 confirmed'],
     },
+    followup: {
+      ask: 'Thank you — we loved it.',
+      title: 'How was your stay?',
+      meta: 'A note from MarAzul, two days after checkout',
+      reply: 'It was a pleasure having you. If you have a moment, we would love your review — and your rate is held for next time.',
+      actions: ['Leave a review', 'Book direct again'],
+      image: '/assets/img/luxury-lobby.webp',
+    },
+  },
+  chat: {
+    placeholder: 'Ask anything…',
+    send: 'Send',
+    mic: 'Speak',
   },
   surfaces: {
     tablet: 'In-room tablet',
@@ -152,6 +166,19 @@ const es: typeof en = {
       reply: 'Estoy alertando a Mantenimiento. ¿Me confirma su número de habitación?',
       stages: ['Mantenimiento alertado', 'Habitación 214 confirmada'],
     },
+    followup: {
+      ask: 'Gracias — nos encantó.',
+      title: '¿Cómo estuvo su estancia?',
+      meta: 'Un mensaje de MarAzul, dos días después de la salida',
+      reply: 'Fue un placer recibirlos. Si tiene un momento, nos encantaría su reseña — y su tarifa queda apartada para la próxima.',
+      actions: ['Dejar reseña', 'Reservar directo otra vez'],
+      image: '/assets/img/luxury-lobby.webp',
+    },
+  },
+  chat: {
+    placeholder: 'Pregunta lo que sea…',
+    send: 'Enviar',
+    mic: 'Hablar',
   },
   surfaces: {
     tablet: 'Tablet en la habitación',

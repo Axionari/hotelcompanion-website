@@ -125,7 +125,39 @@ export function JourneyWalkthrough({
     >
       {/* the device — left, showing the screen for the current stage */}
       <div className="lg:col-span-7">
-        <TabletOS screen={steps[active]?.screen} />
+        <TabletOS screen={steps[active]?.screen} orbState={paused ? 'idle' : 'listening'} />
+
+        {/* step dots — manual control alongside the auto-advance */}
+        <div className="mt-6 flex items-center gap-2" role="tablist" aria-label="Journey stages">
+          {steps.map((s, i) => {
+            const on = i === active
+            return (
+              <button
+                key={i}
+                role="tab"
+                aria-selected={on}
+                aria-label={`${i + 1}. ${s.title}`}
+                onClick={() => setActive(i)}
+                className="grid place-items-center"
+                style={{ width: 28, height: 44 }}
+              >
+                <span
+                  style={{
+                    display: 'block',
+                    height: 3,
+                    width: on ? 26 : 14,
+                    borderRadius: 999,
+                    background: on ? 'var(--accent)' : 'var(--border)',
+                    transition: 'width var(--dur-base) var(--ease-standard), background var(--dur-base) var(--ease-standard)',
+                  }}
+                />
+              </button>
+            )
+          })}
+          <span className="eyebrow ml-2" style={{ fontSize: 9 }}>
+            {String(active + 1).padStart(2, '0')} / {String(steps.length).padStart(2, '0')}
+          </span>
+        </div>
       </div>
 
       {/* the stages — right, advancing in place */}

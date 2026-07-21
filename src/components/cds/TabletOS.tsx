@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { deviceScreens, type ScreenId } from '@/lib/i18n/marketing/deviceScreens'
-import { VoiceOrb } from './VoiceOrb'
+import { VoiceOrb, type OrbState } from './VoiceOrb'
 
 /**
  * The in-room tablet as an image-rich hospitality display OS
@@ -128,11 +128,8 @@ function ScreenBody({ id }: { id: ScreenId }) {
           <span className="font-serif" style={{ fontSize: 15, fontWeight: 530, color: 'var(--text)' }}>
             {d.greeting}
           </span>
-          <span className="flex items-center gap-2 flex-shrink-0">
-            <span className="eyebrow" style={{ fontSize: 8 }}>
-              {d.orbHint}
-            </span>
-            <VoiceOrb state="idle" size={40} showMic />
+          <span className="eyebrow flex-shrink-0" style={{ fontSize: 8 }}>
+            {d.orbHint}
           </span>
         </div>
         <div className="mt-3 grid grid-cols-5 gap-1.5">
@@ -316,6 +313,39 @@ function ScreenBody({ id }: { id: ScreenId }) {
     )
   }
 
+  if (id === 'followup') {
+    return (
+      <div className="flex h-full flex-col p-4">
+        <div className="flex-1">
+          <UiImage src={s.followup.image} alt={s.followup.title} height="100%" />
+        </div>
+        <div className="mt-3">
+          <div className="font-serif" style={{ fontSize: 15, fontWeight: 530, color: 'var(--text)' }}>
+            {s.followup.title}
+          </div>
+          <div className="eyebrow mt-1" style={{ fontSize: 8 }}>
+            {s.followup.meta}
+          </div>
+          <p
+            className="mt-2.5 rounded-2xl px-3.5 py-2.5"
+            style={{
+              background: 'var(--accent-soft)',
+              border: '1px solid var(--accent-hairline)',
+              color: 'var(--text)',
+              fontSize: 12,
+              lineHeight: 1.5,
+            }}
+          >
+            {s.followup.reply}
+          </p>
+          <div className="mt-2.5">
+            <ActionRow labels={s.followup.actions} />
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   // issue — deliberately sparse: this is an ops moment, not a merchandising one
   return (
     <div className="flex h-full flex-col justify-center p-5">
@@ -351,12 +381,15 @@ function ScreenBody({ id }: { id: ScreenId }) {
 export function TabletOS({
   screen,
   cycle,
+  orbState = 'idle',
   className = '',
 }: {
   /** Controlled screen (walkthroughs drive this). */
   screen?: ScreenId
   /** Auto-cycle these screens (hero). Ignored under reduced motion. */
   cycle?: ScreenId[]
+  /** Drives the in-device mic; it is always rendered, never hidden. */
+  orbState?: OrbState
   className?: string
 }) {
   const d = useCopy(deviceScreens)
@@ -422,8 +455,9 @@ export function TabletOS({
             </span>
           </div>
 
+          {/* the screen content cross-fades; the chrome below never does */}
           <div
-            className="h-full pt-9"
+            className="absolute inset-x-0 top-9 bottom-[58px]"
             style={{
               opacity: fading ? 0 : 1,
               transform: fading ? 'scale(0.985)' : 'scale(1)',
@@ -433,6 +467,30 @@ export function TabletOS({
             }}
           >
             <ScreenBody id={active} />
+          </div>
+
+          {/* Persistent chrome — the mic is always visible, chat always available.
+              Voice-only is reserved for the phone-call surface (see SurfaceFan). */}
+          <div
+            className="absolute inset-x-0 bottom-0 flex items-center gap-2 px-3 py-2.5"
+            style={{ borderTop: '1px solid var(--border-soft)', background: 'rgba(15,13,12,0.72)' }}
+          >
+            <VoiceOrb state={orbState} size={34} showMic />
+            <div
+              className="flex-1 flex items-center rounded-full px-3"
+              style={{ height: 30, background: 'rgba(251,248,242,0.06)', border: '1px solid var(--border-soft)' }}
+            >
+              <span className="font-sans" style={{ fontSize: 10, color: 'var(--text-faint)' }}>
+                {d.chat.placeholder}
+              </span>
+            </div>
+            <span
+              aria-hidden="true"
+              className="grid place-items-center rounded-full flex-shrink-0"
+              style={{ width: 30, height: 30, background: 'var(--accent)', color: '#1a1207', fontSize: 13 }}
+            >
+              ↑
+            </span>
           </div>
         </div>
       </div>
@@ -447,10 +505,39 @@ export function TabletFilmstrip({ screens }: { screens: ScreenId[] }) {
       {screens.map((s) => (
         <div key={s} style={{ ...FRAME, padding: 6 }}>
           <div className="relative overflow-hidden" style={{ ...SCREEN, aspectRatio: '4 / 3' }}>
-            <ScreenBody id={s} />
+            <div className="absolute inset-x-0 top-0 bottom-[40px]">
+              <ScreenBody id={s} />
+            </div>
+            {/* the mic stays visible in the static state too */}
+            <FilmstripChrome />
           </div>
         </div>
       ))}
+    </div>
+  )
+}
+
+/** Static version of the device chrome, for the filmstrip / no-JS state. */
+function FilmstripChrome() {
+  const d = useCopy(deviceScreens)
+  return (
+    <div
+      className="absolute inset-x-0 bottom-0 flex items-center gap-1.5 px-2 py-1.5"
+      style={{ borderTop: '1px solid var(--border-soft)', background: 'rgba(15,13,12,0.72)' }}
+    >
+      <VoiceOrb state="idle" size={24} showMic />
+      <div
+        className="flex-1 rounded-full"
+        style={{ height: 20, background: 'rgba(251,248,242,0.06)', border: '1px solid var(--border-soft)' }}
+      />
+      <span
+        aria-hidden="true"
+        className="grid place-items-center rounded-full flex-shrink-0"
+        style={{ width: 20, height: 20, background: 'var(--accent)', color: '#1a1207', fontSize: 10 }}
+      >
+        ↑
+      </span>
+      <span className="sr-only">{d.chat.placeholder}</span>
     </div>
   )
 }
