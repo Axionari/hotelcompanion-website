@@ -66,6 +66,82 @@ and keeps `#A9541F` as the deep/pressed step.
   very large left-aligned Fraunces H1, several General Sans paragraphs at `--text-dim` on a ~950px measure,
   and a short bold Fraunces line as the closing beat ("Beginning with hospitality."). Entirely card-less.
 
+## 2 · Build state — every page re-skinned
+
+The full Level-Up plan has been executed: foundation, media pipeline, block vocabulary,
+and all nine marketing pages. Approved EN/ES copy was never edited; the only authorized
+change was the `$47B`/Medallia → `$160B`/McKinsey stake swap, and long noun-stacks are
+chipped **at render time** (`.slice(0,10)`, sentence-boundary detection) rather than by
+touching the copy modules.
+
+### Media
+`handoff/fetch-assets.sh` was read before running (it only curls Pexels media into
+`public/assets`). Raw downloads were **245 MB**, which is unshippable, so every asset was
+processed locally: loops cut to 8s at 1280w, audio stripped, darkened ~16% with a warm
+copper grade, encoded VP9 webm + H.264 mp4 with poster frames; stills to webp. **Total
+committed media: 7.1 MB.** Source URLs recorded per asset in `CREDITS.md`.
+
+### Block vocabulary built
+StatBlock (count-up), IconChipGrid, RoutingFlow, JourneyTimeline, ConvergenceDiagram,
+NodeDiagram, CapabilitySurface, DashboardMockup (91/9 donut), Accordion, MediaBed,
+AccentHeadline — plus the two interactive moments RC does not have: **VoiceMorph**
+(five named voices, one reply) and **TabbedDeviceWalkthrough**, and the **TwoStageAlert**.
+
+### Per-page composition
+
+| Page | Sections | Signature visuals |
+|---|---|---|
+| `/` | 13 | hero video loop + in-room tablet, $160B stat block, marquee, tabbed device walkthrough, knowledge chips, dashboard, routing flow, convergence, timeline, accordion, CTA band |
+| `/platform` | 16 | tablet hero, VoiceMorph, knowledge split, NodeDiagram, lifecycle timeline, TwoStageAlert, RoutingFlow, DashboardMockup |
+| `/solutions` | 6 | interactive 9-department index (rail swaps panel), photography band, hairline segment index |
+| `/enterprise` | 16 | convergence, chip grids, DashboardMockup, deploy/grow timelines, "Not a…" quadrant — warmest banding |
+| `/companion-os` | 15 | NodeDiagram, ConvergenceDiagram signature, 8 deep-dives, workflow step flow, ecosystem family row |
+| `/company` | 11 | lobby still in the hero right column, reception photo behind the copper pull-quote |
+| `/resources` | 8 | essay card grid + filter pills, ambient hero bed |
+| `/demo` | 10 | photographic hero, FAQ accordion, real form states |
+| `/contact` | 7 | lobby hero bed, channel rows, FAQ accordion |
+
+## 3 · Gates — final result
+
+Measured in-browser at 1280 (computed styles and geometry, not eyeballed):
+
+| Page | Centered sections | Adjacent same surface | H1 left + italic accent | Visuals |
+|---|---|---|---|---|
+| `/` | **0** | 0 | ✓ | 8 |
+| `/platform` | **0** | 0 | ✓ | 6 |
+| `/solutions` | **0** | 0 | ✓ | 5 |
+| `/enterprise` | **0** | 0 | ✓ | 6 |
+| `/companion-os` | **0** | 0 | ✓ | 7 |
+| `/company` | **0** | 0 | ✓ | 3 |
+| `/resources` | **0** | 0 | ✓ | 2 |
+| `/demo` | **0** | 0 | ✓ | 2 |
+| `/contact` | **0** | 0 | ✓ | 2 |
+
+- **Type:** every page renders Fraunces (display) / General Sans (body) / Spline Sans Mono
+  (eyebrow). `grep` confirms zero Cormorant and zero DM Sans references remain.
+- **Spanish:** spot-checked in-browser on `/`, `/platform`, `/company` — italic accents,
+  zero centered sections and full visual parity hold in ES. The automated ES parity gate
+  (`scripts/check-es.mjs`) reports every module 89–100% translated; each remaining identical
+  string is a proper noun, a numeral, or a deliberately-English brand term.
+- **Three states:** server HTML carries full text and poster imagery with **zero**
+  server-hidden reveal elements, so no-JS renders composed stills. `prefers-reduced-motion`
+  is handled in `globals.css` plus six components (marquee static-wraps, video never mounts,
+  cross-fades become instant swaps).
+- **Mobile 390:** verified visually — headline holds measure with no overflow in EN and ES,
+  thumb-zone CTA present.
+- **Stats:** exactly two unverified figures on the site, both `NEEDS CONFIRM` in EN and ES —
+  `$160B` (McKinsey) and `91%/9%`. Dashboard sample metrics carry `NEEDS REAL DATA`.
+
+### Screenshot caveat (unchanged, and worth acting on)
+The in-app browser pane captures reliably at 390 and at its native desktop width, but its
+compositor intermittently mis-paints after a programmatic resize to 1440 — and returns black
+frames for content below the first viewport. The 1440 gate and all below-fold blocks were
+therefore verified by **computed-style and geometry measurement**, which is stronger evidence
+for the structural gates but is *not* a substitute for a human eyeball on the mid-page
+composition. **Recommend one pass on a real browser at 1440 before sign-off.**
+
+## 4 · Superseded sections below (kept for the record)
+
 ## 2 · What has been re-skinned so far
 
 **Done:** foundation (tokens, type, layout law, nav, buttons, endorsement lockup),

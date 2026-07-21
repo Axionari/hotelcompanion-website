@@ -7,6 +7,7 @@ import { Reveal } from '@/components/cds/Reveal'
 import { Lead, Card, CardText } from '@/components/cds/Prose'
 import { PageShell, PageHero } from '@/components/cds/PageShell'
 import { useCopy } from '@/lib/i18n/useCopy'
+import { accents } from '@/lib/i18n/marketing/accents'
 import { demoCopy } from '@/lib/i18n/marketing/demo'
 import { demoFormCopy } from '@/lib/i18n/marketing/demoForm'
 
@@ -37,12 +38,13 @@ function Steps({ items }: { items: ReadonlyArray<{ title: string; body: string }
 
 export default function DemoClient() {
   const c = useCopy(demoCopy)
+  const a = useCopy(accents)
   const form = useCopy(demoFormCopy)
 
   return (
     <PageShell>
       {/* {#demo-hero} */}
-      <PageHero title={c.hero.title}>
+      <PageHero title={c.hero.title} accents={a.demoHero} poster="/assets/img/platform-pool-night.webp">
         <Lead reveal={false}>{c.hero.body1}</Lead>
         <Lead reveal={false}>{c.hero.body2}</Lead>
         <Lead reveal={false}>{c.hero.body3}</Lead>

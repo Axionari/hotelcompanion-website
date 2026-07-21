@@ -8,15 +8,17 @@ import { Reveal } from '@/components/cds/Reveal'
 import { Lead, Coda, Card, CardText } from '@/components/cds/Prose'
 import { PageShell, PageHero } from '@/components/cds/PageShell'
 import { useCopy } from '@/lib/i18n/useCopy'
+import { accents } from '@/lib/i18n/marketing/accents'
 import { contactCopy } from '@/lib/i18n/marketing/contact'
 
 export default function ContactClient() {
   const c = useCopy(contactCopy)
+  const a = useCopy(accents)
 
   return (
     <PageShell>
       {/* {#contact-hero} */}
-      <PageHero title={c.hero.title}>
+      <PageHero title={c.hero.title} accents={a.contactHero} poster="/assets/img/lobby-modern.webp">
         <Lead reveal={false}>{c.hero.body}</Lead>
         <p
           className="font-serif italic mt-2"

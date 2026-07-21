@@ -9,6 +9,8 @@ import { Section } from './Section'
 import { RhythmStack } from './RhythmStack'
 import { Lead } from './Prose'
 import { Reveal } from './Reveal'
+import { MultiAccentHeadline } from './AccentHeadline'
+import { MediaBed } from './MediaBed'
 
 export const primaryBtn = {
   background: 'var(--accent)',
@@ -37,27 +39,41 @@ export function PageShell({ children }: { children: ReactNode }) {
 export function PageHero({
   eyebrow,
   title,
+  accents,
+  poster,
   children,
 }: {
   eyebrow?: string
   title: string
+  /** Phrases to set in the display-serif italic (styling only — copy is verbatim). */
+  accents?: string[]
+  /** Optional photographic bed, per the RC hero treatment. */
+  poster?: string
   children?: ReactNode
 }) {
-  return (
-    <section className="pt-16 md:pt-24 pb-16 md:pb-20" style={{ background: 'var(--bg)' }}>
+  const inner = (
+    <section className="relative pt-16 md:pt-24 pb-16 md:pb-20">
       <div className="container-rc">
-        {eyebrow && (
-          <div className="eyebrow eyebrow-accent mb-6">
-            {eyebrow}
-          </div>
-        )}
-        <h1 className="heading-page text-balance" style={{ color: 'var(--text)', maxWidth: '17ch' }}>
-          {title}
-        </h1>
+        {eyebrow && <div className="eyebrow eyebrow-accent mb-6">{eyebrow}</div>}
+        <MultiAccentHeadline
+          as="h1"
+          className="heading-page text-balance"
+          style={{ color: 'var(--text)', maxWidth: '17ch' }}
+          text={title}
+          accents={accents}
+        />
         <div className="mt-8 flex flex-col items-start gap-4">{children}</div>
       </div>
     </section>
   )
+  if (poster) {
+    return (
+      <MediaBed poster={poster} scrim={0.72}>
+        {inner}
+      </MediaBed>
+    )
+  }
+  return <div style={{ background: 'var(--bg)' }}>{inner}</div>
 }
 
 /** Standard final-CTA section shared by every marketing page. */

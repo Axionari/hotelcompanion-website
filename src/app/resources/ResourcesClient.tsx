@@ -10,6 +10,7 @@ import { PageShell, PageHero, FinalCta } from '@/components/cds/PageShell'
 import { MediaBed } from '@/components/cds/MediaBed'
 import { useCopy, type Localized } from '@/lib/i18n/useCopy'
 import { resourcesCopy } from '@/lib/i18n/marketing/resources'
+import { accents } from '@/lib/i18n/marketing/accents'
 import type { EssayMeta } from '@/lib/library'
 
 export interface ResourcesContent {
@@ -19,6 +20,7 @@ export interface ResourcesContent {
 
 export default function ResourcesClient({ content }: { content: Localized<ResourcesContent> }) {
   const c = useCopy(resourcesCopy)
+  const a = useCopy(accents)
   const { essays, categories } = useCopy(content)
   // null = "all"; stored language-agnostically so switching language keeps the filter valid
   const [active, setActive] = useState<string | null>(null)
@@ -31,7 +33,7 @@ export default function ResourcesClient({ content }: { content: Localized<Resour
   return (
     <PageShell>
       {/* {#resources-hero} */}
-      <PageHero title={c.hero.title}>
+      <PageHero title={c.hero.title} accents={a.resourcesHero} poster="/assets/img/ambient-palms-night.webp">
         <Lead reveal={false}>{c.hero.body1}</Lead>
         <Lead reveal={false}>{c.hero.body2}</Lead>
       </PageHero>
