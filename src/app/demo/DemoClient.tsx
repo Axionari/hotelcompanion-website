@@ -1,0 +1,163 @@
+'use client'
+
+import { Section } from '@/components/cds/Section'
+import { FAQAccordion } from '@/components/cds/FAQAccordion'
+import { DemoForm } from '@/components/cds/DemoForm'
+import { Reveal } from '@/components/cds/Reveal'
+import { Lead, Card, CardText } from '@/components/cds/Prose'
+import { PageShell, PageHero, primaryBtn } from '@/components/cds/PageShell'
+import { useCopy } from '@/lib/i18n/useCopy'
+import { demoCopy } from '@/lib/i18n/marketing/demo'
+import { demoFormCopy } from '@/lib/i18n/marketing/demoForm'
+
+/** Numbered step list used for the agenda and the deployment sequence. */
+function Steps({ items }: { items: ReadonlyArray<{ title: string; body: string }> }) {
+  return (
+    <ol className="mt-12 max-w-2xl mx-auto flex flex-col gap-6 text-left">
+      {items.map((s, i) => (
+        <Reveal key={s.title} as="li" delay={Math.min(i, 5) * 40}>
+          <div className="flex gap-5">
+            <span className="eyebrow flex-shrink-0 pt-1.5" style={{ color: 'var(--accent)' }}>
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <div>
+              <h3 className="font-serif mb-1.5" style={{ fontSize: 'clamp(1.15rem, 2.2vw, 1.4rem)', color: 'var(--text)' }}>
+                {s.title}
+              </h3>
+              <p className="font-sans leading-relaxed" style={{ fontSize: '15px', color: 'var(--text-secondary)' }}>
+                {s.body}
+              </p>
+            </div>
+          </div>
+        </Reveal>
+      ))}
+    </ol>
+  )
+}
+
+export default function DemoClient() {
+  const c = useCopy(demoCopy)
+  const form = useCopy(demoFormCopy)
+
+  return (
+    <PageShell>
+      {/* {#demo-hero} */}
+      <PageHero title={c.hero.title}>
+        <Lead reveal={false}>{c.hero.body1}</Lead>
+        <Lead reveal={false}>{c.hero.body2}</Lead>
+        <Lead reveal={false}>{c.hero.body3}</Lead>
+        <a
+          href="#form"
+          className="font-sans mt-4 flex items-center justify-center text-white transition-colors hover:bg-[#D4784A]"
+          style={primaryBtn}
+        >
+          {c.hero.cta}
+        </a>
+      </PageHero>
+
+      {/* {#demo-experience} */}
+      <Section eyebrow="01 · THE SESSION" title={c.experience.title} variant="surface-1" center>
+        <div className="mt-6">
+          <Lead>{c.experience.lead}</Lead>
+        </div>
+        <div className="mt-12 grid md:grid-cols-2 gap-5 text-left">
+          {c.experience.items.map((item) => (
+            <Card key={item.id} id={item.id} title={item.title}>
+              <CardText>{item.body}</CardText>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      {/* {#demo-who} */}
+      <Section eyebrow="02 · ATTENDEES" title={c.who.title} center>
+        <div className="mt-6">
+          <Lead>{c.who.lead}</Lead>
+        </div>
+        <Reveal>
+          <div className="mt-10 flex flex-wrap justify-center gap-2.5 max-w-3xl mx-auto">
+            {c.who.roles.map((role) => (
+              <span
+                key={role}
+                className="font-sans rounded-full px-4 py-2"
+                style={{
+                  background: 'var(--surface-2)',
+                  border: '1px solid var(--border)',
+                  fontSize: '14px',
+                  color: 'var(--text-secondary)',
+                }}
+              >
+                {role}
+              </span>
+            ))}
+          </div>
+        </Reveal>
+      </Section>
+
+      {/* {#demo-discuss} */}
+      <Section eyebrow="03 · TOPICS" title={c.discuss.title} variant="surface-1" center>
+        <div className="mt-8 flex flex-col gap-4">
+          <Lead>{c.discuss.lead}</Lead>
+          <Lead tone="primary">{c.discuss.body}</Lead>
+        </div>
+      </Section>
+
+      {/* {#demo-expect} */}
+      <Section eyebrow="04 · WHAT TO EXPECT" title={c.expect.title} center>
+        <div className="mt-12 grid sm:grid-cols-2 gap-5 text-left">
+          {c.expect.items.map((item) => (
+            <Card key={item.id} id={item.id} title={item.title}>
+              <CardText>{item.body}</CardText>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      {/* {#demo-agenda} */}
+      <Section eyebrow="05 · AGENDA" title={c.agenda.title} variant="surface-1" center>
+        <Steps items={c.agenda.items} />
+      </Section>
+
+      {/* {#demo-deployment} */}
+      <Section eyebrow="06 · DEPLOYMENT" title={c.deployment.title} center>
+        <Steps items={c.deployment.stages} />
+      </Section>
+
+      {/* {#demo-faq} */}
+      <Section eyebrow="07 · FAQ" title={c.faq.title} variant="surface-1" center>
+        <div className="mt-12">
+          <FAQAccordion items={c.faq.items} />
+        </div>
+      </Section>
+
+      {/* {#demo-form} */}
+      <Section id="form" eyebrow="08 · REQUEST" title={form.title} center>
+        <div className="mt-6">
+          <Lead>{form.intro}</Lead>
+        </div>
+        <div className="mt-12">
+          <DemoForm />
+        </div>
+      </Section>
+
+      {/* {#demo-final-cta} */}
+      <Section eyebrow="09 · NEXT STEP" title={c.finalCta.title} variant="surface-1" center>
+        <div className="mt-8 flex flex-col gap-4">
+          <Lead>{c.finalCta.body1}</Lead>
+          <Lead>{c.finalCta.body2}</Lead>
+        </div>
+        <Reveal>
+          <div className="mt-10 flex justify-center">
+            <a
+              href="#form"
+              className="font-sans flex items-center justify-center text-white transition-colors hover:bg-[#D4784A]"
+              style={primaryBtn}
+            >
+              {c.finalCta.cta}
+            </a>
+          </div>
+        </Reveal>
+      </Section>
+    </PageShell>
+  )
+}
