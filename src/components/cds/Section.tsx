@@ -2,6 +2,7 @@
 
 import { ReactNode } from 'react'
 import { Reveal } from './Reveal'
+import { useEyebrow } from '@/lib/i18n/marketing/eyebrows'
 
 export type SectionVariant = 'bg' | 'surface-1' | 'surface-2'
 
@@ -34,9 +35,12 @@ export function Section({
   id?: string
   tight?: boolean
 }) {
-  const header = (eyebrow || title) && (
+  const translateEyebrow = useEyebrow()
+  const label = translateEyebrow(eyebrow)
+
+  const header = (label || title) && (
     <header className={center ? 'text-center' : ''}>
-      {eyebrow && <div className="eyebrow mb-4">{eyebrow}</div>}
+      {label && <div className="eyebrow mb-4">{label}</div>}
       {title && (
         <h2
           className={`heading-section font-serif font-normal ${center ? 'mx-auto max-w-3xl' : 'max-w-3xl'}`}

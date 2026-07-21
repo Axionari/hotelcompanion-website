@@ -41,7 +41,45 @@ const en = {
   },
 }
 
-/* NEEDS ES: professional translation pending — ES mirrors EN (brief guardrail 8). */
-const es: typeof en = en
+/* Copy source: HotelCompanion__Site_Copy_ES.md {#demo-form}. Verbatim. */
+
+const es: typeof en = {
+  title: 'Agenda Tu Demostración',
+  intro: 'Completa el formulario y te contactaremos para coordinar una demostración ejecutiva personalizada.',
+  fields: {
+    name: 'Nombre',
+    hotel: 'Hotel',
+    role: 'Cargo',
+    email: 'Correo de Trabajo',
+    phone: 'Teléfono (Opcional)',
+    country: 'País',
+    propertyType: 'Tipo de Propiedad',
+    properties: 'Número de Propiedades',
+    interest: '¿Qué te gustaría explorar?',
+    message: 'Cuéntanos sobre tu hotel y qué te gustaría mejorar.',
+  },
+  propertyTypes: ['Hotel Boutique', 'Hotel de Lujo', 'Resort', 'Hotel de Negocios', 'Grupo Hotelero', 'Otro'],
+  interests: [
+    'Experiencia del Huésped',
+    'IA por Voz',
+    'Oportunidades de Ingreso',
+    'Operaciones',
+    'Despliegue Empresarial',
+    'Companion OS',
+    'Información General',
+  ],
+  submit: 'Agendar Mi Demostración',
+  submitting: 'Enviando…',
+  select: 'Selecciona…',
+  errors: {
+    required: 'Este campo es obligatorio.',
+    email: 'Por favor ingresa un correo de trabajo válido.',
+    submit: 'No fue posible enviar en este momento. Por favor intenta de nuevo o escribe a sales@hotelcompanion.ai.',
+  },
+  success: {
+    title: 'Gracias.',
+    body: 'Recibimos tu solicitud y te contactaremos en breve para coordinar tu demostración personalizada.',
+  },
+}
 
 export const demoFormCopy: Localized<typeof en> = { en, es }

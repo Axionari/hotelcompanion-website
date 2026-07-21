@@ -116,8 +116,118 @@ const en = {
   },
 }
 
-/* NEEDS ES: professional translation pending — ES mirrors EN per brief guardrail 8
-   (do not ship machine-translated ES silently). */
-const es: typeof en = en
+/* Copy source: HotelCompanion__Site_Copy_ES.md — nav + {#footer}. Verbatim. */
+
+const es: typeof en = {
+  nav: {
+    platform: 'Plataforma',
+    solutions: 'Soluciones',
+    enterprise: 'Enterprise',
+    companionOs: 'Companion OS',
+    resources: 'Recursos',
+    company: 'Empresa',
+    bookDemo: 'Agenda una Demo',
+    wordmark: 'Hotel Companion',
+    openMenu: 'Abrir menú',
+    closeMenu: 'Cerrar menú',
+  },
+  footer: {
+    brand: {
+      name: 'HOTEL COMPANION',
+      headline: 'Entiende a Cada Huésped. Aprovecha Cada Oportunidad.',
+      body:
+        'Hotel Companion es la Plataforma de Inteligencia de Huéspedes por Voz para hoteles modernos, que transforma cada conversación en inteligencia operativa, oportunidades de ingreso y hospitalidad excepcional.',
+      endorsement: 'Impulsado por Companion OS.',
+      cta: 'Agenda una Demostración',
+    },
+    columns: {
+      product: {
+        title: 'Producto',
+        links: [
+          { label: 'Inicio', href: '/' },
+          { label: 'Plataforma', href: '/platform' },
+          { label: 'Soluciones', href: '/solutions' },
+          { label: 'Enterprise', href: '/enterprise' },
+          { label: 'Companion OS', href: '/companion-os' },
+          { label: 'Recursos', href: '/resources' },
+          { label: 'Empresa', href: '/company' },
+          { label: 'Agenda Demo', href: '/demo' },
+        ],
+      },
+      solutions: {
+        title: 'Soluciones',
+        links: [
+          { label: 'Hoteles de Lujo', href: '/solutions#luxury' },
+          { label: 'Hoteles Boutique', href: '/solutions#boutique' },
+          { label: 'Resorts', href: '/solutions#resorts' },
+          { label: 'Hoteles de Negocios', href: '/solutions#business' },
+          { label: 'Grupos Hoteleros', href: '/solutions#enterprise-groups' },
+          { label: 'Propiedades Independientes', href: '/solutions#boutique' },
+          { label: 'Programa de Socios Fundadores', href: '/contact#founding' },
+        ],
+      },
+      resources: {
+        title: 'Recursos',
+        links: [
+          { label: 'El Futuro de la Hospitalidad Es Conversacional', href: '/resources/library/future-of-hospitality-is-conversational' },
+          { label: 'Más Allá del Concierge con IA', href: '/resources/library/beyond-the-ai-concierge' },
+          { label: 'Cada Conversación Es Ingreso', href: '/resources/library/every-conversation-is-revenue' },
+          { label: 'La Voz Es la Nueva Interfaz', href: '/resources/library/voice-is-the-new-interface' },
+          { label: 'El Futuro de la Inteligencia Organizacional', href: '/resources/library/what-happens-when-every-guest-conversation-becomes-intelligence' },
+          { label: 'Biblioteca', href: '/resources#library' },
+          { label: 'Actualizaciones de Producto', href: '/resources#updates' },
+          { label: 'Preguntas Frecuentes', href: '/resources#faq' },
+        ],
+      },
+      company: {
+        title: 'Empresa',
+        links: [
+          { label: 'Nosotros', href: '/company' },
+          { label: 'Contacto', href: '/contact' },
+          { label: 'Alianzas', href: '/contact#founding' },
+        ],
+        comingSoon: ['Carreras', 'Prensa', 'Recursos de Marca'],
+        comingSoonSuffix: 'Próximamente',
+      },
+      legal: {
+        title: 'Legal',
+        links: [
+          { label: 'Aviso de Privacidad', href: '/privacy' },
+          { label: 'Términos del Servicio', href: '/terms' },
+          { label: 'Política de Cookies', href: '/cookies' },
+          { label: 'Seguridad', href: '/security' },
+          { label: 'IA Responsable', href: '/responsible-ai' },
+          { label: 'Centro de Confianza', href: '/trust' },
+          { label: 'Accesibilidad', href: '/accessibility' },
+        ],
+      },
+    },
+    newsletter: {
+      title: 'Mantente Conectado',
+      body:
+        'Recibe ideas ocasionales sobre Inteligencia de Huéspedes, IA, excelencia operativa y el futuro de la hospitalidad.',
+      placeholder: 'Correo de Trabajo',
+      submit: 'Suscribirse',
+      success: 'Gracias — ya estás en la lista.',
+      error: 'Algo salió mal. Por favor intenta de nuevo.',
+    },
+    companionOs: {
+      title: 'Construido sobre Companion OS',
+      headline: 'Una plataforma de inteligencia. Companions ilimitados.',
+      body:
+        'Hotel Companion está impulsado por Companion OS, la capa de inteligencia diseñada para ayudar a las organizaciones a entender a las personas, preservar el conocimiento, coordinar la ejecución y mejorar continuamente.',
+      link: 'Conoce más sobre Companion OS',
+    },
+    axionari: {
+      title: 'Construido por Axionari',
+      body:
+        'Axionari crea Plataformas de Inteligencia Organizacional que ayudan a las empresas a entender, aprender y ejecutar con mayor eficacia. Hotel Companion es parte del creciente ecosistema Companion.',
+      link: 'Conoce Axionari',
+    },
+    legalLine:
+      '© 2026 Hotel Companion. Todos los derechos reservados. Impulsado por Companion OS. Construido por Axionari.',
+    signIn: 'Iniciar Sesión',
+  },
+}
 
 export const globalCopy: Localized<typeof en> = { en, es }

@@ -1,0 +1,110 @@
+[
+  {
+    "slug": "future-of-hospitality-is-conversational",
+    "order": 1,
+    "title": "El Futuro de la Hospitalidad Es Conversacional",
+    "subtitle": "Por qué la próxima ventaja competitiva de la hospitalidad no será otra aplicación—será una mejor conversación.",
+    "category": "Tecnología de Voz",
+    "readingTime": "4 min de lectura",
+    "next": "beyond-the-ai-concierge"
+  },
+  {
+    "slug": "beyond-the-ai-concierge",
+    "order": 2,
+    "title": "Más Allá del Concierge con IA",
+    "subtitle": "Por qué los hoteles necesitan Plataformas de Inteligencia de Huéspedes, no asistentes automatizados.",
+    "category": "Inteligencia Artificial",
+    "readingTime": "5 min de lectura",
+    "next": "every-conversation-is-revenue"
+  },
+  {
+    "slug": "every-conversation-is-revenue",
+    "order": 3,
+    "title": "Cada Conversación Es Ingreso",
+    "subtitle": "El motor comercial oculto dentro de cada hotel.",
+    "category": "Crecimiento de Ingresos",
+    "readingTime": "5 min de lectura",
+    "next": "voice-is-the-new-interface"
+  },
+  {
+    "slug": "voice-is-the-new-interface",
+    "order": 4,
+    "title": "La Voz Es la Nueva Interfaz",
+    "subtitle": "Por qué la conversación reemplazará a las apps en la hospitalidad.",
+    "category": "Tecnología de Voz",
+    "readingTime": "5 min de lectura",
+    "next": "hotels-dont-have-a-data-problem"
+  },
+  {
+    "slug": "hotels-dont-have-a-data-problem",
+    "order": 5,
+    "title": "Los Hoteles No Tienen un Problema de Datos. Tienen un Problema de Conversación.",
+    "subtitle": "Por qué la información más valiosa de la industria de la hospitalidad desaparece cada día.",
+    "category": "Operaciones Hoteleras",
+    "readingTime": "5 min de lectura",
+    "next": "the-hotel-knowledge-problem"
+  },
+  {
+    "slug": "the-hotel-knowledge-problem",
+    "order": 6,
+    "title": "El Problema del Conocimiento Hotelero",
+    "subtitle": "Por qué tu mayor ventaja competitiva vive dentro de tu gente.",
+    "category": "Operaciones Hoteleras",
+    "readingTime": "6 min de lectura",
+    "next": "hospitality-is-an-intelligence-business"
+  },
+  {
+    "slug": "hospitality-is-an-intelligence-business",
+    "order": 7,
+    "title": "La Hospitalidad Es un Negocio de Inteligencia",
+    "subtitle": "Por qué entender a los huéspedes se convertirá en la mayor ventaja competitiva de cada hotel.",
+    "category": "Experiencia del Huésped",
+    "readingTime": "5 min de lectura",
+    "next": "the-rise-of-guest-intelligence-platforms"
+  },
+  {
+    "slug": "the-rise-of-guest-intelligence-platforms",
+    "order": 8,
+    "title": "El Auge de las Plataformas de Inteligencia de Huéspedes",
+    "subtitle": "Definiendo la próxima categoría en la tecnología de la hospitalidad.",
+    "category": "Inteligencia Artificial",
+    "readingTime": "6 min de lectura",
+    "next": "designing-hotels-that-never-sleep"
+  },
+  {
+    "slug": "designing-hotels-that-never-sleep",
+    "order": 9,
+    "title": "Diseñando Hoteles que Nunca Duermen",
+    "subtitle": "Cómo la inteligencia artificial extiende la hospitalidad sin reemplazar a las personas.",
+    "category": "Experiencia del Huésped",
+    "readingTime": "6 min de lectura",
+    "next": "every-department-should-share-the-same-intelligence"
+  },
+  {
+    "slug": "every-department-should-share-the-same-intelligence",
+    "order": 10,
+    "title": "Cada Departamento Debería Compartir la Misma Inteligencia",
+    "subtitle": "Rompiendo los silos que impiden una hospitalidad excepcional.",
+    "category": "Operaciones Hoteleras",
+    "readingTime": "5 min de lectura",
+    "next": "the-operating-system-for-hospitality"
+  },
+  {
+    "slug": "the-operating-system-for-hospitality",
+    "order": 11,
+    "title": "El Sistema Operativo de la Hospitalidad",
+    "subtitle": "Por qué la industria necesita más que otra aplicación.",
+    "category": "Companion OS",
+    "readingTime": "6 min de lectura",
+    "next": "what-happens-when-every-guest-conversation-becomes-intelligence"
+  },
+  {
+    "slug": "what-happens-when-every-guest-conversation-becomes-intelligence",
+    "order": 12,
+    "title": "¿Qué Pasa Cuando Cada Conversación con un Huésped Se Convierte en Inteligencia?",
+    "subtitle": "El futuro de la hospitalidad no es la inteligencia artificial. Es la inteligencia organizacional.",
+    "category": "Companion OS",
+    "readingTime": "6 min de lectura",
+    "next": null
+  }
+]

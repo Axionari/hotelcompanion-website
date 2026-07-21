@@ -194,7 +194,196 @@ const en = {
   },
 }
 
-/* NEEDS ES: professional translation pending — ES mirrors EN (brief guardrail 8). */
-const es: typeof en = en
+const es: typeof en = {
+  hero: {
+    title: 'Una Plataforma. Cada Departamento.',
+    body1:
+      'Cada interacción con el huésped crea una oportunidad para brindar mejor servicio, generar más ingresos y operar con mayor eficiencia.',
+    body2:
+      'Hotel Companion se convierte en una capa inteligente en todo tu hotel, ayudando a cada departamento a responder más rápido, trabajar mejor y brindar una hospitalidad excepcional a través de una sola Plataforma de Inteligencia de Huéspedes por Voz.',
+  },
+  departmentsEyebrow: '01 · POR DEPARTAMENTO',
+  departmentsTitle: 'Cada departamento, una sola inteligencia compartida.',
+  departments: [
+    {
+      id: 'front-desk',
+      eyebrow: 'Recepción',
+      title: 'Cada Llegada Comienza Mejor.',
+      body: [
+        'Tu recepción debería crear primeras impresiones memorables—no pasar el día respondiendo preguntas repetitivas.',
+        'Hotel Companion asiste a los huéspedes al instante antes, durante y después de la llegada.',
+        'Información de check-in. Estacionamiento. Wi-Fi. Mapas de la propiedad. Horarios. Políticas del hotel. Indicaciones. Asistencia con equipaje. Transporte. Salida tardía. Entrada anticipada. Mejoras de habitación.',
+        'Tu equipo dedica menos tiempo a preguntas rutinarias y más tiempo a recibir huéspedes.',
+      ],
+    },
+    {
+      id: 'concierge',
+      eyebrow: 'Concierge',
+      title: 'Un Concierge Disponible las 24 Horas.',
+      body: [
+        'Cada huésped recibe recomendaciones expertas al instante.',
+        'Restaurantes. Vida nocturna. Compras. Playas. Museos. Excursiones. Experiencias privadas. Transporte. Actividades familiares. Favoritos locales escondidos. Recomendaciones según el clima. Servicios de negocios.',
+        'Cada recomendación es personalizada. Cada conversación se siente humana. Cada huésped se siente atendido.',
+      ],
+    },
+    {
+      id: 'guest-services',
+      eyebrow: 'Servicios al Huésped',
+      title: 'Cada Solicitud. Perfectamente Coordinada.',
+      body: [
+        'Hotel Companion atiende las solicitudes cotidianas con rapidez y consistencia.',
+        'Toallas extra. Almohadas extra. Cobijas. Lavandería. Llamadas de despertador. Cunas. Arreglos de celebración. Asistencia de accesibilidad. Transporte al aeropuerto. Objetos perdidos. Solicitudes especiales. Servicios VIP.',
+        'Cada solicitud se enruta automáticamente al equipo correcto.',
+        'Los huéspedes siempre saben que su solicitud está siendo atendida. El personal siempre sabe qué hacer a continuación.',
+      ],
+    },
+    {
+      id: 'housekeeping',
+      eyebrow: 'Ama de Llaves',
+      title: 'Respuesta Más Rápida. Mejor Visibilidad.',
+      body: [
+        'Ama de Llaves recibe solicitudes estructuradas al instante.',
+        'Limpieza de habitación. Servicio de cortesía nocturno. Blancos frescos. Amenidades extra. Cunas. Camas plegables. Solicitudes especiales.',
+        'Los huéspedes reciben actualizaciones. Los gerentes ganan visibilidad. Nada se pasa por alto.',
+        'Cada solicitud avanza de la conversación al cumplimiento.',
+      ],
+    },
+    {
+      id: 'engineering',
+      eyebrow: 'Ingeniería y Mantenimiento',
+      title: 'Resuelve Problemas Antes de que Se Vuelvan Malas Reseñas.',
+      body: [
+        'Los huéspedes reportan problemas de forma natural mediante la conversación.',
+        'Aire acondicionado. Iluminación. Televisión. Internet. Presión de agua. Fugas. Problemas eléctricos. Cerraduras. Equipo de la habitación.',
+        'Los equipos de mantenimiento reciben de inmediato información completa y accionable, ayudando a resolver problemas más rápido y a mejorar la experiencia del huésped antes de que los pequeños detalles se conviertan en quejas públicas.',
+      ],
+    },
+    {
+      id: 'fnb',
+      eyebrow: 'Alimentos y Bebidas',
+      title: 'Cada Comida Es una Oportunidad.',
+      body: [
+        'Hotel Companion ayuda a los huéspedes a descubrir y disfrutar cada experiencia gastronómica de tu propiedad.',
+        'Explorar menús. Reservar mesas. Pedir servicio a la habitación. Descubrir recomendaciones del chef. Cenas privadas. Experiencias de vino. Adaptaciones alimentarias. Cenas de celebración.',
+        'Cada recomendación aumenta la satisfacción del huésped mientras crea nuevas oportunidades de ingreso en toda tu propiedad.',
+      ],
+    },
+    {
+      id: 'spa',
+      eyebrow: 'Spa y Bienestar',
+      title: 'El Bienestar Comienza con una Conversación.',
+      body: [
+        'Los huéspedes pueden explorar y reservar experiencias de bienestar al instante.',
+        'Tratamientos de spa. Terapias de masaje. Clases de fitness. Programas de bienestar. Servicios de belleza. Sesiones privadas. Paquetes de retiro. Disponibilidad. Recomendaciones.',
+        'Cada interacción elimina fricción en las reservas mientras aumenta el uso de tus instalaciones de bienestar.',
+      ],
+    },
+    {
+      id: 'revenue',
+      eyebrow: 'Ventas y Revenue Management',
+      title: 'Convierte la Intención del Huésped en Ingreso.',
+      body: [
+        'Cada conversación revela oportunidades comerciales.',
+        'Interés en mejoras. Estancias más largas. Ocasiones especiales. Experiencias premium. Transporte. Gastronomía. Spa. Actividades. Celebraciones. Eventos privados.',
+        'Hotel Companion revela continuamente estas oportunidades para que tu equipo actúe en el momento exacto.',
+        'La hospitalidad va primero. El ingreso llega de forma natural.',
+      ],
+    },
+    {
+      id: 'gm',
+      eyebrow: 'Gerente General',
+      title: 'Comprende Tu Hotel Como Nunca Antes.',
+      body: [
+        'Hotel Companion le da a la dirección visibilidad sobre las conversaciones que moldean la experiencia del huésped.',
+        'Comportamiento del huésped. Oportunidades de ingreso. Demanda de servicios. Cuellos de botella operativos. Desempeño por departamento. Vacíos de conocimiento. Tendencias de mantenimiento. Expectativas del huésped. Perspectivas comerciales.',
+        'Los tableros ejecutivos transforman miles de conversaciones en inteligencia accionable que ayuda a los líderes a tomar decisiones más rápidas y mejores.',
+      ],
+    },
+  ],
+  segmentsEyebrow: '02 · POR TIPO DE PROPIEDAD',
+  segmentsTitle: 'Creado para cada tipo de organización de hospitalidad.',
+  segments: [
+    {
+      id: 'multi-property',
+      eyebrow: 'Grupos Multipropiedad',
+      title: 'Una Plataforma. Cada Propiedad.',
+      body: [
+        'Mantén la consistencia en tu portafolio mientras cada hotel preserva su identidad única.',
+        'Conocimiento corporativo. Información específica por propiedad. Gobernanza compartida. Recomendaciones locales. Analítica de todo el portafolio. Inteligencia operativa en cada ubicación.',
+        'Un solo Companion. Propiedades ilimitadas.',
+      ],
+    },
+    {
+      id: 'luxury',
+      eyebrow: 'Hoteles de Lujo',
+      title: 'Hospitalidad Personalizada a Escala.',
+      body: [
+        'Los huéspedes de lujo esperan sentirse reconocidos.',
+        'Hotel Companion recuerda preferencias, entiende el contexto y ayuda a brindar un servicio personalizado durante toda la estancia.',
+        'Reconoce a los huéspedes que regresan. Coordina llegadas VIP. Recomienda experiencias seleccionadas. Apoya a los equipos de concierge. Mantén estándares de marca impecables. Brinda una hospitalidad excepcional—las 24 horas.',
+      ],
+    },
+    {
+      id: 'resorts',
+      eyebrow: 'Resorts',
+      title: 'Coordina Experiencias Complejas para el Huésped.',
+      body: [
+        'Los resorts ofrecen mucho más que habitaciones.',
+        'Hotel Companion conecta cada experiencia en un solo recorrido fluido.',
+        'Restaurantes. Albercas. Clubes de playa. Spa. Golf. Actividades. Transporte. Entretenimiento. Excursiones.',
+        'Cada amenidad se vuelve accesible al instante mediante la conversación.',
+      ],
+    },
+    {
+      id: 'boutique',
+      eyebrow: 'Hoteles Boutique',
+      title: 'Preserva lo que Te Hace Único.',
+      body: [
+        'La hospitalidad boutique es profundamente personal.',
+        'Hotel Companion extiende esa experiencia sin sacrificar autenticidad.',
+        'Cada recomendación refleja la personalidad de tu propiedad. Cada interacción se siente intencional. Cada experiencia sigue siendo inconfundiblemente tuya.',
+      ],
+    },
+    {
+      id: 'business',
+      eyebrow: 'Hoteles de Negocios',
+      title: 'Ayuda a los Viajeros de Negocios a Avanzar Más Rápido.',
+      body: [
+        'Los viajeros de negocios valoran la rapidez, la precisión y la comodidad.',
+        'Hotel Companion ofrece acceso inmediato a todo lo que necesitan.',
+        'Transporte al aeropuerto. Salas de juntas. Servicios de negocios. Impresión. Gastronomía. Fitness. Salida exprés. Salida tardía. Información de espacios de trabajo.',
+        'Asistencia confiable—disponible a cualquier hora.',
+      ],
+    },
+    {
+      id: 'enterprise-groups',
+      eyebrow: 'Grupos Hoteleros Empresariales',
+      title: 'Consistencia en Cada Hotel.',
+      body: [
+        'Ofrece la misma experiencia excepcional en todo tu portafolio mientras empoderas a cada propiedad con conocimiento local.',
+        'Estándares compartidos. Gobernanza centralizada. Inteligencia de todo el portafolio. Ejecución local.',
+        'Una sola plataforma inteligente que apoya a cada hotel de tu organización.',
+      ],
+    },
+  ],
+  companionOs: {
+    title: 'Una Plataforma de Inteligencia Detrás de Cada Experiencia.',
+    lead: 'Cada capacidad de Hotel Companion está impulsada por Companion OS.',
+    close: 'Una plataforma. Cada departamento. Cada huésped. Cada conversación.',
+  },
+  finalCta: {
+    title: 'La Hospitalidad Es un Trabajo en Equipo.',
+    body: 'Cuando cada departamento comparte la misma inteligencia, cada huésped recibe una mejor experiencia.',
+    beats: [
+      'Empodera a tus equipos.',
+      'Aumenta el ingreso complementario.',
+      'Reduce la fricción operativa.',
+      'Entiende a cada huésped.',
+      'Coordina cada interacción.',
+    ],
+    platform: 'Una sola Plataforma de Inteligencia de Huéspedes por Voz.',
+    cta: 'Agenda una Demo',
+  },
+}
 
 export const solutionsCopy: Localized<typeof en> = { en, es }

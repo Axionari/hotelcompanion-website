@@ -7,23 +7,25 @@ import { RhythmStack } from '@/components/cds/RhythmStack'
 import { Reveal } from '@/components/cds/Reveal'
 import { Lead, Coda } from '@/components/cds/Prose'
 import { PageShell, PageHero, FinalCta, primaryBtn } from '@/components/cds/PageShell'
-import { useCopy } from '@/lib/i18n/useCopy'
+import { useCopy, type Localized } from '@/lib/i18n/useCopy'
 import { resourcesCopy } from '@/lib/i18n/marketing/resources'
 import type { EssayMeta } from '@/lib/library'
 
-export default function ResourcesClient({
-  essays,
-  categories,
-}: {
+export interface ResourcesContent {
   essays: EssayMeta[]
   categories: string[]
-}) {
+}
+
+export default function ResourcesClient({ content }: { content: Localized<ResourcesContent> }) {
   const c = useCopy(resourcesCopy)
-  const [active, setActive] = useState<string>(c.categories.all)
+  const { essays, categories } = useCopy(content)
+  // null = "all"; stored language-agnostically so switching language keeps the filter valid
+  const [active, setActive] = useState<string | null>(null)
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
 
-  const visible = active === c.categories.all ? essays : essays.filter((e) => e.category === active)
+  const activeValid = active !== null && categories.includes(active)
+  const visible = activeValid ? essays.filter((e) => e.category === active) : essays
 
   return (
     <PageShell>
@@ -78,11 +80,11 @@ export default function ResourcesClient({
       <Section id="categories" eyebrow={c.categories.eyebrow} title={c.categories.title} variant="surface-1" center>
         <Reveal>
           <div className="mt-10 flex flex-wrap justify-center gap-2.5">
-            {[c.categories.all, ...categories].map((cat) => {
-              const on = cat === active
+            {[null, ...categories].map((cat) => {
+              const on = cat === null ? !activeValid : cat === active
               return (
                 <button
-                  key={cat}
+                  key={cat ?? '__all'}
                   onClick={() => setActive(cat)}
                   aria-pressed={on}
                   className="font-sans rounded-full px-4 transition-colors"
@@ -94,14 +96,14 @@ export default function ResourcesClient({
                     minHeight: '44px',
                   }}
                 >
-                  {cat}
+                  {cat ?? c.categories.all}
                 </button>
               )
             })}
           </div>
         </Reveal>
 
-        {active !== c.categories.all && c.categories.descriptions[active] && (
+        {activeValid && c.categories.descriptions[active] && (
           <div className="mt-8">
             <Lead>{c.categories.descriptions[active]}</Lead>
           </div>

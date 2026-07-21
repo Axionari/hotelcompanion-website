@@ -249,6 +249,8 @@ const en = {
       },
     ],
   },
+  enterpriseLink: 'Enterprise',
+  foundingCta: 'Become a Founding Partner',
   finalCta: {
     title: 'Every Guest Conversation Is an Opportunity.',
     beats: [
@@ -263,7 +265,269 @@ const en = {
   },
 }
 
-/* NEEDS ES: professional translation pending — ES mirrors EN (brief guardrail 8). */
-const es: typeof en = en
+/* Copy source: HotelCompanion__Site_Copy_ES.md {#home}. Verbatim — do not edit here. */
+
+const es: typeof en = {
+  hero: {
+    h1: 'Entiende a Cada Huésped. Aprovecha Cada Oportunidad.',
+    positioning: 'La Plataforma de Inteligencia de Huéspedes por Voz para Hoteles.',
+    lead1:
+      'Cada conversación con un huésped es una oportunidad para brindar una hospitalidad excepcional, generar nuevos ingresos y fortalecer tu operación.',
+    lead2:
+      'Hotel Companion transforma las conversaciones naturales en experiencias personalizadas, inteligencia operativa y ejecución coordinada—disponible las 24 horas, en todos los idiomas, en cada punto de contacto.',
+    primaryCta: 'Agenda una Demo',
+    secondaryCta: 'Ver el Recorrido del Producto',
+  },
+  trust: 'Creado para líderes de hospitalidad visionarios que están redefiniendo la experiencia del huésped.',
+  conversation: {
+    title: 'La Hospitalidad Comienza con una Conversación.',
+    lead: 'Los momentos más importantes de la hospitalidad comienzan con una pregunta.',
+    questions: [
+      '“¿Me recomiendas un buen restaurante?”',
+      '“¿Podemos quedarnos una noche más?”',
+      '“Estamos celebrando nuestro aniversario.”',
+      '“¿Podrían traer más toallas?”',
+      '“¿Cuál es la mejor playa para el atardecer?”',
+    ],
+    beats: [
+      'Cada conversación revela una intención.',
+      'Cada solicitud crea una oportunidad.',
+      'Cada respuesta moldea la experiencia del huésped.',
+    ],
+    close: 'Hotel Companion garantiza que esos momentos nunca se pierdan.',
+  },
+  employee: {
+    title: 'Tu Empleado de Mayor Desempeño Nunca Duerme.',
+    lead: 'Imagina darle a cada huésped acceso inmediato a tu mejor concierge.',
+    bests: [
+      'Tu mejor recepcionista.',
+      'Tu mejor profesional de servicios al huésped.',
+      'Tu mejor experto local.',
+      'Tu mejor vendedor.',
+      'Tu mejor embajador de marca.',
+    ],
+    cadence: ['Disponible al instante.', 'A toda hora.', 'Todos los días.', 'Sin aumentar tu plantilla.'],
+    close:
+      'Hotel Companion ofrece una hospitalidad consistente y personalizada a cada huésped, sin importar la ocupación, el nivel de personal o la hora del día.',
+  },
+  voice: {
+    title: 'La Voz Es la Nueva Interfaz de la Hospitalidad.',
+    beats: [
+      'Los huéspedes no quieren otra aplicación.',
+      'No quieren menús complicados.',
+      'No quieren buscar entre información interminable.',
+      'Simplemente quieren preguntar.',
+    ],
+    body:
+      'Hotel Companion permite a los huéspedes interactuar de forma natural mediante la conversación, ya sea a través de una tablet en la habitación, su dispositivo móvil, un código QR o futuras experiencias por voz.',
+    close: ['Sin capacitación.', 'Sin curva de aprendizaje.', 'Solo hospitalidad sin esfuerzo.'],
+  },
+  everyRoom: {
+    title: 'Cada Habitación Tiene un Profesional Digital de Hospitalidad.',
+    lead: 'Hotel Companion ayuda a los huéspedes al instante a:',
+    items: [
+      'Reservar restaurantes',
+      'Agendar tratamientos de spa',
+      'Pedir servicio a la habitación',
+      'Mejorar su habitación',
+      'Solicitar limpieza',
+      'Programar transporte al aeropuerto',
+      'Organizar celebraciones',
+      'Descubrir experiencias locales',
+      'Encontrar la playa perfecta',
+      'Reservar excursiones',
+      'Ubicar farmacias y hospitales',
+      'Conocer todo sobre tu propiedad',
+      'Recibir recomendaciones personalizadas',
+      'Descubrir tu destino como un experto local de confianza',
+    ],
+    close: 'Cada respuesta refleja los estándares, el conocimiento y la personalidad de tu hotel.',
+  },
+  revenue: {
+    title: 'Cada Conversación Es Ingreso.',
+    beats: [
+      'La hospitalidad excepcional y el desempeño comercial nunca deberían competir.',
+      'Deberían reforzarse mutuamente.',
+    ],
+    body:
+      'Hotel Companion entiende continuamente la intención del huésped y recomienda experiencias relevantes justo cuando generan valor.',
+    items: [
+      'Mejoras de habitación.',
+      'Tratamientos de spa.',
+      'Reservaciones de restaurante.',
+      'Transporte privado.',
+      'Excursiones.',
+      'Golf.',
+      'Clubes de playa.',
+      'Paquetes de celebración.',
+      'Salida tardía.',
+      'Experiencias premium.',
+    ],
+    close: ['Las recomendaciones se sienten útiles.', 'Nunca promocionales.', 'La hospitalidad va primero.', 'El ingreso llega de forma natural.'],
+  },
+  knows: {
+    title: 'Conoce Tu Hotel Como Tu Mejor Empleado.',
+    lead: 'Hotel Companion entiende cada parte de tu operación.',
+    property: [
+      'Cada habitación.',
+      'Cada restaurante.',
+      'Cada menú.',
+      'Cada servicio.',
+      'Cada amenidad.',
+      'Cada política.',
+      'Cada promoción.',
+      'Cada departamento.',
+      'Cada procedimiento operativo.',
+      'Cada recomendación.',
+    ],
+    destinationLead: 'También entiende tu destino.',
+    destination: [
+      'Restaurantes.',
+      'Vida nocturna.',
+      'Compras.',
+      'Cultura.',
+      'Actividades.',
+      'Transporte.',
+      'Servicios médicos.',
+      'Eventos locales.',
+      'Joyas escondidas.',
+    ],
+    close: [
+      'Todo lo que tus huéspedes necesitan.',
+      'Todo lo que tu equipo ya sabe.',
+      'Disponible al instante mediante una conversación natural.',
+    ],
+  },
+  intelligence: {
+    title: 'Cada Conversación con un Huésped Se Convierte en Inteligencia.',
+    beats: ['Los huéspedes viven una hospitalidad excepcional.', 'Tu organización obtiene inteligencia.'],
+    lead: 'Hotel Companion identifica continuamente:',
+    items: [
+      'Intención del huésped',
+      'Preferencias del huésped',
+      'Oportunidades de ingreso',
+      'Cuellos de botella operativos',
+      'Servicios solicitados con frecuencia',
+      'Vacíos de conocimiento',
+      'Tendencias de mantenimiento',
+      'Carga de trabajo por departamento',
+      'Factores de satisfacción del huésped',
+      'Perspectivas comerciales',
+    ],
+    close: ['Cada interacción fortalece tu operación.', 'Cada conversación ayuda a tu hotel a mejorar.'],
+  },
+  execution: {
+    title: 'De la Conversación a la Ejecución Coordinada.',
+    lead: 'Las solicitudes de los huéspedes se convierten automáticamente en flujos de trabajo operativos.',
+    pairs: [
+      { from: 'Reservación de restaurante', to: 'Equipo de Restaurante' },
+      { from: 'Cita de spa', to: 'Equipo de Spa' },
+      { from: 'Solicitud de limpieza', to: 'Ama de Llaves' },
+      { from: 'Problema de mantenimiento', to: 'Ingeniería' },
+      { from: 'Traslado al aeropuerto', to: 'Transporte' },
+      { from: 'Mejora de habitación', to: 'Recepción' },
+      { from: 'Salida tardía', to: 'Recepción' },
+      { from: 'Solicitud VIP', to: 'Servicios al Huésped' },
+    ],
+    close: [
+      'Sin coordinación manual.',
+      'Sin solicitudes perdidas.',
+      'Sin seguimientos olvidados.',
+      'Solo ejecución fluida en todo tu hotel.',
+    ],
+  },
+  enterpriseIntel: {
+    title: 'Inteligencia Empresarial para la Hospitalidad Moderna.',
+    lead: 'Comprende tu operación a través de las conversaciones que ocurren cada día.',
+    items: [
+      'Monitorea el comportamiento del huésped.',
+      'Identifica oportunidades de ingreso.',
+      'Mide la demanda de servicios.',
+      'Da seguimiento al desempeño operativo.',
+      'Descubre tendencias emergentes.',
+      'Comprende las expectativas del huésped.',
+      'Revela vacíos de conocimiento.',
+      'Detecta perspectivas comerciales.',
+    ],
+    close:
+      'Los tableros ejecutivos transforman miles de interacciones con huéspedes en inteligencia accionable para cada departamento.',
+  },
+  companionOs: {
+    title: 'Impulsado por Companion OS.',
+    lead: 'Hotel Companion está construido sobre Companion OS, la plataforma de inteligencia compartida detrás de cada Companion.',
+    close: 'Cada Companion se especializa en su industria mientras comparte la misma base de inteligencia.',
+  },
+  liveInDays: {
+    title: 'En Marcha en Días. No en Meses.',
+    beats: ['Implementa rápido.', 'Capacita sin esfuerzo.', 'Genera valor de inmediato.'],
+    body:
+      'Hotel Companion se integra a tu operación hotelera sin implementaciones prolongadas ni cambios disruptivos.',
+    close: ['Tu equipo sigue haciendo lo que mejor sabe hacer.', 'Hotel Companion hace que cada interacción sea mejor.'],
+  },
+  foundingPartner: {
+    title: 'Programa de Socios Fundadores',
+    lead: 'Nos estamos asociando con un número limitado de grupos hoteleros innovadores para definir el futuro de la hospitalidad inteligente.',
+    receiveLead: 'Los Socios Fundadores reciben:',
+    items: [
+      'Incorporación prioritaria',
+      'Colaboración directa con nuestro equipo de producto',
+      'Soporte ejecutivo',
+      'Condiciones comerciales preferentes',
+      'Acceso anticipado a nuevas capacidades',
+      'La oportunidad de ayudar a dar forma al futuro de Companion OS.',
+    ],
+  },
+  faq: {
+    title: 'Preguntas Frecuentes',
+    items: [
+      {
+        q: '¿Qué es Hotel Companion?',
+        a: 'Hotel Companion es la Plataforma de Inteligencia de Huéspedes por Voz que ayuda a los hoteles a brindar una hospitalidad excepcional mientras aumentan los ingresos y mejoran el desempeño operativo.',
+      },
+      {
+        q: '¿Hotel Companion es un concierge con IA?',
+        a: 'No. La IA es simplemente la interfaz. Hotel Companion es una plataforma empresarial que entiende la intención del huésped, coordina operaciones, identifica oportunidades comerciales y aprende continuamente de cada interacción.',
+      },
+      {
+        q: '¿Cómo interactúan los huéspedes con Hotel Companion?',
+        a: 'Los huéspedes pueden comunicarse de forma natural por voz o texto usando tablets en la habitación, dispositivos móviles, códigos QR y futuros puntos de contacto conversacionales.',
+      },
+      {
+        q: '¿Hotel Companion puede aumentar los ingresos del hotel?',
+        a: 'Sí. Hotel Companion identifica oportunidades personalizadas de mejoras de habitación, gastronomía, servicios de spa, transporte, excursiones, experiencias premium y otras fuentes de ingreso complementario a través de conversaciones naturales con los huéspedes.',
+      },
+      {
+        q: '¿Hotel Companion reemplaza al personal del hotel?',
+        a: 'No. Extiende a tu equipo al atender al instante las interacciones rutinarias, permitiendo que el personal se enfoque en los momentos donde la hospitalidad humana genera el mayor impacto.',
+      },
+      {
+        q: '¿Qué sabe Hotel Companion?',
+        a: 'Todo lo que le enseñes. Tu propiedad. Tus servicios. Tu destino. Tus procedimientos operativos. Tus políticas. Tus recomendaciones. Tus estándares de marca. Tu conocimiento institucional.',
+      },
+      {
+        q: '¿Hotel Companion admite varios idiomas?',
+        a: 'Sí. Los huéspedes se comunican de forma natural en su idioma preferido mientras Hotel Companion preserva la voz, los estándares y la filosofía de hospitalidad de tu hotel.',
+      },
+      {
+        q: '¿Qué es Companion OS?',
+        a: 'Companion OS es la plataforma de inteligencia compartida de Axionari que impulsa a Hotel Companion, Restaurant Companion y a los futuros Companions específicos por industria.',
+      },
+    ],
+  },
+  enterpriseLink: 'Enterprise',
+  foundingCta: 'Conviértete en Socio Fundador',
+  finalCta: {
+    title: 'Cada Conversación con un Huésped Es una Oportunidad.',
+    beats: [
+      'Brinda una hospitalidad excepcional.',
+      'Aumenta el ingreso complementario.',
+      'Entiende a cada huésped.',
+      'Coordina cada departamento.',
+      'Fortalece cada operación.',
+    ],
+    platform: 'Una sola Plataforma de Inteligencia de Huéspedes por Voz.',
+    cta: 'Agenda una Demo',
+  },
+}
 
 export const homeCopy: Localized<typeof en> = { en, es }

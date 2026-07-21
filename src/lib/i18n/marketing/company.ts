@@ -107,7 +107,111 @@ const en = {
   },
 }
 
-/* NEEDS ES: professional translation pending — ES mirrors EN (brief guardrail 8). */
-const es: typeof en = en
+/* Copy source: HotelCompanion__Site_Copy_ES.md {#company}. Verbatim. */
+
+const es: typeof en = {
+  hero: {
+    title: 'Estamos Construyendo el Futuro de la Hospitalidad Inteligente.',
+    body1:
+      'Creemos que cada conversación con un huésped debería crear mejores experiencias, operaciones más sólidas y negocios más valiosos.',
+    body2:
+      'Hotel Companion está construido por Axionari para ayudar a las organizaciones de hospitalidad a transformar las conversaciones en inteligencia, ejecución y resultados de negocio medibles.',
+  },
+  sections: [
+    {
+      id: 'belief',
+      eyebrow: '01 · NUESTRA CONVICCIÓN',
+      title: 'La Hospitalidad Es Humana. La Inteligencia Debería Ser Invisible.',
+      body: [
+        'La tecnología nunca debería competir con la hospitalidad. Debería elevarla.',
+        'La mejor tecnología desaparece en segundo plano, permitiendo que las personas se enfoquen en lo que mejor saben hacer: crear experiencias memorables.',
+        'Hotel Companion existe para hacer que cada interacción se sienta más personal, cada operación más coordinada y cada decisión más informada.',
+      ],
+      coda: 'Los huéspedes recuerdan cómo se sintieron. No la tecnología detrás de ello.',
+    },
+    {
+      id: 'mission',
+      eyebrow: '02 · NUESTRA MISIÓN',
+      title: 'Ayudar a Cada Hotel a Entender a Cada Huésped.',
+      body: [
+        'Los hoteles generan miles de conversaciones cada día. La mayoría se olvidan en el momento en que terminan.',
+        'Creemos que esas conversaciones contienen la inteligencia más valiosa de una organización.',
+        'Necesidades del huésped. Intención del huésped. Preferencias del huésped. Retos operativos. Oportunidades de ingreso. Expectativas de servicio.',
+      ],
+      coda:
+        'Hotel Companion transforma esas conversaciones en inteligencia que ayuda a cada departamento a brindar una mejor hospitalidad.',
+    },
+    {
+      id: 'approach',
+      eyebrow: '03 · NUESTRO ENFOQUE',
+      title: 'Creado para la Hospitalidad. Diseñado para la Empresa.',
+      body: [
+        'Hotel Companion combina la simplicidad de la conversación natural con el rigor del software empresarial.',
+        'Experiencias por voz. Conocimiento organizacional. Flujos de trabajo operativos. Inteligencia del huésped. Analítica empresarial.',
+      ],
+      coda: 'Una plataforma que conecta cada interacción con el huésped con cada departamento.',
+    },
+    {
+      id: 'companion-os',
+      eyebrow: '04 · COMPANION OS',
+      title: 'Una Plataforma. Posibilidades Ilimitadas.',
+      body: [
+        'Hotel Companion está impulsado por Companion OS, la plataforma de inteligencia compartida de Axionari.',
+        'En lugar de construir productos de IA aislados, creamos una base de inteligencia común capaz de entender organizaciones, coordinar la ejecución y aprender continuamente.',
+        'Hoy impulsa a Hotel Companion y Restaurant Companion.',
+      ],
+      coda: 'Mañana impulsará una familia creciente de Companions específicos por industria.',
+    },
+    {
+      id: 'axionari',
+      eyebrow: '05 · SOBRE AXIONARI',
+      title: 'Sistemas de Ejecución Empresarial.',
+      body: [
+        'Axionari construye sistemas inteligentes que ayudan a las organizaciones a entender lo que está pasando, coordinar lo que sigue y mejorar continuamente a través de la IA.',
+        'Companion OS es la plataforma de inteligencia detrás de esa visión.',
+      ],
+      coda: 'Hotel Companion es una aplicación de esa plataforma, creada específicamente para la hospitalidad.',
+    },
+    {
+      id: 'philosophy',
+      eyebrow: '06 · NUESTRA FILOSOFÍA',
+      title: 'La Comprensión Crea una Mejor Ejecución.',
+      body: [
+        'Las organizaciones ya poseen un conocimiento extraordinario.',
+        'El reto no es crear más información. Es hacer que ese conocimiento sea accesible, accionable y útil al instante.',
+        'Creemos que la IA debería ayudar a las organizaciones a entender más rápido, decidir mejor y ejecutar con confianza.',
+      ],
+      coda: 'Esa filosofía guía todo lo que construimos.',
+    },
+    {
+      id: 'founding-partners',
+      eyebrow: '07 · SOCIOS FUNDADORES',
+      title: 'Construyendo el Futuro Juntos.',
+      body: [
+        'Trabajamos de cerca con un número limitado de organizaciones de hospitalidad para dar forma al futuro de las experiencias inteligentes para huéspedes.',
+        'Nuestros Socios Fundadores no solo usan la plataforma. Ayudan a definirla.',
+      ],
+      coda: 'Juntos, estamos construyendo la próxima generación de tecnología para la hospitalidad.',
+    },
+  ],
+  foundingCta: 'Conviértete en Socio Fundador',
+  contact: {
+    title: 'Construyamos Juntos el Futuro de la Hospitalidad.',
+    body:
+      'Ya sea que estés explorando nuevas formas de mejorar la experiencia del huésped, aumentar el ingreso complementario o modernizar las operaciones del hotel, nos encantaría conocer tu organización.',
+    channels: [
+      { label: 'Consultas Generales', email: 'hello@hotelcompanion.ai' },
+      { label: 'Ventas', email: 'sales@hotelcompanion.ai' },
+      { label: 'Alianzas', email: 'partners@hotelcompanion.ai' },
+    ],
+  },
+  finalCta: {
+    title: 'El Futuro de la Hospitalidad Comienza con la Comprensión.',
+    body:
+      'Cada interacción con un huésped importa. Cada conversación crea inteligencia. Cada hotel merece tecnología que haga la hospitalidad más humana—no más complicada.',
+    platform: 'Construyámoslo juntos.',
+    cta: 'Agenda una Demo',
+  },
+}
 
 export const companyCopy: Localized<typeof en> = { en, es }

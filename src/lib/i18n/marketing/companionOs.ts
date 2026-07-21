@@ -178,7 +178,182 @@ const en = {
   },
 }
 
-/* NEEDS ES: professional translation pending — ES mirrors EN (brief guardrail 8). */
-const es: typeof en = en
+/* Copy source: HotelCompanion__Site_Copy_ES.md {#companionos}. Verbatim. */
+
+const es: typeof en = {
+  hero: {
+    title: 'Una Plataforma de Inteligencia. Companions Ilimitados.',
+    positioning: 'Companion OS es la plataforma de inteligencia que impulsa a cada Companion.',
+    body:
+      'En lugar de construir una IA distinta para cada industria, Axionari creó una plataforma de inteligencia compartida capaz de entender organizaciones, razonar sobre el conocimiento, coordinar la ejecución y aprender continuamente de cada interacción.',
+    close: ['Cada Companion está construido sobre la misma base.', 'Cada industria obtiene inteligencia especializada.'],
+  },
+  why: {
+    title: 'Por Qué Existe Companion OS.',
+    beats: [
+      'Las organizaciones no necesitan otro asistente automatizado.',
+      'Necesitan inteligencia que entienda cómo opera su negocio.',
+    ],
+    industries: 'Hospitalidad. Restaurantes. Salud. Educación. Retail. Aeropuertos.',
+    body: [
+      'Cada industria tiene flujos de trabajo, conocimiento y expectativas de cliente únicos.',
+      'Sin embargo, todas requieren las mismas capacidades subyacentes.',
+    ],
+    capabilities: 'Comprensión. Razonamiento. Memoria. Coordinación. Ejecución.',
+    coda: 'Companion OS proporciona esa base.',
+  },
+  onePlatform: {
+    title: 'Una Plataforma. Inteligencia por Industria.',
+    body: [
+      'Companion OS separa la inteligencia universal de la experiencia por industria.',
+      'La plataforma aporta la inteligencia. Cada Companion aporta la especialización.',
+    ],
+    specializations: [
+      'Hotel Companion entiende la hospitalidad.',
+      'Restaurant Companion entiende los restaurantes.',
+      'Los futuros Companions entenderán sus industrias con la misma profundidad.',
+    ],
+    coda: 'Una plataforma. Posibilidades ilimitadas.',
+  },
+  /* Capability deep-dives — all eight, in canonical taxonomy order. */
+  deepDives: [
+    {
+      id: 'voice',
+      eyebrow: '01 · INTELIGENCIA DE VOZ',
+      title: 'Inteligencia de Voz.',
+      body: [
+        'La conversación es la interfaz más natural entre las personas y las organizaciones.',
+        'Companion OS entiende el lenguaje natural, la intención, el contexto y el significado.',
+        'Los huéspedes simplemente preguntan. La plataforma entiende. Razona. Responde. Aprende.',
+      ],
+      coda: 'Cada conversación se siente sin esfuerzo porque la tecnología desaparece detrás de la experiencia.',
+    },
+    {
+      id: 'knowledge',
+      eyebrow: '02 · ARQUITECTURA DE CONOCIMIENTO',
+      title: 'Arquitectura de Conocimiento.',
+      body: [
+        'Cada organización posee conocimiento valioso.',
+        'Políticas. Procedimientos. Servicios. Productos. Personas. Ubicaciones. Experiencias. Recomendaciones.',
+        'Companion OS transforma el conocimiento organizacional en una capa de inteligencia viva que se mantiene precisa, consultable y en mejora continua.',
+      ],
+      coda: 'El conocimiento deja de vivir dentro de documentos. Se vuelve accesible al instante mediante la conversación.',
+    },
+    {
+      id: 'memory',
+      eyebrow: '03 · MEMORIA ORGANIZACIONAL',
+      title: 'Memoria Organizacional.',
+      body: [
+        'Las grandes organizaciones recuerdan.',
+        'Companion OS recuerda todo lo que importa.',
+        'Conversaciones pasadas. Preferencias de huéspedes. Patrones operativos. Servicios solicitados con frecuencia. Vacíos de conocimiento. Tendencias emergentes. Oportunidades comerciales.',
+      ],
+      coda: 'El conocimiento institucional se fortalece con cada interacción. La plataforma se vuelve más valiosa con el tiempo.',
+    },
+    {
+      id: 'reasoning',
+      eyebrow: '04 · MOTOR DE RAZONAMIENTO',
+      title: 'Motor de Razonamiento.',
+      body: [
+        'Saber información no es suficiente.',
+        'Las organizaciones necesitan inteligencia capaz de razonar.',
+        'Entender el contexto. Reconocer la intención. Conectar la información. Hacer recomendaciones. Priorizar acciones. Coordinar resultados.',
+      ],
+      coda: 'Companion OS no solo recupera información. Entiende cómo aplicarla.',
+    },
+    {
+      id: 'workflow',
+      eyebrow: '05 · ORQUESTACIÓN DE FLUJOS DE TRABAJO',
+      title: 'Orquestación de Flujos de Trabajo.',
+      body: [
+        'La conversación debería llevar directamente a la ejecución.',
+        'Companion OS transforma las solicitudes en flujos de trabajo operativos coordinados.',
+      ],
+      chain: [
+        'Solicitud del huésped.',
+        'Departamento correcto.',
+        'Información correcta.',
+        'Acción correcta.',
+        'Experiencia completada.',
+      ],
+      after: ['Cada Companion conecta las conversaciones con la ejecución.'],
+      coda: 'Nada se pierde. Nada se olvida. Todo se coordina.',
+    },
+    {
+      id: 'operational',
+      eyebrow: '06 · INTELIGENCIA OPERATIVA',
+      title: 'Inteligencia Operativa.',
+      body: [
+        'Cada interacción revela cómo opera una organización.',
+        'Companion OS identifica continuamente:',
+        'Cuellos de botella operativos. Tendencias emergentes. Vacíos de conocimiento. Demanda de servicios. Carga de trabajo por departamento. Oportunidades comerciales. Patrones de desempeño.',
+      ],
+      coda: 'La dirección gana una visibilidad que los sistemas tradicionales nunca capturan.',
+    },
+    {
+      id: 'analytics',
+      eyebrow: '07 · ANALÍTICA EMPRESARIAL',
+      title: 'Analítica Empresarial.',
+      body: [
+        'La comprensión debería llegar a la dirección, no solo a la primera línea.',
+        'Companion OS convierte miles de conversaciones cotidianas en inteligencia ejecutiva.',
+      ],
+      items: [
+        'Comportamiento del huésped.',
+        'Oportunidades de ingreso.',
+        'Demanda de servicios.',
+        'Desempeño por departamento.',
+        'Salud del conocimiento.',
+        'Tendencias emergentes.',
+        'Comparaciones entre propiedades.',
+      ],
+      after: ['No es otro tablero para monitorear.', 'Son respuestas que llevan a decisiones.'],
+      coda: 'Cada conversación se convierte en inteligencia de negocio medible.',
+    },
+    {
+      id: 'learning',
+      eyebrow: '08 · APRENDIZAJE CONTINUO',
+      title: 'Aprendizaje Continuo.',
+      body: [
+        'Las organizaciones evolucionan. Su inteligencia debería evolucionar con ellas.',
+        'Cada conversación mejora las recomendaciones. Cada interacción fortalece el conocimiento. Cada solicitud amplía la comprensión. Cada resultado hace la plataforma más inteligente.',
+      ],
+      coda: 'Companion OS se adapta continuamente junto con tu organización.',
+    },
+  ],
+  enterprise: {
+    title: 'Creado para la Empresa.',
+    body: [
+      'Companion OS está diseñado para apoyar a organizaciones de cualquier tamaño.',
+      'Seguridad empresarial. Gobernanza basada en roles. Arquitectura escalable. Gestión multiubicación. Administración del conocimiento. Analítica operativa. Implementación continua.',
+    ],
+    coda: 'Una plataforma que apoya a una sola ubicación—o a miles.',
+  },
+  ecosystem: {
+    title: 'El Ecosistema Companion.',
+    lead: 'Companion OS impulsa una familia creciente de Companions específicos por industria.',
+    today: 'Hoy: Hotel Companion, Restaurant Companion.',
+    tomorrow:
+      'Mañana: Campus Companion, Hospital Companion, Retail Companion, Airport Companion, Destination Companion.',
+    body: 'Y cada futuro Companion construido sobre la misma plataforma de inteligencia.',
+    coda: 'Una plataforma. Muchas industrias. Inteligencia compartida. Experiencia especializada.',
+  },
+  axionari: {
+    title: 'Construido por Axionari.',
+    body: [
+      'Axionari crea Sistemas de Ejecución Empresarial que ayudan a las organizaciones a entender lo que está pasando, coordinar lo que sigue y mejorar continuamente a través de la inteligencia.',
+      'Companion OS es la plataforma de inteligencia detrás de esa visión.',
+    ],
+    coda: 'Cada Companion es una aplicación de la misma filosofía: la comprensión crea una mejor ejecución.',
+  },
+  finalCta: {
+    title: 'La Inteligencia No Debería Reconstruirse para Cada Industria.',
+    subtitle: 'Debería Compartirse.',
+    body:
+      'Companion OS le da a cada Companion la capacidad de entender, razonar, recordar, coordinar y mejorar continuamente—mientras cada producto se especializa en las necesidades de su industria.',
+    platform: 'Una Plataforma de Inteligencia. Companions Ilimitados.',
+    cta: 'Explora Hotel Companion',
+  },
+}
 
 export const companionOsCopy: Localized<typeof en> = { en, es }

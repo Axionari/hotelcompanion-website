@@ -158,7 +158,160 @@ const en = {
   },
 }
 
-/* NEEDS ES: professional translation pending — ES mirrors EN (brief guardrail 8). */
-const es: typeof en = en
+const es: typeof en = {
+  hero: {
+    title: 'Creado para Empresas Modernas de Hospitalidad.',
+    positioning: 'Escala una hospitalidad excepcional en cada propiedad con confianza.',
+    body:
+      'Hotel Companion combina seguridad de nivel empresarial, gobernanza centralizada, inteligencia operativa e implementación escalable en una plataforma diseñada para organizaciones de hospitalidad de cualquier tamaño—desde hoteles independientes hasta marcas globales.',
+  },
+  sections: [
+    {
+      id: 'shared-intel',
+      eyebrow: '01 · INTELIGENCIA COMPARTIDA',
+      title: 'La Hospitalidad Empresarial Comienza con Inteligencia Compartida.',
+      body: [
+        'Cada hotel tiene experiencias únicas. Cada organización comparte los mismos estándares.',
+        'Hotel Companion te permite mantener un conocimiento de marca, estándares de servicio y excelencia operativa consistentes, dándole a cada propiedad la flexibilidad de reflejar su destino, su cultura y su personalidad.',
+      ],
+      coda: 'Una plataforma. Inteligencia compartida. Ejecución local.',
+    },
+    {
+      id: 'multi-property',
+      eyebrow: '02 · MULTIPROPIEDAD',
+      title: 'Multipropiedad por Diseño.',
+      body: [
+        'Administra uno o cientos de hoteles desde una sola plataforma.',
+        'Centraliza el conocimiento organizacional. Mantén información específica por propiedad. Distribuye actualizaciones al instante. Comparte mejores prácticas. Estandariza la calidad del servicio. Monitorea el desempeño en cada ubicación.',
+      ],
+      coda: 'Cada propiedad sigue siendo única. Tu inteligencia operativa se vuelve compartida.',
+    },
+    {
+      id: 'knowledge',
+      eyebrow: '03 · GESTIÓN DEL CONOCIMIENTO',
+      title: 'Gestión del Conocimiento Empresarial.',
+      body: [
+        'El conocimiento es uno de los activos más valiosos de tu organización.',
+        'Hotel Companion transforma el conocimiento institucional en una capa de inteligencia viva a la que cada huésped y cada empleado pueden acceder al instante.',
+        'Políticas. Procedimientos operativos. Estándares de marca. Protocolos de servicio. Amenidades. Recomendaciones locales. Preguntas frecuentes. Documentación interna.',
+      ],
+      coda: 'El conocimiento evoluciona continuamente conforme tu organización crece.',
+    },
+    {
+      id: 'admin',
+      eyebrow: '04 · ADMINISTRACIÓN',
+      title: 'Administración Centralizada.',
+      body: [
+        'Administra todo tu portafolio hotelero desde un solo lugar.',
+        'Propiedades. Usuarios. Roles. Permisos. Conocimiento. Voz de marca. Idiomas. Contenido. Configuraciones. Actualizaciones.',
+      ],
+      coda: 'Administración empresarial sin complejidad operativa.',
+    },
+    {
+      id: 'secure',
+      eyebrow: '05 · SEGURIDAD',
+      title: 'Seguro por Diseño.',
+      body: [
+        'La confianza empresarial comienza con la seguridad.',
+        'Hotel Companion está construido con seguridad en cada capa.',
+        'Acceso basado en roles. Comunicaciones cifradas. Conocimiento protegido. Auditabilidad. Autenticación segura. Arquitectura centrada en la privacidad.',
+      ],
+      coda: 'Tus datos siguen siendo tuyos. Protegidos. Gobernados. Controlados.',
+    },
+    {
+      id: 'governance',
+      eyebrow: '06 · GOBERNANZA',
+      title: 'Gobernanza Sin Fricción.',
+      body: [
+        'Mantén la consistencia mientras empoderas a los equipos locales.',
+        'Estándares corporativos. Autonomía de la propiedad. Flujos de aprobación. Control de versiones. Gobernanza de contenido. Supervisión operativa.',
+      ],
+      coda: 'Las organizaciones empresariales ganan confianza sin sacrificar agilidad.',
+    },
+    {
+      id: 'operational-intel',
+      eyebrow: '07 · INTELIGENCIA OPERATIVA',
+      title: 'Inteligencia Operativa.',
+      body: [
+        'Miles de conversaciones con huéspedes revelan patrones que ningún tablero había capturado antes.',
+        'Hotel Companion revela continuamente:',
+        'Cuellos de botella operativos. Servicios solicitados con frecuencia. Vacíos de conocimiento. Tendencias de mantenimiento. Periodos de mayor demanda. Carga de trabajo por departamento. Tiempos de respuesta del servicio. Expectativas emergentes del huésped.',
+      ],
+      coda: 'Cada conversación se convierte en inteligencia operativa.',
+    },
+    {
+      id: 'commercial-intel',
+      eyebrow: '08 · INTELIGENCIA COMERCIAL',
+      title: 'Inteligencia Comercial.',
+      body: [
+        'Las oportunidades de ingreso no deberían depender del azar.',
+        'Hotel Companion identifica la intención comercial en cada interacción con el huésped.',
+        'Oportunidades de mejora. Estancias extendidas. Celebraciones. Experiencias premium. Demanda de spa. Interés gastronómico. Necesidades de transporte. Reservas de actividades.',
+      ],
+      coda: 'La dirección gana visibilidad sobre oportunidades de ingreso que tradicionalmente desaparecen dentro de las conversaciones.',
+    },
+    {
+      id: 'dashboards',
+      eyebrow: '09 · TABLEROS',
+      title: 'Tableros Ejecutivos.',
+      body: [
+        'Una sola vista de toda tu operación.',
+        'Monitorea:',
+        'Conversaciones con huéspedes. Oportunidades de ingreso. Desempeño operativo. Salud del conocimiento. Actividad por departamento. Tendencias de servicio. Perspectivas comerciales. Factores de satisfacción del huésped. Comparaciones entre propiedades. Desempeño del portafolio.',
+      ],
+      coda: 'Comprende lo que está pasando en tu organización—y por qué.',
+    },
+    {
+      id: 'integrates',
+      eyebrow: '10 · INTEGRACIÓN',
+      title: 'Se Integra a Tu Operación.',
+      body: [
+        'Hotel Companion está diseñado para complementar tu ecosistema hotelero existente.',
+        'En lugar de reemplazar tu operación, la potencia.',
+        'Conecta conversaciones. Coordina equipos. Amplía el conocimiento. Mejora la visibilidad. Acelera la ejecución.',
+      ],
+      coda: 'Tu stack tecnológico sigue funcionando. Tus huéspedes simplemente reciben una mejor experiencia.',
+    },
+    {
+      id: 'deploy',
+      eyebrow: '11 · IMPLEMENTACIÓN',
+      title: 'Implementa en Días.',
+      body: [
+        'El software empresarial no debería requerir meses de implementación.',
+        'Hotel Companion está diseñado para una implementación rápida.',
+        'Incorporación ágil. Implementación guiada. Capacitación mínima. Valor inmediato. Escala a tu propio ritmo.',
+      ],
+      coda:
+        'Ya sea que implementes una sola propiedad o todo un portafolio, tus equipos pueden empezar a generar valor casi de inmediato.',
+    },
+    {
+      id: 'grow',
+      eyebrow: '12 · ESCALA',
+      title: 'Creado para Crecer Contigo.',
+      body: [
+        'Empieza con una propiedad. Expándete a diez. Escala a cientos.',
+        'Hotel Companion crece junto con tu organización sin requerir una nueva plataforma, una nueva arquitectura ni un modelo operativo diferente.',
+      ],
+      coda: 'Una plataforma. Potencial ilimitado.',
+    },
+  ],
+  companionOs: {
+    title: 'Impulsado por Companion OS.',
+    lead: 'Cada capacidad empresarial está impulsada por Companion OS.',
+    close: 'Una plataforma de inteligencia que impulsa a cada Companion en cada industria.',
+  },
+  finalCta: {
+    title: 'La Hospitalidad Empresarial Merece Inteligencia Empresarial.',
+    beats: [
+      'Brinda un servicio consistente en cada propiedad.',
+      'Empodera a cada departamento.',
+      'Protege el conocimiento organizacional.',
+      'Aumenta la visibilidad operativa.',
+      'Convierte cada conversación con un huésped en inteligencia de negocio medible.',
+      'Escala la hospitalidad con confianza.',
+    ],
+    cta: 'Agenda una Demo',
+  },
+}
 
 export const enterpriseCopy: Localized<typeof en> = { en, es }

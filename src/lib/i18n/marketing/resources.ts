@@ -124,7 +124,127 @@ const en = {
   },
 }
 
-/* NEEDS ES: professional translation pending — ES mirrors EN (brief guardrail 8). */
-const es: typeof en = en
+/* Copy source: HotelCompanion__Site_Copy_ES.md {#resources}. Verbatim.
+   Slugs are route identifiers — byte-identical to EN, never translated. */
+
+const es: typeof en = {
+  hero: {
+    title: 'Ideas para el Futuro de la Hospitalidad.',
+    body1:
+      'Explora ideas, investigación y guías prácticas sobre inteligencia de huéspedes, IA, excelencia operativa y el futuro de la hospitalidad.',
+    body2:
+      'Ya sea que estés evaluando IA, mejorando la experiencia del huésped o repensando las operaciones de tu hotel, nuestra biblioteca está diseñada para ayudar a los líderes de hospitalidad a entender lo que viene.',
+  },
+  featured: {
+    eyebrow: '01 · DESTACADO',
+    title: 'El Futuro de la Hospitalidad Es Conversacional.',
+    body1:
+      'Los huéspedes ya no quieren navegar apps, buscar en sitios web ni esperar en el teléfono. Simplemente quieren preguntar.',
+    body2:
+      'Descubre por qué la inteligencia conversacional se está convirtiendo en la nueva interfaz operativa de los hoteles—y cómo las propiedades visionarias están transformando cada interacción con el huésped en servicio excepcional y valor de negocio medible.',
+    cta: 'Leer Artículo',
+    slug: 'future-of-hospitality-is-conversational',
+  },
+  library: {
+    eyebrow: '02 · BIBLIOTECA',
+    title: 'Artículos Destacados',
+    cards: [
+      {
+        label: 'Entendiendo la Inteligencia de Huéspedes',
+        dek: 'Por qué las conversaciones con huéspedes se están convirtiendo en la fuente más valiosa de inteligencia operativa y comercial de la hospitalidad.',
+        slug: 'future-of-hospitality-is-conversational',
+      },
+      {
+        label: 'Más Allá del Concierge con IA',
+        dek: 'Por qué la próxima generación de tecnología hotelera va más allá de los asistentes automatizados, hacia las Plataformas de Inteligencia de Huéspedes.',
+        slug: 'beyond-the-ai-concierge',
+      },
+      {
+        label: 'Cada Conversación Es Ingreso',
+        dek: 'Cómo los hoteles pueden identificar oportunidades de ingreso de forma natural a través de las conversaciones, sin comprometer la hospitalidad.',
+        slug: 'every-conversation-is-revenue',
+      },
+      {
+        label: 'La Voz Es la Nueva Interfaz',
+        dek: 'Por qué hablar se está convirtiendo en la forma más natural en que los huéspedes interactúan con los hoteles.',
+        slug: 'voice-is-the-new-interface',
+      },
+      {
+        label: 'Construyendo el Hotel Inteligente',
+        dek: 'Cómo la IA conversacional, el conocimiento organizacional y la inteligencia operativa crean un nuevo modelo operativo para la hospitalidad.',
+        slug: 'the-operating-system-for-hospitality',
+      },
+      {
+        label: 'De las Preguntas a los Flujos de Trabajo',
+        dek: 'Cómo las solicitudes de los huéspedes se convierten en ejecución coordinada en cada departamento.',
+        slug: 'every-department-should-share-the-same-intelligence',
+      },
+      {
+        label: 'La Ventaja del Conocimiento',
+        dek: 'Por qué la mayor ventaja competitiva de tu hotel es el conocimiento que tu equipo ya posee.',
+        slug: 'the-hotel-knowledge-problem',
+      },
+      {
+        label: 'El Hotel del Futuro',
+        dek: 'Cómo la IA, la voz, la automatización y la inteligencia organizacional están redefiniendo las expectativas de los huéspedes.',
+        slug: 'what-happens-when-every-guest-conversation-becomes-intelligence',
+      },
+    ],
+  },
+  categories: {
+    eyebrow: '03 · TEMAS',
+    title: 'Explora por Tema',
+    all: 'Todos',
+    descriptions: {
+      'Experiencia del Huésped': 'Crear estancias memorables mediante una hospitalidad inteligente y personalizada.',
+      'Crecimiento de Ingresos': 'Aumentar el ingreso complementario con mejores conversaciones y recomendaciones más inteligentes.',
+      'Operaciones Hoteleras': 'Mejorar la coordinación, la eficiencia y el servicio en cada departamento.',
+      'Inteligencia Artificial': 'Entender cómo la IA está transformando la hospitalidad sin reemplazar el servicio humano.',
+      'Tecnología de Voz': 'Por qué las interfaces conversacionales se están convirtiendo en el nuevo estándar de interacción con el huésped.',
+      'Companion OS': 'Perspectivas sobre la plataforma de inteligencia que impulsa a Hotel Companion y al futuro ecosistema Companion.',
+    } as Record<string, string>,
+  },
+  faq: {
+    eyebrow: '04 · PREGUNTAS FRECUENTES',
+    title: 'Preguntas Frecuentes',
+    body:
+      'Conoce más sobre Hotel Companion, Companion OS, implementación, seguridad, soporte multilingüe, despliegue empresarial y experiencia del huésped.',
+    cta: 'Explorar Preguntas Frecuentes',
+  },
+  updates: {
+    eyebrow: '05 · ACTUALIZACIONES DE PRODUCTO',
+    title: 'Actualizaciones de Producto',
+    body:
+      'Sigue la evolución de Hotel Companion mientras construimos la próxima generación de software de hospitalidad inteligente.',
+    lead: 'Mantente al tanto de:',
+    items: [
+      'Nuevas capacidades.',
+      'Mejoras de la plataforma.',
+      'Avances de IA.',
+      'Actualizaciones de Companion OS.',
+      'Funciones empresariales.',
+      'Mejoras de rendimiento.',
+      'Notas de versión.',
+    ],
+    status: 'Próximamente',
+  },
+  newsletter: {
+    eyebrow: '06 · NEWSLETTER',
+    title: 'Mantente Adelante de lo que Viene.',
+    body1: 'La hospitalidad está cambiando rápidamente.',
+    body2:
+      'Recibe ideas ocasionales sobre IA, inteligencia de huéspedes, innovación operativa y el futuro de la hospitalidad—escritas para líderes hoteleros, no para tecnólogos.',
+    cta: 'Suscríbete al Newsletter',
+    placeholder: 'Correo de Trabajo',
+    success: 'Gracias — ya estás en la lista.',
+  },
+  finalCta: {
+    title: 'La Gran Hospitalidad Nunca Deja de Aprender.',
+    subtitle: 'Nosotros Tampoco.',
+    body:
+      'Explora nuevas ideas. Cuestiona lo convencional. Descubre cómo la hospitalidad inteligente está redefiniendo la experiencia del huésped.',
+    cta: 'Agenda una Demo',
+  },
+}
 
 export const resourcesCopy: Localized<typeof en> = { en, es }

@@ -6,7 +6,16 @@ import { SiteFooter } from '@/components/site-footer'
 import { PersistentCTA } from './PersistentCTA'
 import { Reveal } from './Reveal'
 import { primaryBtn } from './PageShell'
+import { useCopy, type Localized } from '@/lib/i18n/useCopy'
+import { libraryChrome } from '@/lib/i18n/marketing/libraryChrome'
 import type { EssayBlock, EssayMeta } from '@/lib/library'
+
+export interface ArticleContent {
+  essay: EssayMeta
+  blocks: EssayBlock[]
+  next: EssayMeta | null
+  others: EssayMeta[]
+}
 
 /**
  * The Library article template (#article-template).
@@ -15,17 +24,9 @@ import type { EssayBlock, EssayMeta } from '@/lib/library'
  * (institutional voice). Footer: Next Article card (or Epilogue for essay 12),
  * an Explore the Library strip, and a single Book a Demo CTA.
  */
-export function ArticleLayout({
-  essay,
-  blocks,
-  next,
-  others,
-}: {
-  essay: EssayMeta
-  blocks: EssayBlock[]
-  next: EssayMeta | null
-  others: EssayMeta[]
-}) {
+export function ArticleLayout({ content }: { content: Localized<ArticleContent> }) {
+  const { essay, blocks, next, others } = useCopy(content)
+  const chrome = useCopy(libraryChrome)
   return (
     <main>
       <SiteNav />
@@ -34,7 +35,7 @@ export function ArticleLayout({
         {/* Hero — first viewport, full opacity */}
         <header className="pt-16 md:pt-24 pb-10" style={{ background: 'var(--bg)' }}>
           <div className="mx-auto px-4 md:px-6" style={{ maxWidth: '760px' }}>
-            <div className="eyebrow mb-6">LIBRARY · {essay.category.toUpperCase()}</div>
+            <div className="eyebrow mb-6">{chrome.eyebrow} · {essay.category.toUpperCase()}</div>
             <h1 className="heading-page font-serif font-normal text-balance" style={{ color: 'var(--text)' }}>
               {essay.title}
             </h1>
@@ -92,7 +93,7 @@ export function ArticleLayout({
                 className="block rounded-2xl p-6 md:p-8 transition-colors hover:border-[rgba(201,106,58,0.4)]"
                 style={{ background: 'var(--surface-2)', border: '1px solid var(--border)' }}
               >
-                <div className="eyebrow mb-3">NEXT ARTICLE →</div>
+                <div className="eyebrow mb-3">{chrome.nextArticle} →</div>
                 <div className="font-serif heading-card mb-2" style={{ color: 'var(--text)' }}>
                   {next.title}
                 </div>
@@ -107,9 +108,9 @@ export function ArticleLayout({
                 className="rounded-2xl p-6 md:p-8 text-center"
                 style={{ background: 'var(--surface-2)', border: '1px solid var(--border)' }}
               >
-                <div className="eyebrow mb-3">END OF THE LIBRARY SERIES</div>
+                <div className="eyebrow mb-3">{chrome.seriesEnd}</div>
                 <p className="font-serif" style={{ fontSize: 'clamp(1.2rem, 2.4vw, 1.5rem)', color: 'var(--text)' }}>
-                  Every conversation leads somewhere.
+                  {chrome.seriesEndLine}
                 </p>
               </div>
             </Reveal>
@@ -117,7 +118,7 @@ export function ArticleLayout({
 
           {/* Explore the Library strip */}
           <div className="mt-12">
-            <div className="eyebrow mb-5">EXPLORE THE LIBRARY</div>
+            <div className="eyebrow mb-5">{chrome.explore}</div>
             <ul className="flex flex-col">
               {others.map((o) => (
                 <li key={o.slug} style={{ borderBottom: '1px solid var(--border)' }}>
@@ -139,7 +140,7 @@ export function ArticleLayout({
               className="font-sans inline-block mt-6 text-sm transition-colors hover:text-[#D4784A]"
               style={{ color: 'var(--accent)', fontWeight: 500 }}
             >
-              All resources →
+              {chrome.allResources} →
             </Link>
           </div>
 
@@ -151,7 +152,7 @@ export function ArticleLayout({
                 className="font-sans flex items-center justify-center text-white transition-colors hover:bg-[#D4784A]"
                 style={primaryBtn}
               >
-                Book a Demo
+                {chrome.cta}
               </Link>
             </div>
           </Reveal>

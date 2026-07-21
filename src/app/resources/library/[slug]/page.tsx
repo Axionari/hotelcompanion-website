@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { ArticleLayout } from '@/components/cds/ArticleLayout'
-import { ESSAYS, getEssay, readEssayBody } from '@/lib/library'
+import { ESSAYS, ESSAYS_BY_LANG, getEssay, readEssayBody } from '@/lib/library'
+import type { Language } from '@/lib/i18n/translations'
 
 export function generateStaticParams() {
   return ESSAYS.map((e) => ({ slug: e.slug }))
@@ -31,14 +32,24 @@ export async function generateMetadata({
   }
 }
 
+/** Builds the per-language payload the client picks from at render time. */
+function bundle(slug: string, lang: Language) {
+  const essay = getEssay(slug, lang)
+  if (!essay) return null
+  const next = essay.next ? (getEssay(essay.next, lang) ?? null) : null
+  return {
+    essay,
+    blocks: readEssayBody(slug, lang),
+    next,
+    others: ESSAYS_BY_LANG[lang].filter((e) => e.slug !== slug && e.slug !== next?.slug),
+  }
+}
+
 export default async function EssayPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const essay = getEssay(slug)
-  if (!essay) notFound()
+  const en = bundle(slug, 'en')
+  const es = bundle(slug, 'es')
+  if (!en || !es) notFound()
 
-  const blocks = readEssayBody(essay.slug)
-  const next = essay.next ? (getEssay(essay.next) ?? null) : null
-  const others = ESSAYS.filter((e) => e.slug !== essay.slug && e.slug !== next?.slug)
-
-  return <ArticleLayout essay={essay} blocks={blocks} next={next} others={others} />
+  return <ArticleLayout content={{ en, es }} />
 }

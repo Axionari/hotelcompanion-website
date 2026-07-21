@@ -257,7 +257,7 @@ export default function HomeClient() {
         <Reveal>
           <p className="mt-6">
             <Link href="/enterprise" className="font-sans text-sm transition-colors hover:text-[#D4784A]" style={{ color: 'var(--accent)', fontWeight: 500 }}>
-              Enterprise →
+              {c.enterpriseLink} →
             </Link>
           </p>
         </Reveal>
@@ -316,7 +316,7 @@ export default function HomeClient() {
         <Reveal>
           <p className="mt-10">
             <Link href="/contact#founding" className="font-sans text-sm transition-colors hover:text-[#D4784A]" style={{ color: 'var(--accent)', fontWeight: 500 }}>
-              Become a Founding Partner →
+              {c.foundingCta} →
             </Link>
           </p>
         </Reveal>

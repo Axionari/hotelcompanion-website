@@ -1,6 +1,8 @@
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
 import indexJson from '@/content/library/index.json'
+import indexJsonEs from '@/content/library/es/index.json'
+import type { Language } from '@/lib/i18n/translations'
 
 export type EssayCategory =
   | 'Guest Experience'
@@ -15,13 +17,18 @@ export interface EssayMeta {
   order: number
   title: string
   subtitle: string
-  category: EssayCategory
+  category: string
   readingTime: string
   next: string | null
 }
 
-/** The 12 essays in narrative order (front matter from the approved index). */
-export const ESSAYS = (indexJson as EssayMeta[]).slice().sort((a, b) => a.order - b.order)
+const byOrder = (a: EssayMeta, b: EssayMeta) => a.order - b.order
+
+/** The 12 essays in narrative order. Slugs and the Next chain are shared across languages. */
+export const ESSAYS = (indexJson as EssayMeta[]).slice().sort(byOrder)
+export const ESSAYS_ES = (indexJsonEs as EssayMeta[]).slice().sort(byOrder)
+
+export const ESSAYS_BY_LANG: Record<Language, EssayMeta[]> = { en: ESSAYS, es: ESSAYS_ES }
 
 export const CATEGORY_ORDER: EssayCategory[] = [
   'Guest Experience',
@@ -32,21 +39,21 @@ export const CATEGORY_ORDER: EssayCategory[] = [
   'Companion OS',
 ]
 
-export function getEssay(slug: string): EssayMeta | undefined {
-  return ESSAYS.find((e) => e.slug === slug)
+export function getEssay(slug: string, lang: Language = 'en'): EssayMeta | undefined {
+  return ESSAYS_BY_LANG[lang].find((e) => e.slug === slug)
 }
 
 /** A parsed essay body: subheads and the one-line-per-beat paragraphs. */
 export type EssayBlock = { type: 'subhead'; text: string } | { type: 'beat'; text: string } | { type: 'gap' }
 
 /**
- * Reads an essay body from src/content/library and parses the intentionally
- * simple structure: "### " lines are display-serif subheads, blank lines are
- * rhythm breaks, and every other line is its own visual beat (verbatim).
+ * Reads an essay body from src/content/library (EN) or .../es (ES) and parses the
+ * intentionally simple structure: "### " lines are display-serif subheads, blank
+ * lines are rhythm breaks, and every other line is its own visual beat (verbatim).
  */
-export function readEssayBody(slug: string): EssayBlock[] {
-  const file = path.join(process.cwd(), 'src/content/library', `${slug}.md`)
-  const raw = readFileSync(file, 'utf8')
+export function readEssayBody(slug: string, lang: Language = 'en'): EssayBlock[] {
+  const dir = lang === 'es' ? 'src/content/library/es' : 'src/content/library'
+  const raw = readFileSync(path.join(process.cwd(), dir, `${slug}.md`), 'utf8')
   const blocks: EssayBlock[] = []
   for (const line of raw.split('\n')) {
     const trimmed = line.trim()

@@ -107,7 +107,111 @@ const en = {
   },
 }
 
-/* NEEDS ES: professional translation pending — ES mirrors EN (brief guardrail 8). */
-const es: typeof en = en
+/* Copy source: HotelCompanion__Site_Copy_ES.md {#contact}. Verbatim. */
+
+const es: typeof en = {
+  hero: {
+    title: 'Construyamos Juntos el Futuro de la Hospitalidad.',
+    body:
+      'Ya sea que estés explorando Hotel Companion, evaluando un piloto o simplemente con curiosidad sobre el futuro de la Inteligencia de Huéspedes, nos encantaría saber de ti.',
+    coda: 'Toda conversación comienza en algún lugar. Comencemos una.',
+  },
+  channelsEyebrow: '01 · PONTE EN CONTACTO',
+  channelsTitle: '¿Cómo podemos ayudarte?',
+  channels: [
+    {
+      id: 'sales',
+      eyebrow: 'Ventas',
+      title: 'Explora la plataforma.',
+      body: '¿Te interesa saber cómo Hotel Companion puede transformar tu experiencia del huésped? Nuestro equipo te mostrará la plataforma, responderá tus preguntas y explorará si somos lo indicado para tu organización.',
+      email: 'sales@hotelcompanion.ai',
+      cta: { label: 'Agenda una Demostración', href: '/demo' },
+    },
+    {
+      id: 'partnerships',
+      eyebrow: 'Alianzas',
+      title: 'Construye con nosotros.',
+      body: 'Estamos construyendo el futuro de la hospitalidad con grupos hoteleros visionarios, socios tecnológicos, integradores y líderes de la industria.',
+      email: 'partners@hotelcompanion.ai',
+    },
+    {
+      id: 'customer-success',
+      eyebrow: 'Éxito del Cliente',
+      title: 'Ya trabajas con nosotros.',
+      body: '¿Ya trabajas con Hotel Companion? Nuestro equipo de Éxito del Cliente está aquí para ayudarte a maximizar el valor de tu despliegue.',
+      email: 'support@hotelcompanion.ai',
+    },
+    {
+      id: 'media',
+      eyebrow: 'Prensa y Conferencias',
+      title: 'Prensa y eventos.',
+      body: 'Para entrevistas, congresos, pódcast, conferencias o consultas de medios.',
+      email: 'press@hotelcompanion.ai',
+    },
+    {
+      id: 'general',
+      eyebrow: 'Consultas Generales',
+      title: 'Cualquier otro tema.',
+      body: '¿Preguntas sobre Hotel Companion o Companion OS? Nos aseguraremos de que tu mensaje llegue a la persona correcta.',
+      email: 'hello@hotelcompanion.ai',
+    },
+  ],
+  hq: {
+    title: 'Oficinas',
+    line: 'Hotel Companion — Construido por Axionari — Ciudad de México, México — Al servicio de organizaciones de hospitalidad en todo el mundo.',
+  },
+  schedule: {
+    title: 'Agenda una Conversación',
+    body: '¿Prefieres hablar directamente con nosotros? Agenda una demostración personalizada con uno de nuestros especialistas en hospitalidad.',
+    cta: 'Agenda una Demo',
+  },
+  faq: {
+    title: 'Preguntas Frecuentes',
+    items: [
+      {
+        q: '¿Qué tan rápido podemos esperar respuesta?',
+        a: 'Buscamos responder todas las consultas en un día hábil.',
+      },
+      {
+        q: '¿Trabajan con hoteles independientes?',
+        a: 'Sí. Trabajamos con hoteles boutique, propiedades independientes, resorts, hoteles de lujo y grupos multipropiedad.',
+      },
+      {
+        q: '¿Podemos empezar con un piloto?',
+        a: 'Por supuesto. Muchas organizaciones comienzan con un despliegue piloto antes de expandirse a más propiedades.',
+      },
+      {
+        q: '¿Dan soporte a hoteles internacionales?',
+        a: 'Sí. Hotel Companion está diseñado para entornos multilingües y operaciones globales.',
+      },
+      {
+        q: '¿Están aceptando socios de diseño actualmente?',
+        a: 'Sí. Trabajamos de cerca con un número limitado de organizaciones de hospitalidad visionarias para dar forma al futuro de la Inteligencia de Huéspedes.',
+      },
+    ],
+  },
+  founding: {
+    title: 'Únete al Programa de Socios Fundadores',
+    body:
+      'Buscamos un pequeño grupo de líderes de hospitalidad que quieran ayudar a definir la próxima generación de experiencias inteligentes para huéspedes.',
+    receiveLead: 'Los socios fundadores reciben:',
+    items: [
+      'Acceso anticipado a nuevas capacidades',
+      'Colaboración directa con nuestro equipo de producto',
+      'Soporte prioritario',
+      'Influencia sobre nuestra hoja de ruta',
+      'Condiciones comerciales preferentes',
+    ],
+    close: 'Si te interesa ayudar a dar forma al futuro de la hospitalidad, nos encantaría saber de ti.',
+    cta: 'Conviértete en Socio Fundador',
+  },
+  closing: {
+    title: 'Toda Gran Alianza Comienza con una Conversación.',
+    body1: 'La tecnología no transforma organizaciones. Las personas lo hacen.',
+    body2:
+      'Nos entusiasma conocer tu hotel, tus huéspedes y tu visión para el futuro de la hospitalidad. Construyámoslo juntos.',
+    cta: 'Ponte en Contacto',
+  },
+}
 
 export const contactCopy: Localized<typeof en> = { en, es }
