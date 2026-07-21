@@ -1,18 +1,37 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import { Fraunces, Spline_Sans_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 
-const cormorantGaramond = Cormorant_Garamond({
+/* Display face — Restaurant Companion uses Fraunces (headline weight 530,
+   italic accent 480). Variable axes give us those exact weights. */
+const fraunces = Fraunces({
   subsets: ["latin"],
-  weight: ["300", "400", "600", "700"],
+  style: ["normal", "italic"],
+  // Variable font: omit `weight` so the full axis is available and CSS can ask
+  // for RC's exact 530 (headline) / 480 (italic accent).
   variable: "--font-serif",
   display: "swap",
 });
 
-const dmSans = DM_Sans({
+/* Mono eyebrow face — RC uses Spline Sans Mono at ~10.5px / 0.26em tracking. */
+const splineMono = Spline_Sans_Mono({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["400", "500"],
+  variable: "--font-mono",
+  display: "swap",
+});
+
+/* Body / UI face — RC uses General Sans (Fontshare, not Google). Self-hosted
+   from public/fonts so there is no third-party request at runtime. */
+const generalSans = localFont({
+  src: [
+    { path: "../../public/fonts/GeneralSans-400.woff2", weight: "400", style: "normal" },
+    { path: "../../public/fonts/GeneralSans-500.woff2", weight: "500", style: "normal" },
+    { path: "../../public/fonts/GeneralSans-600.woff2", weight: "600", style: "normal" },
+    { path: "../../public/fonts/GeneralSans-700.woff2", weight: "700", style: "normal" },
+  ],
   variable: "--font-sans",
   display: "swap",
 });
@@ -51,7 +70,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
       </head>
-      <body className={`${cormorantGaramond.variable} ${dmSans.variable} font-sans antialiased`}>
+      <body className={`${fraunces.variable} ${generalSans.variable} ${splineMono.variable} font-sans antialiased`}>
         <LanguageProvider>
           <div className="pt-16">{children}</div>
         </LanguageProvider>

@@ -1,39 +1,55 @@
 /* ============================================================
    Companion Design System (CDS) — design tokens
-   Single source of truth for color, type, spacing and motion.
-   ~75% shared family system (Restaurant Companion reference)
-   / ~25% Hotel soul. See build brief §3.
+   Re-skinned to Restaurant Companion parity.
+   Values measured from the live restaurantcompanion.ai — see PARITY.md §1.
+   Supersedes §3 of the original Build Brief.
    ============================================================ */
 
 :root {
-  /* Surfaces — layered warm-dark (ambient banding) */
-  --bg: #0e0c0b;            /* page bed */
-  --surface-1: #141311;     /* default section */
-  --surface-2: #1a1715;     /* elevated card */
-  --surface-3: #211d1a;     /* input / raised */
+  /* Surfaces — near-black tonal ladder. Adjacent sections step one level
+     (ambient banding). Measured from RC. */
+  --bg: #100e0c;          /* page bed */
+  --surface-1: #141210;
+  --surface-2: #171717;   /* RC body bed / theme-color */
+  --surface-3: #181512;   /* RC warm section */
+  --surface-4: #1f1913;
+  --surface-5: #261e15;   /* warmest lift — CTA bands, enterprise zones */
+  --device-frame: #0d0d0f;
 
-  /* Text */
-  --text: #faf9f5;
-  --text-secondary: #a8a099;
-  --text-muted: #6b6560;
+  /* Accent — single warm copper. RC leads with the bright tone. */
+  --accent: #c86a3a;         /* working accent (RC rgb(200,106,58)) */
+  --accent-bright: #d4824f;  /* hover / emphasis */
+  --accent-deep: #a9541f;    /* pressed / depth */
+  --accent-soft: rgba(200, 106, 58, 0.13);
+  --accent-hairline: rgba(200, 106, 58, 0.28);
 
-  /* Lines */
-  --border: rgba(232, 227, 220, 0.08);
+  /* Text on near-black — warm off-white */
+  --text: #f7f6f1;
+  --text-dim: rgba(251, 248, 242, 0.7);
+  --text-faint: rgba(251, 248, 242, 0.52);
 
-  /* Accent — copper (family unity with Restaurant Companion) */
-  --accent: #c96a3a;
-  --accent-hover: #d4784a;
-  --accent-deep: #a9541f;
+  /* Hairlines */
+  --border: rgba(251, 248, 242, 0.1);
+  --border-soft: rgba(251, 248, 242, 0.06);
 
-  /* Status — never on primary CTAs or send actions */
-  --green: #2d9e6b;
-  --amber: #d4a84b;
-
-  /* Type — fonts are provided by next/font in layout.tsx */
-  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas,
-    monospace;
+  /* Layout — RC container is 1200px */
+  --container: 1200px;
+  --measure: 62ch;
 
   /* Motion */
-  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
-  --reveal-duration: 240ms;
+  --ease-standard: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-emphasis: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --dur-fast: 180ms;
+  --dur-base: 240ms;
+  --dur-slow: 420ms;
+  --reveal-distance-mobile: 16px;
+  --reveal-distance-desktop: 24px;
+
+  /* Device-frame system — hero tablet / phone mockups */
+  --device-radius: 44px;
+  --device-radius-mobile: 38px;
+  --bezel: 10px;
+  --bezel-mobile: 7px;
+  --island-w: 96px;
+  --island-h: 24px;
 }

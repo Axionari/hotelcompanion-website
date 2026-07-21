@@ -13,75 +13,65 @@ import { EndorsementMark } from '@/components/cds/EndorsementMark'
 import { FAQAccordion } from '@/components/cds/FAQAccordion'
 import { PersistentCTA } from '@/components/cds/PersistentCTA'
 import { Lead } from '@/components/cds/Prose'
+import { HeroDevice } from '@/components/cds/HeroDevice'
+import { MultiAccentHeadline } from '@/components/cds/AccentHeadline'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { homeCopy } from '@/lib/i18n/marketing/home'
-
-const primaryBtn = {
-  background: 'var(--accent)',
-  borderRadius: '8px',
-  height: '52px',
-  padding: '0 32px',
-  fontSize: '16px',
-  fontWeight: 600,
-} as const
-
-const ghostBtn = {
-  background: 'transparent',
-  border: '1px solid rgba(232,227,220,0.2)',
-  borderRadius: '8px',
-  height: '52px',
-  padding: '0 32px',
-  fontSize: '16px',
-  color: 'var(--text-secondary)',
-} as const
+import { accents } from '@/lib/i18n/marketing/accents'
 
 export default function HomeClient() {
   const c = useCopy(homeCopy)
+  const a = useCopy(accents)
 
   return (
     <main>
       <SiteNav />
 
-      {/* HERO {#home-hero} — first viewport renders at full opacity (no reveal) */}
-      <section className="pt-16 md:pt-24 pb-10 text-center overflow-hidden" style={{ background: 'var(--bg)' }}>
-        <div className="max-w-6xl mx-auto px-4 md:px-6">
-          <div className="eyebrow mb-6" style={{ color: 'var(--accent)' }}>
-            {c.hero.positioning}
+      {/* HERO {#home-hero} — asymmetric: text left (6 cols), in-room tablet right (6 cols).
+          Left-aligned per the layout law; first viewport renders at full opacity. */}
+      <section className="relative overflow-hidden pt-16 pb-20 md:pt-24 md:pb-28" style={{ background: 'var(--bg)' }}>
+        <div className="container-rc">
+          <div className="grid lg:grid-cols-12 gap-14 lg:gap-16 items-center">
+            <div className="lg:col-span-6">
+              <div className="eyebrow eyebrow-accent mb-7">{c.hero.positioning}</div>
+              <MultiAccentHeadline
+                as="h1"
+                className="heading-hero"
+                style={{ color: 'var(--text)', maxWidth: '15ch' }}
+                text={c.hero.h1}
+                accents={a.homeHero}
+              />
+              <p className="body-lead mt-8" style={{ maxWidth: '46ch' }}>
+                {c.hero.lead1}
+              </p>
+              <p className="body-lead mt-4" style={{ maxWidth: '46ch' }}>
+                {c.hero.lead2}
+              </p>
+              <div className="mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                <Link href="/demo" className="btn-primary">
+                  {c.hero.primaryCta}
+                </Link>
+                {/* NEEDS REAL DATA: product-tour video asset — points to /platform until one exists */}
+                <Link href="/platform" className="btn-secondary">
+                  {c.hero.secondaryCta}
+                </Link>
+              </div>
+              <div className="mt-10">
+                <EndorsementMark variant="companion-os" />
+              </div>
+            </div>
+
+            <div className="lg:col-span-6">
+              <HeroDevice />
+            </div>
           </div>
-          <h1 className="heading-hero font-serif font-normal text-balance mx-auto max-w-4xl" style={{ color: 'var(--text)' }}>
-            {c.hero.h1}
-          </h1>
-          <p
-            className="font-sans mt-8 mx-auto max-w-2xl leading-relaxed"
-            style={{ fontSize: 'clamp(1rem, 2vw, 1.15rem)', color: 'var(--text-secondary)' }}
-          >
-            {c.hero.lead1}
-          </p>
-          <p
-            className="font-sans mt-4 mx-auto max-w-2xl leading-relaxed"
-            style={{ fontSize: 'clamp(1rem, 2vw, 1.15rem)', color: 'var(--text-secondary)' }}
-          >
-            {c.hero.lead2}
-          </p>
-          <div className="mt-6">
-            <EndorsementMark variant="companion-os" />
-          </div>
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/demo" className="font-sans flex items-center justify-center text-white transition-colors hover:bg-[#D4784A] w-full sm:w-auto" style={primaryBtn}>
-              {c.hero.primaryCta}
-            </Link>
-            {/* NEEDS REAL DATA: product-tour video asset — CTA points to /platform until one exists */}
-            <Link href="/platform" className="font-sans flex items-center justify-center transition-colors hover:text-[#FAF9F5] hover:border-[rgba(232,227,220,0.35)] w-full sm:w-auto" style={ghostBtn}>
-              {c.hero.secondaryCta}
-            </Link>
-          </div>
-          {/* NEEDS REAL DATA: in-room tablet render — hero artifact slot (brief §7 Home) */}
-        </div>
-        {/* Ambient signature marquee below the hero copy */}
-        <div className="mt-16">
-          <QuestionMarquee />
         </div>
       </section>
+
+      {/* Signature guest-question marquee, full-bleed under the hero */}
+      <div className="pb-4" style={{ background: 'var(--bg)' }}>
+        <QuestionMarquee />
+      </div>
 
       {/* TRUST {#home-trust} */}
       <section className="py-10 text-center" style={{ background: 'var(--surface-1)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
@@ -437,8 +427,8 @@ export default function HomeClient() {
           </p>
         </Reveal>
         <Reveal>
-          <div className="mt-10 flex justify-center">
-            <Link href="/demo" className="font-sans flex items-center justify-center text-white transition-colors hover:bg-[#D4784A]" style={{ ...primaryBtn, animation: 'pulse-ring 2.5s ease-out infinite' }}>
+          <div className="mt-10">
+            <Link href="/demo" className="btn-primary">
               {c.finalCta.cta}
             </Link>
           </div>

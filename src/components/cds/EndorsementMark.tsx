@@ -23,10 +23,10 @@ export function EndorsementMark({
   const { lang } = useLang()
   const label = LOCKUPS[lang][variant]
   const style = {
-    color: 'var(--text-secondary)',
+    color: 'var(--text-faint)',
     textDecoration: 'none' as const,
   }
-  const cls = `font-serif italic text-base transition-colors hover:text-[#D4784A] ${className}`
+  const cls = `eyebrow transition-colors hover:text-[#d4824f] ${className}`
 
   if (variant === 'axionari') {
     return (

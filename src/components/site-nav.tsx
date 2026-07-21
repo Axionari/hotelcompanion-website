@@ -85,10 +85,20 @@ export function SiteNav() {
       className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-xl transition-transform duration-300 ease-in-out ${
         hidden && !open ? "-translate-y-full" : "translate-y-0"
       }`}
-      style={{ background: "rgba(14,12,11,0.9)", borderBottom: "1px solid var(--border)" }}
+      style={{ background: "rgba(16,14,12,0.92)", borderBottom: "1px solid var(--border)" }}
     >
       <div className="max-w-6xl mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="font-serif text-lg" style={{ color: "var(--text)" }}>
+        <Link
+          href="/"
+          className="font-sans"
+          style={{
+            color: "var(--text)",
+            fontSize: "15px",
+            fontWeight: 600,
+            letterSpacing: "0.09em",
+            textTransform: "uppercase",
+          }}
+        >
           {nav.wordmark}
         </Link>
 
@@ -98,8 +108,8 @@ export function SiteNav() {
             <Link
               key={l.href}
               href={l.href}
-              className="font-sans transition-colors hover:text-[#E8E3DC]"
-              style={{ fontSize: "14px", color: "var(--text-secondary)" }}
+              className="font-sans transition-colors hover:text-[#F7F6F1]"
+              style={{ fontSize: "15px", color: "var(--text-dim)" }}
             >
               {nav[l.key]}
             </Link>
@@ -110,15 +120,8 @@ export function SiteNav() {
         <div className="hidden lg:flex items-center gap-4">
           <Link
             href="/demo"
-            className="font-sans flex items-center text-white transition-colors hover:bg-[#D4784A]"
-            style={{
-              background: "var(--accent)",
-              borderRadius: "8px",
-              height: "44px",
-              padding: "0 22px",
-              fontSize: "14px",
-              fontWeight: 600,
-            }}
+            className="btn-primary"
+            style={{ minHeight: "44px", fontSize: "14px" }}
           >
             {nav.bookDemo}
           </Link>
@@ -149,7 +152,7 @@ export function SiteNav() {
           ref={drawerRef}
           className="lg:hidden px-6 py-4 flex flex-col gap-1 overflow-y-auto"
           style={{
-            background: "rgba(14,12,11,0.98)",
+            background: "rgba(16,14,12,0.98)",
             borderTop: "1px solid var(--border)",
             maxHeight: "calc(100dvh - 64px)",
           }}
@@ -159,7 +162,7 @@ export function SiteNav() {
               key={l.href}
               href={l.href}
               className="font-sans text-base py-3"
-              style={{ color: "var(--text-secondary)", borderBottom: "1px solid var(--border)", minHeight: "44px" }}
+              style={{ color: "var(--text-dim)", borderBottom: "1px solid var(--border)", minHeight: "44px" }}
               onClick={close}
             >
               {nav[l.key]}
@@ -169,15 +172,7 @@ export function SiteNav() {
             <Link
               href="/demo"
               onClick={close}
-              className="font-sans flex items-center justify-center text-white"
-              style={{
-                background: "var(--accent)",
-                borderRadius: "8px",
-                height: "48px",
-                padding: "0 24px",
-                fontSize: "15px",
-                fontWeight: 600,
-              }}
+              className="btn-primary w-full"
             >
               {nav.bookDemo}
             </Link>
