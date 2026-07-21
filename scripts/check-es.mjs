@@ -20,6 +20,9 @@ const MODULES = [
   ['demo', 'demoCopy'],
   ['resources', 'resourcesCopy'],
   ['accessibility', 'accessibilityDoc'],
+  // surfaceWall is excluded for the same reason as deviceScreens: it is mostly
+  // proper nouns (Casa Marina, Spa Ixchel), prices, Spanish dish names that are
+  // already Spanish in both, and asset paths.
   // deviceScreens is intentionally excluded: it is dominated by proper nouns
   // (Akumal, El Pirata, dish names) and asset paths, which a prose-parity gate
   // reports as untranslated. Gating it would only erode the signal here.

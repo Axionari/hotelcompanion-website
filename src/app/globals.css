@@ -725,3 +725,116 @@ body {
 .device-orb .vring.r2 { opacity: 1; border-color: rgba(243, 178, 120, 0.7); }
 .device-orb .vctl svg,
 .device-orb svg { stroke: rgba(28, 16, 8, 0.85); }
+
+/* ===================================== THE SURFACE CONSTELLATION (section A)
+
+   Eight devices on a disciplined 12-column grid, baseline-aligned, scaled
+   TV -> watch, connected by a copper thread with a single card handing off
+   across them. Frames get real bezels, inner screen glow and a faint
+   reflection so they read as objects on near-black rather than flat boxes.
+   ========================================================================= */
+
+.dw-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 24px;
+  row-gap: 44px;
+  align-items: end;
+}
+
+/* The thread runs along the caption baseline, connecting the devices like a
+   shelf rather than cutting across them. */
+.dw-thread {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 30px;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(200, 106, 58, 0.34) 10%,
+    rgba(200, 106, 58, 0.34) 90%,
+    transparent 100%
+  );
+}
+
+/* The card handing off from surface to surface — the 2029 idea, one moving
+   object instead of eight static repetitions. */
+.dw-spark {
+  position: absolute;
+  bottom: 27px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: #f7b267;
+  box-shadow: 0 0 14px 4px rgba(245, 163, 74, 0.55);
+  animation: dw-travel 9s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+.dw-row:nth-of-type(2) .dw-spark { animation-delay: 4.5s; }
+
+@keyframes dw-travel {
+  0%   { left: 1%; opacity: 0; transform: scale(0.6); }
+  7%   { opacity: 1; transform: scale(1); }
+  88%  { opacity: 1; transform: scale(1); }
+  100% { left: 97%; opacity: 0; transform: scale(0.6); }
+}
+
+/* -------------------------------------------------------------- the frames */
+
+.dw-frame {
+  position: relative;
+  background: linear-gradient(168deg, #232326 0%, #131315 62%, #0c0c0e 100%);
+  border: 1px solid rgba(251, 248, 242, 0.13);
+  box-shadow:
+    0 34px 64px -26px rgba(0, 0, 0, 0.95),
+    0 2px 0 rgba(255, 255, 255, 0.05) inset,
+    0 0 0 1px rgba(200, 106, 58, 0.07);
+}
+
+/* Brighter than the old screens so they read against near-black, with a warm
+   inner glow at the top edge and a faint glass reflection. */
+.dw-screen {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(168deg, #241d17 0%, #191411 55%, #151210 100%);
+  box-shadow:
+    inset 0 1px 22px rgba(245, 163, 74, 0.14),
+    inset 0 0 0 1px rgba(251, 248, 242, 0.06);
+}
+.dw-screen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    158deg,
+    rgba(255, 255, 255, 0.075) 0%,
+    rgba(255, 255, 255, 0.02) 22%,
+    transparent 46%
+  );
+}
+
+/* Physical parts: TV stand, laptop base, kiosk pedestal, watch lugs. */
+.dw-tv-neck { background: #17171a; border-radius: 0 0 4px 4px; }
+.dw-tv-foot { background: linear-gradient(180deg, #1c1c20, #101013); border-radius: 4px; }
+.dw-laptop-base {
+  background: linear-gradient(180deg, #232327 0%, #141417 60%, #0e0e10 100%);
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 14px 26px -12px rgba(0, 0, 0, 0.95);
+}
+.dw-kiosk-foot { background: linear-gradient(180deg, #1c1c20, #0f0f12); border-radius: 3px; }
+.dw-watch-lug { background: #17171a; }
+
+@media (prefers-reduced-motion: reduce) {
+  .dw-spark { display: none; }
+}
+
+/* Mobile: the constellation collapses to a simple two-up. */
+@media (max-width: 767px) {
+  .dw-row { column-gap: 16px; row-gap: 32px; }
+  .dw-thread, .dw-spark { display: none; }
+}
