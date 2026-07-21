@@ -873,19 +873,25 @@ body {
 }
 .cinematic-device {
   width: 560px;
-  margin-inline: auto;
-  transform: scale(1.62);
+  /* `margin-inline: auto` cannot centre a box wider than its container: below
+     560px the auto margins collapse to 0, the box starts at the left edge and
+     the scale happens about a centre that is off-screen, so the right side of
+     the device gets clipped. Centring on the container instead works at every
+     width. */
+  margin-left: 50%;
+  transform: translateX(-50%) scale(1.62);
   transform-origin: top center;
 }
 
 @media (max-width: 1023px) {
   .cinematic-stage { height: calc(440px * 1.05); }
-  .cinematic-device { transform: scale(1.05); }
+  .cinematic-device { transform: translateX(-50%) scale(1.05); }
 }
 
 @media (max-width: 639px) {
   /* Below the device's own width, scale down to fit rather than clip. */
   .cinematic-stage { height: calc(440px * 0.62); }
-  .cinematic-device { transform: scale(0.62); }
+  .cinematic-device { transform: translateX(-50%) scale(0.62); }
 }
+
 
