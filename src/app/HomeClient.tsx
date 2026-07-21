@@ -302,7 +302,7 @@ export default function HomeClient() {
         </div>
       </Section>
 
-      <Breather image="/assets/breathers/beach-golden.webp" video="section-tropical-beach" height="clamp(280px, 52vh, 560px)" />
+      <Breather image="/assets/breathers/beach-golden.webp" video="section-tropical-beach" height="clamp(280px, 44vh, 520px)" />
 
       {/* 10 · BOUNDARIES {#home-what-it-is-not-teaser} — statement + link to Enterprise */}
       <Section eyebrow="12 · BOUNDARIES" variant="surface-1" tight>
@@ -355,7 +355,7 @@ export default function HomeClient() {
       </Section>
 
       {/* 13 · FINAL CTA {#home-final-cta} — warm media band */}
-      <MediaBed video="cta-beach-aerial" poster="/assets/img/cta-beach-aerial-poster.webp" scrim={0.72}>
+      <MediaBed poster="/assets/img/ambient-palms-night.webp" scrim={0.72}>
         <section className="py-24 md:py-36">
           <div className="container-rc">
             <Reveal>

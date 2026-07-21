@@ -386,7 +386,7 @@ export default function EnterpriseClient() {
       </Section>
 
       {/* 15 · NEXT STEP {#enterprise-final-cta} — warm media band */}
-      <MediaBed video="section-tropical-beach" poster="/assets/img/section-tropical-beach-poster.webp" scrim={0.72}>
+      <MediaBed poster="/assets/img/company-reception.webp" scrim={0.72}>
         <section className="py-24 md:py-36">
           <div className="container-rc">
             <Reveal>

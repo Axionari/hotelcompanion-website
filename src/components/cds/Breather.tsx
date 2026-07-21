@@ -19,7 +19,7 @@ export function Breather({
   video,
   line,
   height = 'clamp(220px, 38vh, 420px)',
-  darken = 0.16,
+  darken = 0.5,
 }: {
   /** Path under /public, e.g. /assets/breathers/waterfall-swim.webp */
   image: string
@@ -114,10 +114,11 @@ export function Breather({
       <div
         className="absolute inset-0"
         style={{
-          // Only the top and bottom edges are feathered, so the band melts
-          // into the sections either side while the centre stays essentially
-          // uncovered. The first pass scrimmed the middle into a black gap.
-          background: `linear-gradient(180deg, rgba(10,8,7,0.97) 0%, rgba(10,8,7,${darken}) 26%, rgba(10,8,7,${darken}) 74%, rgba(10,8,7,0.97) 100%)`,
+          // The image-system grade: ~50% over the centre rising to ~90% at the
+          // feathered top and bottom edges. The images themselves carry a warm
+          // copper white-balance and a contrast lift, so at this depth they
+          // read as one art-directed world rather than as darkened stock.
+          background: `linear-gradient(180deg, rgba(10,8,7,0.9) 0%, rgba(10,8,7,${darken}) 30%, rgba(10,8,7,${darken}) 70%, rgba(10,8,7,0.9) 100%)`,
         }}
       />
       {line && (

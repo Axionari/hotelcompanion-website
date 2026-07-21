@@ -65,26 +65,52 @@ locally with ffmpeg before being committed:
 
 ## Breather bands (`public/assets/breathers/`)
 
-Curated cinematic stills from Pexels (Pexels License — free to use, no
-attribution required; recorded anyway). Fetched at w=2560, re-encoded to WebP.
-The foliage-heavy frames needed a harder pass: they are high-frequency and sit
-behind a scrim, so quality was traded for weight.
+Executed per `HotelCompanion__Image_System.md`. Five Pexels stills (Pexels
+License), each re-fetched at w=2560, **graded**, then encoded to WebP.
 
-| File | Source | Encode | Mood |
+**The grade** (ffmpeg, identical for all five, so the set reads as one
+art-directed world): `colortemperature=4700 mix=0.85` for the warm/copper white
+balance, `eq=contrast=1.10:saturation=1.06:brightness=-0.015` for the contrast
+lift. The darkening is applied in CSS, not baked in: ~50% over the centre
+rising to 90% at the feathered top and bottom edges.
+
+| File | Pexels | Encode | Temperature | Slot |
+| --- | --- | --- | --- | --- |
+| giant-tree.webp | 4618623 | 1700 / q72 | green · awe | Home, after the conversation beat |
+| beach-golden.webp | 3605451 | 2000 / q72 | warm | Home, the video pause poster |
+| waterfall-swim.webp | 2410860 | 1700 / q72 | cool · adventure | Platform, the single breather |
+| waterfall-lagoon.webp | 8521850 | 2000 / q72 | cool · social | Enterprise |
+| beach-dusk-walk.webp | 37804743 | 2000 / q72 | warm · romantic | Company, the emotional peak |
+
+giant-tree and waterfall-swim were previously shipped at q46/q54 and read soft
+full-bleed. They are the two heaviest files even after re-encoding (836KB and
+510KB) because dense foliage does not compress; 1700px was the point where
+quality held and weight stayed defensible.
+
+`public/assets/ui/beach-akumal.webp` (pexels 36111990) is the in-device answer
+card for "Best beach near here?" — a small, subject-legible role, deliberately
+not one of the seven full-bleed visuals.
+
+## The seven full-bleed visuals, 1:1
+
+| # | Visual | Where | Type |
 | --- | --- | --- | --- |
-| giant-tree.webp | pexels 4618623 | 1600 / q46 | green · awe |
-| waterfall-swim.webp | pexels 2410860 | 1600 / q54 | green |
-| waterfall-lagoon.webp | pexels 8521850 | 1920 / q76 | green |
-| beach-dusk-walk.webp | pexels 37804743 | 1920 / q76 | warm |
-| beach-golden.webp | pexels 3605451 | 1920 / q76 | warm |
+| 1 | hero-coastal-sunset | Home hero bed | video |
+| 2 | giant-tree | Home breather | still |
+| 3 | section-tropical-beach | Home mid-page pause | video |
+| 4 | beach-golden | Home warm breather (pause poster) | still |
+| 5 | waterfall-swim | Platform breather | still |
+| 6 | waterfall-lagoon | Enterprise breather | still |
+| 7 | beach-dusk-walk | Company emotional peak | still |
 
-`public/assets/ui/beach-akumal.webp` (pexels 36111990, 900px / q72) is the
-in-device answer card for "Best beach near here?" — the device previously
-showed a poolside photo for a beach question.
+Zero repeats. Solutions' breather and Platform's second breather were **deleted**
+rather than repeat a visual, per the plan's "if a page would need an 8th band,
+delete the band".
 
-Retired this round: the aqua-sandbar/aerial set (aerial-seascape,
-aerial-islands, tropical-bay, archipelago, white-sandbar) and the reused
-pool/lobby fallbacks.
+CTA bands are darkened stills, never a second run of a cinematic video:
+Home → ambient-palms-night, Platform → hero-poolside, Solutions → lobby-modern,
+Enterprise → company-reception, Companion OS → platform-pool-night.
 
-**Still missing:** `pexels 6861` (pool-golden-hour) 404s. Not needed now — the
-warm slots are covered by the two beach walks.
+Retired as standalone bands: the 9–25KB video-poster stills
+(cta-beach-aerial-poster, hero-coastal-sunset-poster,
+section-tropical-beach-poster). They remain only as posters for their own videos.

@@ -471,8 +471,6 @@ export default function PlatformClient() {
       </Section>
 
       {/* 12 · MULTI-PROPERTY {#platform-multi-property} */}
-      <Breather image="/assets/breathers/beach-dusk-walk.webp" />
-
       <Section
         id="platform-multi-property"
         eyebrow="12 · MULTI-PROPERTY"
@@ -530,7 +528,7 @@ export default function PlatformClient() {
       </Section>
 
       {/* 15 · NEXT STEP {#platform-final-cta} — warm media band */}
-      <MediaBed video="cta-beach-aerial" poster="/assets/img/cta-beach-aerial-poster.webp" scrim={0.72}>
+      <MediaBed poster="/assets/img/hero-poolside.webp" scrim={0.72}>
         <section id="platform-final-cta" className="py-24 md:py-36">
           <div className="container-rc">
             <Reveal>

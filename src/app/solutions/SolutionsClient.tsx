@@ -265,8 +265,6 @@ export default function SolutionsClient() {
       </Section>
 
       {/* 03 · COMPANION OS {#solutions-companion-os} — capability surface */}
-      <Breather image="/assets/breathers/beach-golden.webp" />
-
       <Section
         id="solutions-companion-os"
         eyebrow="03 · COMPANION OS"
@@ -298,7 +296,7 @@ export default function SolutionsClient() {
       </Section>
 
       {/* 04 · NEXT STEP {#solutions-final-cta} — warm media band */}
-      <MediaBed video="hero-coastal-sunset" poster="/assets/img/hero-coastal-sunset-poster.webp" scrim={0.72}>
+      <MediaBed poster="/assets/img/lobby-modern.webp" scrim={0.72}>
         <section id="solutions-final-cta" className="py-24 md:py-36">
           <div className="container-rc">
             <Reveal>

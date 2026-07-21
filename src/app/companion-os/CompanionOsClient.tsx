@@ -158,7 +158,6 @@ export default function CompanionOsClient() {
 
       {/* HERO {#companionos-hero} — over the tropical loop, text left */}
       <MediaBed
-        video="section-tropical-beach"
         poster="/assets/img/section-tropical-beach-poster.webp"
         scrim={0.68}
       >
@@ -389,7 +388,7 @@ export default function CompanionOsClient() {
       </Section>
 
       {/* 12 · NEXT STEP {#companionos-final-cta} — CTA leads back to Hotel Companion */}
-      <MediaBed video="cta-beach-aerial" poster="/assets/img/cta-beach-aerial-poster.webp" scrim={0.72}>
+      <MediaBed poster="/assets/img/platform-pool-night.webp" scrim={0.72}>
         <section className="py-24 md:py-36">
           <div className="container-rc">
             <Reveal>
