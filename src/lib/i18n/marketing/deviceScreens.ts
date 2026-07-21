@@ -99,6 +99,13 @@ const en = {
     phone: 'Smartphone',
     call: 'Voice call',
     callNote: 'Described aloud — no image',
+    laptop: 'Laptop',
+    watch: 'Watch',
+    glasses: 'AR glasses',
+    tv: 'In-room TV',
+    kiosk: 'Lobby kiosk',
+    watchAnswer: '20 min south',
+    kioskHint: 'Tap to explore',
   },
 }
 
@@ -185,6 +192,13 @@ const es: typeof en = {
     phone: 'Teléfono',
     call: 'Llamada de voz',
     callNote: 'Descrito en voz alta — sin imagen',
+    laptop: 'Portátil',
+    watch: 'Reloj',
+    glasses: 'Gafas AR',
+    tv: 'TV en la habitación',
+    kiosk: 'Kiosco del lobby',
+    watchAnswer: '20 min al sur',
+    kioskHint: 'Toca para explorar',
   },
 }
 

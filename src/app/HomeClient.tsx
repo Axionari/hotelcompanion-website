@@ -10,7 +10,8 @@ import { EndorsementMark } from '@/components/cds/EndorsementMark'
 import { PersistentCTA } from '@/components/cds/PersistentCTA'
 import { HeroIgnition } from '@/components/cds/HeroIgnition'
 import { openLiveDemo } from '@/components/cds/LiveDemoModal'
-import { JourneyWalkthrough, SurfaceFan } from '@/components/cds/JourneyWalkthrough'
+import { JourneyWalkthrough } from '@/components/cds/JourneyWalkthrough'
+import { DeviceWall } from '@/components/cds/DeviceWall'
 import { MediaBed } from '@/components/cds/MediaBed'
 import { MultiAccentHeadline } from '@/components/cds/AccentHeadline'
 import {
@@ -160,16 +161,7 @@ export default function HomeClient() {
       {/* 06 · THE INTERFACE OF 2029 — one intent, every surface */}
       <Section eyebrow="06 · EVERY SURFACE" title={c.surfaces2029.title} support={c.surfaces2029.caption} variant="surface-1">
         <div className="mt-14">
-          <SurfaceFan
-            surfaces={c.surfaces2029.items}
-            intent={c.surfaces2029.intent}
-            answerImage="/assets/img/hero-poolside.webp"
-            answerTitle="Akumal"
-            answerMeta={c.hero.positioning}
-            callNote={screens.surfaces.callNote}
-            emergingLabel={c.surfaces2029.emergingLabel}
-            chatPlaceholder={screens.chat.placeholder}
-          />
+          <DeviceWall intent={c.surfaces2029.intent} />
         </div>
       </Section>
 
