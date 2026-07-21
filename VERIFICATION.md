@@ -136,18 +136,84 @@ Also carried through faithfully as the ES deck writes them: "Front Desk" and "Fr
 - **Gate hardening:** the parity checker previously mis-flagged `demoForm.fields.email` (a form *label*) as a structural value because it keyed off the field name. It now decides structural-vs-prose from the **value shape** (routes, mailto, real addresses, block-type discriminators) combined with a narrow identifier-key list, and treats `resources.categories.descriptions` as intentionally Spanish-keyed. Two false positives removed; the check is now correct rather than merely quiet.
 
 
+## Live Demo tier (LD-1 … LD-10)
+
+The guest-facing "See It Live" demo is real, embedded and working: it runs the
+model, listens through the Web Speech API, and answers with picture cards.
+
+**Reuse, not rebuild.** It calls the existing `src/app/api/preview-chat/route.ts`
+**unchanged** — no new endpoint, no auth, no persistence, no new backend. That
+route already accepts a client-supplied system prompt (it was written for
+un-saved preview properties), so the demo seeds it from `src/lib/marazul-config.ts`.
+Structure rides back on the text stream as trailing `[[card:…]]` / `[[action:…]]`
+tags, because a JSON envelope could not be parsed until the last token and the
+streaming is what makes the demo feel alive in a sales call.
+
+Verified in a real browser (Chromium, `SpeechRecognition` + `speechSynthesis`
+both present) at **1440 and 375, EN and ES**:
+
+- Ask → intent-matched answer → picture card with a real photograph; no `[[` tag
+  ever leaks into the transcript; state pill returns to Ready.
+- Mock action end to end: ask → upgrade card → "Confirm the upgrade" →
+  confirmation card carrying "DEMONSTRATION ONLY — NOTHING WAS CHARGED AND
+  NOTHING WAS SENT". **Zero network requests fire during confirm** — the action
+  is local, with no transaction and no PII.
+- Entry points all live: nav "See It Live" / "Ver el Demo" (desktop + drawer),
+  hero secondary CTA, and the hero tablet itself. Modal traps focus, restores it,
+  closes on Esc, locks and restores body scroll.
+- The persistent launcher now runs the same runtime; its "Sample responses"
+  label is gone because the responses are no longer scripted.
+- 375: no horizontal overflow, all chrome tap targets 44×44.
+- 33 unit tests pass (18 new), 0 lint errors, tsc clean, ES parity gate at its
+  prior baseline.
+
+**Bug caught by the browser pass, not by the tests:** in Spanish, "la mejor
+playa **cerca** de aquí" was answered with the El Pirata restaurant card — the
+destination matcher listed the generic word "cerca" and runs before the beach
+matcher. Fixed in both languages and covered by a regression test. Two
+suggestion chips ("upgrade", "where do locals eat") also fell through to the
+generic non-answer; both now have proper fallbacks.
+
+### Blocker: the Anthropic API key is invalid
+
+`ANTHROPIC_API_KEY` in `.env.local` returns **401 `authentication_error`** when
+called directly, so `/api/preview-chat` streams an empty body and **every answer
+currently comes from the canned fallback pool**. The demo therefore looks and
+behaves correctly — that is exactly what the fallback path is for — but it is
+not yet exercising the model.
+
+This is why fallback quality was made load-bearing (intent matching, cards and
+mock actions on the canned replies) rather than left as a blind rotation.
+
+**To switch the demo to real answers, rotate the key — no code change is needed.**
+Confirm with:
+
+```
+curl -s -o /dev/null -w '%{http_code}\n' https://api.anthropic.com/v1/messages \
+  -H "x-api-key: $ANTHROPIC_API_KEY" -H 'anthropic-version: 2023-06-01' \
+  -H 'content-type: application/json' \
+  -d '{"model":"claude-haiku-4-5-20251001","max_tokens":8,"messages":[{"role":"user","content":"hi"}]}'
+```
+
+`200` means the demo is live; `401` means it is still on fallbacks. Once the key
+is valid, re-check that the model actually emits the card tags (the prompt asks
+for them, but that path has not been observed against a working key).
+
 ## Open items carried forward
 
 All are Eduardo's to provide; none block the build.
 
 1. **Resend** — verify `hotelcompanion.ai` at resend.com/domains, move `from` off `onboarding@resend.dev`, set `DEMO_REQUEST_TO`. The form works; it currently 403s sending to `sales@` because Resend is in test mode.
-2. **Imagery** — `public/` still holds only default Next SVGs. Flagged `NEEDS REAL DATA`: hero in-room tablet render, editorial photography, favicon, designed OG share image, logo lockups. The Home secondary CTA ("Watch Product Tour") points at `/platform` until a tour asset exists.
+2. **Imagery** — `public/` still holds only default Next SVGs. Flagged `NEEDS REAL DATA`: hero in-room tablet render, editorial photography, favicon, designed OG share image, logo lockups. (The Home secondary CTA "Watch Product Tour" no longer points at `/platform` — it opens the working demo, which retires that placeholder.)
 3. **The two unverified numbers** — `$47B` (Home stake) and `91%/9%` (dashboards resolution) are now live on the site per the Round-3 decision, each marked `NEEDS CONFIRM` in EN and ES. Verify both before public launch, and per the addendum do not add a third unverified stat.
 4. **Self-serve `/onboarding`** (P0-4) — still open. Default applied: app routes functional, zero self-serve CTAs or pricing on marketing, Sign In demoted to a footer utility link.
 5. **Legal counsel review** — both EN and ES legal/trust bodies should be reviewed before public launch (standard, and the ES deck carries the same caveat).
 6. **Vercel project + `hotelcompanion.ai` DNS** — needed for the preview so Lighthouse, on-device passes and motion recordings can be captured.
 
 ## Still not verified (needs a deployed preview / real devices)
+
+- **The model path of the live demo** — blocked on a valid `ANTHROPIC_API_KEY` (see above). Everything downstream of the model is verified; the model call itself is not.
+- **Voice input against a real microphone** — `SpeechRecognition` is present and wired, and every error path resets the orb, but granting mic permission and speaking is a human step.
 
 - Lighthouse mobile on `/`, `/platform`, `/enterprise`, `/demo` (no baseline was capturable locally either — see AUDIT.md §7).
 - On-device passes: iOS Safari, Chrome Android, a ≤360px device.
