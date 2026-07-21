@@ -455,9 +455,20 @@ export function TabletOS({
             </span>
           </div>
 
-          {/* the screen content cross-fades; the chrome below never does */}
+          {/* The orb lives IN the device, at the top, as the primary control —
+              the RC app pattern. It is never hidden and never scrolls away. */}
+          <div className="absolute inset-x-0 top-9 z-10 flex flex-col items-center pt-1.5 pb-2">
+            <div className="device-orb">
+              <VoiceOrb state={orbState} size={68} showMic keepMic micScale={0.3} />
+            </div>
+            <span className="eyebrow mt-1.5" style={{ fontSize: 7.5, color: 'var(--accent)' }}>
+              {d.orbHint}
+            </span>
+          </div>
+
+          {/* the screen content cross-fades; the orb and chrome never do */}
           <div
-            className="absolute inset-x-0 top-9 bottom-[58px]"
+            className="absolute inset-x-0 top-[124px] bottom-[52px]"
             style={{
               opacity: fading ? 0 : 1,
               transform: fading ? 'scale(0.985)' : 'scale(1)',
@@ -469,16 +480,15 @@ export function TabletOS({
             <ScreenBody id={active} />
           </div>
 
-          {/* Persistent chrome — the mic is always visible, chat always available.
-              Voice-only is reserved for the phone-call surface (see SurfaceFan). */}
+          {/* Chat sits below on every visual surface; voice-only is reserved
+              for the phone-call surface (see SurfaceFan). */}
           <div
             className="absolute inset-x-0 bottom-0 flex items-center gap-2 px-3 py-2.5"
             style={{ borderTop: '1px solid var(--border-soft)', background: 'rgba(15,13,12,0.72)' }}
           >
-            <VoiceOrb state={orbState} size={34} showMic />
             <div
               className="flex-1 flex items-center rounded-full px-3"
-              style={{ height: 30, background: 'rgba(251,248,242,0.06)', border: '1px solid var(--border-soft)' }}
+              style={{ height: 28, background: 'rgba(251,248,242,0.06)', border: '1px solid var(--border-soft)' }}
             >
               <span className="font-sans" style={{ fontSize: 10, color: 'var(--text-faint)' }}>
                 {d.chat.placeholder}
@@ -487,7 +497,7 @@ export function TabletOS({
             <span
               aria-hidden="true"
               className="grid place-items-center rounded-full flex-shrink-0"
-              style={{ width: 30, height: 30, background: 'var(--accent)', color: '#1a1207', fontSize: 13 }}
+              style={{ width: 28, height: 28, background: 'var(--accent)', color: '#1a1207', fontSize: 13 }}
             >
               ↑
             </span>

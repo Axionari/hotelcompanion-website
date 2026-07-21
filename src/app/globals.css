@@ -702,3 +702,26 @@ body {
     rgba(8, 7, 6, 0.8) 100%
   );
 }
+
+/* --------------------------------- GOAL 2: the orb lives inside every device
+
+   The in-device orb is the primary control, so it cannot inherit the dim
+   resting values tuned for a 34px inline glyph. */
+.device-orb .vglow {
+  opacity: 1 !important;
+  background: radial-gradient(
+    circle at 47% 43%,
+    rgba(255, 214, 170, 0.9) 0%,
+    rgba(250, 176, 96, 0.62) 26%,
+    rgba(214, 120, 64, 0.28) 54%,
+    transparent 76%
+  );
+}
+.device-orb .vring.r1 {
+  opacity: 0.95;
+  border-color: rgba(233, 156, 98, 0.55);
+  box-shadow: 0 0 44px -8px rgba(245, 163, 74, 0.6), inset 0 0 34px -14px rgba(245, 163, 74, 0.45);
+}
+.device-orb .vring.r2 { opacity: 1; border-color: rgba(243, 178, 120, 0.7); }
+.device-orb .vctl svg,
+.device-orb svg { stroke: rgba(28, 16, 8, 0.85); }

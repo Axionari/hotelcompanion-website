@@ -23,7 +23,6 @@ const MODULES = [
   // deviceScreens is intentionally excluded: it is dominated by proper nouns
   // (Akumal, El Pirata, dish names) and asset paths, which a prose-parity gate
   // reports as untranslated. Gating it would only erode the signal here.
-  ['companionLauncher', 'launcherCopy'],
   ['liveDemo', 'liveDemoCopy'],
 ]
 
