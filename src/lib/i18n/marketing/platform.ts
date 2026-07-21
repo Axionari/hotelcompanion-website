@@ -34,12 +34,35 @@ const en = {
     title: 'Speaks in Your Hotel’s Voice.',
     beats: ['Every hotel has a personality. Now your assistant does too.'],
     voicesLead: 'Choose a voice, and every guest is met in your hotel’s authentic tone—from the first message.',
+    /* One guest question, answered five ways — the voice-morph interaction. */
+    morphQuestion: 'Where should we have dinner tonight?',
+    morphDeviceLabel: 'MarAzul Riviera Maya',
     voices: [
-      { name: 'Warm & Local', desc: 'Feels like a friend who knows the area.' },
-      { name: 'Refined Concierge', desc: 'Polished, precise, always professional.' },
-      { name: 'Barefoot Luxury', desc: 'Relaxed but impeccable—like the hotel itself.' },
-      { name: 'Playful Explorer', desc: 'Adventurous, fun, expressive.' },
-      { name: 'Zen & Mindful', desc: 'Calm, unhurried, present.' },
+      {
+        name: 'Warm & Local',
+        desc: 'Feels like a friend who knows the area.',
+        reply: 'Casa Mariposa, on the plaza — family run, and the fish comes in that morning. Want me to hold a table at eight?',
+      },
+      {
+        name: 'Refined Concierge',
+        desc: 'Polished, precise, always professional.',
+        reply: 'I would recommend Almar, our chef’s tasting room. A table for two at eight o’clock — shall I confirm it?',
+      },
+      {
+        name: 'Barefoot Luxury',
+        desc: 'Relaxed but impeccable—like the hotel itself.',
+        reply: 'Almar, right on the sand — barefoot is welcome. Eight o’clock, just as the sun goes down. Shall I keep it for you?',
+      },
+      {
+        name: 'Playful Explorer',
+        desc: 'Adventurous, fun, expressive.',
+        reply: 'Two ways to go: tacos where the fishermen eat, or Almar on the beach. Say the word and I’ll book either one.',
+      },
+      {
+        name: 'Zen & Mindful',
+        desc: 'Calm, unhurried, present.',
+        reply: 'Almar is quiet at eight, with the water close by. Take your time deciding — I’ll hold a table for you.',
+      },
     ],
     body:
       'Every response reflects your hospitality standards, communication style, and brand voice, creating a consistent guest experience across every interaction.',
@@ -121,6 +144,8 @@ const en = {
     title: 'Every Request Becomes Action.',
     beats: ['Hotel Companion doesn’t stop at answering questions.', 'It coordinates execution.'],
     body: 'Every guest request is automatically routed to the appropriate department with the right information.',
+    /* Left-hand label on each routing-flow row. */
+    routingFrom: 'Guest request',
     departments: [
       'Housekeeping.',
       'Engineering.',
@@ -288,6 +313,34 @@ const en = {
       { name: 'Guest always reassured', desc: 'A warm, immediate response. Never a dead end.' },
     ],
   },
+  /* Panel labels for the two-panel knowledge split (PC's "YOUR HOTEL / YOUR DESTINATION"). */
+  knowledgeSplit: {
+    property: 'Your Hotel',
+    destination: 'Your Destination',
+  },
+  /* The 2 AM exchange that drives the two-stage alert flow. */
+  issueAlert: {
+    guest: 'There’s water on the bathroom floor.',
+    reply: 'I’m sorry about that — I’ve alerted Engineering right now. Which room are you in?',
+    deviceLabel: 'MarAzul Riviera Maya · 02:14',
+  },
+  /* Command-centre mockup chrome and sample figures. NEEDS REAL DATA before launch. */
+  dashboard: {
+    title: 'Command centre',
+    resolvedLabel: 'resolved by the assistant',
+    escalatedLabel: 'escalated to your team',
+    metrics: [
+      { label: 'Questions this month', value: '4,820' },
+      { label: 'Languages detected', value: '12' },
+      { label: 'Requests routed', value: '1,140' },
+      { label: 'Avg. first response', value: 'Instant' },
+    ],
+    properties: [
+      { name: 'MarAzul Riviera Maya', value: '1,908' },
+      { name: 'Casa Ventana Tulum', value: '1,472' },
+      { name: 'Hacienda del Mar', value: '1,440' },
+    ],
+  },
   channels: {
     lead: 'Guests reach the assistant wherever they already are.',
     items: [
@@ -376,12 +429,35 @@ const es: typeof en = {
     title: 'Habla con la Voz de Tu Hotel.',
     beats: ['Cada hotel tiene una personalidad. Ahora tu asistente también.'],
     voicesLead: 'Elige una voz, y cada huésped es recibido con el tono auténtico de tu hotel—desde el primer mensaje.',
+    /* Una sola pregunta del huésped, respondida de cinco formas. */
+    morphQuestion: '¿Dónde deberíamos cenar esta noche?',
+    morphDeviceLabel: 'MarAzul Riviera Maya',
     voices: [
-      { name: 'Cálido y Local', desc: 'Se siente como un amigo que conoce la zona.' },
-      { name: 'Concierge Refinado', desc: 'Pulido, preciso, siempre profesional.' },
-      { name: 'Lujo Descalzo', desc: 'Relajado pero impecable—como el hotel mismo.' },
-      { name: 'Explorador Alegre', desc: 'Aventurero, divertido, expresivo.' },
-      { name: 'Zen y Consciente', desc: 'Tranquilo, sin prisas, presente.' },
+      {
+        name: 'Cálido y Local',
+        desc: 'Se siente como un amigo que conoce la zona.',
+        reply: 'Casa Mariposa, en la plaza — es familiar y el pescado llega esa misma mañana. ¿Te aparto una mesa a las ocho?',
+      },
+      {
+        name: 'Concierge Refinado',
+        desc: 'Pulido, preciso, siempre profesional.',
+        reply: 'Le recomiendo Almar, la sala de degustación de nuestro chef. Una mesa para dos a las ocho, ¿la confirmo?',
+      },
+      {
+        name: 'Lujo Descalzo',
+        desc: 'Relajado pero impecable—como el hotel mismo.',
+        reply: 'Almar, justo sobre la arena — descalzo es bienvenido. A las ocho, justo cuando cae el sol. ¿Se la aparto?',
+      },
+      {
+        name: 'Explorador Alegre',
+        desc: 'Aventurero, divertido, expresivo.',
+        reply: 'Dos caminos: tacos donde comen los pescadores, o Almar en la playa. Dime cuál y te reservo el que quieras.',
+      },
+      {
+        name: 'Zen y Consciente',
+        desc: 'Tranquilo, sin prisas, presente.',
+        reply: 'Almar está tranquilo a las ocho, con el agua muy cerca. Tómate tu tiempo para decidir — te aparto una mesa.',
+      },
     ],
     body:
       'Cada respuesta refleja tus estándares de hospitalidad, tu estilo de comunicación y la voz de tu marca, creando una experiencia consistente en cada interacción.',
@@ -463,6 +539,8 @@ const es: typeof en = {
     title: 'Cada Solicitud Se Convierte en Acción.',
     beats: ['Hotel Companion no se detiene en responder preguntas.', 'Coordina la ejecución.'],
     body: 'Cada solicitud del huésped se enruta automáticamente al departamento indicado con la información correcta.',
+    /* Etiqueta izquierda de cada fila del flujo de enrutamiento. */
+    routingFrom: 'Solicitud del huésped',
     departments: [
       'Ama de Llaves.',
       'Ingeniería.',
@@ -628,6 +706,34 @@ const es: typeof en = {
         desc: 'Una primera alerta en cuanto se reporta el problema; una segunda en cuanto se confirma el número de habitación.',
       },
       { name: 'Huésped siempre tranquilizado', desc: 'Una respuesta cálida e inmediata. Nunca un callejón sin salida.' },
+    ],
+  },
+  /* Etiquetas de los dos paneles del bloque de conocimiento. */
+  knowledgeSplit: {
+    property: 'Tu Hotel',
+    destination: 'Tu Destino',
+  },
+  /* El intercambio de las 2 AM que impulsa el flujo de alertas en dos etapas. */
+  issueAlert: {
+    guest: 'Hay agua en el piso del baño.',
+    reply: 'Lamento mucho eso — ya avisé a Ingeniería en este momento. ¿En qué habitación se encuentra?',
+    deviceLabel: 'MarAzul Riviera Maya · 02:14',
+  },
+  /* Cifras de ejemplo del centro de mando. NEEDS REAL DATA antes del lanzamiento. */
+  dashboard: {
+    title: 'Centro de mando',
+    resolvedLabel: 'resuelto por el asistente',
+    escalatedLabel: 'escalado a tu equipo',
+    metrics: [
+      { label: 'Preguntas este mes', value: '4,820' },
+      { label: 'Idiomas detectados', value: '12' },
+      { label: 'Solicitudes enrutadas', value: '1,140' },
+      { label: 'Primera respuesta prom.', value: 'Inmediata' },
+    ],
+    properties: [
+      { name: 'MarAzul Riviera Maya', value: '1,908' },
+      { name: 'Casa Ventana Tulum', value: '1,472' },
+      { name: 'Hacienda del Mar', value: '1,440' },
     ],
   },
   channels: {
