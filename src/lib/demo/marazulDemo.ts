@@ -160,12 +160,27 @@ export function parseReply(raw: string): Reply {
  */
 type Fallback = Reply & { match: RegExp }
 
+// Order matters: the first match wins, so the off-property intent is tested
+// before the food intent — "where do locals eat" is a destination question,
+// not a room-service one.
 export const DEMO_FALLBACKS: Record<'en' | 'es', Fallback[]> = {
   en: [
+    {
+      match: /\blocals?\b|town centre|downtown|village|market|authentic|where do people/i,
+      text: 'El Pirata in the town centre is where people who live here actually go — about fifteen minutes by taxi. I can call ahead if you like.',
+      card: 'map',
+    },
+    {
+      match: /upgrade|ocean.?view|better room|suite|late check|balcony|terrace/i,
+      text: 'The Ocean-View Suite is open tonight — private terrace, and the sunrise from it is the reason people rebook. It is $250 for the night.',
+      card: 'upgrade',
+      action: 'upgrade',
+    },
     {
       match: /breakfast|dinner|lunch|eat|food|hungry|restaurant|menu|room service|drink/i,
       text: 'Casa Marina serves breakfast on the beach from 7 to 11, and the kitchen stays open until 11pm for anything you would like sent up.',
       card: 'dish-grid',
+      action: 'roomservice',
     },
     {
       match: /beach|swim|snorkel|water|sea|ocean|cenote|dive|turtle/i,
@@ -176,13 +191,26 @@ export const DEMO_FALLBACKS: Record<'en' | 'es', Fallback[]> = {
       match: /spa|massage|treatment|yoga|wellness|relax|facial/i,
       text: 'Spa Ixchel is open until 7 — the Mayan stone therapy is what most guests come back for. Shall I look at this afternoon?',
       card: 'spa',
+      action: 'spa',
     },
   ],
   es: [
     {
-      match: /desayuno|cena|comida|comer|hambre|restaurante|men\u00fa|servicio a cuarto|beber/i,
+      match: /\blocales\b|pueblo|mercado|auténtic|artesan|centro del pueblo/i,
+      text: 'El Pirata, en el centro del pueblo, es donde va la gente de aquí — unos quince minutos en taxi. Puedo llamar para avisar.',
+      card: 'map',
+    },
+    {
+      match: /mejora|vista al mar|mejor habitaci|suite|salida tard|balc|terraza/i,
+      text: 'La Suite Vista al Mar está libre esta noche — terraza privada, y el amanecer desde ahí es la razón por la que muchos regresan. Son $250 la noche.',
+      card: 'upgrade',
+      action: 'upgrade',
+    },
+    {
+      match: /desayuno|cena|comida|comer|hambre|restaurante|menú|servicio a cuarto|beber/i,
       text: 'Casa Marina sirve el desayuno en la playa de 7 a 11, y la cocina queda abierta hasta las 11pm para lo que guste subir a la habitación.',
       card: 'dish-grid',
+      action: 'roomservice',
     },
     {
       match: /playa|nadar|snorkel|agua|mar|cenote|buce|tortuga/i,
@@ -193,6 +221,7 @@ export const DEMO_FALLBACKS: Record<'en' | 'es', Fallback[]> = {
       match: /spa|masaje|tratamiento|yoga|bienestar|relaj|facial/i,
       text: 'El Spa Ixchel abre hasta las 7 — la terapia de piedras mayas es la que más piden. ¿Reviso esta tarde?',
       card: 'spa',
+      action: 'spa',
     },
   ],
 }

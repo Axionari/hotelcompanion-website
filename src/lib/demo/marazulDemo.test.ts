@@ -49,6 +49,32 @@ describe('pickFallback', () => {
     expect(pickFallback('es', 0, 'quisiéramos cenar en la habitación').card).toBe('dish-grid')
   })
 
+  it('treats "where do locals eat" as a destination question, not room service', () => {
+    // The food matcher would also match "eat", so ordering is load-bearing.
+    expect(pickFallback('en', 0, 'where do locals actually eat?').card).toBe('map')
+    expect(pickFallback('es', 0, '¿dónde comen los locales?').card).toBe('map')
+  })
+
+  it('does not let the destination matcher swallow a beach question', () => {
+    // Regression: "la mejor playa cerca de aquí" matched the map fallback
+    // because the destination matcher listed the generic word "cerca".
+    expect(pickFallback('es', 0, '¿Cuál es la mejor playa cerca de aquí?').card).toBe('beach')
+    expect(pickFallback('en', 0, 'What is the best beach near here?').card).toBe('beach')
+  })
+
+  it('covers the upgrade intent that the suggestion chips offer', () => {
+    expect(pickFallback('en', 0, 'can we upgrade to an ocean view?').card).toBe('upgrade')
+    expect(pickFallback('es', 0, '¿podemos mejorar a vista al mar?').card).toBe('upgrade')
+  })
+
+  it('offers a mock action on the intents that can be acted on', () => {
+    expect(pickFallback('en', 0, 'can we upgrade?').action).toBe('upgrade')
+    expect(pickFallback('en', 0, 'dinner in the room please').action).toBe('roomservice')
+    expect(pickFallback('en', 0, 'book me a massage').action).toBe('spa')
+    // Nothing to book about a beach recommendation.
+    expect(pickFallback('en', 0, 'best beach?').action).toBeUndefined()
+  })
+
   it('never leaks the match pattern into the reply', () => {
     expect(pickFallback('en', 0, 'beach')).not.toHaveProperty('match')
   })
