@@ -53,10 +53,10 @@ body {
   }
 }
 
-/* Scroll-reveal driven by IntersectionObserver (see Section/Reveal components).
-   Elements start hidden ONLY when JS has taken over (html.js-reveal),
-   so the no-JS state is a fully composed still. */
-.js-reveal .reveal {
+/* Scroll-reveal driven by IntersectionObserver (see the Reveal component).
+   The .reveal class is only ever added client-side to below-fold elements,
+   so no-JS and first-viewport render as a fully composed still. */
+.reveal {
   opacity: 0;
   transform: translateY(16px);
   transition:
@@ -64,11 +64,11 @@ body {
     transform var(--reveal-duration) var(--ease-out);
 }
 @media (min-width: 768px) {
-  .js-reveal .reveal {
+  .reveal {
     transform: translateY(24px);
   }
 }
-.js-reveal .reveal.is-visible {
+.reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -147,7 +147,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
   }
-  .js-reveal .reveal {
+  .reveal {
     opacity: 1;
     transform: none;
     transition: none;
