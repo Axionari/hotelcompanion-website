@@ -17,6 +17,8 @@ const en = {
       'They need intelligence that understands how their business operates.',
     ],
     industries: 'Hospitality. Restaurants. Healthcare. Education. Retail. Airports.',
+    /* Node-diagram annotation only — not a copy-deck line. */
+    fragmentLabel: 'Fragmented by industry',
     body: [
       'Every industry has unique workflows, knowledge, and customer expectations.',
       'Yet they all require the same underlying capabilities.',
@@ -195,6 +197,7 @@ const es: typeof en = {
       'Necesitan inteligencia que entienda cómo opera su negocio.',
     ],
     industries: 'Hospitalidad. Restaurantes. Salud. Educación. Retail. Aeropuertos.',
+    fragmentLabel: 'Fragmentado por industria',
     body: [
       'Cada industria tiene flujos de trabajo, conocimiento y expectativas de cliente únicos.',
       'Sin embargo, todas requieren las mismas capacidades subyacentes.',

@@ -9,6 +9,36 @@ const en = {
     body:
       'Hotel Companion combines enterprise-grade security, centralized governance, operational intelligence, and scalable deployment into a platform designed for hospitality organizations of every size—from independent hotels to global brands.',
   },
+  /* Trust strip beneath the hero — hairline small-caps row. */
+  trust: 'Enterprise-grade security · Centralized governance · Operational intelligence · Scalable deployment',
+  /* Convergence diagram labels for {#enterprise-shared-intel}. */
+  sharedIntel: {
+    inputs: [
+      'Brand knowledge',
+      'Service standards',
+      'Operational excellence',
+      'Destination & culture',
+      'Property personality',
+    ],
+    node: 'Hotel Companion',
+  },
+  /* Executive dashboard mockup for {#enterprise-dashboards}. NEEDS REAL DATA: sample figures. */
+  dashboard: {
+    title: 'Portfolio command centre',
+    resolvedLabel: 'resolved by the assistant',
+    escalatedLabel: 'escalated to your team',
+    metrics: [
+      { label: 'Conversations this month', value: '18,640' },
+      { label: 'Properties reporting', value: '24' },
+      { label: 'Revenue signals surfaced', value: '2,310' },
+      { label: 'Avg. first response', value: 'Instant' },
+    ],
+    properties: [
+      { name: 'Riviera Maya portfolio', value: '7,420' },
+      { name: 'Los Cabos portfolio', value: '6,180' },
+      { name: 'Pacific Coast portfolio', value: '5,040' },
+    ],
+  },
   sections: [
     {
       id: 'shared-intel',
@@ -185,6 +215,34 @@ const es: typeof en = {
     positioning: 'Escala una hospitalidad excepcional en cada propiedad con confianza.',
     body:
       'Hotel Companion combina seguridad de nivel empresarial, gobernanza centralizada, inteligencia operativa e implementación escalable en una plataforma diseñada para organizaciones de hospitalidad de cualquier tamaño—desde hoteles independientes hasta marcas globales.',
+  },
+  trust:
+    'Seguridad de nivel empresarial · Gobernanza centralizada · Inteligencia operativa · Implementación escalable',
+  sharedIntel: {
+    inputs: [
+      'Conocimiento de marca',
+      'Estándares de servicio',
+      'Excelencia operativa',
+      'Destino y cultura',
+      'Personalidad de la propiedad',
+    ],
+    node: 'Hotel Companion',
+  },
+  dashboard: {
+    title: 'Centro de mando del portafolio',
+    resolvedLabel: 'resuelto por el asistente',
+    escalatedLabel: 'escalado a tu equipo',
+    metrics: [
+      { label: 'Conversaciones este mes', value: '18,640' },
+      { label: 'Propiedades reportando', value: '24' },
+      { label: 'Señales de ingreso detectadas', value: '2,310' },
+      { label: 'Primera respuesta promedio', value: 'Inmediata' },
+    ],
+    properties: [
+      { name: 'Portafolio Riviera Maya', value: '7,420' },
+      { name: 'Portafolio Los Cabos', value: '6,180' },
+      { name: 'Portafolio Costa del Pacífico', value: '5,040' },
+    ],
   },
   sections: [
     {

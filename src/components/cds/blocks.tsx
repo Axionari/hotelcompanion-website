@@ -168,13 +168,22 @@ export function RoutingFlow({ pairs }: { pairs: ReadonlyArray<{ from: string; to
 
 /* ----------------------------------------------------------- JourneyTimeline */
 /** Horizontal dated timeline (RC pattern) — used for the guest lifecycle. */
+const TIMELINE_COLS: Record<3 | 4 | 5, string> = {
+  3: 'md:grid-cols-3',
+  4: 'md:grid-cols-4',
+  5: 'md:grid-cols-5',
+}
+
 export function JourneyTimeline({
   stages,
+  columns = 3,
 }: {
   stages: ReadonlyArray<{ name: string; body: string }>
+  /** Match the column count to the number of stages so no cell is left empty. */
+  columns?: 3 | 4 | 5
 }) {
   return (
-    <div className="grid md:grid-cols-3 gap-px" style={{ background: 'var(--border-soft)' }}>
+    <div className={`grid ${TIMELINE_COLS[columns]} gap-px`} style={{ background: 'var(--border-soft)' }}>
       {stages.map((s, i) => (
         <Reveal key={s.name} delay={i * 90}>
           <div className="h-full px-6 py-8" style={{ background: 'var(--bg)' }}>
