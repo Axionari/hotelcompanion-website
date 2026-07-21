@@ -52,6 +52,7 @@ const ES_LABELS: Record<string, string> = {
   AXIONARI: 'AXIONARI',
 
   // Demo
+  'TRY IT': 'PRUÉBELO',
   'THE SESSION': 'LA SESIÓN',
   ATTENDEES: 'ASISTENTES',
   TOPICS: 'TEMAS',

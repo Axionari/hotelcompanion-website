@@ -9,6 +9,8 @@ import { QuestionMarquee } from '@/components/cds/QuestionMarquee'
 import { EndorsementMark } from '@/components/cds/EndorsementMark'
 import { PersistentCTA } from '@/components/cds/PersistentCTA'
 import { TabletOS } from '@/components/cds/TabletOS'
+import { openLiveDemo } from '@/components/cds/LiveDemoModal'
+import { liveDemoCopy } from '@/lib/i18n/marketing/liveDemo'
 import { JourneyWalkthrough, SurfaceFan } from '@/components/cds/JourneyWalkthrough'
 import { MediaBed } from '@/components/cds/MediaBed'
 import { MultiAccentHeadline } from '@/components/cds/AccentHeadline'
@@ -39,6 +41,7 @@ export default function HomeClient() {
   const c = useCopy(homeCopy)
   const a = useCopy(accents)
   const screens = useCopy(deviceScreens)
+  const demo = useCopy(liveDemoCopy)
 
   return (
     <main>
@@ -65,18 +68,40 @@ export default function HomeClient() {
                   <Link href="/demo" className="btn-primary">
                     {c.hero.primaryCta}
                   </Link>
-                  {/* NEEDS REAL DATA: product-tour video — points to /platform meanwhile */}
-                  <Link href="/platform" className="btn-secondary">
+                  {/* The working demo is the product tour — this retires the
+                      earlier /platform placeholder. Approved label unchanged. */}
+                  <button type="button" onClick={openLiveDemo} className="btn-secondary">
                     {c.hero.secondaryCta}
-                  </Link>
+                  </button>
                 </div>
                 <div className="mt-10">
                   <EndorsementMark variant="companion-os" />
                 </div>
               </div>
               <div className="lg:col-span-6">
-                {/* The tablet now cycles voice→image answers, not orb-and-text */}
-                <TabletOS cycle={['home', 'beach', 'upgrade', 'roomservice']} />
+                {/* The tablet cycles voice→image answers — and is itself the way in */}
+                <div className="relative group">
+                  <TabletOS cycle={['home', 'beach', 'upgrade', 'roomservice']} />
+                  <button
+                    type="button"
+                    onClick={openLiveDemo}
+                    aria-label={demo.open}
+                    className="absolute inset-0 rounded-[var(--device-radius)]"
+                    style={{ background: 'transparent' }}
+                  />
+                  <span
+                    aria-hidden="true"
+                    className="eyebrow absolute left-1/2 -translate-x-1/2 pointer-events-none"
+                    style={{
+                      bottom: -34,
+                      fontSize: 8.5,
+                      color: 'var(--accent)',
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
+                    {demo.open} →
+                  </span>
+                </div>
               </div>
             </div>
           </div>

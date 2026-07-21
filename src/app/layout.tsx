@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 import { CompanionLauncher } from "@/components/cds/CompanionLauncher";
+import { LiveDemoModal } from "@/components/cds/LiveDemoModal";
 
 /* Display face — Restaurant Companion uses Fraunces (headline weight 530,
    italic accent 480). Variable axes give us those exact weights. */
@@ -76,6 +77,8 @@ export default function RootLayout({
           <div className="pt-16">{children}</div>
           {/* The mic is a standing affordance on every page and every surface */}
           <CompanionLauncher />
+          {/* One demo instance for every entry point: nav, hero CTA, hero tablet */}
+          <LiveDemoModal />
         </LanguageProvider>
       </body>
     </html>

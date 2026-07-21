@@ -3,6 +3,8 @@
 import { Section } from '@/components/cds/Section'
 import { Accordion } from '@/components/cds/blocks'
 import { DemoForm } from '@/components/cds/DemoForm'
+import { LiveDemo } from '@/components/cds/LiveDemo'
+import { liveDemoCopy } from '@/lib/i18n/marketing/liveDemo'
 import { Reveal } from '@/components/cds/Reveal'
 import { Lead, Card, CardText } from '@/components/cds/Prose'
 import { PageShell, PageHero } from '@/components/cds/PageShell'
@@ -40,6 +42,7 @@ export default function DemoClient() {
   const c = useCopy(demoCopy)
   const a = useCopy(accents)
   const form = useCopy(demoFormCopy)
+  const demo = useCopy(liveDemoCopy)
 
   return (
     <PageShell>
@@ -57,7 +60,14 @@ export default function DemoClient() {
       </PageHero>
 
       {/* {#demo-experience} */}
-      <Section eyebrow="01 · THE SESSION" title={c.experience.title} variant="surface-1">
+      {/* 01 · TRY IT — the product itself, before the form */}
+      <Section id="try" eyebrow="01 · TRY IT" title={demo.title} support={demo.lead}>
+        <div style={{ maxWidth: 560 }}>
+          <LiveDemo />
+        </div>
+      </Section>
+
+      <Section eyebrow="02 · THE SESSION" title={c.experience.title} variant="surface-1">
         <div className="mt-6">
           <Lead>{c.experience.lead}</Lead>
         </div>
@@ -71,7 +81,7 @@ export default function DemoClient() {
       </Section>
 
       {/* {#demo-who} */}
-      <Section eyebrow="02 · ATTENDEES" title={c.who.title}>
+      <Section eyebrow="03 · ATTENDEES" title={c.who.title}>
         <div className="mt-6">
           <Lead>{c.who.lead}</Lead>
         </div>
@@ -96,7 +106,7 @@ export default function DemoClient() {
       </Section>
 
       {/* {#demo-discuss} */}
-      <Section eyebrow="03 · TOPICS" title={c.discuss.title} variant="surface-1">
+      <Section eyebrow="04 · TOPICS" title={c.discuss.title} variant="surface-1">
         <div className="mt-8 flex flex-col gap-4">
           <Lead>{c.discuss.lead}</Lead>
           <Lead tone="primary">{c.discuss.body}</Lead>
@@ -104,7 +114,7 @@ export default function DemoClient() {
       </Section>
 
       {/* {#demo-expect} */}
-      <Section eyebrow="04 · WHAT TO EXPECT" title={c.expect.title}>
+      <Section eyebrow="05 · WHAT TO EXPECT" title={c.expect.title}>
         <div className="mt-12 grid sm:grid-cols-2 gap-5 text-left">
           {c.expect.items.map((item) => (
             <Card key={item.id} id={item.id} title={item.title}>
@@ -115,24 +125,24 @@ export default function DemoClient() {
       </Section>
 
       {/* {#demo-agenda} */}
-      <Section eyebrow="05 · AGENDA" title={c.agenda.title} variant="surface-1">
+      <Section eyebrow="06 · AGENDA" title={c.agenda.title} variant="surface-1">
         <Steps items={c.agenda.items} />
       </Section>
 
       {/* {#demo-deployment} */}
-      <Section eyebrow="06 · DEPLOYMENT" title={c.deployment.title}>
+      <Section eyebrow="07 · DEPLOYMENT" title={c.deployment.title}>
         <Steps items={c.deployment.stages} />
       </Section>
 
       {/* {#demo-faq} */}
-      <Section id="faq" eyebrow="07 · FAQ" title={c.faq.title} variant="surface-1">
+      <Section id="faq" eyebrow="08 · FAQ" title={c.faq.title} variant="surface-1">
         <div className="mt-12">
           <Accordion items={c.faq.items} />
         </div>
       </Section>
 
       {/* {#demo-form} */}
-      <Section id="form" eyebrow="08 · REQUEST" title={form.title}>
+      <Section id="form" eyebrow="09 · REQUEST" title={form.title}>
         <div className="mt-6">
           <Lead>{form.intro}</Lead>
         </div>
@@ -142,7 +152,7 @@ export default function DemoClient() {
       </Section>
 
       {/* {#demo-final-cta} */}
-      <Section eyebrow="09 · NEXT STEP" title={c.finalCta.title} variant="surface-1">
+      <Section eyebrow="10 · NEXT STEP" title={c.finalCta.title} variant="surface-1">
         <div className="mt-8 flex flex-col gap-4">
           <Lead>{c.finalCta.body1}</Lead>
           <Lead>{c.finalCta.body2}</Lead>

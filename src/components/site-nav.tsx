@@ -6,6 +6,8 @@ import { Menu, X } from "lucide-react";
 import { useCopy } from "@/lib/i18n/useCopy";
 import { globalCopy } from "@/lib/i18n/marketing/global";
 import LanguageToggle from "@/components/LanguageToggle";
+import { openLiveDemo } from "@/components/cds/LiveDemoModal";
+import { liveDemoCopy } from "@/lib/i18n/marketing/liveDemo";
 
 const NAV_LINKS: Array<{ key: "platform" | "solutions" | "enterprise" | "companionOs" | "resources" | "company"; href: string }> = [
   { key: "platform", href: "/platform" },
@@ -20,6 +22,7 @@ export function SiteNav() {
   const [open, setOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
   const { nav } = useCopy(globalCopy);
+  const demo = useCopy(liveDemoCopy);
   const drawerRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const lastY = useRef(0);
@@ -118,6 +121,15 @@ export function SiteNav() {
 
         {/* Desktop CTA */}
         <div className="hidden lg:flex items-center gap-4">
+          {/* The product itself, one click from every page */}
+          <button
+            type="button"
+            onClick={openLiveDemo}
+            className="font-sans transition-colors hover:text-[#F7F6F1]"
+            style={{ fontSize: "15px", color: "var(--accent)", minHeight: "44px" }}
+          >
+            {demo.open}
+          </button>
           <Link
             href="/demo"
             className="btn-primary"
@@ -169,6 +181,16 @@ export function SiteNav() {
             </Link>
           ))}
           <div className="flex flex-col gap-3 mt-4 pb-4">
+            <button
+              type="button"
+              onClick={() => {
+                close();
+                openLiveDemo();
+              }}
+              className="btn-secondary w-full"
+            >
+              {demo.open}
+            </button>
             <Link
               href="/demo"
               onClick={close}
