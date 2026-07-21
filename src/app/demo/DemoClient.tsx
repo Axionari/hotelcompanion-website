@@ -81,7 +81,7 @@ export default function DemoClient() {
       </Section>
 
       {/* {#demo-who} */}
-      <Section eyebrow="03 · ATTENDEES" title={c.who.title}>
+      <Section eyebrow="03 · ATTENDEES" title={c.who.title} flush>
         <div className="mt-6">
           <Lead>{c.who.lead}</Lead>
         </div>

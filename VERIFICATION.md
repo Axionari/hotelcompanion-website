@@ -279,27 +279,29 @@ for them, but that path has not been observed against a working key).
 Run with reveals forced open (`.reveal { opacity: 1 }`) — an earlier audit read
 un-revealed content as empty and produced false voids up to 11x.
 
-### Per page
+### Per page — all nine visually verified
 
-| Page | Empty cols | Vertical voids | Overflow-X | Fonts | Verdict |
+| Page | Empty cols | Vertical voids | Overflow-X | Fonts | Verified by |
 | --- | --- | --- | --- | --- | --- |
-| `/` | none | none | 0 | Fraunces · General Sans · Spline Mono | **PASS** (1440 EN, 390 ES) |
-| `/platform` | none | none | 0 | same three | **PASS** (1440 EN) |
-| `/enterprise` | none | none | 0 | same three | **PASS** (1440 EN) |
-| `/solutions` | — | — | — | no banned fonts | **PASS** (SSR only) |
-| `/companion-os` | — | — | — | no banned fonts | **PASS** (SSR only) |
-| `/company` | — | — | — | no banned fonts | **PASS** (SSR only) |
-| `/resources` | — | — | — | no banned fonts | **PASS** (SSR only) |
-| `/demo` | — | — | — | no banned fonts | **PASS** (SSR only) |
-| `/contact` | — | — | — | no banned fonts | **PASS** (SSR only) |
+| `/` | none | none | 0 | Fraunces · General Sans · Spline Mono | Code (1440 EN, 390 ES) |
+| `/platform` | none | none | 0 | same three | Code (1440 EN) |
+| `/enterprise` | none | none | 0 | same three | Code (1440 EN) |
+| `/solutions` | none | none | 0 | same three | Eduardo (1440 EN, reveals forced) |
+| `/companion-os` | none | none | 0 | same three | Eduardo (1440 EN, reveals forced) |
+| `/company` | none | none | 0 | same three | Eduardo (1440 EN, reveals forced) |
+| `/resources` | none | none | 0 | same three | Eduardo (1440 EN, reveals forced) |
+| `/demo` | none | none | 0 | same three | Eduardo (1440 EN) + Code (1440 EN, 390 ES) |
+| `/contact` | none | none | 0 | same three | Eduardo (1440 EN, reveals forced) |
 
-**Coverage is not uniform, and the table says so.** Full browser layout audit
-(empty columns, vertical voids, overflow, computed fonts) ran on `/`, `/platform`
-and `/enterprise` at 1440 EN, plus `/` at 390 ES. The other six pages were
-checked by server-rendered HTML only: banned fonts, duplicate rendered strings,
-section counts and image inventory. Those checks are real but they cannot see
-layout. The pane degrades after repeated resizes, which is what capped the
-browser sweep.
+**Attribution matters here.** Six of the nine were eye-checked by Eduardo, not by
+Code — the preview pane degrades after repeated resizes, which capped the
+automated sweep at three pages. Those six carry a human verdict, which is
+stronger evidence than the tooling, but the record should not imply Code saw
+them.
+
+The one item that pass surfaced: `/demo` §03 · ATTENDEES was ~240px under-filled
+below its chip grid. Given `flush` — 416px band, 32px below content at 1440 EN,
+worst remaining void on the page 121px, under the 170px threshold.
 
 ### One genuine failure, found and fixed
 
