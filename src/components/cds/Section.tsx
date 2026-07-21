@@ -73,7 +73,7 @@ export function Section({
   return (
     <section
       id={id}
-      className={`scroll-mt-20 ${tight ? 'py-16 md:py-24' : 'py-24 md:py-36'}`}
+      className={`scroll-mt-20 ${tight ? 'py-14 md:py-20' : 'py-20 md:py-28'}`}
       style={{ background: VARIANT_BG[variant] }}
     >
       <div className={`container-rc ${center ? 'text-center' : ''}`}>

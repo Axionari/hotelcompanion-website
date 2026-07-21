@@ -111,6 +111,7 @@ const en = {
     legalLine:
       '© 2026 Hotel Companion. All rights reserved. Powered by Companion OS. Built by Axionari.',
     signIn: 'Sign In',
+    more: 'more',
     /* Social: LinkedIn · X · YouTube · GitHub — NEEDS REAL DATA (no profile URLs exist yet);
        not rendered until URLs are provided, to avoid dead links. */
   },
@@ -227,6 +228,7 @@ const es: typeof en = {
     legalLine:
       '© 2026 Hotel Companion. Todos los derechos reservados. Impulsado por Companion OS. Construido por Axionari.',
     signIn: 'Iniciar Sesión',
+    more: 'más',
   },
 }
 

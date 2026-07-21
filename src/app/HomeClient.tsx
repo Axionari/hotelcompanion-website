@@ -21,6 +21,7 @@ import {
   CapabilitySurface,
   DashboardMockup,
   Accordion,
+  CommissionCompare,
 } from '@/components/cds/blocks'
 import { COMPANION_OS_CAPABILITIES } from '@/lib/capabilities'
 import { useCopy } from '@/lib/i18n/useCopy'
@@ -89,14 +90,18 @@ export default function HomeClient() {
 
       {/* 02 · THE COST OF INTERMEDIARIES — the book-direct revenue story.
           One of only two big numbers on the site; both carry NEEDS CONFIRM. */}
-      <Section eyebrow={c.otaStake.eyebrow} variant="surface-1">
+      <Section eyebrow={`02 · ${c.otaStake.eyebrow}`} variant="surface-1">
         <div className="mt-4">
-          <StatBlock figure={c.otaStake.figure} caption={c.otaStake.caption} source={c.otaStake.source} />
+          <StatBlock figure={c.otaStake.figure} caption={c.otaStake.caption} source={c.otaStake.source}>
+            <div className="mt-4" style={{ maxWidth: 460 }}>
+              <CommissionCompare rows={c.otaStake.compare} />
+            </div>
+          </StatBlock>
         </div>
       </Section>
 
       {/* 03 · THE STAKE {#home-stake} — left stat block, count-up on reveal */}
-      <Section eyebrow="02 · THE STAKE" variant="bg">
+      <Section eyebrow="03 · THE STAKE" variant="bg">
         <div className="mt-4">
           <StatBlock figure={c.stake.figure} caption={c.stake.caption} source={c.stake.source}>
             {c.stake.beats.map((b, i) => (
@@ -109,10 +114,10 @@ export default function HomeClient() {
       </Section>
 
       {/* 03 · CONVERSATION {#home-conversation} — headline + full-bleed marquee */}
-      <section className="py-24 md:py-32" style={{ background: 'var(--surface-1)' }}>
+      <section className="py-16 md:py-24" style={{ background: 'var(--surface-1)' }}>
         <div className="container-rc">
           <Reveal>
-            <div className="eyebrow eyebrow-accent mb-5">03 · CONVERSATION</div>
+            <div className="eyebrow eyebrow-accent mb-5">04 · CONVERSATION</div>
             <h2 className="heading-section" style={{ color: 'var(--text)', maxWidth: '18ch' }}>
               {c.conversation.title}
             </h2>
@@ -161,7 +166,7 @@ export default function HomeClient() {
       </Section>
 
       {/* 05 · KNOWLEDGE SPLIT {#home-knows} — property / destination, chips not stacks */}
-      <Section eyebrow="05 · KNOWLEDGE" title={c.knows.title} support={c.knows.lead} variant="surface-1">
+      <Section eyebrow="07 · KNOWLEDGE" title={c.knows.title} support={c.knows.lead} variant="bg">
         <div className="mt-14 grid lg:grid-cols-2 gap-12 lg:gap-16">
           <div>
             <div className="eyebrow mb-6">{c.hero.positioning.split('.')[0]}</div>
@@ -184,10 +189,10 @@ export default function HomeClient() {
 
       {/* 06 · INTELLIGENCE → DASHBOARD {#home-intelligence} + {#home-enterprise-intel} */}
       <Section
-        eyebrow="06 · INTELLIGENCE"
+        eyebrow="08 · INTELLIGENCE"
         title={c.intelligence.title}
         support={c.enterpriseIntel.lead}
-        variant="bg"
+        variant="surface-1"
       >
         <div className="mt-14 grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           <div className="lg:col-span-5">
@@ -213,7 +218,7 @@ export default function HomeClient() {
       </Section>
 
       {/* 07 · EXECUTION {#home-execution} — routing flow cards */}
-      <Section eyebrow="07 · EXECUTION" title={c.execution.title} support={c.execution.lead} variant="surface-1">
+      <Section eyebrow="09 · EXECUTION" title={c.execution.title} support={c.execution.lead} variant="bg">
         <div className="mt-14">
           <RoutingFlow pairs={c.execution.pairs} />
         </div>
@@ -228,7 +233,7 @@ export default function HomeClient() {
       </Section>
 
       {/* 08 · COMPANION OS {#home-companion-os} — convergence + capability surface */}
-      <Section eyebrow="08 · COMPANION OS" title={c.companionOs.title} support={c.companionOs.lead} variant="surface-3">
+      <Section eyebrow="10 · COMPANION OS" title={c.companionOs.title} support={c.companionOs.lead} variant="surface-3">
         <div className="mt-14">
           <ConvergenceDiagram inputs={c.convergence.inputs} nodeLabel={c.convergence.node} />
         </div>
@@ -243,7 +248,7 @@ export default function HomeClient() {
       </Section>
 
       {/* 09 · LIVE IN DAYS {#home-live-in-days} — three-step timeline */}
-      <Section eyebrow="09 · DEPLOYMENT" title={c.liveInDays.title} support={c.liveInDays.body} variant="bg">
+      <Section eyebrow="11 · DEPLOYMENT" title={c.liveInDays.title} support={c.liveInDays.body} variant="bg">
         <div className="mt-14">
           <JourneyTimeline
             stages={c.liveInDays.beats.map((b, i) => ({
@@ -255,7 +260,7 @@ export default function HomeClient() {
       </Section>
 
       {/* 10 · BOUNDARIES {#home-what-it-is-not-teaser} — statement + link to Enterprise */}
-      <Section eyebrow="10 · BOUNDARIES" variant="surface-1" tight>
+      <Section eyebrow="12 · BOUNDARIES" variant="surface-1" tight>
         <Reveal>
           <p
             className="font-serif"
@@ -283,7 +288,7 @@ export default function HomeClient() {
       </Section>
 
       {/* 11 · FOUNDING PARTNERS {#home-founding-partner} */}
-      <Section eyebrow="11 · FOUNDING PARTNERS" title={c.foundingPartner.title} support={c.foundingPartner.lead} variant="bg">
+      <Section eyebrow="13 · FOUNDING PARTNERS" title={c.foundingPartner.title} support={c.foundingPartner.lead} variant="bg">
         <div className="mt-12 grid lg:grid-cols-12 gap-10">
           <div className="lg:col-span-5">
             <p className="body-lead" style={{ color: 'var(--text)' }}>
@@ -308,7 +313,7 @@ export default function HomeClient() {
       </Section>
 
       {/* 12 · FAQ {#home-faq} — accordion */}
-      <Section eyebrow="12 · FAQ" title={c.faq.title} variant="surface-1">
+      <Section eyebrow="14 · FAQ" title={c.faq.title} variant="surface-1">
         <div className="mt-12" style={{ maxWidth: 860 }}>
           <Accordion items={c.faq.items} />
         </div>
@@ -319,7 +324,7 @@ export default function HomeClient() {
         <section className="py-24 md:py-36">
           <div className="container-rc">
             <Reveal>
-              <div className="eyebrow eyebrow-accent mb-5">13 · NEXT STEP</div>
+              <div className="eyebrow eyebrow-accent mb-5">15 · NEXT STEP</div>
               <h2 className="heading-section" style={{ color: 'var(--text)', maxWidth: '18ch' }}>
                 {c.finalCta.title}
               </h2>

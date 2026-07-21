@@ -7,7 +7,8 @@ import { Section } from '@/components/cds/Section'
 import { Reveal } from '@/components/cds/Reveal'
 import { EndorsementMark } from '@/components/cds/EndorsementMark'
 import { PersistentCTA } from '@/components/cds/PersistentCTA'
-import { HeroDevice } from '@/components/cds/HeroDevice'
+import { TabletOS } from '@/components/cds/TabletOS'
+import { JourneyWalkthrough } from '@/components/cds/JourneyWalkthrough'
 import { MediaBed } from '@/components/cds/MediaBed'
 import { MultiAccentHeadline } from '@/components/cds/AccentHeadline'
 import {
@@ -22,6 +23,7 @@ import { VoiceMorph, TwoStageAlert } from '@/components/cds/interactive'
 import { COMPANION_OS_CAPABILITIES } from '@/lib/capabilities'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { platformCopy } from '@/lib/i18n/marketing/platform'
+import { homeCopy } from '@/lib/i18n/marketing/home'
 import { accents } from '@/lib/i18n/marketing/accents'
 
 /**
@@ -87,6 +89,7 @@ function Beats({ lines, size = 'md' }: { lines: ReadonlyArray<string>; size?: 'm
 export default function PlatformClient() {
   const c = useCopy(platformCopy)
   const a = useCopy(accents)
+  const home = useCopy(homeCopy)
 
   return (
     <main>
@@ -113,20 +116,25 @@ export default function PlatformClient() {
                   <Link href="/demo" className="btn-primary">
                     {c.finalCta.cta}
                   </Link>
+                  {/* Approved string, reused from the Home hero */}
+                  <a href="#platform-voice-first" className="btn-secondary">
+                    {home.hero.secondaryCta}
+                  </a>
                 </div>
                 <div className="mt-10">
                   <EndorsementMark variant="companion-os" />
                 </div>
               </div>
               <div className="lg:col-span-6">
-                <HeroDevice />
+                <TabletOS cycle={['home', 'beach', 'spa', 'concierge']} />
               </div>
             </div>
           </div>
         </section>
       </MediaBed>
 
-      {/* 01 · VOICE-FIRST {#platform-voice-first} + channels {#platform-channels} */}
+      {/* 01 · VOICE-FIRST {#platform-voice-first} + channels {#platform-channels}
+          Product-first: the device carries the meaning, the copy is terse. */}
       <Section
         id="platform-voice-first"
         eyebrow="01 · VOICE-FIRST"
@@ -134,30 +142,14 @@ export default function PlatformClient() {
         support={c.voiceFirst.body1}
         variant="surface-1"
       >
-        <div className="mt-14 grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-          <div className="lg:col-span-5">
-            <Beats lines={c.voiceFirst.beats} />
-            <Reveal>
-              <p className="body-lead mt-8" style={{ maxWidth: '44ch' }}>
-                {c.voiceFirst.body2}
-              </p>
-            </Reveal>
-            <Reveal>
-              <div className="eyebrow eyebrow-accent mt-10 mb-4">{c.voiceFirst.availableLead}</div>
-            </Reveal>
-            <IconChipGrid items={c.voiceFirst.surfaces} columns={2} />
-          </div>
-          <div id="platform-channels" className="lg:col-span-7">
-            <Reveal>
-              <p className="body-lead mb-2" style={{ color: 'var(--text)' }}>
-                {c.channels.lead}
-              </p>
-            </Reveal>
-            <NamedRows items={c.channels.items} columns={2} />
-          </div>
-        </div>
         <div className="mt-14">
-          <Beats lines={c.voiceFirst.close} size="lg" />
+          <JourneyWalkthrough steps={home.journey.steps} tallyLabel={home.journey.tallyLabel} />
+        </div>
+        <div id="platform-channels" className="mt-20">
+          <Reveal>
+            <div className="eyebrow eyebrow-accent mb-6">{c.voiceFirst.availableLead}</div>
+          </Reveal>
+          <NamedRows items={c.channels.items} columns={2} />
         </div>
       </Section>
 

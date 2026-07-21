@@ -198,7 +198,7 @@ export default function CompanionOsClient() {
       </MediaBed>
 
       {/* 01 · WHY {#companionos-why} — fragmented industries node diagram */}
-      <Section id="companionos-why" eyebrow="01 · WHY" title={c.why.title} variant="bg">
+      <Section id="companionos-why" eyebrow="WHY" title={c.why.title} variant="bg">
         <Reveal>
           <div className="mt-8 flex flex-col gap-2">
             {c.why.beats.map((line) => (
@@ -243,7 +243,7 @@ export default function CompanionOsClient() {
       {/* 02 · ONE PLATFORM {#companionos-one-platform} — the page's signature visual */}
       <Section
         id="companionos-one-platform"
-        eyebrow="02 · ONE PLATFORM"
+        eyebrow="ONE PLATFORM"
         title={c.onePlatform.title}
         support={c.onePlatform.body[0]}
         variant="surface-3"
@@ -298,7 +298,7 @@ export default function CompanionOsClient() {
       {/* 09 · ENTERPRISE {#companionos-enterprise} */}
       <Block
         id="companionos-enterprise"
-        eyebrow="09 · ENTERPRISE"
+        eyebrow="ENTERPRISE"
         title={c.enterprise.title}
         body={[c.enterprise.body[0]]}
         coda={c.enterprise.coda}
@@ -310,7 +310,7 @@ export default function CompanionOsClient() {
           Destination Companion appears as a future NAME ONLY, never a link. */}
       <Section
         id="companionos-ecosystem"
-        eyebrow="10 · ECOSYSTEM"
+        eyebrow="ECOSYSTEM"
         title={c.ecosystem.title}
         support={c.ecosystem.lead}
         variant="surface-1"
@@ -356,7 +356,7 @@ export default function CompanionOsClient() {
       {/* 11 · AXIONARI {#companionos-axionari} */}
       <Section
         id="companionos-axionari"
-        eyebrow="11 · AXIONARI"
+        eyebrow="AXIONARI"
         title={c.axionari.title}
         support={c.axionari.body[0]}
         variant="surface-3"

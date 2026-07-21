@@ -114,11 +114,30 @@ export function StatBlock({
 }
 
 /* ------------------------------------------------------------- IconChipGrid */
-/** Turns a long noun-stack into a scannable chip grid (Webby fix). */
-export function IconChipGrid({ items, columns = 3 }: { items: ReadonlyArray<string>; columns?: 2 | 3 }) {
+/**
+ * Turns a long noun-stack into a scannable chip grid (Webby fix).
+ * Visual Interface Level-Up §C pushes this further: show six, then "+ N more" —
+ * long lists read as filler and hurt the luxury tone.
+ */
+export function IconChipGrid({
+  items,
+  columns = 3,
+  cap = 6,
+  moreLabel,
+}: {
+  items: ReadonlyArray<string>
+  columns?: 2 | 3
+  /** Set to 0 to disable capping. */
+  cap?: number
+  /** e.g. "+ 4 more" / "+ 4 más". Falls back to a neutral count. */
+  moreLabel?: (n: number) => string
+}) {
+  const shown = cap > 0 ? items.slice(0, cap) : items
+  const rest = items.length - shown.length
   return (
+    <>
     <div className={`grid gap-x-8 gap-y-0 sm:grid-cols-2 ${columns === 3 ? 'lg:grid-cols-3' : ''}`}>
-      {items.map((item, i) => (
+      {shown.map((item, i) => (
         <Reveal key={item} delay={Math.min(i, 8) * 25}>
           <div
             className="flex items-center gap-3 py-3.5"
@@ -136,6 +155,12 @@ export function IconChipGrid({ items, columns = 3 }: { items: ReadonlyArray<stri
         </Reveal>
       ))}
     </div>
+    {rest > 0 && (
+      <p className="eyebrow mt-4" style={{ color: 'var(--accent)' }}>
+        {moreLabel ? moreLabel(rest) : `+ ${rest}`}
+      </p>
+    )}
+    </>
   )
 }
 
@@ -487,6 +512,52 @@ export function Accordion({ items }: { items: ReadonlyArray<{ q: string; a: stri
           </Reveal>
         )
       })}
+    </div>
+  )
+}
+
+/* ------------------------------------------------------- CommissionCompare */
+/**
+ * OTA vs direct, as two proportional bars. Turns the commission stat into
+ * something you can see at a glance (Visual Interface Level-Up: revenue-forward).
+ * Percentages are illustrative of the quoted ranges and carry the same
+ * NEEDS CONFIRM caveat as the figure they visualise.
+ */
+export function CommissionCompare({
+  rows,
+}: {
+  rows: ReadonlyArray<{ label: string; pct: number; note: string; accent?: boolean }>
+}) {
+  const [ref, seen] = useInView<HTMLDivElement>()
+  const max = Math.max(...rows.map((r) => r.pct), 1)
+  return (
+    <div ref={ref} className="flex flex-col gap-7">
+      {rows.map((r, i) => (
+        <div key={r.label}>
+          <div className="flex items-baseline justify-between mb-2.5">
+            <span className="eyebrow" style={{ color: r.accent ? 'var(--accent)' : 'var(--text-faint)' }}>
+              {r.label}
+            </span>
+            <span
+              className="font-serif"
+              style={{ fontSize: '1.35rem', fontWeight: 530, color: r.accent ? 'var(--accent)' : 'var(--text)' }}
+            >
+              {r.note}
+            </span>
+          </div>
+          <div style={{ height: 8, borderRadius: 999, background: 'var(--surface-3)', overflow: 'hidden' }}>
+            <div
+              style={{
+                height: '100%',
+                width: seen ? `${(r.pct / max) * 100}%` : '0%',
+                borderRadius: 999,
+                background: r.accent ? 'var(--accent)' : 'rgba(251,248,242,0.22)',
+                transition: `width 900ms var(--ease-standard) ${i * 140}ms`,
+              }}
+            />
+          </div>
+        </div>
+      ))}
     </div>
   )
 }

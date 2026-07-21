@@ -306,6 +306,10 @@ const en = {
     caption:
       'An OTA booking can cost 2–3× more than a direct one — 18–30% commission vs. 5–12% all-in.',
     source: 'Source: Kalibri Labs.',
+    compare: [
+      { label: 'OTA booking', pct: 30, note: '18–30%', accent: false },
+      { label: 'Direct booking', pct: 12, note: '5–12%', accent: true },
+    ],
   },
   journey: {
     tallyLabel: 'Revenue this stay',
@@ -728,6 +732,10 @@ const es: typeof en = {
     caption:
       'Una reserva por OTA puede costar 2–3× más que una directa — 18–30% de comisión frente a 5–12% todo incluido.',
     source: 'Fuente: Kalibri Labs.',
+    compare: [
+      { label: 'Reserva por OTA', pct: 30, note: '18–30%', accent: false },
+      { label: 'Reserva directa', pct: 12, note: '5–12%', accent: true },
+    ],
   },
   journey: {
     tallyLabel: 'Ingresos de esta estancia',
