@@ -106,12 +106,12 @@ export function SiteNav() {
         </Link>
 
         {/* Desktop links */}
-        <div className="hidden lg:flex items-center gap-7">
+        <div className="hidden lg:flex items-center gap-5 xl:gap-7">
           {NAV_LINKS.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className="font-sans transition-colors hover:text-[#F7F6F1]"
+              className="font-sans transition-colors hover:text-[#F7F6F1] whitespace-nowrap"
               style={{ fontSize: "15px", color: "var(--text-dim)" }}
             >
               {nav[l.key]}
@@ -120,12 +120,12 @@ export function SiteNav() {
         </div>
 
         {/* Desktop CTA */}
-        <div className="hidden lg:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-3 xl:gap-4">
           {/* The product itself, one click from every page */}
           <button
             type="button"
             onClick={openLiveDemo}
-            className="font-sans transition-colors hover:text-[#F7F6F1]"
+            className="hidden xl:inline-flex font-sans transition-colors hover:text-[#F7F6F1]"
             style={{ fontSize: "15px", color: "var(--accent)", minHeight: "44px" }}
           >
             {demo.open}

@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { Breather } from '@/components/cds/Breather'
 import { SiteNav } from '@/components/site-nav'
 import { SiteFooter } from '@/components/site-footer'
 import { PersistentCTA } from '@/components/cds/PersistentCTA'
@@ -179,6 +180,8 @@ export default function CompanyClient() {
       ))}
 
       {/* {#company-contact} */}
+      <Breather image="/assets/img/cta-beach-aerial-poster.webp" />
+
       <Section id="contact" eyebrow="09 · CONTACT" title={c.contact.title} variant="surface-2">
         <div className="mt-8 body-lead" style={{ maxWidth: '56ch' }}>
           {c.contact.body}

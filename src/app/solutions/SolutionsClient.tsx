@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { SiteNav } from '@/components/site-nav'
 import { SiteFooter } from '@/components/site-footer'
+import { Teaser, CapabilityStrip } from '@/components/cds/Teaser'
+import { Breather } from '@/components/cds/Breather'
 import { Section } from '@/components/cds/Section'
 import { Reveal } from '@/components/cds/Reveal'
 import { EndorsementMark } from '@/components/cds/EndorsementMark'
@@ -13,6 +15,7 @@ import { MultiAccentHeadline } from '@/components/cds/AccentHeadline'
 import { IconChipGrid, CapabilitySurface } from '@/components/cds/blocks'
 import { COMPANION_OS_CAPABILITIES } from '@/lib/capabilities'
 import { useCopy } from '@/lib/i18n/useCopy'
+import { globalCopy } from '@/lib/i18n/marketing/global'
 import { solutionsCopy } from '@/lib/i18n/marketing/solutions'
 import { accents } from '@/lib/i18n/marketing/accents'
 
@@ -190,6 +193,7 @@ function SegmentIndex({ segments }: { segments: ReadonlyArray<Block> }) {
 
 export default function SolutionsClient() {
   const c = useCopy(solutionsCopy)
+  const g = useCopy(globalCopy)
   const a = useCopy(accents)
 
   return (
@@ -269,7 +273,9 @@ export default function SolutionsClient() {
         variant="surface-2"
       >
         <div className="mt-14">
-          <CapabilitySurface items={COMPANION_OS_CAPABILITIES.map((x) => ({ id: x.id, name: x.name }))} />
+          <Teaser lines={[]} href="/companion-os" label={g.nav.companionOs}>
+            <CapabilityStrip names={COMPANION_OS_CAPABILITIES.map((x) => x.name)} />
+          </Teaser>
         </div>
         <Reveal>
           <p

@@ -9,7 +9,11 @@ import { QuestionMarquee } from '@/components/cds/QuestionMarquee'
 import { EndorsementMark } from '@/components/cds/EndorsementMark'
 import { PersistentCTA } from '@/components/cds/PersistentCTA'
 import { HeroIgnition } from '@/components/cds/HeroIgnition'
+import { TabletOS } from '@/components/cds/TabletOS'
 import { openLiveDemo } from '@/components/cds/LiveDemoModal'
+import { CapabilityStrip } from '@/components/cds/Teaser'
+import { Breather } from '@/components/cds/Breather'
+import { globalCopy } from '@/lib/i18n/marketing/global'
 import { JourneyWalkthrough } from '@/components/cds/JourneyWalkthrough'
 import { DeviceWall } from '@/components/cds/DeviceWall'
 import { MediaBed } from '@/components/cds/MediaBed'
@@ -20,7 +24,6 @@ import {
   RoutingFlow,
   JourneyTimeline,
   ConvergenceDiagram,
-  CapabilitySurface,
   DashboardMockup,
   Accordion,
   CommissionCompare,
@@ -40,6 +43,7 @@ import { accents } from '@/lib/i18n/marketing/accents'
 export default function HomeClient() {
   const c = useCopy(homeCopy)
   const a = useCopy(accents)
+  const g = useCopy(globalCopy)
   const screens = useCopy(deviceScreens)
 
   return (
@@ -152,7 +156,7 @@ export default function HomeClient() {
       {/* 05 · THE JOURNEY — the signature scroll-synced sticky walkthrough.
           PRE (win the direct booking) · DURING (every request an upsell) ·
           AFTER (earn the review, rebook direct), with a copper revenue tally. */}
-      <Section eyebrow="05 · PRE · DURING · AFTER" title={c.revenue.title} variant="bg">
+      <Section id="home-revenue" eyebrow="05 · PRE · DURING · AFTER" title={c.revenue.title} variant="bg">
         <div className="mt-14">
           <JourneyWalkthrough steps={c.journey.steps} tallyLabel={c.journey.tallyLabel} />
         </div>
@@ -166,6 +170,35 @@ export default function HomeClient() {
       </Section>
 
       {/* 05 · KNOWLEDGE SPLIT {#home-knows} — property / destination, chips not stacks */}
+      {/* THE PRODUCT, BIG — one unbroken look at the interface itself.
+          No competing copy: the device is the whole statement. */}
+      <section className="relative overflow-hidden" style={{ background: 'var(--bg)' }}>
+        <div
+          aria-hidden="true"
+          className="absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(64% 54% at 50% 42%, rgba(200,106,58,0.16) 0%, rgba(200,106,58,0.05) 46%, transparent 74%)',
+          }}
+        />
+        <div className="container-rc relative py-20 md:py-28">
+          <Reveal>
+            <div className="eyebrow eyebrow-accent mb-10">{c.surfaces2029.caption}</div>
+          </Reveal>
+          {/* Scaled rather than widened: TabletOS's chrome is fixed-px and only
+              correct near its native 560, so stretching it collapsed the photo
+              and overlapped the actions. A transform keeps the exact layout and
+              just makes it big. */}
+          <Reveal delay={80}>
+            <div className="cinematic-stage">
+              <div className="cinematic-device">
+                <TabletOS screen="beach" orbState="speaking" />
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       <Section eyebrow="07 · KNOWLEDGE" title={c.knows.title} support={c.knows.lead} variant="bg">
         <div className="mt-14 grid lg:grid-cols-2 gap-12 lg:gap-16">
           <div>
@@ -217,6 +250,8 @@ export default function HomeClient() {
         </Reveal>
       </Section>
 
+      <Breather image="/assets/img/platform-pool-night.webp" />
+
       {/* 07 · EXECUTION {#home-execution} — routing flow cards */}
       <Section eyebrow="09 · EXECUTION" title={c.execution.title} support={c.execution.lead} variant="bg">
         <div className="mt-14">
@@ -233,12 +268,19 @@ export default function HomeClient() {
       </Section>
 
       {/* 08 · COMPANION OS {#home-companion-os} — convergence + capability surface */}
-      <Section eyebrow="10 · COMPANION OS" title={c.companionOs.title} support={c.companionOs.lead} variant="surface-3">
+      <Section id="home-companion-os" eyebrow="10 · COMPANION OS" title={c.companionOs.title} support={c.companionOs.lead} variant="surface-3">
         <div className="mt-14">
           <ConvergenceDiagram inputs={c.convergence.inputs} nodeLabel={c.convergence.node} />
         </div>
         <div className="mt-16">
-          <CapabilitySurface items={COMPANION_OS_CAPABILITIES.map((x) => ({ id: x.id, name: x.name }))} />
+          <CapabilityStrip names={COMPANION_OS_CAPABILITIES.map((x) => x.name)} />
+          <Link
+            href="/companion-os"
+            className="font-sans inline-flex items-center gap-2 mt-7 transition-colors hover:text-[#d4824f]"
+            style={{ color: 'var(--accent)', fontSize: 15, fontWeight: 500, minHeight: 44 }}
+          >
+            {g.nav.see} {g.nav.companionOs} <span aria-hidden="true">→</span>
+          </Link>
         </div>
         <Reveal>
           <div className="mt-12">
@@ -258,6 +300,8 @@ export default function HomeClient() {
           />
         </div>
       </Section>
+
+      <Breather image="/assets/img/ambient-palms-night.webp" />
 
       {/* 10 · BOUNDARIES {#home-what-it-is-not-teaser} — statement + link to Enterprise */}
       <Section eyebrow="12 · BOUNDARIES" variant="surface-1" tight>

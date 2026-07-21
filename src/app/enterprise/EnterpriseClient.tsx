@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { ReactNode } from 'react'
 import { SiteNav } from '@/components/site-nav'
 import { SiteFooter } from '@/components/site-footer'
+import { Teaser, CapabilityStrip } from '@/components/cds/Teaser'
+import { Breather } from '@/components/cds/Breather'
 import { Section } from '@/components/cds/Section'
 import type { SectionVariant } from '@/components/cds/Section'
 import { Reveal } from '@/components/cds/Reveal'
@@ -15,11 +17,11 @@ import {
   IconChipGrid,
   JourneyTimeline,
   ConvergenceDiagram,
-  CapabilitySurface,
   DashboardMockup,
 } from '@/components/cds/blocks'
 import { COMPANION_OS_CAPABILITIES } from '@/lib/capabilities'
 import { useCopy } from '@/lib/i18n/useCopy'
+import { globalCopy } from '@/lib/i18n/marketing/global'
 import { enterpriseCopy } from '@/lib/i18n/marketing/enterprise'
 import { accents } from '@/lib/i18n/marketing/accents'
 
@@ -136,6 +138,7 @@ function Block({
 
 export default function EnterpriseClient() {
   const c = useCopy(enterpriseCopy)
+  const g = useCopy(globalCopy)
   const a = useCopy(accents)
 
   const byId = (id: string) => c.sections.find((s) => s.id === id)!
@@ -276,6 +279,8 @@ export default function EnterpriseClient() {
 
       {/* 11 · WHAT IT IS NOT {#what-it-is-not} — the "Not a…" quadrant.
           Deep-linked from the Home teaser as /enterprise#what-it-is-not. */}
+      <Breather image="/assets/img/company-reception.webp" />
+
       <Section
         id="what-it-is-not"
         eyebrow="11 · WHAT IT IS NOT"
@@ -368,7 +373,9 @@ export default function EnterpriseClient() {
         variant="surface-5"
       >
         <div className="mt-14">
-          <CapabilitySurface items={COMPANION_OS_CAPABILITIES.map((x) => ({ id: x.id, name: x.name }))} />
+          <Teaser lines={[]} href="/companion-os" label={g.nav.companionOs}>
+            <CapabilityStrip names={COMPANION_OS_CAPABILITIES.map((x) => x.name)} />
+          </Teaser>
         </div>
         <Reveal>
           <Coda>{c.companionOs.close}</Coda>

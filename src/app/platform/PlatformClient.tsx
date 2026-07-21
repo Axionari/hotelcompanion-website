@@ -8,7 +8,8 @@ import { Reveal } from '@/components/cds/Reveal'
 import { EndorsementMark } from '@/components/cds/EndorsementMark'
 import { PersistentCTA } from '@/components/cds/PersistentCTA'
 import { TabletOS } from '@/components/cds/TabletOS'
-import { JourneyWalkthrough } from '@/components/cds/JourneyWalkthrough'
+import { Teaser, CapabilityStrip } from '@/components/cds/Teaser'
+import { Breather } from '@/components/cds/Breather'
 import { MediaBed } from '@/components/cds/MediaBed'
 import { MultiAccentHeadline } from '@/components/cds/AccentHeadline'
 import {
@@ -16,12 +17,12 @@ import {
   RoutingFlow,
   JourneyTimeline,
   NodeDiagram,
-  CapabilitySurface,
   DashboardMockup,
 } from '@/components/cds/blocks'
 import { VoiceMorph, TwoStageAlert } from '@/components/cds/interactive'
 import { COMPANION_OS_CAPABILITIES } from '@/lib/capabilities'
 import { useCopy } from '@/lib/i18n/useCopy'
+import { globalCopy } from '@/lib/i18n/marketing/global'
 import { platformCopy } from '@/lib/i18n/marketing/platform'
 import { homeCopy } from '@/lib/i18n/marketing/home'
 import { accents } from '@/lib/i18n/marketing/accents'
@@ -88,6 +89,7 @@ function Beats({ lines, size = 'md' }: { lines: ReadonlyArray<string>; size?: 'm
 
 export default function PlatformClient() {
   const c = useCopy(platformCopy)
+  const g = useCopy(globalCopy)
   const a = useCopy(accents)
   const home = useCopy(homeCopy)
 
@@ -142,8 +144,13 @@ export default function PlatformClient() {
         support={c.voiceFirst.body1}
         variant="surface-1"
       >
-        <div className="mt-14">
-          <JourneyWalkthrough steps={home.journey.steps} tallyLabel={home.journey.tallyLabel} />
+        {/* The full stepper is canonical on Home; this is the teaser. */}
+        <div className="mt-12">
+          <Teaser
+            lines={[home.journey.steps[0].caption, home.journey.steps[home.journey.steps.length - 1].caption]}
+            href="/#home-revenue"
+            label={home.revenue.title}
+          />
         </div>
         <div id="platform-channels" className="mt-20">
           <Reveal>
@@ -306,6 +313,8 @@ export default function PlatformClient() {
       </Section>
 
       {/* 07 · RESERVATIONS {#platform-reservations} */}
+      <Breather image="/assets/img/section-tropical-beach-poster.webp" />
+
       <Section
         id="platform-reservations"
         eyebrow="07 · RESERVATIONS"
@@ -454,6 +463,8 @@ export default function PlatformClient() {
       </Section>
 
       {/* 12 · MULTI-PROPERTY {#platform-multi-property} */}
+      <Breather image="/assets/img/luxury-lobby.webp" />
+
       <Section
         id="platform-multi-property"
         eyebrow="12 · MULTI-PROPERTY"
@@ -499,8 +510,10 @@ export default function PlatformClient() {
         support={c.companionOs.lead}
         variant="surface-3"
       >
-        <div className="mt-14">
-          <CapabilitySurface items={COMPANION_OS_CAPABILITIES.map((x) => ({ id: x.id, name: x.name }))} />
+        <div className="mt-12">
+          <Teaser lines={[c.companionOs.lead]} href="/companion-os" label={g.nav.companionOs}>
+            <CapabilityStrip names={COMPANION_OS_CAPABILITIES.map((x) => x.name)} />
+          </Teaser>
         </div>
         <div className="mt-14">
           <Beats lines={c.companionOs.close} size="lg" />

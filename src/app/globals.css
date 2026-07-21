@@ -860,3 +860,32 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .jw-bar { transition: none; }
 }
+
+/* ------------------------------------- the cinematic device moment (item 4)
+
+   One near-full-viewport look at the interface. The device is scaled rather
+   than widened: TabletOS's chrome is fixed-px and only lays out correctly near
+   its native 560, so a transform preserves the design and simply enlarges it.
+   The stage reserves the scaled height so nothing below it shifts. */
+.cinematic-stage {
+  height: calc(440px * 1.62);
+  overflow: hidden;
+}
+.cinematic-device {
+  width: 560px;
+  margin-inline: auto;
+  transform: scale(1.62);
+  transform-origin: top center;
+}
+
+@media (max-width: 1023px) {
+  .cinematic-stage { height: calc(440px * 1.05); }
+  .cinematic-device { transform: scale(1.05); }
+}
+
+@media (max-width: 639px) {
+  /* Below the device's own width, scale down to fit rather than clip. */
+  .cinematic-stage { height: calc(440px * 0.62); }
+  .cinematic-device { transform: scale(0.62); }
+}
+
