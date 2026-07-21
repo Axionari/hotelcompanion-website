@@ -8,9 +8,8 @@ import { Reveal } from '@/components/cds/Reveal'
 import { QuestionMarquee } from '@/components/cds/QuestionMarquee'
 import { EndorsementMark } from '@/components/cds/EndorsementMark'
 import { PersistentCTA } from '@/components/cds/PersistentCTA'
-import { TabletOS } from '@/components/cds/TabletOS'
+import { HeroIgnition } from '@/components/cds/HeroIgnition'
 import { openLiveDemo } from '@/components/cds/LiveDemoModal'
-import { liveDemoCopy } from '@/lib/i18n/marketing/liveDemo'
 import { JourneyWalkthrough, SurfaceFan } from '@/components/cds/JourneyWalkthrough'
 import { MediaBed } from '@/components/cds/MediaBed'
 import { MultiAccentHeadline } from '@/components/cds/AccentHeadline'
@@ -41,7 +40,6 @@ export default function HomeClient() {
   const c = useCopy(homeCopy)
   const a = useCopy(accents)
   const screens = useCopy(deviceScreens)
-  const demo = useCopy(liveDemoCopy)
 
   return (
     <main>
@@ -79,29 +77,9 @@ export default function HomeClient() {
                 </div>
               </div>
               <div className="lg:col-span-6">
-                {/* The tablet cycles voice→image answers — and is itself the way in */}
-                <div className="relative group">
-                  <TabletOS cycle={['home', 'beach', 'upgrade', 'roomservice']} />
-                  <button
-                    type="button"
-                    onClick={openLiveDemo}
-                    aria-label={demo.open}
-                    className="absolute inset-0 rounded-[var(--device-radius)]"
-                    style={{ background: 'transparent' }}
-                  />
-                  <span
-                    aria-hidden="true"
-                    className="eyebrow absolute left-1/2 -translate-x-1/2 pointer-events-none"
-                    style={{
-                      bottom: -34,
-                      fontSize: 8.5,
-                      color: 'var(--accent)',
-                      whiteSpace: 'nowrap',
-                    }}
-                  >
-                    {demo.open} →
-                  </span>
-                </div>
+                {/* The Ignition: the orb is the light source of the hero and the
+                    live mic of the demo — one object, not two. */}
+                <HeroIgnition />
               </div>
             </div>
           </div>

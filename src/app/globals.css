@@ -490,3 +490,121 @@ body {
   .vripple { display: none; }
   .vctl-wave i { animation: none !important; }
 }
+
+/* ================================================================ THE IGNITION
+
+   The Home hero's right-side anchor: a large cinematic orb whose copper glow
+   is the light source for the whole hero.
+
+   The sequence is pure CSS with a delay + `backwards` fill, so the orb holds
+   its unlit state while the H1 paints and only then ignites. Nothing here is
+   gated on JS, which matters twice: the animation cannot delay the LCP element,
+   and gating it on a hydration-set class would flash lit -> unlit -> ignite.
+
+   Wrapped in `no-preference` so reduced-motion renders the composed lit still
+   with no motion at all, rather than an animation that merely finishes fast.
+   ============================================================================ */
+
+.ignition {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* This clamp IS the outer ring's diameter: ~44% of the viewport, capped at
+     520px, and never below the 240px floor. Static (never transitioned), and
+     the height below it is fixed, so ignition causes no layout shift. */
+  width: clamp(240px, 44vw, 520px);
+  margin-inline: auto;
+}
+
+/* Ambient bleed: the orb lights the hero, not just itself. */
+.ignition-bleed {
+  /* Deliberately larger than the orb and centred on the orb, not on the
+     orb+label stack — the light source is the ring, not the caption. */
+  position: absolute;
+  top: -60%;
+  left: -60%;
+  width: 220%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 50% 45%,
+    rgba(245, 163, 74, 0.22),
+    rgba(200, 106, 58, 0.1) 38%,
+    transparent 68%
+  );
+  z-index: 0;
+}
+
+/* The single outward ring expansion, fired once on ignite. */
+.ign-pulse {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid var(--accent-bright, var(--accent));
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ignition .vctl { position: relative; z-index: 2; width: 100%; }
+.ign-core { position: relative; z-index: 2; width: 100%; }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* ~1s of held darkness: the headline owns the first beat. */
+  .ign-core { animation: ign-core 1500ms var(--ease-emphasis) 950ms both; }
+  .ignition-bleed { animation: ign-bleed 1900ms var(--ease-standard) 950ms both; }
+  .ign-pulse { animation: ign-pulse 1500ms var(--ease-emphasis) 1050ms both; }
+  /* Waveform flickers ~1.2s, then rests until real speech drives it. */
+  .ignition .vctl-wave i { animation: vbar 400ms ease-in-out 1100ms 3 both; }
+}
+
+/* Fail-open: once the deadline passes, assert the lit resting state so a
+   non-ticking animation can never leave the hero dark. Harmless when the
+   animation did run — these are the values it ends on. */
+.ignition[data-ignited='true'] .ign-core,
+.ignition[data-ignited='true'] .ignition-bleed,
+.ignition[data-ignited='true'] .ign-pulse,
+.ignition[data-ignited='true'] .vctl-wave i {
+  animation: none;
+}
+.ignition[data-ignited='true'] .ign-core { opacity: 1; transform: none; }
+.ignition[data-ignited='true'] .ignition-bleed { opacity: 0.78; transform: none; }
+.ignition[data-ignited='true'] .ign-pulse { opacity: 0; }
+
+@keyframes ign-core {
+  from { opacity: 0.28; transform: scale(0.93); }
+  60%  { opacity: 1; transform: scale(1.03); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes ign-bleed {
+  from { opacity: 0; transform: scale(0.82); }
+  55%  { opacity: 1; transform: scale(1.06); }
+  to   { opacity: 0.78; transform: scale(1); }
+}
+
+@keyframes ign-pulse {
+  from { opacity: 0; transform: scale(0.6); }
+  25%  { opacity: 0.55; }
+  to   { opacity: 0; transform: scale(1.34); }
+}
+
+/* The guarded scroll breath — desktop only, where a real right column and
+   negative space exist. Driven by --breath (0..1) set from JS. */
+.ignition-breath {
+  /* 0.12, not 0.2: at 0.2 the ring came within 16px of the copy column at
+     peak, and the Spanish headline is longer than the English one. */
+  transform: scale(calc(1 + (0.12 * var(--breath, 0))));
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+@media (max-width: 1023px), (prefers-reduced-motion: reduce) {
+  /* No breath where the orb would sit above or behind the headline. */
+  .ignition-breath { transform: none; }
+}
