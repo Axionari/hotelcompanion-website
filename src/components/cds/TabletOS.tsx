@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { deviceScreens, type ScreenId } from '@/lib/i18n/marketing/deviceScreens'
+import { VoiceOrb } from './VoiceOrb'
 
 /**
  * The in-room tablet as an image-rich hospitality display OS
@@ -123,12 +124,15 @@ function ScreenBody({ id }: { id: ScreenId }) {
     return (
       <div className="flex h-full flex-col p-4">
         <UiImage src="/assets/img/luxury-lobby.webp" alt={d.property} height="52%" />
-        <div className="mt-3 flex items-baseline justify-between">
+        <div className="mt-3 flex items-center justify-between gap-3">
           <span className="font-serif" style={{ fontSize: 15, fontWeight: 530, color: 'var(--text)' }}>
             {d.greeting}
           </span>
-          <span className="eyebrow" style={{ fontSize: 8 }}>
-            {d.orbHint}
+          <span className="flex items-center gap-2 flex-shrink-0">
+            <span className="eyebrow" style={{ fontSize: 8 }}>
+              {d.orbHint}
+            </span>
+            <VoiceOrb state="idle" size={40} showMic />
           </span>
         </div>
         <div className="mt-3 grid grid-cols-5 gap-1.5">

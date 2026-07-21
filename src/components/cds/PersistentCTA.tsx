@@ -39,9 +39,17 @@ export function PersistentCTA() {
 
   const visible = pastHero && !footerVisible
 
+  // Raise the floating mic clear of this bar while it is on screen.
+  useEffect(() => {
+    const root = document.documentElement
+    const isMobile = window.matchMedia('(max-width: 767px)').matches
+    root.style.setProperty('--launcher-offset', visible && isMobile ? '92px' : '16px')
+    return () => root.style.setProperty('--launcher-offset', '16px')
+  }, [visible])
+
   return (
     <div
-      className="md:hidden fixed left-0 right-0 bottom-0 z-40 px-4 transition-transform duration-300"
+      className="md:hidden fixed left-0 right-0 bottom-0 z-40 pl-4 pr-[88px] transition-transform duration-300"
       style={{
         paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 10px)',
         paddingTop: '10px',

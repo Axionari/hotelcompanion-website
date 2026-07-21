@@ -3,6 +3,7 @@ import { Fraunces, Spline_Sans_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
+import { CompanionLauncher } from "@/components/cds/CompanionLauncher";
 
 /* Display face — Restaurant Companion uses Fraunces (headline weight 530,
    italic accent 480). Variable axes give us those exact weights. */
@@ -73,6 +74,8 @@ export default function RootLayout({
       <body className={`${fraunces.variable} ${generalSans.variable} ${splineMono.variable} font-sans antialiased`}>
         <LanguageProvider>
           <div className="pt-16">{children}</div>
+          {/* The mic is a standing affordance on every page and every surface */}
+          <CompanionLauncher />
         </LanguageProvider>
       </body>
     </html>

@@ -249,3 +249,116 @@ body {
   .tablet-kenburns { animation: none; }
   .card-lift:hover { transform: none; }
 }
+
+/* ============================================================
+   VOICE ORB — ported from Restaurant Companion's Features page.
+   Structure and values read from the live site: two rings, a radial
+   glow, a mask-ringed conic shimmer, and waveform bars, all driven
+   by data-state (idle / listening / thinking / speaking).
+   ============================================================ */
+
+.vmic {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+}
+.vstage {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+.vring,
+.vglow,
+.vshimmer {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.vring {
+  transition: opacity 0.6s var(--ease-standard);
+}
+.vring.r1 {
+  inset: 0;
+  border: 1px solid rgba(200, 106, 58, 0.28);
+  box-shadow: 0 0 60px -18px rgba(200, 106, 58, 0.35), inset 0 0 60px -30px rgba(200, 106, 58, 0.3);
+}
+.vring.r2 {
+  inset: 16%;
+  border: 1px solid rgba(200, 106, 58, 0.4);
+  box-shadow: 0 0 44px -14px rgba(200, 106, 58, 0.4), inset 0 0 44px -24px rgba(200, 106, 58, 0.35);
+}
+.vglow {
+  inset: 22%;
+  background: radial-gradient(
+    circle at 46% 42%,
+    rgba(245, 163, 74, 0.5),
+    rgba(200, 106, 58, 0.16) 62%,
+    transparent 78%
+  );
+  transition: opacity 0.6s var(--ease-standard), transform 0.6s var(--ease-standard);
+}
+.vshimmer {
+  inset: 16%;
+  opacity: 0;
+  background: conic-gradient(
+    transparent 0deg,
+    transparent 78%,
+    rgba(245, 163, 74, 0.5) 89%,
+    transparent 100%
+  );
+  -webkit-mask: radial-gradient(circle, transparent 0, transparent calc(50% - 2px), #fff calc(50% - 1px));
+  mask: radial-gradient(circle, transparent 0, transparent calc(50% - 2px), #fff calc(50% - 1px));
+  transition: opacity 0.6s var(--ease-standard);
+}
+
+/* Resting state */
+.vmic[data-state='idle'] .vglow { opacity: 0.32; transform: scale(0.94); }
+.vmic[data-state='idle'] .vring.r1 { opacity: 0.5; }
+.vmic[data-state='idle'] .vring.r2 { opacity: 0.55; }
+
+.vmic[data-state='listening'] .vglow { opacity: 0.85; }
+.vmic[data-state='thinking'] .vglow { opacity: 0.55; }
+.vmic[data-state='thinking'] .vshimmer { opacity: 1; }
+.vmic[data-state='speaking'] .vglow { opacity: 1; }
+
+/* Motion — only when .live is present, so reduced-motion simply omits it */
+@keyframes vpulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+@keyframes vpulse-fast { 0%, 100% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.08); opacity: 1; } }
+@keyframes vturn { to { transform: rotate(1turn); } }
+@keyframes vbar { 0%, 100% { transform: scaleY(0.35); } 50% { transform: scaleY(1); } }
+@keyframes vbreathe { 0%, 100% { transform: scale(1); opacity: 0.88; } 50% { transform: scale(1.04); opacity: 1; } }
+
+.vmic.live[data-state='idle'] .vstage { animation: vbreathe 5s ease-in-out infinite; }
+.vmic.live[data-state='listening'] .vstage { animation: vpulse 1.6s ease-in-out infinite; }
+.vmic.live[data-state='thinking'] .vshimmer { animation: vturn 5.5s linear infinite; }
+.vmic.live[data-state='speaking'] .vglow { animation: vpulse-fast 0.8s ease-in-out infinite; }
+
+.vwave { display: flex; align-items: center; gap: 3px; }
+.vwave i {
+  display: block;
+  width: 2px;
+  height: 14px;
+  border-radius: 2px;
+  background: var(--accent);
+  transform: scaleY(0.35);
+}
+.vmic.live[data-state='speaking'] .vwave i { animation: vbar 0.8s ease-in-out infinite; }
+.vmic.live[data-state='speaking'] .vwave i:nth-child(2) { animation-delay: 0.12s; }
+.vmic.live[data-state='speaking'] .vwave i:nth-child(3) { animation-delay: 0.24s; }
+.vmic.live[data-state='speaking'] .vwave i:nth-child(4) { animation-delay: 0.36s; }
+.vmic.live[data-state='speaking'] .vwave i:nth-child(5) { animation-delay: 0.48s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .vmic .vstage,
+  .vmic .vglow,
+  .vmic .vshimmer,
+  .vwave i { animation: none !important; }
+}
+
+/* Journey stage dwell indicator */
+@keyframes journey-progress { from { width: 0%; } to { width: 100%; } }
+@media (prefers-reduced-motion: reduce) {
+  [style*="journey-progress"] { animation: none !important; width: 100% !important; }
+}
