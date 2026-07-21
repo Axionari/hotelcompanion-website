@@ -37,8 +37,7 @@ const en = {
     ],
     coda: 'One platform. Unlimited possibilities.',
   },
-  /* Capability deep-dives, in canonical taxonomy order. The copy deck supplies
-     seven; Enterprise Analytics has no dedicated section (see client comment). */
+  /* Capability deep-dives — all eight, in canonical taxonomy order. */
   deepDives: [
     {
       id: 'voice',
@@ -114,8 +113,28 @@ const en = {
       coda: 'Leadership gains visibility that traditional systems never capture.',
     },
     {
+      id: 'analytics',
+      eyebrow: '07 · ENTERPRISE ANALYTICS',
+      title: 'Enterprise Analytics.',
+      body: [
+        'Understanding should reach leadership, not just the front line.',
+        'Companion OS turns thousands of everyday conversations into executive intelligence.',
+      ],
+      items: [
+        'Guest behavior.',
+        'Revenue opportunities.',
+        'Service demand.',
+        'Department performance.',
+        'Knowledge health.',
+        'Emerging trends.',
+        'Portfolio comparisons.',
+      ],
+      after: ['Not another dashboard to monitor.', 'Answers that lead to decisions.'],
+      coda: 'Every conversation becomes measurable business intelligence.',
+    },
+    {
       id: 'learning',
-      eyebrow: '07 · CONTINUOUS LEARNING',
+      eyebrow: '08 · CONTINUOUS LEARNING',
       title: 'Continuous Learning.',
       body: [
         'Organizations evolve. Their intelligence should evolve with them.',

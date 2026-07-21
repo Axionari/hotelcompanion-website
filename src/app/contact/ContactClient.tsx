@@ -105,15 +105,15 @@ export default function ContactClient() {
         </div>
         <Reveal>
           <div className="mt-10 flex justify-center">
-            {/* Founding Partner CTA routed to the partnerships mailbox from this page's own
-                copy — NEEDS CONFIRM if a dedicated intake form is preferred. */}
-            <a
-              href="mailto:partners@hotelcompanion.ai"
+            {/* A2-2: founding CTAs across the site route here. This block is the destination,
+                so its own action is the demo request — the site's single intake mechanism. */}
+            <Link
+              href="/demo"
               className="font-sans flex items-center justify-center text-white transition-colors hover:bg-[#D4784A]"
               style={primaryBtn}
             >
               {c.founding.cta}
-            </a>
+            </Link>
           </div>
         </Reveal>
       </Section>

@@ -87,6 +87,7 @@ const en = {
       coda: 'Together, we’re building the next generation of hospitality technology.',
     },
   ],
+  foundingCta: 'Become a Founding Partner',
   contact: {
     title: 'Let’s Build the Future of Hospitality.',
     body:

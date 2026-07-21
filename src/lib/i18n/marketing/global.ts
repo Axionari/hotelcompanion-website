@@ -82,8 +82,7 @@ const en = {
           { label: 'Security', href: '/security' },
           { label: 'Responsible AI', href: '/responsible-ai' },
           { label: 'Trust Center', href: '/trust' },
-          /* Copy lists an "Accessibility" item; no /accessibility route exists in the IA (§4).
-             NEEDS CONFIRM: add an accessibility page or drop the item. Omitted to avoid a dead link. */
+          { label: 'Accessibility', href: '/accessibility' },
         ],
       },
     },

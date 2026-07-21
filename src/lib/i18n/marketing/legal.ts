@@ -1,4 +1,6 @@
-import type { LegalBlock } from '@/components/cds/LegalLayout'
+import type { LegalDoc } from '@/components/cds/LegalLayout'
+import type { Localized } from '../useCopy'
+import { privacyEs, termsEs, cookiesEs, securityEs, responsibleAiEs, trustEs } from './legal.es'
 
 /* Copy source: HotelCompanion__Site_Copy.md {#privacy} {#terms} {#cookies}
    {#security} {#responsible-ai} {#trust-center}. Verbatim.
@@ -6,15 +8,7 @@ import type { LegalBlock } from '@/components/cds/LegalLayout'
 
 export const LAST_UPDATED = 'Last Updated: July 2026'
 
-export interface LegalDoc {
-  eyebrow: string
-  title: string
-  lastUpdated?: string
-  intro: string[]
-  blocks: LegalBlock[]
-}
-
-export const privacyDoc: LegalDoc = {
+const privacyEn: LegalDoc = {
   eyebrow: 'LEGAL · PRIVACY',
   title: 'Privacy Policy',
   lastUpdated: LAST_UPDATED,
@@ -147,7 +141,7 @@ export const privacyDoc: LegalDoc = {
   ],
 }
 
-export const termsDoc: LegalDoc = {
+const termsEn: LegalDoc = {
   eyebrow: 'LEGAL · TERMS',
   title: 'Terms of Service',
   lastUpdated: LAST_UPDATED,
@@ -339,7 +333,7 @@ export const termsDoc: LegalDoc = {
   ],
 }
 
-export const cookiesDoc: LegalDoc = {
+const cookiesEn: LegalDoc = {
   eyebrow: 'LEGAL · COOKIES',
   title: 'Cookie Policy',
   lastUpdated: LAST_UPDATED,
@@ -449,7 +443,7 @@ export const cookiesDoc: LegalDoc = {
   ],
 }
 
-export const securityDoc: LegalDoc = {
+const securityEn: LegalDoc = {
   eyebrow: 'TRUST · SECURITY',
   title: 'Enterprise-grade security for enterprise hospitality.',
   intro: [
@@ -561,7 +555,7 @@ export const securityDoc: LegalDoc = {
   ],
 }
 
-export const responsibleAiDoc: LegalDoc = {
+const responsibleAiEn: LegalDoc = {
   eyebrow: 'TRUST · RESPONSIBLE AI',
   title: 'Artificial intelligence should make hospitality more human—not less.',
   intro: [
@@ -653,7 +647,7 @@ export const responsibleAiDoc: LegalDoc = {
   ],
 }
 
-export const trustDoc: LegalDoc = {
+const trustEn: LegalDoc = {
   eyebrow: 'TRUST CENTER',
   title: 'Trust is the foundation of every great hospitality experience.',
   intro: [
@@ -714,3 +708,11 @@ export const trustDoc: LegalDoc = {
     { type: 'p', text: 'That commitment is built into Hotel Companion, Companion OS, and everything we create.' },
   ],
 }
+
+/* Bilingual pairs. ES falls back to EN only if a document has not been wired yet. */
+export const privacyDoc: Localized<LegalDoc> = { en: privacyEn, es: privacyEs ?? privacyEn }
+export const termsDoc: Localized<LegalDoc> = { en: termsEn, es: termsEs ?? termsEn }
+export const cookiesDoc: Localized<LegalDoc> = { en: cookiesEn, es: cookiesEs ?? cookiesEn }
+export const securityDoc: Localized<LegalDoc> = { en: securityEn, es: securityEs ?? securityEn }
+export const responsibleAiDoc: Localized<LegalDoc> = { en: responsibleAiEn, es: responsibleAiEs ?? responsibleAiEn }
+export const trustDoc: Localized<LegalDoc> = { en: trustEn, es: trustEs ?? trustEn }

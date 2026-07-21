@@ -5,6 +5,7 @@ import { SiteNav } from '@/components/site-nav'
 import { SiteFooter } from '@/components/site-footer'
 import { PersistentCTA } from './PersistentCTA'
 import { Reveal } from './Reveal'
+import { useCopy, type Localized } from '@/lib/i18n/useCopy'
 
 export type LegalBlock =
   | { type: 'p'; text: string }
@@ -12,23 +13,20 @@ export type LegalBlock =
   | { type: 'term'; label: string; text: string }
   | { type: 'link'; label: string; href: string; text?: string }
 
+export interface LegalDoc {
+  eyebrow: string
+  title: string
+  lastUpdated?: string
+  intro: string[]
+  blocks: LegalBlock[]
+}
+
 /**
  * Legal / Trust document layout (brief §7): readable ~680px measure, same
  * warm-dark art direction, "Last Updated" stamp. Fully legible with motion off.
  */
-export function LegalLayout({
-  eyebrow,
-  title,
-  lastUpdated,
-  intro,
-  blocks,
-}: {
-  eyebrow: string
-  title: string
-  lastUpdated?: string
-  intro?: ReadonlyArray<string>
-  blocks: ReadonlyArray<LegalBlock>
-}) {
+export function LegalLayout({ doc }: { doc: Localized<LegalDoc> }) {
+  const { eyebrow, title, lastUpdated, intro, blocks } = useCopy(doc)
   return (
     <main>
       <SiteNav />

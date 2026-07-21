@@ -9,13 +9,5 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-  return (
-    <LegalLayout
-      eyebrow={responsibleAiDoc.eyebrow}
-      title={responsibleAiDoc.title}
-      lastUpdated={responsibleAiDoc.lastUpdated}
-      intro={responsibleAiDoc.intro}
-      blocks={responsibleAiDoc.blocks}
-    />
-  )
+  return <LegalLayout doc={responsibleAiDoc} />
 }

@@ -40,10 +40,8 @@ export default function CompanionOsClient() {
         </div>
       </Section>
 
-      {/* {#companionos-one-platform} — also hosts the capability overview grid.
-          NEEDS CONFIRM: the copy deck has no #companionos-analytics deep-dive, so the
-          Enterprise Analytics tile deep-links here rather than to a dedicated section. */}
-      <Section id="analytics" eyebrow="02 · ONE PLATFORM" title={c.onePlatform.title} center>
+      {/* {#companionos-one-platform} */}
+      <Section eyebrow="02 · ONE PLATFORM" title={c.onePlatform.title} center>
         <div className="mt-8 flex flex-col gap-4">
           {c.onePlatform.body.map((line, i) => (
             <Lead key={i}>{line}</Lead>
@@ -77,6 +75,12 @@ export default function CompanionOsClient() {
               </Lead>
             ))}
           </div>
+          {'items' in d && d.items && (
+            <div className="mt-10 max-w-3xl mx-auto grid sm:grid-cols-2 gap-x-10">
+              <RhythmStack lines={d.items.slice(0, Math.ceil(d.items.length / 2))} />
+              <RhythmStack lines={d.items.slice(Math.ceil(d.items.length / 2))} />
+            </div>
+          )}
           {'chain' in d && d.chain && (
             <Reveal>
               <div className="mt-10 flex flex-wrap items-center justify-center gap-x-3 gap-y-3 max-w-3xl mx-auto">
@@ -117,7 +121,7 @@ export default function CompanionOsClient() {
       ))}
 
       {/* {#companionos-enterprise} */}
-      <Section eyebrow="08 · ENTERPRISE" title={c.enterprise.title} variant="surface-1" center>
+      <Section eyebrow="09 · ENTERPRISE" title={c.enterprise.title} variant="surface-1" center>
         <div className="mt-8 flex flex-col gap-4">
           {c.enterprise.body.map((line, i) => (
             <Lead key={i} tone={i === 0 ? 'primary' : 'secondary'}>
@@ -131,7 +135,7 @@ export default function CompanionOsClient() {
       </Section>
 
       {/* {#companionos-ecosystem} — Destination Companion appears as a future name only */}
-      <Section eyebrow="09 · ECOSYSTEM" title={c.ecosystem.title} center>
+      <Section eyebrow="10 · ECOSYSTEM" title={c.ecosystem.title} center>
         <div className="mt-8 flex flex-col gap-4">
           <Lead>{c.ecosystem.lead}</Lead>
           <Lead tone="primary">{c.ecosystem.today}</Lead>
@@ -144,7 +148,7 @@ export default function CompanionOsClient() {
       </Section>
 
       {/* {#companionos-axionari} */}
-      <Section eyebrow="10 · AXIONARI" title={c.axionari.title} variant="surface-2" center>
+      <Section eyebrow="11 · AXIONARI" title={c.axionari.title} variant="surface-2" center>
         <div className="mt-8 flex flex-col gap-4">
           {c.axionari.body.map((line, i) => (
             <Lead key={i}>{line}</Lead>
@@ -160,7 +164,7 @@ export default function CompanionOsClient() {
 
       {/* {#companionos-final-cta} — CTA leads back to Hotel Companion */}
       <FinalCta
-        eyebrow="11 · NEXT STEP"
+        eyebrow="12 · NEXT STEP"
         title={c.finalCta.title}
         body={c.finalCta.body}
         beats={[c.finalCta.subtitle]}

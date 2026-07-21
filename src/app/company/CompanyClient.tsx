@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { Section } from '@/components/cds/Section'
 import { EndorsementMark } from '@/components/cds/EndorsementMark'
 import { Reveal } from '@/components/cds/Reveal'
@@ -48,6 +49,19 @@ export default function CompanyClient() {
             <div className="mt-8">
               <EndorsementMark variant="companion-os" />
             </div>
+          )}
+          {s.id === 'founding-partners' && (
+            <Reveal>
+              <p className="mt-8">
+                <Link
+                  href="/contact#founding"
+                  className="font-sans text-sm transition-colors hover:text-[#D4784A]"
+                  style={{ color: 'var(--accent)', fontWeight: 500 }}
+                >
+                  {c.foundingCta} →
+                </Link>
+              </p>
+            </Reveal>
           )}
         </Section>
       ))}
