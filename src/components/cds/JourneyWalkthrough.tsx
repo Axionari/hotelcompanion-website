@@ -217,26 +217,38 @@ export function JourneyWalkthrough({
 
         {/* Fixed-height caption slot: the caption cross-fades in place instead
             of expanding inside the list, which used to shove every stage below
-            it down the page. */}
-        <div className="relative mt-6 pl-4" style={{ minHeight: 78 }}>
-          {steps.map((s, i) => (
-            <p
-              key={i}
-              aria-hidden={i !== active}
-              className="font-sans absolute inset-x-0 top-0 pl-4"
-              style={{
-                fontSize: 15,
-                lineHeight: 1.55,
-                color: 'var(--text-dim)',
-                opacity: i === active ? 1 : 0,
-                transform: i === active ? 'none' : 'translateY(4px)',
-                transition: 'opacity 420ms var(--ease-standard), transform 420ms var(--ease-emphasis)',
-                pointerEvents: i === active ? 'auto' : 'none',
-              }}
-            >
-              {s.caption}
-            </p>
-          ))}
+            it down the page.
+
+            The fade is SEQUENTIAL, not a true cross-fade: the outgoing caption
+            drops to 0 in 160ms, and the incoming one waits that long before
+            fading in. A simultaneous cross-fade left both captions at ~50%
+            opacity mid-transition, superimposed — badly in ES, where captions
+            wrap to two lines. The min-height reserves room for the tallest
+            (two-line) caption so nothing below it shifts. */}
+        <div className="relative mt-6 pl-4" style={{ minHeight: 88 }}>
+          {steps.map((s, i) => {
+            const on = i === active
+            return (
+              <p
+                key={i}
+                aria-hidden={!on}
+                className="font-sans absolute inset-x-0 top-0 pl-4"
+                style={{
+                  fontSize: 15,
+                  lineHeight: 1.55,
+                  color: 'var(--text-dim)',
+                  opacity: on ? 1 : 0,
+                  transform: on ? 'none' : 'translateY(4px)',
+                  transition: on
+                    ? 'opacity 240ms var(--ease-standard) 160ms, transform 240ms var(--ease-emphasis) 160ms'
+                    : 'opacity 160ms var(--ease-standard), transform 160ms var(--ease-emphasis)',
+                  pointerEvents: on ? 'auto' : 'none',
+                }}
+              >
+                {s.caption}
+              </p>
+            )
+          })}
         </div>
 
         {/* dwell bar + dots */}

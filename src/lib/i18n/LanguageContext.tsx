@@ -31,6 +31,13 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     }
   }, [])
 
+  // Keep <html lang> in sync with the active language for a11y and SEO — the
+  // document ships as lang="en" and the toggle is a client-side button, so
+  // without this it never updates. Covers restore, browser-detect, and toggle.
+  useEffect(() => {
+    document.documentElement.lang = lang
+  }, [lang])
+
   function setLang(newLang: Language) {
     setLangState(newLang)
     localStorage.setItem('pc_lang', newLang)

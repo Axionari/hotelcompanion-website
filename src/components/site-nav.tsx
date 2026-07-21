@@ -93,7 +93,7 @@ export function SiteNav() {
       <div className="max-w-6xl mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
         <Link
           href="/"
-          className="font-sans"
+          className="font-sans whitespace-nowrap flex-shrink-0"
           style={{
             color: "var(--text)",
             fontSize: "15px",
@@ -106,7 +106,7 @@ export function SiteNav() {
         </Link>
 
         {/* Desktop links */}
-        <div className="hidden lg:flex items-center gap-5 xl:gap-7">
+        <div className="hidden lg:flex items-center gap-4 xl:gap-6">
           {NAV_LINKS.map((l) => (
             <Link
               key={l.href}
@@ -125,14 +125,14 @@ export function SiteNav() {
           <button
             type="button"
             onClick={openLiveDemo}
-            className="hidden xl:inline-flex font-sans transition-colors hover:text-[#F7F6F1]"
+            className="hidden xl:inline-flex font-sans transition-colors hover:text-[#F7F6F1] whitespace-nowrap"
             style={{ fontSize: "15px", color: "var(--accent)", minHeight: "44px" }}
           >
             {demo.open}
           </button>
           <Link
             href="/demo"
-            className="btn-primary"
+            className="btn-primary whitespace-nowrap flex-shrink-0"
             style={{ minHeight: "44px", fontSize: "14px" }}
           >
             {nav.bookDemo}
