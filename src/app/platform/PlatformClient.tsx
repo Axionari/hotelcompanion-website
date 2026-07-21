@@ -471,16 +471,11 @@ export default function PlatformClient() {
         title={c.multiProperty.title}
         variant="bg"
       >
-        <div className="mt-14 grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-          <div className="lg:col-span-5">
-            <Beats lines={c.multiProperty.beats} />
-          </div>
-          <div className="lg:col-span-7">
-            <IconChipGrid items={c.multiProperty.items} columns={2} />
-          </div>
-        </div>
+        {/* Canonical on Enterprise, which is the portfolio page. */}
         <div className="mt-12">
-          <Beats lines={c.multiProperty.close} size="lg" />
+          <Teaser lines={c.multiProperty.beats.slice(0, 2)} href="/enterprise#shared-intel" label={g.nav.enterprise}>
+            <IconChipGrid items={c.multiProperty.items.slice(0, 4)} columns={2} />
+          </Teaser>
         </div>
       </Section>
 
@@ -492,13 +487,11 @@ export default function PlatformClient() {
         support={c.enterpriseReady.lead}
         variant="surface-2"
       >
-        <div className="mt-14 grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-          <div className="lg:col-span-7">
-            <IconChipGrid items={c.enterpriseReady.items} columns={2} />
-          </div>
-          <div className="lg:col-span-5">
-            <Beats lines={[c.enterpriseReady.close]} size="lg" />
-          </div>
+        {/* Canonical on Enterprise; a trust strip is enough here. */}
+        <div className="mt-12">
+          <Teaser lines={[c.enterpriseReady.close]} href="/enterprise" label={g.nav.enterprise}>
+            <CapabilityStrip names={c.enterpriseReady.items} />
+          </Teaser>
         </div>
       </Section>
 

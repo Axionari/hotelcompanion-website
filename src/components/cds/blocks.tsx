@@ -1,6 +1,8 @@
 'use client'
 
 import { ReactNode, useEffect, useRef, useState } from 'react'
+import { useCopy } from '@/lib/i18n/useCopy'
+import { globalCopy } from '@/lib/i18n/marketing/global'
 import { Reveal } from './Reveal'
 
 /* ============================================================================
@@ -132,6 +134,7 @@ export function IconChipGrid({
   /** e.g. "+ 4 more" / "+ 4 más". Falls back to a neutral count. */
   moreLabel?: (n: number) => string
 }) {
+  const { nav: gnav } = useCopy(globalCopy)
   const shown = cap > 0 ? items.slice(0, cap) : items
   const rest = items.length - shown.length
   return (
@@ -157,7 +160,7 @@ export function IconChipGrid({
     </div>
     {rest > 0 && (
       <p className="eyebrow mt-4" style={{ color: 'var(--accent)' }}>
-        {moreLabel ? moreLabel(rest) : `+ ${rest}`}
+        {moreLabel ? moreLabel(rest) : `+ ${rest} ${gnav.more}`}
       </p>
     )}
     </>
@@ -558,6 +561,81 @@ export function CommissionCompare({
           </div>
         </div>
       ))}
+    </div>
+  )
+}
+
+/**
+ * The resolution split as a thin copper donut (91% resolved / 9% escalated).
+ *
+ * Used where the full DashboardMockup would be a duplicate — the number is the
+ * argument, so it does not need the whole dashboard around it. Counts up once
+ * on reveal; reduced motion renders the final value immediately.
+ */
+export function ResolutionDonut({
+  resolvedPct,
+  escalatedPct,
+  resolvedLabel,
+  escalatedLabel,
+  size = 168,
+}: {
+  resolvedPct: number
+  escalatedPct: number
+  resolvedLabel: string
+  escalatedLabel: string
+  size?: number
+}) {
+  const r = 54
+  const c = 2 * Math.PI * r
+  const resolved = (resolvedPct / 100) * c
+
+  return (
+    <div className="flex items-center gap-7">
+      <svg width={size} height={size} viewBox="0 0 140 140" role="img" aria-label={`${resolvedPct}% ${resolvedLabel}`}>
+        {/* escalated remainder */}
+        <circle cx="70" cy="70" r={r} fill="none" stroke="var(--border)" strokeWidth="9" />
+        {/* resolved arc */}
+        <circle
+          cx="70"
+          cy="70"
+          r={r}
+          fill="none"
+          stroke="var(--accent)"
+          strokeWidth="9"
+          strokeLinecap="round"
+          strokeDasharray={`${resolved} ${c - resolved}`}
+          transform="rotate(-90 70 70)"
+          className="donut-arc"
+          style={{ ['--arc' as string]: `${resolved}` }}
+        />
+        <text
+          x="70"
+          y="66"
+          textAnchor="middle"
+          className="font-serif"
+          style={{ fontSize: 26, fontWeight: 530, fill: 'var(--text)' }}
+        >
+          {resolvedPct}%
+        </text>
+        <text x="70" y="84" textAnchor="middle" style={{ fontSize: 8, fill: 'var(--text-faint)', letterSpacing: '0.14em' }}>
+          {resolvedLabel.toUpperCase()}
+        </text>
+      </svg>
+
+      <ul className="flex flex-col gap-3" role="list">
+        <li className="flex items-center gap-2.5">
+          <span aria-hidden="true" style={{ width: 10, height: 10, borderRadius: 2, background: 'var(--accent)' }} />
+          <span className="font-sans" style={{ fontSize: 14, color: 'var(--text)' }}>
+            {resolvedPct}% {resolvedLabel}
+          </span>
+        </li>
+        <li className="flex items-center gap-2.5">
+          <span aria-hidden="true" style={{ width: 10, height: 10, borderRadius: 2, background: 'var(--border)' }} />
+          <span className="font-sans" style={{ fontSize: 14, color: 'var(--text-dim)' }}>
+            {escalatedPct}% {escalatedLabel}
+          </span>
+        </li>
+      </ul>
     </div>
   )
 }

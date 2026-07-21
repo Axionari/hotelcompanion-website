@@ -11,7 +11,7 @@ import { PersistentCTA } from '@/components/cds/PersistentCTA'
 import { HeroIgnition } from '@/components/cds/HeroIgnition'
 import { TabletOS } from '@/components/cds/TabletOS'
 import { openLiveDemo } from '@/components/cds/LiveDemoModal'
-import { CapabilityStrip } from '@/components/cds/Teaser'
+import { Teaser, CapabilityStrip } from '@/components/cds/Teaser'
 import { Breather } from '@/components/cds/Breather'
 import { globalCopy } from '@/lib/i18n/marketing/global'
 import { JourneyWalkthrough } from '@/components/cds/JourneyWalkthrough'
@@ -24,7 +24,7 @@ import {
   RoutingFlow,
   JourneyTimeline,
   ConvergenceDiagram,
-  DashboardMockup,
+  ResolutionDonut,
   Accordion,
   CommissionCompare,
 } from '@/components/cds/blocks'
@@ -232,15 +232,15 @@ export default function HomeClient() {
             <IconChipGrid items={c.intelligence.items} columns={2} />
           </div>
           <div className="lg:col-span-7">
-            <DashboardMockup
-              title={c.dashboard.title}
-              resolvedPct={91}
-              escalatedPct={9}
-              resolvedLabel={c.dashboard.resolvedLabel}
-              escalatedLabel={c.dashboard.escalatedLabel}
-              metrics={c.dashboard.metrics}
-              properties={c.dashboard.properties}
-            />
+            {/* The full dashboard is canonical on Platform. */}
+            <Teaser lines={[c.dashboard.title]} href="/platform#platform-dashboards" label={g.nav.platform}>
+              <ResolutionDonut
+                resolvedPct={91}
+                escalatedPct={9}
+                resolvedLabel={c.dashboard.resolvedLabel}
+                escalatedLabel={c.dashboard.escalatedLabel}
+              />
+            </Teaser>
           </div>
         </div>
         <Reveal>
@@ -333,27 +333,16 @@ export default function HomeClient() {
 
       {/* 11 · FOUNDING PARTNERS {#home-founding-partner} */}
       <Section eyebrow="13 · FOUNDING PARTNERS" title={c.foundingPartner.title} support={c.foundingPartner.lead} variant="bg">
-        <div className="mt-12 grid lg:grid-cols-12 gap-10">
-          <div className="lg:col-span-5">
-            <p className="body-lead" style={{ color: 'var(--text)' }}>
-              {c.foundingPartner.receiveLead}
-            </p>
-          </div>
-          <div className="lg:col-span-7">
-            <IconChipGrid items={c.foundingPartner.items} columns={2} />
-          </div>
+        {/* The full programme is canonical on /contact#founding. */}
+        <div className="mt-12">
+          <Teaser
+            lines={[c.foundingPartner.receiveLead]}
+            href="/contact#founding"
+            label={c.foundingCta}
+          >
+            <IconChipGrid items={c.foundingPartner.items.slice(0, 4)} columns={2} />
+          </Teaser>
         </div>
-        <Reveal>
-          <p className="mt-10">
-            <Link
-              href="/contact#founding"
-              className="font-sans transition-colors hover:text-[#d4824f]"
-              style={{ color: 'var(--accent)', fontWeight: 500, fontSize: 15 }}
-            >
-              {c.foundingCta} →
-            </Link>
-          </p>
-        </Reveal>
       </Section>
 
       {/* 12 · FAQ {#home-faq} — accordion */}

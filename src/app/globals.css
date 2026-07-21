@@ -895,3 +895,14 @@ body {
 }
 
 
+
+/* The resolution donut draws itself once on load. Safe to animate: the arc's
+   final dasharray is the resting value, so a non-ticking animation simply
+   shows the finished donut. */
+@media (prefers-reduced-motion: no-preference) {
+  .donut-arc { animation: donut-draw 1100ms var(--ease-emphasis) both; }
+}
+
+@keyframes donut-draw {
+  from { stroke-dasharray: 0 999; }
+}
