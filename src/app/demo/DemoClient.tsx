@@ -1,11 +1,11 @@
 'use client'
 
 import { Section } from '@/components/cds/Section'
-import { FAQAccordion } from '@/components/cds/FAQAccordion'
+import { Accordion } from '@/components/cds/blocks'
 import { DemoForm } from '@/components/cds/DemoForm'
 import { Reveal } from '@/components/cds/Reveal'
 import { Lead, Card, CardText } from '@/components/cds/Prose'
-import { PageShell, PageHero, primaryBtn } from '@/components/cds/PageShell'
+import { PageShell, PageHero } from '@/components/cds/PageShell'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { demoCopy } from '@/lib/i18n/marketing/demo'
 import { demoFormCopy } from '@/lib/i18n/marketing/demoForm'
@@ -13,7 +13,7 @@ import { demoFormCopy } from '@/lib/i18n/marketing/demoForm'
 /** Numbered step list used for the agenda and the deployment sequence. */
 function Steps({ items }: { items: ReadonlyArray<{ title: string; body: string }> }) {
   return (
-    <ol className="mt-12 max-w-2xl mx-auto flex flex-col gap-6 text-left">
+    <ol className="mt-12 flex flex-col gap-6" style={{ maxWidth: 760 }}>
       {items.map((s, i) => (
         <Reveal key={s.title} as="li" delay={Math.min(i, 5) * 40}>
           <div className="flex gap-5">
@@ -48,15 +48,14 @@ export default function DemoClient() {
         <Lead reveal={false}>{c.hero.body3}</Lead>
         <a
           href="#form"
-          className="font-sans mt-4 flex items-center justify-center text-white transition-colors hover:bg-[#D4784A]"
-          style={primaryBtn}
+          className="btn-primary mt-4"
         >
           {c.hero.cta}
         </a>
       </PageHero>
 
       {/* {#demo-experience} */}
-      <Section eyebrow="01 · THE SESSION" title={c.experience.title} variant="surface-1" center>
+      <Section eyebrow="01 · THE SESSION" title={c.experience.title} variant="surface-1">
         <div className="mt-6">
           <Lead>{c.experience.lead}</Lead>
         </div>
@@ -70,12 +69,12 @@ export default function DemoClient() {
       </Section>
 
       {/* {#demo-who} */}
-      <Section eyebrow="02 · ATTENDEES" title={c.who.title} center>
+      <Section eyebrow="02 · ATTENDEES" title={c.who.title}>
         <div className="mt-6">
           <Lead>{c.who.lead}</Lead>
         </div>
         <Reveal>
-          <div className="mt-10 flex flex-wrap justify-center gap-2.5 max-w-3xl mx-auto">
+          <div className="mt-10 flex flex-wrap gap-2.5">
             {c.who.roles.map((role) => (
               <span
                 key={role}
@@ -95,7 +94,7 @@ export default function DemoClient() {
       </Section>
 
       {/* {#demo-discuss} */}
-      <Section eyebrow="03 · TOPICS" title={c.discuss.title} variant="surface-1" center>
+      <Section eyebrow="03 · TOPICS" title={c.discuss.title} variant="surface-1">
         <div className="mt-8 flex flex-col gap-4">
           <Lead>{c.discuss.lead}</Lead>
           <Lead tone="primary">{c.discuss.body}</Lead>
@@ -103,7 +102,7 @@ export default function DemoClient() {
       </Section>
 
       {/* {#demo-expect} */}
-      <Section eyebrow="04 · WHAT TO EXPECT" title={c.expect.title} center>
+      <Section eyebrow="04 · WHAT TO EXPECT" title={c.expect.title}>
         <div className="mt-12 grid sm:grid-cols-2 gap-5 text-left">
           {c.expect.items.map((item) => (
             <Card key={item.id} id={item.id} title={item.title}>
@@ -114,24 +113,24 @@ export default function DemoClient() {
       </Section>
 
       {/* {#demo-agenda} */}
-      <Section eyebrow="05 · AGENDA" title={c.agenda.title} variant="surface-1" center>
+      <Section eyebrow="05 · AGENDA" title={c.agenda.title} variant="surface-1">
         <Steps items={c.agenda.items} />
       </Section>
 
       {/* {#demo-deployment} */}
-      <Section eyebrow="06 · DEPLOYMENT" title={c.deployment.title} center>
+      <Section eyebrow="06 · DEPLOYMENT" title={c.deployment.title}>
         <Steps items={c.deployment.stages} />
       </Section>
 
       {/* {#demo-faq} */}
-      <Section id="faq" eyebrow="07 · FAQ" title={c.faq.title} variant="surface-1" center>
+      <Section id="faq" eyebrow="07 · FAQ" title={c.faq.title} variant="surface-1">
         <div className="mt-12">
-          <FAQAccordion items={c.faq.items} />
+          <Accordion items={c.faq.items} />
         </div>
       </Section>
 
       {/* {#demo-form} */}
-      <Section id="form" eyebrow="08 · REQUEST" title={form.title} center>
+      <Section id="form" eyebrow="08 · REQUEST" title={form.title}>
         <div className="mt-6">
           <Lead>{form.intro}</Lead>
         </div>
@@ -141,17 +140,16 @@ export default function DemoClient() {
       </Section>
 
       {/* {#demo-final-cta} */}
-      <Section eyebrow="09 · NEXT STEP" title={c.finalCta.title} variant="surface-1" center>
+      <Section eyebrow="09 · NEXT STEP" title={c.finalCta.title} variant="surface-1">
         <div className="mt-8 flex flex-col gap-4">
           <Lead>{c.finalCta.body1}</Lead>
           <Lead>{c.finalCta.body2}</Lead>
         </div>
         <Reveal>
-          <div className="mt-10 flex justify-center">
+          <div className="mt-10">
             <a
               href="#form"
-              className="font-sans flex items-center justify-center text-white transition-colors hover:bg-[#D4784A]"
-              style={primaryBtn}
+              className="btn-primary"
             >
               {c.finalCta.cta}
             </a>

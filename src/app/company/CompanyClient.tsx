@@ -8,6 +8,7 @@ import { Section } from '@/components/cds/Section'
 import { Reveal } from '@/components/cds/Reveal'
 import { EndorsementMark } from '@/components/cds/EndorsementMark'
 import { MultiAccentHeadline } from '@/components/cds/AccentHeadline'
+import { MediaBed } from '@/components/cds/MediaBed'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { companyCopy } from '@/lib/i18n/marketing/company'
 import { accents } from '@/lib/i18n/marketing/accents'
@@ -26,20 +27,32 @@ export default function CompanyClient() {
     <main>
       <SiteNav />
 
-      {/* {#company-hero} — left-aligned, card-less, on the bed */}
+      {/* {#company-hero} — left text, reception still filling the right column */}
       <section className="pt-16 pb-20 md:pt-28 md:pb-28" style={{ background: 'var(--bg)' }}>
         <div className="container-rc">
-          <div className="eyebrow eyebrow-accent mb-7">COMPANY</div>
-          <MultiAccentHeadline
-            as="h1"
-            className="heading-page"
-            style={{ color: 'var(--text)', maxWidth: '17ch' }}
-            text={c.hero.title}
-            accents={a.companyHero}
-          />
-          <div className="mt-9 flex flex-col gap-5" style={{ maxWidth: '58ch' }}>
-            <p className="body-lead">{c.hero.body1}</p>
-            <p className="body-lead">{c.hero.body2}</p>
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            <div className="lg:col-span-7">
+              <div className="eyebrow eyebrow-accent mb-7">COMPANY</div>
+              <MultiAccentHeadline
+                as="h1"
+                className="heading-page"
+                style={{ color: 'var(--text)', maxWidth: '17ch' }}
+                text={c.hero.title}
+                accents={a.companyHero}
+              />
+              <div className="mt-9 flex flex-col gap-5" style={{ maxWidth: '54ch' }}>
+                <p className="body-lead">{c.hero.body1}</p>
+                <p className="body-lead">{c.hero.body2}</p>
+              </div>
+            </div>
+            <div className="lg:col-span-5">
+              <MediaBed
+                poster="/assets/img/lobby-modern.webp"
+                scrim={0.3}
+                className="rounded-2xl"
+                minHeight="420px"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -70,8 +83,14 @@ export default function CompanyClient() {
                 ))}
               </div>
 
-              {/* The "walked out the door" line — pull-quote, not body copy */}
-              <div className="lg:col-span-5 mt-12 lg:mt-0 flex items-center">
+              {/* The "walked out the door" line — pull-quote over the reception still */}
+              <div className="lg:col-span-5 mt-12 lg:mt-0">
+                <MediaBed
+                  poster="/assets/img/company-reception.webp"
+                  scrim={0.74}
+                  className="rounded-2xl h-full flex items-center"
+                >
+                <div className="px-7 py-10">
                 <Reveal>
                   <blockquote
                     className="font-serif"
@@ -88,6 +107,8 @@ export default function CompanyClient() {
                     {why.body[why.body.length - 1]}
                   </blockquote>
                 </Reveal>
+                </div>
+                </MediaBed>
               </div>
             </div>
 

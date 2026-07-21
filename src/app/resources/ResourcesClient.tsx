@@ -6,7 +6,8 @@ import { Section } from '@/components/cds/Section'
 import { RhythmStack } from '@/components/cds/RhythmStack'
 import { Reveal } from '@/components/cds/Reveal'
 import { Lead, Coda } from '@/components/cds/Prose'
-import { PageShell, PageHero, FinalCta, primaryBtn } from '@/components/cds/PageShell'
+import { PageShell, PageHero, FinalCta } from '@/components/cds/PageShell'
+import { MediaBed } from '@/components/cds/MediaBed'
 import { useCopy, type Localized } from '@/lib/i18n/useCopy'
 import { resourcesCopy } from '@/lib/i18n/marketing/resources'
 import type { EssayMeta } from '@/lib/library'
@@ -42,12 +43,8 @@ export default function ResourcesClient({ content }: { content: Localized<Resour
           <Lead>{c.featured.body2}</Lead>
         </div>
         <Reveal>
-          <div className="mt-10 flex justify-center">
-            <Link
-              href={`/resources/library/${c.featured.slug}`}
-              className="font-sans flex items-center justify-center text-white transition-colors hover:bg-[#D4784A]"
-              style={primaryBtn}
-            >
+          <div className="mt-10">
+            <Link href={`/resources/library/${c.featured.slug}`} className="btn-primary">
               {c.featured.cta} →
             </Link>
           </div>
@@ -79,7 +76,7 @@ export default function ResourcesClient({ content }: { content: Localized<Resour
       {/* {#resources-categories} — filters over the full 12-essay library */}
       <Section id="categories" eyebrow={c.categories.eyebrow} title={c.categories.title} variant="surface-1" center>
         <Reveal>
-          <div className="mt-10 flex flex-wrap justify-center gap-2.5">
+          <div className="mt-10 flex flex-wrap gap-2.5">
             {[null, ...categories].map((cat) => {
               const on = cat === null ? !activeValid : cat === active
               return (
@@ -89,9 +86,10 @@ export default function ResourcesClient({ content }: { content: Localized<Resour
                   aria-pressed={on}
                   className="font-sans rounded-full px-4 transition-colors"
                   style={{
-                    background: on ? 'var(--accent)' : 'var(--surface-2)',
+                    background: on ? 'var(--accent)' : 'transparent',
                     border: `1px solid ${on ? 'var(--accent)' : 'var(--border)'}`,
-                    color: on ? '#fff' : 'var(--text-secondary)',
+                    color: on ? '#1a1207' : 'var(--text-dim)',
+                    fontWeight: on ? 600 : 400,
                     fontSize: '14px',
                     minHeight: '44px',
                   }}
@@ -109,24 +107,33 @@ export default function ResourcesClient({ content }: { content: Localized<Resour
           </div>
         )}
 
-        <ul className="mt-10 max-w-3xl mx-auto text-left">
-          {visible.map((e) => (
-            <li key={e.slug} style={{ borderBottom: '1px solid var(--border)' }}>
-              <Link
-                href={`/resources/library/${e.slug}`}
-                className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-5 py-4 transition-colors hover:text-[#D4784A]"
-                style={{ color: 'var(--text)' }}
-              >
-                <span className="eyebrow flex-shrink-0">{String(e.order).padStart(2, '0')}</span>
-                <span className="flex-1">
-                  <span className="font-sans block" style={{ fontSize: '16px' }}>
+        <ul className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {visible.map((e, i) => (
+            <li key={e.slug}>
+              <Reveal delay={Math.min(i, 6) * 30}>
+                <Link
+                  href={`/resources/library/${e.slug}`}
+                  className="group flex h-full flex-col rounded-2xl p-6 transition-colors"
+                  style={{ background: 'var(--surface-2)', border: '1px solid var(--border-soft)' }}
+                >
+                  <span className="eyebrow eyebrow-accent mb-4">
+                    {String(e.order).padStart(2, '0')} · {e.category}
+                  </span>
+                  <span
+                    className="font-serif mb-3"
+                    style={{ fontSize: '1.25rem', fontWeight: 530, lineHeight: 1.2, color: 'var(--text)' }}
+                  >
                     {e.title}
                   </span>
-                  <span className="font-serif italic block mt-1" style={{ fontSize: '14px', color: 'var(--text-muted)' }}>
-                    {e.category} · {e.readingTime}
+                  <span
+                    className="font-serif italic flex-1"
+                    style={{ fontSize: '0.95rem', lineHeight: 1.5, color: 'var(--text-dim)' }}
+                  >
+                    {e.subtitle}
                   </span>
-                </span>
-              </Link>
+                  <span className="eyebrow mt-5">{e.readingTime}</span>
+                </Link>
+              </Reveal>
             </li>
           ))}
         </ul>
