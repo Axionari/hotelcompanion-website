@@ -481,7 +481,7 @@ export function TabletOS({
           </div>
 
           {/* Chat sits below on every visual surface; voice-only is reserved
-              for the phone-call surface (see SurfaceFan). */}
+              for the phone-call surface (see DeviceWall). */}
           <div
             className="absolute inset-x-0 bottom-0 flex items-center gap-2 px-3 py-2.5"
             style={{ borderTop: '1px solid var(--border-soft)', background: 'rgba(15,13,12,0.72)' }}
