@@ -124,7 +124,7 @@ export default function DemoClient() {
       </Section>
 
       {/* {#demo-faq} */}
-      <Section eyebrow="07 · FAQ" title={c.faq.title} variant="surface-1" center>
+      <Section id="faq" eyebrow="07 · FAQ" title={c.faq.title} variant="surface-1" center>
         <div className="mt-12">
           <FAQAccordion items={c.faq.items} />
         </div>
