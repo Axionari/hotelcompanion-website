@@ -362,3 +362,34 @@ body {
 @media (prefers-reduced-motion: reduce) {
   [style*="journey-progress"] { animation: none !important; width: 100% !important; }
 }
+
+/* ---------------------------------------------- live demo (Live Demo · D5) */
+
+/* Streaming caret. Information, not decoration — so it stays visible under
+   reduced-motion, it just stops blinking. */
+.demo-caret {
+  display: inline-block;
+  margin-left: 1px;
+  color: var(--accent);
+  animation: demo-blink 1s steps(2, start) infinite;
+}
+
+@keyframes demo-blink {
+  50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .demo-caret { animation: none; }
+}
+
+/* Cards arrive with the answer; under reduced motion they simply appear. */
+.demo-card { animation: demo-card-in var(--dur-base) var(--ease-emphasis) both; }
+
+@keyframes demo-card-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .demo-card { animation: none; }
+}
