@@ -1,0 +1,110 @@
+[
+  {
+    "slug": "future-of-hospitality-is-conversational",
+    "order": 1,
+    "title": "The Future of Hospitality Is Conversational",
+    "subtitle": "Why the next competitive advantage in hospitality won’t be another app—it will be a better conversation.",
+    "category": "Voice Technology",
+    "readingTime": "4 min read",
+    "next": "beyond-the-ai-concierge"
+  },
+  {
+    "slug": "beyond-the-ai-concierge",
+    "order": 2,
+    "title": "Beyond the AI Concierge",
+    "subtitle": "Why Hotels Need Guest Intelligence Platforms, Not Chatbots.",
+    "category": "Artificial Intelligence",
+    "readingTime": "4 min read",
+    "next": "every-conversation-is-revenue"
+  },
+  {
+    "slug": "every-conversation-is-revenue",
+    "order": 3,
+    "title": "Every Conversation Is Revenue",
+    "subtitle": "The Hidden Commercial Engine Inside Every Hotel.",
+    "category": "Revenue Growth",
+    "readingTime": "4 min read",
+    "next": "voice-is-the-new-interface"
+  },
+  {
+    "slug": "voice-is-the-new-interface",
+    "order": 4,
+    "title": "Voice Is the New Interface",
+    "subtitle": "Why Conversation Will Replace Apps in Hospitality.",
+    "category": "Voice Technology",
+    "readingTime": "4 min read",
+    "next": "hotels-dont-have-a-data-problem"
+  },
+  {
+    "slug": "hotels-dont-have-a-data-problem",
+    "order": 5,
+    "title": "Hotels Don’t Have a Data Problem. They Have a Conversation Problem.",
+    "subtitle": "Why the hospitality industry’s most valuable information disappears every day.",
+    "category": "Hotel Operations",
+    "readingTime": "5 min read",
+    "next": "the-hotel-knowledge-problem"
+  },
+  {
+    "slug": "the-hotel-knowledge-problem",
+    "order": 6,
+    "title": "The Hotel Knowledge Problem",
+    "subtitle": "Why Your Greatest Competitive Advantage Lives Inside Your People.",
+    "category": "Hotel Operations",
+    "readingTime": "5 min read",
+    "next": "hospitality-is-an-intelligence-business"
+  },
+  {
+    "slug": "hospitality-is-an-intelligence-business",
+    "order": 7,
+    "title": "Hospitality Is an Intelligence Business",
+    "subtitle": "Why Understanding Guests Will Become Every Hotel’s Greatest Competitive Advantage.",
+    "category": "Guest Experience",
+    "readingTime": "4 min read",
+    "next": "the-rise-of-guest-intelligence-platforms"
+  },
+  {
+    "slug": "the-rise-of-guest-intelligence-platforms",
+    "order": 8,
+    "title": "The Rise of Guest Intelligence Platforms",
+    "subtitle": "Defining the Next Category in Hospitality Technology.",
+    "category": "Artificial Intelligence",
+    "readingTime": "5 min read",
+    "next": "designing-hotels-that-never-sleep"
+  },
+  {
+    "slug": "designing-hotels-that-never-sleep",
+    "order": 9,
+    "title": "Designing Hotels That Never Sleep",
+    "subtitle": "How Artificial Intelligence Extends Hospitality Without Replacing Humans.",
+    "category": "Guest Experience",
+    "readingTime": "5 min read",
+    "next": "every-department-should-share-the-same-intelligence"
+  },
+  {
+    "slug": "every-department-should-share-the-same-intelligence",
+    "order": 10,
+    "title": "Every Department Should Share the Same Intelligence",
+    "subtitle": "Breaking Down the Silos That Prevent Exceptional Hospitality.",
+    "category": "Hotel Operations",
+    "readingTime": "4 min read",
+    "next": "the-operating-system-for-hospitality"
+  },
+  {
+    "slug": "the-operating-system-for-hospitality",
+    "order": 11,
+    "title": "The Operating System for Hospitality",
+    "subtitle": "Why the Industry Needs More Than Another Application.",
+    "category": "Companion OS",
+    "readingTime": "5 min read",
+    "next": "what-happens-when-every-guest-conversation-becomes-intelligence"
+  },
+  {
+    "slug": "what-happens-when-every-guest-conversation-becomes-intelligence",
+    "order": 12,
+    "title": "What Happens When Every Guest Conversation Becomes Intelligence?",
+    "subtitle": "The Future of Hospitality Isn’t Artificial Intelligence. It’s Organizational Intelligence.",
+    "category": "Companion OS",
+    "readingTime": "5 min read",
+    "next": null
+  }
+]
