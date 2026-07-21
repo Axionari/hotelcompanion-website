@@ -65,20 +65,26 @@ locally with ffmpeg before being committed:
 
 ## Breather bands (`public/assets/breathers/`)
 
-Curated cinematic stills, sourced from Pexels under the Pexels License (free
-to use, no attribution required; recorded here anyway). Fetched at w=2560 and
-re-encoded to WebP at 1920px (1600px for the sandbar, which is high-frequency
-and would not compress below ~600KB otherwise).
+Curated cinematic stills from Pexels (Pexels License — free to use, no
+attribution required; recorded anyway). Fetched at w=2560, re-encoded to WebP.
+The foliage-heavy frames needed a harder pass: they are high-frequency and sit
+behind a scrim, so quality was traded for weight.
 
-| File | Source |
-| --- | --- |
-| aerial-seascape.webp | pexels.com/photo/37943870 |
-| aerial-islands.webp | pexels.com/photo/36332947 |
-| tropical-bay.webp | pexels.com/photo/14574160 |
-| white-sandbar.webp | pexels.com/photo/36111990 |
-| archipelago.webp | pexels.com/photo/19758822 |
+| File | Source | Encode | Mood |
+| --- | --- | --- | --- |
+| giant-tree.webp | pexels 4618623 | 1600 / q46 | green · awe |
+| waterfall-swim.webp | pexels 2410860 | 1600 / q54 | green |
+| waterfall-lagoon.webp | pexels 8521850 | 1920 / q76 | green |
+| beach-dusk-walk.webp | pexels 37804743 | 1920 / q76 | warm |
+| beach-golden.webp | pexels 3605451 | 1920 / q76 | warm |
 
-**Not fetched:** `pexels.com/photo/6861` (intended as `pool-golden-hour.jpg`,
-the warm counterpoint) returns 404. The warm beats currently reuse the repo's
-existing `hero-poolside.webp` and `luxury-lobby.webp`. Replace when a working
-URL is available.
+`public/assets/ui/beach-akumal.webp` (pexels 36111990, 900px / q72) is the
+in-device answer card for "Best beach near here?" — the device previously
+showed a poolside photo for a beach question.
+
+Retired this round: the aqua-sandbar/aerial set (aerial-seascape,
+aerial-islands, tropical-bay, archipelago, white-sandbar) and the reused
+pool/lobby fallbacks.
+
+**Still missing:** `pexels 6861` (pool-golden-hour) 404s. Not needed now — the
+warm slots are covered by the two beach walks.

@@ -313,7 +313,7 @@ export default function PlatformClient() {
       </Section>
 
       {/* 07 · RESERVATIONS {#platform-reservations} */}
-      <Breather image="/assets/breathers/tropical-bay.webp" />
+      <Breather image="/assets/breathers/waterfall-swim.webp" />
 
       <Section
         id="platform-reservations"
@@ -463,7 +463,7 @@ export default function PlatformClient() {
       </Section>
 
       {/* 12 · MULTI-PROPERTY {#platform-multi-property} */}
-      <Breather image="/assets/img/luxury-lobby.webp" />
+      <Breather image="/assets/breathers/beach-dusk-walk.webp" />
 
       <Section
         id="platform-multi-property"

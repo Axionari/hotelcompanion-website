@@ -177,7 +177,7 @@ export default function EnterpriseClient() {
       <SiteNav />
 
       {/* HERO {#enterprise-hero} — over the night-pool still, text left */}
-      <MediaBed poster="/assets/img/platform-pool-night.webp" scrim={0.68}>
+      <MediaBed poster="/assets/img/ambient-palms-night.webp" scrim={0.68}>
         <section className="relative pt-16 pb-20 md:pt-24 md:pb-28">
           <div className="container-rc">
             <div className="grid lg:grid-cols-12 gap-10">
@@ -279,7 +279,7 @@ export default function EnterpriseClient() {
 
       {/* 11 · WHAT IT IS NOT {#what-it-is-not} — the "Not a…" quadrant.
           Deep-linked from the Home teaser as /enterprise#what-it-is-not. */}
-      <Breather image="/assets/breathers/archipelago.webp" />
+      <Breather image="/assets/breathers/waterfall-lagoon.webp" />
 
       <Section
         id="what-it-is-not"
@@ -386,7 +386,7 @@ export default function EnterpriseClient() {
       </Section>
 
       {/* 15 · NEXT STEP {#enterprise-final-cta} — warm media band */}
-      <MediaBed video="cta-beach-aerial" poster="/assets/img/cta-beach-aerial-poster.webp" scrim={0.72}>
+      <MediaBed video="section-tropical-beach" poster="/assets/img/section-tropical-beach-poster.webp" scrim={0.72}>
         <section className="py-24 md:py-36">
           <div className="container-rc">
             <Reveal>

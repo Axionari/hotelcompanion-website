@@ -21,7 +21,7 @@ export function Breather({
   height = 'clamp(220px, 38vh, 420px)',
   darken = 0.16,
 }: {
-  /** Path under /public, e.g. /assets/breathers/aerial-seascape.webp */
+  /** Path under /public, e.g. /assets/breathers/waterfall-swim.webp */
   image: string
   /** Basename under /assets/video (no extension) for the largest pauses.
    *  The image is the poster and the reduced-motion / save-data fallback. */

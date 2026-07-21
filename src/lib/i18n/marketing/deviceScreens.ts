@@ -34,7 +34,7 @@ const en = {
       title: 'Akumal',
       meta: '20 min south · clear water this week',
       actions: ['Directions', 'Book a taxi'],
-      image: '/assets/img/hero-poolside.webp',
+      image: '/assets/ui/beach-akumal.webp',
     },
     roomservice: {
       ask: 'Room service, please',
@@ -127,7 +127,7 @@ const es: typeof en = {
       title: 'Akumal',
       meta: '20 min al sur · agua clara esta semana',
       actions: ['Cómo llegar', 'Reservar taxi'],
-      image: '/assets/img/hero-poolside.webp',
+      image: '/assets/ui/beach-akumal.webp',
     },
     roomservice: {
       ask: 'Servicio a cuarto, por favor',
