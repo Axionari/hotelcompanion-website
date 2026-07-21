@@ -126,7 +126,7 @@ export function useCompanion(lang: 'en' | 'es', greeting: string) {
       }
 
       const fallback = () => {
-        settle(pickFallback(lang, fallbackCount.current++), true)
+        settle(pickFallback(lang, fallbackCount.current++, question), true)
       }
 
       const controller = new AbortController()

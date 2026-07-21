@@ -152,40 +152,72 @@ export function parseReply(raw: string): Reply {
 /**
  * Shown when the model is unreachable, rate-limited or slow. A live sales demo
  * must never render an error, so these are written as though Marina answered.
+ *
+ * Each entry carries the intent it covers, so a degraded demo still answers the
+ * question that was actually asked rather than rotating blindly through a list —
+ * which is what makes the difference between "slightly canned" and "obviously
+ * broken" in front of a prospect.
  */
-export const DEMO_FALLBACKS: Record<'en' | 'es', Reply[]> = {
+type Fallback = Reply & { match: RegExp }
+
+export const DEMO_FALLBACKS: Record<'en' | 'es', Fallback[]> = {
   en: [
     {
+      match: /breakfast|dinner|lunch|eat|food|hungry|restaurant|menu|room service|drink/i,
       text: 'Casa Marina serves breakfast on the beach from 7 to 11, and the kitchen stays open until 11pm for anything you would like sent up.',
       card: 'dish-grid',
     },
     {
+      match: /beach|swim|snorkel|water|sea|ocean|cenote|dive|turtle/i,
       text: 'Akumal is about twenty minutes south and the water has been beautifully clear this week. I can arrange a taxi whenever you like.',
       card: 'beach',
     },
     {
+      match: /spa|massage|treatment|yoga|wellness|relax|facial/i,
       text: 'Spa Ixchel is open until 7 — the Mayan stone therapy is what most guests come back for. Shall I look at this afternoon?',
       card: 'spa',
     },
   ],
   es: [
     {
+      match: /desayuno|cena|comida|comer|hambre|restaurante|men\u00fa|servicio a cuarto|beber/i,
       text: 'Casa Marina sirve el desayuno en la playa de 7 a 11, y la cocina queda abierta hasta las 11pm para lo que guste subir a la habitación.',
       card: 'dish-grid',
     },
     {
+      match: /playa|nadar|snorkel|agua|mar|cenote|buce|tortuga/i,
       text: 'Akumal está a unos veinte minutos al sur y el agua ha estado muy clara esta semana. Puedo arreglar un taxi cuando guste.',
       card: 'beach',
     },
     {
+      match: /spa|masaje|tratamiento|yoga|bienestar|relaj|facial/i,
       text: 'El Spa Ixchel abre hasta las 7 — la terapia de piedras mayas es la que más piden. ¿Reviso esta tarde?',
       card: 'spa',
     },
   ],
 }
 
-/** Deterministic pick, so a demo that falls back twice does not repeat itself. */
-export function pickFallback(lang: 'en' | 'es', turn: number): Reply {
+/** A last-resort answer that admits nothing and still moves the demo forward. */
+const GENERIC: Record<'en' | 'es', Reply> = {
+  en: {
+    text: 'Let me get that exactly right for you rather than guess — I am checking with the front desk now. In the meantime, is there anything else I can arrange?',
+  },
+  es: {
+    text: 'Permítame confirmarlo con precisión en lugar de adivinar — lo estoy verificando con recepción. Mientras tanto, ¿hay algo más que pueda arreglar?',
+  },
+}
+
+/**
+ * Picks the fallback whose intent matches the question. Falls back to rotation
+ * only when nothing matches, so repeated misses do not repeat one answer.
+ */
+export function pickFallback(lang: 'en' | 'es', turn: number, question = ''): Reply {
   const pool = DEMO_FALLBACKS[lang]
-  return pool[turn % pool.length]
+  const chosen = pool.find((f) => f.match.test(question))
+  if (!chosen) return turn === 0 ? GENERIC[lang] : strip(pool[turn % pool.length])
+  return strip(chosen)
+}
+
+function strip({ match: _match, ...reply }: Fallback): Reply {
+  return reply
 }
