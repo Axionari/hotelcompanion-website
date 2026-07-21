@@ -47,6 +47,8 @@ export function JourneyWalkthrough({
   const [paused, setPaused] = useState(false)
   const [seen, setSeen] = useState(false)
   const rootRef = useRef<HTMLDivElement | null>(null)
+  const itemRefs = useRef<Array<HTMLButtonElement | null>>([])
+  const [bar, setBar] = useState<{ top: number; height: number } | null>(null)
 
   useEffect(() => {
     setReduce(window.matchMedia('(prefers-reduced-motion: reduce)').matches)
@@ -87,15 +89,44 @@ export function JourneyWalkthrough({
     return () => window.clearTimeout(t)
   }, [active, reduce, seen, paused, steps.length])
 
+  /**
+   * The copper indicator is one absolutely-positioned bar that slides between
+   * stages, measured from the active button. The previous version animated a
+   * per-item border plus font-size and padding — all three reflow, which is
+   * what made stepping feel like it jumped.
+   */
+  useEffect(() => {
+    let frame = 0
+    // The first interactive render happens when `reduce` flips false, and the
+    // refs are not always attached by the time this runs — so retry on the
+    // next frame. Bounded: an unbounded rAF chain would be exactly the kind of
+    // runaway loop that pins the main thread if the ref never resolves.
+    let tries = 0
+    const measure = () => {
+      const el = itemRefs.current[active]
+      if (!el) {
+        if (tries++ < 10) frame = window.requestAnimationFrame(measure)
+        return
+      }
+      setBar({ top: el.offsetTop, height: el.offsetHeight })
+    }
+    measure()
+
+    // Keep it aligned when the column reflows (language switch, resize).
+    const onResize = () => measure()
+    window.addEventListener('resize', onResize)
+    return () => {
+      if (frame) window.cancelAnimationFrame(frame)
+      window.removeEventListener('resize', onResize)
+    }
+  }, [active, reduce, steps.length])
+
   const tallyNow = steps.slice(0, active + 1).filter((s) => s.tally).slice(-1)[0]?.tally
 
   /* Reduced motion / no-JS: everything visible, nothing moving. */
   if (reduce) {
     return (
       <div className="grid lg:grid-cols-12 gap-10 lg:gap-14">
-        <div className="lg:col-span-7">
-          <TabletFilmstrip screens={steps.map((s) => s.screen)} />
-        </div>
         <div className="lg:col-span-5 flex flex-col gap-7">
           {steps.map((s, i) => (
             <div key={i}>
@@ -111,6 +142,9 @@ export function JourneyWalkthrough({
             </div>
           ))}
         </div>
+        <div className="lg:col-span-7">
+          <TabletFilmstrip screens={steps.map((s) => s.screen)} />
+        </div>
       </div>
     )
   }
@@ -118,122 +152,62 @@ export function JourneyWalkthrough({
   return (
     <div
       ref={rootRef}
-      className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center"
+      className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
     >
-      {/* the device — left, showing the screen for the current stage */}
-      <div className="lg:col-span-7">
-        <TabletOS screen={steps[active]?.screen} orbState={paused ? 'idle' : 'listening'} />
-
-        {/* step dots — manual control alongside the auto-advance */}
-        <div className="mt-6 flex items-center" role="tablist" aria-label="Journey stages">
-          {steps.map((s, i) => {
-            const on = i === active
-            return (
-              <button
-                key={i}
-                role="tab"
-                aria-selected={on}
-                aria-label={`${i + 1}. ${s.title}`}
-                onClick={() => setActive(i)}
-                className="grid place-items-center"
-                style={{ width: 44, height: 44 }}
-              >
-                <span
-                  style={{
-                    display: 'block',
-                    height: 3,
-                    width: on ? 26 : 14,
-                    borderRadius: 999,
-                    background: on ? 'var(--accent)' : 'var(--border)',
-                    transition: 'width var(--dur-base) var(--ease-standard), background var(--dur-base) var(--ease-standard)',
-                  }}
-                />
-              </button>
-            )
-          })}
-          <span className="eyebrow ml-2" style={{ fontSize: 9 }}>
-            {String(active + 1).padStart(2, '0')} / {String(steps.length).padStart(2, '0')}
-          </span>
-        </div>
-      </div>
-
-      {/* the stages — right, advancing in place */}
+      {/* ---------------------------------------- the stages — now on the left */}
       <div className="lg:col-span-5">
-        <ol className="flex flex-col" role="list">
+        <ol className="relative flex flex-col" role="list" style={{ borderLeft: '1px solid var(--border-soft)' }}>
+          {/* the sliding copper indicator */}
+          <span
+            aria-hidden="true"
+            className="jw-bar"
+            style={{
+              transform: `translateY(${bar?.top ?? 0}px)`,
+              height: bar?.height ?? 0,
+              opacity: bar ? 1 : 0,
+            }}
+          />
+
           {steps.map((s, i) => {
             const on = i === active
             const newAct = i === 0 || steps[i - 1].act !== s.act
             return (
               <li key={i}>
                 {newAct && (
-                  <div
-                    className="eyebrow mt-6 first:mt-0 mb-2"
-                    style={{ color: 'var(--accent)', opacity: 0.9 }}
-                  >
+                  <div className="eyebrow mt-6 first:mt-0 mb-2 pl-4" style={{ color: 'var(--accent)', opacity: 0.9 }}>
                     {s.act}
                   </div>
                 )}
                 <button
+                  ref={(el) => {
+                    itemRefs.current[i] = el
+                  }}
                   onClick={() => setActive(i)}
                   aria-current={on}
-                  className="w-full text-left"
+                  className="w-full text-left pl-4"
                   style={{
                     display: 'block',
-                    paddingBlock: on ? 10 : 7,
-                    paddingLeft: 16,
-                    borderLeft: `2px solid ${on ? 'var(--accent)' : 'var(--border-soft)'}`,
-                    transition: 'border-color var(--dur-base) var(--ease-standard), padding var(--dur-base) var(--ease-standard)',
+                    // Fixed padding and font-size: nothing here may reflow.
+                    paddingBlock: 9,
                     minHeight: 44,
                   }}
                 >
                   <span
                     className="font-serif block"
                     style={{
-                      fontSize: on ? '1.2rem' : '1.05rem',
+                      fontSize: '1.12rem',
                       fontWeight: 530,
-                      lineHeight: 1.25,
+                      lineHeight: 1.3,
                       color: on ? 'var(--text)' : 'var(--text-faint)',
-                      transition: 'color var(--dur-base) var(--ease-standard), font-size var(--dur-base) var(--ease-standard)',
+                      opacity: on ? 1 : 0.55,
+                      transition: 'color 420ms var(--ease-standard), opacity 420ms var(--ease-standard)',
                     }}
                   >
                     {s.title}
-                  </span>
-
-                  {/* caption + progress reveal only for the active stage */}
-                  <span
-                    className="block overflow-hidden"
-                    style={{
-                      maxHeight: on ? 90 : 0,
-                      opacity: on ? 1 : 0,
-                      transition: 'max-height var(--dur-slow) var(--ease-emphasis), opacity var(--dur-base) var(--ease-standard)',
-                    }}
-                  >
-                    <span
-                      className="font-sans block mt-1.5"
-                      style={{ fontSize: 15, lineHeight: 1.55, color: 'var(--text-dim)' }}
-                    >
-                      {s.caption}
-                    </span>
-                    <span
-                      aria-hidden="true"
-                      className="block mt-3"
-                      style={{ height: 1, background: 'var(--border-soft)' }}
-                    >
-                      <span
-                        key={`${active}-${paused}`}
-                        style={{
-                          display: 'block',
-                          height: 1,
-                          background: 'var(--accent)',
-                          width: paused ? '100%' : undefined,
-                          animation: paused ? 'none' : `journey-progress ${DWELL}ms linear forwards`,
-                        }}
-                      />
-                    </span>
                   </span>
                 </button>
               </li>
@@ -241,20 +215,114 @@ export function JourneyWalkthrough({
           })}
         </ol>
 
-        {tallyNow && (
-          <div
-            className="flex items-baseline gap-3 mt-8 pt-5"
-            style={{ borderTop: '1px solid var(--border-soft)' }}
-          >
-            <span className="eyebrow">{tallyLabel}</span>
-            <span
-              className="font-serif"
-              style={{ fontSize: 'clamp(1.5rem, 2.6vw, 2rem)', fontWeight: 530, color: 'var(--accent)' }}
+        {/* Fixed-height caption slot: the caption cross-fades in place instead
+            of expanding inside the list, which used to shove every stage below
+            it down the page. */}
+        <div className="relative mt-6 pl-4" style={{ minHeight: 78 }}>
+          {steps.map((s, i) => (
+            <p
+              key={i}
+              aria-hidden={i !== active}
+              className="font-sans absolute inset-x-0 top-0 pl-4"
+              style={{
+                fontSize: 15,
+                lineHeight: 1.55,
+                color: 'var(--text-dim)',
+                opacity: i === active ? 1 : 0,
+                transform: i === active ? 'none' : 'translateY(4px)',
+                transition: 'opacity 420ms var(--ease-standard), transform 420ms var(--ease-emphasis)',
+                pointerEvents: i === active ? 'auto' : 'none',
+              }}
             >
-              {tallyNow}
+              {s.caption}
+            </p>
+          ))}
+        </div>
+
+        {/* dwell bar + dots */}
+        <div className="mt-5 pl-4">
+          <span aria-hidden="true" className="block" style={{ height: 1, background: 'var(--border-soft)' }}>
+            <span
+              key={`${active}-${paused}`}
+              style={{
+                display: 'block',
+                height: 1,
+                background: 'var(--accent)',
+                width: paused ? '100%' : undefined,
+                animation: paused ? 'none' : `journey-progress ${DWELL}ms linear forwards`,
+              }}
+            />
+          </span>
+
+          <div className="mt-2 flex items-center" role="tablist" aria-label="Journey stages">
+            {steps.map((s, i) => {
+              const on = i === active
+              return (
+                <button
+                  key={i}
+                  role="tab"
+                  aria-selected={on}
+                  aria-label={`${i + 1}. ${s.title}`}
+                  onClick={() => setActive(i)}
+                  className="grid place-items-center"
+                  style={{ width: 40, height: 44 }}
+                >
+                  <span
+                    style={{
+                      display: 'block',
+                      height: 3,
+                      width: on ? 26 : 14,
+                      borderRadius: 999,
+                      background: on ? 'var(--accent)' : 'var(--border)',
+                      transition: 'width 420ms var(--ease-emphasis), background 420ms var(--ease-standard)',
+                    }}
+                  />
+                </button>
+              )
+            })}
+            <span className="eyebrow ml-2" style={{ fontSize: 9 }}>
+              {String(active + 1).padStart(2, '0')} / {String(steps.length).padStart(2, '0')}
             </span>
           </div>
-        )}
+        </div>
+
+        {/* The tally slot is always rendered so it cannot shift the layout when
+            the first value appears; the value itself cross-fades. */}
+        <div
+          className="mt-7 pt-5"
+          style={{ borderTop: '1px solid var(--border-soft)' }}
+        >
+          <span className="eyebrow block">{tallyLabel}</span>
+          {/* The value sits on its own line: baseline-aligning an absolutely
+              positioned number against the label made them overlap. */}
+          <span className="relative block mt-1.5" style={{ height: '2.1rem' }}>
+            {steps.map((s, i) =>
+              s.tally ? (
+                <span
+                  key={i}
+                  aria-hidden={s.tally !== tallyNow}
+                  className="font-serif absolute left-0 bottom-0"
+                  style={{
+                    fontSize: 'clamp(1.5rem, 2.6vw, 2rem)',
+                    fontWeight: 530,
+                    color: 'var(--accent)',
+                    lineHeight: 1.05,
+                    opacity: s.tally === tallyNow ? 1 : 0,
+                    transform: s.tally === tallyNow ? 'none' : 'translateY(6px)',
+                    transition: 'opacity 420ms var(--ease-standard), transform 420ms var(--ease-emphasis)',
+                  }}
+                >
+                  {s.tally}
+                </span>
+              ) : null
+            )}
+          </span>
+        </div>
+      </div>
+
+      {/* ---------------------------------------- the device — now on the right */}
+      <div className="lg:col-span-7">
+        <TabletOS screen={steps[active]?.screen} orbState={paused ? 'idle' : 'listening'} />
       </div>
     </div>
   )

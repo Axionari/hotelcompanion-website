@@ -404,6 +404,23 @@ export function TabletOS({
 
   const list = useMemo(() => cycle ?? [], [cycle])
 
+  /* A controlled `screen` used to swap instantly, which read as a flicker next
+     to a stepper. It now cross-fades on the same ~420ms curve as the cycle. */
+  const [shown, setShown] = useState<ScreenId | undefined>(screen)
+  useEffect(() => {
+    if (screen === undefined || screen === shown) return
+    if (reduce) {
+      setShown(screen)
+      return
+    }
+    setFading(true)
+    const t = window.setTimeout(() => {
+      setShown(screen)
+      setFading(false)
+    }, 210)
+    return () => window.clearTimeout(t)
+  }, [screen, shown, reduce])
+
   useEffect(() => {
     if (!list.length || reduce) return
     const t = window.setInterval(() => {
@@ -418,7 +435,7 @@ export function TabletOS({
 
   useEffect(() => () => window.clearTimeout(timer.current), [])
 
-  const active: ScreenId = screen ?? list[i] ?? 'home'
+  const active: ScreenId = shown ?? screen ?? list[i] ?? 'home'
 
   return (
     <div className={`relative w-full ${className}`}>
