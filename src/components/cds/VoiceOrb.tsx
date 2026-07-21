@@ -20,12 +20,21 @@ export function VoiceOrb({
   state = 'idle',
   size = 220,
   showMic = true,
+  ripples = false,
+  keepMic = false,
+  micScale = 0.16,
   className = '',
 }: {
   state?: OrbState
   /** px, or any CSS length for fluid sizing. */
   size?: number | string
   showMic?: boolean
+  /** Rings that expand outward while listening. For the large hero orb. */
+  ripples?: boolean
+  /** Keep the mic glyph centred while speaking instead of swapping in bars. */
+  keepMic?: boolean
+  /** Mic glyph size as a fraction of the orb. */
+  micScale?: number
   className?: string
 }) {
   const [live, setLive] = useState(false)
@@ -34,7 +43,7 @@ export function VoiceOrb({
     setLive(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)
   }, [])
 
-  const micSize = typeof size === 'number' ? Math.max(14, Math.round(size * 0.16)) : 22
+  const micSize = typeof size === 'number' ? Math.max(14, Math.round(size * micScale)) : 26
 
   return (
     <div
@@ -43,6 +52,14 @@ export function VoiceOrb({
       style={{ width: size, height: typeof size === 'number' ? size : undefined }}
       aria-hidden="true"
     >
+      {ripples && (
+        <>
+          <span className="vripple" />
+          <span className="vripple" />
+          <span className="vripple" />
+        </>
+      )}
+
       <span className="vstage">
         <span className="vring r1" />
         <span className="vring r2" />
@@ -50,7 +67,7 @@ export function VoiceOrb({
         <span className="vshimmer" />
       </span>
 
-      {showMic && state !== 'speaking' && (
+      {showMic && (keepMic || state !== 'speaking') && (
         <svg
           width={micSize}
           height={micSize}
@@ -65,7 +82,7 @@ export function VoiceOrb({
         </svg>
       )}
 
-      {showMic && state === 'speaking' && (
+      {showMic && !keepMic && state === 'speaking' && (
         <span className="vwave" style={{ position: 'relative' }}>
           <i />
           <i />
@@ -75,5 +92,72 @@ export function VoiceOrb({
         </span>
       )}
     </div>
+  )
+}
+
+/**
+ * The orb as the primary voice control (Live Demo · D11).
+ *
+ * On Restaurant Companion's Features page the orb is the hero of the
+ * interaction, not an icon inside a text field — so here it is a real button:
+ * pressing it starts and stops listening, and it reflects the genuine Web
+ * Speech state. The waveform sits beneath the orb so the mic glyph stays
+ * centred throughout, and the label names the current state in words.
+ *
+ * Three states: motion (rings pulse, ripples expand, bars animate) /
+ * reduced-motion (static glow, no ripples, no bars) / no-JS (the button is
+ * inert but the orb still renders, and the text field beside it still works).
+ */
+export function VoiceOrbControl({
+  state = 'idle',
+  size,
+  label,
+  ariaLabel,
+  pressed,
+  onToggle,
+  disabled = false,
+  className = '',
+}: {
+  state?: OrbState
+  size: number | string
+  /** Human-readable state, shown beneath the orb. */
+  label: string
+  ariaLabel: string
+  pressed: boolean
+  onToggle: () => void
+  disabled?: boolean
+  className?: string
+}) {
+  const [live, setLive] = useState(false)
+
+  useEffect(() => {
+    setLive(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+  }, [])
+
+  return (
+    <button
+      type="button"
+      onClick={onToggle}
+      disabled={disabled}
+      aria-label={ariaLabel}
+      aria-pressed={pressed}
+      className={`vctl ${live ? 'live' : ''} ${className}`}
+      data-state={state}
+      style={{ cursor: disabled ? 'default' : 'pointer', opacity: disabled ? 0.55 : 1 }}
+    >
+      <VoiceOrb state={state} size={size} showMic ripples keepMic micScale={0.13} />
+
+      <span className="vctl-wave" aria-hidden="true">
+        <i />
+        <i />
+        <i />
+        <i />
+        <i />
+        <i />
+        <i />
+      </span>
+
+      <span className="vctl-label">{label}</span>
+    </button>
   )
 }

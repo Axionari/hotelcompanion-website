@@ -7,7 +7,7 @@ import { liveDemoCopy } from '@/lib/i18n/marketing/liveDemo'
 import { deviceScreens } from '@/lib/i18n/marketing/deviceScreens'
 import { useCompanion, type Turn } from '@/lib/demo/useCompanion'
 import { useSpeech } from '@/lib/demo/useSpeech'
-import { VoiceOrb, type OrbState } from './VoiceOrb'
+import { VoiceOrbControl, type OrbState } from './VoiceOrb'
 import { DemoCard } from './DemoCards'
 
 /**
@@ -15,14 +15,22 @@ import { DemoCard } from './DemoCards'
  *
  * This is the real thing, not a mockup: it speaks to the repo's existing
  * `/api/preview-chat` route, it listens through the Web Speech API, and it
- * answers with the same picture cards the static tablet renders. The mic is
- * always visible and text chat is always available beside it — voice is an
- * addition to the demo, never a prerequisite for it.
+ * answers with the same picture cards the static tablet renders.
+ *
+ * The orb IS the control, exactly as on Restaurant Companion's Features page:
+ * it sits centred in the device's upper area, always visible, and pressing it
+ * starts and stops listening. The text field beneath it is the secondary path,
+ * so voice is the headline but never a prerequisite.
+ *
+ * The orb is full size while the demo is at rest and settles smaller once the
+ * conversation starts, so the answer cards have room to bloom below it without
+ * the orb ever leaving the screen.
  *
  * Three states, as everywhere else in this build:
  *  - motion: orb animates per real status, replies stream token by token
- *  - prefers-reduced-motion: orb still, no auto-scroll easing, replies still stream
- *    (streaming is information, not decoration) and nothing is spoken unprompted
+ *  - prefers-reduced-motion: static glow, no ripples, no waveform, no orb
+ *    resize easing; replies still stream (streaming is information, not
+ *    decoration) and nothing is spoken unprompted
  *  - no-JS: a scripted transcript with real image cards renders in <noscript>,
  *    so the section is never an empty box
  */
@@ -152,16 +160,15 @@ export function LiveDemo({
 
   const [draft, setDraft] = useState('')
   const [muted, setMuted] = useState(true)
-  const [reduce, setReduce] = useState(false)
 
+  const stageRef = useRef<HTMLDivElement>(null)
   const logRef = useRef<HTMLDivElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+  /** False once the guest scrolls up to re-read something. */
+  const stick = useRef(true)
 
   const { turns, busy, send, reset, confirmAction } = useCompanion(lang, c.greeting)
-
-  useEffect(() => {
-    setReduce(window.matchMedia('(prefers-reduced-motion: reduce)').matches)
-  }, [])
 
   const speech = useSpeech({
     lang,
@@ -191,17 +198,115 @@ export function LiveDemo({
     [send, speech]
   )
 
+  /**
+   * Keep the newest answer in view.
+   *
+   * Scrolling once when `turns` changes is not enough: the card mounts with an
+   * entry animation and its photographs load afterwards, so the content grows
+   * *after* the scroll and the card ends up below the fold — which is exactly
+   * where it must not be, since the card is the answer.
+   *
+   * Fail-open, like the Reveal primitive: a ResizeObserver is the good path,
+   * but observers do not fire in every embedded webview (this repo already hit
+   * the same thing with IntersectionObserver), so a short bounded polling loop
+   * after each turn guarantees the pin lands even where observers are inert.
+   * scrollTop is assigned directly because smooth scrolling is a silent no-op
+   * wherever transitions do not tick.
+   */
   useEffect(() => {
     const el = logRef.current
     if (!el) return
-    el.scrollTo({ top: el.scrollHeight, behavior: reduce ? 'auto' : 'smooth' })
-  }, [turns, reduce])
+
+    let selfScrolls = 0
+
+    const pin = () => {
+      if (!stick.current) return
+      const target = el.scrollHeight - el.clientHeight
+      if (target <= 0 || Math.abs(el.scrollTop - target) < 1) return
+      selfScrolls++
+      el.scrollTop = target
+    }
+
+    // Self-caused scrolls are counted rather than inferred from wheel/touch:
+    // a tap in mobile emulation fires touchmove, which made the pin's own
+    // scroll look like the guest scrolling away and unpinned it for good.
+    const onScroll = () => {
+      if (selfScrolls > 0) {
+        selfScrolls--
+        return
+      }
+      stick.current = el.scrollHeight - el.scrollTop - el.clientHeight < 80
+    }
+    el.addEventListener('scroll', onScroll, { passive: true })
+
+    let ro: ResizeObserver | undefined
+    if (typeof ResizeObserver !== 'undefined' && contentRef.current) {
+      ro = new ResizeObserver(pin)
+      ro.observe(contentRef.current)
+    }
+
+    // Bounded catch-up: covers streamed tokens, the card mounting and its
+    // images decoding, then stops so nothing runs for the life of the page.
+    pin()
+    const iv = window.setInterval(pin, 90)
+    const stop = window.setTimeout(() => window.clearInterval(iv), 2000)
+
+    return () => {
+      ro?.disconnect()
+      el.removeEventListener('scroll', onScroll)
+      window.clearInterval(iv)
+      window.clearTimeout(stop)
+    }
+  }, [turns])
+
+  // A new question means the guest is following along again.
+  useEffect(() => {
+    stick.current = true
+  }, [turns.length])
 
   useEffect(() => {
     if (autoFocus) inputRef.current?.focus()
   }, [autoFocus])
 
-  const showSuggestions = turns.length <= 1 && !busy
+  // "At rest" = nothing asked yet. The orb owns the device; once the
+  // conversation starts it settles so the cards have room below it.
+  const atRest = turns.length <= 1 && !busy
+  const showSuggestions = atRest
+
+  // RC's ladder: 440px outer ring / 300px inner on desktop, scaled down on
+  // small screens but never below a 220px outer ring at 360px.
+  /**
+   * Orb size in plain pixels, derived from the device's own width.
+   *
+   * This was a CSS `clamp()` per state, but transitioning `width` between two
+   * clamp() expressions does not resolve in every engine — the computed width
+   * stayed at the previous state's value indefinitely, so the orb never
+   * settled. Measuring the stage and animating between two numbers is both
+   * predictable and correctly sized to the device rather than the viewport,
+   * which is what actually matters inside a fixed-width tablet.
+   */
+  const [stageW, setStageW] = useState(0)
+
+  useEffect(() => {
+    const el = stageRef.current
+    if (!el) return
+    const ro = new ResizeObserver(([e]) => setStageW(e.contentRect.width))
+    ro.observe(el)
+    setStageW(el.getBoundingClientRect().width)
+    return () => ro.disconnect()
+  }, [])
+
+  // RC's ladder: a 440px outer ring on desktop, never below ~220px on a 360px
+  // screen. The settled size stays well under that so a whole answer card fits.
+  const heroMax = compact ? 260 : 440
+  const settledMax = compact ? 132 : 160
+  const orbSize = stageW
+    ? atRest
+      ? Math.max(220, Math.min(heroMax, Math.round(stageW)))
+      : Math.max(112, Math.min(settledMax, Math.round(stageW * 0.42)))
+    : compact
+      ? 220
+      : 240
 
   const confirmedFor = useMemo(
     () => ({
@@ -229,7 +334,7 @@ export function LiveDemo({
           style={{
             borderRadius: 'calc(var(--device-radius) - var(--bezel))',
             background: 'linear-gradient(168deg, #191410 0%, #12100e 58%, #0f0d0c 100%)',
-            height: compact ? 420 : 540,
+            height: compact ? 540 : 640,
           }}
         >
           {/* ---------------------------------------------------- status bar */}
@@ -268,26 +373,65 @@ export function LiveDemo({
             </button>
           </div>
 
-          {/* --------------------------------------------------- transcript */}
+          {/* ------------------------------------------- the orb: the control */}
+          <div
+            ref={stageRef}
+            className="flex items-center justify-center px-4"
+            style={{
+              flex: atRest ? '1 1 auto' : '0 0 auto',
+              paddingTop: atRest ? 0 : 12,
+              paddingBottom: atRest ? 0 : 2,
+            }}
+          >
+            <VoiceOrbControl
+              state={orbState}
+              size={orbSize}
+              label={c.orbStates[orbState]}
+              ariaLabel={speech.listening ? c.orbActionStop : c.orbAction}
+              pressed={speech.listening}
+              disabled={!speech.canListen}
+              onToggle={() => (speech.listening ? speech.stop() : speech.start())}
+            />
+          </div>
+
+          {/* ------------------------------- transcript + cards, beneath the orb */}
           <div
             ref={logRef}
-            className="flex-1 overflow-y-auto px-3.5 py-3.5 flex flex-col gap-3"
+            className="overflow-y-auto px-3.5 flex flex-col gap-3"
+            style={{
+              flex: atRest ? '0 0 auto' : '1 1 auto',
+              minHeight: 0,
+              paddingTop: atRest ? 0 : 4,
+              paddingBottom: atRest ? 0 : 12,
+            }}
             aria-live="polite"
             aria-atomic="false"
           >
-            {turns.map((t) =>
-              t.role === 'guest' ? (
-                <GuestBubble key={t.id} text={t.text} />
-              ) : (
-                <CompanionBubble
-                  key={t.id}
-                  turn={t}
-                  mockNote={c.mockNote}
-                  confirmLabel={t.action ? c.confirm[t.action] : undefined}
-                  onConfirm={
-                    t.action ? () => confirmAction(t.id, confirmedFor[t.action!]) : undefined
-                  }
-                />
+            {/* Observed for growth so the newest card is always scrolled into view. */}
+            <div ref={contentRef} className="flex flex-col gap-3">
+            {/* At rest the greeting lives under the orb label, not as a bubble. */}
+            {atRest ? (
+              <p
+                className="font-sans text-center px-2 pb-3"
+                style={{ fontSize: 13, lineHeight: 1.55, color: 'var(--text-faint)' }}
+              >
+                {turns[0]?.text}
+              </p>
+            ) : (
+              turns.map((t) =>
+                t.role === 'guest' ? (
+                  <GuestBubble key={t.id} text={t.text} />
+                ) : (
+                  <CompanionBubble
+                    key={t.id}
+                    turn={t}
+                    mockNote={c.mockNote}
+                    confirmLabel={t.action ? c.confirm[t.action] : undefined}
+                    onConfirm={
+                      t.action ? () => confirmAction(t.id, confirmedFor[t.action!]) : undefined
+                    }
+                  />
+                )
               )
             )}
 
@@ -306,28 +450,34 @@ export function LiveDemo({
                 {speech.interim}
               </p>
             )}
-
-            {showSuggestions && (
-              <div className="flex flex-col gap-2 mt-1">
-                {c.suggestions.map((s) => (
-                  <button
-                    key={s}
-                    type="button"
-                    onClick={() => submit(s)}
-                    className="text-left rounded-2xl px-3.5 py-2.5 transition-colors"
-                    style={{
-                      border: '1px solid var(--border)',
-                      color: 'var(--text-dim)',
-                      fontSize: 13,
-                      minHeight: 44,
-                    }}
-                  >
-                    {s}
-                  </button>
-                ))}
-              </div>
-            )}
+            </div>
           </div>
+
+          {/* ------------------------------------------- chips, above the field */}
+          {showSuggestions && (
+            <div
+              className="flex gap-2 px-3.5 pb-2.5 overflow-x-auto"
+              style={{ scrollbarWidth: 'none' }}
+            >
+              {c.suggestions.map((s) => (
+                <button
+                  key={s}
+                  type="button"
+                  onClick={() => submit(s)}
+                  className="rounded-full px-3.5 flex-shrink-0 transition-colors"
+                  style={{
+                    border: '1px solid var(--border)',
+                    color: 'var(--text-dim)',
+                    fontSize: 12.5,
+                    minHeight: 40,
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+          )}
 
           {/* ------------------------------------- persistent chrome: mic + chat */}
           <form
@@ -338,24 +488,8 @@ export function LiveDemo({
             className="flex items-center gap-2 px-3 py-2.5"
             style={{ borderTop: '1px solid rgba(251,248,242,0.07)' }}
           >
-            <button
-              type="button"
-              onClick={() => (speech.listening ? speech.stop() : speech.start())}
-              disabled={!speech.canListen}
-              aria-pressed={speech.listening}
-              aria-label={speech.listening ? c.micStop : c.mic}
-              title={speech.canListen ? c.mic : c.voiceUnsupported}
-              className="grid place-items-center rounded-full flex-shrink-0"
-              style={{
-                width: 44,
-                height: 44,
-                border: '1px solid var(--border)',
-                opacity: speech.canListen ? 1 : 0.45,
-              }}
-            >
-              <VoiceOrb state={orbState} size={34} showMic />
-            </button>
-
+            {/* No mic icon here: the orb above is the voice control, and two
+                competing mic affordances would only split the interaction. */}
             <input
               ref={inputRef}
               value={draft}

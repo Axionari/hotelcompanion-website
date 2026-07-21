@@ -21,6 +21,15 @@ const en = {
     thinking: 'Thinking',
     speaking: 'Speaking',
   },
+  /** Spoken-language labels shown beneath the big orb. */
+  orbStates: {
+    idle: "Talk or type — I'm listening",
+    listening: 'Listening…',
+    thinking: 'Thinking…',
+    speaking: 'Speaking…',
+  },
+  orbAction: 'Start speaking',
+  orbActionStop: 'Stop listening',
   suggestions: [
     'What is the best beach near here?',
     'We would like dinner in the room tonight.',
@@ -80,6 +89,14 @@ const es: typeof en = {
     thinking: 'Pensando',
     speaking: 'Hablando',
   },
+  orbStates: {
+    idle: 'Habla o toca — te escucho',
+    listening: 'Escuchando…',
+    thinking: 'Pensando…',
+    speaking: 'Hablando…',
+  },
+  orbAction: 'Empezar a hablar',
+  orbActionStop: 'Dejar de escuchar',
   suggestions: [
     '¿Cuál es la mejor playa cerca de aquí?',
     'Nos gustaría cenar en la habitación esta noche.',
