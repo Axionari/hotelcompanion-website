@@ -4,9 +4,12 @@ import Link from 'next/link'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { VoiceOrb, type OrbState } from './VoiceOrb'
 import { useCopy } from '@/lib/i18n/useCopy'
+import { useLang } from '@/lib/i18n/LanguageContext'
 import { launcherCopy } from '@/lib/i18n/marketing/companionLauncher'
-
-type Msg = { role: 'guest' | 'companion'; text: string }
+import { liveDemoCopy } from '@/lib/i18n/marketing/liveDemo'
+import { useCompanion } from '@/lib/demo/useCompanion'
+import { useSpeech } from '@/lib/demo/useSpeech'
+import { DemoCard } from './DemoCards'
 
 /**
  * The persistent Companion launcher — always visible, every breakpoint.
@@ -25,32 +28,46 @@ type Msg = { role: 'guest' | 'companion'; text: string }
  *  - no-JS: nothing renders (it is a progressive enhancement; every page already
  *    carries a real Book-a-Demo CTA without it)
  *
- * Responses are a scripted sample of the same exchanges shown inside the tablet,
- * clearly labelled as such — this is a marketing demo, not a live model.
+ * Responses come from the real model running against the MarAzul sample
+ * property, through the repo's existing /api/preview-chat route. Nothing the
+ * visitor types is stored; the transcript dies with the tab.
  */
 export function CompanionLauncher() {
   const c = useCopy(launcherCopy)
+  const d = useCopy(liveDemoCopy)
+  const { lang } = useLang()
   const [open, setOpen] = useState(false)
-  const [state, setState] = useState<OrbState>('idle')
-  const [msgs, setMsgs] = useState<Msg[]>([])
   const [draft, setDraft] = useState('')
   const [reduce, setReduce] = useState(false)
 
   const panelRef = useRef<HTMLDivElement>(null)
   const btnRef = useRef<HTMLButtonElement>(null)
   const logRef = useRef<HTMLDivElement>(null)
-  const timers = useRef<number[]>([])
+
+  const { turns, busy, send, confirmAction } = useCompanion(lang, d.greeting)
+  const speech = useSpeech({
+    lang,
+    // The floating launcher is ambient chrome; speaking aloud unprompted on
+    // a marketing page would be hostile. Voice out stays off here.
+    muted: true,
+    onFinal: (text) => void send(text),
+  })
+
+  const state: OrbState = speech.listening
+    ? 'listening'
+    : busy
+      ? 'thinking'
+      : 'idle'
 
   useEffect(() => {
     setReduce(window.matchMedia('(prefers-reduced-motion: reduce)').matches)
-    return () => timers.current.forEach((t) => window.clearTimeout(t))
   }, [])
 
   const close = useCallback(() => {
     setOpen(false)
-    setState('idle')
+    speech.stop()
     btnRef.current?.focus()
-  }, [])
+  }, [speech])
 
   // Esc + focus trap while the panel is open
   useEffect(() => {
@@ -82,26 +99,10 @@ export function CompanionLauncher() {
 
   useEffect(() => {
     logRef.current?.scrollTo({ top: logRef.current.scrollHeight, behavior: reduce ? 'auto' : 'smooth' })
-  }, [msgs, reduce])
+  }, [turns, reduce])
 
   function reply(question: string) {
-    const hit = c.script.find((s) => s.q.toLowerCase() === question.toLowerCase())
-    const answer = hit?.a ?? c.fallback
-    setMsgs((m) => [...m, { role: 'guest', text: question }])
-
-    if (reduce) {
-      setMsgs((m) => [...m, { role: 'companion', text: answer }])
-      return
-    }
-
-    setState('thinking')
-    timers.current.push(
-      window.setTimeout(() => {
-        setState('speaking')
-        setMsgs((m) => [...m, { role: 'companion', text: answer }])
-      }, 900),
-      window.setTimeout(() => setState('idle'), 900 + Math.min(4200, answer.length * 28))
-    )
+    void send(question)
   }
 
   function submit(e: React.FormEvent) {
@@ -178,7 +179,7 @@ export function CompanionLauncher() {
 
           {/* transcript */}
           <div ref={logRef} className="flex-1 overflow-y-auto px-4 py-4 flex flex-col gap-2.5" aria-live="polite">
-            {msgs.length === 0 && (
+            {turns.length <= 1 && (
               <>
                 <p className="eyebrow" style={{ fontSize: 9 }}>
                   {c.subtitle}
@@ -203,32 +204,78 @@ export function CompanionLauncher() {
               </>
             )}
 
-            {msgs.map((m, i) => (
-              <p
-                key={i}
-                className="rounded-2xl px-3.5 py-2.5"
-                style={
-                  m.role === 'guest'
-                    ? {
-                        background: 'rgba(251,248,242,0.07)',
-                        color: 'var(--text)',
-                        fontSize: 14,
-                        marginLeft: 'auto',
-                        maxWidth: '85%',
-                      }
-                    : {
+            {turns.map((m) =>
+              m.role === 'guest' ? (
+                <p
+                  key={m.id}
+                  className="rounded-2xl px-3.5 py-2.5"
+                  style={{
+                    background: 'rgba(251,248,242,0.07)',
+                    color: 'var(--text)',
+                    fontSize: 14,
+                    marginLeft: 'auto',
+                    maxWidth: '85%',
+                  }}
+                >
+                  {m.text}
+                </p>
+              ) : (
+                <div key={m.id} className="flex flex-col gap-2" style={{ maxWidth: '92%' }}>
+                  {(m.text || m.streaming) && (
+                    <p
+                      className="rounded-2xl px-3.5 py-2.5"
+                      style={{
                         background: 'var(--accent-soft)',
                         border: '1px solid var(--accent-hairline)',
                         color: 'var(--text)',
                         fontSize: 14,
                         lineHeight: 1.55,
-                        maxWidth: '92%',
+                      }}
+                    >
+                      {m.text}
+                      {m.streaming && (
+                        <span className="demo-caret" aria-hidden="true">
+                          ▍
+                        </span>
+                      )}
+                    </p>
+                  )}
+                  {m.card && !m.streaming && (
+                    <DemoCard
+                      id={m.card}
+                      confirmed={
+                        m.card === 'confirmation' && m.confirm
+                          ? { ...m.confirm, note: d.mockNote }
+                          : undefined
                       }
-                }
-              >
-                {m.text}
-              </p>
-            ))}
+                    />
+                  )}
+                  {m.action && !m.actionDone && !m.streaming && (
+                    <button
+                      type="button"
+                      onClick={() =>
+                        confirmAction(m.id, {
+                          title: d.confirmed[m.action!],
+                          meta: d.confirmedMeta[m.action!],
+                        })
+                      }
+                      className="font-sans self-start"
+                      style={{
+                        background: 'var(--accent)',
+                        color: '#1a1207',
+                        borderRadius: 999,
+                        padding: '0 16px',
+                        minHeight: 40,
+                        fontSize: 13,
+                        fontWeight: 600,
+                      }}
+                    >
+                      {d.confirm[m.action]}
+                    </button>
+                  )}
+                </div>
+              )
+            )}
           </div>
 
           {/* input + CTA */}
@@ -236,7 +283,9 @@ export function CompanionLauncher() {
             <div className="flex items-center gap-2">
               <button
                 type="button"
-                onClick={() => setState((s) => (s === 'listening' ? 'idle' : 'listening'))}
+                onClick={() => (speech.listening ? speech.stop() : speech.start())}
+                disabled={!speech.canListen}
+                title={speech.canListen ? c.states.idle : d.voiceUnsupported}
                 aria-label={c.states.listening}
                 aria-pressed={state === 'listening'}
                 className="grid place-items-center rounded-full flex-shrink-0"

@@ -71,7 +71,9 @@ export function useSpeech({
 
   const recRef = useRef<Recognition | null>(null)
   const onFinalRef = useRef(onFinal)
-  onFinalRef.current = onFinal
+  useEffect(() => {
+    onFinalRef.current = onFinal
+  }, [onFinal])
 
   const locale = lang === 'es' ? 'es-MX' : 'en-US'
 

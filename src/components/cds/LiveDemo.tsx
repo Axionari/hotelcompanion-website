@@ -74,13 +74,11 @@ function CompanionBubble({
   confirmLabel,
   onConfirm,
   mockNote,
-  confirmedCopy,
 }: {
   turn: Turn
   confirmLabel?: string
   onConfirm?: () => void
   mockNote: string
-  confirmedCopy?: { title: string; meta: string }
 }) {
   return (
     <div className="flex flex-col gap-2" style={{ maxWidth: '92%' }}>
@@ -109,8 +107,8 @@ function CompanionBubble({
         <DemoCard
           id={turn.card}
           confirmed={
-            turn.card === 'confirmation' && confirmedCopy
-              ? { ...confirmedCopy, note: mockNote }
+            turn.card === 'confirmation' && turn.confirm
+              ? { ...turn.confirm, note: mockNote }
               : undefined
           }
         />
@@ -214,9 +212,6 @@ export function LiveDemo({
     [c]
   )
 
-  /** Confirmation copy belongs to the action that produced it. */
-  const lastAction = useRef<'upgrade' | 'roomservice' | 'spa'>('upgrade')
-
   return (
     <div className={className}>
       <div
@@ -288,15 +283,9 @@ export function LiveDemo({
                   key={t.id}
                   turn={t}
                   mockNote={c.mockNote}
-                  confirmedCopy={confirmedFor[lastAction.current]}
                   confirmLabel={t.action ? c.confirm[t.action] : undefined}
                   onConfirm={
-                    t.action
-                      ? () => {
-                          lastAction.current = t.action!
-                          confirmAction(t.id, c.confirmed[t.action!])
-                        }
-                      : undefined
+                    t.action ? () => confirmAction(t.id, confirmedFor[t.action!]) : undefined
                   }
                 />
               )

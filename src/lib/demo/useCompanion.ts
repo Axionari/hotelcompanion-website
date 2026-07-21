@@ -34,6 +34,8 @@ export type Turn = {
   streaming?: boolean
   /** True when this answer came from the canned pool rather than the model. */
   fallback?: boolean
+  /** Copy for a confirmation card, carried on the turn that produced it. */
+  confirm?: { title: string; meta: string }
 }
 
 const TIMEOUT_MS = 15_000
@@ -66,17 +68,21 @@ export function useCompanion(lang: 'en' | 'es', greeting: string) {
    * id, no guest details. It renders a confirmation card and marks the
    * originating action spent so it cannot be double-confirmed.
    */
-  const confirmAction = useCallback((turnId: number, confirmedText: string) => {
-    setTurns((t) => [
-      ...t.map((x) => (x.id === turnId ? { ...x, actionDone: true } : x)),
-      {
-        id: nextId.current++,
-        role: 'companion' as const,
-        text: confirmedText,
-        card: 'confirmation' as CardId,
-      },
-    ])
-  }, [])
+  const confirmAction = useCallback(
+    (turnId: number, copy: { title: string; meta: string }) => {
+      setTurns((t) => [
+        ...t.map((x) => (x.id === turnId ? { ...x, actionDone: true } : x)),
+        {
+          id: nextId.current++,
+          role: 'companion' as const,
+          text: copy.title,
+          card: 'confirmation' as CardId,
+          confirm: copy,
+        },
+      ])
+    },
+    []
+  )
 
   const send = useCallback(
     async (raw: string, opts?: { onReply?: (text: string) => void }) => {
