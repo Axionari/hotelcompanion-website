@@ -309,6 +309,7 @@ const es: typeof en = {
   },
   stake: {
     figure: '$47B',
+    /* NEEDS CONFIRM: exact figure, report, year — Eduardo sourcing. Approved for use now. */
     caption: 'Se pierden cada año por oportunidades desaprovechadas y fricción evitable con los huéspedes.',
     source: 'Fuente: Medallia, 2024.',
     beats: [

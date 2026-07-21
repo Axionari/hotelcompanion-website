@@ -1,12 +1,13 @@
 # VERIFICATION.md — Hotel Companion build
 
 Branch `feat/hotel-companion` · Verified 2026-07-20 against a local production build (`next build` + `next start`).
-Gates below map to build brief §11 and the Round-2 Handoff Addendum (A2-1 … A2-6).
+Gates below map to build brief §11 and the Handoff Addendum (Round 2: A2-1 … A2-6 · Round 3: A3-1 … A3-9).
 **Not deployed** — device/Lighthouse sign-off is pending a Vercel preview.
 
-> **Round 2 applied.** The addendum resolved every copy-level open item from Round 1: the 8th capability
-> section, the Accessibility page, the Founding-CTA destination, the Medallia decision, and full
-> professional Spanish. See "Round 2" below.
+> **Rounds 2 and 3 applied.** Round 2 resolved every copy-level open item from Round 1 (8th capability,
+> Accessibility page, Founding-CTA destination, Medallia decision, full professional Spanish).
+> Round 3 re-injected the strongest concrete copy from placecompanion.com — 12 approved sections, EN + ES.
+> See "Round 2" and "Round 3" below.
 
 ## Build & type safety
 
@@ -37,6 +38,7 @@ Each marketing route returns 19k–37k characters of visible text with the corre
 | `Place Companion` / `placecompanion.com` | 0 hits |
 | pricing / free-trial strings (`$199`, `$599`, "Free Trial", "14-day", "cancel anytime", "No commitment", "Start Your Pilot") | 0 hits in marketing |
 | `NEEDS ES` | **0 hits** — Spanish is fully wired |
+| unverified stats | exactly **two**, both `NEEDS CONFIRM` in EN *and* ES: `$47B` (A3-1) and `91%/9%` (A3-9). A full numeric audit of the copy layer found no third unverified claim — the only other figures are `$250` inside the approved example dialogue and "200 questions" inside approved narrative copy. |
 | `chatbot` | 2 hits, both **verbatim approved copy** — `#companionos-why` ("Organizations don't need another chatbot.") and the Resources card dek. Plus essay bodies, which are approved source. |
 | capability taxonomy | single source `src/lib/capabilities.ts`, rendered only via `CapabilityGrid`. No page hand-writes the list. |
 
@@ -106,13 +108,41 @@ These strings exist in code but had no counterpart in the copy deck, so they wer
 
 Also carried through faithfully as the ES deck writes them: "Front Desk" and "Front Office" both render as "Recepción"; the ES sign-off is "Construido por Axionari" where EN says "Powered by Axionari".
 
+## Round 3 (Handoff Addendum A3-1 … A3-9) — preserve the best of placecompanion.com
+
+12 approved sections re-injected into the enterprise IA, EN + ES, verbatim by anchor
+(source files verified at 146/146 EN/ES anchor parity before wiring).
+
+| ID | Section | Placement |
+|---|---|---|
+| A3-1 | `#home-stake` — the $47B cost of inaction | Home, right after the trust strip. Carries its Medallia source line; figure marked `NEEDS CONFIRM` in both languages. |
+| A3-2 | `#company-why-hotels` — "the same 200 questions" | Company, after the hero, before Our Belief. Rendered verbatim and undiluted, as instructed. |
+| A3-3 | `#platform-not-generic-ai` — "they needed a conversation, not a redirect" | Platform, after Property Knowledge. |
+| A3-4 | `#platform-lifecycle` — Before / During / After + review loop | Platform, after Destination. |
+| A3-5 | `#enterprise-what-it-is-not` — category boundaries | Enterprise, beside Integrates. **Carries `id="what-it-is-not"`** so the Home teaser deep link resolves (verified). |
+| A3-6 | `#platform-issue-detection` — the two-stage 2 AM alert | Platform; also deepens `#solutions-engineering`. Maps to the repo's real `issue-detection.ts`. |
+| A3-7 | `#home-what-it-is-not-teaser` | Home, before the final CTA → `/enterprise#what-it-is-not`. |
+| A3-8 | `#home-revenue-example` — the 10:14 PM upgrade | Folded into `#home-revenue`, rendered as a real exchange closing on "Investment: covered." |
+| A3-9 | Enrichments | `#platform-five-voices` **replaced** the adjective stack; `#platform-channels` **merged** into the voice-first channel list; `#platform-destination-examples` **added** to Destination; `#dashboards-resolution` **added** to both dashboards sections. No duplication — the superseded adjective list was removed, not left alongside. |
+
+### Round 3 verification
+
+- **Rendered-content probe:** every new section confirmed present in the real browser in **both languages** — 38 distinct content probes across Home, Platform, Enterprise and Company, all ✓ (e.g. `$47B` / `Se pierden cada año`, `Barefoot Luxury` / `Lujo Descalzo`, `no seaweed` / `sargazo`, `Investment: covered.` / `Inversión: cubierta.`).
+- **ES leakage sweep re-run** with the Round-3 English tells added to the tell list: **18/18 routes clean**.
+- **Link + anchor gates re-run:** 34 internal targets all resolve; every anchor verified in rendered HTML including the new `/enterprise#what-it-is-not` and `/company#why-hotels`.
+- **Section numbering and ambient banding repaired** after the insertions — Home now runs 01–16, Platform 01–17, Enterprise 01–15, Company 01–10, each with strictly alternating surface bands (verified programmatically, no two adjacent sections share a surface).
+- **New eyebrow labels** added to the ES dictionary: THE STAKE, BOUNDARIES, NOT GENERIC AI, LIFECYCLE, ISSUE DETECTION, WHAT IT IS NOT.
+- **ES parity gate re-run** after all Round-3 copy landed. Every module 89–100% translated; each remaining identical string was individually checked and is a cognate or a deliberately-English brand term (`Enterprise`, `Golf.`, `Spa.`, `Resort`, `Retail.`, `Hotel`, `Legal`, `$47B`). No structural value differs across languages.
+- **Gate hardening:** the parity checker previously mis-flagged `demoForm.fields.email` (a form *label*) as a structural value because it keyed off the field name. It now decides structural-vs-prose from the **value shape** (routes, mailto, real addresses, block-type discriminators) combined with a narrow identifier-key list, and treats `resources.categories.descriptions` as intentionally Spanish-keyed. Two false positives removed; the check is now correct rather than merely quiet.
+
+
 ## Open items carried forward
 
 All are Eduardo's to provide; none block the build.
 
 1. **Resend** — verify `hotelcompanion.ai` at resend.com/domains, move `from` off `onboarding@resend.dev`, set `DEMO_REQUEST_TO`. The form works; it currently 403s sending to `sales@` because Resend is in test mode.
 2. **Imagery** — `public/` still holds only default Next SVGs. Flagged `NEEDS REAL DATA`: hero in-room tablet render, editorial photography, favicon, designed OG share image, logo lockups. The Home secondary CTA ("Watch Product Tour") points at `/platform` until a tour asset exists.
-3. **Medallia $47B** — Eduardo verifies the citation (figure, report, year) before launch. Not rendered anywhere until then.
+3. **The two unverified numbers** — `$47B` (Home stake) and `91%/9%` (dashboards resolution) are now live on the site per the Round-3 decision, each marked `NEEDS CONFIRM` in EN and ES. Verify both before public launch, and per the addendum do not add a third unverified stat.
 4. **Self-serve `/onboarding`** (P0-4) — still open. Default applied: app routes functional, zero self-serve CTAs or pricing on marketing, Sign In demoted to a footer utility link.
 5. **Legal counsel review** — both EN and ES legal/trust bodies should be reviewed before public launch (standard, and the ES deck carries the same caveat).
 6. **Vercel project + `hotelcompanion.ai` DNS** — needed for the preview so Lighthouse, on-device passes and motion recordings can be captured.

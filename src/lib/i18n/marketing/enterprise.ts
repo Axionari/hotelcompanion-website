@@ -332,6 +332,7 @@ const es: typeof en = {
     close: ['No reemplaza tu operación.', 'Entiende las conversaciones entre cada parte de ella.'],
   },
   resolution: {
+    /* NEEDS CONFIRM: resolution rate — verify before public launch. */
     resolved: '91% resuelto por el asistente.',
     escalated: '9% escalado a tu equipo—solo lo que genuinamente necesita a una persona.',
     close: 'Cada pregunta respondida. Solo los momentos que necesitan a alguien llegan a alguien.',

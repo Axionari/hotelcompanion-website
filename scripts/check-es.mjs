@@ -25,12 +25,23 @@ const MODULES = [
 // Values legitimately identical across languages.
 const SHARED_OK = /^(\/|https?:|mailto:|#)|@hotelcompanion\.ai$|^(Hotel Companion|Companion OS|Axionari|Restaurant Companion)\.?$/
 
-// Structural keys that MUST be identical across languages.
-const NON_CONTENT = /\.(type|href|slug|id|email|code)$/
+// Structural VALUES that must stay byte-identical across languages: routes,
+// anchors, mailto targets, real email addresses, kebab-case ids/slugs, and the
+// block-type discriminators. Judged on the value, not the key name — `fields.email`
+// is a translatable label, `channels[].email` is an actual address.
+const STRUCTURAL_VALUE = /^(\/[\w/#-]*|https?:\/\/\S+|mailto:\S+|[\w.+-]+@[\w.-]+\.\w+|p|h2|term|link)$/
+
+// Keys that are always identifiers, never prose. (`email` is deliberately absent:
+// `fields.email` is a form label, while `channels[].email` is caught by value.)
+const STRUCTURAL_KEY = /\.(type|href|slug|id|code)$/
+
+// Paths whose ES keys are intentionally the Spanish category names (they drive
+// the ES filter buttons and are verified against the Spanish essay index).
+const KEYS_MAY_DIFFER = new Set(['resources.categories.descriptions'])
 
 function walk(en, es, path, out) {
   if (typeof en === 'string') {
-    if (NON_CONTENT.test(path)) {
+    if (STRUCTURAL_KEY.test(path) || STRUCTURAL_VALUE.test(en)) {
       if (en !== es) out.shape.push(`${path}: structural value differs! EN=${en} ES=${es}`)
       return
     }
@@ -51,6 +62,10 @@ function walk(en, es, path, out) {
   if (en && typeof en === 'object') {
     const ek = Object.keys(en).sort()
     const sk = Object.keys(es ?? {}).sort()
+    if (KEYS_MAY_DIFFER.has(path)) {
+      if (ek.length !== sk.length) out.shape.push(`${path}: key COUNT differs (${ek.length} vs ${sk.length})`)
+      return
+    }
     if (ek.join() !== sk.join()) {
       out.shape.push(`${path}: keys differ\n    EN: ${ek.join(',')}\n    ES: ${sk.join(',')}`)
       return
