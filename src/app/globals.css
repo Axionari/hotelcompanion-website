@@ -906,3 +906,17 @@ body {
 @keyframes donut-draw {
   from { stroke-dasharray: 0 999; }
 }
+
+/* The revenue line draws itself once. Safe to animate: the resting state is
+   the fully drawn path, so where animations do not tick it simply appears. */
+@media (prefers-reduced-motion: no-preference) {
+  .rev-line {
+    stroke-dasharray: 620;
+    animation: rev-draw 1400ms var(--ease-emphasis) both;
+  }
+}
+
+@keyframes rev-draw {
+  from { stroke-dashoffset: 620; }
+  to   { stroke-dashoffset: 0; }
+}

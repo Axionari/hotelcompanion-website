@@ -18,6 +18,7 @@ import {
   JourneyTimeline,
   NodeDiagram,
   DashboardMockup,
+  RevenueLine,
 } from '@/components/cds/blocks'
 import { VoiceMorph, TwoStageAlert } from '@/components/cds/interactive'
 import { COMPANION_OS_CAPABILITIES } from '@/lib/capabilities'
@@ -147,16 +148,23 @@ export default function PlatformClient() {
         {/* The full stepper is canonical on Home; this is the teaser. */}
         <div className="mt-12">
           <Teaser
+            split
             lines={[home.journey.steps[0].caption, home.journey.steps[home.journey.steps.length - 1].caption]}
             href="/#home-revenue"
             label={home.revenue.title}
-          />
+          >
+            <RevenueLine steps={home.journey.steps} label={home.journey.tallyLabel} />
+          </Teaser>
         </div>
-        <div id="platform-channels" className="mt-20">
-          <Reveal>
-            <div className="eyebrow eyebrow-accent mb-6">{c.voiceFirst.availableLead}</div>
-          </Reveal>
-          <NamedRows items={c.channels.items} columns={2} />
+        <div id="platform-channels" className="mt-16 grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          <div className="lg:col-span-4">
+            <Reveal>
+              <div className="eyebrow eyebrow-accent">{c.voiceFirst.availableLead}</div>
+            </Reveal>
+          </div>
+          <div className="lg:col-span-8">
+            <NamedRows items={c.channels.items} columns={2} />
+          </div>
         </div>
       </Section>
 

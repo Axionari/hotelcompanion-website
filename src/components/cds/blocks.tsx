@@ -639,3 +639,63 @@ export function ResolutionDonut({
     </div>
   )
 }
+
+/**
+ * The stay's revenue as a rising line (PRE · DURING · AFTER).
+ *
+ * Reads its points straight from the journey steps' own tally values, so the
+ * chart and the stepper can never disagree. Used where the full stepper would
+ * be a duplicate — it carries the shape of the argument (revenue accumulates
+ * across the stay) without restating the six stages.
+ */
+export function RevenueLine({
+  steps,
+  label,
+}: {
+  steps: ReadonlyArray<{ act: string; tally?: string }>
+  label: string
+}) {
+  // Carry the last known tally forward so every stage has a value.
+  let last = 0
+  const pts = steps.map((s) => {
+    const n = s.tally ? Number(String(s.tally).replace(/[^0-9.]/g, '')) : NaN
+    if (!Number.isNaN(n)) last = n
+    return { act: s.act, value: last, shown: s.tally }
+  })
+
+  const max = Math.max(...pts.map((p) => p.value), 1)
+  const W = 300
+  const H = 132
+  const x = (i: number) => (pts.length === 1 ? 0 : (i / (pts.length - 1)) * W)
+  const y = (v: number) => H - (v / max) * (H - 16) - 8
+  const line = pts.map((p, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(p.value).toFixed(1)}`).join(' ')
+  const area = `${line} L${W},${H} L0,${H} Z`
+
+  return (
+    <figure className="w-full">
+      <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: 'auto', overflow: 'visible' }} role="img"
+        aria-label={`${label}: ${pts[pts.length - 1]?.shown ?? ''}`}>
+        <defs>
+          <linearGradient id="rev-fill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="var(--accent)" stopOpacity="0.26" />
+            <stop offset="100%" stopColor="var(--accent)" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+        <path d={area} fill="url(#rev-fill)" />
+        <path d={line} fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+          className="rev-line" />
+        {pts.map((p, i) => (
+          <circle key={i} cx={x(i)} cy={y(p.value)} r={i === pts.length - 1 ? 4.5 : 2.5}
+            fill={i === pts.length - 1 ? 'var(--accent)' : 'var(--bg)'} stroke="var(--accent)" strokeWidth="1.5" />
+        ))}
+      </svg>
+
+      <figcaption className="flex items-baseline justify-between mt-4">
+        <span className="eyebrow" style={{ fontSize: 8.5 }}>{label}</span>
+        <span className="font-serif" style={{ fontSize: '1.6rem', fontWeight: 530, color: 'var(--accent)' }}>
+          {pts[pts.length - 1]?.shown}
+        </span>
+      </figcaption>
+    </figure>
+  )
+}
