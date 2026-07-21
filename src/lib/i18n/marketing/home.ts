@@ -1,4 +1,5 @@
 import type { Localized } from '../useCopy'
+import type { ScreenId } from './deviceScreens'
 
 /* Copy source: HotelCompanion__Site_Copy.md {#home}. Verbatim — do not edit here. */
 
@@ -297,6 +298,77 @@ const en = {
       'Preferences & history',
     ],
     node: 'Companion OS',
+  },
+  otaStake: {
+    /* NEEDS CONFIRM: figure, comparison and source — placeholder, wired to swap. */
+    eyebrow: 'THE COST OF INTERMEDIARIES',
+    figure: '2–3×',
+    caption:
+      'An OTA booking can cost 2–3× more than a direct one — 18–30% commission vs. 5–12% all-in.',
+    source: 'Source: Kalibri Labs.',
+  },
+  journey: {
+    tallyLabel: 'Revenue this stay',
+    steps: [
+      {
+        act: 'PRE',
+        title: 'They book direct.',
+        caption: 'The Companion sells the property, answers everything, and closes the booking — no OTA commission.',
+        screen: 'home' as ScreenId,
+        tally: '+$0',
+      },
+      {
+        act: 'PRE',
+        title: 'The first upsell, before arrival.',
+        caption: 'An ocean-view suite offered while they are still choosing.',
+        screen: 'upgrade' as ScreenId,
+        tally: '+$250',
+      },
+      {
+        act: 'DURING',
+        title: 'Every answer is a picture.',
+        caption: 'They ask for the best beach. They see it.',
+        screen: 'beach' as ScreenId,
+        tally: '+$250',
+      },
+      {
+        act: 'DURING',
+        title: 'Room service, tapped not typed.',
+        caption: 'A dish grid, an order total, straight to the kitchen.',
+        screen: 'roomservice' as ScreenId,
+        tally: '+$312',
+      },
+      {
+        act: 'DURING',
+        title: 'Wellness, booked in one tap.',
+        caption: 'Treatments with real availability, not a phone number.',
+        screen: 'spa' as ScreenId,
+        tally: '+$402',
+      },
+      {
+        act: 'AFTER',
+        title: 'The review earns the next booking.',
+        caption: 'A warm follow-up, a direct link, and a guest who returns direct.',
+        screen: 'concierge' as ScreenId,
+        tally: '+$402',
+      },
+    ],
+  },
+  surfaces2029: {
+    title: 'One conversation. Every screen in the guest’s world.',
+    caption: 'The interface adapts to the surface. The intelligence stays the same.',
+    intent: '“Best beach near here?”',
+    emergingLabel: 'Emerging',
+    items: [
+      { id: 'tablet', label: 'In-room tablet' },
+      { id: 'phone', label: 'Phone' },
+      { id: 'laptop', label: 'Web' },
+      { id: 'watch', label: 'Watch' },
+      { id: 'qr', label: 'QR' },
+      { id: 'call', label: 'Voice call' },
+      { id: 'ar', label: 'AR glasses', emerging: true },
+      { id: 'ambient', label: 'Ambient display', emerging: true },
+    ],
   },
   faq: {
     title: 'Frequently Asked Questions',
@@ -648,6 +720,77 @@ const es: typeof en = {
       'Preferencias e historial',
     ],
     node: 'Companion OS',
+  },
+  otaStake: {
+    /* NEEDS CONFIRM: cifra, comparación y fuente — provisional, listo para reemplazar. */
+    eyebrow: 'EL COSTO DE LOS INTERMEDIARIOS',
+    figure: '2–3×',
+    caption:
+      'Una reserva por OTA puede costar 2–3× más que una directa — 18–30% de comisión frente a 5–12% todo incluido.',
+    source: 'Fuente: Kalibri Labs.',
+  },
+  journey: {
+    tallyLabel: 'Ingresos de esta estancia',
+    steps: [
+      {
+        act: 'ANTES',
+        title: 'Reservan directo.',
+        caption: 'El Companion vende la propiedad, responde todo y cierra la reserva — sin comisión de OTA.',
+        screen: 'home' as ScreenId,
+        tally: '+$0',
+      },
+      {
+        act: 'ANTES',
+        title: 'La primera mejora, antes de llegar.',
+        caption: 'Una suite con vista al mar ofrecida mientras aún están eligiendo.',
+        screen: 'upgrade' as ScreenId,
+        tally: '+$250',
+      },
+      {
+        act: 'DURANTE',
+        title: 'Cada respuesta es una imagen.',
+        caption: 'Preguntan por la mejor playa. La ven.',
+        screen: 'beach' as ScreenId,
+        tally: '+$250',
+      },
+      {
+        act: 'DURANTE',
+        title: 'Servicio a cuarto, con un toque.',
+        caption: 'Una parrilla de platillos, un total, directo a la cocina.',
+        screen: 'roomservice' as ScreenId,
+        tally: '+$312',
+      },
+      {
+        act: 'DURANTE',
+        title: 'Bienestar, reservado en un toque.',
+        caption: 'Tratamientos con disponibilidad real, no un número de teléfono.',
+        screen: 'spa' as ScreenId,
+        tally: '+$402',
+      },
+      {
+        act: 'DESPUÉS',
+        title: 'La reseña gana la próxima reserva.',
+        caption: 'Un seguimiento cálido, un enlace directo y un huésped que vuelve directo.',
+        screen: 'concierge' as ScreenId,
+        tally: '+$402',
+      },
+    ],
+  },
+  surfaces2029: {
+    title: 'Una conversación. Cada pantalla del mundo del huésped.',
+    caption: 'La interfaz se adapta a la superficie. La inteligencia es la misma.',
+    intent: '“¿La mejor playa cerca?”',
+    emergingLabel: 'Emergente',
+    items: [
+      { id: 'tablet', label: 'Tablet en la habitación' },
+      { id: 'phone', label: 'Teléfono' },
+      { id: 'laptop', label: 'Web' },
+      { id: 'watch', label: 'Reloj' },
+      { id: 'qr', label: 'QR' },
+      { id: 'call', label: 'Llamada de voz' },
+      { id: 'ar', label: 'Lentes AR', emerging: true },
+      { id: 'ambient', label: 'Pantalla ambiental', emerging: true },
+    ],
   },
   faq: {
     title: 'Preguntas Frecuentes',

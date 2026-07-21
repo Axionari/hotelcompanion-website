@@ -225,3 +225,27 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* Slow Ken-Burns on in-UI card images (Visual Interface Level-Up §D) — <=6% scale */
+@keyframes tablet-kenburns {
+  0%, 100% { transform: scale(1) translate3d(0, 0, 0); }
+  50% { transform: scale(1.06) translate3d(0, -1%, 0); }
+}
+.tablet-kenburns {
+  animation: tablet-kenburns 18s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Card hover micro-state — lift + copper hairline */
+.card-lift {
+  transition: transform var(--dur-base) var(--ease-standard), border-color var(--dur-base) var(--ease-standard);
+}
+.card-lift:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-hairline) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tablet-kenburns { animation: none; }
+  .card-lift:hover { transform: none; }
+}

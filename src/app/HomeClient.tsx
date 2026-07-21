@@ -8,7 +8,8 @@ import { Reveal } from '@/components/cds/Reveal'
 import { QuestionMarquee } from '@/components/cds/QuestionMarquee'
 import { EndorsementMark } from '@/components/cds/EndorsementMark'
 import { PersistentCTA } from '@/components/cds/PersistentCTA'
-import { HeroDevice } from '@/components/cds/HeroDevice'
+import { TabletOS } from '@/components/cds/TabletOS'
+import { JourneyWalkthrough, SurfaceFan } from '@/components/cds/JourneyWalkthrough'
 import { MediaBed } from '@/components/cds/MediaBed'
 import { MultiAccentHeadline } from '@/components/cds/AccentHeadline'
 import {
@@ -21,7 +22,6 @@ import {
   DashboardMockup,
   Accordion,
 } from '@/components/cds/blocks'
-import { TabbedDeviceWalkthrough } from '@/components/cds/interactive'
 import { COMPANION_OS_CAPABILITIES } from '@/lib/capabilities'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { homeCopy } from '@/lib/i18n/marketing/home'
@@ -55,7 +55,7 @@ export default function HomeClient() {
                   text={c.hero.h1}
                   accents={a.homeHero}
                 />
-                <p className="body-lead mt-8" style={{ maxWidth: '46ch' }}>
+                <p className="body-lead mt-8" style={{ maxWidth: '44ch' }}>
                   {c.hero.lead1}
                 </p>
                 <div className="mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
@@ -72,7 +72,8 @@ export default function HomeClient() {
                 </div>
               </div>
               <div className="lg:col-span-6">
-                <HeroDevice />
+                {/* The tablet now cycles voice→image answers, not orb-and-text */}
+                <TabletOS cycle={['home', 'beach', 'upgrade', 'roomservice']} />
               </div>
             </div>
           </div>
@@ -86,7 +87,15 @@ export default function HomeClient() {
         </div>
       </div>
 
-      {/* 02 · THE STAKE {#home-stake} — left stat block, count-up on reveal */}
+      {/* 02 · THE COST OF INTERMEDIARIES — the book-direct revenue story.
+          One of only two big numbers on the site; both carry NEEDS CONFIRM. */}
+      <Section eyebrow={c.otaStake.eyebrow} variant="surface-1">
+        <div className="mt-4">
+          <StatBlock figure={c.otaStake.figure} caption={c.otaStake.caption} source={c.otaStake.source} />
+        </div>
+      </Section>
+
+      {/* 03 · THE STAKE {#home-stake} — left stat block, count-up on reveal */}
       <Section eyebrow="02 · THE STAKE" variant="bg">
         <div className="mt-4">
           <StatBlock figure={c.stake.figure} caption={c.stake.caption} source={c.stake.source}>
@@ -127,25 +136,28 @@ export default function HomeClient() {
         </div>
       </section>
 
-      {/* 04 · CONVERSATION BECOMES ACTION {#home-revenue} + {#home-revenue-example} */}
-      <Section
-        eyebrow="04 · REVENUE"
-        title={c.revenue.title}
-        support={c.revenue.body}
-        variant="bg"
-      >
+      {/* 05 · THE JOURNEY — the signature scroll-synced sticky walkthrough.
+          PRE (win the direct booking) · DURING (every request an upsell) ·
+          AFTER (earn the review, rebook direct), with a copper revenue tally. */}
+      <Section eyebrow="05 · PRE · DURING · AFTER" title={c.revenue.title} variant="bg">
         <div className="mt-14">
-          <TabbedDeviceWalkthrough tabs={c.actionTabs.tabs} deviceLabel={c.actionTabs.deviceLabel} />
+          <JourneyWalkthrough steps={c.journey.steps} tallyLabel={c.journey.tallyLabel} />
         </div>
-        <Reveal>
-          <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-x-10">
-            {c.revenue.close.map((line) => (
-              <p key={line} className="font-sans py-3" style={{ fontSize: 15, color: 'var(--text-dim)' }}>
-                {line}
-              </p>
-            ))}
-          </div>
-        </Reveal>
+      </Section>
+
+      {/* 06 · THE INTERFACE OF 2029 — one intent, every surface */}
+      <Section eyebrow="06 · EVERY SURFACE" title={c.surfaces2029.title} support={c.surfaces2029.caption} variant="surface-1">
+        <div className="mt-14">
+          <SurfaceFan
+            surfaces={c.surfaces2029.items}
+            intent={c.surfaces2029.intent}
+            answerImage="/assets/img/hero-poolside.webp"
+            answerTitle="Akumal"
+            answerMeta={c.hero.positioning}
+            callNote="—"
+            emergingLabel={c.surfaces2029.emergingLabel}
+          />
+        </div>
       </Section>
 
       {/* 05 · KNOWLEDGE SPLIT {#home-knows} — property / destination, chips not stacks */}
