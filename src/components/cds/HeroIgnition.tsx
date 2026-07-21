@@ -124,6 +124,7 @@ export function HeroIgnition() {
         className="ignition ignition-breath"
         data-ignited={ignited ? 'true' : undefined}
       >
+        <span className="ignition-bloom" aria-hidden="true" />
         <span className="ignition-bleed" aria-hidden="true" />
         <span className="ign-pulse" aria-hidden="true" />
 

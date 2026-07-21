@@ -257,7 +257,7 @@ export function LiveDemo({
       window.clearInterval(iv)
       window.clearTimeout(stop)
     }
-  }, [turns])
+  }, [turns.length])
 
   // A new question means the guest is following along again.
   useEffect(() => {

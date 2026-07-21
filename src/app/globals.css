@@ -608,3 +608,97 @@ body {
   /* No breath where the orb would sit above or behind the headline. */
   .ignition-breath { transform: none; }
 }
+
+/* ------------------------------------------- GOAL 1: the orb as light source
+
+   The first pass rendered a faint disc. The orb has to read as the brightest
+   thing on the page — a real copper light with a wide blurred bloom bleeding
+   into the hero, sitting over a vignette that darkens everything else.
+   ------------------------------------------------------------------------ */
+
+/* The wide bloom. Heavily blurred so it behaves like light, not a shape. */
+.ignition-bloom {
+  position: absolute;
+  top: -46%;
+  left: -46%;
+  width: 192%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(46px);
+  background: radial-gradient(
+    circle at 50% 47%,
+    rgba(255, 198, 132, 0.5) 0%,
+    rgba(245, 163, 74, 0.34) 24%,
+    rgba(200, 106, 58, 0.16) 48%,
+    transparent 72%
+  );
+}
+
+/* A hot core, not a wash. ~0.9 at centre. */
+.ignition .vglow {
+  inset: 15%;
+  background: radial-gradient(
+    circle at 47% 43%,
+    rgba(255, 219, 178, 0.92) 0%,
+    rgba(252, 180, 102, 0.72) 24%,
+    rgba(216, 122, 66, 0.34) 52%,
+    transparent 75%
+  );
+}
+
+/* The resting orb must stay lit: the shared idle rule dims .vglow to 0.32,
+   which is right for a 34px glyph and wrong for a 520px light source. */
+.ignition .vmic[data-state='idle'] .vglow,
+.ignition .vmic[data-state='listening'] .vglow,
+.ignition .vmic[data-state='thinking'] .vglow,
+.ignition .vmic[data-state='speaking'] .vglow {
+  opacity: 1;
+  transform: none;
+}
+
+/* Brighter rims so the rings read as edges of a light. */
+.ignition .vring.r1 {
+  border-color: rgba(233, 156, 98, 0.5);
+  box-shadow: 0 0 100px -12px rgba(245, 163, 74, 0.5), inset 0 0 90px -28px rgba(245, 163, 74, 0.4);
+}
+.ignition .vring.r2 {
+  border-color: rgba(243, 178, 120, 0.62);
+  box-shadow: 0 0 70px -10px rgba(245, 163, 74, 0.5), inset 0 0 60px -22px rgba(245, 163, 74, 0.4);
+}
+.ignition .vmic[data-state='idle'] .vring.r1 { opacity: 0.9; }
+.ignition .vmic[data-state='idle'] .vring.r2 { opacity: 0.95; }
+
+/* The mic glyph sits on a bright field now, so it needs to be dark to read. */
+.ignition .vctl svg { stroke: rgba(28, 16, 8, 0.82); }
+
+/* Slow breathing at rest. Safe to depend on: the resting state is already the
+   lit one, so a non-ticking animation simply leaves it bright and still. */
+.ignition[data-ignited='true'] .ign-core {
+  animation: hero-breathe 7s ease-in-out infinite;
+}
+
+@keyframes hero-breathe {
+  0%, 100% { transform: scale(1); filter: brightness(1); }
+  50%      { transform: scale(1.018); filter: brightness(1.1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Bright static glow — no breathing. */
+  .ignition[data-ignited='true'] .ign-core { animation: none; }
+}
+
+/* Vignette: darkens the hero away from the orb so the orb wins the eye. */
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 68% 62% at 72% 46%,
+    transparent 0%,
+    rgba(10, 8, 7, 0.42) 52%,
+    rgba(8, 7, 6, 0.8) 100%
+  );
+}

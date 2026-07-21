@@ -48,7 +48,9 @@ export default function HomeClient() {
       {/* 01 · HERO {#home-hero} — over the coastal loop, text left, tablet right */}
       <MediaBed video="hero-coastal-sunset" poster="/assets/img/hero-coastal-sunset-poster.webp" scrim={0.66}>
         <section className="relative pt-16 pb-20 md:pt-24 md:pb-28">
-          <div className="container-rc">
+          {/* Darkens the hero away from the orb so the orb reads brightest */}
+          <div className="hero-vignette" aria-hidden="true" />
+          <div className="container-rc relative" style={{ zIndex: 1 }}>
             <div className="grid lg:grid-cols-12 gap-14 lg:gap-16 items-center">
               <div className="lg:col-span-6">
                 <div className="eyebrow eyebrow-accent mb-7">{c.hero.positioning}</div>
