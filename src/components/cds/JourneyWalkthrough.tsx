@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { TabletOS, TabletFilmstrip } from './TabletOS'
+import { VoiceOrb } from './VoiceOrb'
 import type { ScreenId } from '@/lib/i18n/marketing/deviceScreens'
 
 /**
@@ -128,7 +129,7 @@ export function JourneyWalkthrough({
         <TabletOS screen={steps[active]?.screen} orbState={paused ? 'idle' : 'listening'} />
 
         {/* step dots — manual control alongside the auto-advance */}
-        <div className="mt-6 flex items-center gap-2" role="tablist" aria-label="Journey stages">
+        <div className="mt-6 flex items-center" role="tablist" aria-label="Journey stages">
           {steps.map((s, i) => {
             const on = i === active
             return (
@@ -139,7 +140,7 @@ export function JourneyWalkthrough({
                 aria-label={`${i + 1}. ${s.title}`}
                 onClick={() => setActive(i)}
                 className="grid place-items-center"
-                style={{ width: 28, height: 44 }}
+                style={{ width: 44, height: 44 }}
               >
                 <span
                   style={{
@@ -280,6 +281,7 @@ export function SurfaceFan({
   answerMeta,
   callNote,
   emergingLabel,
+  chatPlaceholder,
 }: {
   surfaces: ReadonlyArray<Surface>
   intent: string
@@ -288,6 +290,8 @@ export function SurfaceFan({
   answerMeta: string
   callNote: string
   emergingLabel: string
+  /** Shown in the chat affordance on every visual surface. */
+  chatPlaceholder: string
 }) {
   const [active, setActive] = useState(0)
   const [reduce, setReduce] = useState(true)
@@ -428,6 +432,30 @@ export function SurfaceFan({
                   <div className="font-sans" style={{ fontSize: 11, color: 'var(--text-dim)' }}>
                     {answerMeta}
                   </div>
+                </div>
+
+                {/* Every visual surface carries both: the mic is always present and
+                    chat is always available. Voice-only is the call surface alone. */}
+                <div
+                  className="mt-3 flex items-center gap-2 pt-2.5"
+                  style={{ borderTop: '1px solid var(--border-soft)' }}
+                >
+                  <VoiceOrb state="idle" size={28} showMic />
+                  <div
+                    className="flex-1 rounded-full px-3 flex items-center"
+                    style={{ height: 26, background: 'rgba(251,248,242,0.06)', border: '1px solid var(--border-soft)' }}
+                  >
+                    <span className="font-sans" style={{ fontSize: 10, color: 'var(--text-faint)' }}>
+                      {chatPlaceholder}
+                    </span>
+                  </div>
+                  <span
+                    aria-hidden="true"
+                    className="grid place-items-center rounded-full flex-shrink-0"
+                    style={{ width: 26, height: 26, background: 'var(--accent)', color: '#1a1207', fontSize: 12 }}
+                  >
+                    ↑
+                  </span>
                 </div>
               </>
             )}

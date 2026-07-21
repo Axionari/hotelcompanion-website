@@ -26,6 +26,7 @@ import {
 import { COMPANION_OS_CAPABILITIES } from '@/lib/capabilities'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { homeCopy } from '@/lib/i18n/marketing/home'
+import { deviceScreens } from '@/lib/i18n/marketing/deviceScreens'
 import { accents } from '@/lib/i18n/marketing/accents'
 
 /**
@@ -37,6 +38,7 @@ import { accents } from '@/lib/i18n/marketing/accents'
 export default function HomeClient() {
   const c = useCopy(homeCopy)
   const a = useCopy(accents)
+  const screens = useCopy(deviceScreens)
 
   return (
     <main>
@@ -159,8 +161,9 @@ export default function HomeClient() {
             answerImage="/assets/img/hero-poolside.webp"
             answerTitle="Akumal"
             answerMeta={c.hero.positioning}
-            callNote="—"
+            callNote={screens.surfaces.callNote}
             emergingLabel={c.surfaces2029.emergingLabel}
+            chatPlaceholder={screens.chat.placeholder}
           />
         </div>
       </Section>
