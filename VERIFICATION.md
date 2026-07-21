@@ -205,6 +205,49 @@ Not verified in this environment, and needing a human at a real browser:
   `vturn` thinking, `vbar` speaking); the transitioned opacity/colour values
   could not be sampled reliably because transitions do not tick here.
 
+### The Ignition — Home hero (HI-1…HI-4)
+
+The hero's right-side anchor is the large cinematic orb, and it is the same
+object as the demo mic: same control, same runtime, same cards.
+
+Measured at 1440 and 390, EN and ES:
+
+| Check | 1440 | 390 |
+| --- | --- | --- |
+| Outer ring | 520px (43% of the 1200 container) | 240px (the stated floor) |
+| Clears the copy column | 86px at rest, 37px at breath peak (ES) | n/a — stacked below headline |
+| Horizontal overflow | none | none |
+| Breath | active, peaks then recedes by ~340px | correctly disabled |
+
+LCP **184ms**, CLS **0.0015**. The ignite cannot affect either: it is not the
+LCP candidate, and it animates only opacity/transform with space reserved by a
+static clamp.
+
+The breath is at 0.12, not the 0.2 first tried — at 0.2 the ring came within
+16px of the copy column at peak, and the Spanish headline is longer than the
+English one. It is desktop-only, since below 1024px the orb sits beneath the
+headline, which is the case the brief says to cut.
+
+**Fail-open, a third time.** The pre-ignite hold is produced by
+`animation-fill-mode: backwards`, so the orb sits at 28% opacity until the
+animation runs — and where animations never tick, that hold is permanent. It was
+measured still dark at 12s. A 2.7s deadline now asserts the lit resting state
+regardless. Same discipline as Reveal, and as the demo's scroll pin.
+
+Not verifiable here: the *hold and bloom in motion*, since animations do not
+tick in this pane, and voice engagement from the hero orb, since microphone
+capture is blocked. What is verified is that the end state is guaranteed and
+that the orb recovers to idle when recognition fails.
+
+### Pre-existing: React dependency-array console error
+
+Every marketing page logs, twice, on hydration only: *"The final argument passed
+to useEffect changed size between renders … Previous: [] Incoming: [obj,obj,obj]"*.
+Confirmed pre-existing — it reproduces at `be73534` with the hero work stashed,
+and on `/platform`, so it is neither Home-specific nor introduced by the demo or
+hero tiers. Harmless in production (dev-mode warning) but it is noise that will
+hide real errors. Left for a separate change rather than widened into this one.
+
 ### Blocker: the Anthropic API key is invalid
 
 `ANTHROPIC_API_KEY` in `.env.local` returns **401 `authentication_error`** when
