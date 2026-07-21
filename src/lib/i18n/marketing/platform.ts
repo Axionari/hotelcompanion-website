@@ -32,17 +32,14 @@ const en = {
   },
   yourVoice: {
     title: 'Speaks in Your Hotel’s Voice.',
-    beats: ['Every hotel has a unique personality.', 'Hotel Companion learns yours.'],
-    personalities: [
-      'Luxury.',
-      'Boutique.',
-      'Lifestyle.',
-      'Business.',
-      'Resort.',
-      'Wellness.',
-      'Family.',
-      'Independent.',
-      'Branded.',
+    beats: ['Every hotel has a personality. Now your assistant does too.'],
+    voicesLead: 'Choose a voice, and every guest is met in your hotel’s authentic tone—from the first message.',
+    voices: [
+      { name: 'Warm & Local', desc: 'Feels like a friend who knows the area.' },
+      { name: 'Refined Concierge', desc: 'Polished, precise, always professional.' },
+      { name: 'Barefoot Luxury', desc: 'Relaxed but impeccable—like the hotel itself.' },
+      { name: 'Playful Explorer', desc: 'Adventurous, fun, expressive.' },
+      { name: 'Zen & Mindful', desc: 'Calm, unhurried, present.' },
     ],
     body:
       'Every response reflects your hospitality standards, communication style, and brand voice, creating a consistent guest experience across every interaction.',
@@ -245,6 +242,93 @@ const en = {
     lead: 'Hotel Companion is built on Companion OS—the intelligence platform behind every Companion.',
     close: ['One intelligence platform.', 'Every hotel.', 'Every guest.', 'Every conversation.'],
   },
+  notGenericAi: {
+    title: 'Generic AI Knows Everything About Everywhere. Yours Knows Your Hotel.',
+    body: [
+      'Ask a general-purpose AI about your spa hours.',
+      'It will guess, invent an answer, or tell the guest to check your website.',
+    ],
+    beats: [
+      'The guest was already on your website.',
+      'They didn’t need a redirect.',
+      'They needed a conversation.',
+    ],
+    close: 'That is the difference between general intelligence and trained, contextual knowledge.',
+    coda: ['Knowledge is the foundation.', 'Understanding is what creates value.'],
+  },
+  lifecycle: {
+    title: 'With Your Guests From Arrival to Review.',
+    stages: [
+      {
+        name: 'Before they arrive',
+        body: 'The assistant link arrives in the booking confirmation. Guests explore the property, plan meals, and book treatments before they’ve packed their bags.',
+      },
+      {
+        name: 'While they’re there',
+        body: 'In-room tablets and QR codes in every space—lobby, pool, spa, restaurant. Every question answered instantly, in any language, at any hour.',
+      },
+      {
+        name: 'After they leave',
+        body: 'A warm follow-up with a direct link to leave a review. Happy guests become public advocates.',
+      },
+    ],
+    close: ['One continuous relationship.', 'Every stage understood.'],
+  },
+  issueDetection: {
+    title: 'Never Miss a Guest Issue.',
+    lead: 'A leak. A broken AC. No hot water.',
+    body: 'When a guest reports a problem, your team gets an instant alert with the room number and the guest’s exact words—no issue falls through the cracks at 2 AM.',
+    features: [
+      { name: 'Multilingual detection', desc: 'Recognizes maintenance and emergency intent in any language.' },
+      { name: 'Room number captured', desc: 'Asks the guest for their room automatically.' },
+      {
+        name: 'Two-stage alerts',
+        desc: 'First alert the moment the issue is reported; a second the moment the room number is confirmed.',
+      },
+      { name: 'Guest always reassured', desc: 'A warm, immediate response. Never a dead end.' },
+    ],
+  },
+  channels: {
+    lead: 'Guests reach the assistant wherever they already are.',
+    items: [
+      { name: 'In-room tablet', desc: 'Voice-first, always powered, always connected. The concierge in every room.' },
+      {
+        name: 'QR codes',
+        desc: 'Print and place anywhere: rooms, lobby, pool deck, restaurant menus, key-card sleeves. Scan and the assistant opens instantly. No app to download.',
+      },
+      {
+        name: 'Website widget',
+        desc: 'Embed the assistant on your site. Guests get answers before they’ve even booked.',
+      },
+      {
+        name: 'Shareable link',
+        desc: 'Drop it in booking confirmations, pre-arrival emails, or WhatsApp. One tap and the conversation begins.',
+      },
+      {
+        name: 'Voice, and whatever comes next',
+        desc: 'Off-property, a strong connection enables voice; a weak one falls back gracefully to text.',
+      },
+    ],
+  },
+  destinationExamples: {
+    lead: 'Your guests don’t just ask about your hotel.',
+    questions: [
+      'They ask where to watch the sunset.',
+      'Which beach has no seaweed this week.',
+      'Where the locals actually eat on a Tuesday.',
+      'Whether the pharmacy is open on Sunday morning.',
+    ],
+    close: [
+      'This knowledge never lived in any PMS.',
+      'Until now, it lived only in your best team member’s head—and walked out the door every time they clocked off.',
+    ],
+  },
+  resolution: {
+    /* NEEDS CONFIRM: resolution rate — verify before public launch. */
+    resolved: '91% resolved by the assistant.',
+    escalated: '9% escalated to your team—only what genuinely needs a human.',
+    close: 'Every question answered. Only the moments that need a person reach one.',
+  },
   finalCta: {
     title: 'Hospitality Runs on Conversations.',
     body:
@@ -290,17 +374,14 @@ const es: typeof en = {
   },
   yourVoice: {
     title: 'Habla con la Voz de Tu Hotel.',
-    beats: ['Cada hotel tiene una personalidad única.', 'Hotel Companion aprende la tuya.'],
-    personalities: [
-      'Lujo.',
-      'Boutique.',
-      'Lifestyle.',
-      'Negocios.',
-      'Resort.',
-      'Bienestar.',
-      'Familiar.',
-      'Independiente.',
-      'De marca.',
+    beats: ['Cada hotel tiene una personalidad. Ahora tu asistente también.'],
+    voicesLead: 'Elige una voz, y cada huésped es recibido con el tono auténtico de tu hotel—desde el primer mensaje.',
+    voices: [
+      { name: 'Cálido y Local', desc: 'Se siente como un amigo que conoce la zona.' },
+      { name: 'Concierge Refinado', desc: 'Pulido, preciso, siempre profesional.' },
+      { name: 'Lujo Descalzo', desc: 'Relajado pero impecable—como el hotel mismo.' },
+      { name: 'Explorador Alegre', desc: 'Aventurero, divertido, expresivo.' },
+      { name: 'Zen y Consciente', desc: 'Tranquilo, sin prisas, presente.' },
     ],
     body:
       'Cada respuesta refleja tus estándares de hospitalidad, tu estilo de comunicación y la voz de tu marca, creando una experiencia consistente en cada interacción.',
@@ -502,6 +583,95 @@ const es: typeof en = {
     title: 'Impulsado por Companion OS.',
     lead: 'Hotel Companion está construido sobre Companion OS—la plataforma de inteligencia detrás de cada Companion.',
     close: ['Una plataforma de inteligencia.', 'Cada hotel.', 'Cada huésped.', 'Cada conversación.'],
+  },
+  notGenericAi: {
+    title: 'La IA Genérica Sabe de Todo, de Todas Partes. La Tuya Conoce Tu Hotel.',
+    body: [
+      'Pregúntale a una IA de propósito general por los horarios de tu spa.',
+      'Adivinará, inventará una respuesta o le dirá al huésped que revise tu sitio web.',
+    ],
+    beats: [
+      'El huésped ya estaba en tu sitio web.',
+      'No necesitaba una redirección.',
+      'Necesitaba una conversación.',
+    ],
+    close: 'Esa es la diferencia entre la inteligencia general y el conocimiento entrenado y contextual.',
+    coda: ['El conocimiento es la base.', 'La comprensión es lo que crea valor.'],
+  },
+  lifecycle: {
+    title: 'Con Tus Huéspedes Desde la Llegada Hasta la Reseña.',
+    stages: [
+      {
+        name: 'Antes de que lleguen',
+        body: 'El enlace al asistente llega en su confirmación de reserva. Los huéspedes exploran la propiedad, planean comidas y reservan tratamientos antes de hacer las maletas.',
+      },
+      {
+        name: 'Mientras están ahí',
+        body: 'Tablets en la habitación y códigos QR en cada espacio—lobby, alberca, spa, restaurante. Cada pregunta respondida al instante, en cualquier idioma, a cualquier hora.',
+      },
+      {
+        name: 'Después de que se van',
+        body: 'Un seguimiento cálido con un enlace directo para dejar una reseña. Los huéspedes felices se vuelven promotores públicos.',
+      },
+    ],
+    close: ['Una sola relación continua.', 'Cada etapa comprendida.'],
+  },
+  issueDetection: {
+    title: 'Nunca Pierdas un Problema del Huésped.',
+    lead: 'Una fuga. Un aire acondicionado descompuesto. Sin agua caliente.',
+    body: 'Cuando un huésped reporta un problema, tu equipo recibe una alerta inmediata con el número de habitación y las palabras exactas del huésped—nada se pierde a las 2 de la mañana.',
+    features: [
+      { name: 'Detección multilingüe', desc: 'Reconoce la intención de mantenimiento y emergencia en cualquier idioma.' },
+      { name: 'Número de habitación capturado', desc: 'Le pide al huésped su habitación automáticamente.' },
+      {
+        name: 'Alertas en dos etapas',
+        desc: 'Una primera alerta en cuanto se reporta el problema; una segunda en cuanto se confirma el número de habitación.',
+      },
+      { name: 'Huésped siempre tranquilizado', desc: 'Una respuesta cálida e inmediata. Nunca un callejón sin salida.' },
+    ],
+  },
+  channels: {
+    lead: 'Los huéspedes llegan al asistente donde ya están.',
+    items: [
+      {
+        name: 'Tablet en la habitación',
+        desc: 'Con la voz primero, siempre encendida, siempre conectada. El concierge en cada habitación.',
+      },
+      {
+        name: 'Códigos QR',
+        desc: 'Imprime y coloca donde sea: habitaciones, lobby, alberca, menús del restaurante, portallaves. Escanean y el asistente se abre al instante. Sin app que descargar.',
+      },
+      {
+        name: 'Widget del sitio web',
+        desc: 'Integra el asistente en tu sitio. Los huéspedes obtienen respuestas incluso antes de reservar.',
+      },
+      {
+        name: 'Enlace para compartir',
+        desc: 'En confirmaciones de reserva, correos previos a la llegada o WhatsApp. Un toque y la conversación comienza.',
+      },
+      {
+        name: 'Voz, y lo que venga después',
+        desc: 'Fuera de la propiedad, una buena conexión habilita la voz; una débil vuelve al texto sin problema.',
+      },
+    ],
+  },
+  destinationExamples: {
+    lead: 'Tus huéspedes no solo preguntan por tu hotel.',
+    questions: [
+      'Preguntan dónde ver el atardecer.',
+      'Qué playa no tiene sargazo esta semana.',
+      'Dónde comen realmente los locales un martes.',
+      'Si la farmacia abre el domingo por la mañana.',
+    ],
+    close: [
+      'Ese conocimiento nunca vivió en ningún PMS.',
+      'Hasta ahora, vivía solo en la cabeza de tu mejor colaborador—y salía por la puerta cada vez que terminaba su turno.',
+    ],
+  },
+  resolution: {
+    resolved: '91% resuelto por el asistente.',
+    escalated: '9% escalado a tu equipo—solo lo que genuinamente necesita a una persona.',
+    close: 'Cada pregunta respondida. Solo los momentos que necesitan a alguien llegan a alguien.',
   },
   finalCta: {
     title: 'La Hospitalidad Funciona con Conversaciones.',

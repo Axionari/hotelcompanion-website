@@ -5,6 +5,7 @@ import { RhythmStack } from '@/components/cds/RhythmStack'
 import { CapabilityGrid } from '@/components/cds/CapabilityGrid'
 import { EndorsementMark } from '@/components/cds/EndorsementMark'
 import { Lead, Coda } from '@/components/cds/Prose'
+import { Reveal } from '@/components/cds/Reveal'
 import { PageShell, PageHero, FinalCta } from '@/components/cds/PageShell'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { platformCopy } from '@/lib/i18n/marketing/platform'
@@ -16,6 +17,30 @@ function SplitStack({ items }: { items: ReadonlyArray<string> }) {
     <div className="mt-10 max-w-3xl mx-auto grid sm:grid-cols-2 gap-x-10">
       <RhythmStack lines={items.slice(0, half)} />
       <RhythmStack lines={items.slice(half)} />
+    </div>
+  )
+}
+
+
+/** Named item + description, used for voices, channels and issue-detection features. */
+function NamedList({ items, columns = 1 }: { items: ReadonlyArray<{ name: string; desc: string }>; columns?: 1 | 2 }) {
+  return (
+    <div className={`mt-10 max-w-3xl mx-auto grid gap-4 text-left ${columns === 2 ? 'sm:grid-cols-2' : ''}`}>
+      {items.map((it, i) => (
+        <Reveal key={it.name} delay={Math.min(i, 5) * 40}>
+          <div
+            className="rounded-xl p-5"
+            style={{ background: 'var(--surface-2)', border: '1px solid var(--border)' }}
+          >
+            <div className="font-serif mb-1.5" style={{ fontSize: '1.15rem', color: 'var(--text)' }}>
+              {it.name}
+            </div>
+            <p className="font-sans leading-relaxed" style={{ fontSize: '15px', color: 'var(--text-secondary)' }}>
+              {it.desc}
+            </p>
+          </div>
+        </Reveal>
+      ))}
     </div>
   )
 }
@@ -39,11 +64,13 @@ export default function PlatformClient() {
           <Lead>{c.voiceFirst.body1}</Lead>
           <Lead>{c.voiceFirst.body2}</Lead>
         </div>
+        {/* {#platform-channels} — the concrete access channels */}
         <div className="mt-10">
           <Lead tone="primary">{c.voiceFirst.availableLead}</Lead>
-          <div className="mt-6">
-            <RhythmStack lines={c.voiceFirst.surfaces} center />
+          <div className="mt-3">
+            <Lead>{c.channels.lead}</Lead>
           </div>
+          <NamedList items={c.channels.items} columns={2} />
         </div>
         <div className="mt-10">
           <RhythmStack lines={c.voiceFirst.close} center serif size="lg" />
@@ -55,7 +82,11 @@ export default function PlatformClient() {
         <div className="mt-8">
           <RhythmStack lines={c.yourVoice.beats} center />
         </div>
-        <SplitStack items={c.yourVoice.personalities} />
+        {/* {#platform-five-voices} — named, productized styles */}
+        <div className="mt-8">
+          <Lead>{c.yourVoice.voicesLead}</Lead>
+        </div>
+        <NamedList items={c.yourVoice.voices} columns={2} />
         <div className="mt-10">
           <Lead>{c.yourVoice.body}</Lead>
         </div>
@@ -75,8 +106,28 @@ export default function PlatformClient() {
         </div>
       </Section>
 
+      {/* {#platform-not-generic-ai} */}
+      <Section eyebrow="04 · NOT GENERIC AI" title={c.notGenericAi.title} center>
+        <div className="mt-8 flex flex-col gap-4">
+          {c.notGenericAi.body.map((line, i) => (
+            <Lead key={i} tone={i === 0 ? 'primary' : 'secondary'}>
+              {line}
+            </Lead>
+          ))}
+        </div>
+        <div className="mt-10">
+          <RhythmStack lines={c.notGenericAi.beats} center serif size="lg" />
+        </div>
+        <div className="mt-10">
+          <Lead>{c.notGenericAi.close}</Lead>
+        </div>
+        <div className="mt-8">
+          <RhythmStack lines={c.notGenericAi.coda} center />
+        </div>
+      </Section>
+
       {/* {#platform-destination} */}
-      <Section eyebrow="04 · DESTINATION" title={c.destination.title} center>
+      <Section variant="surface-1" eyebrow="05 · DESTINATION" title={c.destination.title} center>
         <div className="mt-8">
           <RhythmStack lines={c.destination.beats} center />
         </div>
@@ -84,13 +135,31 @@ export default function PlatformClient() {
           <Lead tone="primary">{c.destination.lead}</Lead>
         </div>
         <SplitStack items={c.destination.items} />
+        {/* {#platform-destination-examples} — made vivid */}
+        <div className="mt-14">
+          <Lead tone="primary">{c.destinationExamples.lead}</Lead>
+        </div>
+        <div className="mt-6">
+          <RhythmStack lines={c.destinationExamples.questions} center serif size="lg" />
+        </div>
+        <div className="mt-8">
+          <RhythmStack lines={c.destinationExamples.close} center />
+        </div>
         <div className="mt-10">
           <Lead>{c.destination.close}</Lead>
         </div>
       </Section>
 
+      {/* {#platform-lifecycle} */}
+      <Section eyebrow="06 · LIFECYCLE" title={c.lifecycle.title} center>
+        <NamedList items={c.lifecycle.stages.map((st) => ({ name: st.name, desc: st.body }))} />
+        <div className="mt-10">
+          <RhythmStack lines={c.lifecycle.close} center serif size="lg" />
+        </div>
+      </Section>
+
       {/* {#platform-reservations} */}
-      <Section eyebrow="05 · RESERVATIONS" title={c.reservations.title} variant="surface-1" center>
+      <Section eyebrow="07 · RESERVATIONS" title={c.reservations.title} variant="surface-1" center>
         <div className="mt-6">
           <Lead>{c.reservations.lead}</Lead>
         </div>
@@ -101,7 +170,7 @@ export default function PlatformClient() {
       </Section>
 
       {/* {#platform-request-action} */}
-      <Section eyebrow="06 · EXECUTION" title={c.requestAction.title} center>
+      <Section eyebrow="08 · EXECUTION" title={c.requestAction.title} center>
         <div className="mt-8">
           <RhythmStack lines={c.requestAction.beats} center serif size="lg" />
         </div>
@@ -114,8 +183,17 @@ export default function PlatformClient() {
         </div>
       </Section>
 
+      {/* {#platform-issue-detection} */}
+      <Section eyebrow="09 · ISSUE DETECTION" title={c.issueDetection.title} variant="surface-1" center>
+        <div className="mt-8 flex flex-col gap-4">
+          <Lead tone="primary">{c.issueDetection.lead}</Lead>
+          <Lead>{c.issueDetection.body}</Lead>
+        </div>
+        <NamedList items={c.issueDetection.features} columns={2} />
+      </Section>
+
       {/* {#platform-revenue-intel} */}
-      <Section eyebrow="07 · REVENUE INTELLIGENCE" title={c.revenueIntel.title} variant="surface-1" center>
+      <Section eyebrow="10 · REVENUE INTELLIGENCE" title={c.revenueIntel.title} center>
         <div className="mt-6 flex flex-col gap-4">
           <Lead tone="primary">{c.revenueIntel.lead}</Lead>
           <Lead>{c.revenueIntel.body}</Lead>
@@ -127,7 +205,7 @@ export default function PlatformClient() {
       </Section>
 
       {/* {#platform-guest-memory} */}
-      <Section eyebrow="08 · GUEST MEMORY" title={c.guestMemory.title} center>
+      <Section variant="surface-1" eyebrow="11 · GUEST MEMORY" title={c.guestMemory.title} center>
         <div className="mt-6 flex flex-col gap-4">
           <Lead tone="primary">{c.guestMemory.lead}</Lead>
           <Lead>{c.guestMemory.body}</Lead>
@@ -139,7 +217,7 @@ export default function PlatformClient() {
       </Section>
 
       {/* {#platform-guest-intel} */}
-      <Section eyebrow="09 · GUEST INTELLIGENCE" title={c.guestIntel.title} variant="surface-1" center>
+      <Section eyebrow="12 · GUEST INTELLIGENCE" title={c.guestIntel.title} center>
         <div className="mt-6 flex flex-col gap-4">
           <Lead tone="primary">{c.guestIntel.lead}</Lead>
           <Lead>{c.guestIntel.body}</Lead>
@@ -151,19 +229,36 @@ export default function PlatformClient() {
       </Section>
 
       {/* {#platform-dashboards} */}
-      <Section eyebrow="10 · DASHBOARDS" title={c.dashboards.title} center>
+      <Section variant="surface-1" eyebrow="13 · DASHBOARDS" title={c.dashboards.title} center>
         <div className="mt-6 flex flex-col gap-4">
           <Lead>{c.dashboards.lead}</Lead>
           <Lead tone="primary">{c.dashboards.monitorLead}</Lead>
         </div>
         <SplitStack items={c.dashboards.items} />
+        {/* {#dashboards-resolution} — NEEDS CONFIRM on the rate */}
+        <Reveal>
+          <div
+            className="mt-14 mx-auto max-w-xl rounded-2xl p-8"
+            style={{ background: 'var(--surface-2)', border: '1px solid var(--border)' }}
+          >
+            <p className="font-serif" style={{ fontSize: 'clamp(2rem, 6vw, 3rem)', color: 'var(--accent)' }}>
+              {c.resolution.resolved}
+            </p>
+            <p className="font-sans mt-3" style={{ fontSize: '15px', color: 'var(--text-secondary)' }}>
+              {c.resolution.escalated}
+            </p>
+          </div>
+        </Reveal>
+        <div className="mt-8">
+          <Lead>{c.resolution.close}</Lead>
+        </div>
         <div className="mt-10">
           <RhythmStack lines={c.dashboards.close} center serif size="lg" />
         </div>
       </Section>
 
       {/* {#platform-multi-property} */}
-      <Section eyebrow="11 · MULTI-PROPERTY" title={c.multiProperty.title} variant="surface-1" center>
+      <Section eyebrow="14 · MULTI-PROPERTY" title={c.multiProperty.title} center>
         <div className="mt-8">
           <RhythmStack lines={c.multiProperty.beats} center />
         </div>
@@ -174,7 +269,7 @@ export default function PlatformClient() {
       </Section>
 
       {/* {#platform-enterprise-ready} */}
-      <Section eyebrow="12 · ENTERPRISE-READY" title={c.enterpriseReady.title} center>
+      <Section variant="surface-1" eyebrow="15 · ENTERPRISE-READY" title={c.enterpriseReady.title} center>
         <div className="mt-6">
           <Lead>{c.enterpriseReady.lead}</Lead>
         </div>
@@ -185,7 +280,7 @@ export default function PlatformClient() {
       </Section>
 
       {/* {#platform-companion-os} */}
-      <Section eyebrow="13 · COMPANION OS" title={c.companionOs.title} variant="surface-1" center>
+      <Section eyebrow="16 · COMPANION OS" title={c.companionOs.title} center>
         <div className="mt-6">
           <Lead>{c.companionOs.lead}</Lead>
         </div>
@@ -202,7 +297,7 @@ export default function PlatformClient() {
 
       {/* {#platform-final-cta} */}
       <FinalCta
-        eyebrow="14 · NEXT STEP"
+        eyebrow="17 · NEXT STEP"
         title={c.finalCta.title}
         body={c.finalCta.body}
         beats={c.finalCta.beats}
