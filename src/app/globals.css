@@ -920,3 +920,46 @@ body {
   from { stroke-dashoffset: 620; }
   to   { stroke-dashoffset: 0; }
 }
+
+/* --------------------------------------------- the device rail collapses
+
+   A 108px vertical rail inside a ~350px device is a third of the screen, so
+   below 640px the rail lies down: the orb and its label run across the top and
+   the canvas takes everything beneath. Same components, different form factor —
+   which is the claim the section makes, made structurally. */
+@media (max-width: 640px) {
+  /* The rail becomes a slim strip, not half the device: a collapsed rail that
+     eats the canvas defeats the point of collapsing it. */
+  .tos-shell { flex-direction: column; }
+  .tos-rail {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: 44px;
+    flex: 0 0 44px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    border-right: none !important;
+    border-bottom: 1px solid var(--border-soft);
+    padding: 0 10px !important;
+    overflow: hidden;
+  }
+  .tos-rail .tos-tiles,
+  .tos-rail .tos-property { display: none !important; }
+  .tos-rail .eyebrow {
+    margin-top: 0 !important;
+    text-align: left !important;
+    white-space: nowrap;
+  }
+  .tos-rail .device-orb .vmic { width: 32px !important; }
+}
+
+
+
+/* rail */
+
+/* r2 */
+
+/* v3 */

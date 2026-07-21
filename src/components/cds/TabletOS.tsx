@@ -116,53 +116,59 @@ function ActionRow({ labels }: { labels: ReadonlyArray<string> }) {
 
 /* ------------------------------------------------------------ the screens */
 
+/**
+ * A full-bleed canvas: the image fills the whole area (object-cover, slow pan)
+ * and is darkened only at the top and bottom, where text actually sits. The
+ * previous layout inset the photo as a rounded card, which read as a thin
+ * image band rather than an immersive answer.
+ */
+function Canvas({ image, alt, children }: { image: string; alt: string; children?: React.ReactNode }) {
+  return (
+    <div className="relative h-full w-full overflow-hidden">
+      <div
+        role="img"
+        aria-label={alt}
+        className="tablet-kenburns absolute inset-0"
+        style={{ backgroundImage: `url(${image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0"
+        style={{
+          background:
+            'linear-gradient(180deg, rgba(12,10,9,0.62) 0%, rgba(12,10,9,0.06) 26%, rgba(12,10,9,0.08) 58%, rgba(12,10,9,0.82) 100%)',
+        }}
+      />
+      {children}
+    </div>
+  )
+}
+
 function ScreenBody({ id }: { id: ScreenId }) {
   const d = useCopy(deviceScreens)
   const s = d.screens
 
   if (id === 'home') {
     return (
-      <div className="flex h-full flex-col p-4">
-        <UiImage src="/assets/img/luxury-lobby.webp" alt={d.property} height="52%" />
-        <div className="mt-3 flex items-center justify-between gap-3">
-          <span className="font-serif" style={{ fontSize: 15, fontWeight: 530, color: 'var(--text)' }}>
+      <Canvas image="/assets/img/luxury-lobby.webp" alt={d.property}>
+        <div className="absolute inset-x-0 bottom-0 p-4">
+          <div className="font-serif" style={{ fontSize: 17, fontWeight: 530, color: 'var(--text)' }}>
             {d.greeting}
-          </span>
-          <span className="eyebrow flex-shrink-0" style={{ fontSize: 8 }}>
-            {d.orbHint}
-          </span>
+          </div>
         </div>
-        <div className="mt-3 grid grid-cols-5 gap-1.5">
-          {d.tiles.map((t) => (
-            <div
-              key={t.id}
-              className="flex items-center justify-center rounded-lg px-1 py-2.5 text-center"
-              style={{
-                background: 'rgba(251,248,242,0.05)',
-                border: '1px solid var(--border-soft)',
-                fontSize: 9,
-                color: 'var(--text-dim)',
-                lineHeight: 1.2,
-              }}
-            >
-              {t.label}
-            </div>
-          ))}
-        </div>
-      </div>
+      </Canvas>
     )
   }
 
   if (id === 'beach') {
     return (
-      <div className="flex h-full flex-col p-4">
-        <AskChip text={s.beach.ask} />
-        <div className="mt-3 flex-1">
-          <UiImage src={s.beach.image} alt={s.beach.title} height="100%" />
+      <Canvas image={s.beach.image} alt={s.beach.title}>
+        <div className="absolute inset-x-0 top-0 p-3">
+          <AskChip text={s.beach.ask} />
         </div>
-        <div className="mt-3 flex items-end justify-between gap-3">
-          <div>
-            <div className="font-serif" style={{ fontSize: 16, fontWeight: 530, color: 'var(--text)' }}>
+        <div className="absolute inset-x-0 bottom-0 p-4 flex items-end justify-between gap-3">
+          <div className="min-w-0">
+            <div className="font-serif" style={{ fontSize: 17, fontWeight: 530, color: 'var(--text)' }}>
               {s.beach.title}
             </div>
             <div className="font-sans" style={{ fontSize: 11, color: 'var(--text-dim)' }}>
@@ -171,7 +177,7 @@ function ScreenBody({ id }: { id: ScreenId }) {
           </div>
           <ActionRow labels={s.beach.actions} />
         </div>
-      </div>
+      </Canvas>
     )
   }
 
@@ -472,33 +478,77 @@ export function TabletOS({
             </span>
           </div>
 
-          {/* The orb lives IN the device, at the top, as the primary control —
-              the RC app pattern. It is never hidden and never scrolls away. */}
-          <div className="absolute inset-x-0 top-9 z-10 flex flex-col items-center pt-1.5 pb-2">
-            <div className="device-orb">
-              <VoiceOrb state={orbState} size={68} showMic keepMic micScale={0.3} />
+          {/* -------------------------------------------- rail + canvas
+
+              A large surface has room to give the orb its own column, so the
+              control stops floating over the content and the answer gets the
+              whole canvas. Phones and watches keep the centred orb (see
+              DeviceWall) — a 120px rail inside a 9:18 screen is not a layout,
+              it is a stripe. That difference IS the "adapts to the surface"
+              claim, made structurally rather than asserted. */}
+          <div className="tos-shell absolute inset-x-0 top-9 bottom-[52px] flex">
+            <aside
+              className="tos-rail flex flex-col items-center flex-shrink-0 px-2.5 pt-3 pb-3"
+              style={{
+                width: '22%',
+                minWidth: 108,
+                maxWidth: 160,
+                borderRight: '1px solid var(--border-soft)',
+                background: 'rgba(251,248,242,0.025)',
+              }}
+            >
+              <div className="device-orb">
+                <VoiceOrb state={orbState} size={72} showMic keepMic micScale={0.3} />
+              </div>
+              <span
+                className="eyebrow mt-2.5 text-center"
+                style={{ fontSize: 7, color: 'var(--accent)', lineHeight: 1.35 }}
+              >
+                {d.orbHint}
+              </span>
+
+              <span
+                className="tos-property eyebrow mt-3 text-center"
+                style={{ fontSize: 6.5, color: 'var(--text-faint)', lineHeight: 1.3 }}
+              >
+                {d.property}
+              </span>
+
+              <div className="tos-tiles mt-3 w-full flex flex-col gap-1">
+                {d.tiles.slice(0, 4).map((t) => (
+                  <div
+                    key={t.id}
+                    className="rounded px-1.5 py-1.5 text-center"
+                    style={{
+                      background: 'rgba(251,248,242,0.05)',
+                      border: '1px solid var(--border-soft)',
+                      fontSize: 7.5,
+                      color: 'var(--text-dim)',
+                      lineHeight: 1.2,
+                    }}
+                  >
+                    {t.label}
+                  </div>
+                ))}
+              </div>
+            </aside>
+
+            {/* the canvas cross-fades; the rail never does */}
+            <div
+              className="relative flex-1 min-w-0"
+              style={{
+                opacity: fading ? 0 : 1,
+                transform: fading ? 'scale(0.985)' : 'scale(1)',
+                transition: reduce
+                  ? 'none'
+                  : 'opacity var(--dur-slow) var(--ease-emphasis), transform var(--dur-slow) var(--ease-emphasis)',
+              }}
+            >
+              <ScreenBody id={active} />
             </div>
-            <span className="eyebrow mt-1.5" style={{ fontSize: 7.5, color: 'var(--accent)' }}>
-              {d.orbHint}
-            </span>
           </div>
 
-          {/* the screen content cross-fades; the orb and chrome never do */}
-          <div
-            className="absolute inset-x-0 top-[124px] bottom-[52px]"
-            style={{
-              opacity: fading ? 0 : 1,
-              transform: fading ? 'scale(0.985)' : 'scale(1)',
-              transition: reduce
-                ? 'none'
-                : 'opacity var(--dur-slow) var(--ease-emphasis), transform var(--dur-slow) var(--ease-emphasis)',
-            }}
-          >
-            <ScreenBody id={active} />
-          </div>
-
-          {/* Chat sits below on every visual surface; voice-only is reserved
-              for the phone-call surface (see DeviceWall). */}
+          {/* Chat spans the full bottom, under both rail and canvas. */}
           <div
             className="absolute inset-x-0 bottom-0 flex items-center gap-2 px-3 py-2.5"
             style={{ borderTop: '1px solid var(--border-soft)', background: 'rgba(15,13,12,0.72)' }}
