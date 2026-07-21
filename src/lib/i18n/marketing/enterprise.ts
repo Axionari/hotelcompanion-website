@@ -118,7 +118,7 @@ const en = {
     },
     {
       id: 'deploy',
-      eyebrow: '11 · DEPLOYMENT',
+      eyebrow: '12 · DEPLOYMENT',
       title: 'Deploy in Days.',
       body: [
         'Enterprise software shouldn’t require months of implementation.',
@@ -130,7 +130,7 @@ const en = {
     },
     {
       id: 'grow',
-      eyebrow: '12 · SCALE',
+      eyebrow: '13 · SCALE',
       title: 'Built to Grow With You.',
       body: [
         'Start with one property. Expand to ten. Scale to hundreds.',
@@ -139,6 +139,27 @@ const en = {
       coda: 'One platform. Unlimited potential.',
     },
   ],
+  whatItIsNot: {
+    title: 'What Hotel Companion Is Not.',
+    lead: [
+      'Your PMS manages reservations.',
+      'Your operational tools manage execution.',
+      'Hotel Companion understands the guest conversations happening around them—and helps your team focus on what matters most.',
+    ],
+    items: [
+      { name: 'Not a PMS', desc: 'It doesn’t touch reservations or payments.' },
+      { name: 'Not a generic assistant', desc: 'It understands context and intent, not just keywords.' },
+      { name: 'Not another app', desc: 'Guests scan, tap, or speak. Nothing to download.' },
+      { name: 'Not a rip-and-replace integration', desc: 'It complements the systems you already run.' },
+    ],
+    close: ['It doesn’t replace your operation.', 'It understands the conversations between every part of it.'],
+  },
+  resolution: {
+    /* NEEDS CONFIRM: resolution rate — verify before public launch. */
+    resolved: '91% resolved by the assistant.',
+    escalated: '9% escalated to your team—only what genuinely needs a human.',
+    close: 'Every question answered. Only the moments that need a person reach one.',
+  },
   companionOs: {
     title: 'Powered by Companion OS.',
     lead: 'Every enterprise capability is powered by Companion OS.',
@@ -274,7 +295,7 @@ const es: typeof en = {
     },
     {
       id: 'deploy',
-      eyebrow: '11 · IMPLEMENTACIÓN',
+      eyebrow: '12 · IMPLEMENTACIÓN',
       title: 'Implementa en Días.',
       body: [
         'El software empresarial no debería requerir meses de implementación.',
@@ -286,7 +307,7 @@ const es: typeof en = {
     },
     {
       id: 'grow',
-      eyebrow: '12 · ESCALA',
+      eyebrow: '13 · ESCALA',
       title: 'Creado para Crecer Contigo.',
       body: [
         'Empieza con una propiedad. Expándete a diez. Escala a cientos.',
@@ -295,6 +316,26 @@ const es: typeof en = {
       coda: 'Una plataforma. Potencial ilimitado.',
     },
   ],
+  whatItIsNot: {
+    title: 'Lo que Hotel Companion No Es.',
+    lead: [
+      'Tu PMS gestiona las reservaciones.',
+      'Tus herramientas operativas gestionan la ejecución.',
+      'Hotel Companion entiende las conversaciones con los huéspedes que ocurren alrededor de ellas—y ayuda a tu equipo a enfocarse en lo que más importa.',
+    ],
+    items: [
+      { name: 'No es un PMS', desc: 'No toca reservaciones ni pagos.' },
+      { name: 'No es un asistente genérico', desc: 'Entiende contexto e intención, no solo palabras clave.' },
+      { name: 'No es otra app', desc: 'Los huéspedes escanean, tocan o hablan. Nada que descargar.' },
+      { name: 'No es una integración de reemplazo total', desc: 'Complementa los sistemas que ya usas.' },
+    ],
+    close: ['No reemplaza tu operación.', 'Entiende las conversaciones entre cada parte de ella.'],
+  },
+  resolution: {
+    resolved: '91% resuelto por el asistente.',
+    escalated: '9% escalado a tu equipo—solo lo que genuinamente necesita a una persona.',
+    close: 'Cada pregunta respondida. Solo los momentos que necesitan a alguien llegan a alguien.',
+  },
   companionOs: {
     title: 'Impulsado por Companion OS.',
     lead: 'Cada capacidad empresarial está impulsada por Companion OS.',

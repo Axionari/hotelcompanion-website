@@ -43,6 +43,8 @@ const ES_LABELS: Record<string, string> = {
   'MULTI-PROPERTY': 'MULTIPROPIEDAD',
   'ENTERPRISE-READY': 'LISTO PARA ENTERPRISE',
 
+  'WHAT IT IS NOT': 'LO QUE NO ES',
+
   // Companion OS
   WHY: 'POR QUÉ',
   'ONE PLATFORM': 'UNA PLATAFORMA',

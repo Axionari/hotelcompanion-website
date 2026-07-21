@@ -64,6 +64,7 @@ const en = {
         'Guests report problems naturally through conversation.',
         'Air conditioning. Lighting. Television. Internet. Water pressure. Leaks. Electrical issues. Door locks. Room equipment.',
         'Maintenance teams receive complete, actionable information immediately, helping resolve issues faster and improving the guest experience before small problems become public complaints.',
+        'Two-stage alerts: the first the moment the issue is reported, a second the moment the room number is confirmed—so nothing falls through the cracks at 2 AM.',
       ],
     },
     {
@@ -256,6 +257,7 @@ const es: typeof en = {
         'Los huéspedes reportan problemas de forma natural mediante la conversación.',
         'Aire acondicionado. Iluminación. Televisión. Internet. Presión de agua. Fugas. Problemas eléctricos. Cerraduras. Equipo de la habitación.',
         'Los equipos de mantenimiento reciben de inmediato información completa y accionable, ayudando a resolver problemas más rápido y a mejorar la experiencia del huésped antes de que los pequeños detalles se conviertan en quejas públicas.',
+        'Alertas en dos etapas: la primera en cuanto se reporta el problema, una segunda en cuanto se confirma el número de habitación—para que nada se pierda a las 2 de la mañana.',
       ],
     },
     {
