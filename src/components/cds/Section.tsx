@@ -37,6 +37,7 @@ export function Section({
   center = false,
   id,
   tight = false,
+  flush = false,
 }: {
   eyebrow?: string
   title?: string
@@ -49,6 +50,10 @@ export function Section({
   center?: boolean
   id?: string
   tight?: boolean
+  /** One step tighter than `tight`, for short bands whose content cannot fill
+   *  the standard rhythm — a big stat with a comparison is ~270px of ink and
+   *  looks under-filled inside 224px of padding. */
+  flush?: boolean
 }) {
   const translateEyebrow = useEyebrow()
   const label = translateEyebrow(eyebrow)
@@ -73,7 +78,7 @@ export function Section({
   return (
     <section
       id={id}
-      className={`scroll-mt-20 ${tight ? 'py-14 md:py-20' : 'py-20 md:py-28'}`}
+      className={`scroll-mt-20 ${flush ? 'py-10 md:py-14' : tight ? 'py-14 md:py-20' : 'py-20 md:py-28'}`}
       style={{ background: VARIANT_BG[variant] }}
     >
       <div className={`container-rc ${center ? 'text-center' : ''}`}>

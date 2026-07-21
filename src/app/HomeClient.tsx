@@ -102,7 +102,7 @@ export default function HomeClient() {
 
       {/* 02 · THE COST OF INTERMEDIARIES — the book-direct revenue story.
           One of only two big numbers on the site; both carry NEEDS CONFIRM. */}
-      <Section eyebrow={`02 · ${c.otaStake.eyebrow}`} variant="surface-1" tight>
+      <Section eyebrow={`02 · ${c.otaStake.eyebrow}`} variant="surface-1" flush>
         <div className="mt-4">
           <StatBlock figure={c.otaStake.figure} caption={c.otaStake.caption} source={c.otaStake.source}>
             <div className="mt-4" style={{ maxWidth: 460 }}>
@@ -113,7 +113,7 @@ export default function HomeClient() {
       </Section>
 
       {/* 03 · THE STAKE {#home-stake} — left stat block, count-up on reveal */}
-      <Section eyebrow="03 · THE STAKE" variant="bg">
+      <Section eyebrow="03 · THE STAKE" variant="bg" flush>
         <div className="mt-4">
           <StatBlock figure={c.stake.figure} caption={c.stake.caption} source={c.stake.source}>
             {c.stake.beats.map((b, i) => (
@@ -291,7 +291,7 @@ export default function HomeClient() {
       </Section>
 
       {/* 09 · LIVE IN DAYS {#home-live-in-days} — three-step timeline */}
-      <Section eyebrow="11 · DEPLOYMENT" title={c.liveInDays.title} support={c.liveInDays.body} variant="bg">
+      <Section eyebrow="11 · DEPLOYMENT" title={c.liveInDays.title} support={c.liveInDays.body} variant="bg" tight>
         <div className="mt-14">
           <JourneyTimeline
             stages={c.liveInDays.beats.map((b, i) => ({
