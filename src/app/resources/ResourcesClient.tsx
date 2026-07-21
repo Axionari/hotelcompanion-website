@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { Section } from '@/components/cds/Section'
-import { RhythmStack } from '@/components/cds/RhythmStack'
+import { IconChipGrid } from '@/components/cds/blocks'
 import { Reveal } from '@/components/cds/Reveal'
 import { Lead, Coda } from '@/components/cds/Prose'
 import { PageShell, PageHero, FinalCta } from '@/components/cds/PageShell'
@@ -37,7 +37,7 @@ export default function ResourcesClient({ content }: { content: Localized<Resour
       </PageHero>
 
       {/* {#resources-featured} */}
-      <Section eyebrow={c.featured.eyebrow} title={c.featured.title} variant="surface-1" center>
+      <Section eyebrow={c.featured.eyebrow} title={c.featured.title} variant="surface-1">
         <div className="mt-8 flex flex-col gap-4">
           <Lead tone="primary">{c.featured.body1}</Lead>
           <Lead>{c.featured.body2}</Lead>
@@ -52,7 +52,7 @@ export default function ResourcesClient({ content }: { content: Localized<Resour
       </Section>
 
       {/* {#resources-library} — featured cards from the copy deck */}
-      <Section id="library" eyebrow={c.library.eyebrow} title={c.library.title} center>
+      <Section id="library" eyebrow={c.library.eyebrow} title={c.library.title}>
         <div className="mt-12 grid md:grid-cols-2 gap-5 text-left">
           {c.library.cards.map((card) => (
             <Reveal key={card.label}>
@@ -74,7 +74,7 @@ export default function ResourcesClient({ content }: { content: Localized<Resour
       </Section>
 
       {/* {#resources-categories} — filters over the full 12-essay library */}
-      <Section id="categories" eyebrow={c.categories.eyebrow} title={c.categories.title} variant="surface-1" center>
+      <Section id="categories" eyebrow={c.categories.eyebrow} title={c.categories.title} variant="surface-1">
         <Reveal>
           <div className="mt-10 flex flex-wrap gap-2.5">
             {[null, ...categories].map((cat) => {
@@ -140,7 +140,7 @@ export default function ResourcesClient({ content }: { content: Localized<Resour
       </Section>
 
       {/* {#resources-faq} */}
-      <Section id="faq" eyebrow={c.faq.eyebrow} title={c.faq.title} center>
+      <Section id="faq" eyebrow={c.faq.eyebrow} title={c.faq.title}>
         <div className="mt-6">
           <Lead>{c.faq.body}</Lead>
         </div>
@@ -158,7 +158,7 @@ export default function ResourcesClient({ content }: { content: Localized<Resour
       </Section>
 
       {/* {#resources-updates} */}
-      <Section id="updates" eyebrow={c.updates.eyebrow} title={c.updates.title} variant="surface-1" center>
+      <Section id="updates" eyebrow={c.updates.eyebrow} title={c.updates.title} variant="surface-1">
         <div className="mt-6">
           <Lead>{c.updates.body}</Lead>
         </div>
@@ -166,7 +166,7 @@ export default function ResourcesClient({ content }: { content: Localized<Resour
           <Lead tone="primary">{c.updates.lead}</Lead>
         </div>
         <div className="mt-6">
-          <RhythmStack lines={c.updates.items} center />
+          <IconChipGrid items={c.updates.items} columns={2} />
         </div>
         <Reveal>
           <p className="eyebrow mt-10" style={{ color: 'var(--accent)' }}>
@@ -176,13 +176,13 @@ export default function ResourcesClient({ content }: { content: Localized<Resour
       </Section>
 
       {/* {#resources-newsletter} */}
-      <Section eyebrow={c.newsletter.eyebrow} title={c.newsletter.title} center>
+      <Section eyebrow={c.newsletter.eyebrow} title={c.newsletter.title}>
         <div className="mt-8 flex flex-col gap-4">
           <Lead tone="primary">{c.newsletter.body1}</Lead>
           <Lead>{c.newsletter.body2}</Lead>
         </div>
         <Reveal>
-          <div className="mt-10 max-w-md mx-auto">
+          <div className="mt-10" style={{ maxWidth: 460 }}>
             {subscribed ? (
               <p className="font-sans" style={{ color: 'var(--green)' }} role="status">
                 {c.newsletter.success}
