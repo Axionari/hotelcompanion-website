@@ -14,16 +14,14 @@ const en = {
     secondaryCta: 'Watch Product Tour',
   },
   stake: {
-    figure: '$47B',
+    figure: '$160B',
     /* NEEDS CONFIRM: exact figure, report, year — Eduardo sourcing. Approved for use now. */
-    caption: 'Lost annually to missed opportunities and avoidable guest friction.',
-    source: 'Source: Medallia, 2024.',
+    caption: 'In annual value and operational savings AI automation can unlock for hospitality.',
+    source: 'Source: McKinsey.',
     beats: [
-      'Every unanswered question is a missed moment.',
-      'The upgrade never offered. The reservation never made. The guest who left without a review because no one followed up.',
-      'Hotels miss hundreds of these a day.',
+      'Front-of-house teams are stretched thin, and every unanswered question is a missed moment—the upgrade never offered, the reservation never made, the review never left.',
+      'Hotel Companion resolves the routine automatically—freeing your team for the moments that matter, so no opportunity slips away.',
     ],
-    close: 'Hotel Companion makes sure they don’t.',
   },
   revenueExample: {
     prompt: 'A guest asks, at 10:14 PM:',
@@ -241,6 +239,65 @@ const en = {
       'The opportunity to help shape the future of Companion OS.',
     ],
   },
+  actionTabs: {
+    deviceLabel: 'MarAzul Riviera Maya',
+    tabs: [
+      {
+        label: 'Suite upgrade',
+        guest: '“Is it possible to upgrade to an ocean-view suite for the rest of my stay?”',
+        reply:
+          '“Wonderful news—an Ocean-View Suite is open. $250/night, with a private terrace and direct sea views. Shall I have the front desk confirm the upgrade?”',
+        outcome: 'One upgrade. Investment: covered.',
+      },
+      {
+        label: 'Spa',
+        guest: '“Do you have a spa?”',
+        reply:
+          '“Our Cenote spa is open 9am to 8pm daily. The Maya chocolate ritual is our most requested experience—shall I reserve it for tomorrow?”',
+        outcome: 'A treatment booked, not a question deflected.',
+      },
+      {
+        label: 'Late checkout',
+        guest: '“Can we check out at 1pm?”',
+        reply:
+          '“Yes—late checkout until 1pm is available for your room. I have noted it with the front desk.”',
+        outcome: 'Front Office notified. Nothing forgotten.',
+      },
+      {
+        label: 'Maintenance',
+        guest: '“The air conditioning in our room has stopped working.”',
+        reply:
+          '“I am alerting Engineering right now. Could you confirm your room number? Someone will be with you shortly.”',
+        outcome: 'Engineering alerted at 2 AM. No dead end.',
+      },
+    ],
+  },
+  dashboard: {
+    title: 'Command centre',
+    resolvedLabel: 'resolved by the assistant',
+    escalatedLabel: 'escalated to your team',
+    metrics: [
+      { label: 'Questions this month', value: '4,820' },
+      { label: 'Languages detected', value: '12' },
+      { label: 'Requests routed', value: '1,140' },
+      { label: 'Avg. first response', value: 'Instant' },
+    ],
+    properties: [
+      { name: 'MarAzul Riviera Maya', value: '1,908' },
+      { name: 'Casa Ventana Tulum', value: '1,472' },
+      { name: 'Hacienda del Mar', value: '1,440' },
+    ],
+  },
+  convergence: {
+    inputs: [
+      'Guest questions',
+      'Service requests',
+      'Maintenance reports',
+      'Booking intent',
+      'Preferences & history',
+    ],
+    node: 'Companion OS',
+  },
   faq: {
     title: 'Frequently Asked Questions',
     items: [
@@ -308,16 +365,14 @@ const es: typeof en = {
     secondaryCta: 'Ver el Recorrido del Producto',
   },
   stake: {
-    figure: '$47B',
-    /* NEEDS CONFIRM: exact figure, report, year — Eduardo sourcing. Approved for use now. */
-    caption: 'Se pierden cada año por oportunidades desaprovechadas y fricción evitable con los huéspedes.',
-    source: 'Fuente: Medallia, 2024.',
+    figure: '$160 mil millones',
+    /* NEEDS CONFIRM: cifra exacta, reporte, año. */
+    caption: 'En valor anual y ahorros operativos que la automatización con IA puede desbloquear para la hospitalidad.',
+    source: 'Fuente: McKinsey.',
     beats: [
-      'Cada pregunta sin responder es un momento perdido.',
-      'La mejora que nunca se ofreció. La reservación que nunca se hizo. El huésped que se fue sin dejar reseña porque nadie dio seguimiento.',
-      'Los hoteles pierden cientos de estos cada día.',
+      'Los equipos de atención están saturados, y cada pregunta sin responder es un momento perdido—la mejora que nunca se ofreció, la reservación que nunca se hizo, la reseña que nunca se dejó.',
+      'Hotel Companion resuelve lo rutinario automáticamente—liberando a tu equipo para los momentos que importan, para que ninguna oportunidad se escape.',
     ],
-    close: 'Hotel Companion se asegura de que no.',
   },
   revenueExample: {
     prompt: 'Un huésped pregunta, a las 10:14 PM:',
@@ -534,6 +589,65 @@ const es: typeof en = {
       'Acceso anticipado a nuevas capacidades',
       'La oportunidad de ayudar a dar forma al futuro de Companion OS.',
     ],
+  },
+  actionTabs: {
+    deviceLabel: 'MarAzul Riviera Maya',
+    tabs: [
+      {
+        label: 'Mejora de suite',
+        guest: '“¿Es posible mejorar a una suite con vista al mar por el resto de mi estancia?”',
+        reply:
+          '“Excelentes noticias—hay una Suite con Vista al Mar disponible. $250/noche, con terraza privada y vista directa al mar. ¿Le pido a recepción que confirme la mejora?”',
+        outcome: 'Una mejora. Inversión: cubierta.',
+      },
+      {
+        label: 'Spa',
+        guest: '“¿Tienen servicio de spa?”',
+        reply:
+          '“Nuestro spa Cenote abre de 9am a 8pm todos los días. El ritual de chocolate maya es nuestra experiencia más solicitada—¿se lo reservo para mañana?”',
+        outcome: 'Un tratamiento reservado, no una pregunta esquivada.',
+      },
+      {
+        label: 'Salida tardía',
+        guest: '“¿Podemos hacer el check-out a la 1pm?”',
+        reply:
+          '“Sí—la salida tardía hasta la 1pm está disponible para su habitación. Ya lo dejé anotado en recepción.”',
+        outcome: 'Recepción notificada. Nada se olvida.',
+      },
+      {
+        label: 'Mantenimiento',
+        guest: '“El aire acondicionado de nuestra habitación dejó de funcionar.”',
+        reply:
+          '“Estoy alertando a Mantenimiento en este momento. ¿Me confirma su número de habitación? Alguien estará con usted en breve.”',
+        outcome: 'Mantenimiento alertado a las 2 AM. Nunca un callejón sin salida.',
+      },
+    ],
+  },
+  dashboard: {
+    title: 'Centro de mando',
+    resolvedLabel: 'resuelto por el asistente',
+    escalatedLabel: 'escalado a tu equipo',
+    metrics: [
+      { label: 'Preguntas este mes', value: '4,820' },
+      { label: 'Idiomas detectados', value: '12' },
+      { label: 'Solicitudes enrutadas', value: '1,140' },
+      { label: 'Primera respuesta', value: 'Inmediata' },
+    ],
+    properties: [
+      { name: 'MarAzul Riviera Maya', value: '1,908' },
+      { name: 'Casa Ventana Tulum', value: '1,472' },
+      { name: 'Hacienda del Mar', value: '1,440' },
+    ],
+  },
+  convergence: {
+    inputs: [
+      'Preguntas de huéspedes',
+      'Solicitudes de servicio',
+      'Reportes de mantenimiento',
+      'Intención de reserva',
+      'Preferencias e historial',
+    ],
+    node: 'Companion OS',
   },
   faq: {
     title: 'Preguntas Frecuentes',
