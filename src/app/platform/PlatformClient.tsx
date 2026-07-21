@@ -470,7 +470,8 @@ export default function PlatformClient() {
         eyebrow="12 · MULTI-PROPERTY"
         title={c.multiProperty.title}
         variant="bg"
-      >
+      
+        tight>
         {/* Canonical on Enterprise, which is the portfolio page. */}
         <div className="mt-12">
           <Teaser lines={c.multiProperty.beats.slice(0, 2)} href="/enterprise#shared-intel" label={g.nav.enterprise}>
@@ -486,7 +487,8 @@ export default function PlatformClient() {
         title={c.enterpriseReady.title}
         support={c.enterpriseReady.lead}
         variant="surface-2"
-      >
+      
+        tight>
         {/* Canonical on Enterprise; a trust strip is enough here. */}
         <div className="mt-12">
           <Teaser lines={[c.enterpriseReady.close]} href="/enterprise" label={g.nav.enterprise}>
@@ -502,7 +504,8 @@ export default function PlatformClient() {
         title={c.companionOs.title}
         support={c.companionOs.lead}
         variant="surface-3"
-      >
+      
+        tight>
         <div className="mt-12">
           <Teaser lines={[c.companionOs.lead]} href="/companion-os" label={g.nav.companionOs}>
             <CapabilityStrip names={COMPANION_OS_CAPABILITIES.map((x) => x.name)} />

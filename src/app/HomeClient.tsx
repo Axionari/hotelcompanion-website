@@ -102,7 +102,7 @@ export default function HomeClient() {
 
       {/* 02 · THE COST OF INTERMEDIARIES — the book-direct revenue story.
           One of only two big numbers on the site; both carry NEEDS CONFIRM. */}
-      <Section eyebrow={`02 · ${c.otaStake.eyebrow}`} variant="surface-1">
+      <Section eyebrow={`02 · ${c.otaStake.eyebrow}`} variant="surface-1" tight>
         <div className="mt-4">
           <StatBlock figure={c.otaStake.figure} caption={c.otaStake.caption} source={c.otaStake.source}>
             <div className="mt-4" style={{ maxWidth: 460 }}>
@@ -181,9 +181,9 @@ export default function HomeClient() {
               'radial-gradient(64% 54% at 50% 42%, rgba(200,106,58,0.16) 0%, rgba(200,106,58,0.05) 46%, transparent 74%)',
           }}
         />
-        <div className="container-rc relative py-20 md:py-28">
+        <div className="container-rc relative py-12 md:py-16">
           <Reveal>
-            <div className="eyebrow eyebrow-accent mb-10">{c.surfaces2029.caption}</div>
+            <div className="eyebrow eyebrow-accent mb-6">{c.surfaces2029.caption}</div>
           </Reveal>
           {/* Scaled rather than widened: TabletOS's chrome is fixed-px and only
               correct near its native 560, so stretching it collapsed the photo
@@ -268,7 +268,8 @@ export default function HomeClient() {
       </Section>
 
       {/* 08 · COMPANION OS {#home-companion-os} — convergence + capability surface */}
-      <Section id="home-companion-os" eyebrow="10 · COMPANION OS" title={c.companionOs.title} support={c.companionOs.lead} variant="surface-3">
+      <Section id="home-companion-os" eyebrow="10 · COMPANION OS" title={c.companionOs.title} support={c.companionOs.lead} variant="surface-3"
+        tight>
         <div className="mt-14">
           <ConvergenceDiagram inputs={c.convergence.inputs} nodeLabel={c.convergence.node} />
         </div>
@@ -332,7 +333,7 @@ export default function HomeClient() {
       </Section>
 
       {/* 11 · FOUNDING PARTNERS {#home-founding-partner} */}
-      <Section eyebrow="13 · FOUNDING PARTNERS" title={c.foundingPartner.title} support={c.foundingPartner.lead} variant="bg">
+      <Section eyebrow="13 · FOUNDING PARTNERS" title={c.foundingPartner.title} support={c.foundingPartner.lead} variant="bg" tight>
         {/* The full programme is canonical on /contact#founding. */}
         <div className="mt-12">
           <Teaser

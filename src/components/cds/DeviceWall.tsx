@@ -280,8 +280,10 @@ export function DeviceWall({ intent }: { intent: string }) {
           </div>
         </Cell>
 
+        {/* --------------------------------- glasses + watch, stacked to fill */}
+        <div className="col-span-12 md:col-span-3 flex flex-col gap-6">
         {/* ------------------------------------------------------- glasses */}
-        <Cell span="col-span-12 md:col-span-3" label={c.glasses.label} align="center">
+        <Cell span="" label={c.glasses.label} align="center">
           <div className="flex items-center w-full" style={{ gap: 5 }}>
             <span aria-hidden="true" style={{ width: 12, height: 3, background: '#1a1a1d', borderRadius: 2, flexShrink: 0 }} />
             {[0, 1].map((lens) => (
@@ -315,6 +317,37 @@ export function DeviceWall({ intent }: { intent: string }) {
             <span aria-hidden="true" style={{ width: 12, height: 3, background: '#1a1a1d', borderRadius: 2, flexShrink: 0 }} />
           </div>
         </Cell>
+        {/* --------------------------------------------------------- watch */}
+        <Cell span="" label={c.watch.label} align="center">
+          <span className="dw-watch-lug block mx-auto" style={{ width: 22, height: 10, borderRadius: '5px 5px 0 0' }} />
+          <div className="dw-frame" style={{ borderRadius: 19, padding: 3.5, width: '100%', maxWidth: 76 }}>
+            <div
+              className="dw-screen flex flex-col items-center justify-center"
+              style={{ borderRadius: 16, aspectRatio: '1 / 1.16' }}
+            >
+              {/* a dot, not an orb: nobody holds a conversation with a watch face */}
+              <span
+                aria-hidden="true"
+                style={{
+                  width: 5,
+                  height: 5,
+                  borderRadius: 999,
+                  background: 'var(--accent)',
+                  boxShadow: '0 0 8px 2px rgba(245,163,74,0.55)',
+                }}
+              />
+              <div className="font-serif mt-1" style={{ ...T(12), lineHeight: 1 }}>
+                {c.watch.time}
+              </div>
+              {/* Two lines only: a watch face has room for a value and a label. */}
+              <div className="font-sans px-1 text-center truncate w-full mt-0.5" style={{ fontSize: 6, color: 'var(--accent)' }}>
+                {c.watch.glance}
+              </div>
+            </div>
+          </div>
+          <span className="dw-watch-lug block mx-auto" style={{ width: 22, height: 10, borderRadius: '0 0 5px 5px' }} />
+        </Cell>
+        </div>
 
         {/* --------------------------------------------------------- phone */}
         <Cell span="col-span-6 md:col-span-2" label={c.phone.label} align="center">
@@ -363,39 +396,8 @@ export function DeviceWall({ intent }: { intent: string }) {
           </div>
         </Cell>
 
-        {/* --------------------------------------------------------- watch */}
-        <Cell span="col-span-6 md:col-span-1" label={c.watch.label} align="center">
-          <span className="dw-watch-lug block mx-auto" style={{ width: 22, height: 10, borderRadius: '5px 5px 0 0' }} />
-          <div className="dw-frame" style={{ borderRadius: 19, padding: 3.5, width: '100%', maxWidth: 76 }}>
-            <div
-              className="dw-screen flex flex-col items-center justify-center"
-              style={{ borderRadius: 16, aspectRatio: '1 / 1.16' }}
-            >
-              {/* a dot, not an orb: nobody holds a conversation with a watch face */}
-              <span
-                aria-hidden="true"
-                style={{
-                  width: 5,
-                  height: 5,
-                  borderRadius: 999,
-                  background: 'var(--accent)',
-                  boxShadow: '0 0 8px 2px rgba(245,163,74,0.55)',
-                }}
-              />
-              <div className="font-serif mt-1" style={{ ...T(12), lineHeight: 1 }}>
-                {c.watch.time}
-              </div>
-              {/* Two lines only: a watch face has room for a value and a label. */}
-              <div className="font-sans px-1 text-center truncate w-full mt-0.5" style={{ fontSize: 6, color: 'var(--accent)' }}>
-                {c.watch.glance}
-              </div>
-            </div>
-          </div>
-          <span className="dw-watch-lug block mx-auto" style={{ width: 22, height: 10, borderRadius: '0 0 5px 5px' }} />
-        </Cell>
-
         {/* ---------------------------------------------------- voice call */}
-        <Cell span="col-span-12 md:col-span-2" label={c.call.label} align="center">
+        <Cell span="col-span-12 md:col-span-3" label={c.call.label} align="center">
           <div className="dw-frame" style={{ borderRadius: 22, padding: 4, width: '100%', maxWidth: 112 }}>
             <div
               className="dw-screen flex flex-col items-center justify-center gap-3"
