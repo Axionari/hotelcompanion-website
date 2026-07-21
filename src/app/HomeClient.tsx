@@ -12,6 +12,7 @@ import { RoutingDiagram } from '@/components/cds/RoutingDiagram'
 import { EndorsementMark } from '@/components/cds/EndorsementMark'
 import { FAQAccordion } from '@/components/cds/FAQAccordion'
 import { PersistentCTA } from '@/components/cds/PersistentCTA'
+import { Lead } from '@/components/cds/Prose'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { homeCopy } from '@/lib/i18n/marketing/home'
 
@@ -91,8 +92,39 @@ export default function HomeClient() {
         </div>
       </section>
 
+      {/* THE STAKE {#home-stake} — the one sourced figure on the site */}
+      <Section eyebrow="01 · THE STAKE" variant="bg" center>
+        <Reveal>
+          <p
+            className="font-serif"
+            style={{ fontSize: 'clamp(3.5rem, 12vw, 7rem)', lineHeight: 1, color: 'var(--accent)' }}
+          >
+            {c.stake.figure}
+          </p>
+        </Reveal>
+        <div className="mt-6">
+          <Lead>{c.stake.caption}</Lead>
+        </div>
+        <Reveal>
+          <p className="font-sans mt-3" style={{ fontSize: '13px', color: 'var(--text-muted)' }}>
+            {c.stake.source}
+          </p>
+        </Reveal>
+        <div className="mt-12">
+          <RhythmStack lines={c.stake.beats} center />
+        </div>
+        <Reveal>
+          <p
+            className="font-serif italic mt-10 mx-auto max-w-2xl"
+            style={{ fontSize: 'clamp(1.15rem, 2.4vw, 1.5rem)', color: 'var(--text)' }}
+          >
+            {c.stake.close}
+          </p>
+        </Reveal>
+      </Section>
+
       {/* {#home-conversation} */}
-      <Section eyebrow="01 · CONVERSATION" title={c.conversation.title} center>
+      <Section eyebrow="02 · CONVERSATION" title={c.conversation.title} center>
         <Reveal>
           <p className="font-sans mt-6 mx-auto max-w-2xl" style={{ fontSize: '1.1rem', color: 'var(--text-secondary)' }}>
             {c.conversation.lead}
@@ -112,7 +144,7 @@ export default function HomeClient() {
       </Section>
 
       {/* {#home-employee} */}
-      <Section eyebrow="02 · ALWAYS ON" title={c.employee.title} variant="surface-1" center>
+      <Section eyebrow="03 · ALWAYS ON" title={c.employee.title} variant="surface-1" center>
         <Reveal>
           <p className="font-sans mt-6 mx-auto max-w-2xl" style={{ fontSize: '1.1rem', color: 'var(--text)' }}>
             {c.employee.lead}
@@ -132,7 +164,7 @@ export default function HomeClient() {
       </Section>
 
       {/* {#home-voice} */}
-      <Section eyebrow="03 · VOICE-FIRST" title={c.voice.title} center>
+      <Section eyebrow="04 · VOICE-FIRST" title={c.voice.title} center>
         <div className="mt-10">
           <RhythmStack lines={c.voice.beats} center serif size="lg" />
         </div>
@@ -147,7 +179,7 @@ export default function HomeClient() {
       </Section>
 
       {/* {#home-every-room} */}
-      <Section eyebrow="04 · IN EVERY ROOM" title={c.everyRoom.title} variant="surface-1" center>
+      <Section eyebrow="05 · IN EVERY ROOM" title={c.everyRoom.title} variant="surface-1" center>
         <Reveal>
           <p className="font-sans mt-6" style={{ fontSize: '1.05rem', color: 'var(--text-secondary)' }}>
             {c.everyRoom.lead}
@@ -165,7 +197,7 @@ export default function HomeClient() {
       </Section>
 
       {/* {#home-revenue} */}
-      <Section eyebrow="05 · REVENUE" title={c.revenue.title} center>
+      <Section eyebrow="06 · REVENUE" title={c.revenue.title} center>
         <div className="mt-8">
           <RhythmStack lines={c.revenue.beats} center />
         </div>
@@ -181,10 +213,49 @@ export default function HomeClient() {
         <div className="mt-10">
           <RhythmStack lines={c.revenue.close} center serif size="lg" />
         </div>
+
+        {/* {#home-revenue-example} — a real exchange, not a claim */}
+        <Reveal>
+          <div
+            className="mt-16 mx-auto max-w-xl rounded-2xl p-6 md:p-8 text-left"
+            style={{ background: 'var(--surface-2)', border: '1px solid var(--border)' }}
+          >
+            <p className="eyebrow mb-5">{c.revenueExample.prompt}</p>
+            <p
+              className="font-sans rounded-2xl px-5 py-3.5 mb-4"
+              style={{ background: 'var(--surface-3)', fontSize: '15px', color: 'var(--text)' }}
+            >
+              {c.revenueExample.guest}
+            </p>
+            <p className="font-sans mb-4" style={{ fontSize: '13px', color: 'var(--text-muted)' }}>
+              {c.revenueExample.context}
+            </p>
+            <p
+              className="font-sans rounded-2xl px-5 py-3.5 mb-4"
+              style={{
+                background: 'rgba(201,106,58,0.12)',
+                border: '1px solid rgba(201,106,58,0.25)',
+                fontSize: '15px',
+                color: 'var(--text)',
+              }}
+            >
+              {c.revenueExample.reply}
+            </p>
+            <p
+              className="font-sans rounded-2xl px-5 py-3.5"
+              style={{ background: 'var(--surface-3)', fontSize: '15px', color: 'var(--text)' }}
+            >
+              {c.revenueExample.accept}
+            </p>
+          </div>
+        </Reveal>
+        <div className="mt-10">
+          <RhythmStack lines={c.revenueExample.close} center serif size="lg" />
+        </div>
       </Section>
 
       {/* {#home-knows} */}
-      <Section eyebrow="06 · KNOWLEDGE" title={c.knows.title} variant="surface-1" center>
+      <Section eyebrow="07 · KNOWLEDGE" title={c.knows.title} variant="surface-1" center>
         <Reveal>
           <p className="font-sans mt-6" style={{ fontSize: '1.05rem', color: 'var(--text-secondary)' }}>
             {c.knows.lead}
@@ -207,7 +278,7 @@ export default function HomeClient() {
       </Section>
 
       {/* {#home-intelligence} */}
-      <Section eyebrow="07 · INTELLIGENCE" title={c.intelligence.title} center>
+      <Section eyebrow="08 · INTELLIGENCE" title={c.intelligence.title} center>
         <div className="mt-8">
           <RhythmStack lines={c.intelligence.beats} center serif size="lg" />
         </div>
@@ -226,7 +297,7 @@ export default function HomeClient() {
       </Section>
 
       {/* {#home-execution} */}
-      <Section eyebrow="08 · EXECUTION" title={c.execution.title} variant="surface-1" center>
+      <Section eyebrow="09 · EXECUTION" title={c.execution.title} variant="surface-1" center>
         <Reveal>
           <p className="font-sans mt-6 mb-10" style={{ fontSize: '1.05rem', color: 'var(--text-secondary)' }}>
             {c.execution.lead}
@@ -239,7 +310,7 @@ export default function HomeClient() {
       </Section>
 
       {/* {#home-enterprise-intel} */}
-      <Section eyebrow="09 · ENTERPRISE" title={c.enterpriseIntel.title} center>
+      <Section eyebrow="10 · ENTERPRISE" title={c.enterpriseIntel.title} center>
         <Reveal>
           <p className="font-sans mt-6" style={{ fontSize: '1.05rem', color: 'var(--text-secondary)' }}>
             {c.enterpriseIntel.lead}
@@ -264,7 +335,7 @@ export default function HomeClient() {
       </Section>
 
       {/* {#home-companion-os} */}
-      <Section eyebrow="10 · COMPANION OS" title={c.companionOs.title} variant="surface-1" center>
+      <Section eyebrow="11 · COMPANION OS" title={c.companionOs.title} variant="surface-1" center>
         <Reveal>
           <p className="font-sans mt-6 mx-auto max-w-2xl leading-relaxed" style={{ fontSize: '1.05rem', color: 'var(--text-secondary)' }}>
             {c.companionOs.lead}
@@ -284,7 +355,7 @@ export default function HomeClient() {
       </Section>
 
       {/* {#home-live-in-days} */}
-      <Section eyebrow="11 · DEPLOYMENT" title={c.liveInDays.title} center>
+      <Section eyebrow="12 · DEPLOYMENT" title={c.liveInDays.title} center>
         <div className="mt-8">
           <RhythmStack lines={c.liveInDays.beats} center serif size="lg" />
         </div>
@@ -299,7 +370,7 @@ export default function HomeClient() {
       </Section>
 
       {/* {#home-founding-partner} — enterprise design-partner framing */}
-      <Section eyebrow="12 · FOUNDING PARTNERS" title={c.foundingPartner.title} variant="surface-2" center>
+      <Section eyebrow="13 · FOUNDING PARTNERS" title={c.foundingPartner.title} variant="surface-2" center>
         <Reveal>
           <p className="font-sans mt-6 mx-auto max-w-2xl leading-relaxed" style={{ fontSize: '1.05rem', color: 'var(--text-secondary)' }}>
             {c.foundingPartner.lead}
@@ -323,14 +394,40 @@ export default function HomeClient() {
       </Section>
 
       {/* FAQ {#home-faq} */}
-      <Section eyebrow="13 · FAQ" title={c.faq.title} center>
+      <Section eyebrow="14 · FAQ" title={c.faq.title} center>
         <div className="mt-12">
           <FAQAccordion items={c.faq.items} />
         </div>
       </Section>
 
+      {/* {#home-what-it-is-not-teaser} — full version lives on Enterprise */}
+      <Section eyebrow="15 · BOUNDARIES" variant="bg" center tight>
+        <Reveal>
+          <p
+            className="font-serif mx-auto max-w-3xl"
+            style={{ fontSize: 'clamp(1.35rem, 3vw, 2rem)', lineHeight: 1.25, color: 'var(--text)' }}
+          >
+            {c.whatItIsNot.headline}
+          </p>
+        </Reveal>
+        <div className="mt-8">
+          <RhythmStack lines={c.whatItIsNot.beats} center />
+        </div>
+        <Reveal>
+          <p className="mt-8">
+            <Link
+              href="/enterprise#what-it-is-not"
+              className="font-sans text-sm transition-colors hover:text-[#D4784A]"
+              style={{ color: 'var(--accent)', fontWeight: 500 }}
+            >
+              {c.whatItIsNot.cta} →
+            </Link>
+          </p>
+        </Reveal>
+      </Section>
+
       {/* FINAL CTA {#home-final-cta} */}
-      <Section eyebrow="14 · NEXT STEP" title={c.finalCta.title} variant="surface-1" center>
+      <Section eyebrow="16 · NEXT STEP" title={c.finalCta.title} variant="surface-1" center>
         <div className="mt-8">
           <RhythmStack lines={c.finalCta.beats} center />
         </div>

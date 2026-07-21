@@ -11,6 +11,8 @@ import { useLang } from '../LanguageContext'
  */
 const ES_LABELS: Record<string, string> = {
   // Home
+  'THE STAKE': 'LO QUE ESTÁ EN JUEGO',
+  BOUNDARIES: 'LÍMITES',
   CONVERSATION: 'CONVERSACIÓN',
   'ALWAYS ON': 'SIEMPRE ACTIVO',
   'VOICE-FIRST': 'PRIMERO LA VOZ',

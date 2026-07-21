@@ -13,6 +13,35 @@ const en = {
     primaryCta: 'Book a Demo',
     secondaryCta: 'Watch Product Tour',
   },
+  stake: {
+    figure: '$47B',
+    /* NEEDS CONFIRM: exact figure, report, year — Eduardo sourcing. Approved for use now. */
+    caption: 'Lost annually to missed opportunities and avoidable guest friction.',
+    source: 'Source: Medallia, 2024.',
+    beats: [
+      'Every unanswered question is a missed moment.',
+      'The upgrade never offered. The reservation never made. The guest who left without a review because no one followed up.',
+      'Hotels miss hundreds of these a day.',
+    ],
+    close: 'Hotel Companion makes sure they don’t.',
+  },
+  revenueExample: {
+    prompt: 'A guest asks, at 10:14 PM:',
+    guest: '“Is it possible to upgrade to an ocean-view suite for the rest of my stay?”',
+    context: 'The assistant already knows one is available.',
+    reply:
+      '“Wonderful news—an Ocean-View Suite is open. $250/night, with a private terrace and direct sea views. Shall I have the front desk confirm the upgrade?”',
+    accept: '“Yes, please.”',
+    close: ['One upgrade.', 'Investment: covered.'],
+  },
+  whatItIsNot: {
+    headline: 'It doesn’t replace your systems. It understands the conversations between them.',
+    beats: [
+      'Not a PMS. Not a generic assistant. Not another app to download.',
+      'One intelligent layer that makes everything you already run work better.',
+    ],
+    cta: 'See how it fits',
+  },
   trust: 'Built for forward-thinking hospitality leaders redefining the guest experience.',
   conversation: {
     title: 'Hospitality Begins with Conversation.',
@@ -277,6 +306,34 @@ const es: typeof en = {
       'Hotel Companion transforma las conversaciones naturales en experiencias personalizadas, inteligencia operativa y ejecución coordinada—disponible las 24 horas, en todos los idiomas, en cada punto de contacto.',
     primaryCta: 'Agenda una Demo',
     secondaryCta: 'Ver el Recorrido del Producto',
+  },
+  stake: {
+    figure: '$47B',
+    caption: 'Se pierden cada año por oportunidades desaprovechadas y fricción evitable con los huéspedes.',
+    source: 'Fuente: Medallia, 2024.',
+    beats: [
+      'Cada pregunta sin responder es un momento perdido.',
+      'La mejora que nunca se ofreció. La reservación que nunca se hizo. El huésped que se fue sin dejar reseña porque nadie dio seguimiento.',
+      'Los hoteles pierden cientos de estos cada día.',
+    ],
+    close: 'Hotel Companion se asegura de que no.',
+  },
+  revenueExample: {
+    prompt: 'Un huésped pregunta, a las 10:14 PM:',
+    guest: '“¿Es posible mejorar a una suite con vista al mar por el resto de mi estancia?”',
+    context: 'El asistente ya sabe que hay una disponible.',
+    reply:
+      '“Excelentes noticias—hay una Suite con Vista al Mar disponible. $250/noche, con terraza privada y vista directa al mar. ¿Le pido a recepción que confirme la mejora?”',
+    accept: '“Sí, por favor.”',
+    close: ['Una mejora.', 'Inversión: cubierta.'],
+  },
+  whatItIsNot: {
+    headline: 'No reemplaza tus sistemas. Entiende las conversaciones entre ellos.',
+    beats: [
+      'No es un PMS. No es un asistente genérico. No es otra app para descargar.',
+      'Una sola capa inteligente que hace que todo lo que ya usas funcione mejor.',
+    ],
+    cta: 'Descubre cómo encaja',
   },
   trust: 'Creado para líderes de hospitalidad visionarios que están redefiniendo la experiencia del huésped.',
   conversation: {
