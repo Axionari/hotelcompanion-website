@@ -337,6 +337,7 @@ export default function HomeClient() {
         {/* The full programme is canonical on /contact#founding. */}
         <div className="mt-12">
           <Teaser
+            split
             lines={[c.foundingPartner.receiveLead]}
             href="/contact#founding"
             label={c.foundingCta}

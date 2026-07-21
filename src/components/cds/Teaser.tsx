@@ -21,32 +21,68 @@ export function Teaser({
   href,
   label,
   children,
+  split = false,
 }: {
   /** 2–3 lines lifted verbatim from the canonical section's copy. */
   lines: ReadonlyArray<string>
   href: string
   /** The destination's name, e.g. "Companion OS". */
   label: string
-  /** Optional slim visual (a capability strip, a stat) shown above the link. */
+  /** Optional slim visual (a capability strip, a stat) shown beside the copy. */
   children?: React.ReactNode
+  /**
+   * Two columns: copy + link left, visual right. Without this a teaser that
+   * replaced a two-column section leaves the right half of the band blank,
+   * which reads as a broken layout rather than a deliberate compression.
+   */
+  split?: boolean
 }) {
   const { nav } = useCopy(globalCopy)
 
-  return (
-    <div>
-      <div className="flex flex-col gap-2" style={{ maxWidth: '58ch' }}>
+  const copy = (
+    <>
+      <div className="flex flex-col gap-2" style={{ maxWidth: '54ch' }}>
         {lines.map((l) => (
           <p key={l} className="font-sans" style={{ fontSize: 16, lineHeight: 1.6, color: 'var(--text-dim)' }}>
             {l}
           </p>
         ))}
       </div>
-
-      {children && <div className="mt-8">{children}</div>}
-
       <Link
         href={href}
-        className="font-sans inline-flex items-center gap-2 mt-7 transition-colors hover:text-[#d4824f]"
+        className="font-sans inline-flex items-center gap-2 mt-6 transition-colors hover:text-[#d4824f]"
+        style={{ color: 'var(--accent)', fontSize: 15, fontWeight: 500, minHeight: 44 }}
+      >
+        {nav.see} {label}
+        <span aria-hidden="true">→</span>
+      </Link>
+    </>
+  )
+
+  if (split && children) {
+    return (
+      <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div className="lg:col-span-5">{copy}</div>
+        <div className="lg:col-span-7">{children}</div>
+      </div>
+    )
+  }
+
+  return (
+    <div>
+      {lines.length > 0 && (
+        <div className="flex flex-col gap-2" style={{ maxWidth: '54ch' }}>
+          {lines.map((l) => (
+            <p key={l} className="font-sans" style={{ fontSize: 16, lineHeight: 1.6, color: 'var(--text-dim)' }}>
+              {l}
+            </p>
+          ))}
+        </div>
+      )}
+      {children && <div className={lines.length ? 'mt-8' : ''}>{children}</div>}
+      <Link
+        href={href}
+        className="font-sans inline-flex items-center gap-2 mt-6 transition-colors hover:text-[#d4824f]"
         style={{ color: 'var(--accent)', fontSize: 15, fontWeight: 500, minHeight: 44 }}
       >
         {nav.see} {label}

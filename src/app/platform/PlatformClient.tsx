@@ -474,7 +474,7 @@ export default function PlatformClient() {
         tight>
         {/* Canonical on Enterprise, which is the portfolio page. */}
         <div className="mt-12">
-          <Teaser lines={c.multiProperty.beats.slice(0, 2)} href="/enterprise#shared-intel" label={g.nav.enterprise}>
+          <Teaser split lines={c.multiProperty.beats.slice(0, 2)} href="/enterprise#shared-intel" label={g.nav.enterprise}>
             <IconChipGrid items={c.multiProperty.items.slice(0, 4)} columns={2} />
           </Teaser>
         </div>
@@ -491,7 +491,7 @@ export default function PlatformClient() {
         tight>
         {/* Canonical on Enterprise; a trust strip is enough here. */}
         <div className="mt-12">
-          <Teaser lines={[c.enterpriseReady.close]} href="/enterprise" label={g.nav.enterprise}>
+          <Teaser split lines={[c.enterpriseReady.close]} href="/enterprise" label={g.nav.enterprise}>
             <CapabilityStrip names={c.enterpriseReady.items} />
           </Teaser>
         </div>
@@ -507,7 +507,7 @@ export default function PlatformClient() {
       
         tight>
         <div className="mt-12">
-          <Teaser lines={[c.companionOs.lead]} href="/companion-os" label={g.nav.companionOs}>
+          <Teaser split lines={[c.companionOs.lead]} href="/companion-os" label={g.nav.companionOs}>
             <CapabilityStrip names={COMPANION_OS_CAPABILITIES.map((x) => x.name)} />
           </Teaser>
         </div>
