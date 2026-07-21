@@ -204,3 +204,62 @@ region while the DOM measures correctly at full width). The 1440 gate was theref
 by **computed-style and geometry measurement** rather than by image at that exact width;
 390 and desktop-native were verified visually. Worth re-shooting on a real browser at 1440
 before sign-off.
+
+## 5 · Voice interface tier (mic always visible · chat everywhere · sequenced revenue)
+
+### The mic, ported from RC
+Values were read from the live Restaurant Companion Features page rather than guessed:
+two concentric rings (`r1` inset 0, `r2` inset 16%), a radial glow at inset 22%, and a
+conic shimmer at inset 16% masked into a ring, all driven by `data-state` across
+**idle → listening → thinking → speaking**, with waveform bars while speaking. Every
+animation sits behind a `.live` class, so `prefers-reduced-motion` renders the static glow.
+
+RC shows this orb inside one section of `/features`. Here it is everywhere:
+
+- **In-device, always.** The mic moved out of the tablet's home screen and into its
+  persistent chrome, so it is present on every screen the device shows and is never
+  hidden behind a state. The filmstrip used for reduced-motion and no-JS carries the
+  same chrome.
+- **Chat beside it, always.** The same chrome carries a chat affordance (input + send).
+- **Persistent launcher.** A standing mic on every page opens a chat panel with the orb,
+  a message thread, a text input and suggestions. Responses are a scripted sample of the
+  exchanges the tablet shows, labelled "sample responses" — a demo, not a live model.
+- **Voice-only is the call surface alone.** Verified by stepping all eight surfaces in
+  `SurfaceFan`: tablet, phone, web, watch, QR and both emerging surfaces render mic +
+  chat; the voice-call surface renders a waveform and "described aloud — no image" with
+  neither.
+
+### The revenue block
+"Every Conversation Is Revenue" is one pinned two-column showcase — tablet left, stages
+right, one at a time — replacing a scroll-synced version that gave each of six steps its
+own viewport. It auto-advances with a dwell bar, pauses on hover or focus, and offers
+step dots (44×44) and click-to-jump. Stage → screen mapping verified end to end:
+
+| Stage | Screen shown |
+|---|---|
+| 01 · PRE — They book direct. | property / home |
+| 02 · PRE — The first upsell, before arrival. | Ocean-View Suite carousel ($250) |
+| 03 · DURING — Every answer is a picture. | Akumal beach image answer |
+| 04 · DURING — Room service, tapped not typed. | dish grid + order total |
+| 05 · DURING — Wellness, booked in one tap. | spa cards |
+| 06 · AFTER — The review earns the next booking. | follow-up + review link |
+
+A copper revenue tally rises across the acts. **Height: 1.13 viewports at 1440**
+(1.41 at 390), against roughly six for the version it replaced.
+
+### Gates for this tier
+
+| Check | Result |
+|---|---|
+| Mic present in every device instance | **PASS** — all 9 pages |
+| Chat on every visual surface | **PASS** — 7 of 8 surfaces; call is voice-only by design |
+| Launcher present site-wide | **PASS** — all 9 pages |
+| No centered sections / no adjacent-surface collisions | **PASS** — all 9 pages |
+| Fonts | Fraunces / General Sans / Spline Sans Mono only |
+| EN + ES parity | **PASS** — verified on `/` and `/platform` in both languages |
+| Reduced-motion / no-JS | orb static, sequence frozen with every stage expanded, filmstrip beside the tablet |
+
+One note carried forward unchanged: the in-app browser pane mis-paints below the fold and
+after resizing to 1440, so the sequenced block and the surface fan were verified by
+stepping them programmatically and reading computed state, plus hero screenshots at 390
+and desktop width. A human pass at 1440 on a real browser is still the last step.
