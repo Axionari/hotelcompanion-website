@@ -58,7 +58,7 @@ export function Section({
       className={`scroll-mt-20 ${tight ? 'py-14 md:py-20' : 'py-24 md:py-32'}`}
       style={{ background: VARIANT_BG[variant] }}
     >
-      <div className="max-w-6xl mx-auto px-4 md:px-6">
+      <div className={`max-w-6xl mx-auto px-4 md:px-6 ${center ? 'text-center' : ''}`}>
         {reveal ? (
           <>
             {header && <Reveal>{header}</Reveal>}

@@ -61,7 +61,7 @@ export function Card({
     <Reveal>
       <div
         id={id}
-        className="rounded-2xl p-6 md:p-8 h-full scroll-mt-24"
+        className="rounded-2xl p-6 md:p-8 h-full scroll-mt-24 text-left"
         style={{ background: 'var(--surface-2)', border: '1px solid var(--border)' }}
       >
         {eyebrow && <div className="eyebrow mb-3">{eyebrow}</div>}

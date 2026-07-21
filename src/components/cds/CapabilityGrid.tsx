@@ -15,7 +15,7 @@ export function CapabilityGrid({ linked = true }: { linked?: boolean }) {
       {COMPANION_OS_CAPABILITIES.map((cap, i) => {
         const inner = (
           <div
-            className="rounded-xl p-5 md:p-6 h-full transition-colors"
+            className="rounded-xl p-5 md:p-6 h-full transition-colors text-left"
             style={{ background: 'var(--surface-2)', border: '1px solid var(--border)' }}
           >
             <div className="eyebrow mb-2" style={{ color: 'var(--accent)' }}>
