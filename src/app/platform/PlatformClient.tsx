@@ -508,10 +508,9 @@ export default function PlatformClient() {
         id="platform-companion-os"
         eyebrow="14 · COMPANION OS"
         title={c.companionOs.title}
-        support={c.companionOs.lead}
         variant="surface-3"
-      
-        tight>
+        tight
+      >
         <div className="mt-12">
           <Teaser split lines={[c.companionOs.lead]} href="/companion-os" label={g.nav.companionOs}>
             <CapabilityStrip names={COMPANION_OS_CAPABILITIES.map((x) => x.name)} />

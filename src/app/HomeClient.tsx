@@ -300,17 +300,20 @@ export default function HomeClient() {
           <JourneyTimeline stages={c.liveInDays.beats.map((b) => ({ name: b }))} />
         </div>
         <Reveal>
-          <div className="mt-12 flex flex-col gap-2">
+          {/* Set in General Sans, not Fraunces: in serif at 1.5rem the close
+              competed with the step titles above it. It is a resolving line,
+              not a second headline. */}
+          <div className="mt-7 flex flex-col gap-1">
             {c.liveInDays.close.map((line) => (
               <p
                 key={line}
-                className="font-serif"
+                className="font-sans"
                 style={{
-                  fontSize: 'clamp(1.15rem, 1.9vw, 1.5rem)',
-                  fontWeight: 530,
-                  color: 'var(--text)',
-                  maxWidth: '34ch',
-                  lineHeight: 1.35,
+                  fontSize: 16,
+                  fontWeight: 400,
+                  color: 'var(--text-dim)',
+                  maxWidth: '46ch',
+                  lineHeight: 1.6,
                 }}
               >
                 {line}

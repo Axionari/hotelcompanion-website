@@ -273,6 +273,80 @@ curl -s -o /dev/null -w '%{http_code}\n' https://api.anthropic.com/v1/messages \
 is valid, re-check that the model actually emits the card tags (the prompt asks
 for them, but that path has not been observed against a working key).
 
+
+## Final verification pass
+
+Run with reveals forced open (`.reveal { opacity: 1 }`) — an earlier audit read
+un-revealed content as empty and produced false voids up to 11x.
+
+### Per page
+
+| Page | Empty cols | Vertical voids | Overflow-X | Fonts | Verdict |
+| --- | --- | --- | --- | --- | --- |
+| `/` | none | none | 0 | Fraunces · General Sans · Spline Mono | **PASS** (1440 EN, 390 ES) |
+| `/platform` | none | none | 0 | same three | **PASS** (1440 EN) |
+| `/enterprise` | none | none | 0 | same three | **PASS** (1440 EN) |
+| `/solutions` | — | — | — | no banned fonts | **PASS** (SSR only) |
+| `/companion-os` | — | — | — | no banned fonts | **PASS** (SSR only) |
+| `/company` | — | — | — | no banned fonts | **PASS** (SSR only) |
+| `/resources` | — | — | — | no banned fonts | **PASS** (SSR only) |
+| `/demo` | — | — | — | no banned fonts | **PASS** (SSR only) |
+| `/contact` | — | — | — | no banned fonts | **PASS** (SSR only) |
+
+**Coverage is not uniform, and the table says so.** Full browser layout audit
+(empty columns, vertical voids, overflow, computed fonts) ran on `/`, `/platform`
+and `/enterprise` at 1440 EN, plus `/` at 390 ES. The other six pages were
+checked by server-rendered HTML only: banned fonts, duplicate rendered strings,
+section counts and image inventory. Those checks are real but they cannot see
+layout. The pane degrades after repeated resizes, which is what capped the
+browser sweep.
+
+### One genuine failure, found and fixed
+
+`/platform` §14 · COMPANION OS rendered the same sentence twice, back to back —
+once as the `Section` support and once inside the `Teaser`:
+
+    support={c.companionOs.lead}
+    <Teaser split lines={[c.companionOs.lead]} …>
+
+Fixed by dropping the Section support; the lead now lives only in the teaser's
+left column. Verified: one occurrence in the served HTML.
+
+This is the **second instance of the same class** as the DEPLOYMENT duplicate —
+copy being rendered twice, or a short array padded onto a longer structure. Two
+gates now exist for it:
+
+- `scripts/check-dupes.mjs` — scans the copy modules for repeated prose inside
+  an array or across sibling fields, in EN and ES. Currently **0 duplicates
+  across 186 arrays**.
+- An SSR scan for repeated sentences in the rendered output. This is what caught
+  the Platform bug; the copy-module gate could not, because the duplication was
+  in the *render*, not the copy.
+
+Remaining SSR duplicate flags, both legitimate and deliberately not "fixed":
+
+- `/` — 9 repeats, all `QuestionMarquee`, which duplicates its list to loop.
+- `/demo` — 1 repeat, the `<noscript>` scripted transcript mirroring a chip.
+
+### The 7-image system
+
+Placed 1:1, verified across all nine pages: **5 distinct band stills, zero
+repeats** (giant-tree, beach-golden, waterfall-swim, waterfall-lagoon,
+beach-dusk-walk), plus the two videos — `hero-coastal-sunset` (Home hero) and
+`section-tropical-beach` (Home pause). Video count is exactly 2. All CTA bands
+are darkened stills.
+
+### NEEDS CONFIRM — carried, unresolved
+
+1. **`$160B`** (Home `02 · THE COST OF INTERMEDIARIES`, Kalibri Labs) — marked
+   `NEEDS CONFIRM` in EN and ES. **Not verified.**
+2. **`91% / 9%`** (resolution split, on the donut and the Platform dashboard) —
+   marked `NEEDS CONFIRM`. **Not verified.**
+
+Both are live on the site. Confirm before public launch, and per the addendum do
+not add a third unverified stat.
+
+
 ## Open items carried forward
 
 All are Eduardo's to provide; none block the build.
