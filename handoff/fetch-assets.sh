@@ -27,6 +27,22 @@ dl "https://images.pexels.com/photos/34607320/pexels-photo-34607320.jpeg?$P" "$I
 dl "https://images.pexels.com/photos/6758531/pexels-photo-6758531.jpeg?$P"   "$IMG/lobby-modern.jpg"         # lobby / solutions
 dl "https://images.pexels.com/photos/33803739/pexels-photo-33803739.jpeg?$P" "$IMG/luxury-lobby.jpg"         # luxury / heritage lobby
 
+# ---- UI IMAGERY (Visual Interface Level-Up §E) — these render INSIDE the tablet screens ----
+P2="auto=compress&cs=tinysrgb&w=1600"; U="public/assets/ui"; mkdir -p "$U"
+# Suites (upgrade screen / carousel)
+dl "https://images.pexels.com/photos/3688261/pexels-photo-3688261.jpeg?$P2"   "$U/suite-1.jpg"
+dl "https://images.pexels.com/photos/36916378/pexels-photo-36916378.jpeg?$P2" "$U/suite-2.jpg"
+dl "https://images.pexels.com/photos/34496715/pexels-photo-34496715.jpeg?$P2" "$U/suite-3.jpg"
+# Room-service dishes (menu grid)
+dl "https://images.pexels.com/photos/7243881/pexels-photo-7243881.jpeg?$P2"   "$U/dish-1.jpg"
+dl "https://images.pexels.com/photos/17237180/pexels-photo-17237180.jpeg?$P2" "$U/dish-2.jpg"
+dl "https://images.pexels.com/photos/23644633/pexels-photo-23644633.jpeg?$P2" "$U/dish-3.jpg"
+# Spa (wellness cards)
+dl "https://images.pexels.com/photos/9146381/pexels-photo-9146381.jpeg?$P2"   "$U/spa-1.jpg"
+dl "https://images.pexels.com/photos/37719540/pexels-photo-37719540.jpeg?$P2" "$U/spa-2.jpg"
+dl "https://images.pexels.com/photos/19666192/pexels-photo-19666192.jpeg?$P2" "$U/spa-3.jpg"
+
+
 echo ""
 echo "Done. Files in $VID and $IMG."
 echo "RECOMMENDED post-process (needs ffmpeg): darken 55-70%, warm grade, and transcode loops to webm + a poster jpg."

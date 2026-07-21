@@ -31,6 +31,26 @@ manifest if the primary hero loop is ever swapped.
 | `luxury-lobby.webp` | https://www.pexels.com/photo/33803739/ | Luxury / heritage lobby |
 | `*-poster.webp` | frame extracted from the matching loop | `<video poster>` / no-JS still |
 
+## In-device UI imagery → `public/assets/ui/`
+
+Rendered *inside* the tablet screens (Visual Interface Level-Up §E), so these are kept
+brighter and cleaner than the section beds — they should read as real product photography.
+
+| File | Source | Screen |
+|---|---|---|
+| `suite-1.webp` | https://www.pexels.com/photo/3688261/ | Room-upgrade carousel |
+| `suite-2.webp` | https://www.pexels.com/photo/36916378/ | Room-upgrade carousel |
+| `suite-3.webp` | https://www.pexels.com/photo/34496715/ | Room-upgrade carousel |
+| `dish-1.webp` | https://www.pexels.com/photo/7243881/ | Room-service grid |
+| `dish-2.webp` | https://www.pexels.com/photo/17237180/ | Room-service grid |
+| `dish-3.webp` | https://www.pexels.com/photo/23644633/ | Room-service grid |
+| `spa-1.webp` | https://www.pexels.com/photo/9146381/ | Spa & wellness cards |
+| `spa-2.webp` | https://www.pexels.com/photo/37719540/ | Spa & wellness cards |
+| `spa-3.webp` | https://www.pexels.com/photo/19666192/ | Spa & wellness cards |
+
+Scaled to max 900w (760w for the largest), converted to webp, **every file under 120 KB**
+per the spec budget. No darkening grade — unlike the beds, these sit inside a UI.
+
 ## Processing applied
 
 Raw downloads totalled **245 MB**, which is not shippable. Every asset was processed
