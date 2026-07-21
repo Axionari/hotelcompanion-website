@@ -279,7 +279,7 @@ export default function EnterpriseClient() {
 
       {/* 11 · WHAT IT IS NOT {#what-it-is-not} — the "Not a…" quadrant.
           Deep-linked from the Home teaser as /enterprise#what-it-is-not. */}
-      <Breather image="/assets/img/company-reception.webp" />
+      <Breather image="/assets/breathers/archipelago.webp" />
 
       <Section
         id="what-it-is-not"

@@ -313,7 +313,7 @@ export default function PlatformClient() {
       </Section>
 
       {/* 07 · RESERVATIONS {#platform-reservations} */}
-      <Breather image="/assets/img/section-tropical-beach-poster.webp" />
+      <Breather image="/assets/breathers/tropical-bay.webp" />
 
       <Section
         id="platform-reservations"

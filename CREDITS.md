@@ -62,3 +62,23 @@ locally with ffmpeg before being committed:
   `+faststart`. Each is now **under 3 MB** (largest: 2.0 MB).
 - **Stills:** scaled to max 1920w, same warm darkening grade, converted to `.webp`.
 - Raw originals deleted after transcode. Total committed media: **7.1 MB**.
+
+## Breather bands (`public/assets/breathers/`)
+
+Curated cinematic stills, sourced from Pexels under the Pexels License (free
+to use, no attribution required; recorded here anyway). Fetched at w=2560 and
+re-encoded to WebP at 1920px (1600px for the sandbar, which is high-frequency
+and would not compress below ~600KB otherwise).
+
+| File | Source |
+| --- | --- |
+| aerial-seascape.webp | pexels.com/photo/37943870 |
+| aerial-islands.webp | pexels.com/photo/36332947 |
+| tropical-bay.webp | pexels.com/photo/14574160 |
+| white-sandbar.webp | pexels.com/photo/36111990 |
+| archipelago.webp | pexels.com/photo/19758822 |
+
+**Not fetched:** `pexels.com/photo/6861` (intended as `pool-golden-hour.jpg`,
+the warm counterpoint) returns 404. The warm beats currently reuse the repo's
+existing `hero-poolside.webp` and `luxury-lobby.webp`. Replace when a working
+URL is available.

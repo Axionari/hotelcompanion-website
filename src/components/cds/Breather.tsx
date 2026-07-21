@@ -16,12 +16,16 @@ import { useEffect, useRef, useState } from 'react'
  */
 export function Breather({
   image,
+  video,
   line,
-  height = 'clamp(200px, 32vh, 360px)',
-  darken = 0.34,
+  height = 'clamp(220px, 38vh, 420px)',
+  darken = 0.16,
 }: {
-  /** Path under /public, e.g. /assets/img/luxury-lobby.webp */
+  /** Path under /public, e.g. /assets/breathers/aerial-seascape.webp */
   image: string
+  /** Basename under /assets/video (no extension) for the largest pauses.
+   *  The image is the poster and the reduced-motion / save-data fallback. */
+  video?: string
   /** At most one short line. Omit for a pure pause. */
   line?: string
   height?: string
@@ -31,9 +35,16 @@ export function Breather({
   const innerRef = useRef<HTMLDivElement>(null)
   const [reduce, setReduce] = useState(true)
 
+  const [playVideo, setPlayVideo] = useState(false)
+
   useEffect(() => {
-    setReduce(window.matchMedia('(prefers-reduced-motion: reduce)').matches)
-  }, [])
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    setReduce(reduced)
+    // Never pull a video on a metered connection, and never over reduced
+    // motion — the still is a complete answer in both cases.
+    const nav = navigator as Navigator & { connection?: { saveData?: boolean } }
+    setPlayVideo(Boolean(video) && !reduced && !nav.connection?.saveData)
+  }, [video])
 
   useEffect(() => {
     if (reduce) return
@@ -84,16 +95,38 @@ export function Breather({
           transform: 'scale(1.16)',
           willChange: reduce ? undefined : 'transform',
         }}
-      />
+      >
+        {playVideo && (
+          <video
+            className="absolute inset-0 h-full w-full object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="none"
+            poster={image}
+          >
+            <source src={`/assets/video/${video}.webm`} type="video/webm" />
+            <source src={`/assets/video/${video}.mp4`} type="video/mp4" />
+          </video>
+        )}
+      </div>
       <div
         className="absolute inset-0"
         style={{
-          // Feathered at the edges so the band melts into the sections above
-          // and below, but light enough in the middle to actually read as an
-          // image — the first pass was so dark it was just a black gap.
-          background: `linear-gradient(180deg, rgba(10,8,7,0.96) 0%, rgba(10,8,7,${darken}) 38%, rgba(10,8,7,${darken}) 62%, rgba(10,8,7,0.96) 100%)`,
+          // Only the top and bottom edges are feathered, so the band melts
+          // into the sections either side while the centre stays essentially
+          // uncovered. The first pass scrimmed the middle into a black gap.
+          background: `linear-gradient(180deg, rgba(10,8,7,0.97) 0%, rgba(10,8,7,${darken}) 26%, rgba(10,8,7,${darken}) 74%, rgba(10,8,7,0.97) 100%)`,
         }}
       />
+      {line && (
+        <div
+          aria-hidden="true"
+          className="absolute inset-0"
+          style={{ background: 'linear-gradient(90deg, rgba(10,8,7,0.72) 0%, rgba(10,8,7,0.3) 42%, transparent 68%)' }}
+        />
+      )}
       {line && (
         <div className="absolute inset-0 flex items-center">
           <div className="container-rc">

@@ -265,6 +265,8 @@ export default function SolutionsClient() {
       </Section>
 
       {/* 03 · COMPANION OS {#solutions-companion-os} — capability surface */}
+      <Breather image="/assets/breathers/white-sandbar.webp" />
+
       <Section
         id="solutions-companion-os"
         eyebrow="03 · COMPANION OS"

@@ -180,7 +180,7 @@ export default function CompanyClient() {
       ))}
 
       {/* {#company-contact} */}
-      <Breather image="/assets/img/cta-beach-aerial-poster.webp" />
+      <Breather image="/assets/breathers/aerial-islands.webp" video="hero-coastal-sunset" height="clamp(280px, 52vh, 560px)" />
 
       <Section id="contact" eyebrow="09 · CONTACT" title={c.contact.title} variant="surface-2">
         <div className="mt-8 body-lead" style={{ maxWidth: '56ch' }}>
