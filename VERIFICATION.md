@@ -174,6 +174,37 @@ matcher. Fixed in both languages and covered by a regression test. Two
 suggestion chips ("upgrade", "where do locals eat") also fell through to the
 generic non-answer; both now have proper fallbacks.
 
+### The orb is the control (LD-11)
+
+Corrected after the first pass built the mic as a glyph inside the chat field.
+The orb now matches Restaurant Companion's Features page: large, centred in the
+device's upper area, always visible, and pressing it starts/stops listening.
+Sized from the device rather than the viewport — measured at **440px** outer
+ring on desktop and **273px** at 375 (floor is 220), settling to 160/128 once a
+card is on screen so a whole card fits beneath it.
+
+Three environment failures were found here, each of which had silently broken a
+load-bearing behaviour. All three are worked around rather than depended on:
+
+| Failure | Symptom | Fix |
+| --- | --- | --- |
+| `scrollTo({behavior:'smooth'})` is a no-op | answer card left below the fold | assign `scrollTop` directly |
+| `width` transition between two `clamp()`s never resolves | orb stuck at its previous size | plain px from a measured stage; no width transition at all |
+| `ResizeObserver` never fires | scroll pin never ran | fail-open: observer *plus* a bounded 2s catch-up loop |
+
+The rule applied throughout: **correctness must never depend on a transition
+ticking or an observer firing.** Both are enhancements here, not mechanisms.
+
+Not verified in this environment, and needing a human at a real browser:
+
+- **The listening visuals in motion.** Microphone capture is blocked in the
+  preview pane, so `start()` errors immediately — which correctly resets the orb
+  instead of stranding it in "listening", but means the ripple/waveform sequence
+  was only confirmed by driving `data-state` directly. Animation *names* resolve
+  correctly per state (`vbreathe` idle, `vpulse`+`vripple`+`vbar` listening,
+  `vturn` thinking, `vbar` speaking); the transitioned opacity/colour values
+  could not be sampled reliably because transitions do not tick here.
+
 ### Blocker: the Anthropic API key is invalid
 
 `ANTHROPIC_API_KEY` in `.env.local` returns **401 `authentication_error`** when
