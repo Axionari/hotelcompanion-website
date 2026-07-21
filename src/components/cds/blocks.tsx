@@ -206,7 +206,7 @@ export function JourneyTimeline({
   stages,
   columns = 3,
 }: {
-  stages: ReadonlyArray<{ name: string; body: string }>
+  stages: ReadonlyArray<{ name: string; body?: string }>
   /** Match the column count to the number of stages so no cell is left empty. */
   columns?: 3 | 4 | 5
 }) {
@@ -216,12 +216,17 @@ export function JourneyTimeline({
         <Reveal key={s.name} delay={i * 90}>
           <div className="h-full px-6 py-8" style={{ background: 'var(--bg)' }}>
             <div className="eyebrow eyebrow-accent mb-4">{String(i + 1).padStart(2, '0')}</div>
-            <h3 className="font-serif mb-3" style={{ fontSize: '1.3rem', fontWeight: 530, color: 'var(--text)' }}>
+            <h3
+              className="font-serif"
+              style={{ fontSize: '1.3rem', fontWeight: 530, color: 'var(--text)', marginBottom: s.body ? 12 : 0 }}
+            >
               {s.name}
             </h3>
-            <p className="font-sans" style={{ fontSize: '15px', lineHeight: 1.6, color: 'var(--text-dim)' }}>
-              {s.body}
-            </p>
+            {s.body && (
+              <p className="font-sans" style={{ fontSize: '15px', lineHeight: 1.6, color: 'var(--text-dim)' }}>
+                {s.body}
+              </p>
+            )}
           </div>
         </Reveal>
       ))}

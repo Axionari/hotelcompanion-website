@@ -292,14 +292,32 @@ export default function HomeClient() {
 
       {/* 09 · LIVE IN DAYS {#home-live-in-days} — three-step timeline */}
       <Section eyebrow="11 · DEPLOYMENT" title={c.liveInDays.title} support={c.liveInDays.body} variant="bg" tight>
+        {/* The deck gives three standalone beats and a two-line close for the
+            section — there are no per-step descriptions. The previous mapping
+            invented them by recycling close[1], which put the same sentence
+            under steps 01 and 02. */}
         <div className="mt-14">
-          <JourneyTimeline
-            stages={c.liveInDays.beats.map((b, i) => ({
-              name: b,
-              body: i === c.liveInDays.beats.length - 1 ? c.liveInDays.close[0] : c.liveInDays.close[1] ?? '',
-            }))}
-          />
+          <JourneyTimeline stages={c.liveInDays.beats.map((b) => ({ name: b }))} />
         </div>
+        <Reveal>
+          <div className="mt-12 flex flex-col gap-2">
+            {c.liveInDays.close.map((line) => (
+              <p
+                key={line}
+                className="font-serif"
+                style={{
+                  fontSize: 'clamp(1.15rem, 1.9vw, 1.5rem)',
+                  fontWeight: 530,
+                  color: 'var(--text)',
+                  maxWidth: '34ch',
+                  lineHeight: 1.35,
+                }}
+              >
+                {line}
+              </p>
+            ))}
+          </div>
+        </Reveal>
       </Section>
 
       <Breather id="band-home-pause" image="/assets/breathers/beach-golden.webp" video="section-tropical-beach" height="clamp(280px, 44vh, 520px)" />
