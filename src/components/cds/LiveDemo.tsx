@@ -6,6 +6,7 @@ import { useCopy } from '@/lib/i18n/useCopy'
 import { liveDemoCopy } from '@/lib/i18n/marketing/liveDemo'
 import { deviceScreens } from '@/lib/i18n/marketing/deviceScreens'
 import { useCompanion, type Turn } from '@/lib/demo/useCompanion'
+import { demoV3Copy } from '@/lib/i18n/marketing/demoV3'
 import { useSpeech } from '@/lib/demo/useSpeech'
 import { VoiceOrbControl, type OrbState } from './VoiceOrb'
 import { DemoCard } from './DemoCards'
@@ -157,6 +158,7 @@ export function LiveDemo({
   const { lang } = useLang()
   const c = useCopy(liveDemoCopy)
   const screens = useCopy(deviceScreens)
+  const v3 = useCopy(demoV3Copy)
 
   const [draft, setDraft] = useState('')
   const [muted, setMuted] = useState(true)
@@ -168,7 +170,7 @@ export function LiveDemo({
   /** False once the guest scrolls up to re-read something. */
   const stick = useRef(true)
 
-  const { turns, busy, send, reset, confirmAction } = useCompanion(lang, c.greeting)
+  const { turns, busy, send, sendScripted, reset, confirmAction } = useCompanion(lang, c.greeting)
 
   const speech = useSpeech({
     lang,
@@ -193,9 +195,15 @@ export function LiveDemo({
       const q = text.trim()
       if (!q) return
       setDraft('')
+      // v3 Phase 4 D3: the day-planner is a fully scripted scenario — the
+      // deck defines it verbatim, so it never goes to the model.
+      if (q === v3.scenarioB.chip) {
+        sendScripted(q, { card: 'dayplan' })
+        return
+      }
       void send(q, { onReply: (reply) => speech.speak(reply) })
     },
-    [send, speech]
+    [send, sendScripted, speech, v3.scenarioB.chip]
   )
 
   /**
@@ -409,14 +417,17 @@ export function LiveDemo({
           >
             {/* Observed for growth so the newest card is always scrolled into view. */}
             <div ref={contentRef} className="flex flex-col gap-3">
-            {/* At rest the greeting lives under the orb label, not as a bubble. */}
+            {/* At rest the greeting lives under the orb label, not as a bubble.
+                v3 Phase 4 D2: the recognition line greets Maya by name first. */}
             {atRest ? (
-              <p
-                className="font-sans text-center px-2 pb-3"
-                style={{ fontSize: 13, lineHeight: 1.55, color: 'var(--text-faint)' }}
-              >
-                {turns[0]?.text}
-              </p>
+              <div className="text-center px-2 pb-3">
+                <p className="font-serif" style={{ fontSize: 14.5, fontWeight: 530, color: 'var(--champagne)' }}>
+                  {v3.greeting}
+                </p>
+                <p className="font-sans mt-1.5" style={{ fontSize: 13, lineHeight: 1.55, color: 'var(--text-faint)' }}>
+                  {turns[0]?.text}
+                </p>
+              </div>
             ) : (
               turns.map((t) =>
                 t.role === 'guest' ? (
@@ -459,7 +470,7 @@ export function LiveDemo({
               className="flex gap-2 px-3.5 pb-2.5 overflow-x-auto"
               style={{ scrollbarWidth: 'none' }}
             >
-              {c.suggestions.map((s) => (
+              {[...c.suggestions, v3.scenarioB.chip].map((s) => (
                 <button
                   key={s}
                   type="button"

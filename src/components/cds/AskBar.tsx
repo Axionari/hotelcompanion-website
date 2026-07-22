@@ -17,8 +17,9 @@ import { askBarCopy } from '@/lib/i18n/marketing/askBar'
  * pulsing dot. Chips are buttons (tabbable); the input submits on Enter.
  */
 
-/** Renders the deck's **speakable phrase** markers as <strong>. */
-function Speakable({ text }: { text: string }) {
+/** Renders the deck's **speakable phrase** markers as <strong> (G3).
+    Shared with the demo cards (Phase 4 D1–D3). */
+export function Speakable({ text }: { text: string }) {
   const parts = text.split('**')
   return (
     <>

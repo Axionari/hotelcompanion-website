@@ -26,7 +26,8 @@ export type Turn = {
   id: number
   role: 'guest' | 'companion'
   text: string
-  card?: CardId
+  /** `dayplan` is the v3 scripted day-planner (Phase 4 D3) — never model-emitted. */
+  card?: CardId | 'dayplan'
   action?: ActionId
   /** Set once the guest confirms a mock action — the action is then spent. */
   actionDone?: boolean
@@ -79,6 +80,21 @@ export function useCompanion(lang: 'en' | 'es', greeting: string) {
           card: 'confirmation' as CardId,
           confirm: copy,
         },
+      ])
+    },
+    []
+  )
+
+  /**
+   * v3 Phase 4 D3 — appends a fully scripted exchange (no fetch, no model).
+   * Used by the day-planner scenario, which the deck defines verbatim.
+   */
+  const sendScripted = useCallback(
+    (question: string, reply: { text?: string; card?: Turn['card'] }) => {
+      setTurns((t) => [
+        ...t,
+        { id: nextId.current++, role: 'guest', text: question },
+        { id: nextId.current++, role: 'companion', text: reply.text ?? '', card: reply.card },
       ])
     },
     []
@@ -186,5 +202,5 @@ export function useCompanion(lang: 'en' | 'es', greeting: string) {
     [busy, lang, turns]
   )
 
-  return { turns, busy, send, reset, confirmAction }
+  return { turns, busy, send, sendScripted, reset, confirmAction }
 }

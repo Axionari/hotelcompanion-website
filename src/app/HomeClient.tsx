@@ -21,6 +21,8 @@ import { GuestMemoryCard } from '@/components/cds/GuestMemoryCard'
 import { RequestExecutionCard } from '@/components/cds/RequestExecutionCard'
 import { sunArcCopy } from '@/lib/i18n/marketing/sunArc'
 import { constellationCopy } from '@/lib/i18n/marketing/constellation'
+import { demoV3Copy } from '@/lib/i18n/marketing/demoV3'
+import { AskBar } from '@/components/cds/AskBar'
 import { MediaBed } from '@/components/cds/MediaBed'
 import { MultiAccentHeadline } from '@/components/cds/AccentHeadline'
 import {
@@ -49,6 +51,7 @@ export default function HomeClient() {
   const screens = useCopy(deviceScreens)
   const arc = useCopy(sunArcCopy)
   const constellation = useCopy(constellationCopy)
+  const demoV3 = useCopy(demoV3Copy)
 
   return (
     <main>
@@ -420,25 +423,24 @@ export default function HomeClient() {
         </p>
       </Section>
 
-      {/* 13 · FINAL CTA {#home-final-cta} — warm media band */}
+      {/* 13 · THE ASK-BAR {#home-final-cta} — v3 Phase 4 D4: the page ends by
+          being a conversation (deck {#13}). Scripted only; old 15 copy deleted. */}
       <MediaBed poster="/assets/img/ambient-palms-night.webp" scrim={0.72}>
-        <section className="py-24 md:py-36">
+        <section className="py-24 md:py-32">
           <div className="container-rc">
             <Reveal>
               <div className="eyebrow eyebrow-accent mb-5">13 · NEXT STEP</div>
-              <h2 className="heading-section" style={{ color: 'var(--text)', maxWidth: '18ch' }}>
-                {c.finalCta.title}
+              <h2 className="heading-section" style={{ color: 'var(--text)', maxWidth: '20ch' }}>
+                {demoV3.askClose.pre}
+                <em style={{ color: 'var(--champagne)' }}>{demoV3.askClose.hi}</em>
               </h2>
-              <p
-                className="font-serif mt-8"
-                style={{ fontSize: 'clamp(1.2rem, 2vw, 1.6rem)', fontWeight: 530, color: 'var(--text)' }}
-              >
-                {c.finalCta.platform}
-              </p>
-              <div className="mt-10">
-                <Link href="/demo" className="btn-primary">
-                  {c.finalCta.cta}
-                </Link>
+              <div className="mt-10 flex flex-col lg:flex-row gap-10 lg:items-start">
+                <AskBar className="flex-1" />
+                <div className="lg:pt-1">
+                  <Link href="/demo" className="btn-primary whitespace-nowrap">
+                    {g.nav.bookDemo}
+                  </Link>
+                </div>
               </div>
             </Reveal>
           </div>

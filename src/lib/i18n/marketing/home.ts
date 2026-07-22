@@ -311,18 +311,7 @@ const en = {
   },
   enterpriseLink: 'Enterprise',
   foundingCta: 'Become a Founding Partner',
-  finalCta: {
-    title: 'Every Guest Conversation Is an Opportunity.',
-    beats: [
-      'Deliver exceptional hospitality.',
-      'Increase ancillary revenue.',
-      'Understand every guest.',
-      'Coordinate every department.',
-      'Strengthen every operation.',
-    ],
-    platform: 'One Voice-First Guest Intelligence Platform.',
-    cta: 'Book a Demo',
-  },
+  /* v3 Phase 4 D4: old section 15 copy deleted — the ask-bar closes the page. */
 }
 
 /* Copy source: HotelCompanion__Site_Copy_ES.md {#home}. Verbatim — do not edit here. */
@@ -635,18 +624,7 @@ const es: typeof en = {
   },
   enterpriseLink: 'Enterprise',
   foundingCta: 'Conviértete en Socio Fundador',
-  finalCta: {
-    title: 'Cada Conversación con un Huésped Es una Oportunidad.',
-    beats: [
-      'Brinda una hospitalidad excepcional.',
-      'Aumenta el ingreso complementario.',
-      'Entiende a cada huésped.',
-      'Coordina cada departamento.',
-      'Fortalece cada operación.',
-    ],
-    platform: 'Una sola Plataforma de Inteligencia de Huéspedes por Voz.',
-    cta: 'Agenda una Demo',
-  },
+  /* v3 Fase 4 D4: el copy de la antigua sección 15 se elimina — el ask-bar cierra la página. */
 }
 
 export const homeCopy: Localized<typeof en> = { en, es }
