@@ -51,6 +51,11 @@ rule then.
 **Chose:** nothing — observation only, work continued per the addendum (Phase 3
 gates are unaffected). Raised now so the panel can rule before Phase 4/5.
 
+**Phase 5 outcome (measured, final build):** baseline → final at the paired
+viewport: EN 1357 → 1410 (+3.9%), ES 1538 → 1543 (+0.3%). The gate FAILED as
+forecast; per the OQ-4 ruling this is a real failure and the run stopped at the
+final review with it flagged. See `reports/FINAL_REPORT.md`.
+
 ## OQ-5 · Phase 3 smallest-interpretation decisions (logged, work continued)
 
 1. **Cards B/C wiring.** No phase spec wires `GuestMemoryCard` /

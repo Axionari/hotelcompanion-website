@@ -1,0 +1,63 @@
+{
+ "add": {
+  "en": [],
+  "es": []
+ },
+ "del": {
+  "en": [
+   "PRESENT on /platform: Powered by Companion OS",
+   "PRESENT on /enterprise: Powered by Companion OS",
+   "PRESENT on /company: POWERED BY COMPANION OS"
+  ],
+  "es": [
+   "PRESENT on /platform: Impulsado por Companion OS",
+   "PRESENT on /platform: Un seguimiento cálido",
+   "PRESENT on /enterprise: Impulsado por Companion OS",
+   "PRESENT on /company: IMPULSADO POR COMPANION OS"
+  ]
+ },
+ "structure": {
+  "en": [
+   "02 · WHAT'S AT STAKE",
+   "03 · CONVERSATION",
+   "04 · REVENUE",
+   "05 · EVERY SURFACE",
+   "06 · KNOWLEDGE",
+   "07 · INTELLIGENCE & EXECUTION",
+   "08 · COMPANION OS",
+   "09 · DEPLOYMENT",
+   "10 · BOUNDARIES",
+   "11 · FOUNDING PARTNERS",
+   "12 · FAQ",
+   "13 · NEXT STEP"
+  ],
+  "es": [
+   "02 · LO QUE ESTÁ EN JUEGO",
+   "03 · CONVERSATION",
+   "04 · INGRESOS",
+   "05 · CADA SUPERFICIE",
+   "06 · CONOCIMIENTO",
+   "07 · INTELIGENCIA Y EJECUCIÓN",
+   "08 · COMPANION OS",
+   "09 · IMPLEMENTACIÓN",
+   "10 · LÍMITES",
+   "11 · SOCIOS FUNDADORES",
+   "12 · PREGUNTAS FRECUENTES",
+   "13 · NEXT STEP"
+  ]
+ },
+ "words": {
+  "en": 1410,
+  "es": 1543
+ },
+ "axe": {
+  "/": [
+   "serious:color-contrast(5)",
+   "serious:scrollable-region-focusable(1)"
+  ],
+  "/faq": [
+   "serious:color-contrast(4)",
+   "moderate:page-has-heading-one(1)"
+  ]
+ }
+}
