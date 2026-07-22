@@ -52,4 +52,13 @@
   --bezel-mobile: 7px;
   --island-w: 96px;
   --island-h: 24px;
+
+  /* v3 additions — docs/v3/03_TOKENS.md (closed vocabulary; existing site
+     values above win where the two ladders overlap). */
+  --champagne: #e7ce86;  /* serif italic emphasis, gold captions */
+  --gold: #9c7220;       /* hairlines, AXIONARI mark */
+  --success: #5b8c6e;    /* receipt ✓ */
+  --money: #d9a441;      /* receipt amounts */
+  --eyebrow-warm: #d08a54; /* mono eyebrows/labels (v3 receipts & chips) */
+  --hairline: rgba(243, 236, 226, 0.08);
 }

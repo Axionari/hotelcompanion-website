@@ -2,9 +2,38 @@
 
 Logged per `docs/v3/01_RULES.md` rule 5. Newest first.
 
+## Deferred tasks (approved, post-v3)
+
+- **After v3 ships:** fast-forward `main` to production reality (`ADDENDUM_1.md` re OQ-1). Do not do this during v3.
+- **At promotion time:** decide Vercel project migration to the Axionari team (`ADDENDUM_1.md` re OQ-2).
+
 ---
 
-## OQ-1 · Production is `feat/hotel-companion`, not `main` (Phase 0)
+## OQ-3 · Phase 1 smallest-interpretation decisions (logged, work continued)
+
+Per rule 5 — none brand-level; all reversible:
+
+1. **Sixth journey caption.** The deck ({#04}) lists five explanation
+   paragraphs to delete, but the section had six step captions; the unlisted
+   one (`Una parrilla de platillos…`) was deleted with the rest — keeping one
+   orphan caption of six contradicted "KEEP: headline, ticker, tablet demo."
+2. **/platform journey teaser.** `/platform` quoted two deleted journey
+   captions in its revenue Teaser. Swapped to the surviving step titles
+   (existing approved copy); no new words written.
+3. **Homepage meta description.** Ended with "Powered by Companion OS." —
+   removed so the rendered homepage HTML holds ≤2 Companion OS mentions per
+   locale (G5 gate). No visible copy affected.
+4. **Insider lines (deck {#06}).** Assigned to no phase by the specs; they are
+   strings only, so they landed in Phase 1 (champagne serif italic pending the
+   Phase 2/3 styling pass if the panel wants a different treatment).
+5. **Section 08 band keeps an eyebrow** (`08 · COMPANION OS`) so the 01–13
+   numbering stays visibly sequential; the deck gives the band no eyebrow but
+   rule 7 fixes the 13-section order.
+6. **Marquee row split.** The deck lists 10 questions without row assignment;
+   kept the existing two-row structure minus the six deletions (6 top / 4
+   bottom), preserving each row's original order.
+
+## OQ-1 · Production is `feat/hotel-companion`, not `main` (Phase 0) — **RESOLVED: approved** (`ADDENDUM_1.md`)
 
 **What:** `specs/PHASE_0_FORK.md` step 2 says to branch `v3` from "the commit
 currently deployed to production (not from an unmerged feature branch)", and the
@@ -30,7 +59,7 @@ binding intent ("v3 starts from exactly what is live") is only satisfiable from
 
 ---
 
-## OQ-2 · The live Vercel project is in the personal account, not Axionari (Phase 0)
+## OQ-2 · The live Vercel project is in the personal account, not Axionari (Phase 0) — **RESOLVED: do not migrate; CLI previews for all of v3** (`ADDENDUM_1.md`)
 
 **What:** The kit says the live site is Vercel project `placecompanion-v2`
 (Axionari team). The Axionari-team project with that name

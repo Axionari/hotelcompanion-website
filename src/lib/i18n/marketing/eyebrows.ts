@@ -12,6 +12,10 @@ import { useLang } from '../LanguageContext'
 const ES_LABELS: Record<string, string> = {
   // Home
   'THE STAKE': 'LO QUE ESTÁ EN JUEGO',
+  // v3 renumbered sections (copy deck eyebrows)
+  "WHAT'S AT STAKE": 'LO QUE ESTÁ EN JUEGO',
+  'EVERY SURFACE': 'CADA SUPERFICIE',
+  'INTELLIGENCE & EXECUTION': 'INTELIGENCIA Y EJECUCIÓN',
   BOUNDARIES: 'LÍMITES',
   CONVERSATION: 'CONVERSACIÓN',
   'ALWAYS ON': 'SIEMPRE ACTIVO',

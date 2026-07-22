@@ -18,12 +18,14 @@ const en = {
     closeMenu: 'Close menu',
   },
   footer: {
+    /* v3 {#footer}: 4 columns (Company+Legal merged), Companion OS product
+       link removed (G5), essays reduced to one line each, POWERED BY AXIONARI
+       mark above the copyright line. */
     brand: {
       name: 'HOTEL COMPANION',
       headline: 'Understand Every Guest. Capture Every Opportunity.',
       body:
         'Hotel Companion is the Voice-First Guest Intelligence Platform for modern hotels, transforming every guest conversation into operational intelligence, revenue opportunities, and exceptional hospitality.',
-      endorsement: 'Powered by Companion OS.',
       cta: 'Book a Demonstration',
     },
     columns: {
@@ -34,7 +36,6 @@ const en = {
           { label: 'Platform', href: '/platform' },
           { label: 'Solutions', href: '/solutions' },
           { label: 'Enterprise', href: '/enterprise' },
-          { label: 'Companion OS', href: '/companion-os' },
           { label: 'Resources', href: '/resources' },
           { label: 'Company', href: '/company' },
           { label: 'Book Demo', href: '/demo' },
@@ -66,18 +67,11 @@ const en = {
         ],
       },
       company: {
-        title: 'Company',
+        title: 'Company & Legal',
         links: [
           { label: 'About', href: '/company' },
           { label: 'Contact', href: '/contact' },
           { label: 'Partners', href: '/contact#founding' },
-        ],
-        comingSoon: ['Careers', 'Press', 'Brand Assets'],
-        comingSoonSuffix: 'Coming Soon',
-      },
-      legal: {
-        title: 'Legal',
-        links: [
           { label: 'Privacy Policy', href: '/privacy' },
           { label: 'Terms of Service', href: '/terms' },
           { label: 'Cookie Policy', href: '/cookies' },
@@ -86,6 +80,8 @@ const en = {
           { label: 'Trust Center', href: '/trust' },
           { label: 'Accessibility', href: '/accessibility' },
         ],
+        comingSoon: ['Careers', 'Press', 'Brand Assets'],
+        comingSoonSuffix: 'Coming Soon',
       },
     },
     newsletter: {
@@ -97,21 +93,16 @@ const en = {
       success: 'Thank you — you’re on the list.',
       error: 'Something went wrong. Please try again.',
     },
-    companionOs: {
-      title: 'Built on Companion OS',
-      headline: 'One intelligence platform. Unlimited Companions.',
-      body:
-        'Hotel Companion is powered by Companion OS, the intelligence layer designed to help organizations understand people, preserve knowledge, coordinate execution, and continuously improve.',
-      link: 'Learn more about Companion OS',
+    /* v3 {#footer}: the two mini-essays become one line each */
+    osLine: {
+      text: 'Built on Companion OS — one intelligence platform, unlimited Companions.',
+      link: 'Learn more →',
     },
-    axionari: {
-      title: 'Powered by Axionari',
-      body:
-        'Axionari builds Organizational Intelligence Platforms that help enterprises understand, learn, and execute more effectively. Hotel Companion is part of the growing Companion ecosystem.',
-      link: 'Learn about Axionari',
+    axionariLine: {
+      text: 'Built by Axionari — Organizational Intelligence Platforms.',
+      link: 'Meet Axionari →',
     },
-    legalLine:
-      '© 2026 Hotel Companion. All rights reserved. Powered by Companion OS. Built by Axionari.',
+    legalLine: '© 2026 Hotel Companion. All rights reserved.',
     signIn: 'Sign In',
     more: 'more',
     /* Social: LinkedIn · X · YouTube · GitHub — NEEDS REAL DATA (no profile URLs exist yet);
@@ -137,12 +128,14 @@ const es: typeof en = {
     closeMenu: 'Cerrar menú',
   },
   footer: {
+    /* v3 {#footer}: 4 columnas (Empresa+Legal fusionadas), enlace Companion OS
+       eliminado (G5), ensayos reducidos a una línea, marca POWERED BY AXIONARI
+       sobre la línea de copyright. */
     brand: {
       name: 'HOTEL COMPANION',
       headline: 'Entiende a Cada Huésped. Aprovecha Cada Oportunidad.',
       body:
         'Hotel Companion es la Plataforma de Inteligencia de Huéspedes por Voz para hoteles modernos, que transforma cada conversación en inteligencia operativa, oportunidades de ingreso y hospitalidad excepcional.',
-      endorsement: 'Impulsado por Companion OS.',
       cta: 'Agenda una Demostración',
     },
     columns: {
@@ -153,7 +146,6 @@ const es: typeof en = {
           { label: 'Plataforma', href: '/platform' },
           { label: 'Soluciones', href: '/solutions' },
           { label: 'Enterprise', href: '/enterprise' },
-          { label: 'Companion OS', href: '/companion-os' },
           { label: 'Recursos', href: '/resources' },
           { label: 'Empresa', href: '/company' },
           { label: 'Agenda Demo', href: '/demo' },
@@ -185,18 +177,11 @@ const es: typeof en = {
         ],
       },
       company: {
-        title: 'Empresa',
+        title: 'Empresa y Legal',
         links: [
           { label: 'Nosotros', href: '/company' },
           { label: 'Contacto', href: '/contact' },
           { label: 'Alianzas', href: '/contact#founding' },
-        ],
-        comingSoon: ['Carreras', 'Prensa', 'Recursos de Marca'],
-        comingSoonSuffix: 'Próximamente',
-      },
-      legal: {
-        title: 'Legal',
-        links: [
           { label: 'Aviso de Privacidad', href: '/privacy' },
           { label: 'Términos del Servicio', href: '/terms' },
           { label: 'Política de Cookies', href: '/cookies' },
@@ -205,6 +190,8 @@ const es: typeof en = {
           { label: 'Centro de Confianza', href: '/trust' },
           { label: 'Accesibilidad', href: '/accessibility' },
         ],
+        comingSoon: ['Carreras', 'Prensa', 'Recursos de Marca'],
+        comingSoonSuffix: 'Próximamente',
       },
     },
     newsletter: {
@@ -216,21 +203,16 @@ const es: typeof en = {
       success: 'Gracias — ya estás en la lista.',
       error: 'Algo salió mal. Por favor intenta de nuevo.',
     },
-    companionOs: {
-      title: 'Construido sobre Companion OS',
-      headline: 'Una plataforma de inteligencia. Companions ilimitados.',
-      body:
-        'Hotel Companion está impulsado por Companion OS, la capa de inteligencia diseñada para ayudar a las organizaciones a entender a las personas, preservar el conocimiento, coordinar la ejecución y mejorar continuamente.',
-      link: 'Conoce más sobre Companion OS',
+    /* v3 {#footer}: los dos mini-ensayos se vuelven una línea cada uno */
+    osLine: {
+      text: 'Construido sobre Companion OS — una plataforma de inteligencia, Companions ilimitados.',
+      link: 'Conoce más →',
     },
-    axionari: {
-      title: 'Construido por Axionari',
-      body:
-        'Axionari crea Plataformas de Inteligencia Organizacional que ayudan a las empresas a entender, aprender y ejecutar con mayor eficacia. Hotel Companion es parte del creciente ecosistema Companion.',
-      link: 'Conoce Axionari',
+    axionariLine: {
+      text: 'Construido por Axionari — Plataformas de Inteligencia Organizacional.',
+      link: 'Conoce Axionari →',
     },
-    legalLine:
-      '© 2026 Hotel Companion. Todos los derechos reservados. Impulsado por Companion OS. Construido por Axionari.',
+    legalLine: '© 2026 Hotel Companion. Todos los derechos reservados.',
     signIn: 'Iniciar Sesión',
     more: 'más',
   },

@@ -28,6 +28,8 @@ export const translations = {
     },
     realQuestions: {
       label: 'Guests are asking. Right now.',
+      /* v3 copy deck {#03}: marquee curated 16 → 10 (pharmacy, masseur,
+         best-tacos, airport, bike, breakfast removed). */
       row1: [
         'Where can I get tacos after midnight?',
         'Is the ocean safe for swimming today?',
@@ -35,18 +37,12 @@ export const translations = {
         'Best spot for sunset cocktails?',
         'Do you have a crib for our baby?',
         'What time does the spa open?',
-        'Is there a pharmacy nearby?',
-        'Can you recommend a good masseur?',
       ],
       row2: [
-        'Best tacos in town?',
-        'Where to watch the game tonight?',
         'Is the pool heated?',
         'Romantic dinner recommendation?',
-        'How far is the airport?',
-        'Can I rent a bike?',
+        'Where to watch the game tonight?',
         "What's the WiFi password?",
-        'Is breakfast included?',
       ],
     },
     stats: [
@@ -473,6 +469,8 @@ export const translations = {
     },
     realQuestions: {
       label: 'Los huéspedes preguntan. Ahora mismo.',
+      /* v3 copy deck {#03}: marquee curado 16 → 10 (farmacia, masajista,
+         mejores tacos, aeropuerto, bicicleta, desayuno eliminados). */
       row1: [
         '¿Dónde consigo tacos después de medianoche?',
         '¿Es seguro nadar en el mar hoy?',
@@ -480,18 +478,12 @@ export const translations = {
         '¿El mejor lugar para cócteles al atardecer?',
         '¿Tienen una cuna para nuestro bebé?',
         '¿A qué hora abre el spa?',
-        '¿Hay una farmacia cerca?',
-        '¿Pueden recomendar un buen masajista?',
       ],
       row2: [
-        '¿Los mejores tacos del pueblo?',
-        '¿Dónde ver el partido esta noche?',
         '¿La alberca está climatizada?',
         '¿Recomiendan algún restaurante romántico?',
-        '¿A qué distancia está el aeropuerto?',
-        '¿Puedo rentar una bicicleta?',
+        '¿Dónde ver el partido esta noche?',
         '¿Cuál es la contraseña del WiFi?',
-        '¿El desayuno está incluido?',
       ],
     },
     stats: [

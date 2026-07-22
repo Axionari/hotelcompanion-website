@@ -13,16 +13,16 @@ const en = {
       'Hotel Companion transforms natural conversations into personalized guest experiences, operational intelligence, and coordinated execution—available 24 hours a day, in every language, across every touchpoint.',
     primaryCta: 'Book a Demo',
     secondaryCta: 'Watch Product Tour',
+    /* v3 copy deck {#01} — mono proof line under the CTA row */
+    proofLine: '0% OTA COMMISSION · 24/7 · IN EVERY LANGUAGE · LIVE IN DAYS',
   },
   stake: {
     figure: '$160B',
     /* NEEDS CONFIRM: exact figure, report, year — Eduardo sourcing. Approved for use now. */
     caption: 'In annual value and operational savings AI automation can unlock for hospitality.',
     source: 'Source: McKinsey.',
-    beats: [
-      'Front-of-house teams are stretched thin, and every unanswered question is a missed moment—the upgrade never offered, the reservation never made, the review never left.',
-      'Hotel Companion resolves the routine automatically—freeing your team for the moments that matter, so no opportunity slips away.',
-    ],
+    /* v3 copy deck {#02} — single line replacing the two closing paragraphs */
+    close: 'The routine, resolved automatically — your team, free for the moments that matter.',
   },
   revenueExample: {
     prompt: 'A guest asks, at 10:14 PM:',
@@ -108,29 +108,16 @@ const en = {
   },
   revenue: {
     title: 'Every Conversation Is Revenue.',
-    beats: [
-      'Exceptional hospitality and commercial performance should never compete.',
-      'They should reinforce one another.',
-    ],
-    body:
-      'Hotel Companion continuously understands guest intent and recommends relevant experiences exactly when they create value.',
-    items: [
-      'Room upgrades.',
-      'Spa treatments.',
-      'Dining reservations.',
-      'Private transportation.',
-      'Excursions.',
-      'Golf.',
-      'Beach clubs.',
-      'Celebration packages.',
-      'Late checkout.',
-      'Premium experiences.',
-    ],
-    close: ['Recommendations feel helpful.', 'Never promotional.', 'Hospitality comes first.', 'Revenue follows naturally.'],
+    /* v3 ADDENDUM_1 A1 — thesis line; final sentence styled champagne in Phase 3 */
+    thesis:
+      'The booking, the upsell, the taxi, the review — each begins as a question. The Companion answers them all, and closes what it answers. No OTA in between.',
   },
   knows: {
     title: 'It Knows Your Hotel Like Your Best Employee.',
     lead: 'Hotel Companion understands every part of your operation.',
+    /* v3 copy deck {#06} — one insider line per column, gold caption style */
+    insiderProperty: 'Knows room 214 has the best sunset view.',
+    insiderDestination: 'Knows where the locals eat on a Tuesday.',
     property: [
       'Every room.',
       'Every restaurant.',
@@ -162,9 +149,8 @@ const en = {
     ],
   },
   intelligence: {
-    title: 'Every Guest Conversation Becomes Intelligence.',
-    beats: ['Guests experience exceptional hospitality.', 'Your organization gains intelligence.'],
-    lead: 'Hotel Companion continuously identifies:',
+    /* v3 copy deck {#07} — merged Intelligence & Execution headline */
+    title: 'Every conversation becomes intelligence — and execution.',
     items: [
       'Guest intent',
       'Guest preferences',
@@ -179,53 +165,19 @@ const en = {
     ],
     close: ['Every interaction strengthens your operation.', 'Every conversation helps your hotel improve.'],
   },
-  execution: {
-    title: 'From Conversation to Coordinated Execution.',
-    lead: 'Guest requests automatically become operational workflows.',
-    pairs: [
-      { from: 'Restaurant reservation', to: 'Restaurant Team' },
-      { from: 'Spa appointment', to: 'Spa Team' },
-      { from: 'Housekeeping request', to: 'Housekeeping' },
-      { from: 'Maintenance issue', to: 'Engineering' },
-      { from: 'Airport transfer', to: 'Transportation' },
-      { from: 'Room upgrade', to: 'Front Desk' },
-      { from: 'Late checkout', to: 'Front Office' },
-      { from: 'VIP request', to: 'Guest Services' },
-    ],
-    close: [
-      'No manual coordination.',
-      'No lost requests.',
-      'No forgotten follow-ups.',
-      'Just seamless execution across your entire hotel.',
-    ],
-  },
-  enterpriseIntel: {
-    title: 'Enterprise Intelligence for Modern Hospitality.',
-    lead: 'Understand your operation through the conversations happening every day.',
-    items: [
-      'Monitor guest behavior.',
-      'Identify revenue opportunities.',
-      'Measure service demand.',
-      'Track operational performance.',
-      'Discover emerging trends.',
-      'Understand guest expectations.',
-      'Reveal knowledge gaps.',
-      'Surface commercial insights.',
-    ],
-    close:
-      'Executive dashboards transform thousands of guest interactions into actionable intelligence for every department.',
-  },
+  /* v3 copy deck {#08} — the Companion OS quiet band (old 10 compressed).
+     Old execution/enterpriseIntel/convergence copy deleted per deck {#07}. */
   companionOs: {
-    title: 'Powered by Companion OS.',
-    lead: 'Hotel Companion is built on Companion OS, the shared intelligence platform behind every Companion.',
-    close: 'Every Companion specializes in its industry while sharing the same intelligence foundation.',
+    line: 'Built on Companion OS — the intelligence platform behind every Companion.',
+    link: 'Meet the platform →',
   },
   liveInDays: {
     title: 'Live in Days. Not Months.',
     beats: ['Deploy quickly.', 'Train effortlessly.', 'Create value immediately.'],
     body:
       'Hotel Companion integrates with your hospitality operation without lengthy implementations or disruptive change.',
-    close: ['Your team continues doing what they do best.', 'Hotel Companion makes every interaction better.'],
+    /* v3 copy deck {#09} — two closing sentences become one */
+    close: ['Your team keeps doing what it does best — every interaction, better.'],
   },
   foundingPartner: {
     title: 'Founding Partner Program',
@@ -289,16 +241,6 @@ const en = {
       { name: 'Hacienda del Mar', value: '1,440' },
     ],
   },
-  convergence: {
-    inputs: [
-      'Guest questions',
-      'Service requests',
-      'Maintenance reports',
-      'Booking intent',
-      'Preferences & history',
-    ],
-    node: 'Companion OS',
-  },
   otaStake: {
     /* NEEDS CONFIRM: figure, comparison and source — placeholder, wired to swap. */
     eyebrow: 'THE COST OF INTERMEDIARIES',
@@ -312,50 +254,17 @@ const en = {
     ],
   },
   journey: {
+    /* v3 Phase 1 {#04}: the five explanation captions and the PRE/DURING/AFTER
+       act bullets are deleted per the copy deck; titles, tally and the tablet
+       stay for the Phase 3 arc rebuild. */
     tallyLabel: 'Revenue this stay',
     steps: [
-      {
-        act: 'PRE',
-        title: 'They book direct.',
-        caption: 'The Companion sells the property, answers everything, and closes the booking — no OTA commission.',
-        screen: 'home' as ScreenId,
-        tally: '+$0',
-      },
-      {
-        act: 'PRE',
-        title: 'The first upsell, before arrival.',
-        caption: 'An ocean-view suite offered while they are still choosing.',
-        screen: 'upgrade' as ScreenId,
-        tally: '+$250',
-      },
-      {
-        act: 'DURING',
-        title: 'Every answer is a picture.',
-        caption: 'They ask for the best beach. They see it.',
-        screen: 'beach' as ScreenId,
-        tally: '+$250',
-      },
-      {
-        act: 'DURING',
-        title: 'Room service, tapped not typed.',
-        caption: 'A dish grid, an order total, straight to the kitchen.',
-        screen: 'roomservice' as ScreenId,
-        tally: '+$312',
-      },
-      {
-        act: 'DURING',
-        title: 'Wellness, booked in one tap.',
-        caption: 'Treatments with real availability, not a phone number.',
-        screen: 'spa' as ScreenId,
-        tally: '+$402',
-      },
-      {
-        act: 'AFTER',
-        title: 'The review earns the next booking.',
-        caption: 'A warm follow-up, a direct link, and a guest who returns direct.',
-        screen: 'followup' as ScreenId,
-        tally: '+$402',
-      },
+      { title: 'They book direct.', screen: 'home' as ScreenId, tally: '+$0' },
+      { title: 'The first upsell, before arrival.', screen: 'upgrade' as ScreenId, tally: '+$250' },
+      { title: 'Every answer is a picture.', screen: 'beach' as ScreenId, tally: '+$250' },
+      { title: 'Room service, tapped not typed.', screen: 'roomservice' as ScreenId, tally: '+$312' },
+      { title: 'Wellness, booked in one tap.', screen: 'spa' as ScreenId, tally: '+$402' },
+      { title: 'The review earns the next booking.', screen: 'followup' as ScreenId, tally: '+$402' },
     ],
   },
   surfaces2029: {
@@ -375,15 +284,13 @@ const en = {
     ],
   },
   faq: {
+    /* v3 copy deck {#12} — homepage keeps 4; the other 4 move to /faq */
     title: 'Frequently Asked Questions',
+    allLink: 'All questions →',
     items: [
       {
         q: 'What is Hotel Companion?',
         a: 'Hotel Companion is the Voice-First Guest Intelligence Platform that helps hotels deliver exceptional hospitality while increasing revenue and improving operational performance.',
-      },
-      {
-        q: 'Is Hotel Companion an AI concierge?',
-        a: 'No. AI is simply the interface. Hotel Companion is an enterprise platform that understands guest intent, coordinates operations, identifies commercial opportunities, and continuously learns from every interaction.',
       },
       {
         q: 'How do guests interact with Hotel Companion?',
@@ -396,18 +303,6 @@ const en = {
       {
         q: 'Does Hotel Companion replace hotel staff?',
         a: 'No. It extends your team by instantly handling routine interactions, allowing staff to focus on the moments where human hospitality creates the greatest impact.',
-      },
-      {
-        q: 'What does Hotel Companion know?',
-        a: 'Everything you teach it. Your property. Your services. Your destination. Your operating procedures. Your policies. Your recommendations. Your brand standards. Your institutional knowledge.',
-      },
-      {
-        q: 'Does Hotel Companion support multiple languages?',
-        a: 'Yes. Guests communicate naturally in their preferred language while Hotel Companion preserves your hotel’s voice, standards, and hospitality philosophy.',
-      },
-      {
-        q: 'What is Companion OS?',
-        a: 'Companion OS is Axionari’s shared intelligence platform that powers Hotel Companion, Restaurant Companion, and future industry-specific Companions.',
       },
     ],
   },
@@ -439,16 +334,16 @@ const es: typeof en = {
       'Hotel Companion transforma las conversaciones naturales en experiencias personalizadas, inteligencia operativa y ejecución coordinada—disponible las 24 horas, en todos los idiomas, en cada punto de contacto.',
     primaryCta: 'Agenda una Demo',
     secondaryCta: 'Ver el Recorrido del Producto',
+    /* v3 copy deck {#01} — mono proof line under the CTA row */
+    proofLine: '0% COMISIÓN OTA · 24/7 · EN CADA IDIOMA · EN MARCHA EN DÍAS',
   },
   stake: {
     figure: '$160 mil millones',
     /* NEEDS CONFIRM: cifra exacta, reporte, año. */
     caption: 'En valor anual y ahorros operativos que la automatización con IA puede desbloquear para la hospitalidad.',
     source: 'Fuente: McKinsey.',
-    beats: [
-      'Los equipos de atención están saturados, y cada pregunta sin responder es un momento perdido—la mejora que nunca se ofreció, la reservación que nunca se hizo, la reseña que nunca se dejó.',
-      'Hotel Companion resuelve lo rutinario automáticamente—liberando a tu equipo para los momentos que importan, para que ninguna oportunidad se escape.',
-    ],
+    /* v3 copy deck {#02} — línea única que reemplaza los dos párrafos de cierre */
+    close: 'Lo rutinario, resuelto automáticamente — tu equipo, libre para los momentos que importan.',
   },
   revenueExample: {
     prompt: 'Un huésped pregunta, a las 10:14 PM:',
@@ -534,29 +429,16 @@ const es: typeof en = {
   },
   revenue: {
     title: 'Cada Conversación Es Ingreso.',
-    beats: [
-      'La hospitalidad excepcional y el desempeño comercial nunca deberían competir.',
-      'Deberían reforzarse mutuamente.',
-    ],
-    body:
-      'Hotel Companion entiende continuamente la intención del huésped y recomienda experiencias relevantes justo cuando generan valor.',
-    items: [
-      'Mejoras de habitación.',
-      'Tratamientos de spa.',
-      'Reservaciones de restaurante.',
-      'Transporte privado.',
-      'Excursiones.',
-      'Golf.',
-      'Clubes de playa.',
-      'Paquetes de celebración.',
-      'Salida tardía.',
-      'Experiencias premium.',
-    ],
-    close: ['Las recomendaciones se sienten útiles.', 'Nunca promocionales.', 'La hospitalidad va primero.', 'El ingreso llega de forma natural.'],
+    /* v3 ADDENDUM_1 A1 — línea tesis; última frase en champagne en Fase 3 */
+    thesis:
+      'La reserva, la mejora, el taxi, la reseña — cada una empieza como una pregunta. El Companion las responde y las cierra. Sin OTA de por medio.',
   },
   knows: {
     title: 'Conoce Tu Hotel Como Tu Mejor Empleado.',
     lead: 'Hotel Companion entiende cada parte de tu operación.',
+    /* v3 copy deck {#06} — una línea "insider" por columna, estilo gold caption */
+    insiderProperty: 'Sabe que la 214 tiene la mejor vista del atardecer.',
+    insiderDestination: 'Sabe dónde comen los locales un martes.',
     property: [
       'Cada habitación.',
       'Cada restaurante.',
@@ -588,9 +470,8 @@ const es: typeof en = {
     ],
   },
   intelligence: {
-    title: 'Cada Conversación con un Huésped Se Convierte en Inteligencia.',
-    beats: ['Los huéspedes viven una hospitalidad excepcional.', 'Tu organización obtiene inteligencia.'],
-    lead: 'Hotel Companion identifica continuamente:',
+    /* v3 copy deck {#07} — headline de Inteligencia y Ejecución fusionadas */
+    title: 'Cada conversación se convierte en inteligencia — y en ejecución.',
     items: [
       'Intención del huésped',
       'Preferencias del huésped',
@@ -605,53 +486,19 @@ const es: typeof en = {
     ],
     close: ['Cada interacción fortalece tu operación.', 'Cada conversación ayuda a tu hotel a mejorar.'],
   },
-  execution: {
-    title: 'De la Conversación a la Ejecución Coordinada.',
-    lead: 'Las solicitudes de los huéspedes se convierten automáticamente en flujos de trabajo operativos.',
-    pairs: [
-      { from: 'Reservación de restaurante', to: 'Equipo de Restaurante' },
-      { from: 'Cita de spa', to: 'Equipo de Spa' },
-      { from: 'Solicitud de limpieza', to: 'Ama de Llaves' },
-      { from: 'Problema de mantenimiento', to: 'Ingeniería' },
-      { from: 'Traslado al aeropuerto', to: 'Transporte' },
-      { from: 'Mejora de habitación', to: 'Recepción' },
-      { from: 'Salida tardía', to: 'Recepción' },
-      { from: 'Solicitud VIP', to: 'Servicios al Huésped' },
-    ],
-    close: [
-      'Sin coordinación manual.',
-      'Sin solicitudes perdidas.',
-      'Sin seguimientos olvidados.',
-      'Solo ejecución fluida en todo tu hotel.',
-    ],
-  },
-  enterpriseIntel: {
-    title: 'Inteligencia Empresarial para la Hospitalidad Moderna.',
-    lead: 'Comprende tu operación a través de las conversaciones que ocurren cada día.',
-    items: [
-      'Monitorea el comportamiento del huésped.',
-      'Identifica oportunidades de ingreso.',
-      'Mide la demanda de servicios.',
-      'Da seguimiento al desempeño operativo.',
-      'Descubre tendencias emergentes.',
-      'Comprende las expectativas del huésped.',
-      'Revela vacíos de conocimiento.',
-      'Detecta perspectivas comerciales.',
-    ],
-    close:
-      'Los tableros ejecutivos transforman miles de interacciones con huéspedes en inteligencia accionable para cada departamento.',
-  },
+  /* v3 copy deck {#08} — banda silenciosa de Companion OS (antigua 10 comprimida).
+     El copy antiguo de execution/enterpriseIntel/convergence se elimina según deck {#07}. */
   companionOs: {
-    title: 'Impulsado por Companion OS.',
-    lead: 'Hotel Companion está construido sobre Companion OS, la plataforma de inteligencia compartida detrás de cada Companion.',
-    close: 'Cada Companion se especializa en su industria mientras comparte la misma base de inteligencia.',
+    line: 'Construido sobre Companion OS — la plataforma de inteligencia detrás de cada Companion.',
+    link: 'Conoce la plataforma →',
   },
   liveInDays: {
     title: 'En Marcha en Días. No en Meses.',
     beats: ['Implementa rápido.', 'Capacita sin esfuerzo.', 'Genera valor de inmediato.'],
     body:
       'Hotel Companion se integra a tu operación hotelera sin implementaciones prolongadas ni cambios disruptivos.',
-    close: ['Tu equipo sigue haciendo lo que mejor sabe hacer.', 'Hotel Companion hace que cada interacción sea mejor.'],
+    /* v3 copy deck {#09} — las dos frases de cierre se vuelven una */
+    close: ['Tu equipo sigue haciendo lo que mejor sabe hacer — cada interacción, mejor.'],
   },
   foundingPartner: {
     title: 'Programa de Socios Fundadores',
@@ -715,16 +562,6 @@ const es: typeof en = {
       { name: 'Hacienda del Mar', value: '1,440' },
     ],
   },
-  convergence: {
-    inputs: [
-      'Preguntas de huéspedes',
-      'Solicitudes de servicio',
-      'Reportes de mantenimiento',
-      'Intención de reserva',
-      'Preferencias e historial',
-    ],
-    node: 'Companion OS',
-  },
   otaStake: {
     /* NEEDS CONFIRM: cifra, comparación y fuente — provisional, listo para reemplazar. */
     eyebrow: 'EL COSTO DE LOS INTERMEDIARIOS',
@@ -738,50 +575,17 @@ const es: typeof en = {
     ],
   },
   journey: {
+    /* v3 Fase 1 {#04}: los cinco párrafos explicativos y los bullets
+       ANTES/DURANTE/DESPUÉS se eliminan según el copy deck; títulos, ticker
+       y tablet permanecen para el arco de la Fase 3. */
     tallyLabel: 'Ingresos de esta estancia',
     steps: [
-      {
-        act: 'ANTES',
-        title: 'Reservan directo.',
-        caption: 'El Companion vende la propiedad, responde todo y cierra la reserva — sin comisión de OTA.',
-        screen: 'home' as ScreenId,
-        tally: '+$0',
-      },
-      {
-        act: 'ANTES',
-        title: 'La primera mejora, antes de llegar.',
-        caption: 'Una suite con vista al mar ofrecida mientras aún están eligiendo.',
-        screen: 'upgrade' as ScreenId,
-        tally: '+$250',
-      },
-      {
-        act: 'DURANTE',
-        title: 'Cada respuesta es una imagen.',
-        caption: 'Preguntan por la mejor playa. La ven.',
-        screen: 'beach' as ScreenId,
-        tally: '+$250',
-      },
-      {
-        act: 'DURANTE',
-        title: 'Servicio a cuarto, con un toque.',
-        caption: 'Una parrilla de platillos, un total, directo a la cocina.',
-        screen: 'roomservice' as ScreenId,
-        tally: '+$312',
-      },
-      {
-        act: 'DURANTE',
-        title: 'Bienestar, reservado en un toque.',
-        caption: 'Tratamientos con disponibilidad real, no un número de teléfono.',
-        screen: 'spa' as ScreenId,
-        tally: '+$402',
-      },
-      {
-        act: 'DESPUÉS',
-        title: 'La reseña gana la próxima reserva.',
-        caption: 'Un seguimiento cálido, un enlace directo y un huésped que vuelve directo.',
-        screen: 'followup' as ScreenId,
-        tally: '+$402',
-      },
+      { title: 'Reservan directo.', screen: 'home' as ScreenId, tally: '+$0' },
+      { title: 'La primera mejora, antes de llegar.', screen: 'upgrade' as ScreenId, tally: '+$250' },
+      { title: 'Cada respuesta es una imagen.', screen: 'beach' as ScreenId, tally: '+$250' },
+      { title: 'Servicio a cuarto, con un toque.', screen: 'roomservice' as ScreenId, tally: '+$312' },
+      { title: 'Bienestar, reservado en un toque.', screen: 'spa' as ScreenId, tally: '+$402' },
+      { title: 'La reseña gana la próxima reserva.', screen: 'followup' as ScreenId, tally: '+$402' },
     ],
   },
   surfaces2029: {
@@ -801,15 +605,13 @@ const es: typeof en = {
     ],
   },
   faq: {
+    /* v3 copy deck {#12} — el homepage conserva 4; las otras 4 pasan a /faq */
     title: 'Preguntas Frecuentes',
+    allLink: 'Todas las preguntas →',
     items: [
       {
         q: '¿Qué es Hotel Companion?',
         a: 'Hotel Companion es la Plataforma de Inteligencia de Huéspedes por Voz que ayuda a los hoteles a brindar una hospitalidad excepcional mientras aumentan los ingresos y mejoran el desempeño operativo.',
-      },
-      {
-        q: '¿Hotel Companion es un concierge con IA?',
-        a: 'No. La IA es simplemente la interfaz. Hotel Companion es una plataforma empresarial que entiende la intención del huésped, coordina operaciones, identifica oportunidades comerciales y aprende continuamente de cada interacción.',
       },
       {
         q: '¿Cómo interactúan los huéspedes con Hotel Companion?',
@@ -822,18 +624,6 @@ const es: typeof en = {
       {
         q: '¿Hotel Companion reemplaza al personal del hotel?',
         a: 'No. Extiende a tu equipo al atender al instante las interacciones rutinarias, permitiendo que el personal se enfoque en los momentos donde la hospitalidad humana genera el mayor impacto.',
-      },
-      {
-        q: '¿Qué sabe Hotel Companion?',
-        a: 'Todo lo que le enseñes. Tu propiedad. Tus servicios. Tu destino. Tus procedimientos operativos. Tus políticas. Tus recomendaciones. Tus estándares de marca. Tu conocimiento institucional.',
-      },
-      {
-        q: '¿Hotel Companion admite varios idiomas?',
-        a: 'Sí. Los huéspedes se comunican de forma natural en su idioma preferido mientras Hotel Companion preserva la voz, los estándares y la filosofía de hospitalidad de tu hotel.',
-      },
-      {
-        q: '¿Qué es Companion OS?',
-        a: 'Companion OS es la plataforma de inteligencia compartida de Axionari que impulsa a Hotel Companion, Restaurant Companion y a los futuros Companions específicos por industria.',
       },
     ],
   },

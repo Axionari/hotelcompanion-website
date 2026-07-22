@@ -25,9 +25,12 @@ import type { ScreenId } from '@/lib/i18n/marketing/deviceScreens'
  */
 
 export interface JourneyStep {
-  act: string
+  /** v3 Phase 1: act bullets (PRE/DURING/AFTER) deleted from the home data;
+      kept optional for any caller that still groups by act. */
+  act?: string
   title: string
-  caption: string
+  /** v3 Phase 1: explanation captions deleted from the home data. */
+  caption?: string
   screen: ScreenId
   /** Running revenue tally shown at this step, e.g. "+$250". */
   tally?: string
@@ -131,14 +134,17 @@ export function JourneyWalkthrough({
           {steps.map((s, i) => (
             <div key={i}>
               <div className="eyebrow eyebrow-accent mb-1.5">
-                {String(i + 1).padStart(2, '0')} · {s.act}
+                {String(i + 1).padStart(2, '0')}
+                {s.act ? ` · ${s.act}` : ''}
               </div>
               <h3 className="font-serif" style={{ fontSize: '1.2rem', fontWeight: 530, color: 'var(--text)' }}>
                 {s.title}
               </h3>
-              <p className="font-sans mt-1.5" style={{ fontSize: 15, lineHeight: 1.55, color: 'var(--text-dim)' }}>
-                {s.caption}
-              </p>
+              {s.caption && (
+                <p className="font-sans mt-1.5" style={{ fontSize: 15, lineHeight: 1.55, color: 'var(--text-dim)' }}>
+                  {s.caption}
+                </p>
+              )}
             </div>
           ))}
         </div>
@@ -174,7 +180,7 @@ export function JourneyWalkthrough({
 
           {steps.map((s, i) => {
             const on = i === active
-            const newAct = i === 0 || steps[i - 1].act !== s.act
+            const newAct = !!s.act && (i === 0 || steps[i - 1].act !== s.act)
             return (
               <li key={i}>
                 {newAct && (
@@ -225,8 +231,9 @@ export function JourneyWalkthrough({
             opacity mid-transition, superimposed — badly in ES, where captions
             wrap to two lines. The min-height reserves room for the tallest
             (two-line) caption so nothing below it shifts. */}
-        <div className="relative mt-6 pl-4" style={{ minHeight: 88 }}>
+        <div className="relative mt-6 pl-4" style={{ minHeight: steps.some((s) => s.caption) ? 88 : 0 }}>
           {steps.map((s, i) => {
+            if (!s.caption) return null
             const on = i === active
             return (
               <p

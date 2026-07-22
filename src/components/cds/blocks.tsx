@@ -657,7 +657,7 @@ export function RevenueLine({
   steps,
   label,
 }: {
-  steps: ReadonlyArray<{ act: string; tally?: string }>
+  steps: ReadonlyArray<{ act?: string; tally?: string }>
   label: string
 }) {
   // Carry the last known tally forward so every stage has a value.

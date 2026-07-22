@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useCopy } from "@/lib/i18n/useCopy";
 import { globalCopy } from "@/lib/i18n/marketing/global";
 import LanguageToggle from "@/components/LanguageToggle";
+import { AxionariMark } from "@/components/cds/EndorsementMark";
 
 function FooterColumn({
   title,
@@ -58,11 +59,10 @@ export function SiteFooter() {
           <p className="font-serif heading-card mb-4" style={{ color: "var(--text)" }}>
             {footer.brand.headline}
           </p>
-          <p className="font-sans text-sm leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
+          {/* v3 {#footer}: brand endorsement line removed (G5) — the Companion
+              OS line lives once below, the AXIONARI mark above the copyright. */}
+          <p className="font-sans text-sm leading-relaxed mb-6" style={{ color: "var(--text-secondary)" }}>
             {footer.brand.body}
-          </p>
-          <p className="font-serif italic text-base mb-6" style={{ color: "var(--text-secondary)" }}>
-            {footer.brand.endorsement}
           </p>
           <Link
             href="/demo"
@@ -80,8 +80,8 @@ export function SiteFooter() {
           </Link>
         </div>
 
-        {/* Link columns */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-8 gap-y-10 mb-14">
+        {/* Link columns — v3: four (Company+Legal merged) */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10 mb-14">
           <FooterColumn title={footer.columns.product.title} links={footer.columns.product.links} />
           <FooterColumn title={footer.columns.solutions.title} links={footer.columns.solutions.links} />
           <FooterColumn title={footer.columns.resources.title} links={footer.columns.resources.links} />
@@ -91,7 +91,6 @@ export function SiteFooter() {
             comingSoon={footer.columns.company.comingSoon}
             comingSoonSuffix={footer.columns.company.comingSoonSuffix}
           />
-          <FooterColumn title={footer.columns.legal.title} links={footer.columns.legal.links} />
         </div>
 
         {/* Newsletter */}
@@ -145,52 +144,43 @@ export function SiteFooter() {
           )}
         </div>
 
-        {/* Companion OS centerpiece + Axionari */}
-        <div
-          className="grid md:grid-cols-2 gap-6 mb-14 rounded-2xl p-8 md:p-10"
-          style={{ background: "var(--surface-2)", border: "1px solid var(--border)" }}
-        >
-          <div>
-            <div className="eyebrow mb-3">{footer.companionOs.title}</div>
-            <p className="font-serif text-xl mb-3" style={{ color: "var(--text)" }}>
-              {footer.companionOs.headline}
-            </p>
-            <p className="font-sans text-sm leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
-              {footer.companionOs.body}
-            </p>
+        {/* v3 {#footer}: the two mini-essays are now one line each */}
+        <div className="mb-14 flex flex-col gap-2.5">
+          <p className="font-sans text-sm" style={{ color: "var(--text-secondary)" }}>
+            {footer.osLine.text}{" "}
             <Link
               href="/companion-os"
-              className="font-sans text-sm transition-colors hover:text-[#D4784A]"
+              className="transition-colors hover:text-[#D4784A]"
               style={{ color: "var(--accent)", fontWeight: 500 }}
             >
-              {footer.companionOs.link} →
+              {footer.osLine.link}
             </Link>
-          </div>
-          <div>
-            <div className="eyebrow mb-3">{footer.axionari.title}</div>
-            <p className="font-sans text-sm leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
-              {footer.axionari.body}
-            </p>
+          </p>
+          <p className="font-sans text-sm" style={{ color: "var(--text-secondary)" }}>
+            {footer.axionariLine.text}{" "}
             <a
               href="https://axionari.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-sans text-sm transition-colors hover:text-[#D4784A]"
+              className="transition-colors hover:text-[#D4784A]"
               style={{ color: "var(--accent)", fontWeight: 500 }}
             >
-              {footer.axionari.link} →
+              {footer.axionariLine.link}
             </a>
-          </div>
+          </p>
         </div>
 
-        {/* Legal line */}
+        {/* Legal line — v3: POWERED BY AXIONARI mark above the copyright */}
         <div
           className="pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
           style={{ borderTop: "1px solid var(--border)" }}
         >
-          <p className="font-sans text-sm" style={{ color: "var(--text-muted)" }}>
-            {footer.legalLine}
-          </p>
+          <div className="flex flex-col gap-2">
+            <AxionariMark />
+            <p className="font-sans text-sm" style={{ color: "var(--text-muted)" }}>
+              {footer.legalLine}
+            </p>
+          </div>
           <div className="flex items-center gap-5">
             <Link
               href="/auth/login"

@@ -6,12 +6,12 @@ import { SiteFooter } from '@/components/site-footer'
 import { Section } from '@/components/cds/Section'
 import { Reveal } from '@/components/cds/Reveal'
 import { QuestionMarquee } from '@/components/cds/QuestionMarquee'
-import { EndorsementMark } from '@/components/cds/EndorsementMark'
+import { AxionariMark } from '@/components/cds/EndorsementMark'
 import { PersistentCTA } from '@/components/cds/PersistentCTA'
 import { HeroIgnition } from '@/components/cds/HeroIgnition'
 import { TabletOS } from '@/components/cds/TabletOS'
 import { openLiveDemo } from '@/components/cds/LiveDemoModal'
-import { Teaser, CapabilityStrip } from '@/components/cds/Teaser'
+import { Teaser } from '@/components/cds/Teaser'
 import { Breather } from '@/components/cds/Breather'
 import { globalCopy } from '@/lib/i18n/marketing/global'
 import { JourneyWalkthrough } from '@/components/cds/JourneyWalkthrough'
@@ -21,24 +21,21 @@ import { MultiAccentHeadline } from '@/components/cds/AccentHeadline'
 import {
   StatBlock,
   IconChipGrid,
-  RoutingFlow,
   JourneyTimeline,
-  ConvergenceDiagram,
   ResolutionDonut,
   Accordion,
   CommissionCompare,
 } from '@/components/cds/blocks'
-import { COMPANION_OS_CAPABILITIES } from '@/lib/capabilities'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { homeCopy } from '@/lib/i18n/marketing/home'
 import { deviceScreens } from '@/lib/i18n/marketing/deviceScreens'
 import { accents } from '@/lib/i18n/marketing/accents'
 
 /**
- * Home — composed to Restaurant Companion level.
- * Seventeen text sections trimmed to ten composed scenes per the Level-Up plan §D.
- * Every section is left-aligned and carries a visual: device, diagram, timeline,
- * dashboard, marquee or photography. No centered text walls.
+ * Home — v3 (docs/v3/00_BUILD_BRIEF.md): 15 numbered sections condensed to 13.
+ * Phase 1 is words & structure only — merges (02+03, 08+09 → content level),
+ * caption cuts, Companion OS dedupe (G5), renumbered eyebrows 01–13.
+ * The Phase 3 heroes (sun arc, constellation) rebuild sections 04/05 visually.
  */
 export default function HomeClient() {
   const c = useCopy(homeCopy)
@@ -79,9 +76,8 @@ export default function HomeClient() {
                     {c.hero.secondaryCta}
                   </button>
                 </div>
-                <div className="mt-10">
-                  <EndorsementMark variant="companion-os" />
-                </div>
+                {/* v3 {#01}: mono proof line replaces the Companion OS badge (G5) */}
+                <div className="eyebrow mt-10">{c.hero.proofLine}</div>
               </div>
               <div className="lg:col-span-6">
                 {/* The Ignition: the orb is the light source of the hero and the
@@ -100,36 +96,30 @@ export default function HomeClient() {
         </div>
       </div>
 
-      {/* 02 · THE COST OF INTERMEDIARIES — the book-direct revenue story.
-          One of only two big numbers on the site; both carry NEEDS CONFIRM. */}
-      <Section eyebrow={`02 · ${c.otaStake.eyebrow}`} variant="surface-1" flush>
-        <div className="mt-4">
+      {/* 02 · WHAT'S AT STAKE {#home-stake} — v3 merge of old 02+03: both
+          stats in one band, two closing paragraphs cut to one line (deck {#02}).
+          Visual side-by-side arrives with the Phase 2 StatBlock work. */}
+      <Section id="home-stake" eyebrow="02 · WHAT'S AT STAKE" variant="surface-1" flush>
+        <div className="mt-4 grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           <StatBlock figure={c.otaStake.figure} caption={c.otaStake.caption} source={c.otaStake.source}>
             <div className="mt-4" style={{ maxWidth: 460 }}>
               <CommissionCompare rows={c.otaStake.compare} />
             </div>
           </StatBlock>
+          <StatBlock figure={c.stake.figure} caption={c.stake.caption} source={c.stake.source} />
         </div>
-      </Section>
-
-      {/* 03 · THE STAKE {#home-stake} — left stat block, count-up on reveal */}
-      <Section eyebrow="03 · THE STAKE" variant="bg" flush>
-        <div className="mt-4">
-          <StatBlock figure={c.stake.figure} caption={c.stake.caption} source={c.stake.source}>
-            {c.stake.beats.map((b, i) => (
-              <p key={i} className="body-lead" style={{ maxWidth: '56ch' }}>
-                {b}
-              </p>
-            ))}
-          </StatBlock>
-        </div>
+        <Reveal>
+          <p className="body-lead mt-12" style={{ maxWidth: '56ch' }}>
+            {c.stake.close}
+          </p>
+        </Reveal>
       </Section>
 
       {/* 03 · CONVERSATION {#home-conversation} — headline + full-bleed marquee */}
-      <section className="py-16 md:py-24" style={{ background: 'var(--surface-1)' }}>
+      <section className="py-16 md:py-24" style={{ background: 'var(--bg)' }}>
         <div className="container-rc">
           <Reveal>
-            <div className="eyebrow eyebrow-accent mb-5">04 · CONVERSATION</div>
+            <div className="eyebrow eyebrow-accent mb-5">03 · CONVERSATION</div>
             <h2 className="heading-section" style={{ color: 'var(--text)', maxWidth: '18ch' }}>
               {c.conversation.title}
             </h2>
@@ -153,17 +143,18 @@ export default function HomeClient() {
         </div>
       </section>
 
-      {/* 05 · THE JOURNEY — the signature scroll-synced sticky walkthrough.
-          PRE (win the direct booking) · DURING (every request an upsell) ·
-          AFTER (earn the review, rebook direct), with a copper revenue tally. */}
-      <Section id="home-revenue" eyebrow="05 · PRE · DURING · AFTER" title={c.revenue.title} variant="bg">
+      {/* 04 · REVENUE {#home-revenue} — v3: five explanation captions and the
+          PRE/DURING/AFTER bullets deleted (deck {#04}); headline, ticker and
+          tablet stay. Intentionally sparse until the Phase 3 sun-arc rebuild.
+          A1 thesis line lands here (styled champagne in Phase 3). */}
+      <Section id="home-revenue" eyebrow="04 · REVENUE" title={c.revenue.title} support={c.revenue.thesis} variant="surface-1">
         <div className="mt-14">
           <JourneyWalkthrough steps={c.journey.steps} tallyLabel={c.journey.tallyLabel} />
         </div>
       </Section>
 
-      {/* 06 · THE INTERFACE OF 2029 — one intent, every surface */}
-      <Section eyebrow="06 · EVERY SURFACE" title={c.surfaces2029.title} support={c.surfaces2029.caption} variant="surface-1">
+      {/* 05 · EVERY SURFACE — one intent, every surface */}
+      <Section eyebrow="05 · EVERY SURFACE" title={c.surfaces2029.title} support={c.surfaces2029.caption} variant="surface-1">
         <div className="mt-14">
           <DeviceWall intent={c.surfaces2029.intent} />
         </div>
@@ -199,15 +190,23 @@ export default function HomeClient() {
         </div>
       </section>
 
-      <Section eyebrow="07 · KNOWLEDGE" title={c.knows.title} support={c.knows.lead} variant="bg">
+      <Section eyebrow="06 · KNOWLEDGE" title={c.knows.title} support={c.knows.lead} variant="bg">
         <div className="mt-14 grid lg:grid-cols-2 gap-12 lg:gap-16">
           <div>
             <div className="eyebrow mb-6">{c.hero.positioning.split('.')[0]}</div>
             <IconChipGrid items={c.knows.property.slice(0, 10)} columns={2} />
+            {/* v3 {#06}: insider flavor line, gold caption style */}
+            <p className="font-serif italic mt-6" style={{ fontSize: '1.05rem', color: 'var(--champagne)' }}>
+              {c.knows.insiderProperty}
+            </p>
           </div>
           <div>
             <div className="eyebrow mb-6">{c.knows.destinationLead}</div>
             <IconChipGrid items={c.knows.destination} columns={2} />
+            {/* v3 {#06}: insider flavor line, gold caption style */}
+            <p className="font-serif italic mt-6" style={{ fontSize: '1.05rem', color: 'var(--champagne)' }}>
+              {c.knows.insiderDestination}
+            </p>
           </div>
         </div>
         <Reveal>
@@ -220,11 +219,13 @@ export default function HomeClient() {
         </Reveal>
       </Section>
 
-      {/* 06 · INTELLIGENCE → DASHBOARD {#home-intelligence} + {#home-enterprise-intel} */}
+      {/* 07 · INTELLIGENCE & EXECUTION {#home-intelligence} — v3 merge of old
+          08+09 (deck {#07}): one heading, Centro de mando kept, old routing
+          list and intro/closing paragraphs deleted. GuestMemoryCard and
+          RequestExecutionCard join in Phase 2/3. */}
       <Section
-        eyebrow="08 · INTELLIGENCE"
+        eyebrow="07 · INTELLIGENCE & EXECUTION"
         title={c.intelligence.title}
-        support={c.enterpriseIntel.lead}
         variant="surface-1"
       >
         <div className="mt-14 grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
@@ -243,55 +244,33 @@ export default function HomeClient() {
             </Teaser>
           </div>
         </div>
-        <Reveal>
-          <p className="body-lead mt-12" style={{ maxWidth: '58ch' }}>
-            {c.enterpriseIntel.close}
-          </p>
-        </Reveal>
       </Section>
 
       <Breather id="band-home-tree" image="/assets/breathers/giant-tree.webp" />
 
-      {/* 07 · EXECUTION {#home-execution} — routing flow cards */}
-      <Section eyebrow="09 · EXECUTION" title={c.execution.title} support={c.execution.lead} variant="bg">
-        <div className="mt-14">
-          <RoutingFlow pairs={c.execution.pairs} />
-        </div>
+      {/* 08 · COMPANION OS {#home-companion-os} — v3 quiet band (deck {#08}):
+          one line + platform link + the Powered by AXIONARI mark (G5/G6).
+          Convergence diagram and the eight capability names left this page. */}
+      <Section id="home-companion-os" eyebrow="08 · COMPANION OS" variant="surface-3" flush>
         <Reveal>
-          <p
-            className="font-serif mt-12"
-            style={{ fontSize: 'clamp(1.3rem, 2.2vw, 1.75rem)', fontWeight: 530, color: 'var(--text)', maxWidth: '28ch' }}
-          >
-            {c.execution.close[c.execution.close.length - 1]}
+          <p className="body-lead" style={{ maxWidth: '58ch', color: 'var(--text)' }}>
+            {c.companionOs.line}
           </p>
-        </Reveal>
-      </Section>
-
-      {/* 08 · COMPANION OS {#home-companion-os} — convergence + capability surface */}
-      <Section id="home-companion-os" eyebrow="10 · COMPANION OS" title={c.companionOs.title} support={c.companionOs.lead} variant="surface-3"
-        tight>
-        <div className="mt-14">
-          <ConvergenceDiagram inputs={c.convergence.inputs} nodeLabel={c.convergence.node} />
-        </div>
-        <div className="mt-16">
-          <CapabilityStrip names={COMPANION_OS_CAPABILITIES.map((x) => x.name)} />
-          <Link
-            href="/companion-os"
-            className="font-sans inline-flex items-center gap-2 mt-7 transition-colors hover:text-[#d4824f]"
-            style={{ color: 'var(--accent)', fontSize: 15, fontWeight: 500, minHeight: 44 }}
-          >
-            {g.nav.see} {g.nav.companionOs} <span aria-hidden="true">→</span>
-          </Link>
-        </div>
-        <Reveal>
-          <div className="mt-12">
-            <EndorsementMark variant="companion-os" />
+          <div className="mt-6 flex flex-wrap items-center gap-x-10 gap-y-4">
+            <Link
+              href="/companion-os"
+              className="font-sans inline-flex items-center gap-2 transition-colors hover:text-[#d4824f]"
+              style={{ color: 'var(--accent)', fontSize: 15, fontWeight: 500, minHeight: 44 }}
+            >
+              {c.companionOs.link}
+            </Link>
+            <AxionariMark />
           </div>
         </Reveal>
       </Section>
 
-      {/* 09 · LIVE IN DAYS {#home-live-in-days} — three-step timeline */}
-      <Section eyebrow="11 · DEPLOYMENT" title={c.liveInDays.title} support={c.liveInDays.body} variant="bg" tight>
+      {/* 09 · DEPLOYMENT {#home-live-in-days} — three-step timeline */}
+      <Section eyebrow="09 · DEPLOYMENT" title={c.liveInDays.title} support={c.liveInDays.body} variant="bg" tight>
         {/* The deck gives three standalone beats and a two-line close for the
             section — there are no per-step descriptions. The previous mapping
             invented them by recycling close[1], which put the same sentence
@@ -325,8 +304,8 @@ export default function HomeClient() {
 
       <Breather id="band-home-pause" image="/assets/breathers/beach-golden.webp" video="section-tropical-beach" height="clamp(280px, 44vh, 520px)" />
 
-      {/* 10 · BOUNDARIES {#home-what-it-is-not-teaser} — statement + link to Enterprise */}
-      <Section eyebrow="12 · BOUNDARIES" variant="surface-1" tight>
+      {/* 10 · BOUNDARIES {#home-what-it-is-not-teaser} — untouched (brief: best-written section) */}
+      <Section eyebrow="10 · BOUNDARIES" variant="surface-1" tight>
         <Reveal>
           <p
             className="font-serif"
@@ -354,7 +333,7 @@ export default function HomeClient() {
       </Section>
 
       {/* 11 · FOUNDING PARTNERS {#home-founding-partner} */}
-      <Section eyebrow="13 · FOUNDING PARTNERS" title={c.foundingPartner.title} support={c.foundingPartner.lead} variant="bg" tight>
+      <Section eyebrow="11 · FOUNDING PARTNERS" title={c.foundingPartner.title} support={c.foundingPartner.lead} variant="bg" tight>
         {/* The full programme is canonical on /contact#founding. */}
         <div className="mt-12">
           <Teaser
@@ -368,11 +347,20 @@ export default function HomeClient() {
         </div>
       </Section>
 
-      {/* 12 · FAQ {#home-faq} — accordion */}
-      <Section eyebrow="14 · FAQ" title={c.faq.title} variant="surface-1">
+      {/* 12 · FAQ {#home-faq} — v3: 4 on-page Q&As, the rest live on /faq (deck {#12}) */}
+      <Section eyebrow="12 · FAQ" title={c.faq.title} variant="surface-1">
         <div className="mt-12" style={{ maxWidth: 860 }}>
           <Accordion items={c.faq.items} />
         </div>
+        <p className="mt-8">
+          <Link
+            href="/faq"
+            className="font-sans transition-colors hover:text-[#d4824f]"
+            style={{ color: 'var(--accent)', fontWeight: 500, fontSize: 15 }}
+          >
+            {c.faq.allLink}
+          </Link>
+        </p>
       </Section>
 
       {/* 13 · FINAL CTA {#home-final-cta} — warm media band */}
@@ -380,7 +368,7 @@ export default function HomeClient() {
         <section className="py-24 md:py-36">
           <div className="container-rc">
             <Reveal>
-              <div className="eyebrow eyebrow-accent mb-5">15 · NEXT STEP</div>
+              <div className="eyebrow eyebrow-accent mb-5">13 · NEXT STEP</div>
               <h2 className="heading-section" style={{ color: 'var(--text)', maxWidth: '18ch' }}>
                 {c.finalCta.title}
               </h2>

@@ -9,11 +9,12 @@ import LanguageToggle from "@/components/LanguageToggle";
 import { openLiveDemo } from "@/components/cds/LiveDemoModal";
 import { liveDemoCopy } from "@/lib/i18n/marketing/liveDemo";
 
-const NAV_LINKS: Array<{ key: "platform" | "solutions" | "enterprise" | "companionOs" | "resources" | "company"; href: string }> = [
+/* v3 G5: the Companion OS nav item is removed — the platform story lives in
+   the section-08 band and on axionari.com. The /companion-os page remains. */
+const NAV_LINKS: Array<{ key: "platform" | "solutions" | "enterprise" | "resources" | "company"; href: string }> = [
   { key: "platform", href: "/platform" },
   { key: "solutions", href: "/solutions" },
   { key: "enterprise", href: "/enterprise" },
-  { key: "companionOs", href: "/companion-os" },
   { key: "resources", href: "/resources" },
   { key: "company", href: "/company" },
 ];

@@ -147,9 +147,11 @@ export default function PlatformClient() {
       >
         {/* The full stepper is canonical on Home; this is the teaser. */}
         <div className="mt-12">
+          {/* v3 Phase 1: the journey captions were deleted from the home deck
+              ({#04}); this teaser now quotes the surviving step titles. */}
           <Teaser
             split
-            lines={[home.journey.steps[0].caption, home.journey.steps[home.journey.steps.length - 1].caption]}
+            lines={[home.journey.steps[0].title, home.journey.steps[home.journey.steps.length - 1].title]}
             href="/#home-revenue"
             label={home.revenue.title}
           >

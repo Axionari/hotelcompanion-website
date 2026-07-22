@@ -41,3 +41,22 @@ export function EndorsementMark({
     </Link>
   )
 }
+
+/**
+ * v3 endorsement mark (docs/v3/00_BUILD_BRIEF.md G6, copy deck {#08}/{#footer}):
+ * mono CAPS `POWERED BY AXIONARI`, `AXIONARI` in gold. Locale-invariant.
+ * Appears exactly twice site-wide: the Companion OS band and the footer.
+ */
+export function AxionariMark({ className = '' }: { className?: string }) {
+  return (
+    <a
+      href="https://axionari.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`eyebrow ${className}`}
+      style={{ color: 'var(--text-faint)', textDecoration: 'none' }}
+    >
+      POWERED BY <span style={{ color: 'var(--gold)' }}>AXIONARI</span>
+    </a>
+  )
+}
