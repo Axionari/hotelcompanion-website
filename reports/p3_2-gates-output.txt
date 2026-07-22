@@ -1,0 +1,52 @@
+PASS · G-1 en · 2–3× outline — "2–3×2–3×" · stroke 1px · color rgba(0, 0, 0, 0) · font-size 216px · sr-only true
+PASS · G-1 en · $160B glow — "$160B$160B" · font-style italic · color rgb(231, 206, 134) · text-shadow rgba(232, 166, 106, 0.25) 0px 0px 60px… · sr-only true
+PASS · G-1 es · 2–3× outline — "2–3×2–3×" · stroke 1px · color rgba(0, 0, 0, 0) · font-size 216px · sr-only true
+PASS · G-1 es · $160B glow — "$160 mil millones$16" · font-style italic · color rgb(231, 206, 134) · text-shadow rgba(232, 166, 106, 0.25) 0px 0px 60px… · sr-only true
+PASS · G-2 en 1280px — zero figure×copy intersections
+PASS · G-2 en 1440px — zero figure×copy intersections
+PASS · G-2 en 1600px — zero figure×copy intersections
+PASS · G-2 en 2000px — zero figure×copy intersections
+PASS · G-2 en 2600px — zero figure×copy intersections
+PASS · G-2 es 1280px — zero figure×copy intersections
+PASS · G-2 es 1440px — zero figure×copy intersections
+PASS · G-2 es 1600px — zero figure×copy intersections
+PASS · G-2 es 2000px — zero figure×copy intersections
+PASS · G-2 es 2600px — zero figure×copy intersections
+PASS · G-3 1440px · sticky ≥200vh — wrapper 2250px vs 200vh=1800px
+PASS · G-3 1440px · no overflow-x:hidden ancestor — []
+PASS · G-3 1440px · orb monotone along arc (5 samples) — x = 122 → 455 → 787 → 1112 → 1319
+PASS · G-3 1440px · sky differs across ≥3 stops — 5 distinct sky states: 0.00/0.00/0.00 · 0.34/0.00/0.00 · 0.72/0.22/0.00 · 0.08/0.77/0.30 · 0.00/1.00/0.84
+PASS · G-3 1440px · stop labels/copy unoccluded at every position — zero occlusions across samples
+PASS · G-3 1600px · sticky ≥200vh — wrapper 2250px vs 200vh=1800px
+PASS · G-3 1600px · no overflow-x:hidden ancestor — []
+PASS · G-3 1600px · orb monotone along arc (5 samples) — x = 136 → 508 → 874 → 1231 → 1464
+PASS · G-3 1600px · sky differs across ≥3 stops — 5 distinct sky states: 0.00/0.00/0.00 · 0.34/0.00/0.00 · 0.72/0.22/0.00 · 0.09/0.77/0.30 · 0.00/1.00/0.84
+PASS · G-3 1600px · stop labels/copy unoccluded at every position — zero occlusions across samples
+PASS · G-4a · six required overlaps > 0 — tablet×web:58328 · tablet×tv:3270 · phone×tablet:9829 · watch×phone:5991 · watch×tablet:7323 · voice×tablet:3524
+PASS · G-4b · zero text-node clipping — no screen text under a fronting frame
+PASS · G-4c · captions clear of frames + captions — checked 6 captions vs 5+ frames
+PASS · G-4d · zero SVG connector paths — svg path count = 0
+PASS · G-4e · rim delta 2px/side on all screen devices — 600-596 · 258-254 · 360-356 · 390-386 · 96-92
+PASS · G-4f · puck box-shadow ≠ none — rgba(0, 0, 0, 0.6) 0px 26px 44px -14px, rgba(0, 0, 0, 0.35) …
+PASS · G-5 · phone orb edge is a fade (3× zoom) — max single-pixel step 6.48 of span 104.4 (ratio 0.062, cliff would be ≥0.25)
+PASS · G-5 · watch orb edge is a fade (3× zoom) — max single-pixel step 10.84 of span 66.99 (ratio 0.162, cliff would be ≥0.25)
+PASS · G-7 en · reading-copy delta ≥ Phase-5 — reading 980 (raw 994 incl. 14 sr-only AT words) vs baseline 1357 → −27.8% (Phase-5: 992 → −26.9%; full 1412 · device-ui 418)
+PASS · G-7 es · reading-copy delta ≥ Phase-5 — reading 1073 (raw 1101 incl. 28 sr-only AT words) vs baseline 1538 → −30.2% (Phase-5: 1095 → −28.8%; full 1549 · device-ui 448)
+shot · p3_2-02-stake-1440-en.png
+shot · p3_2-04-arc-1440-en.png
+shot · p3_2-05-constellation-1440-en.png
+shot · p3_2-02-stake-2000-en.png
+shot · p3_2-04-arc-2000-en.png
+shot · p3_2-05-constellation-2000-en.png
+shot · p3_2-02-stake-390-en.png
+shot · p3_2-04-arc-390-en.png
+shot · p3_2-05-constellation-390-en.png
+shot · p3_2-02-stake-1440-es.png
+shot · p3_2-04-arc-1440-es.png
+shot · p3_2-05-constellation-1440-es.png
+shot · p3_2-02-stake-2000-es.png
+shot · p3_2-04-arc-2000-es.png
+shot · p3_2-05-constellation-2000-es.png
+shot · p3_2-02-stake-390-es.png
+shot · p3_2-04-arc-390-es.png
+shot · p3_2-05-constellation-390-es.png
