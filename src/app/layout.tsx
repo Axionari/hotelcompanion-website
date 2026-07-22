@@ -14,6 +14,10 @@ const fraunces = Fraunces({
   // for RC's exact 530 (headline) / 480 (italic accent).
   variable: "--font-serif",
   display: "swap",
+  /* v4 G-7: no forced preload — the font still loads via @font-face exactly
+     as before (display:swap unchanged); it just leaves the homepage LCP
+     dependency graph. Applies to all three v3 faces. */
+  preload: false,
 });
 
 /* Mono eyebrow face — RC uses Spline Sans Mono at ~10.5px / 0.26em tracking. */
@@ -22,6 +26,7 @@ const splineMono = Spline_Sans_Mono({
   weight: ["400", "500"],
   variable: "--font-mono",
   display: "swap",
+  preload: false,
 });
 
 /* Body / UI face — RC uses General Sans (Fontshare, not Google). Self-hosted
@@ -35,6 +40,7 @@ const generalSans = localFont({
   ],
   variable: "--font-sans",
   display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {

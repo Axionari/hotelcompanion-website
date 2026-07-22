@@ -2,7 +2,7 @@
 
 import { CSSProperties } from 'react'
 import { ArcOrb } from '@/components/cds/SunArc'
-import { V4, V4Reveal, monoStyle } from '../shared'
+import { V4, V4Reveal, monoStyle, DeferredImg } from '../shared'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { v4Copy } from '@/lib/i18n/marketing/v4'
 import { deviceScreens } from '@/lib/i18n/marketing/deviceScreens'
@@ -78,8 +78,7 @@ export function Act3() {
         <Moment i={0}>
           <div style={bubble}>{c.bubble1}</div>
           <div style={card}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt={screens.beach.title} src="/assets/ui/beach-akumal-band.webp" loading="lazy" decoding="async" style={{ height: 130, width: '100%', objectFit: 'cover', display: 'block' }} />
+            <DeferredImg alt={screens.beach.title} src="/assets/ui/beach-akumal-band.webp" style={{ height: 130, width: '100%', objectFit: 'cover', display: 'block', background: '#241B10' }} />
             <div style={{ padding: '16px 18px', display: 'flex', flexDirection: 'column', gap: 10 }}>
               <div style={{ fontSize: 17, fontWeight: 600, color: '#F5EDDE' }}>{screens.beach.title}</div>
               <div style={{ fontSize: 12.5, color: 'rgba(242,233,218,.6)' }}>{screens.beach.meta}</div>
@@ -96,8 +95,7 @@ export function Act3() {
           <div style={{ width: '78%', display: 'flex', flexDirection: 'column', gap: 12, marginInline: 'auto' }}>
             <div style={bubble}>{c.bubble2}</div>
             <div style={card}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img alt="Suite Vista al Mar" src="/assets/ui/suite-1-900.webp" loading="lazy" decoding="async" style={{ height: 96, width: '100%', objectFit: 'cover', display: 'block' }} />
+              <DeferredImg alt="Suite Vista al Mar" src="/assets/ui/suite-1-900.webp" style={{ height: 96, width: '100%', objectFit: 'cover', display: 'block', background: '#241B10' }} />
               <div style={{ padding: '16px 18px', display: 'flex', flexDirection: 'column', gap: 8 }}>
                 <div style={{ fontSize: 16, fontWeight: 600, color: '#F5EDDE' }}>Suite Vista al Mar</div>
                 <div style={{ fontSize: 12.5, color: 'rgba(242,233,218,.6)' }}>{c.suitePrice}</div>

@@ -9,6 +9,67 @@ Logged per `docs/v3/01_RULES.md` rule 5. Newest first.
 
 ---
 
+## OQ-12 · V4: reading-copy measure — Act IV captions, Act VI trust chips, Act I top bar
+
+**What:** §3's per-act word budgets are unreachable if every §3-listed string
+counts: Act IV = 46+ words vs ≤30 (captions alone are 27), Act VI = 28 vs ≤25
+(chips are 11), Act I ES = 38 vs ≤35 (incl. the wordmark + coordinates bar).
+**Options:** (a) treat the budgets as aspirational and fail G-1; (b) reword
+copy (forbidden — verbatim law); (c) read the mono label sets (device role
+captions, trust badges) as presentation-layer labels excluded like device-UI,
+and the Act I top bar (wordmark + coordinates chip) as page chrome — the
+nav-band equivalent, like the footer ("chrome, not an act").
+**Chose (c)** — the smallest reading under which the kit's own §3 arithmetic
+closes. Captions/chips are wrapped `[data-device-ui]`, the top bar
+`[data-v4-chrome]`; G-1 prints raw and excluded numbers per act, and every
+excluded string still passes the G-3 verbatim diff. Words remain: EN 106 / ES
+124 of the ≤320 ceiling.
+
+## OQ-11 · V4: Act IV rect audit — reference topology supersedes the v3 overlap-pair table
+
+**What:** kit §5 G-4 says Act IV "additionally passes the v3 G-4 rect audit
+(overlap pairs …)", but the v3 pair table (tablet×web, watch×phone) contradicts
+the reference file's own cluster, where the monitor clears the tablet by 14px
+and the watch never touches the phone. §1.4 makes the reference file the
+geometry source of truth and §2 says the overlay "is judged against the
+reference file, not against v3."
+**Chose** the smallest reading: the audit's mechanics carry over (overlap
+areas > 0, caption clearance, zero connector SVGs, 2px rims, puck shadow) with
+the pair list re-derived from the reference: phone×tablet, tv×tablet,
+watch×tablet, voice×tablet must overlap; web×tablet must stay clear. All
+asserted in `reports/v4-gates.mjs` (G-4a).
+
+## OQ-10 · V4: §3 lines marked *[v3]* that differ from the v3 deck/site — v3 authoritative
+
+**What:** kit §3 marks many ES lines *[v3]* but transcribes several of them
+differently from `docs/v3/02_COPY_DECK.md` (and the shipped v3 strings). The
+kit's own rule — "Where a line exists in docs/v3/02_COPY_DECK.md, the v3 ES
+string is authoritative" — resolves the conflict in v3's favor; reading the
+*[v3]* marks as provenance keeps the page internally consistent (e.g. the
+proof row and Act VI would otherwise disagree on EN MARCHA vs EN LÍNEA).
+**Chose** the v3 string wherever the kit marks *[v3]* (deck first, shipped v3
+site where the deck is silent); kit-authored strings everywhere else:
+- proof row: `EN CADA IDIOMA · EN MARCHA EN DÍAS` (kit printed `EN TODOS LOS
+  IDIOMAS · EN LÍNEA EN DÍAS`)
+- H1: `Aprovecha Cada Oportunidad.` (kit printed `Captura`)
+- Act VI title: `En Marcha en Días. No en Meses.` (kit printed `En Línea…`)
+- Act VII statement: `Deja de leerlo. Pregúntale algo.` (kit printed `Deja de
+  leer sobre esto.`)
+- Act VII CTA: `CONVIÉRTETE EN SOCIO FUNDADOR` (kit printed `…EN FOUNDING
+  PARTNER`)
+- 02:14 receipt: `PALABRAS EXACTAS ADJUNTAS` (kit printed `PALABRAS EXACTAS
+  DEL HUÉSPED`)
+- ask placeholder `UI`: `Pregunta lo que sea…` (kit printed `…lo que quieras…`)
+Act V statement ES keeps the deck's `— y en ejecución.` New kit-defined ES
+(Act II lines, Act I strip, Act III adapted opening, Act V footer [A3], Act
+VII partner line) used verbatim as printed. Act VI trust-chip ES built from
+the v3 security vocabulary (`ACCESO BASADO EN ROLES`, `CIFRADO`, `CENTRADO EN
+LA PRIVACIDAD`, `FUNCIONA CON TU PMS`) — no v3 chip-length strings exist.
+One-word swap for the panel to confirm in-browser; flipping any line is a
+one-string edit in `src/lib/i18n/marketing/v4.ts`.
+
+---
+
 ## OQ-9 · P3.2 F2: pinned-arc breakpoint for the 768–1007px band
 
 **What:** the panel requires the pinned sun-arc scroll-scrub (its DOM audit ran

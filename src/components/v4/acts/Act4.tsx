@@ -2,7 +2,7 @@
 
 import { CSSProperties, ReactNode, useEffect, useRef, useState } from 'react'
 import { ArcOrb } from '@/components/cds/SunArc'
-import { V4, V4Reveal, monoStyle } from '../shared'
+import { V4, V4Reveal, monoStyle, DeferredImg } from '../shared'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { v4Copy } from '@/lib/i18n/marketing/v4'
 import { constellationCopy } from '@/lib/i18n/marketing/constellation'
@@ -53,8 +53,7 @@ function MonitorScreen() {
      no screen text — the phone fronts this screen's left edge (G-4b). */
   return (
     <>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img alt={s.room} src="/assets/ui/suite-1-900.webp" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
+      <DeferredImg alt={s.room} src="/assets/ui/suite-1-900.webp" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(11,9,8,0.05), transparent 40%, rgba(11,9,8,0.4))' }} />
     </>
   )
@@ -82,8 +81,7 @@ function TvScreen() {
   const greeting = useCopy(deviceScreens).greeting
   return (
     <>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img alt={tv.greeting} src="/assets/img/luxury-lobby-800.webp" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
+      <DeferredImg alt={tv.greeting} src="/assets/img/luxury-lobby-800.webp" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(11,9,8,0.1), rgba(11,9,8,0.72))' }} />
       <div className="absolute" style={{ left: 20, bottom: 14, fontFamily: 'ui-sans-serif, system-ui, sans-serif' }}>
         <div style={monoStyle(8.5, '.24em', V4.champagne)}>{greeting.toUpperCase()}</div>
@@ -98,8 +96,7 @@ function TabletScreen() {
   const beach = useCopy(deviceScreens).screens.beach
   return (
     <>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img alt={beach.title} src="/assets/ui/beach-akumal-band.webp" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
+      <DeferredImg alt={beach.title} src="/assets/ui/beach-akumal-band.webp" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(11,9,8,0.14), transparent 38%, rgba(11,9,8,0.7))' }} />
       {/* text block clears the watch's overlap zone (x < 48) and the puck's
           (y past bottom-26) — G-4b */}

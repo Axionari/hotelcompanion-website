@@ -119,3 +119,28 @@ export function useDayModel(rootRef: React.RefObject<HTMLDivElement | null>) {
     with the page's tail holding 2AM. */
 export const DAY_GRADIENT =
   'linear-gradient(180deg, #0E0B09 0%, #1A110B 12.5%, #20150C 25%, #141009 41%, #100C08 60%, #0F0B08 72%, #0B0807 83%, #0B0807 100%)'
+
+/** Below-fold act imagery, fetched only when its act approaches the viewport
+    (G-7: `loading=lazy` still eager-fetches within ~3000px on fast
+    connections, dragging every act photo into the LCP dependency graph). */
+export function DeferredImg({ src, alt, style, className }: { src: string; alt: string; style?: CSSProperties; className?: string }) {
+  const ref = useRef<HTMLImageElement | null>(null)
+  const [on, setOn] = useState(false)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const io = new IntersectionObserver(
+      (es) => {
+        if (es.some((e) => e.isIntersecting)) {
+          setOn(true)
+          io.disconnect()
+        }
+      },
+      { rootMargin: '600px 0px' }
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img ref={ref} alt={alt} src={on ? src : undefined} decoding="async" style={style} className={className} />
+}
