@@ -239,10 +239,13 @@ function StopBlock({ i, center = false }: { i: number; center?: boolean }) {
         </div>
         <div className="eyebrow" style={{ marginTop: 6 }}>{s.tag}</div>
       </div>
-      <div className={center ? 'flex justify-center' : ''}>
-        <StopUi i={i} />
+      {/* data-device-ui: OQ-6 — mini-UI + its receipt are device text */}
+      <div data-device-ui="" className={`flex flex-col ${center ? 'items-center' : ''}`} style={{ gap: 10 }}>
+        <div className={center ? 'flex justify-center' : ''}>
+          <StopUi i={i} />
+        </div>
+        {s.receipt && <ReceiptCard size="sm" lines={s.receipt} className={center ? 'self-center' : 'self-start'} />}
       </div>
-      {s.receipt && <ReceiptCard size="sm" lines={s.receipt} className={center ? 'self-center' : 'self-start'} />}
     </div>
   )
 }
@@ -508,8 +511,11 @@ export function SunArc({
                 </div>
                 <div className="eyebrow" style={{ marginTop: 6 }}>{c.stops[i].tag}</div>
               </div>
-              <StopUi i={i} />
-              {c.stops[i].receipt && <ReceiptCard size="sm" lines={c.stops[i].receipt!} />}
+              {/* data-device-ui: OQ-6 — mini-UI + its receipt are device text */}
+              <div data-device-ui="" className="flex flex-col items-center" style={{ gap: 10 }}>
+                <StopUi i={i} />
+                {c.stops[i].receipt && <ReceiptCard size="sm" lines={c.stops[i].receipt!} />}
+              </div>
             </div>
           )
         })}

@@ -444,7 +444,9 @@ export function TabletOS({
   const active: ScreenId = shown ?? screen ?? list[i] ?? 'home'
 
   return (
-    <div className={`relative w-full ${className}`}>
+    /* data-device-ui: OQ-6 ruling — device-screen text is excluded from the
+       reading-copy word measure. */
+    <div className={`relative w-full ${className}`} data-device-ui="">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-10"
@@ -578,7 +580,7 @@ export function TabletOS({
 /** Reduced-motion / no-JS alternative: the screens as a static filmstrip. */
 export function TabletFilmstrip({ screens }: { screens: ScreenId[] }) {
   return (
-    <div className="grid grid-cols-2 gap-3">
+    <div className="grid grid-cols-2 gap-3" data-device-ui="">
       {screens.map((s) => (
         <div key={s} style={{ ...FRAME, padding: 6 }}>
           <div className="relative overflow-hidden" style={{ ...SCREEN, aspectRatio: '4 / 3' }}>

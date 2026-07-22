@@ -45,7 +45,9 @@ function Frame({
   style?: CSSProperties
 }) {
   return (
+    /* data-device-ui: OQ-6 — constellation screens are device-screen text */
     <div
+      data-device-ui=""
       style={{
         padding: 2,
         background: RIM,

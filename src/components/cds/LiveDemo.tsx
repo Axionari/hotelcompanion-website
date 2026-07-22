@@ -329,6 +329,7 @@ export function LiveDemo({
     <div className={className}>
       <div
         className="flex flex-col overflow-hidden"
+        data-device-ui=""
         style={{
           background: 'var(--device-frame)',
           borderRadius: 'var(--device-radius)',

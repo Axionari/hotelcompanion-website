@@ -118,7 +118,8 @@ export function HeroIgnition() {
   const engaged = Boolean(latest) || busy || speech.listening
 
   return (
-    <div className="flex flex-col items-center w-full">
+    /* data-device-ui: OQ-6 — the hero's demo engine is device-screen text */
+    <div className="flex flex-col items-center w-full" data-device-ui="">
       <div
         ref={wrapRef}
         className="ignition ignition-breath"
