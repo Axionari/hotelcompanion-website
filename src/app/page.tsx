@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import HomeClient from './HomeClient'
+import HomeV4Client from './HomeV4Client'
 
 export const metadata: Metadata = {
   title: 'Hotel Companion — The Voice-First Guest Intelligence Platform for Hotels',
@@ -10,5 +10,5 @@ export const metadata: Metadata = {
 }
 
 export default function HomePage() {
-  return <HomeClient />
+  return <HomeV4Client />
 }

@@ -3,13 +3,14 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { Section } from '@/components/cds/Section'
-import { IconChipGrid } from '@/components/cds/blocks'
+import { IconChipGrid, Accordion } from '@/components/cds/blocks'
 import { Reveal } from '@/components/cds/Reveal'
 import { Lead, Coda } from '@/components/cds/Prose'
 import { PageShell, PageHero, FinalCta } from '@/components/cds/PageShell'
 import { MediaBed } from '@/components/cds/MediaBed'
 import { useCopy, type Localized } from '@/lib/i18n/useCopy'
 import { resourcesCopy } from '@/lib/i18n/marketing/resources'
+import { homeCopy } from '@/lib/i18n/marketing/home'
 import { accents } from '@/lib/i18n/marketing/accents'
 import type { EssayMeta } from '@/lib/library'
 
@@ -21,6 +22,7 @@ export interface ResourcesContent {
 export default function ResourcesClient({ content }: { content: Localized<ResourcesContent> }) {
   const c = useCopy(resourcesCopy)
   const a = useCopy(accents)
+  const faq = useCopy(homeCopy).faq
   const { essays, categories } = useCopy(content)
   // null = "all"; stored language-agnostically so switching language keeps the filter valid
   const [active, setActive] = useState<string | null>(null)
@@ -141,10 +143,15 @@ export default function ResourcesClient({ content }: { content: Localized<Resour
         </ul>
       </Section>
 
-      {/* {#resources-faq} */}
+      {/* {#resources-faq} — v4 kit §3: the homepage FAQ relocates here
+          (one content move, no redesign; the Q&A text is homeCopy.faq,
+          unchanged). */}
       <Section id="faq" eyebrow={c.faq.eyebrow} title={c.faq.title}>
         <div className="mt-6">
           <Lead>{c.faq.body}</Lead>
+        </div>
+        <div className="mt-10" style={{ maxWidth: 860 }}>
+          <Accordion items={faq.items} />
         </div>
         <Reveal>
           <p className="mt-8">

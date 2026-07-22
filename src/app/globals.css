@@ -1020,3 +1020,79 @@ body {
     animation: none !important;
   }
 }
+
+/* ============================================================
+   v4 · The Seven-Act Homepage (docs/v4/V4_BUILD_KIT.md)
+   Scoped additions only — nothing above this block changed.
+   ============================================================ */
+
+/* §4 motion budget: one entrance per act + the orb's 6s breathe. */
+@keyframes v4-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.015); }
+}
+.v4-breathe { animation: v4-breathe 6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .v4-breathe { animation: none !important; }
+}
+
+.v4-root ::placeholder { color: rgba(242, 233, 218, 0.38); }
+.v4-root a { text-decoration: none; }
+.v4-cta:hover { background: #f2e0a0 !important; }
+.v4-ask-btn:hover { background: #f2e0a0 !important; }
+.v4-chip-btn:hover { border-color: rgba(231, 206, 134, 0.7) !important; color: #f2e9da !important; }
+
+.v4-w1080 { width: 1080px; max-width: calc(100% - 40px); margin-inline: auto; }
+.v4-w1160 { width: 1160px; max-width: calc(100% - 40px); margin-inline: auto; }
+.v4-w1200 { width: 1200px; max-width: calc(100% - 40px); margin-inline: auto; }
+
+.v4-reply-card {
+  background: rgba(24, 17, 12, 0.9);
+  border: 1px solid rgba(201, 139, 78, 0.28);
+  border-radius: 16px;
+  padding: 16px 20px;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #efe3d0;
+}
+
+/* Act I — the H1 holds one line per sentence from 1024 up (reference) */
+.v4-h1 { white-space: nowrap; }
+.v4-askbar { width: 100%; max-width: 640px; }
+@media (max-width: 1023px) {
+  .v4-h1 { white-space: normal; }
+  .v4-topbar { padding: 22px 20px !important; }
+  .v4-act1-eyebrow { margin-top: 96px !important; padding-inline: 16px; }
+  /* the dome (fixed-px shared orb) scales as one object on small screens;
+     the `scale` property composes with the breathe animation's transform */
+  .v4-dome { scale: 0.55; transform-origin: 50% 20%; }
+}
+
+/* Act II — the stacked figures collapse to one column below 900 */
+.v4-act2-grid { display: grid; grid-template-columns: 1fr 1fr; column-gap: 60px; }
+@media (max-width: 899px) {
+  .v4-act2-grid { grid-template-columns: 1fr; row-gap: 64px; }
+  .v4-act2-right { margin-top: 0 !important; text-align: left !important; }
+  .v4-act2-right > div > span[aria-hidden] { font-size: min(22vw, 120px) !important; }
+}
+
+/* Act III — three moments on the arc; they stack below 900 (G-9) */
+.v4-moments { display: grid; grid-template-columns: 1fr 1fr 1fr; column-gap: 56px; }
+@media (max-width: 899px) {
+  .v4-moments { grid-template-columns: 1fr; row-gap: 72px; margin-top: 120px !important; }
+  .v4-moment { margin-top: 0 !important; max-width: 420px; margin-inline: auto; width: 100%; }
+  .v4-sunarc-sun { top: auto !important; }
+}
+
+/* Act IV — desktop cluster from 768 up; the v3 snap-row below (G-9) */
+.v4-cluster-mobile { display: none; }
+@media (max-width: 767px) {
+  .v4-cluster-desktop { display: none; }
+  .v4-cluster-mobile { display: block; }
+}
+
+@media (max-width: 767px) {
+  .v4-proofrow { transform: none !important; padding-inline: 16px; }
+  .v4-ledger span { letter-spacing: 0.08em; }
+}

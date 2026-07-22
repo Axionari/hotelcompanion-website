@@ -14,6 +14,9 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // Duplicate working copy — never lint it.
     ".claude/**",
+    // v4: vendored design-reference exports (docs/v4/reference) are artifacts,
+    // not app code.
+    "docs/**",
   ]),
   {
     // Next 16 ships the React Compiler hook rules as errors. These two fire on
