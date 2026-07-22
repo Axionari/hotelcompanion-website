@@ -32,8 +32,9 @@ const REVEAL_EARLY = 0.06
 const ORB = 84 // px, within the spec's 72–96
 
 /** The sun: tokens' reference orb core (docs/v3/03_TOKENS.md) under the site's
-    VoiceOrb ring/shimmer chrome — never a flat disc. */
-function ArcOrb({ size }: { size: number }) {
+    VoiceOrb ring/shimmer chrome — never a flat disc. Also used by the
+    constellation's phone screen (ADDENDUM_2 forensic spec). */
+export function ArcOrb({ size }: { size: number }) {
   return (
     <div className="relative" style={{ width: size, height: size }}>
       <div

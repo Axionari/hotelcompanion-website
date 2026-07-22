@@ -75,6 +75,38 @@
 `p3-constellation-1440.png`, `p3-constellation-1440-es.png`,
 `p3-constellation-1440-reduced.png`, `p3-constellation-375-row.png`.
 
+## ADDENDUM_2 (A4) — constellation fidelity rebuild
+
+Rebuilt 3B to the forensic spec (tier 2 — no `.dc.html` and no 7a reference
+image were present at build time; see OQ-7). Gate results:
+
+- **[Overlay / fidelity]** → **PASS via measured geometry** (overlay impossible
+  without a reference image — OQ-7). Computed styles of the running build vs
+  the forensic spec, exact on all six devices:
+  monitor screen 560×260 · r22 · bezel 8 · z1 (+ trapezoid aluminum stand
+  `#6a6a6a→#3a3a3a` + rounded foot bar) · phone 250×500 · r44 · bezel 10 ·
+  z2 (+ 90×22 island pill) · TV 420×205 · r22 · bezel 8 · z2 ·
+  tablet 360×550 · r40 · bezel 12 · z3 (largest, front-center, overlapping the
+  monitor's left edge) · watch 95×110 · r30 · bezel 8 · z4 (+ `#241c14` strap
+  stubs, tucked at the phone/tablet lower overlap) · puck 150×85 · z4.
+  Every frame: 2px silver rim `#d9d9d9→#9c9c9c` (top-lit), inner bezel
+  `#0b0908`, shadow `0 34px 70px -24px rgba(0,0,0,.65)` + 1px hairline
+  separation glow. Stage: amber radial vignette bottom-center, hairline
+  divider + centered closing line. Deviations enumerated in OQ-7 (copy/assets/
+  responsive/thread/watch-nudge only).
+- **[Voice puck is a domed hardware object]** → **PASS** — gray ellipsoid dome
+  (radial `#b9b9b9→#7c7c7c`, darker underside, inset shading) with the 22px
+  amber orb lens (`#E8A66A→#C56A3D`) on its upper surface. Not a flat blob.
+- **[All six screens real assets / token UI; zero stripes]** → **PASS** —
+  tablet: Akumal aerial + status row (MARAZUL · LISTENING) + question + answer
+  block; monitor: booking UI (URL pill, `0% COMMISSION`, suite-1 thumb, serif
+  name, gold price, meta, solid CTA); phone: tokens orb + listening line + two
+  suggestion pills + ghost input; watch: orb dot + `20 min` + `SPA IXCHEL`;
+  TV: luxury-lobby full-bleed + `GOOD AFTERNOON · SUITE 214` + greeting + meta.
+- Captions: mono 10px · 0.28em tracking · `--text-lo` at 65% ✓. Screenshots
+  refreshed: `p3-constellation-1440.png` (+`-es`, `-reduced`, `-375-row`).
+- Build/tests re-verified after the rebuild: `tsc` clean, build green, 33/33.
+
 ## Open questions raised
 
 - **OQ-5** — six smallest-interpretation decisions (cards B/C wiring phase,

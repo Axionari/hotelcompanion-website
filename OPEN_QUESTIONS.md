@@ -9,6 +9,27 @@ Logged per `docs/v3/01_RULES.md` rule 5. Newest first.
 
 ---
 
+## OQ-7 · ADDENDUM_2 (A4): neither geometry source was present — tier 2 applied with numeric evidence
+
+**What:** ADDENDUM_2 names two geometry sources for the constellation rebuild:
+(1) `docs/v3/reference/homepage-concepts.dc.html` — not in the repo at build
+time (searched repo + the AXIONARI-GNRL project folder); (2) "the forensic spec
+below + `docs/v3/reference/` images" — but `docs/v3/reference/` contains only
+the sun-arc image (`sun-arc-8a-top.jpg`); no 7a constellation image exists for
+the side-by-side overlay gate.
+
+**Chose:** built 1:1 from the forensic spec's numbers and replaced the overlay
+gate with a measured-geometry table (computed styles of the running build vs
+the spec — exact match on all six devices' screen sizes, radii, bezels, rim
+gradient, shadow, z-order). If Eduardo drops the `.dc.html` or a 7a image into
+`docs/v3/reference/`, I'll re-verify against it and attach the overlay.
+
+**Deviations (enumerated per the addendum):** copy = v3 deck (ES/EN), screens =
+repo assets, mobile = scroll-snap row of the same framed devices (responsive
+adaptation), gold thread retained per base §3B (the forensic stage list doesn't
+mention it), watch nudged 18px left / 26px down from the initial placement so
+the tablet's primary button stays legible at the specified overlap.
+
 ## OQ-6 · The heroes' device-UI text makes the Phase-5 ≥25% word gate unreachable as counted — **PANEL INPUT REQUESTED at the post-P3 review**
 
 **What:** The Phase-5 word gate (per the OQ-4 ruling) counts hydrated-DOM
