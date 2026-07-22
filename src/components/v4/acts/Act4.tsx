@@ -54,7 +54,7 @@ function MonitorScreen() {
   return (
     <>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img alt={s.room} src="/assets/ui/suite-1.webp" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
+      <img alt={s.room} src="/assets/ui/suite-1-900.webp" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(11,9,8,0.05), transparent 40%, rgba(11,9,8,0.4))' }} />
     </>
   )
@@ -83,7 +83,7 @@ function TvScreen() {
   return (
     <>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img alt={tv.greeting} src="/assets/img/luxury-lobby.webp" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
+      <img alt={tv.greeting} src="/assets/img/luxury-lobby-800.webp" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(11,9,8,0.1), rgba(11,9,8,0.72))' }} />
       <div className="absolute" style={{ left: 20, bottom: 14, fontFamily: 'ui-sans-serif, system-ui, sans-serif' }}>
         <div style={monoStyle(8.5, '.24em', V4.champagne)}>{greeting.toUpperCase()}</div>
@@ -99,9 +99,11 @@ function TabletScreen() {
   return (
     <>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img alt={beach.title} src={beach.image} loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
+      <img alt={beach.title} src="/assets/ui/beach-akumal-band.webp" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(11,9,8,0.14), transparent 38%, rgba(11,9,8,0.7))' }} />
-      <div className="absolute" style={{ left: 22, bottom: 18, fontFamily: 'ui-sans-serif, system-ui, sans-serif' }}>
+      {/* text block clears the watch's overlap zone (x < 48) and the puck's
+          (y past bottom-26) — G-4b */}
+      <div className="absolute" style={{ left: 48, bottom: 26, fontFamily: 'ui-sans-serif, system-ui, sans-serif' }}>
         <div style={{ fontFamily: V4.serif, fontSize: 30, color: V4.text }}>{beach.title}</div>
         <div style={{ fontSize: 12.5, color: V4.champagne, marginTop: 3 }}>{beach.meta}</div>
       </div>
@@ -122,7 +124,9 @@ function WatchScreen() {
 
 function Puck() {
   return (
-    <div className="relative" data-device-ui="" data-cframe="" style={{ width: 160, height: 90 }} aria-hidden="true">
+    /* hardware object, not a framed screen — no data-device-ui so the rim
+       audit (G-4e) keys on screen frames only, as in v3 */
+    <div className="relative" data-cframe="" style={{ width: 160, height: 90 }} aria-hidden="true">
       <div
         className="absolute"
         style={{ left: '5%', right: '5%', bottom: -8, height: 18, borderRadius: '50%', background: 'radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0.5), rgba(0,0,0,0.18) 55%, transparent 78%)', filter: 'blur(5px)' }}
@@ -234,7 +238,7 @@ export function Act4() {
       style={{
         position: 'relative',
         minHeight: '100vh',
-        background: 'var(--v4-clear, #141009)',
+        background: 'transparent', /* the §4 day layer paints the act's reference value */
         padding: '130px 0',
         display: 'flex',
         flexDirection: 'column',

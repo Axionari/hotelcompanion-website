@@ -84,54 +84,38 @@ export function V4Reveal({ children, className = '', style }: { children: ReactN
 /* ------------------------------------------------- the sun lighting model */
 /**
  * §4 — a page-level scroll variable `--day` (0 at top, 1 at the footer)
- * drives the page background through the acts' reference keyframes; scrolling
- * reads as one continuous day. Acts declare their static reference background
- * as a fallback (`var(--v4-clear, <act color>)`); once the model is live the
- * root sets --v4-clear: transparent and paints the interpolated color behind
- * everything. No-JS and print keep the static per-act values.
+ * drives the page's luminance through the acts' reference keyframes; scrolling
+ * reads as one continuous day. The interpolation itself is painted once as a
+ * document-height gradient through the keyframes on `[data-v4-day-layer]`
+ * (see V4Home) — scroll moves the viewport across it, so `--day` advances
+ * with zero runtime paint invalidation (G-7: mutating act backgrounds on
+ * scroll/hydration was re-timing the H1's LCP paint).
  */
 export function useDayModel(rootRef: React.RefObject<HTMLDivElement | null>) {
   useEffect(() => {
     const root = rootRef.current
     if (!root) return
-    const hex = (c: string) => [parseInt(c.slice(1, 3), 16), parseInt(c.slice(3, 5), 16), parseInt(c.slice(5, 7), 16)]
-    const stops = V4.actBg.map(hex)
     let raf = 0
-    let tops: number[] = []
-    const measure = () => {
-      tops = [...root.querySelectorAll<HTMLElement>('[data-v4-act]')].map((s) => s.offsetTop + root.offsetTop)
-    }
     const tick = () => {
       const doc = document.documentElement
       const day = Math.min(1, Math.max(0, scrollY / Math.max(1, doc.scrollHeight - innerHeight)))
       root.style.setProperty('--day', day.toFixed(4))
-      // anchor = viewport top edge, biased a third down so an act "owns" the
-      // screen while it fills it
-      const y = scrollY + innerHeight * 0.33
-      let i = 0
-      while (i < tops.length - 1 && y >= tops[i + 1]) i++
-      const next = tops[i + 1] ?? tops[i] + innerHeight
-      const t = Math.min(1, Math.max(0, (y - tops[i]) / Math.max(1, next - tops[i])))
-      const a = stops[i]
-      const b = stops[Math.min(i + 1, stops.length - 1)]
-      const mix = a.map((v, k) => Math.round(v + (b[k] - v) * t))
-      root.style.setProperty('--v4-day-bg', `rgb(${mix[0]},${mix[1]},${mix[2]})`)
       raf = 0
     }
     const onScroll = () => {
       if (!raf) raf = requestAnimationFrame(tick)
     }
-    measure()
     tick()
-    root.style.setProperty('--v4-clear', 'transparent')
     addEventListener('scroll', onScroll, { passive: true })
-    addEventListener('resize', () => {
-      measure()
-      onScroll()
-    })
     return () => {
       removeEventListener('scroll', onScroll)
       cancelAnimationFrame(raf)
     }
   }, [rootRef])
 }
+
+/** §4 keyframes as one continuous document-height ramp: each act's reference
+    background value sits at its measured top-of-act position (1280 heights),
+    with the page's tail holding 2AM. */
+export const DAY_GRADIENT =
+  'linear-gradient(180deg, #0E0B09 0%, #1A110B 12.5%, #20150C 25%, #141009 41%, #100C08 60%, #0F0B08 72%, #0B0807 83%, #0B0807 100%)'

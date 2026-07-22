@@ -54,7 +54,7 @@ export function Act3() {
         position: 'relative',
         minHeight: '100vh',
         overflow: 'hidden',
-        background: 'var(--v4-clear, linear-gradient(180deg, #20150C 0%, #170F09 100%))',
+        background: 'transparent', /* the §4 day layer paints the act's reference value */
         padding: '120px 0 140px',
         boxSizing: 'border-box',
       }}
@@ -79,7 +79,7 @@ export function Act3() {
           <div style={bubble}>{c.bubble1}</div>
           <div style={card}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt={screens.beach.title} src={screens.beach.image} loading="lazy" decoding="async" style={{ height: 130, width: '100%', objectFit: 'cover', display: 'block' }} />
+            <img alt={screens.beach.title} src="/assets/ui/beach-akumal-band.webp" loading="lazy" decoding="async" style={{ height: 130, width: '100%', objectFit: 'cover', display: 'block' }} />
             <div style={{ padding: '16px 18px', display: 'flex', flexDirection: 'column', gap: 10 }}>
               <div style={{ fontSize: 17, fontWeight: 600, color: '#F5EDDE' }}>{screens.beach.title}</div>
               <div style={{ fontSize: 12.5, color: 'rgba(242,233,218,.6)' }}>{screens.beach.meta}</div>
@@ -97,7 +97,7 @@ export function Act3() {
             <div style={bubble}>{c.bubble2}</div>
             <div style={card}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img alt="Suite Vista al Mar" src="/assets/ui/suite-1.webp" loading="lazy" decoding="async" style={{ height: 96, width: '100%', objectFit: 'cover', display: 'block' }} />
+              <img alt="Suite Vista al Mar" src="/assets/ui/suite-1-900.webp" loading="lazy" decoding="async" style={{ height: 96, width: '100%', objectFit: 'cover', display: 'block' }} />
               <div style={{ padding: '16px 18px', display: 'flex', flexDirection: 'column', gap: 8 }}>
                 <div style={{ fontSize: 16, fontWeight: 600, color: '#F5EDDE' }}>Suite Vista al Mar</div>
                 <div style={{ fontSize: 12.5, color: 'rgba(242,233,218,.6)' }}>{c.suitePrice}</div>

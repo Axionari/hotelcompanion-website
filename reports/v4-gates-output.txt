@@ -1,0 +1,60 @@
+PASS · G-1 en · act-i ≤ 35 — reading 29 (raw 34 − device-ui 1 − chrome 4 − sr-only 0)
+PASS · G-1 en · act-ii ≤ 40 — reading 21 (raw 22 − device-ui 0 − chrome 0 − sr-only 1)
+PASS · G-1 en · act-iii ≤ 70 — reading 32 (raw 73 − device-ui 41 − chrome 0 − sr-only 0)
+PASS · G-1 en · act-iv ≤ 30 — reading 19 (raw 78 − device-ui 59 − chrome 0 − sr-only 0)
+PASS · G-1 en · act-v ≤ 45 — reading 18 (raw 33 − device-ui 15 − chrome 0 − sr-only 0)
+PASS · G-1 en · act-vi ≤ 25 — reading 17 (raw 28 − device-ui 11 − chrome 0 − sr-only 0)
+PASS · G-1 en · act-vii ≤ 35 — reading 26 (raw 39 − device-ui 13 − chrome 0 − sr-only 0)
+PASS · G-1 en · total ≤ 320 — total reading 162
+PASS · G-1 es · act-i ≤ 35 — reading 34 (raw 39 − device-ui 1 − chrome 4 − sr-only 0)
+PASS · G-1 es · act-ii ≤ 40 — reading 31 (raw 33 − device-ui 0 − chrome 0 − sr-only 2)
+PASS · G-1 es · act-iii ≤ 70 — reading 37 (raw 78 − device-ui 41 − chrome 0 − sr-only 0)
+PASS · G-1 es · act-iv ≤ 30 — reading 18 (raw 83 − device-ui 65 − chrome 0 − sr-only 0)
+PASS · G-1 es · act-v ≤ 45 — reading 24 (raw 39 − device-ui 15 − chrome 0 − sr-only 0)
+PASS · G-1 es · act-vi ≤ 25 — reading 17 (raw 34 − device-ui 17 − chrome 0 − sr-only 0)
+PASS · G-1 es · act-vii ≤ 35 — reading 25 (raw 36 − device-ui 11 − chrome 0 − sr-only 0)
+PASS · G-1 es · total ≤ 320 — total reading 186
+PASS · G-2 en · serif/mono only outside [data-device-ui] — every reading text node computes Instrument Serif or IBM Plex Mono
+PASS · G-2 es · serif/mono only outside [data-device-ui] — every reading text node computes Instrument Serif or IBM Plex Mono
+PASS · G-3 en · verbatim §3 strings render — 35 reading + 17 device-UI strings matched
+PASS · G-3 en · A2 outline (2–3×) — stroke 2px · color rgba(0, 0, 0, 0) · 268.8px · sr-only true
+PASS · G-3 en · A2 glow ($160B) — italic italic · rgb(231, 206, 134) · shadow rgba(231, 206, 134, 0.35) 0px … · sr-only true
+PASS · G-3 es · verbatim §3 strings render — 35 reading + 17 device-UI strings matched
+PASS · G-3 es · A2 outline (2–3×) — stroke 2px · color rgba(0, 0, 0, 0) · 268.8px · sr-only true
+PASS · G-3 es · A2 glow ($160B) — italic italic · rgb(231, 206, 134) · shadow rgba(231, 206, 134, 0.35) 0px … · sr-only true
+PASS · G-3 en 1280px · zero figure×copy collisions — clean
+PASS · G-3 en 1440px · zero figure×copy collisions — clean
+PASS · G-3 en 1600px · zero figure×copy collisions — clean
+PASS · G-3 en 2000px · zero figure×copy collisions — clean
+PASS · G-3 en 2600px · zero figure×copy collisions — clean
+PASS · G-3 es 1280px · zero figure×copy collisions — clean
+PASS · G-3 es 1440px · zero figure×copy collisions — clean
+PASS · G-3 es 1600px · zero figure×copy collisions — clean
+PASS · G-3 es 2000px · zero figure×copy collisions — clean
+PASS · G-3 es 2600px · zero figure×copy collisions — clean
+PASS · G-4a · reference overlap pairs > 0 — phone×tablet:3150 · tv×tablet:1200 · watch×tablet:6900 · voice×tablet:6400
+PASS · G-4a · web×tablet stays clear (reference) — area 0
+PASS · G-4b · zero text under fronting frames — clean
+PASS · G-4c · captions clear of frames + captions — 6 captions checked
+PASS · G-4d · zero SVG connector paths — svg path count = 0
+PASS · G-4e · 2px rim per side on framed devices — 522-518 · 150-146 · 390-386 · 480-476 · 95-91
+PASS · G-4f · puck box-shadow ≠ none — rgba(0, 0, 0, 0.55) 0px 26px 50px 0px…
+PASS · G-5 · zero cool hues outside <img> — computed scan clean (hue 150–280 · sat > .18)
+PASS · G-6 · hero dome via shared ArcOrb — masked-fade core present
+PASS · G-6 · act III sun via shared ArcOrb — masked-fade core present
+PASS · G-6 · act I ask dot via shared ArcOrb — masked-fade core present
+PASS · G-6 · act VII ask dot via shared ArcOrb — masked-fade core present
+PASS · G-6 · act VII ember via shared ArcOrb — masked-fade core present
+PASS · G-6 · act IV orbs (phone+watch+puck) via shared ArcOrb — 3 masked cores
+shot · v4-orb-askdot-zoom.png · v4-orb-sun-zoom.png
+PASS · G-8 · all non-home routes 200 — 16 routes OK
+PASS · G-8 · FAQ reachable at /resources#faq — homepage Q&A present
+PASS · G-8 · v3 nav intact on non-home routes — nav renders
+PASS · G-8 · zero dead links on the homepage — 31 links · clean · env-dependent (auth, verify on preview): /auth/login:500
+PASS · G-8 · Act VII chip → scripted answer renders — reply 187 chars: "At a beach resort: the cabana before sunset, the…"
+PASS · G-9 en · zero horizontal overflow at 390 — scrollWidth − clientWidth = 0
+PASS · G-9 en · Act III moments stack — grid columns = 1
+PASS · G-9 en · Act IV uses v3 mobile treatment — desktop none · mobile block
+PASS · G-9 es · zero horizontal overflow at 390 — scrollWidth − clientWidth = 0
+PASS · G-9 es · Act III moments stack — grid columns = 1
+PASS · G-9 es · Act IV uses v3 mobile treatment — desktop none · mobile block

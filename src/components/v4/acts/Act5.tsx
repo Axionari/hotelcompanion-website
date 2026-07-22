@@ -14,7 +14,7 @@ export function Act5() {
       style={{
         position: 'relative',
         minHeight: '100vh',
-        background: 'var(--v4-clear, #100C08)',
+        background: 'transparent', /* the §4 day layer paints the act's reference value */
         padding: '130px 0',
         display: 'flex',
         flexDirection: 'column',

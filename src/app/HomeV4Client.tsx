@@ -3,7 +3,7 @@
 import { useRef } from 'react'
 import { SiteFooter } from '@/components/site-footer'
 import { instrumentSerif, ibmPlexMono } from '@/components/v4/v4fonts'
-import { useDayModel } from '@/components/v4/shared'
+import { useDayModel, DAY_GRADIENT } from '@/components/v4/shared'
 import { Act1 } from '@/components/v4/acts/Act1'
 import { Act2 } from '@/components/v4/acts/Act2'
 import { Act3 } from '@/components/v4/acts/Act3'
@@ -31,13 +31,16 @@ export default function HomeV4Client() {
         style={{
           fontFamily: "var(--font-v4-serif), 'Instrument Serif', serif",
           color: '#F2E9DA',
-          background: 'var(--v4-day-bg, #0E0B09)',
+          background: '#0E0B09',
+          position: 'relative',
           overflowX: 'clip',
           /* the layout shell pads every route for the fixed v3 nav; the v4
              homepage is full-bleed (reference has its own chrome bar) */
           marginTop: '-4rem',
         }}
       >
+        {/* §4 — the day, painted once: acts are transparent over this ramp */}
+        <div data-v4-day-layer="" aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none', background: DAY_GRADIENT }} />
         {/* film grain — static (kit §4 allows no ambient motion) */}
         <div
           aria-hidden="true"

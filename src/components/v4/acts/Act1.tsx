@@ -19,7 +19,7 @@ export function Act1() {
         position: 'relative',
         minHeight: '100vh',
         overflow: 'hidden',
-        background: 'var(--v4-clear, #0E0B09)',
+        background: 'transparent', /* the §4 day layer paints the act's reference value */
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',

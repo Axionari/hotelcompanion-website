@@ -14,7 +14,7 @@ export function Act6() {
       style={{
         position: 'relative',
         minHeight: '88vh',
-        background: 'var(--v4-clear, #0F0B08)',
+        background: 'transparent', /* the §4 day layer paints the act's reference value */
         padding: '130px 0',
         display: 'flex',
         flexDirection: 'column',
