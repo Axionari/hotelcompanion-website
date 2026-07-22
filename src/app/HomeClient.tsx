@@ -114,12 +114,14 @@ export default function HomeClient() {
           Visual side-by-side arrives with the Phase 2 StatBlock work. */}
       <Section id="home-stake" eyebrow="02 · WHAT'S AT STAKE" variant="surface-1" flush>
         <div className="mt-4 grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          <StatBlock figure={c.otaStake.figure} caption={c.otaStake.caption} source={c.otaStake.source}>
+          {/* A2: otaStake = `2–3×` (outline stroke type) · stake = `$160B`
+              (italic champagne glow) */}
+          <StatBlock figure={c.otaStake.figure} caption={c.otaStake.caption} source={c.otaStake.source} art="outline">
             <div className="mt-4" style={{ maxWidth: 460 }}>
               <CommissionCompare rows={c.otaStake.compare} />
             </div>
           </StatBlock>
-          <StatBlock figure={c.stake.figure} caption={c.stake.caption} source={c.stake.source} />
+          <StatBlock figure={c.stake.figure} caption={c.stake.caption} source={c.stake.source} art="glow" />
         </div>
         <Reveal>
           <p className="body-lead mt-12" style={{ maxWidth: '56ch' }}>

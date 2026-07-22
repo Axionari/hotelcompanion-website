@@ -73,6 +73,12 @@ export function StatBlock({
   const [ref, seen] = useInView<HTMLDivElement>()
   const [shown, setShown] = useState(figure)
 
+  // Language switches swap `figure` after mount — resync so the visible
+  // value never lags the locale (the count-up below then replays if seen).
+  useEffect(() => {
+    setShown(figure)
+  }, [figure])
+
   useEffect(() => {
     if (!seen) return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
@@ -95,9 +101,12 @@ export function StatBlock({
     return () => cancelAnimationFrame(raf)
   }, [seen, figure])
 
+  /* A2 figures run ≈200–250px at desktop; the P3.2 no-collision gate (G-2)
+     requires the figure and its sibling copy/bars to never intersect, so art
+     variants stack in flow instead of sharing a 12-col row. */
   return (
-    <div ref={ref} className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-      <div className="lg:col-span-5">
+    <div ref={ref} className={art ? 'flex flex-col' : 'grid lg:grid-cols-12 gap-8 lg:gap-16 items-start'}>
+      <div className={art ? '' : 'lg:col-span-5'}>
         <p
           className={`font-serif ${art === 'outline' ? 'stat-art-outline' : ''} ${art === 'glow' ? 'stat-art-glow italic' : ''}`}
           style={{
@@ -119,7 +128,7 @@ export function StatBlock({
           <p className="eyebrow mt-5">{source}</p>
         )}
       </div>
-      <div className="lg:col-span-7">
+      <div className={art ? 'mt-8' : 'lg:col-span-7'}>
         <p className="body-lead" style={{ fontSize: 'clamp(1.1rem, 1.7vw, 1.35rem)', color: 'var(--text)' }}>
           {caption}
         </p>
@@ -649,7 +658,12 @@ export function ResolutionDonut({
           </span>
         </li>
         <li className="flex items-center gap-2.5">
-          <span aria-hidden="true" style={{ width: 10, height: 10, borderRadius: 2, background: 'var(--border)' }} />
+          {/* P3.2 F5 — var(--border) was invisible next to its label; --text-lo
+              fill + --hairline outline at the same size as the resolved swatch */}
+          <span
+            aria-hidden="true"
+            style={{ width: 10, height: 10, borderRadius: 2, background: 'var(--text-lo)', border: '1px solid var(--hairline)' }}
+          />
           <span className="font-sans" style={{ fontSize: 14, color: 'var(--text-dim)' }}>
             {escalatedPct}% {escalatedLabel}
           </span>

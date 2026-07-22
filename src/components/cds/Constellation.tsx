@@ -10,15 +10,17 @@ import { liveDemoCopy } from '@/lib/i18n/marketing/liveDemo'
 import { homeCopy } from '@/lib/i18n/marketing/home'
 
 /**
- * v3 Phase 3B — THE CONSTELLATION, rebuilt to ADDENDUM_2 (A4): device frames,
- * materials, radii, shadows, overlap order and composition follow the forensic
- * spec of the Claude Design 7a reference 1:1 (no `.dc.html` export was present
- * at build time — tier 2 applies). Copy is the v3 deck's; screens use real
- * repo assets; the striped placeholders of the reference never ship.
+ * v3 Phase 3B — THE CONSTELLATION, re-composed per P3.2 F3
+ * (docs/v3/PANEL_INSPECTION_AND_CORRECTIONS.md): deterministic 1200×760 stage,
+ * device boxes and overlap topology from the panel's table, captions in clear
+ * stage space (G-4c), no connector lines (G-4d), grounded puck with a contact
+ * shadow (G-4f), and every orb instance via the shared ArcOrb (F4/G-5).
+ * Materials (2px silver rim → #0b0908 bezel → screen, radii, shadow) are
+ * ADDENDUM_2's and unchanged. Copy is the v3 deck's; screens use real repo
+ * assets — the striped placeholders of the reference never ship.
  *
- * Desktop: a fixed 1200×820 stage, scaled to the container. Devices rise+fade
- * staggered 80ms; the gold thread (base §3B) draws once. Reduced motion:
- * static. Mobile: scroll-snap row of the same devices, scaled.
+ * Desktop: the stage scales to the container. Devices rise+fade staggered
+ * 80ms. Reduced motion: static. Mobile: scroll-snap row of the same devices.
  */
 
 /* ---------------------------------------------------------- materials */
@@ -28,7 +30,8 @@ const BEZEL = '#0b0908'
 const SHADOW = '0 34px 70px -24px rgba(0,0,0,0.65), 0 0 0 1px rgba(243,236,226,0.06)'
 const MONO: CSSProperties = { fontFamily: 'var(--font-mono), ui-monospace, monospace' }
 
-/** Outer metallic rim (2px) → near-black inner bezel → screen. */
+/** Outer metallic rim (exactly 2px per side, G-4e) → near-black inner bezel →
+    screen. `data-cframe` marks the visible hardware box for the rect audits. */
 function Frame({
   screenW,
   screenH,
@@ -48,6 +51,7 @@ function Frame({
     /* data-device-ui: OQ-6 — constellation screens are device-screen text */
     <div
       data-device-ui=""
+      data-cframe=""
       style={{
         padding: 2,
         background: RIM,
@@ -99,8 +103,10 @@ function TabletScreen() {
       </div>
       {/* the one question, asked once */}
       <span className="absolute top-3 right-3" style={chip}>{intent}</span>
-      {/* answer block */}
-      <div className="absolute left-4 bottom-4" style={{ maxWidth: '82%' }}>
+      {/* answer block — starts right of the watch's overlap zone (G-4b: the
+          watch fronts the tablet at its lower-left seam; only imagery may sit
+          under it) */}
+      <div className="absolute bottom-4" style={{ left: 64, maxWidth: '78%' }}>
         <div className="font-serif" style={{ fontSize: 30, fontWeight: 530, color: 'var(--text)' }}>{beach.title}</div>
         <div className="font-sans" style={{ fontSize: 13, color: 'var(--champagne)', marginTop: 3 }}>{beach.meta}</div>
         <div className="flex gap-2.5" style={{ marginTop: 12 }}>
@@ -116,31 +122,34 @@ function TabletScreen() {
   )
 }
 
+/** P3.2 F3.1 — the booking UI lives in the RIGHT 65% of the screen; the left
+    35% is imagery/margin only, so the tablet's overlap never cuts a word. */
 function MonitorScreen() {
   const s = useCopy(surfaceWall).laptop
   const up = useCopy(deviceScreens).screens.upgrade
   return (
     <div className="absolute inset-0 font-sans" style={{ background: 'var(--surface-1)' }}>
-      <div className="flex items-center justify-between px-4" style={{ height: 40, borderBottom: '1px solid var(--hairline)' }}>
-        <span style={{ ...MONO, fontSize: 9.5, color: 'var(--text-faint)', background: 'var(--surface-3)', borderRadius: 999, padding: '4px 12px' }}>
-          {s.tab}
-        </span>
-        <span style={{ ...MONO, fontSize: 9.5, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--success)' }}>{s.badge}</span>
-      </div>
-      <div className="flex gap-5 p-5">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          alt={s.room}
-          src="/assets/ui/suite-1.webp"
-          loading="lazy"
-          decoding="async"
-          style={{ width: 210, height: 150, borderRadius: 10, objectFit: 'cover', flexShrink: 0 }}
-        />
-        <div>
-          <div className="font-serif" style={{ fontSize: 24, fontWeight: 530, color: 'var(--text)' }}>{s.room}</div>
-          <div style={{ fontSize: 13.5, color: 'var(--champagne)', marginTop: 4 }}>{s.price}</div>
-          <div style={{ fontSize: 12, color: 'var(--text-dim)', marginTop: 3 }}>{up.meta}</div>
-          <span style={{ display: 'inline-block', marginTop: 14, background: 'var(--accent)', color: 'var(--bg)', borderRadius: 999, fontSize: 12.5, fontWeight: 600, padding: '8px 18px' }}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        alt={s.room}
+        src="/assets/ui/suite-1.webp"
+        loading="lazy"
+        decoding="async"
+        className="absolute"
+        style={{ left: 0, top: 0, bottom: 0, width: '35%', height: '100%', objectFit: 'cover' }}
+      />
+      <div className="absolute" style={{ left: '38%', right: 0, top: 0, bottom: 0 }}>
+        <div className="flex items-center justify-between pr-4" style={{ height: 42, borderBottom: '1px solid var(--hairline)' }}>
+          <span style={{ ...MONO, fontSize: 9.5, color: 'var(--text-faint)', background: 'var(--surface-3)', borderRadius: 999, padding: '4px 12px' }}>
+            {s.tab}
+          </span>
+          <span style={{ ...MONO, fontSize: 9.5, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--success)' }}>{s.badge}</span>
+        </div>
+        <div className="pr-4" style={{ paddingTop: 18 }}>
+          <div className="font-serif" style={{ fontSize: 26, fontWeight: 530, color: 'var(--text)' }}>{s.room}</div>
+          <div style={{ fontSize: 13.5, color: 'var(--champagne)', marginTop: 5 }}>{s.price}</div>
+          <div style={{ fontSize: 12, color: 'var(--text-dim)', marginTop: 4 }}>{up.meta}</div>
+          <span style={{ display: 'inline-block', marginTop: 16, background: 'var(--accent)', color: 'var(--bg)', borderRadius: 999, fontSize: 12.5, fontWeight: 600, padding: '8px 18px' }}>
             {s.cta}
           </span>
         </div>
@@ -149,6 +158,8 @@ function MonitorScreen() {
   )
 }
 
+/** P3.2 F3.4 — orb + listening line + pills + ghost input distributed to fill
+    the screen (no dead band); the orb is the shared ArcOrb, never a disc. */
 function PhoneScreen() {
   const demo = useCopy(liveDemoCopy)
   const pill: CSSProperties = {
@@ -161,31 +172,32 @@ function PhoneScreen() {
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-    maxWidth: 200,
+    maxWidth: 165, // clears the watch's overlap zone at the screen's right edge
   }
   return (
-    <div className="absolute inset-0 font-sans flex flex-col items-center" style={{ background: 'var(--bg)', paddingTop: 46 }}>
+    <div className="absolute inset-0 font-sans flex flex-col items-center" style={{ background: 'var(--bg)', padding: '38px 16px 16px' }}>
       {/* notch/island bar */}
       <div className="absolute" style={{ top: 10, left: '50%', marginLeft: -45, width: 90, height: 22, borderRadius: 999, background: BEZEL }} />
-      <div style={{ marginTop: 26 }}>
-        <ArcOrb size={104} />
-      </div>
-      <div style={{ fontSize: 12, color: 'var(--text-dim)', marginTop: 22 }}>{demo.orbStates.idle}</div>
-      <div className="flex flex-col items-center gap-2.5" style={{ marginTop: 26 }}>
-        <span style={pill}>{demo.suggestions[0]}</span>
-        <span style={pill}>{demo.suggestions[1]}</span>
+      <div className="flex-1 self-stretch flex flex-col items-center justify-evenly">
+        <ArcOrb size={116} />
+        <div style={{ fontSize: 12, color: 'var(--text-dim)' }}>{demo.orbStates.idle}</div>
+        <div className="flex flex-col items-start gap-2.5 self-stretch" style={{ paddingLeft: 2 }}>
+          <span style={pill}>{demo.suggestions[0]}</span>
+          <span style={pill}>{demo.suggestions[1]}</span>
+        </div>
       </div>
       <div
+        className="self-stretch"
         style={{
-          position: 'absolute',
-          bottom: 18,
-          left: 16,
-          right: 16,
           border: '1px solid var(--hairline)',
           borderRadius: 999,
           padding: '10px 16px',
+          marginRight: 34, // stays clear of the watch's overlap zone (G-4b)
           fontSize: 11.5,
           color: 'var(--text-faint)',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
         }}
       >
         {demo.placeholder}
@@ -197,17 +209,17 @@ function PhoneScreen() {
 function WatchScreen() {
   const s = useCopy(surfaceWall).watch
   return (
-    <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ background: 'var(--bg)', gap: 5 }}>
-      <span
-        aria-hidden="true"
-        style={{ width: 12, height: 12, borderRadius: 999, background: 'radial-gradient(circle at 40% 32%, #e8a66a, #c56a3d)' }}
-      />
-      <div className="font-serif" style={{ fontSize: 24, fontWeight: 530, color: 'var(--text)', lineHeight: 1 }}>{s.time}</div>
-      <div style={{ ...MONO, fontSize: 8, letterSpacing: '0.22em', color: 'var(--eyebrow-warm)' }}>{s.glance.toUpperCase()}</div>
+    <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ background: 'var(--bg)', gap: 4 }}>
+      {/* P3.2 F4 — the watch dot is the shared orb, never a flat circle */}
+      <ArcOrb size={20} />
+      <div className="font-serif" style={{ fontSize: 21, fontWeight: 530, color: 'var(--text)', lineHeight: 1 }}>{s.time}</div>
+      <div style={{ ...MONO, fontSize: 8, letterSpacing: '0.18em', color: 'var(--eyebrow-warm)' }}>{s.glance.toUpperCase()}</div>
     </div>
   )
 }
 
+/** P3.2 F3.3 — TV text starts ≥48px inside the screen so the tablet's overlap
+    never touches its eyebrow or copy. */
 function TvScreen() {
   const tv = useCopy(surfaceWall).tv
   const greeting = useCopy(deviceScreens).greeting
@@ -216,10 +228,10 @@ function TvScreen() {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img alt={tv.greeting} src="/assets/img/luxury-lobby.webp" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(11,9,8,0.1), rgba(11,9,8,0.78))' }} />
-      <div className="absolute left-5 bottom-4">
+      <div className="absolute" style={{ left: 52, bottom: 16 }}>
         <div style={{ ...MONO, fontSize: 8.5, letterSpacing: '0.24em', textTransform: 'uppercase', color: 'var(--champagne)' }}>{greeting}</div>
-        <div className="font-serif" style={{ fontSize: 24, fontWeight: 530, color: 'var(--text)', marginTop: 4 }}>{tv.greeting}</div>
-        <div className="font-sans" style={{ fontSize: 12, color: 'var(--text-dim)', marginTop: 2 }}>{tv.meta}</div>
+        <div className="font-serif" style={{ fontSize: 22, fontWeight: 530, color: 'var(--text)', marginTop: 4 }}>{tv.greeting}</div>
+        <div className="font-sans" style={{ fontSize: 11.5, color: 'var(--text-dim)', marginTop: 2 }}>{tv.meta}</div>
       </div>
     </>
   )
@@ -229,11 +241,11 @@ function TvScreen() {
 
 function MonitorStand() {
   return (
-    <div className="flex flex-col items-center" aria-hidden="true">
+    <div className="flex flex-col items-center" data-cframe="" aria-hidden="true">
       <div
         style={{
           width: 128,
-          height: 56,
+          height: 50,
           background: 'linear-gradient(180deg, #6a6a6a, #3a3a3a)',
           clipPath: 'polygon(18% 0, 82% 0, 100% 100%, 0 100%)',
         }}
@@ -243,10 +255,25 @@ function MonitorStand() {
   )
 }
 
+/** The domed hardware puck — grounded: its top overlaps the tablet's bottom
+    edge and an elliptical contact shadow sits beneath it (P3.2 F3.2/G-4f). */
 function Puck() {
   return (
-    <div className="relative" style={{ width: 150, height: 85 }} aria-hidden="true">
+    <div className="relative" data-cframe="" style={{ width: 144, height: 91 }} aria-hidden="true">
       <div
+        className="absolute"
+        style={{
+          left: '4%',
+          right: '4%',
+          bottom: -9,
+          height: 20,
+          borderRadius: '50%',
+          background: 'radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0.5), rgba(0,0,0,0.18) 55%, transparent 78%)',
+          filter: 'blur(5px)',
+        }}
+      />
+      <div
+        data-puck-body=""
         className="absolute inset-0"
         style={{
           borderRadius: '50%',
@@ -265,22 +292,22 @@ function Puck() {
           height: 22,
           borderRadius: 999,
           background: 'radial-gradient(circle at 42% 34%, #e8a66a, #c56a3d)',
-          boxShadow: '0 0 18px 4px rgba(232,166,106,0.4)',
+          boxShadow: '0 0 18px 6px rgba(232,166,106,0.4)',
         }}
       />
     </div>
   )
 }
 
-function WatchBody({ children }: { children: ReactNode }) {
-  const stub: CSSProperties = { width: 62, height: 24, borderRadius: 12, background: '#241c14', marginInline: 'auto' }
+function WatchBody() {
+  const stub: CSSProperties = { width: 62, height: 22, borderRadius: 12, background: '#241c14', marginInline: 'auto' }
   return (
     <div className="flex flex-col items-center">
-      <div style={{ ...stub, marginBottom: -8 }} />
-      <Frame screenW={95} screenH={110} bezel={8} radius={30}>
+      <div data-cframe="" style={{ ...stub, marginBottom: -8 }} />
+      <Frame screenW={76} screenH={88} bezel={8} radius={30}>
         <WatchScreen />
       </Frame>
-      <div style={{ ...stub, marginTop: -8 }} />
+      <div data-cframe="" style={{ ...stub, marginTop: -8 }} />
     </div>
   )
 }
@@ -288,7 +315,7 @@ function WatchBody({ children }: { children: ReactNode }) {
 /* ------------------------------------------------------------- stage */
 
 const STAGE_W = 1200
-const STAGE_H = 830
+const STAGE_H = 760
 
 interface Placed {
   key: 'web' | 'tv' | 'tablet' | 'watch' | 'phone' | 'voice'
@@ -296,7 +323,7 @@ interface Placed {
   y: number
   z: number
   node: ReactNode
-  captionAt: { x: number; y: number; align?: 'left' | 'center' }
+  captionAt: { x: number; y: number; align?: 'left' | 'center' | 'right' }
 }
 
 function useSeen<T extends HTMLElement>(): [React.RefObject<T | null>, boolean] {
@@ -347,6 +374,7 @@ export function Constellation() {
 
   const caption = (text: string, at: Placed['captionAt']): ReactNode => (
     <figcaption
+      data-caption=""
       style={{
         ...MONO,
         position: 'absolute',
@@ -359,81 +387,87 @@ export function Constellation() {
         opacity: 0.65,
         whiteSpace: 'nowrap',
         ...(at.align === 'center' ? { transform: 'translateX(-50%)' } : {}),
+        ...(at.align === 'right' ? { transform: 'translateX(-100%)' } : {}),
       }}
     >
       {text}
     </figcaption>
   )
 
-  /* Forensic composition — rear→front: monitor(1) · TV/phone(2) · tablet(3) ·
-     watch/puck(4). Screen sizes and materials per ADDENDUM_2. */
+  /* P3.2 F3 re-composition — the panel's deterministic table on a 1200×760
+     stage. Outer boxes (rim included): monitor 552→1152 / 15→330 (+stand to
+     ~392) · phone 144→402 / 106→608 · TV 744→1104 / 471→669 · tablet 378→768
+     / 61→638 · watch 348→444 / 441→577 · puck 564→708 / 608→699. Overlaps:
+     phone/TV tuck 24px under the tablet; watch nests at the phone/tablet lower
+     seam in front of both; the puck's top overlaps the tablet's bottom ~30px.
+     Caption slots sit in clear stage space (G-4c audits every pair). */
   const devices: Placed[] = [
     {
       key: 'web',
-      x: 470,
-      y: 26,
+      x: 552,
+      y: 15,
       z: 1,
       node: (
         <div className="flex flex-col items-center">
-          <Frame screenW={560} screenH={260} bezel={8} radius={22}>
+          <Frame screenW={580} screenH={295} bezel={8} radius={22}>
             <MonitorScreen />
           </Frame>
           <MonitorStand />
         </div>
       ),
-      captionAt: { x: 900, y: 372, align: 'center' },
+      captionAt: { x: 1152, y: 402, align: 'right' },
     },
     {
       key: 'phone',
-      x: 150,
-      y: 140,
+      x: 144,
+      y: 106,
       z: 2,
       node: (
-        <Frame screenW={250} screenH={500} bezel={10} radius={44}>
+        <Frame screenW={234} screenH={478} bezel={10} radius={44}>
           <PhoneScreen />
         </Frame>
       ),
-      captionAt: { x: 150, y: 690 },
+      captionAt: { x: 40, y: 628 },
     },
     {
       key: 'tv',
-      x: 745,
-      y: 468,
+      x: 744,
+      y: 471,
       z: 2,
       node: (
-        <Frame screenW={420} screenH={205} bezel={8} radius={22}>
+        <Frame screenW={340} screenH={178} bezel={8} radius={22}>
           <TvScreen />
         </Frame>
       ),
-      captionAt: { x: 965, y: 712, align: 'center' },
+      captionAt: { x: 924, y: 692, align: 'center' },
     },
     {
       key: 'tablet',
-      x: 408,
-      y: 56,
+      x: 378,
+      y: 61,
       z: 3,
       node: (
-        <Frame screenW={360} screenH={550} bezel={12} radius={40}>
+        <Frame screenW={362} screenH={549} bezel={12} radius={40}>
           <TabletScreen />
         </Frame>
       ),
-      captionAt: { x: 408, y: 662 },
+      captionAt: { x: 380, y: 712 },
     },
     {
       key: 'watch',
-      x: 326,
-      y: 566,
+      x: 348,
+      y: 441,
       z: 4,
-      node: <WatchBody>{null}</WatchBody>,
-      captionAt: { x: 384, y: 758, align: 'center' },
+      node: <WatchBody />,
+      captionAt: { x: 396, y: 652, align: 'center' },
     },
     {
       key: 'voice',
-      x: 618,
-      y: 700,
+      x: 564,
+      y: 608,
       z: 4,
       node: <Puck />,
-      captionAt: { x: 693, y: 800, align: 'center' },
+      captionAt: { x: 636, y: 736, align: 'center' },
     },
   ]
 
@@ -452,17 +486,8 @@ export function Constellation() {
           filter: 'blur(24px)',
         }}
       />
-      {/* the gold thread (base §3B), drawn once */}
-      <svg aria-hidden="true" className="absolute inset-0 w-full h-full" viewBox={`0 0 ${STAGE_W} ${STAGE_H}`}>
-        <path
-          d="M 150 430 C 300 660, 400 640, 470 560 S 560 300, 620 330 S 760 620, 700 700 M 620 330 C 780 250, 860 180, 1040 200 M 700 700 C 830 660, 900 620, 980 580"
-          fill="none"
-          stroke="var(--gold)"
-          strokeWidth="1"
-          opacity="0.15"
-          className={seen ? 'constellation-thread drawn' : 'constellation-thread'}
-        />
-      </svg>
+      {/* P3.2 F3.6 — the reference has no connector lines; the gold thread was
+          removed (G-4d: zero SVG paths in the section). */}
       {devices.map((d, i) => (
         <figure
           key={d.key}
@@ -505,12 +530,12 @@ export function Constellation() {
         <div className="flex items-end gap-10" style={{ width: 'max-content', padding: '8px 8px 4px' }}>
           {(
             [
-              { key: 'tablet', w: 384, s: 0.72, node: <Frame screenW={360} screenH={550} bezel={12} radius={40}><TabletScreen /></Frame> },
-              { key: 'web', w: 580, s: 0.52, node: <div className="flex flex-col items-center"><Frame screenW={560} screenH={260} bezel={8} radius={22}><MonitorScreen /></Frame><MonitorStand /></div> },
-              { key: 'phone', w: 274, s: 0.8, node: <Frame screenW={250} screenH={500} bezel={10} radius={44}><PhoneScreen /></Frame> },
-              { key: 'tv', w: 440, s: 0.62, node: <Frame screenW={420} screenH={205} bezel={8} radius={22}><TvScreen /></Frame> },
-              { key: 'watch', w: 115, s: 1, node: <WatchBody>{null}</WatchBody> },
-              { key: 'voice', w: 150, s: 1, node: <Puck /> },
+              { key: 'tablet', w: 390, s: 0.72, node: <Frame screenW={362} screenH={549} bezel={12} radius={40}><TabletScreen /></Frame> },
+              { key: 'web', w: 600, s: 0.52, node: <div className="flex flex-col items-center"><Frame screenW={580} screenH={295} bezel={8} radius={22}><MonitorScreen /></Frame><MonitorStand /></div> },
+              { key: 'phone', w: 258, s: 0.8, node: <Frame screenW={234} screenH={478} bezel={10} radius={44}><PhoneScreen /></Frame> },
+              { key: 'tv', w: 360, s: 0.62, node: <Frame screenW={340} screenH={178} bezel={8} radius={22}><TvScreen /></Frame> },
+              { key: 'watch', w: 96, s: 1, node: <WatchBody /> },
+              { key: 'voice', w: 144, s: 1, node: <Puck /> },
             ] as Array<{ key: keyof typeof c.roles; w: number; s: number; node: ReactNode }>
           ).map((d) => (
             <figure key={d.key} style={{ scrollSnapAlign: 'center' }}>

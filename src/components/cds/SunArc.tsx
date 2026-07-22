@@ -29,21 +29,35 @@ import { useEyebrow } from '@/lib/i18n/marketing/eyebrows'
 const STOP_F = [-1, -0.5, 0, 0.5, 1] // fraction of the arc's half-angle
 const STOP_POS = [0, 0.25, 0.5, 0.75, 1] // scrub position of each stop
 const REVEAL_EARLY = 0.06
-const ORB = 84 // px, within the spec's 72–96
 
 /** The sun: tokens' reference orb core (docs/v3/03_TOKENS.md) under the site's
     VoiceOrb ring/shimmer chrome — never a flat disc. Also used by the
-    constellation's phone screen (ADDENDUM_2 forensic spec). */
+    constellation's phone screen and watch dot (P3.2 F4: every orb instance is
+    this component). The outermost boundary is a masked fade ≥12px at spec
+    sizes — never a hard circle edge; the outer glow lives on the halo layer so
+    the mask cannot clip it. */
 export function ArcOrb({ size }: { size: number }) {
   return (
     <div className="relative" style={{ width: size, height: size }}>
+      <div
+        aria-hidden="true"
+        className="absolute"
+        style={{
+          inset: '-55%',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(176,118,64,0.20), rgba(176,118,64,0.07) 45%, transparent 68%)',
+          filter: 'blur(6px)',
+        }}
+      />
       <div
         aria-hidden="true"
         className="absolute inset-0"
         style={{
           borderRadius: '50%',
           background: 'radial-gradient(circle at 50% 32%, #b98c58, #8a5f38 45%, #4a3520 78%, #241a11 100%)',
-          boxShadow: '0 0 80px 10px rgba(176,118,64,0.22), inset 0 -20px 46px rgba(20,12,6,0.55)',
+          boxShadow: 'inset 0 -20px 46px rgba(20,12,6,0.55)',
+          WebkitMaskImage: 'radial-gradient(closest-side, #000 70%, transparent 100%)',
+          maskImage: 'radial-gradient(closest-side, #000 70%, transparent 100%)',
         }}
       />
       <div className="absolute inset-0">
@@ -60,6 +74,11 @@ type Geom = {
   cy: number
   R: number
   thetaMax: number
+  /** stop-column scale — the pinned stage now runs from 768px up (P3.2 F2);
+      below 1440 the five columns shrink together so they keep clearing each
+      other and the traveling orb. */
+  ui: number
+  orb: number
 }
 
 function computeGeom(W: number, H: number): Geom {
@@ -68,7 +87,8 @@ function computeGeom(W: number, H: number): Geom {
   const y1 = 0.59 * H // horizon endpoints, toward the section's lower third
   const sag = y1 - y0
   const R = (halfChord * halfChord + sag * sag) / (2 * sag)
-  return { W, H, cx: W / 2, cy: y0 + R, R, thetaMax: Math.asin(halfChord / R) }
+  const ui = Math.min(1, Math.max(0.63, W / 1600))
+  return { W, H, cx: W / 2, cy: y0 + R, R, thetaMax: Math.asin(halfChord / R), ui, orb: ui < 0.95 ? 72 : 84 }
 }
 
 function pointAt(g: Geom, f: number) {
@@ -283,10 +303,14 @@ export function SunArc({
     setReduce(window.matchMedia('(prefers-reduced-motion: reduce)').matches)
   }, [])
 
-  // Measure the pinned stage.
+  // Measure the pinned stage. P3.2 F2: the pinned arc is the experience from
+  // 1008px up (the panel's audited viewport, previously served the rail);
+  // below that the five stops cannot clear each other on the arc, so the
+  // spec's rail treatment holds — centered, so it never strands half the
+  // viewport (decision logged in OPEN_QUESTIONS).
   useEffect(() => {
     const measure = () => {
-      if (window.innerWidth < 1024) return setGeom(null)
+      if (window.innerWidth < 1008) return setGeom(null)
       setGeom(computeGeom(Math.min(window.innerWidth, 1600), Math.max(window.innerHeight, 840)))
     }
     measure()
@@ -313,7 +337,7 @@ export function SunArc({
 
         const f = -1 + 2 * p
         const pt = pointAt(geom, f)
-        if (orbRef.current) orbRef.current.style.transform = `translate3d(${pt.x - ORB / 2}px, ${pt.y - ORB / 2}px, 0)`
+        if (orbRef.current) orbRef.current.style.transform = `translate3d(${pt.x - geom.orb / 2}px, ${pt.y - geom.orb / 2}px, 0)`
         if (glowRef.current) {
           // noon glow peaks mid-scrub and follows the orb horizontally
           const noon = Math.max(0, 1 - Math.abs(p - 0.5) * 3)
@@ -392,6 +416,7 @@ export function SunArc({
         <>
           <div
             ref={glowRef}
+            data-sky-glow=""
             aria-hidden="true"
             className="absolute inset-0"
             style={{
@@ -402,12 +427,14 @@ export function SunArc({
           />
           <div
             ref={duskRef}
+            data-sky-dusk=""
             aria-hidden="true"
             className="absolute inset-0"
             style={{ background: 'linear-gradient(90deg, transparent 0%, #2b1810 70%)', opacity: reduce ? 0.45 : 0 }}
           />
           <div
             ref={nightRef}
+            data-sky-night=""
             aria-hidden="true"
             className="absolute inset-0"
             style={{ background: '#171310', opacity: 0 }}
@@ -451,26 +478,28 @@ export function SunArc({
         {/* the orb, ON the arc */}
         <div
           ref={orbRef}
+          data-arc-orb=""
           className="absolute"
           style={{
             left: `calc(50% - ${geom.W / 2}px)`,
             top: 0,
-            width: ORB,
+            width: geom.orb,
             willChange: 'transform',
             zIndex: 2,
             transform: (() => {
               const pt = pointAt(geom, reduce ? 0 : -1)
-              return `translate3d(${pt.x - ORB / 2}px, ${pt.y - ORB / 2}px, 0)`
+              return `translate3d(${pt.x - geom.orb / 2}px, ${pt.y - geom.orb / 2}px, 0)`
             })(),
           }}
         >
-          <ArcOrb size={ORB} />
+          <ArcOrb size={geom.orb} />
           <div
             ref={labelRef}
+            data-arc-label=""
             className="eyebrow"
             style={{
               width: 240,
-              marginLeft: (ORB - 240) / 2,
+              marginLeft: (geom.orb - 240) / 2,
               textAlign: 'center',
               marginTop: 10,
               whiteSpace: 'nowrap',
@@ -485,19 +514,25 @@ export function SunArc({
         {STOP_F.map((f, i) => {
           const pt = pointAt(geom, f)
           const outer = i === 0 || i === STOP_F.length - 1
-          const colW = outer ? 330 : 260 // outer receipts stay on one line
+          const baseW = outer ? 330 : 260 // outer receipts stay on one line
+          const colW = baseW * geom.ui // rendered width after the stage scale
           const x = Math.min(Math.max(pt.x, colW / 2 + 12), geom.W - colW / 2 - 12)
-          // Clear the traveling orb + its label at every stop position.
-          const topOffset = i === 2 ? 122 : 44
+          // Clear the traveling orb + its label at every stop position. Inner
+          // stops (2/4) sit high on the arc while the orb descends past them —
+          // they need the deeper offset (G-3 occlusion gate); the endpoints
+          // are already below the orb's sweep.
+          const topOffset = i === 2 ? 122 : i === 1 || i === 3 ? 100 : 44
           return (
             <div
               key={i}
+              data-stop-col=""
               className="absolute flex flex-col items-center"
               style={{
                 left: `calc(50% - ${geom.W / 2}px + ${x}px)`,
                 top: pt.y + topOffset,
-                transform: 'translateX(-50%)',
-                width: colW,
+                transform: `translateX(-50%) scale(${geom.ui})`,
+                transformOrigin: 'top center',
+                width: baseW,
                 gap: 10,
                 zIndex: 1,
                 opacity: revealed[i] ? 1 : 0,
@@ -506,10 +541,10 @@ export function SunArc({
               }}
             >
               <div style={{ textAlign: 'center', maxWidth: 250, marginInline: 'auto' }}>
-                <div className="font-serif" style={{ fontSize: 'clamp(28px, 2.6vw, 40px)', fontWeight: 530, color: 'var(--champagne)', lineHeight: 1 }}>
+                <div data-stop-time="" className="font-serif" style={{ fontSize: 'clamp(28px, 2.6vw, 40px)', fontWeight: 530, color: 'var(--champagne)', lineHeight: 1 }}>
                   {c.stops[i].time}
                 </div>
-                <div className="eyebrow" style={{ marginTop: 6 }}>{c.stops[i].tag}</div>
+                <div data-stop-tag="" className="eyebrow" style={{ marginTop: 6 }}>{c.stops[i].tag}</div>
               </div>
               {/* data-device-ui: OQ-6 — mini-UI + its receipt are device text */}
               <div data-device-ui="" className="flex flex-col items-center" style={{ gap: 10 }}>
@@ -525,14 +560,14 @@ export function SunArc({
 
   /* ---------------------------------------------------- mobile: the rail */
   const mobile = (
-    <div className="relative lg:hidden" style={{ overflow: 'hidden' }}>
+    <div className="relative min-[1008px]:hidden" style={{ overflow: 'hidden' }}>
       {sky(true)}
       <div className="relative">
         {header}
         <div className="container-rc" style={{ paddingBottom: 48 }}>
           <div
             className="relative mt-10"
-            style={{ borderLeft: '2px solid var(--gold)', paddingLeft: 26, display: 'flex', flexDirection: 'column', gap: 40 }}
+            style={{ borderLeft: '2px solid var(--gold)', paddingLeft: 26, display: 'flex', flexDirection: 'column', gap: 40, maxWidth: 560, marginInline: 'auto' }}
           >
             <div style={{ marginLeft: -26 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 14, transform: 'translateX(-28px)' }}>
@@ -551,7 +586,7 @@ export function SunArc({
 
   return (
     <>
-      <div className="hidden lg:block" style={{ background: '#171310' }}>
+      <div className="hidden min-[1008px]:block" style={{ background: '#171310' }}>
         {geom ? desktop : null}
       </div>
       {mobile}
