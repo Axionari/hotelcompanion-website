@@ -55,11 +55,20 @@ export function StatBlock({
   caption,
   source,
   children,
+  art,
 }: {
   figure: string
   caption: string
   source?: string
   children?: ReactNode
+  /**
+   * v3 ADDENDUM_1 A2 — "numbers as art", CSS-only treatments of the figure:
+   * 'outline' = oversized serif stroke type (solid fallback where
+   * -webkit-text-stroke is unsupported); 'glow' = italic serif champagne with
+   * a soft amber glow. The plain value stays exposed to AT via sr-only text.
+   * Default (undefined) renders pixel-equivalent to the pre-v3 StatBlock.
+   */
+  art?: 'outline' | 'glow'
 }) {
   const [ref, seen] = useInView<HTMLDivElement>()
   const [shown, setShown] = useState(figure)
@@ -90,16 +99,21 @@ export function StatBlock({
     <div ref={ref} className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
       <div className="lg:col-span-5">
         <p
-          className="font-serif"
+          className={`font-serif ${art === 'outline' ? 'stat-art-outline' : ''} ${art === 'glow' ? 'stat-art-glow italic' : ''}`}
           style={{
-            fontSize: 'clamp(3.4rem, 9vw, 6.5rem)',
+            fontSize:
+              art === 'outline'
+                ? 'clamp(4.5rem, 15vw, 15.5rem)' /* A2: ≈200–250px at desktop */
+                : 'clamp(3.4rem, 9vw, 6.5rem)',
             fontWeight: 530,
             lineHeight: 0.95,
             letterSpacing: '-0.02em',
-            color: 'var(--accent)',
+            color: art ? undefined : 'var(--accent)',
           }}
         >
-          {shown}
+          {/* A2: decorative display figure; plain value for assistive tech */}
+          <span aria-hidden={art ? 'true' : undefined}>{shown}</span>
+          {art && <span className="sr-only">{figure}</span>}
         </p>
         {source && (
           <p className="eyebrow mt-5">{source}</p>

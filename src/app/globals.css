@@ -965,3 +965,37 @@ body {
 /* v3 */
 
 /* g */
+
+/* ============================================================
+   v3 additions — docs/v3/03_TOKENS.md + ADDENDUM_1 (Phase 2)
+   ============================================================ */
+
+/* A2 · numbers-as-art. Outline stroke type with a solid fallback for
+   engines without -webkit-text-stroke. */
+.stat-art-outline {
+  -webkit-text-stroke: 1px var(--text-lo);
+  color: transparent;
+}
+@supports not (-webkit-text-stroke: 1px black) {
+  .stat-art-outline {
+    color: var(--text-lo);
+  }
+}
+
+/* A2 · $160B — italic serif champagne with a soft amber glow */
+.stat-art-glow {
+  color: var(--champagne);
+  text-shadow: 0 0 60px rgba(232, 166, 106, 0.25);
+}
+
+/* AskBar · pulsing amber dot (static under reduced motion) */
+@keyframes askbar-pulse {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+.askbar-dot {
+  animation: askbar-pulse 2.4s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .askbar-dot { animation: none; }
+}

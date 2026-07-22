@@ -256,7 +256,8 @@ const en = {
   journey: {
     /* v3 Phase 1 {#04}: the five explanation captions and the PRE/DURING/AFTER
        act bullets are deleted per the copy deck; titles, tally and the tablet
-       stay for the Phase 3 arc rebuild. */
+       stay for the Phase 3 arc rebuild.
+       Tally values (+$250/+$312/+$402): ILLUSTRATIVE — audit before production promotion */
     tallyLabel: 'Revenue this stay',
     steps: [
       { title: 'They book direct.', screen: 'home' as ScreenId, tally: '+$0' },
@@ -577,7 +578,8 @@ const es: typeof en = {
   journey: {
     /* v3 Fase 1 {#04}: los cinco párrafos explicativos y los bullets
        ANTES/DURANTE/DESPUÉS se eliminan según el copy deck; títulos, ticker
-       y tablet permanecen para el arco de la Fase 3. */
+       y tablet permanecen para el arco de la Fase 3.
+       Tally values (+$250/+$312/+$402): ILLUSTRATIVE — audit before production promotion */
     tallyLabel: 'Ingresos de esta estancia',
     steps: [
       { title: 'Reservan directo.', screen: 'home' as ScreenId, tally: '+$0' },

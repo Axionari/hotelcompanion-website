@@ -235,6 +235,7 @@ export default function HomeClient() {
           <div className="lg:col-span-7">
             {/* The full dashboard is canonical on Platform. */}
             <Teaser lines={[c.dashboard.title]} href="/platform#platform-dashboards" label={g.nav.platform}>
+              {/* 91% / 9%: ILLUSTRATIVE — audit before production promotion */}
               <ResolutionDonut
                 resolvedPct={91}
                 escalatedPct={9}
@@ -342,7 +343,19 @@ export default function HomeClient() {
             href="/contact#founding"
             label={c.foundingCta}
           >
-            <IconChipGrid items={c.foundingPartner.items.slice(0, 4)} columns={2} />
+            {/* v3 Phase 2 (G4): the four benefits as a mono list — copy unchanged */}
+            <ul className="flex flex-col gap-3">
+              {c.foundingPartner.items.slice(0, 4).map((item) => (
+                <li
+                  key={item}
+                  className="eyebrow"
+                  style={{ color: 'var(--text-dim)', fontSize: 11, display: 'flex', gap: 10 }}
+                >
+                  <span aria-hidden="true" style={{ color: 'var(--gold)' }}>—</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
           </Teaser>
         </div>
       </Section>

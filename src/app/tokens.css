@@ -56,6 +56,7 @@
   /* v3 additions — docs/v3/03_TOKENS.md (closed vocabulary; existing site
      values above win where the two ladders overlap). */
   --champagne: #e7ce86;  /* serif italic emphasis, gold captions */
+  --text-lo: #a99c8c;    /* muted sand (A2 outline stroke) */
   --gold: #9c7220;       /* hairlines, AXIONARI mark */
   --success: #5b8c6e;    /* receipt ✓ */
   --money: #d9a441;      /* receipt amounts */
