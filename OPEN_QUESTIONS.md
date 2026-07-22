@@ -9,7 +9,19 @@ Logged per `docs/v3/01_RULES.md` rule 5. Newest first.
 
 ---
 
-## OQ-4 · Phase 1 word-count gate misses: −21.4% EN / −22.8% ES vs required ≥25% — **BLOCKING, phase stopped**
+## OQ-4 · Phase 1 word-count gate misses: −21.4% EN / −22.8% ES vs required ≥25% — **RESOLVED: option (b), gate reattributed (panel ruling, 2026-07-22)**
+
+> "The ≥25% word-count target was always a v3-wide outcome; pinning it entirely
+> to Phase 1 was a kit authoring error, since the Phase 3 bento deletion and
+> Phase 4 old-section-15 deletion were scheduled from the start. Therefore:
+> Phase 1's word-count gate is amended to ≥20% vs baseline (achieved: EN −21.4%,
+> ES −22.8%). Phase 1 is now fully green. […] The original ≥25% target moves to
+> Phase 5's checklist verbatim, measured after all scheduled deletions, same
+> methodology (hydrated DOM, same viewport, paired runs). If it still fails at
+> Phase 5, THAT is a real failure and stops the run. No new copy cuts are
+> authorized. Do not trim to hit numbers."
+
+Phase 5 FINAL_REPORT must therefore include the ≥25% v3-wide measurement.
 
 **What:** `PHASE_1_TEXT.md` gate: "homepage rendered visible text ≥ 25% lower
 than the Phase 0 baseline." Every cut named in `02_COPY_DECK.md` and the Phase 1

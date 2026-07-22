@@ -35,7 +35,7 @@ baseline-vs-Phase-1 pairs.
 - **[Added ES strings exactly once]** → **PASS** — `Lo rutinario, resuelto automáticamente` 1 · `0% COMISIÓN OTA · 24/7` 1 · `Construido sobre Companion OS — la plataforma de inteligencia` 1 · `POWERED BY AXIONARI` 2 (band + footer — twice is the allowed maximum).
 - **[Homepage FAQ = 4; /faq renders 4 + valid schema]** → **PASS** — homepage accordion has the 4 kept Q&As; `/faq` renders the 4 moved Q&As; JSON-LD parses as `FAQPage` with `Question`/`Answer` items (schema carries all 8 so the pruned four stay indexed, per the SEO seat's intent).
 - **[Marquee = 10 unique]** → **PASS** (EN 10, ES 10).
-- **[Word count ≥ 25% lower]** → **FAIL** — EN 1357 → 1067 (**−21.4%**), ES 1538 → 1187 (**−22.8%**). Content-only (minus nav/footer): −20.9% / −22.5%. Every cut specified in the deck was applied; see **OQ-4** for why the remainder is unreachable without new copy rulings.
+- **[Word count — amended by panel ruling on OQ-4 to ≥ 20% for Phase 1; the original ≥25% moves to Phase 5, v3-wide]** → **PASS** — EN 1357 → 1067 (**−21.4%**), ES 1538 → 1187 (**−22.8%**). Content-only (minus nav/footer): −20.9% / −22.5%. Every cut specified in the deck was applied verbatim; no unspecified cuts made.
 - **[Límites, Socios Fundadores, hero (minus 2 edits), demo, ticker diff-identical]** → **PASS** — the commit diff touches none of their markup/copy: `whatItIsNot`, `foundingPartner`, hero copy (besides badge removal + proof line), `TabletOS`/`LiveDemo`/`marazulDemo`, tally rendering all unchanged.
 - **[Both locales build; no missing-translation warnings]** → **PASS** — `tsc --noEmit` clean (the `es: typeof en` constraint proves key parity), `next build` green, 33/33 tests pass, lint 0 errors (24 pre-existing warnings).
 
@@ -48,7 +48,7 @@ the visual state is intentionally near-identical to production minus the cuts.
 
 ## Open questions raised
 
-- **OQ-4 (BLOCKING)** — word-count gate unreachable with the specified cuts; options laid out, phase stopped per addendum ("a failed gate still stops the phase").
+- OQ-4 — word-count gate: **resolved by panel ruling** (option b, gate reattributed: Phase 1 ≥20% PASS; ≥25% moves to Phase 5 v3-wide).
 - OQ-3 — six smallest-interpretation decisions (sixth journey caption, /platform teaser fallback, meta description, insider-line phase, band eyebrow, marquee row split).
 
-## Status: BLOCKED ON OQ-4 — awaiting ruling (all other gates green; Phases 2–3 not started)
+## Status: GREEN (all gates pass under the OQ-4 ruling) — continuous run proceeds to Phase 2
