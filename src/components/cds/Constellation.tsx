@@ -87,12 +87,8 @@ function TabletScreen() {
   }
   return (
     <>
-      <div
-        role="img"
-        aria-label={beach.title}
-        className="absolute inset-0"
-        style={{ backgroundImage: `url(${beach.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
-      />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img alt={beach.title} src={beach.image} loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(11,9,8,0.18), transparent 30%, transparent 55%, rgba(11,9,8,0.72))' }} />
       {/* status row */}
       <div className="absolute top-3 left-3 flex items-center gap-2">
@@ -130,10 +126,13 @@ function MonitorScreen() {
         <span style={{ ...MONO, fontSize: 9.5, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--success)' }}>{s.badge}</span>
       </div>
       <div className="flex gap-5 p-5">
-        <div
-          role="img"
-          aria-label={s.room}
-          style={{ width: 210, height: 150, borderRadius: 10, backgroundImage: 'url(/assets/ui/suite-1.webp)', backgroundSize: 'cover', backgroundPosition: 'center', flexShrink: 0 }}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          alt={s.room}
+          src="/assets/ui/suite-1.webp"
+          loading="lazy"
+          decoding="async"
+          style={{ width: 210, height: 150, borderRadius: 10, objectFit: 'cover', flexShrink: 0 }}
         />
         <div>
           <div className="font-serif" style={{ fontSize: 24, fontWeight: 530, color: 'var(--text)' }}>{s.room}</div>
@@ -212,12 +211,8 @@ function TvScreen() {
   const greeting = useCopy(deviceScreens).greeting
   return (
     <>
-      <div
-        role="img"
-        aria-label={tv.greeting}
-        className="absolute inset-0"
-        style={{ backgroundImage: 'url(/assets/img/luxury-lobby.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}
-      />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img alt={tv.greeting} src="/assets/img/luxury-lobby.webp" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(11,9,8,0.1), rgba(11,9,8,0.78))' }} />
       <div className="absolute left-5 bottom-4">
         <div style={{ ...MONO, fontSize: 8.5, letterSpacing: '0.24em', textTransform: 'uppercase', color: 'var(--champagne)' }}>{greeting}</div>

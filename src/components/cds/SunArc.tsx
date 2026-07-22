@@ -121,11 +121,8 @@ function StopUi({ i }: { i: number }) {
             <span key={d} style={{ width: 5, height: 5, borderRadius: 99, background: 'var(--border)' }} />
           ))}
         </div>
-        <div
-          role="img"
-          aria-label={s.web.room}
-          style={{ height: 56, backgroundImage: 'url(/assets/ui/suite-1.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}
-        />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img alt={s.web.room} src="/assets/ui/suite-1.webp" loading="lazy" decoding="async" style={{ height: 56, width: '100%', objectFit: 'cover' }} />
         <div className="px-4 py-3">
           <div style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--text)' }}>{s.web.room}</div>
           <div style={{ ...mono, fontSize: 11, color: 'var(--text-dim)', marginTop: 2 }}>{s.web.price}</div>
@@ -138,11 +135,8 @@ function StopUi({ i }: { i: number }) {
     const b = screens.screens.beach
     return (
       <div style={{ ...cardBase, borderRadius: 20 }} className="font-sans">
-        <div
-          role="img"
-          aria-label={b.title}
-          style={{ height: 84, backgroundImage: `url(${b.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
-        />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img alt={b.title} src={b.image} loading="lazy" decoding="async" style={{ height: 84, width: '100%', objectFit: 'cover' }} />
         <div className="px-4 py-3">
           <div className="font-serif" style={{ fontSize: 16, fontWeight: 530, color: 'var(--text)' }}>{b.title}</div>
           <div style={{ fontSize: 11.5, color: 'var(--champagne)', marginTop: 2 }}>{b.meta}</div>

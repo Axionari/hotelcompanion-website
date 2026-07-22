@@ -45,6 +45,33 @@ export function Breather({
 
   const [playVideo, setPlayVideo] = useState(false)
 
+  /**
+   * v3 P5 (G9 perf gate): the band images are far below the fold but CSS
+   * backgrounds load eagerly — ~1MB on the homepage's first paint. Defer the
+   * url() until the band is within ~600px of the viewport. Fail-open where
+   * IntersectionObserver is unavailable (no-JS renders server-side anyway).
+   */
+  const [loadBg, setLoadBg] = useState(false)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el || typeof IntersectionObserver === 'undefined') {
+      setLoadBg(true)
+      return
+    }
+    const io = new IntersectionObserver(
+      (es) => {
+        if (es.some((e) => e.isIntersecting)) {
+          setLoadBg(true)
+          io.disconnect()
+        }
+      },
+      { rootMargin: '600px 0px' }
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
+
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     setReduce(reduced)
@@ -97,7 +124,8 @@ export function Breather({
         aria-label={line || undefined}
         className="absolute inset-0"
         style={{
-          backgroundImage: `url(${image})`,
+          backgroundImage: loadBg ? `url(${image})` : undefined,
+          backgroundColor: 'var(--surface-3)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           // Overscaled so the parallax drift never exposes an edge.

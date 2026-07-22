@@ -61,7 +61,7 @@ export default function HomeClient() {
       <SiteNav />
 
       {/* 01 · HERO {#home-hero} — over the coastal loop, text left, tablet right */}
-      <MediaBed video="hero-coastal-sunset" poster="/assets/img/hero-coastal-sunset-poster.webp" scrim={0.66}>
+      <MediaBed video="hero-coastal-sunset" poster="/assets/img/hero-coastal-sunset-poster.webp" scrim={0.66} priority>
         <section className="relative pt-16 pb-20 md:pt-24 md:pb-28">
           {/* Darkens the hero away from the orb so the orb reads brightest */}
           <div className="hero-vignette" aria-hidden="true" />

@@ -22,6 +22,7 @@ export function MediaBed({
   scrim = 0.62,
   className = '',
   minHeight,
+  priority = false,
 }: {
   /** Basename in /assets/video (without extension). Omit for a still-only bed. */
   video?: string
@@ -31,6 +32,12 @@ export function MediaBed({
   scrim?: number
   className?: string
   minHeight?: string
+  /**
+   * v3 P5 (G9 — hero LCP): preload the poster. CSS background images are
+   * invisible to the browser's preload scanner, which made the hero poster the
+   * LCP element at ~4.7s. React hoists this <link> into <head>.
+   */
+  priority?: boolean
 }) {
   const [playVideo, setPlayVideo] = useState(false)
 
@@ -45,11 +52,19 @@ export function MediaBed({
 
   return (
     <div className={`relative overflow-hidden ${className}`} style={{ minHeight }}>
-      {/* Poster still — server-rendered, so it is present without JS */}
-      <div
+      {/* Poster still — server-rendered, so it is present without JS.
+          v3 P5 (G9): a real <img> instead of a CSS background, so the hero
+          poster is an early, preload-scanner-visible LCP candidate
+          (fetchpriority=high) and below-fold beds lazy-load natively. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
         aria-hidden="true"
-        className="absolute inset-0 -z-20 bg-cover bg-center"
-        style={{ backgroundImage: `url(${poster})` }}
+        alt=""
+        src={poster}
+        className="absolute inset-0 -z-20 h-full w-full object-cover"
+        fetchPriority={priority ? 'high' : undefined}
+        loading={priority ? 'eager' : 'lazy'}
+        decoding="async"
       />
 
       {playVideo && video && (
