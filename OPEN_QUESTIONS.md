@@ -9,6 +9,36 @@ Logged per `docs/v3/01_RULES.md` rule 5. Newest first.
 
 ---
 
+## OQ-9 · P3.2 F2: pinned-arc breakpoint for the 768–1007px band
+
+**What:** the panel requires the pinned sun-arc scroll-scrub (its DOM audit ran
+at 1008px, where the build previously served the mobile rail because the pin
+started at 1024). PHASE_3 §3A defines desktop ≥1024 and mobile <768; the band
+768–1023 is unspecified. Rebuilt with the pin starting at **1008px** (covers
+the panel's audited viewport) with the five stop columns scaled by
+`clamp(0.63, vw/1600, 1)` so they clear each other and the traveling orb.
+Below 1008px, at 768–1007 the five stops cannot clear each other on the arc at
+readable sizes (verified: stop 1's time clips under stop 2's card even at 0.68
+scale), so the spec's rail treatment holds there — now centered (max-width
+560, auto margins) so it no longer strands the right half of a tablet
+viewport. **Chose** this as the smallest reading satisfying both the panel's
+evidence viewport and §3A's mobile treatment; G-3 gates (1440/1600) and a
+1008px screenshot attached in `reports/P3_2_REPORT.md`.
+
+## OQ-8 · P3.2 G-6: no constellation reference image exists in `docs/v3/reference/`
+
+**What:** gate G-6 asks for a side-by-side against "the reference image in
+`docs/v3/reference/`", but that directory contains only the sun-arc image
+(`reference/README.md` confirms the constellation never had a captured image
+— already the subject of OQ-7). **Chose** the smallest reading: the fidelity
+evidence is an annotated overlay of the panel's own deterministic
+re-composition table (F3) drawn over the 1440px build
+(`reports/img/p3_2-g6-overlay-1440.png`) — every device box lands inside its
+table target — plus the enumerated deviations list in `P3_2_REPORT.md`
+(copy/assets/responsive only). If a 7a image or `homepage-concepts.dc.html`
+ever lands in `docs/v3/reference/`, tier 1 of ADDENDUM_2 supersedes and a 1:1
+overlay re-runs.
+
 ## OQ-7 · ADDENDUM_2 (A4): neither geometry source was present — tier 2 applied with numeric evidence
 
 **What:** ADDENDUM_2 names two geometry sources for the constellation rebuild:

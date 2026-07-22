@@ -1,5 +1,11 @@
 # FINAL REPORT — Hotel Companion v3
 
+**P3.2 status: COMPLETE** — the post-Phase-5 panel inspection
+(`docs/v3/PANEL_INSPECTION_AND_CORRECTIONS.md`, verdict NOT APPROVED, F1–F5)
+was executed and every gate G-1…G-7 is green; evidence in
+`reports/P3_2_REPORT.md`. Awaiting the panel's in-browser re-inspection of the
+fresh preview to flip this report to APPROVED.
+
 **Deliverable:** the `v3` branch preview. Production untouched; nothing merged
 to `main`; no domain or project settings changed.
 
@@ -142,9 +148,11 @@ counterpart — i.e., it works **against** v3 — and the target clears anyway.
 ## OPEN_QUESTIONS status
 
 Resolved by ruling: OQ-1, OQ-2, OQ-4, OQ-5 (all six interpretations approved),
-OQ-6 (reading-copy measure → PASS). Logged: OQ-3, OQ-7. **Awaiting Eduardo:**
-the visual pass on the constellation (OQ-7 — forensic build vs a `.dc.html`
-port).
+OQ-6 (reading-copy measure → PASS). Logged: OQ-3, OQ-7, OQ-8 (P3.2 — G-6
+reference image absent), OQ-9 (P3.2 — pinned-arc breakpoint 1008px).
+Eduardo's visual pass was replaced by the panel's evidence-based P3.2
+inspection (its file supersedes CLOSEOUT §A/§B); the panel's re-inspection of
+the fresh preview issues the approval.
 
 ## Definition of done
 
