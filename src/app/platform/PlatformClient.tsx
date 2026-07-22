@@ -5,7 +5,7 @@ import { SiteNav } from '@/components/site-nav'
 import { SiteFooter } from '@/components/site-footer'
 import { Section } from '@/components/cds/Section'
 import { Reveal } from '@/components/cds/Reveal'
-import { EndorsementMark } from '@/components/cds/EndorsementMark'
+import { AxionariMark } from '@/components/cds/EndorsementMark'
 import { PersistentCTA } from '@/components/cds/PersistentCTA'
 import { TabletOS } from '@/components/cds/TabletOS'
 import { Teaser, CapabilityStrip } from '@/components/cds/Teaser'
@@ -125,7 +125,7 @@ export default function PlatformClient() {
                   </a>
                 </div>
                 <div className="mt-10">
-                  <EndorsementMark variant="companion-os" />
+                  <AxionariMark />
                 </div>
               </div>
               <div className="lg:col-span-6">
@@ -523,7 +523,7 @@ export default function PlatformClient() {
         </div>
         <Reveal>
           <div className="mt-10">
-            <EndorsementMark variant="companion-os" />
+            <AxionariMark />
           </div>
         </Reveal>
       </Section>

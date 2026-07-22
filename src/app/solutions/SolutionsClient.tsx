@@ -8,7 +8,7 @@ import { Teaser, CapabilityStrip } from '@/components/cds/Teaser'
 import { Breather } from '@/components/cds/Breather'
 import { Section } from '@/components/cds/Section'
 import { Reveal } from '@/components/cds/Reveal'
-import { EndorsementMark } from '@/components/cds/EndorsementMark'
+import { AxionariMark } from '@/components/cds/EndorsementMark'
 import { PersistentCTA } from '@/components/cds/PersistentCTA'
 import { MediaBed } from '@/components/cds/MediaBed'
 import { MultiAccentHeadline } from '@/components/cds/AccentHeadline'
@@ -225,7 +225,7 @@ export default function SolutionsClient() {
                   </Link>
                 </div>
                 <div className="mt-10">
-                  <EndorsementMark variant="companion-os" />
+                  <AxionariMark />
                 </div>
               </div>
             </div>
@@ -290,7 +290,7 @@ export default function SolutionsClient() {
             {c.companionOs.close}
           </p>
           <div className="mt-10">
-            <EndorsementMark variant="companion-os" />
+            <AxionariMark />
           </div>
         </Reveal>
       </Section>
