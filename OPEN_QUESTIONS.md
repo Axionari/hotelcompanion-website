@@ -9,6 +9,36 @@ Logged per `docs/v3/01_RULES.md` rule 5. Newest first.
 
 ---
 
+## OQ-4 · Phase 1 word-count gate misses: −21.4% EN / −22.8% ES vs required ≥25% — **BLOCKING, phase stopped**
+
+**What:** `PHASE_1_TEXT.md` gate: "homepage rendered visible text ≥ 25% lower
+than the Phase 0 baseline." Every cut named in `02_COPY_DECK.md` and the Phase 1
+edit list was applied verbatim (all other 8 gate assertions green), and the
+measured reduction is:
+
+| Metric (hydrated DOM `innerText`, same viewport, same session) | EN | ES |
+|---|---|---|
+| Full page (baseline → Phase 1) | 1357 → 1067 (**−21.4%**) | 1538 → 1187 (**−22.8%**) |
+| Content only (minus nav+footer) | 1127 → 891 (−20.9%) | 1277 → 990 (−22.5%) |
+
+**Why the shortfall:** the deck's cuts removed most of what they could reach.
+What remains is fixed page chrome the rulings don't touch — footer link labels
+(~170–190 words), the 10 marquee questions (rendered twice by the loop), FAQ
+questions, dashboard metric labels, device labels. Note also: (a) the moved FAQ
+answers never counted — collapsed accordion answers are not "visible text" in
+either measurement; (b) the old 8-vignette bento (Phase 3) and old section 15
+copy (Phase 4) are scheduled deletions that don't count yet.
+
+**Options (smallest first):**
+(a) Re-baseline the gate to the achieved ~21–23%, on the grounds that every
+    specified cut landed and the qualitative goal (nothing said twice) is met;
+(b) Count the Phase 3/4 scheduled deletions toward the target, re-measuring at
+    Phase 5;
+(c) Panel issues additional cut rulings (not mine to write — rule 2).
+
+**Chose:** none — writing copy cuts is explicitly outside my authority and the
+addendum says a failed gate stops the phase. Phases 2–3 are NOT started.
+
 ## OQ-3 · Phase 1 smallest-interpretation decisions (logged, work continued)
 
 Per rule 5 — none brand-level; all reversible:
