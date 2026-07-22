@@ -147,4 +147,12 @@ diff stat shows only `HomeClient.tsx` (two StatBlock props + one comment),
 `blocks.tsx` (StatBlock art path + legend swatch), `SunArc.tsx`,
 `Constellation.tsx`, plus reports/docs.
 
+## Deployment
+
+Fresh preview (this build):
+https://placecompanion-v2-cfoj68hco-eduardovertiz-dotcoms-projects.vercel.app
+— the entire gate harness re-run against the deployed URL (hydrated, share
+cookie): **ALL GATES GREEN** (`reports/p3_2-gates-output.txt` is that run).
+Share links expire ~23h; re-mint per review round via the Vercel MCP.
+
 ## Status: READY FOR PANEL RE-INSPECTION (P3.2 gates green; STOP)

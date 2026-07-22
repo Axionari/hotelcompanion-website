@@ -17,10 +17,12 @@ to `main`; no domain or project settings changed.
 > container. Endorsed by the panel as correct engineering; verified across all
 > pages.
 
-- **Preview (final candidate):**
-  https://placecompanion-v2-jhn0hntkg-eduardovertiz-dotcoms-projects.vercel.app
+- **Preview (P3.2 final candidate):**
+  https://placecompanion-v2-cfoj68hco-eduardovertiz-dotcoms-projects.vercel.app
   (deployment-protected — mint a share link per review round; the deployment id
-  is stable).
+  is stable). The full P3.2 gate harness was re-run against this deployment:
+  ALL GATES GREEN. Previous (Phase-5) candidate:
+  https://placecompanion-v2-jhn0hntkg-eduardovertiz-dotcoms-projects.vercel.app
 - Branch: `v3` @ `[P5]` commits · forked from production `3057618`.
 - All evidence: `reports/PHASE_{0..5}_REPORT.md` + `reports/img/` +
   `OPEN_QUESTIONS.md` (OQ-1…OQ-7).

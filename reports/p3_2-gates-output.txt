@@ -28,8 +28,8 @@ PASS · G-4c · captions clear of frames + captions — checked 6 captions vs 5+
 PASS · G-4d · zero SVG connector paths — svg path count = 0
 PASS · G-4e · rim delta 2px/side on all screen devices — 600-596 · 258-254 · 360-356 · 390-386 · 96-92
 PASS · G-4f · puck box-shadow ≠ none — rgba(0, 0, 0, 0.6) 0px 26px 44px -14px, rgba(0, 0, 0, 0.35) …
-PASS · G-5 · phone orb edge is a fade (3× zoom) — max single-pixel step 6.48 of span 104.4 (ratio 0.062, cliff would be ≥0.25)
-PASS · G-5 · watch orb edge is a fade (3× zoom) — max single-pixel step 10.84 of span 66.99 (ratio 0.162, cliff would be ≥0.25)
+PASS · G-5 · phone orb edge is a fade (3× zoom) — max single-pixel step 6.99 of span 104.18 (ratio 0.067, cliff would be ≥0.25)
+PASS · G-5 · watch orb edge is a fade (3× zoom) — max single-pixel step 9.91 of span 66.06 (ratio 0.15, cliff would be ≥0.25)
 PASS · G-7 en · reading-copy delta ≥ Phase-5 — reading 980 (raw 994 incl. 14 sr-only AT words) vs baseline 1357 → −27.8% (Phase-5: 992 → −26.9%; full 1412 · device-ui 418)
 PASS · G-7 es · reading-copy delta ≥ Phase-5 — reading 1073 (raw 1101 incl. 28 sr-only AT words) vs baseline 1538 → −30.2% (Phase-5: 1095 → −28.8%; full 1549 · device-ui 448)
 shot · p3_2-02-stake-1440-en.png
