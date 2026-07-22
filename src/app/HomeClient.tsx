@@ -34,6 +34,7 @@ import {
   CommissionCompare,
 } from '@/components/cds/blocks'
 import { useCopy } from '@/lib/i18n/useCopy'
+import { useEyebrow } from '@/lib/i18n/marketing/eyebrows'
 import { homeCopy } from '@/lib/i18n/marketing/home'
 import { deviceScreens } from '@/lib/i18n/marketing/deviceScreens'
 import { accents } from '@/lib/i18n/marketing/accents'
@@ -52,6 +53,8 @@ export default function HomeClient() {
   const arc = useCopy(sunArcCopy)
   const constellation = useCopy(constellationCopy)
   const demoV3 = useCopy(demoV3Copy)
+  /* v3 P5 (G10): the two inline eyebrows now translate like Section's do */
+  const translateEyebrow = useEyebrow()
 
   return (
     <main>
@@ -129,7 +132,7 @@ export default function HomeClient() {
       <section className="py-16 md:py-24" style={{ background: 'var(--bg)' }}>
         <div className="container-rc">
           <Reveal>
-            <div className="eyebrow eyebrow-accent mb-5">03 · CONVERSATION</div>
+            <div className="eyebrow eyebrow-accent mb-5">{translateEyebrow('03 · CONVERSATION')}</div>
             <h2 className="heading-section" style={{ color: 'var(--text)', maxWidth: '18ch' }}>
               {c.conversation.title}
             </h2>
@@ -429,7 +432,7 @@ export default function HomeClient() {
         <section className="py-24 md:py-32">
           <div className="container-rc">
             <Reveal>
-              <div className="eyebrow eyebrow-accent mb-5">13 · NEXT STEP</div>
+              <div className="eyebrow eyebrow-accent mb-5">{translateEyebrow('13 · NEXT STEP')}</div>
               <h2 className="heading-section" style={{ color: 'var(--text)', maxWidth: '20ch' }}>
                 {demoV3.askClose.pre}
                 <em style={{ color: 'var(--champagne)' }}>{demoV3.askClose.hi}</em>

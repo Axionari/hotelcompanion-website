@@ -333,6 +333,7 @@ function useSeen<T extends HTMLElement>(): [React.RefObject<T | null>, boolean] 
 
 export function Constellation() {
   const c = useCopy(constellationCopy)
+  const sectionTitle = useCopy(homeCopy).surfaces2029.title
   const [ref, seen] = useSeen<HTMLDivElement>()
   const [scale, setScale] = useState(1)
   const hostRef = useRef<HTMLDivElement | null>(null)
@@ -497,7 +498,13 @@ export function Constellation() {
       </div>
 
       {/* --------------------------------------------- mobile snap row */}
-      <div className="md:hidden -mx-4 px-4" style={{ overflowX: 'auto', scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch' }}>
+      <div
+        className="md:hidden -mx-4 px-4"
+        role="region"
+        aria-label={sectionTitle}
+        tabIndex={0}
+        style={{ overflowX: 'auto', scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch' }}
+      >
         <div className="flex items-end gap-10" style={{ width: 'max-content', padding: '8px 8px 4px' }}>
           {(
             [

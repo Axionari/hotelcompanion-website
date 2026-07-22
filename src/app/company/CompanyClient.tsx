@@ -7,7 +7,7 @@ import { SiteFooter } from '@/components/site-footer'
 import { PersistentCTA } from '@/components/cds/PersistentCTA'
 import { Section } from '@/components/cds/Section'
 import { Reveal } from '@/components/cds/Reveal'
-import { EndorsementMark } from '@/components/cds/EndorsementMark'
+import { EndorsementMark, AxionariMark } from '@/components/cds/EndorsementMark'
 import { MultiAccentHeadline } from '@/components/cds/AccentHeadline'
 import { MediaBed } from '@/components/cds/MediaBed'
 import { useCopy } from '@/lib/i18n/useCopy'
@@ -158,7 +158,9 @@ export default function CompanyClient() {
           {(s.id === 'axionari' || s.id === 'companion-os') && (
             <Reveal>
               <div className="mt-10">
-                <EndorsementMark variant={s.id === 'axionari' ? 'axionari' : 'companion-os'} />
+                {/* v3 P5 G5 pass: the Companion OS badge leaves secondary pages;
+                    the sanctioned mark is Powered by AXIONARI (G6). */}
+                {s.id === 'axionari' ? <EndorsementMark variant="axionari" /> : <AxionariMark />}
               </div>
             </Reveal>
           )}
