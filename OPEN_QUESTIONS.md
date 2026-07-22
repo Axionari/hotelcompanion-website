@@ -30,7 +30,27 @@ adaptation), gold thread retained per base §3B (the forensic stage list doesn't
 mention it), watch nudged 18px left / 26px down from the initial placement so
 the tablet's primary button stays legible at the specified overlap.
 
-## OQ-6 · The heroes' device-UI text makes the Phase-5 ≥25% word gate unreachable as counted — **PANEL INPUT REQUESTED at the post-P3 review**
+## OQ-6 · The heroes' device-UI text makes the Phase-5 ≥25% word gate unreachable as counted — **RESOLVED: reading-copy measure (panel ruling, 2026-07-22) → gate PASSES**
+
+> "The Phase-5 word gate measures READING COPY only. Implement
+> deterministically: tag every device-screen container (hero mini-UIs, receipts
+> inside device frames, demo engine screens, constellation screens) with
+> `data-device-ui`, and measure innerText excluding those subtrees. The ≥25%
+> target stands on that measure. Document … that the baseline number included
+> the old page's device text (bento, demo) — state the asymmetry rather than
+> adjusting for it, and report both numbers."
+
+**Implemented:** `data-device-ui` on the arc stop mini-UI+receipt wrappers
+(desktop + rail), the constellation `Frame`s, `TabletOS`, `TabletFilmstrip`,
+the hero demo engine (`HeroIgnition`), and the LiveDemo device. Measure =
+`body.innerText` minus the innerText of non-nested `[data-device-ui]` subtrees.
+
+**Result (final build, paired 364px viewport):**
+EN 1357 → reading 992 (**−26.9%** · full 1410, device-UI 418) ·
+ES 1538 → reading 1095 (**−28.8%** · full 1543, device-UI 448).
+**PASS** — conservatively: the baselines still *include* the old page's device
+text (bento labels, walkthrough tablet screens); the asymmetry is stated, not
+adjusted for, and works against v3.
 
 **What:** The Phase-5 word gate (per the OQ-4 ruling) counts hydrated-DOM
 `innerText` at the baseline viewport. The sun arc's five mini-UIs + receipts
