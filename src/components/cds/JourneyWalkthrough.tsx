@@ -347,6 +347,62 @@ export function JourneyWalkthrough({
   )
 }
 
+/**
+ * v3 Phase 3A — the revenue ticker as a standalone epilogue block.
+ * Extracted from the walkthrough's tally slot (same label/serif-copper idiom)
+ * so the sun arc can close on `INGRESOS DE ESTA ESTANCIA · +$402` without the
+ * stage list. Counts up 0 → value on reveal; static under reduced motion.
+ */
+export function RevenueTally({ label, value }: { label: string; value: string }) {
+  const ref = useRef<HTMLDivElement | null>(null)
+  const [shown, setShown] = useState(value)
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const el = ref.current
+    if (!el) return
+    const m = value.match(/^(\D*)([\d.,]+)(.*)$/)
+    if (!m) return
+    const [, pre, num, post] = m
+    const target = parseFloat(num.replace(/,/g, ''))
+    let raf = 0
+    let started = false
+    const run = () => {
+      if (started) return
+      started = true
+      const dur = 900
+      const t0 = performance.now()
+      const step = (t: number) => {
+        const p = Math.min(1, (t - t0) / dur)
+        const eased = 1 - Math.pow(1 - p, 3)
+        setShown(`${pre}${Math.round(target * eased)}${post}`)
+        if (p < 1) raf = requestAnimationFrame(step)
+      }
+      raf = requestAnimationFrame(step)
+    }
+    const io = new IntersectionObserver((es) => es.some((e) => e.isIntersecting) && run(), {
+      rootMargin: '0px 0px -10% 0px',
+    })
+    io.observe(el)
+    return () => {
+      io.disconnect()
+      cancelAnimationFrame(raf)
+    }
+  }, [value])
+
+  return (
+    <div ref={ref} className="pt-5" style={{ borderTop: '1px solid var(--border-soft)' }}>
+      <span className="eyebrow block">{label}</span>
+      <span
+        className="font-serif block mt-1.5"
+        style={{ fontSize: 'clamp(1.5rem, 2.6vw, 2rem)', fontWeight: 530, color: 'var(--accent)', lineHeight: 1.05 }}
+      >
+        {shown}
+      </span>
+    </div>
+  )
+}
+
 /* ------------------------------------------------- Interface of 2029 (§B) */
 
 export interface Surface {

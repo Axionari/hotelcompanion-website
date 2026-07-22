@@ -9,13 +9,18 @@ import { QuestionMarquee } from '@/components/cds/QuestionMarquee'
 import { AxionariMark } from '@/components/cds/EndorsementMark'
 import { PersistentCTA } from '@/components/cds/PersistentCTA'
 import { HeroIgnition } from '@/components/cds/HeroIgnition'
-import { TabletOS } from '@/components/cds/TabletOS'
+import { TabletOS, TabletFilmstrip } from '@/components/cds/TabletOS'
 import { openLiveDemo } from '@/components/cds/LiveDemoModal'
 import { Teaser } from '@/components/cds/Teaser'
 import { Breather } from '@/components/cds/Breather'
 import { globalCopy } from '@/lib/i18n/marketing/global'
-import { JourneyWalkthrough } from '@/components/cds/JourneyWalkthrough'
-import { DeviceWall } from '@/components/cds/DeviceWall'
+import { RevenueTally } from '@/components/cds/JourneyWalkthrough'
+import { SunArc } from '@/components/cds/SunArc'
+import { Constellation } from '@/components/cds/Constellation'
+import { GuestMemoryCard } from '@/components/cds/GuestMemoryCard'
+import { RequestExecutionCard } from '@/components/cds/RequestExecutionCard'
+import { sunArcCopy } from '@/lib/i18n/marketing/sunArc'
+import { constellationCopy } from '@/lib/i18n/marketing/constellation'
 import { MediaBed } from '@/components/cds/MediaBed'
 import { MultiAccentHeadline } from '@/components/cds/AccentHeadline'
 import {
@@ -42,6 +47,8 @@ export default function HomeClient() {
   const a = useCopy(accents)
   const g = useCopy(globalCopy)
   const screens = useCopy(deviceScreens)
+  const arc = useCopy(sunArcCopy)
+  const constellation = useCopy(constellationCopy)
 
   return (
     <main>
@@ -143,20 +150,52 @@ export default function HomeClient() {
         </div>
       </section>
 
-      {/* 04 · REVENUE {#home-revenue} — v3: five explanation captions and the
-          PRE/DURING/AFTER bullets deleted (deck {#04}); headline, ticker and
-          tablet stay. Intentionally sparse until the Phase 3 sun-arc rebuild.
-          A1 thesis line lands here (styled champagne in Phase 3). */}
-      <Section id="home-revenue" eyebrow="04 · REVENUE" title={c.revenue.title} support={c.revenue.thesis} variant="surface-1">
-        <div className="mt-14">
-          <JourneyWalkthrough steps={c.journey.steps} tallyLabel={c.journey.tallyLabel} />
+      {/* 04 · REVENUE {#home-revenue} — v3 Phase 3A: THE SUN ARC. The orb
+          scrubs dawn→2AM with scroll; five stops hang from the arc as working
+          mini-UIs with receipts. Epilogue: the revenue ticker, the closing
+          line, then the tablet demo screens (Phase 4 upgrades the demo). */}
+      <section id="home-revenue" className="scroll-mt-20">
+        <SunArc
+          eyebrow="04 · REVENUE"
+          title={c.revenue.title}
+          thesisPre={c.revenue.thesis.pre}
+          thesisHi={c.revenue.thesis.hi}
+        />
+        <div style={{ background: '#171310' }}>
+          <div className="container-rc py-16">
+            <div style={{ maxWidth: 380 }}>
+              {/* +$402: ILLUSTRATIVE — audit before production promotion */}
+              <RevenueTally label={c.journey.tallyLabel} value="+$402" />
+            </div>
+            <Reveal>
+              <p
+                className="font-serif mt-8"
+                style={{ fontSize: 'clamp(1.3rem, 2.2vw, 1.75rem)', fontWeight: 530, color: 'var(--text)', maxWidth: '30ch' }}
+              >
+                {arc.closing}
+              </p>
+            </Reveal>
+            <div className="mt-12">
+              <TabletFilmstrip screens={c.journey.steps.map((s) => s.screen)} />
+            </div>
+          </div>
         </div>
-      </Section>
+      </section>
 
-      {/* 05 · EVERY SURFACE — one intent, every surface */}
-      <Section eyebrow="05 · EVERY SURFACE" title={c.surfaces2029.title} support={c.surfaces2029.caption} variant="surface-1">
-        <div className="mt-14">
-          <DeviceWall intent={c.surfaces2029.intent} />
+      {/* 05 · EVERY SURFACE — v3 Phase 3B: THE CONSTELLATION. One cinematic
+          still, six devices in depth, the question asked once (on the tablet).
+          The old 8-vignette bento (DeviceWall) retired; its assets reused. */}
+      <Section eyebrow="05 · EVERY SURFACE" title={c.surfaces2029.title} variant="surface-1">
+        <Reveal>
+          <p
+            className="font-sans mt-6 ml-auto"
+            style={{ fontSize: 14.5, lineHeight: 1.6, color: 'var(--text-dim)', maxWidth: '38ch', textAlign: 'right' }}
+          >
+            {constellation.caption}
+          </p>
+        </Reveal>
+        <div className="mt-10">
+          <Constellation />
         </div>
       </Section>
 
@@ -244,6 +283,11 @@ export default function HomeClient() {
               />
             </Teaser>
           </div>
+        </div>
+        {/* v3 Phase 3 (OQ-5): the deck-07 proof cards join the merged section */}
+        <div className="mt-10 grid lg:grid-cols-2 gap-8 items-start">
+          <GuestMemoryCard />
+          <RequestExecutionCard />
         </div>
       </Section>
 

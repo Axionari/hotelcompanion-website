@@ -9,6 +9,54 @@ Logged per `docs/v3/01_RULES.md` rule 5. Newest first.
 
 ---
 
+## OQ-6 · The heroes' device-UI text makes the Phase-5 ≥25% word gate unreachable as counted — **PANEL INPUT REQUESTED at the post-P3 review**
+
+**What:** The Phase-5 word gate (per the OQ-4 ruling) counts hydrated-DOM
+`innerText` at the baseline viewport. The sun arc's five mini-UIs + receipts
+and the constellation's screens/role captions are ~250–300 words of *device-UI*
+text per locale — spec-mandated content, strings verbatim from the deck.
+Measured after Phase 3 (viewport-paired vs the Phase-0 baseline):
+EN 1357 → **1361** (+0.3%) · ES 1538 → **1504** (−2.2%). Phase 4's ask-bar adds
+more scripted-answer text. Under this counting, ≥25% cannot pass without
+cutting content the deck mandates — and the ruling forbids trimming to hit
+numbers.
+
+**Options:** (a) measure *reading copy* (exclude device frames, receipts,
+chips — i.e., text inside the mini-UI/demo components) — under that lens the
+Phase-1 cuts (−21/−23%) plus the bento/old-15 deletions carry the target;
+(b) re-baseline the v3-wide number; (c) accept the gate failing at Phase 5 and
+rule then.
+
+**Chose:** nothing — observation only, work continued per the addendum (Phase 3
+gates are unaffected). Raised now so the panel can rule before Phase 4/5.
+
+## OQ-5 · Phase 3 smallest-interpretation decisions (logged, work continued)
+
+1. **Cards B/C wiring.** No phase spec wires `GuestMemoryCard` /
+   `RequestExecutionCard` into section 07 (Phase 2 forbids homepage wiring,
+   Phase 4 wires only the AskBar, Phase 5 expects "07 cards" screenshots).
+   Wired them in Phase 3 so this review shows the complete merged section.
+2. **Sun-arc epilogue.** Spec 3A orders the epilogue "ticker → closing line →
+   tablet demo". The old `JourneyWalkthrough` fused stage-list + ticker +
+   tablet; the arc now tells the day, so the stage list is retired, the ticker
+   is extracted as `RevenueTally` (same label/serif-copper idiom, counts
+   +$0→+$402 on reveal) and the tablet demo renders as the six-screen
+   `TabletFilmstrip`. The interactive LiveDemo modal is untouched (Phase 4's
+   target). `/platform`'s revenue teaser still reads the journey data.
+3. **`overflow-x: hidden` → `clip` on html/body.** The site's mobile-overflow
+   guard made `body` a scroll container, which silently disables
+   `position: sticky` — the arc pin cannot work without this one-line change.
+   `clip` preserves the clipping with no scroll container (global, verified on
+   all pages via build + spot checks).
+4. **Arc geometry.** Horizon endpoints sit at 0.59·stage-height (spec: "lower
+   third") and the stage enforces min-height 840px — the exact lower third left
+   no room for the outer stops' mini-UI + receipt inside a 100vh pin.
+5. **Traveling orb label.** Fades out within 120px of a stop (the stop's serif
+   time takes over) — the literal always-visible label collided with the stop
+   times at every resting position. Swap behavior otherwise as specified.
+6. **TV greeting ES.** Constellation reuses the existing `surfaceWall` string
+   `Bienvenida, Maya` (usted register kept as shipped).
+
 ## OQ-4 · Phase 1 word-count gate misses: −21.4% EN / −22.8% ES vs required ≥25% — **RESOLVED: option (b), gate reattributed (panel ruling, 2026-07-22)**
 
 > "The ≥25% word-count target was always a v3-wide outcome; pinning it entirely

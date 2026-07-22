@@ -108,9 +108,11 @@ const en = {
   },
   revenue: {
     title: 'Every Conversation Is Revenue.',
-    /* v3 ADDENDUM_1 A1 — thesis line; final sentence styled champagne in Phase 3 */
-    thesis:
-      'The booking, the upsell, the taxi, the review — each begins as a question. The Companion answers them all, and closes what it answers. No OTA in between.',
+    /* v3 ADDENDUM_1 A1 — thesis line; `hi` renders in --champagne (Phase 3) */
+    thesis: {
+      pre: 'The booking, the upsell, the taxi, the review — each begins as a question. The Companion answers them all, and closes what it answers. ',
+      hi: 'No OTA in between.',
+    },
   },
   knows: {
     title: 'It Knows Your Hotel Like Your Best Employee.',
@@ -430,9 +432,11 @@ const es: typeof en = {
   },
   revenue: {
     title: 'Cada Conversación Es Ingreso.',
-    /* v3 ADDENDUM_1 A1 — línea tesis; última frase en champagne en Fase 3 */
-    thesis:
-      'La reserva, la mejora, el taxi, la reseña — cada una empieza como una pregunta. El Companion las responde y las cierra. Sin OTA de por medio.',
+    /* v3 ADDENDUM_1 A1 — línea tesis; `hi` se renderiza en --champagne (Fase 3) */
+    thesis: {
+      pre: 'La reserva, la mejora, el taxi, la reseña — cada una empieza como una pregunta. El Companion las responde y las cierra. ',
+      hi: 'Sin OTA de por medio.',
+    },
   },
   knows: {
     title: 'Conoce Tu Hotel Como Tu Mejor Empleado.',
