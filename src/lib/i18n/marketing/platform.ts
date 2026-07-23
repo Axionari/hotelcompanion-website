@@ -63,6 +63,8 @@ const en = {
     /* One guest question, answered five ways — the voice-morph interaction. */
     morphQuestion: 'Where should we have dinner tonight?',
     morphDeviceLabel: 'MarAzul Riviera Maya',
+    morphStatus: 'Speaking',
+    voiceTag: 'Voice',
     voices: [
       {
         name: 'Warm & Local',
@@ -297,6 +299,8 @@ const en = {
     guest: 'There’s water on the bathroom floor.',
     reply: 'I’m sorry about that — I’ve alerted Engineering right now. Which room are you in?',
     deviceLabel: 'MarAzul Riviera Maya · 02:14',
+    ticketTag: 'Request · Engineering',
+    ticketStatus: 'Open',
   },
   /* Command-centre mockup chrome and sample figures. NEEDS REAL DATA before launch. */
   dashboard: {
@@ -405,6 +409,8 @@ const es: typeof en = {
     /* Una sola pregunta del huésped, respondida de cinco formas. */
     morphQuestion: '¿Dónde deberíamos cenar esta noche?',
     morphDeviceLabel: 'MarAzul Riviera Maya',
+    morphStatus: 'Hablando',
+    voiceTag: 'Voz',
     voices: [
       {
         name: 'Cálido y Local',
@@ -636,6 +642,8 @@ const es: typeof en = {
     guest: 'Hay agua en el piso del baño.',
     reply: 'Lamento mucho eso — ya avisé a Ingeniería en este momento. ¿En qué habitación se encuentra?',
     deviceLabel: 'MarAzul Riviera Maya · 02:14',
+    ticketTag: 'Solicitud · Ingeniería',
+    ticketStatus: 'Abierto',
   },
   /* Cifras de ejemplo del centro de mando. NEEDS REAL DATA antes del lanzamiento. */
   dashboard: {

@@ -132,6 +132,8 @@ export default function PlatformClient() {
               voices={c.yourVoice.voices}
               guestQuestion={c.yourVoice.morphQuestion}
               deviceLabel={c.yourVoice.morphDeviceLabel}
+              statusLabel={c.yourVoice.morphStatus}
+              voiceTag={c.yourVoice.voiceTag}
             />
           </div>
           <Reveal>
@@ -207,6 +209,8 @@ export default function PlatformClient() {
             guest={c.issueAlert.guest}
             reply={c.issueAlert.reply}
             deviceLabel={c.issueAlert.deviceLabel}
+            ticketTag={c.issueAlert.ticketTag}
+            ticketStatus={c.issueAlert.ticketStatus}
             stages={c.issueDetection.features.slice(1, 3).map((f) => ({ title: f.name, body: f.desc }))}
           />
         </div>
