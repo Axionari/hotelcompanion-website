@@ -199,9 +199,9 @@ export function CompanionTablet({ className = '', askBar = true }: { className?:
           <div style={{ display: 'flex', flexDirection: 'column', padding: '6% 5.5% 5.5%', borderRight: '1px solid rgba(243,236,226,0.07)', minHeight: 0 }}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
               <VoiceOrb size="clamp(34px, 4.8vw, 56px)" state="listening" ripples showMic micScale={0.34} />
-              <div style={{ ...MONO, fontSize: 'clamp(6px,0.82vw,8.5px)', letterSpacing: '.2em', color: TERRA, textAlign: 'center', marginTop: '7%' }}>SPEAK OR TYPE</div>
+              <div style={{ ...MONO, fontSize: 'clamp(9px, 0.82vw, 9.5px)', letterSpacing: '.2em', color: TERRA, textAlign: 'center', marginTop: '7%' }}>SPEAK OR TYPE</div>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(5px,0.8vw,9px)', width: '100%', marginTop: 'clamp(12px,1.8vw,20px)' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(9px, 0.8vw, 9.5px)', width: '100%', marginTop: 'clamp(12px,1.8vw,20px)' }}>
               {rail.map((t, idx) => {
                 const on = idx === activeRail
                 return (
@@ -209,9 +209,9 @@ export function CompanionTablet({ className = '', askBar = true }: { className?:
                     key={t.id}
                     style={{
                       borderRadius: 999,
-                      padding: 'clamp(6px,1vw,10px) clamp(8px,1.2vw,14px)',
+                      padding: 'clamp(9px, 1vw, 10px) clamp(9px, 1.2vw, 14px)',
                       textAlign: 'center',
-                      fontSize: 'clamp(8px,1vw,12px)',
+                      fontSize: 'clamp(9px, 1vw, 12px)',
                       fontWeight: on ? 600 : 500,
                       fontFamily: SANS,
                       color: on ? CREAM : 'rgba(242,233,218,0.82)',
@@ -227,8 +227,8 @@ export function CompanionTablet({ className = '', askBar = true }: { className?:
             </div>
             {askBar && (
               <div style={{ marginTop: 'auto', paddingTop: 'clamp(10px,1.6vw,18px)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6, border: '1px solid rgba(243,236,226,0.16)', background: 'rgba(243,236,226,0.05)', borderRadius: 999, padding: 'clamp(4px,0.6vw,7px) clamp(5px,0.7vw,8px) clamp(4px,0.6vw,7px) clamp(10px,1.2vw,14px)' }}>
-                  <span style={{ flex: 1, minWidth: 0, fontFamily: SANS, fontSize: 'clamp(7.5px,0.9vw,11px)', color: 'rgba(242,233,218,0.5)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{d.askAnything}</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6, border: '1px solid rgba(243,236,226,0.16)', background: 'rgba(243,236,226,0.05)', borderRadius: 999, padding: 'clamp(9px, 0.6vw, 9.5px) clamp(9px, 0.7vw, 9.5px) clamp(9px, 0.6vw, 9.5px) clamp(10px,1.2vw,14px)' }}>
+                  <span style={{ flex: 1, minWidth: 0, fontFamily: SANS, fontSize: 'clamp(9px, 0.9vw, 11px)', color: 'rgba(242,233,218,0.5)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{d.askAnything}</span>
                   <span aria-hidden style={{ flexShrink: 0, width: 'clamp(17px,2vw,23px)', height: 'clamp(17px,2vw,23px)', display: 'grid', placeItems: 'center', borderRadius: '50%', background: TERRA, color: '#1a1207', fontSize: 'clamp(9px,1vw,12px)', fontWeight: 700 }}>↑</span>
                 </div>
               </div>
@@ -280,7 +280,7 @@ function Listening({ label }: { label: string }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
       <span style={{ width: 6, height: 6, borderRadius: '50%', background: TERRA, boxShadow: '0 0 8px rgba(200,106,58,0.8)' }} />
-      <span style={{ ...MONO, fontSize: 'clamp(6px,0.8vw,8.5px)', letterSpacing: '.18em', color: 'rgba(242,233,218,0.62)', textShadow: '0 1px 6px rgba(0,0,0,0.6)' }}>{label.toUpperCase()}</span>
+      <span style={{ ...MONO, fontSize: 'clamp(9px, 0.8vw, 9.5px)', letterSpacing: '.18em', color: 'rgba(242,233,218,0.62)', textShadow: '0 1px 6px rgba(0,0,0,0.6)' }}>{label.toUpperCase()}</span>
     </div>
   )
 }
@@ -300,15 +300,15 @@ function HeroScreen({ sc, listening }: { sc: Screen; listening: string }) {
       )}
       <div style={{ position: 'absolute', left: '5%', right: '5%', bottom: '6%', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: 'clamp(10px,1.8vw,24px)' }}>
         <div style={{ flex: 1, minWidth: 0 }}>
-          {sc.badge && <span style={{ ...MONO, display: 'inline-block', whiteSpace: 'nowrap', fontSize: 'clamp(5.5px,0.78vw,8px)', letterSpacing: '.1em', color: TERRA, border: '1px solid rgba(200,106,58,0.45)', background: 'rgba(11,9,8,0.5)', backdropFilter: 'blur(4px)', borderRadius: 999, padding: '3px 9px', marginBottom: 'clamp(6px,0.9vw,10px)' }}>{sc.badge}</span>}
+          {sc.badge && <span style={{ ...MONO, display: 'inline-block', whiteSpace: 'nowrap', fontSize: 'clamp(9px, 0.78vw, 9.5px)', letterSpacing: '.1em', color: TERRA, border: '1px solid rgba(200,106,58,0.45)', background: 'rgba(11,9,8,0.5)', backdropFilter: 'blur(4px)', borderRadius: 999, padding: '3px 9px', marginBottom: 'clamp(9px, 0.9vw, 10px)' }}>{sc.badge}</span>}
           <div style={{ fontFamily: SERIF, fontWeight: 500, fontSize: 'clamp(17px,1.85vw,26px)', lineHeight: 1.08, color: CREAM, textWrap: 'balance' } as CSSProperties}>{sc.title}</div>
-          <div style={{ fontFamily: SANS, fontSize: 'clamp(9px,1vw,12.5px)', lineHeight: 1.35, color: 'rgba(242,233,218,0.82)', marginTop: 'clamp(4px,0.6vw,7px)' }}>{sc.meta}</div>
+          <div style={{ fontFamily: SANS, fontSize: 'clamp(9px,1vw,12.5px)', lineHeight: 1.35, color: 'rgba(242,233,218,0.82)', marginTop: 'clamp(9px, 0.6vw, 9.5px)' }}>{sc.meta}</div>
         </div>
         <div style={{ display: 'flex', gap: 6, flexShrink: 0 }}>
           {sc.secondary && (
-            <span style={{ fontFamily: SANS, fontSize: 'clamp(9px,1vw,12px)', fontWeight: 500, color: CREAM, border: '1px solid rgba(243,236,226,0.4)', background: 'rgba(11,9,8,0.35)', borderRadius: 999, padding: 'clamp(6px,0.8vw,9px) clamp(9px,1.2vw,14px)', whiteSpace: 'nowrap' }}>{sc.secondary}</span>
+            <span style={{ fontFamily: SANS, fontSize: 'clamp(9px,1vw,12px)', fontWeight: 500, color: CREAM, border: '1px solid rgba(243,236,226,0.4)', background: 'rgba(11,9,8,0.35)', borderRadius: 999, padding: 'clamp(9px, 0.8vw, 9.5px) clamp(9px,1.2vw,14px)', whiteSpace: 'nowrap' }}>{sc.secondary}</span>
           )}
-          <span style={{ fontFamily: SANS, fontSize: 'clamp(9px,1vw,12px)', fontWeight: 600, color: '#1a1207', background: TERRA, borderRadius: 999, padding: 'clamp(6px,0.8vw,9px) clamp(9px,1.2vw,14px)', whiteSpace: 'nowrap' }}>{sc.primary}</span>
+          <span style={{ fontFamily: SANS, fontSize: 'clamp(9px,1vw,12px)', fontWeight: 600, color: '#1a1207', background: TERRA, borderRadius: 999, padding: 'clamp(9px, 0.8vw, 9.5px) clamp(9px,1.2vw,14px)', whiteSpace: 'nowrap' }}>{sc.primary}</span>
         </div>
       </div>
     </>
@@ -326,16 +326,16 @@ function ChoicesScreen({ sc, listening }: { sc: Screen; listening: string }) {
         </div>
         <Listening label={listening} />
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(7px,1vw,11px)', marginTop: 'clamp(10px,1.6vw,18px)' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(9px, 1vw, 11px)', marginTop: 'clamp(10px,1.6vw,18px)' }}>
         {sc.choices?.map((it) => (
-          <div key={it.name} style={{ display: 'flex', alignItems: 'center', gap: 'clamp(9px,1.2vw,14px)', background: 'rgba(243,236,226,0.05)', border: '1px solid rgba(243,236,226,0.1)', borderRadius: 14, padding: 'clamp(6px,0.8vw,9px)' }}>
+          <div key={it.name} style={{ display: 'flex', alignItems: 'center', gap: 'clamp(9px,1.2vw,14px)', background: 'rgba(243,236,226,0.05)', border: '1px solid rgba(243,236,226,0.1)', borderRadius: 14, padding: 'clamp(9px, 0.8vw, 9.5px)' }}>
             <div style={{ position: 'relative', flexShrink: 0, width: 'clamp(44px,6vw,74px)', height: 'clamp(44px,6vw,74px)', borderRadius: 10, overflow: 'hidden' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img alt={it.name} src={it.image} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontFamily: SANS, fontWeight: 600, fontSize: 'clamp(11px,1.2vw,15px)', color: CREAM, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{it.name}</div>
-              <div style={{ fontFamily: SANS, fontSize: 'clamp(8.5px,0.95vw,12px)', color: 'rgba(242,233,218,0.6)', marginTop: 2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{it.meta}</div>
+              <div style={{ fontFamily: SANS, fontSize: 'clamp(9px, 0.95vw, 12px)', color: 'rgba(242,233,218,0.6)', marginTop: 2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{it.meta}</div>
             </div>
             <div style={{ ...MONO, fontSize: 'clamp(10px,1.1vw,14px)', color: CREAM, flexShrink: 0 }}>{it.price}</div>
             <span aria-hidden style={{ flexShrink: 0, width: 'clamp(22px,2.6vw,30px)', height: 'clamp(22px,2.6vw,30px)', display: 'grid', placeItems: 'center', borderRadius: '50%', background: TERRA, color: '#1a1207', fontSize: 'clamp(13px,1.5vw,18px)', fontWeight: 700 }}>+</span>
@@ -352,32 +352,32 @@ function CardsScreen({ sc, listening, property }: { sc: Screen; listening: strin
     <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(160deg, #16120e 0%, #100d0b 100%)', display: 'flex', flexDirection: 'column', padding: 'clamp(12px,1.7vw,22px)' }}>
       {/* status */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexShrink: 0 }}>
-        <span style={{ ...MONO, display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 'clamp(6.5px,0.82vw,9px)', letterSpacing: '.18em', color: TERRA, border: '1px solid rgba(200,106,58,0.4)', background: 'rgba(11,9,8,0.4)', borderRadius: 999, padding: '4px 10px' }}>
+        <span style={{ ...MONO, display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 'clamp(9px, 0.82vw, 9.5px)', letterSpacing: '.18em', color: TERRA, border: '1px solid rgba(200,106,58,0.4)', background: 'rgba(11,9,8,0.4)', borderRadius: 999, padding: '4px 10px' }}>
           <span style={{ width: 6, height: 6, borderRadius: '50%', background: TERRA }} />{property.toUpperCase()}
         </span>
-        <span style={{ ...MONO, fontSize: 'clamp(6px,0.8vw,8.5px)', letterSpacing: '.18em', color: 'rgba(242,233,218,0.5)' }}>{listening.toUpperCase()}</span>
+        <span style={{ ...MONO, fontSize: 'clamp(9px, 0.8vw, 9.5px)', letterSpacing: '.18em', color: 'rgba(242,233,218,0.5)' }}>{listening.toUpperCase()}</span>
       </div>
       {/* title + question */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: 12, flexShrink: 0, marginTop: 'clamp(8px,1.2vw,14px)' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: 12, flexShrink: 0, marginTop: 'clamp(9px, 1.2vw, 14px)' }}>
         <div style={{ fontFamily: SERIF, fontWeight: 500, fontSize: 'clamp(18px,2vw,30px)', lineHeight: 1, color: CREAM }}>{sc.cardsTitle}</div>
         <span style={{ fontFamily: SANS, fontSize: 'clamp(9px,1.05vw,14px)', color: 'rgba(242,233,218,0.75)' }}>{sc.ask}</span>
       </div>
       {/* three treatment cards */}
-      <div style={{ display: 'flex', gap: 'clamp(7px,1vw,12px)', marginTop: 'clamp(9px,1.4vw,16px)', flex: 1, minHeight: 0 }}>
+      <div style={{ display: 'flex', gap: 'clamp(9px, 1vw, 12px)', marginTop: 'clamp(9px,1.4vw,16px)', flex: 1, minHeight: 0 }}>
         {sc.cards?.map((c) => (
           <div key={c.name} style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', borderRadius: 14, overflow: 'hidden', background: 'rgba(243,236,226,0.04)', border: `1px solid ${c.featured ? 'rgba(200,106,58,0.55)' : 'rgba(243,236,226,0.1)'}` }}>
             <div style={{ position: 'relative', flex: 1, minHeight: 'clamp(40px,4.4vw,78px)' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img alt={c.name} src={c.image} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
               <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(11,9,8,0.05) 0%, transparent 50%, rgba(11,9,8,0.4) 100%)' }} />
-              {c.badge && <span style={{ position: 'absolute', top: 8, right: 8, ...MONO, fontSize: 'clamp(6.5px,0.78vw,9px)', letterSpacing: '.06em', color: '#1a1207', background: TERRA, borderRadius: 999, padding: '4px 9px' }}>{c.badge}</span>}
+              {c.badge && <span style={{ position: 'absolute', top: 8, right: 8, ...MONO, fontSize: 'clamp(9px, 0.78vw, 9.5px)', letterSpacing: '.06em', color: '#1a1207', background: TERRA, borderRadius: 999, padding: '4px 9px' }}>{c.badge}</span>}
             </div>
-            <div style={{ padding: 'clamp(7px,0.9vw,12px)', display: 'flex', flexDirection: 'column', gap: 'clamp(5px,0.7vw,9px)', flexShrink: 0 }}>
+            <div style={{ padding: 'clamp(9px, 0.9vw, 12px)', display: 'flex', flexDirection: 'column', gap: 'clamp(9px, 0.7vw, 9.5px)', flexShrink: 0 }}>
               <div>
                 <div style={{ fontFamily: SANS, fontWeight: 600, fontSize: 'clamp(9.5px,1vw,13px)', lineHeight: 1.15, color: CREAM }}>{c.name}</div>
-                <div style={{ fontFamily: SANS, fontSize: 'clamp(8px,0.9vw,11.5px)', color: 'rgba(242,233,218,0.6)', marginTop: 3, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{c.meta}</div>
+                <div style={{ fontFamily: SANS, fontSize: 'clamp(9px, 0.9vw, 11.5px)', color: 'rgba(242,233,218,0.6)', marginTop: 3, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{c.meta}</div>
               </div>
-              <span style={{ fontFamily: SANS, fontWeight: 600, fontSize: 'clamp(8.5px,0.95vw,12px)', textAlign: 'center', color: c.featured ? '#1a1207' : CREAM, background: c.featured ? TERRA : 'transparent', border: c.featured ? '1px solid transparent' : '1px solid rgba(243,236,226,0.35)', borderRadius: 999, padding: 'clamp(6px,0.75vw,9px) 0' }}>{sc.reserve}</span>
+              <span style={{ fontFamily: SANS, fontWeight: 600, fontSize: 'clamp(9px, 0.95vw, 12px)', textAlign: 'center', color: c.featured ? '#1a1207' : CREAM, background: c.featured ? TERRA : 'transparent', border: c.featured ? '1px solid transparent' : '1px solid rgba(243,236,226,0.35)', borderRadius: 999, padding: 'clamp(9px, 0.75vw, 9.5px) 0' }}>{sc.reserve}</span>
             </div>
           </div>
         ))}

@@ -200,7 +200,7 @@ function ScreenBody({ id }: { id: ScreenId }) {
           ))}
         </div>
         <div className="mt-3 flex items-center justify-between">
-          <span className="eyebrow" style={{ fontSize: 8 }}>
+          <span className="eyebrow" style={{ fontSize: 9 }}>
             {s.roomservice.total} · $62
           </span>
           <ActionRow labels={[s.roomservice.send]} />
@@ -224,7 +224,7 @@ function ScreenBody({ id }: { id: ScreenId }) {
               <span
                 className="eyebrow inline-block"
                 style={{
-                  fontSize: 7.5,
+                  fontSize: 9,
                   letterSpacing: '.12em',
                   color: 'var(--accent)',
                   border: '1px solid var(--accent-hairline)',
@@ -300,7 +300,7 @@ function ScreenBody({ id }: { id: ScreenId }) {
           >
             <span
               className="eyebrow absolute"
-              style={{ left: 8, bottom: 8, fontSize: 8, color: 'var(--accent)' }}
+              style={{ left: 8, bottom: 8, fontSize: 9, color: 'var(--accent)' }}
             >
               {s.concierge.mapLabel}
             </span>
@@ -344,7 +344,7 @@ function ScreenBody({ id }: { id: ScreenId }) {
           <div className="font-serif" style={{ fontSize: 15, fontWeight: 530, color: 'var(--text)' }}>
             {s.followup.title}
           </div>
-          <div className="eyebrow mt-1" style={{ fontSize: 8 }}>
+          <div className="eyebrow mt-1" style={{ fontSize: 9 }}>
             {s.followup.meta}
           </div>
           <p
@@ -387,7 +387,7 @@ function ScreenBody({ id }: { id: ScreenId }) {
         {s.issue.stages.map((st) => (
           <div key={st} className="flex items-center gap-2">
             <span style={{ width: 5, height: 5, borderRadius: 999, background: 'var(--accent)' }} />
-            <span className="eyebrow" style={{ fontSize: 8 }}>
+            <span className="eyebrow" style={{ fontSize: 9 }}>
               {st}
             </span>
           </div>
@@ -477,7 +477,7 @@ export function TabletOS({
           <div className="absolute left-0 right-0 top-0 z-10 flex items-center justify-between px-4 pt-3.5">
             <span
               className="eyebrow inline-flex items-center gap-1.5 rounded-full px-2.5 py-1"
-              style={{ border: '1px solid var(--accent-hairline)', color: 'var(--accent)', fontSize: 8 }}
+              style={{ border: '1px solid var(--accent-hairline)', color: 'var(--accent)', fontSize: 9 }}
             >
               <span
                 style={{
@@ -490,7 +490,7 @@ export function TabletOS({
               />
               {d.property}
             </span>
-            <span className="eyebrow inline-flex items-center gap-1.5" style={{ fontSize: 8 }}>
+            <span className="eyebrow inline-flex items-center gap-1.5" style={{ fontSize: 9 }}>
               <span
                 aria-hidden="true"
                 style={{
@@ -530,14 +530,14 @@ export function TabletOS({
               </div>
               <span
                 className="eyebrow mt-2.5 text-center"
-                style={{ fontSize: 7, color: 'var(--accent)', lineHeight: 1.35 }}
+                style={{ fontSize: 9, color: 'var(--accent)', lineHeight: 1.35 }}
               >
                 {d.orbHint}
               </span>
 
               <span
                 className="tos-property eyebrow mt-3 text-center"
-                style={{ fontSize: 6.5, color: 'var(--text-faint)', lineHeight: 1.3 }}
+                style={{ fontSize: 9, color: 'var(--text-faint)', lineHeight: 1.3 }}
               >
                 {d.property}
               </span>
@@ -554,7 +554,7 @@ export function TabletOS({
                       style={{
                         background: on ? 'rgba(200,106,58,0.16)' : 'rgba(251,248,242,0.05)',
                         border: `1px solid ${on ? 'rgba(200,106,58,0.6)' : 'var(--border-soft)'}`,
-                        fontSize: 7.5,
+                        fontSize: 9,
                         fontWeight: on ? 600 : 400,
                         color: on ? 'var(--text)' : 'var(--text-dim)',
                         lineHeight: 1.2,

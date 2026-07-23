@@ -111,10 +111,14 @@ export function EverySurface() {
         </div>
         </Reveal>
 
-        {/* device stage — scrolls on narrow screens, scales as one still */}
+        {/* device stage — scrolls on narrow screens, scales as one still.
+            minWidth is the FULL design stage (1240): below it the em/cqw scale
+            shrinks text faster than the fixed-height screens, so lines re-wrap
+            and collide. Rendering at design width keeps the composition exact
+            and lets the wall be swiped instead. */}
         <Reveal delay={120}>
-        <div style={{ overflowX: 'auto', overflowY: 'hidden', margin: '0 -4px', padding: '0 4px' }}>
-          <div style={{ containerType: 'inline-size', width: '100%', minWidth: 860 } as CSSProperties}>
+        <div className="surface-scroller" style={{ overflowX: 'auto', overflowY: 'hidden', margin: '0 -4px', padding: '0 4px' }}>
+          <div style={{ containerType: 'inline-size', width: '100%', minWidth: 1240 } as CSSProperties}>
             <div style={{ position: 'relative', fontSize: '1cqw', aspectRatio: '1240 / 800', background: 'radial-gradient(ellipse 80% 60% at 50% 28%, #1C120B 0%, #0D0805 74%)', borderRadius: u(20) }}>
 
               {/* ── LAPTOP & WEB — books before arrival, top-right ── */}

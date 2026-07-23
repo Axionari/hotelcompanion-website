@@ -1309,5 +1309,31 @@ body {
 }
 
 @media (max-width: 640px) {
-  .tos-screen { aspect-ratio: 3 / 4; }
+  /* phone-shaped, not a shrunken tablet: 3/5 gives the spa/room-service lists
+     room for their images + all three rows instead of clipping to one. */
+  .tos-screen { aspect-ratio: 3 / 5; }
+}
+
+/* On mobile the step nav drops BELOW the mockup — a menu stacked above a
+   phone-shaped device buries the product and reads as chrome. */
+@media (max-width: 767px) {
+  .suite-wrap { display: flex; flex-direction: column; }
+  .suite-stage { order: 1; }
+  .suite-nav { order: 2; margin-top: clamp(14px,3vw,22px); margin-bottom: 0 !important; }
+}
+
+/* ── EverySurface device wall: it is a horizontal scroller (the stage renders
+   at its full 1240 design width so the composition never re-wraps). On narrow
+   screens give it a real affordance — an edge fade so the cut-off reads as
+   "there is more", plus momentum + snap. Without this it just looks broken. */
+.surface-scroller {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.surface-scroller::-webkit-scrollbar { display: none; }
+@media (max-width: 1100px) {
+  .surface-scroller {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 14px, #000 calc(100% - 34px), transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0, #000 14px, #000 calc(100% - 34px), transparent 100%);
+  }
 }
