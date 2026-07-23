@@ -91,7 +91,7 @@ const en = {
   /* The PMS handshake — live availability confirmed before booking. */
   availability: {
     label: 'LIVE AVAILABILITY',
-    title: 'Checking with the property',
+    title: 'Confirming availability',
     sub: 'Confirming dates and rate directly in the hotel’s PMS — live inventory, nothing assumed.',
     checks: [
       { item: 'Jul 25 – 28 · 3 nights · 2 guests', status: 'Available' },
@@ -145,9 +145,9 @@ const en = {
 
   confirmed: {
     label: 'CONFIRMED',
-    title: 'Your suite is reserved.',
+    title: 'Your reservation has been confirmed.',
     paid: 'Paid with · Visa ending 4242',
-    refLabel: 'BOOKING',
+    refLabel: 'CONFIRMATION CODE',
     ref: 'MAR-4192',
     whenLabel: 'CHECK-IN',
     when: 'Fri, Jul 25 · 3 nights',
@@ -164,7 +164,18 @@ const en = {
     total: '$1,220',
   },
 
-  loyalty: { title: 'Join the MarAzul Circle', note: 'Earn a free night on this stay — one tap' },
+  loyalty: {
+    label: 'MARAZUL CIRCLE',
+    title: 'Join the MarAzul Circle',
+    note: 'One tap at checkout — this stay already counts.',
+    benefits: [
+      'Members’ rate on every direct booking',
+      'A free night after ten nights',
+      'Late checkout & upgrades, when available',
+      'Spa and dining credits every stay',
+    ],
+    cta: 'Join · earn a free night on this stay',
+  },
 
   pills: {
     labels: ['Welcome', 'Browse', 'Suite', 'Your stay', 'Availability', 'Review', 'Pay', 'Processing', 'Confirmed', 'Loyalty'],
@@ -253,7 +264,7 @@ const es: typeof en = {
 
   availability: {
     label: 'DISPONIBILIDAD EN VIVO',
-    title: 'Consultando con la propiedad',
+    title: 'Confirmando disponibilidad',
     sub: 'Confirmando fechas y tarifa directamente en el PMS del hotel — inventario en vivo, nada supuesto.',
     checks: [
       { item: '25 – 28 Jul · 3 noches · 2 huéspedes', status: 'Disponible' },
@@ -307,9 +318,9 @@ const es: typeof en = {
 
   confirmed: {
     label: 'CONFIRMADO',
-    title: 'Tu suite está reservada.',
+    title: 'Tu reservación ha sido confirmada.',
     paid: 'Pagado con · Visa terminación 4242',
-    refLabel: 'RESERVA',
+    refLabel: 'CÓDIGO DE CONFIRMACIÓN',
     ref: 'MAR-4192',
     whenLabel: 'ENTRADA',
     when: 'Vie, 25 Jul · 3 noches',
@@ -326,7 +337,18 @@ const es: typeof en = {
     total: '$1,220',
   },
 
-  loyalty: { title: 'Únete al MarAzul Circle', note: 'Gana una noche gratis en esta estancia — con un toque' },
+  loyalty: {
+    label: 'MARAZUL CIRCLE',
+    title: 'Únete al MarAzul Circle',
+    note: 'Un toque al pagar — esta estancia ya cuenta.',
+    benefits: [
+      'Tarifa de miembro en cada reserva directa',
+      'Una noche gratis después de diez noches',
+      'Salida tardía y mejoras, según disponibilidad',
+      'Créditos de spa y restaurantes en cada estancia',
+    ],
+    cta: 'Únete · gana una noche gratis en esta estancia',
+  },
 
   pills: {
     labels: ['Bienvenida', 'Explorar', 'Suite', 'Tu estancia', 'Disponibilidad', 'Revisar', 'Pagar', 'Procesando', 'Confirmado', 'Lealtad'],

@@ -59,7 +59,7 @@ const pad: CSSProperties = { position: 'absolute', inset: 0, padding: 'clamp(16p
 function WelcomeScreen({ c }: { c: SuiteCopy }) {
   return (
     <div style={{ ...pad, alignItems: 'center', justifyContent: 'center', textAlign: 'center', gap: 'clamp(10px,1.4vw,20px)' }}>
-      <VoiceOrb state="idle" size="clamp(84px,10vw,140px)" ripples showMic={false} />
+      <VoiceOrb state="listening" size="clamp(120px,14vw,190px)" ripples showMic micScale={0.22} />
       <div style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(22px,2.6vw,40px)', color: CREAM, lineHeight: 1 }}>{c.property}</div>
       <div style={{ ...MONO, fontSize: 'clamp(8px,0.85vw,12px)', letterSpacing: '.22em', color: TERRA }}>{c.tagline}</div>
       <div style={{ marginTop: 'clamp(6px,0.8vw,12px)', fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(18px,2vw,30px)', color: CREAM, lineHeight: 1.15 }}>
@@ -340,7 +340,7 @@ function ConfirmedScreen({ c }: { c: SuiteCopy }) {
       </div>
       <div style={{ marginTop: 'clamp(12px,1.5vw,20px)', width: '100%', maxWidth: 620, border: '1px solid rgba(243,236,226,0.1)', background: 'rgba(243,236,226,0.03)', borderRadius: 14, padding: 'clamp(12px,1.4vw,20px)', flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <div><div style={{ ...MONO, fontSize: 'clamp(7.5px,0.72vw,10px)', letterSpacing: '.14em', color: DIM }}>{f.refLabel}</div><div style={{ ...MONO, fontSize: 'clamp(12px,1.2vw,16px)', color: TERRA, marginTop: 3 }}>{f.ref}</div></div>
+          <div><div style={{ ...MONO, fontSize: 'clamp(7.5px,0.72vw,10px)', letterSpacing: '.14em', color: DIM }}>{f.refLabel}</div><div style={{ ...MONO, fontSize: 'clamp(16px,1.7vw,24px)', letterSpacing: '.06em', color: TERRA, marginTop: 4 }}>{f.ref}</div></div>
           <div style={{ textAlign: 'right' }}><div style={{ ...MONO, fontSize: 'clamp(7.5px,0.72vw,10px)', letterSpacing: '.14em', color: DIM }}>{f.whenLabel}</div><div style={{ fontFamily: SANS, fontWeight: 600, fontSize: 'clamp(11px,1.1vw,15px)', color: CREAM, marginTop: 3 }}>{f.when}</div></div>
         </div>
         <div style={{ borderTop: '1px solid rgba(243,236,226,0.08)', marginTop: 'clamp(9px,1.1vw,14px)', paddingTop: 'clamp(9px,1.1vw,14px)', display: 'flex', flexDirection: 'column', gap: 5, flex: 1, justifyContent: 'center' }}>
@@ -355,18 +355,30 @@ function ConfirmedScreen({ c }: { c: SuiteCopy }) {
   )
 }
 
-/* ── 9 · loyalty ─────────────────────────────────────────────────────── */
+/* ── 9 · loyalty — the program, its benefits, one-tap join ───────────── */
 function LoyaltyScreen({ c }: { c: SuiteCopy }) {
+  const l = c.loyalty
   return (
     <div style={{ ...pad, alignItems: 'center', justifyContent: 'center' }}>
-      <div style={{ width: '100%', maxWidth: 640 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 'clamp(14px,1.6vw,22px)', background: TERRA, borderRadius: 18, padding: 'clamp(18px,2vw,30px)' }}>
-          <span aria-hidden style={{ flexShrink: 0, width: 'clamp(40px,4.4vw,60px)', height: 'clamp(40px,4.4vw,60px)', display: 'grid', placeItems: 'center', borderRadius: 14, background: 'rgba(26,18,7,0.18)', color: '#1a1207', fontSize: 'clamp(18px,2vw,28px)' }}>◆</span>
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(16px,1.8vw,26px)', color: '#1a1207', lineHeight: 1.1 }}>{c.loyalty.title}</div>
-            <div style={{ fontFamily: SANS, fontSize: 'clamp(10px,1vw,14px)', color: 'rgba(26,18,7,0.7)', marginTop: 4 }}>{c.loyalty.note}</div>
+      <div style={{ width: '100%', maxWidth: 620, border: '1px solid rgba(200,106,58,0.4)', background: 'radial-gradient(120% 100% at 50% 0%, rgba(200,106,58,0.1), transparent 60%)', borderRadius: 20, padding: 'clamp(20px,2.4vw,36px)', boxShadow: '0 0 80px -30px rgba(200,106,58,0.5)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 'clamp(12px,1.4vw,18px)' }}>
+          <span aria-hidden style={{ flexShrink: 0, width: 'clamp(38px,4vw,54px)', height: 'clamp(38px,4vw,54px)', display: 'grid', placeItems: 'center', borderRadius: 14, background: 'rgba(200,106,58,0.16)', border: '1px solid rgba(200,106,58,0.45)', color: TERRA, fontSize: 'clamp(16px,1.8vw,24px)' }}>◆</span>
+          <div style={{ minWidth: 0 }}>
+            <div style={{ ...MONO, fontSize: 'clamp(7.5px,0.72vw,10px)', letterSpacing: '.18em', color: TERRA }}>{l.label}</div>
+            <div style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(18px,2vw,28px)', color: CREAM, lineHeight: 1.1, marginTop: 3 }}>{l.title}</div>
+            <div style={{ fontFamily: SANS, fontSize: 'clamp(9.5px,0.95vw,13px)', color: DIM, marginTop: 3 }}>{l.note}</div>
           </div>
-          <span aria-hidden style={{ flexShrink: 0, color: '#1a1207', fontSize: 'clamp(16px,1.8vw,24px)' }}>›</span>
+        </div>
+        <div style={{ marginTop: 'clamp(12px,1.5vw,20px)', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(7px,0.9vw,11px)' }}>
+          {l.benefits.map((b) => (
+            <div key={b} style={{ display: 'flex', alignItems: 'flex-start', gap: 9, border: '1px solid rgba(243,236,226,0.1)', background: 'rgba(243,236,226,0.03)', borderRadius: 12, padding: 'clamp(9px,1vw,13px) clamp(11px,1.2vw,15px)' }}>
+              <span aria-hidden style={{ color: TERRA, fontSize: 'clamp(10px,1vw,13px)', lineHeight: 1.5 }}>✦</span>
+              <span style={{ fontFamily: SANS, fontSize: 'clamp(9.5px,0.95vw,13px)', lineHeight: 1.45, color: 'rgba(242,233,218,0.85)' }}>{b}</span>
+            </div>
+          ))}
+        </div>
+        <div style={{ marginTop: 'clamp(12px,1.5vw,20px)' }}>
+          <Cta>{l.cta} ›</Cta>
         </div>
       </div>
     </div>
