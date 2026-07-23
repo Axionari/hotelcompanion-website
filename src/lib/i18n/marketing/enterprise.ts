@@ -10,6 +10,7 @@ const en = {
     multi: 'MULTI-PROPERTY',
     knowledge: 'KNOWLEDGE & ADMINISTRATION',
     security: 'SECURITY',
+    payment: 'PAYMENT ARCHITECTURE',
     governance: 'GOVERNANCE',
     intelligence: 'INTELLIGENCE',
     fit: 'INTEGRATION & BOUNDARIES',
@@ -77,6 +78,28 @@ const en = {
       { label: 'PROTECTION', value: 'Encrypted communications. Protected knowledge.' },
       { label: 'GOVERNANCE', value: 'Role-based access. Auditability.' },
       { label: 'CONTROL', value: 'Secure authentication. Privacy-first architecture.' },
+    ],
+  },
+  /* P5.4 — the hybrid checkout flow (PaymentFlow diagram + steps). Card data
+     is captured by Stripe directly; only a token returns to Postgres. */
+  payment: {
+    statement: 'Card data never touches the host.',
+    deck:
+      'When a guest pays on the companion screen, the raw card data flows straight to Stripe — never through the Axionari backend. Only a token comes back.',
+    lanes: {
+      client: { label: 'CLIENT', sub: 'Next.js' },
+      api: { label: 'SERVERLESS API', sub: 'Postgres' },
+      stripe: { label: 'STRIPE', sub: 'PCI Level 1' },
+    },
+    device: { total: 'Order total', amount: '$45.90', cta: 'Tap to pay' },
+    bypass: 'Raw card data bypasses the Axionari backend',
+    token: 'Tokenized reference → Postgres',
+    steps: [
+      { name: 'Intent', desc: 'The AI finalizes the order and states the total. The client requests a PaymentIntent from the serverless API.' },
+      { name: 'Sandboxed rendering', desc: 'Next.js dynamically mounts Stripe Elements inside a secure iframe.' },
+      { name: 'Isolated capture', desc: 'The guest enters details or uses Apple Pay. Raw card data flows directly to Stripe’s Level 1 vault.' },
+      { name: 'Tokenization', desc: 'A secure reference token returns to Axionari’s Postgres database. Raw card data is never stored.' },
+      { name: 'Fulfillment', desc: 'The AI masks the display and resumes the conversation: “Thank you — your order has been placed.”' },
     ],
   },
   sections: [
@@ -233,6 +256,7 @@ const es: typeof en = {
     multi: 'MULTIPROPIEDAD',
     knowledge: 'CONOCIMIENTO Y ADMINISTRACIÓN',
     security: 'SEGURIDAD',
+    payment: 'ARQUITECTURA DE PAGOS',
     governance: 'GOBERNANZA',
     intelligence: 'INTELIGENCIA',
     fit: 'INTEGRACIÓN Y LÍMITES',
@@ -294,6 +318,26 @@ const es: typeof en = {
       { label: 'PROTECCIÓN', value: 'Comunicaciones cifradas. Conocimiento protegido.' },
       { label: 'GOBERNANZA', value: 'Acceso basado en roles. Auditabilidad.' },
       { label: 'CONTROL', value: 'Autenticación segura. Arquitectura centrada en la privacidad.' },
+    ],
+  },
+  payment: {
+    statement: 'Los datos de la tarjeta nunca tocan el host.',
+    deck:
+      'Cuando un huésped paga en la pantalla del companion, los datos de la tarjeta van directo a Stripe — nunca pasan por el backend de Axionari. Solo regresa un token.',
+    lanes: {
+      client: { label: 'CLIENTE', sub: 'Next.js' },
+      api: { label: 'API SERVERLESS', sub: 'Postgres' },
+      stripe: { label: 'STRIPE', sub: 'PCI Nivel 1' },
+    },
+    device: { total: 'Total del pedido', amount: '$45.90', cta: 'Toca para pagar' },
+    bypass: 'Los datos de la tarjeta evitan el backend de Axionari',
+    token: 'Referencia tokenizada → Postgres',
+    steps: [
+      { name: 'Intención', desc: 'La IA finaliza el pedido e indica el total. El cliente solicita un PaymentIntent a la API serverless.' },
+      { name: 'Renderizado aislado', desc: 'Next.js monta dinámicamente Stripe Elements dentro de un iframe seguro.' },
+      { name: 'Captura aislada', desc: 'El huésped ingresa sus datos o usa Apple Pay. Los datos de la tarjeta van directo a la bóveda Nivel 1 de Stripe.' },
+      { name: 'Tokenización', desc: 'Un token de referencia seguro regresa a la base de datos Postgres de Axionari. Los datos de la tarjeta nunca se almacenan.' },
+      { name: 'Cumplimiento', desc: 'La IA oculta la pantalla y retoma la conversación: “Gracias — tu pedido se realizó con éxito.”' },
     ],
   },
   sections: [

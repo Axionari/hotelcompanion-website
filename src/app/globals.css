@@ -1159,3 +1159,17 @@ body {
   white-space: nowrap;
 }
 .v5-tier-hi .v5-chip { border-color: rgba(200, 106, 58, 0.28); }
+
+/* v5 — hybrid-checkout diagram (PaymentFlow). Reuses the .v5-layer armed/in
+   gate. Flow paths draw via stroke-dashoffset (pathLength=1); glyphs and notes
+   fade; the vault breathes. Fail-open: hidden state exists only once armed. */
+.v5-layer .pay-fade { transition: opacity 0.8s var(--ease-standard); }
+.v5-layer.armed:not(.in) .pay-fade { opacity: 0; }
+.v5-layer .pay-draw { transition: stroke-dashoffset 1.5s var(--ease-standard); }
+.v5-layer.armed:not(.in) .pay-draw { stroke-dashoffset: 1; }
+.v5-pay-vault { animation: pay-vault-pulse 3.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes pay-vault-pulse {
+  0%, 100% { opacity: 0.82; }
+  50% { opacity: 1; filter: drop-shadow(0 0 9px rgba(200, 106, 58, 0.55)); }
+}
+@media (prefers-reduced-motion: reduce) { .v5-pay-vault { animation: none; } }

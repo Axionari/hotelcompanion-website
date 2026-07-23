@@ -19,6 +19,7 @@ import {
   TenantStack,
   PostureSplit,
 } from '@/components/v5/Editorial'
+import { PaymentFlow } from '@/components/v5/PaymentFlow'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { globalCopy } from '@/lib/i18n/marketing/global'
 import { enterpriseCopy } from '@/lib/i18n/marketing/enterprise'
@@ -34,10 +35,11 @@ import { liveDemoCopy } from '@/lib/i18n/marketing/liveDemo'
  *   02 MULTI-PROPERTY      — one platform, every property → numbered run
  *   03 KNOWLEDGE & ADMIN   — knowledge as an asset        → two statements
  *   04 SECURITY            — secure by design             → PostureSplit
- *   05 GOVERNANCE          — consistency without friction → quiet chips
- *   06 INTELLIGENCE        — conversations reveal patterns→ two statements
- *   07 INTEGRATION & BOUNDARIES — fits without risk       → the four "nots"
- *   08 DEPLOYMENT & SCALE  — live in days, grows with you → numbered stages
+ *   05 PAYMENT ARCHITECTURE — card data never touches host → PaymentFlow
+ *   06 GOVERNANCE          — consistency without friction → quiet chips
+ *   07 INTELLIGENCE        — conversations reveal patterns→ two statements
+ *   08 INTEGRATION & BOUNDARIES — fits without risk       → the four "nots"
+ *   09 DEPLOYMENT & SCALE  — live in days, grows with you → numbered stages
  *   CLOSING MEDIA BAND (one action)
  *
  * All reading copy is the approved enterprise copy (enterpriseCopy) —
@@ -201,10 +203,22 @@ export default function EnterpriseClient() {
         </Reveal>
       </Act>
 
-      {/* 05 · GOVERNANCE {#governance} — one message: consistency without
-          friction. One artifact: the controls, as quiet chips. */}
+      {/* 05 · PAYMENT ARCHITECTURE {#payment} — one message: card data never
+          touches the host. One artifact: the hybrid checkout flow diagram. */}
       <Act
         no="05"
+        label={c.acts.payment}
+        id="payment"
+        statement={c.payment.statement}
+        deck={c.payment.deck}
+      >
+        <PaymentFlow copy={c.payment} />
+      </Act>
+
+      {/* 06 · GOVERNANCE {#governance} — one message: consistency without
+          friction. One artifact: the controls, as quiet chips. */}
+      <Act
+        no="06"
         label={c.acts.governance}
         id="governance"
         statement={byId('governance').title}
@@ -221,10 +235,10 @@ export default function EnterpriseClient() {
         </Reveal>
       </Act>
 
-      {/* 06 · INTELLIGENCE {#operational-intel} — one message: conversations
+      {/* 07 · INTELLIGENCE {#operational-intel} — one message: conversations
           reveal patterns. One artifact: two statements (ops + commercial). */}
       <Act
-        no="06"
+        no="07"
         label={c.acts.intelligence}
         id="operational-intel"
         statement={byId('operational-intel').body[0]}
@@ -259,10 +273,10 @@ export default function EnterpriseClient() {
 
       <Breather image="/assets/lux/breather-thatch-beach.webp" darken={0.4} />
 
-      {/* 07 · INTEGRATION & BOUNDARIES {#integrates} — one message: it fits
+      {/* 08 · INTEGRATION & BOUNDARIES {#integrates} — one message: it fits
           without risk. One artifact: the four "nots", numbered. */}
       <Act
-        no="07"
+        no="08"
         label={c.acts.fit}
         id="integrates"
         statement={
@@ -285,10 +299,10 @@ export default function EnterpriseClient() {
         </Reveal>
       </Act>
 
-      {/* 08 · DEPLOYMENT & SCALE {#deploy} — one message: live in days,
+      {/* 09 · DEPLOYMENT & SCALE {#deploy} — one message: live in days,
           grows with the portfolio. One artifact: the stages, numbered. */}
       <Act
-        no="08"
+        no="09"
         label={c.acts.deploy}
         id="deploy"
         statement={byId('deploy').title}
