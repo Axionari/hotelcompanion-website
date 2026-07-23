@@ -4,16 +4,16 @@ import { CSSProperties, useEffect, useRef, useState } from 'react'
 import { NumberedList } from '@/components/v5/Editorial'
 
 /**
- * PaymentFlow — the hybrid checkout diagram, in the HC/RC editorial register
- * (terracotta + cream on the page bed, not the gold blueprint). Three stacked
- * lanes — Client (Next.js) → Serverless API (Postgres) → Stripe (PCI Level 1)
- * — with the order captured on the companion screen, the raw card data routed
- * straight down to Stripe (bypassing the Axionari backend), and only a token
- * returning to Postgres. The five steps read below as a numbered legend.
+ * PaymentFlow — the hybrid checkout diagram, in the HC/RC editorial register.
+ * Three lanes — The guest (companion screen) → Hotel Companion (booking &
+ * guest records) → Stripe (PCI Level 1 vault). The order is captured on the
+ * companion screen; the raw card data routes straight down to the vault,
+ * visibly bypassing Hotel Companion; only a tokenized reference returns to
+ * the booking record. No engineering vocabulary — the audience is hoteliers.
  *
- * Motion reuses the .v5-layer armed/in gate (see globals.css): flow paths draw
- * (pathLength dash), glyphs and notes fade in. Fail-open — reduced motion and
- * no-JS render the composed still.
+ * Motion reuses the .v5-layer armed/in gate (globals.css): the flow paths draw
+ * (pathLength dash), glyphs and notes fade in, the vault breathes. Fail-open —
+ * reduced motion and no-JS render the composed still. Mobile stacks the lanes.
  */
 
 const MONO: CSSProperties = { fontFamily: 'var(--font-mono), ui-monospace, monospace' }
@@ -36,21 +36,32 @@ export interface PaymentCopy {
   device: { total: string; amount: string; cta: string }
   bypass: string
   token: string
+  record: { title: string; row: string; token: string }
   steps: ReadonlyArray<{ name: string; desc: string }>
 }
 
-/** One lane band (label + sub on the left). */
 function laneLabel(x: number, yLabel: number, label: string, sub: string, accent = false) {
   return (
     <g className="pay-fade">
       <text x={x} y={yLabel} style={{ ...MONO, fontSize: 13, letterSpacing: '0.18em', fill: accent ? TERRA : FAINT }}>
         {label}
       </text>
-      <text x={x} y={yLabel + 26} style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 18, fill: CREAM }}>
+      <text x={x} y={yLabel + 28} style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 19, fill: CREAM }}>
         {sub}
       </text>
     </g>
   )
+}
+
+/** Break the bypass note into ~3 balanced lines for the SVG annotation. */
+function splitNote(note: string): [string, string, string] {
+  const words = note.split(' ')
+  const third = Math.ceil(words.length / 3)
+  return [
+    words.slice(0, third).join(' '),
+    words.slice(third, third * 2).join(' '),
+    words.slice(third * 2).join(' '),
+  ]
 }
 
 export function PaymentFlow({ copy }: { copy: PaymentCopy }) {
@@ -93,98 +104,113 @@ export function PaymentFlow({ copy }: { copy: PaymentCopy }) {
 
   const drawStyle = (delayMs: number): CSSProperties => ({ strokeDasharray: 1, strokeDashoffset: 0, transitionDelay: `${delayMs}ms` })
   const fadeStyle = (delayMs: number): CSSProperties => ({ transitionDelay: `${delayMs}ms` })
+  const note = splitNote(copy.bypass)
 
   return (
     <div>
       <div ref={ref} className={`v5-layer ${armed ? 'armed' : ''} ${inView ? 'in' : ''}`}>
         {/* ── desktop diagram ── */}
         <div className="hidden md:block">
-          <svg viewBox="0 0 1000 552" width="100%" role="img" aria-label={copy.statement} style={{ display: 'block' }}>
+          <svg viewBox="0 0 1000 560" width="100%" role="img" aria-label={copy.statement} style={{ display: 'block' }}>
+            <defs>
+              <linearGradient id="pay-band" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="rgba(247,242,234,0.05)" />
+                <stop offset="100%" stopColor="rgba(247,242,234,0.015)" />
+              </linearGradient>
+              <radialGradient id="pay-vault-glow">
+                <stop offset="0%" stopColor="rgba(200,106,58,0.35)" />
+                <stop offset="60%" stopColor="rgba(200,106,58,0.12)" />
+                <stop offset="100%" stopColor="rgba(200,106,58,0)" />
+              </radialGradient>
+            </defs>
+
             {/* lane bands */}
-            {[36, 206, 376].map((y) => (
-              <rect key={y} className="pay-fade" x={40} y={y} width={920} height={148} rx={18} fill="rgba(242,238,230,0.02)" stroke={HAIR} />
+            {[20, 200, 380].map((y, i) => (
+              <rect key={y} className="pay-fade" x={36} y={y} width={928} height={i === 2 ? 150 : 140} rx={20} fill="url(#pay-band)" stroke={HAIR} style={fadeStyle(i * 90)} />
             ))}
 
-            {laneLabel(72, 96, copy.lanes.client.label, copy.lanes.client.sub)}
-            {laneLabel(72, 266, copy.lanes.api.label, copy.lanes.api.sub)}
-            {laneLabel(72, 436, copy.lanes.stripe.label, copy.lanes.stripe.sub, true)}
+            {laneLabel(70, 82, copy.lanes.client.label, copy.lanes.client.sub)}
+            {laneLabel(70, 262, copy.lanes.api.label, copy.lanes.api.sub)}
+            {laneLabel(70, 444, copy.lanes.stripe.label, copy.lanes.stripe.sub, true)}
 
-            {/* ── Client lane: the companion screen ── */}
-            <g className="pay-fade" style={fadeStyle(120)}>
-              <rect x={356} y={62} width={244} height={96} rx={12} fill="#161310" stroke="rgba(242,238,230,0.14)" />
-              <circle cx={376} cy={82} r={2.4} fill="rgba(242,238,230,0.22)" />
-              <circle cx={387} cy={82} r={2.4} fill="rgba(242,238,230,0.22)" />
-              <circle cx={398} cy={82} r={2.4} fill="rgba(242,238,230,0.22)" />
-              <text x={374} y={116} style={{ ...MONO, fontSize: 11, letterSpacing: '0.08em', fill: DIM }}>{copy.device.total}</text>
-              <text x={374} y={142} style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 21, fill: CREAM }}>{copy.device.amount}</text>
-              <rect x={480} y={116} width={100} height={28} rx={14} fill={TERRA} />
-              <text x={530} y={134} textAnchor="middle" style={{ fontFamily: SANS, fontWeight: 600, fontSize: 12.5, fill: '#1a1207' }}>{copy.device.cta}</text>
+            {/* ── lane 1: the companion pay card ── */}
+            <g className="pay-fade" style={fadeStyle(140)}>
+              <rect x={340} y={40} width={280} height={100} rx={14} fill="#161310" stroke="rgba(242,238,230,0.16)" />
+              <circle cx={362} cy={62} r={2.6} fill="rgba(242,238,230,0.24)" />
+              <circle cx={374} cy={62} r={2.6} fill="rgba(242,238,230,0.24)" />
+              <circle cx={386} cy={62} r={2.6} fill="rgba(242,238,230,0.24)" />
+              <text x={360} y={96} style={{ ...MONO, fontSize: 12, letterSpacing: '0.08em', fill: DIM }}>{copy.device.total}</text>
+              <text x={360} y={124} style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 24, fill: CREAM }}>{copy.device.amount}</text>
+              <rect x={492} y={98} width={110} height={30} rx={15} fill={TERRA} />
+              <text x={547} y={118} textAnchor="middle" style={{ fontFamily: SANS, fontWeight: 600, fontSize: 13, fill: '#1a1207' }}>{copy.device.cta}</text>
             </g>
 
-            {/* ── Serverless lane: the backend the raw card data bypasses ── */}
-            <g className="pay-fade" style={fadeStyle(220)}>
-              {/* node cluster */}
-              {[[372, 250], [372, 312], [508, 250], [508, 312]].map(([x, y], i) => (
-                <rect key={i} x={x} y={y} width={22} height={22} rx={4} fill="rgba(242,238,230,0.05)" stroke="rgba(242,238,230,0.14)" />
-              ))}
-              <line x1={394} y1={261} x2={430} y2={281} stroke={HAIR} />
-              <line x1={394} y1={323} x2={430} y2={299} stroke={HAIR} />
-              <line x1={508} y1={261} x2={470} y2={281} stroke={HAIR} />
-              <line x1={508} y1={323} x2={470} y2={299} stroke={HAIR} />
-              {/* Postgres cylinder */}
-              <g stroke="rgba(242,238,230,0.22)" fill="rgba(242,238,230,0.04)">
-                <ellipse cx={450} cy={266} rx={22} ry={7} />
-                <path d="M 428 266 V 300 A 22 7 0 0 0 472 300 V 266" fill="rgba(242,238,230,0.04)" />
-                <ellipse cx={450} cy={283} rx={22} ry={7} fill="none" opacity={0.6} />
+            {/* ── lane 2: the booking record — a token, never the card ── */}
+            <g className="pay-fade" style={fadeStyle(260)}>
+              <rect x={340} y={222} width={280} height={98} rx={14} fill="#14110e" stroke="rgba(242,238,230,0.14)" />
+              <text x={360} y={250} style={{ ...MONO, fontSize: 11.5, letterSpacing: '0.1em', fill: TERRA }}>{copy.record.title}</text>
+              <text x={360} y={274} style={{ fontFamily: SANS, fontSize: 13.5, fill: 'rgba(242,238,230,0.85)' }}>{copy.record.row}</text>
+              <rect x={358} y={286} width={216} height={24} rx={12} fill="rgba(201,161,90,0.08)" stroke="rgba(201,161,90,0.35)" />
+              <text x={466} y={302} textAnchor="middle" style={{ ...MONO, fontSize: 10, letterSpacing: '0.06em', fill: 'rgba(201,161,90,0.9)' }}>{copy.record.token}</text>
+            </g>
+
+            {/* ── lane 3: the vault ── */}
+            <g className="pay-fade" style={fadeStyle(620)}>
+              <circle cx={480} cy={455} r={62} fill="url(#pay-vault-glow)" />
+              <circle cx={480} cy={455} r={44} fill="none" stroke="rgba(200,106,58,0.25)" />
+              <g className="v5-pay-vault" stroke={TERRA} strokeWidth={2.6} fill="none">
+                <path d="M 464 452 v -9 a 16 16 0 0 1 32 0 v 9" />
+                <rect x={455} y={452} width={50} height={38} rx={7} fill="rgba(200,106,58,0.12)" />
+                <circle cx={480} cy={467} r={4.5} fill={TERRA} stroke="none" />
+                <line x1={480} y1={467} x2={480} y2={479} strokeWidth={2.6} />
               </g>
             </g>
 
-            {/* ── Stripe lane: the PCI vault ── */}
-            <g className="pay-fade" style={fadeStyle(600)}>
-              <circle cx={470} cy={450} r={54} fill="rgba(200,106,58,0.06)" />
-              <g className="v5-pay-vault" stroke={TERRA} strokeWidth={2.4} fill="none">
-                <path d="M 456 448 v -8 a 14 14 0 0 1 28 0 v 8" />
-                <rect x={448} y={448} width={44} height={34} rx={6} fill="rgba(200,106,58,0.10)" />
-                <circle cx={470} cy={462} r={4} fill={TERRA} stroke="none" />
-                <line x1={470} y1={462} x2={470} y2={472} strokeWidth={2.4} />
-              </g>
-            </g>
-
-            {/* ── main flow: card data → straight to Stripe (bypasses backend) ── */}
+            {/* ── the card-data path: screen → straight to the vault ── */}
+            {/* glow underlay */}
             <path
               className="pay-draw"
               pathLength={1}
-              d="M 600 116 H 786 Q 800 116 800 130 V 436 Q 800 450 786 450 H 540"
-              stroke={TERRA}
-              strokeWidth={3}
+              d="M 620 90 H 758 Q 776 90 776 108 V 437 Q 776 455 758 455 H 552"
+              stroke="rgba(200,106,58,0.16)"
+              strokeWidth={11}
               fill="none"
-              style={drawStyle(180)}
+              strokeLinecap="round"
+              style={drawStyle(220)}
             />
-            {/* arrowhead into the vault */}
-            <polygon className="pay-fade" style={fadeStyle(1500)} points="540,450 552,444 552,456" fill={TERRA} />
-            {/* direction chevron mid-descent */}
-            <path className="pay-fade" style={fadeStyle(1200)} d="M 793 300 l 7 8 l 7 -8" stroke={TERRA} strokeWidth={2} fill="none" />
-
-            {/* bypass note */}
-            <g className="pay-fade" style={fadeStyle(1300)}>
-              <text x={824} y={288} style={{ fontFamily: SANS, fontSize: 14, fill: DIM }}>{splitNote(copy.bypass)[0]}</text>
-              <text x={824} y={309} style={{ fontFamily: SANS, fontSize: 14, fill: DIM }}>{splitNote(copy.bypass)[1]}</text>
-              <text x={824} y={330} style={{ fontFamily: SANS, fontSize: 14, fill: DIM }}>{splitNote(copy.bypass)[2]}</text>
-            </g>
-
-            {/* ── return flow: tokenized reference → Postgres (dashed) ── */}
             <path
               className="pay-draw"
               pathLength={1}
-              d="M 452 420 C 430 384, 430 340, 448 306"
-              stroke="rgba(242,238,230,0.42)"
-              strokeWidth={1.6}
-              strokeDasharray="5 5"
+              d="M 620 90 H 758 Q 776 90 776 108 V 437 Q 776 455 758 455 H 552"
+              stroke={TERRA}
+              strokeWidth={3.5}
+              fill="none"
+              strokeLinecap="round"
+              style={drawStyle(220)}
+            />
+            <polygon className="pay-fade" style={fadeStyle(1500)} points="548,455 562,448 562,462" fill={TERRA} />
+            <path className="pay-fade" style={fadeStyle(1150)} d="M 768 276 l 8 9 l 8 -9" stroke={TERRA} strokeWidth={2.2} fill="none" />
+
+            {/* bypass note, right of the descending path */}
+            <g className="pay-fade" style={fadeStyle(1280)}>
+              <text x={800} y={252} style={{ fontFamily: SANS, fontSize: 14.5, fill: DIM }}>{note[0]}</text>
+              <text x={800} y={274} style={{ fontFamily: SANS, fontSize: 14.5, fill: DIM }}>{note[1]}</text>
+              <text x={800} y={296} style={{ fontFamily: SANS, fontSize: 14.5, fill: DIM }}>{note[2]}</text>
+            </g>
+
+            {/* ── the return: a token, up into the booking record ── */}
+            <path
+              className="pay-draw"
+              pathLength={1}
+              d="M 452 412 C 424 384, 424 342, 448 314"
+              stroke="rgba(201,161,90,0.55)"
+              strokeWidth={2}
+              strokeDasharray="6 6"
               fill="none"
               style={{ transitionDelay: '1100ms' }}
             />
-            <polygon className="pay-fade" style={fadeStyle(2100)} points="448,300 444,312 454,310" fill="rgba(242,238,230,0.5)" />
-            <text className="pay-fade" style={{ ...MONO, ...fadeStyle(1900) }} x={356} y={372} fontSize={11.5} letterSpacing="0.04em" fill={FAINT}>
+            <polygon className="pay-fade" style={fadeStyle(2050)} points="448,308 442,322 456,319" fill="rgba(201,161,90,0.7)" />
+            <text className="pay-fade" x={480} y={366} textAnchor="middle" style={{ ...MONO, ...fadeStyle(1850), fontSize: 12, letterSpacing: '0.06em', fill: 'rgba(201,161,90,0.8)' }}>
               {copy.token}
             </text>
           </svg>
@@ -194,7 +220,7 @@ export function PaymentFlow({ copy }: { copy: PaymentCopy }) {
         <div className="md:hidden flex flex-col gap-3">
           {[
             { ...copy.lanes.client, note: copy.device.total + ' · ' + copy.device.amount, accent: false },
-            { ...copy.lanes.api, note: copy.token, accent: false },
+            { ...copy.lanes.api, note: copy.record.token, accent: false },
             { ...copy.lanes.stripe, note: copy.bypass, accent: true },
           ].map((lane, i) => (
             <div key={lane.label}>
@@ -217,15 +243,4 @@ export function PaymentFlow({ copy }: { copy: PaymentCopy }) {
       </div>
     </div>
   )
-}
-
-/** Break the bypass note into ~3 balanced lines for the SVG annotation. */
-function splitNote(note: string): [string, string, string] {
-  const words = note.split(' ')
-  const third = Math.ceil(words.length / 3)
-  return [
-    words.slice(0, third).join(' '),
-    words.slice(third, third * 2).join(' '),
-    words.slice(third * 2).join(' '),
-  ]
 }
