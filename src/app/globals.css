@@ -1173,3 +1173,8 @@ body {
   50% { opacity: 1; filter: drop-shadow(0 0 9px rgba(200, 106, 58, 0.55)); }
 }
 @media (prefers-reduced-motion: reduce) { .v5-pay-vault { animation: none; } }
+
+/* v5 — suite showcase verifying spinner. */
+.suite-spin { animation: suite-spin 1.05s linear infinite; }
+@keyframes suite-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .suite-spin { animation: none; } }

@@ -7,7 +7,7 @@ import { Reveal } from '@/components/cds/Reveal'
 import { MediaBed } from '@/components/cds/MediaBed'
 import { Breather } from '@/components/cds/Breather'
 import { CompanionTablet } from '@/components/v5/CompanionTablet'
-import { TabletOS } from '@/components/cds/TabletOS'
+import { SuiteShowcase } from '@/components/v5/SuiteShowcase'
 import { QuestionMarquee } from '@/components/cds/QuestionMarquee'
 import { IntelligentLayer } from '@/components/v5/IntelligentLayer'
 import { AxionariMark } from '@/components/cds/EndorsementMark'
@@ -195,22 +195,25 @@ export default function HomeClient() {
       </Band>
       <QuestionMarquee />
 
-      {/* THE IN-ROOM COMPANION — ONE big, static in-room screen so the app is
-          fully legible (not the cycling hero device). The answer IS a picture. */}
-      <Band id="tablet-showcase">
-        <Reveal className="text-center">
-          <div className="eyebrow eyebrow-accent mb-6">{home.tabletShowcase.eyebrow}</div>
-          <h2 style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(30px, 4vw, 54px)', lineHeight: 1.08, letterSpacing: '-0.015em', color: 'var(--text)', maxWidth: '20ch', marginInline: 'auto' }}>
-            {home.tabletShowcase.statement}
-          </h2>
-          <p className="body-lead mt-6" style={{ maxWidth: '52ch', marginInline: 'auto' }}>{home.tabletShowcase.caption}</p>
-        </Reveal>
+      {/* THE IN-ROOM COMPANION — a big, near-full-width tablet that animates
+          between the accommodations options (3 cards) and one suite opened in
+          detail (RC "browse → open" logic). The answer IS a picture. */}
+      <section id="tablet-showcase" className="scroll-mt-20" style={{ paddingBlock: 'clamp(104px, 14vw, 190px)' }}>
+        <div className="container-rc">
+          <Reveal className="text-center">
+            <div className="eyebrow eyebrow-accent mb-6">{home.tabletShowcase.eyebrow}</div>
+            <h2 style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(30px, 4vw, 54px)', lineHeight: 1.08, letterSpacing: '-0.015em', color: 'var(--text)', maxWidth: '20ch', marginInline: 'auto' }}>
+              {home.tabletShowcase.statement}
+            </h2>
+            <p className="body-lead mt-6" style={{ maxWidth: '52ch', marginInline: 'auto' }}>{home.tabletShowcase.caption}</p>
+          </Reveal>
+        </div>
         <Reveal className="mt-16">
-          <div style={{ maxWidth: 1080, marginInline: 'auto' }}>
-            <TabletOS screen="beach" orbState="listening" />
+          <div style={{ width: 'min(1400px, 92vw)', marginInline: 'auto' }}>
+            <SuiteShowcase />
           </div>
         </Reveal>
-      </Band>
+      </section>
 
       {/* Breather — air */}
       <Breather image="/assets/lux/breather-thatch-beach.webp" height="clamp(260px, 42vh, 460px)" darken={0.4} />
