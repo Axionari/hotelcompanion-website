@@ -55,6 +55,18 @@ const en = {
     ],
   },
 
+  /* The PMS handshake — live availability confirmed before booking. */
+  availability: {
+    label: 'LIVE AVAILABILITY',
+    title: 'Checking with the property',
+    sub: 'Confirming dates and rate directly in the hotel’s PMS — live inventory, nothing assumed.',
+    checks: [
+      { item: 'Jul 25 – 28 · 3 nights · 2 guests', status: 'Available' },
+      { item: 'Ocean-View Suite', status: 'Rate held · $250/night' },
+      { item: 'Spa Ixchel · Cacao Ceremony', status: 'Fri 5:30 PM open' },
+    ],
+    caption: 'CONFIRMED IN THE PMS · REAL-TIME',
+  },
   review: {
     label: 'ALMOST THERE',
     title: 'Before we confirm',
@@ -121,7 +133,10 @@ const en = {
 
   loyalty: { title: 'Join the MarAzul Circle', note: 'Earn a free night on this stay — one tap' },
 
-  pills: { welcome: 'Welcome', browse: 'Browse', detail: 'Suite', cart: 'Your stay', payment: 'Pay', confirmed: 'Confirmed', hint: 'The guest’s journey — tap any step' },
+  pills: {
+    labels: ['Welcome', 'Browse', 'Suite', 'Your stay', 'Availability', 'Review', 'Pay', 'Processing', 'Confirmed', 'Loyalty'],
+    hint: 'The guest’s journey — tap any step',
+  },
 }
 
 const es: typeof en = {
@@ -172,6 +187,17 @@ const es: typeof en = {
     ],
   },
 
+  availability: {
+    label: 'DISPONIBILIDAD EN VIVO',
+    title: 'Consultando con la propiedad',
+    sub: 'Confirmando fechas y tarifa directamente en el PMS del hotel — inventario en vivo, nada supuesto.',
+    checks: [
+      { item: '25 – 28 Jul · 3 noches · 2 huéspedes', status: 'Disponible' },
+      { item: 'Suite Vista al Mar', status: 'Tarifa apartada · $250/noche' },
+      { item: 'Spa Ixchel · Ceremonia de Cacao', status: 'Vie 5:30 PM libre' },
+    ],
+    caption: 'CONFIRMADO EN EL PMS · TIEMPO REAL',
+  },
   review: {
     label: 'CASI LISTO',
     title: 'Antes de confirmar',
@@ -238,7 +264,10 @@ const es: typeof en = {
 
   loyalty: { title: 'Únete al MarAzul Circle', note: 'Gana una noche gratis en esta estancia — con un toque' },
 
-  pills: { welcome: 'Bienvenida', browse: 'Explorar', detail: 'Suite', cart: 'Tu estancia', payment: 'Pagar', confirmed: 'Confirmado', hint: 'El recorrido del huésped — toca cualquier paso' },
+  pills: {
+    labels: ['Bienvenida', 'Explorar', 'Suite', 'Tu estancia', 'Disponibilidad', 'Revisar', 'Pagar', 'Procesando', 'Confirmado', 'Lealtad'],
+    hint: 'El recorrido del huésped — toca cualquier paso',
+  },
 }
 
 export const suitesCopy: Localized<typeof en> = { en, es }

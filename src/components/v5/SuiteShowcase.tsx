@@ -195,7 +195,35 @@ function CartScreen({ c }: { c: SuiteCopy }) {
   )
 }
 
-/* ── 5 · review ──────────────────────────────────────────────────────── */
+/* ── 5 · availability — the PMS handshake, live inventory confirmed ──── */
+function AvailabilityScreen({ c }: { c: SuiteCopy }) {
+  const a = c.availability
+  return (
+    <div style={pad}>
+      <TopBar c={c} count={5} />
+      <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', gap: 'clamp(8px,1vw,14px)' }}>
+        <span aria-hidden className="suite-spin" style={{ width: 'clamp(34px,3.8vw,52px)', height: 'clamp(34px,3.8vw,52px)', borderRadius: '50%', border: '2px solid rgba(243,236,226,0.12)', borderTopColor: TERRA }} />
+        <div style={{ ...MONO, fontSize: 'clamp(8px,0.78vw,11px)', letterSpacing: '.2em', color: TERRA }}>{a.label}</div>
+        <div style={{ fontFamily: SERIF, fontWeight: 500, fontSize: 'clamp(19px,2.1vw,30px)', color: CREAM }}>{a.title}</div>
+        <p style={{ fontFamily: SANS, fontSize: 'clamp(10px,1vw,13.5px)', color: DIM, maxWidth: '48ch', lineHeight: 1.5 }}>{a.sub}</p>
+        <div style={{ width: '100%', maxWidth: 560, marginTop: 'clamp(4px,0.6vw,10px)', display: 'flex', flexDirection: 'column', gap: 'clamp(6px,0.7vw,9px)' }}>
+          {a.checks.map((ck) => (
+            <div key={ck.item} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 14, border: '1px solid rgba(243,236,226,0.1)', background: 'rgba(243,236,226,0.03)', borderRadius: 12, padding: 'clamp(9px,1vw,13px) clamp(12px,1.4vw,18px)' }}>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 10, minWidth: 0 }}>
+                <span aria-hidden style={{ flexShrink: 0, display: 'grid', placeItems: 'center', width: 18, height: 18, borderRadius: '50%', background: 'rgba(45,158,107,0.14)', border: '1px solid rgba(45,158,107,0.4)', color: '#2D9E6B', fontSize: 10 }}>✓</span>
+                <span style={{ fontFamily: SANS, fontSize: 'clamp(10px,1vw,13.5px)', color: 'rgba(242,233,218,0.85)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{ck.item}</span>
+              </span>
+              <span style={{ ...MONO, flexShrink: 0, fontSize: 'clamp(8.5px,0.82vw,11px)', letterSpacing: '.04em', color: '#2D9E6B' }}>{ck.status}</span>
+            </div>
+          ))}
+        </div>
+        <div style={{ ...MONO, fontSize: 'clamp(7px,0.7vw,9.5px)', letterSpacing: '.18em', color: 'rgba(242,233,218,0.4)', marginTop: 'clamp(4px,0.6vw,8px)' }}>{a.caption}</div>
+      </div>
+    </div>
+  )
+}
+
+/* ── 6 · review ──────────────────────────────────────────────────────── */
 function ReviewScreen({ c }: { c: SuiteCopy }) {
   const r = c.review
   return (
@@ -330,6 +358,7 @@ const FLOW: Array<{ key: string; dwell: number; render: (c: SuiteCopy) => React.
   { key: 'browse', dwell: 4200, render: (c) => <BrowseScreen c={c} /> },
   { key: 'detail', dwell: 4800, render: (c) => <DetailScreen c={c} /> },
   { key: 'cart', dwell: 4200, render: (c) => <CartScreen c={c} /> },
+  { key: 'availability', dwell: 3000, render: (c) => <AvailabilityScreen c={c} /> },
   { key: 'review', dwell: 4400, render: (c) => <ReviewScreen c={c} /> },
   { key: 'payment', dwell: 4600, render: (c) => <PaymentScreen c={c} /> },
   { key: 'verifying', dwell: 2200, render: (c) => <VerifyingScreen c={c} /> },
@@ -370,26 +399,17 @@ export function SuiteShowcase() {
     }, 280)
   }
 
-  const phases: Array<{ label: string; idx: number }> = [
-    { label: c.pills.welcome, idx: 0 },
-    { label: c.pills.browse, idx: 1 },
-    { label: c.pills.detail, idx: 2 },
-    { label: c.pills.cart, idx: 3 },
-    { label: c.pills.payment, idx: 5 },
-    { label: c.pills.confirmed, idx: 7 },
-  ]
-
   return (
     <div onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
-      {/* step nav — above the screen; a segmented control the active step moves
-          through, so it reads as a clickable menu of the flow. */}
+      {/* step nav — above the screen; one tab per screen, the active one
+          simply tracks the flow (no grouped mapping). */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, marginBottom: 'clamp(18px,2.2vw,30px)' }}>
         <div className="v5-suite-tabs">
-          {phases.map((ph) => {
-            const on = ph.idx === i || (ph.idx === 5 && i === 6) || (ph.idx === 7 && i === 8) || (ph.idx === 2 && i === 4)
+          {c.pills.labels.map((label, idx) => {
+            const on = idx === i
             return (
-              <button key={ph.label} type="button" onClick={() => go(ph.idx)} className={`v5-suite-tab ${on ? 'on' : ''}`} aria-current={on}>
-                {ph.label}
+              <button key={label} type="button" onClick={() => go(idx)} className={`v5-suite-tab ${on ? 'on' : ''}`} aria-current={on}>
+                {label}
               </button>
             )
           })}

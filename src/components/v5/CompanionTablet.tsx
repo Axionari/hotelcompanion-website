@@ -110,11 +110,13 @@ function useScreens(): Screen[] {
           { name: 'Tres leches', meta: 'The one everyone orders', price: '$12', image: '/assets/ui/dish-3.webp' },
         ],
       },
-      // 5 · hero — the moat: she returns, it already knows her
+      // 5 · hero — the moat: she returns, it already knows her. No service
+      //     rail lights up: recognition isn't a category (Concierge re-lighting
+      //     here read as a glitch).
       {
         key: 'memory',
         layout: 'hero',
-        rail: 2,
+        rail: -1,
         pill: 'Guest memory',
         image: '/assets/ui/suite-2.webp',
         ask: '',
