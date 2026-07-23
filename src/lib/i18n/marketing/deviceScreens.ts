@@ -35,7 +35,7 @@ const en = {
       title: 'Gran Cenote',
       meta: '20 min inland · glass-clear water',
       actions: ['Directions', 'Book a taxi'],
-      image: '/assets/lux/cenote-steps.webp',
+      image: '/assets/lux/cenote-wild.webp',
     },
     roomservice: {
       ask: 'Room service, please',
@@ -130,7 +130,7 @@ const es: typeof en = {
       title: 'Gran Cenote',
       meta: '20 min tierra adentro · agua cristalina',
       actions: ['Cómo llegar', 'Reservar taxi'],
-      image: '/assets/lux/cenote-steps.webp',
+      image: '/assets/lux/cenote-wild.webp',
     },
     roomservice: {
       ask: 'Servicio a cuarto, por favor',

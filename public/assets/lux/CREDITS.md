@@ -21,4 +21,4 @@ change.
 
 - suite-ocean.webp — Unsplash (photo-1776500587875-8a0653e9c10e), Unsplash License. Bright ocean/tropical-view suite for the "Ocean-View Suite" upgrade (hero tablet + Every Surface laptop). Swap-ready.
 
-- cenote-steps.webp — Pexels (pexels.com/photo/34749924), Pexels License — free for commercial use, no attribution required. Submerged curved stone steps into glass-clear cenote water; the "Every answer is a picture" journey screen. A distinct cenote from exp-cenote. Landscape crop (3:2) of the portrait original. Swap-ready.
+- cenote-wild.webp — Pexels (pexels.com/photo/11447571), Pexels License — free for commercial use, no attribution required. A wild open sinkhole cenote (limestone walls, hanging vines, light-rayed blue water); the "Every answer is a picture" journey screen. Deliberately a non-branded natural cenote — the earlier crop (photo/34749924) was the recognizable Hotel Xcaret cove and was replaced. Landscape crop (3:2) of the portrait original. Swap-ready.
