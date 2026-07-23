@@ -2,7 +2,7 @@
 
 import { CSSProperties, ReactNode, useEffect, useRef, useState } from 'react'
 import { VoiceOrb } from '@/components/cds/VoiceOrb'
-import { V4, V4Reveal, monoStyle, DeferredImg } from '../shared'
+import { V4, V4Reveal, monoStyle, DeferredImg, eyebrowStyle } from '../shared'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { v4Copy } from '@/lib/i18n/marketing/v4'
 import { constellationCopy } from '@/lib/i18n/marketing/constellation'
@@ -244,7 +244,7 @@ export function Act4() {
       }}
     >
       <div className="v4-w1200" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={monoStyle(10, '.45em', V4.brass)}>{c.eyebrow}</div>
+        <div style={eyebrowStyle('var(--accent)')}>{c.eyebrow}</div>
         <div className="v4-statement" style={{ fontFamily: V4.serif, fontWeight: 530, fontSize: 'clamp(30px, 4.4vw, 56px)', lineHeight: 1.1, marginTop: 26, textAlign: 'center', textWrap: 'balance', color: V4.text }}>
           {c.statementPre}
           <span style={{ fontStyle: 'italic', fontWeight: 480, color: V4.cream }}>{c.statementHi}</span>

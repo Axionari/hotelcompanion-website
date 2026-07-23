@@ -2,7 +2,7 @@
 
 import { CSSProperties } from 'react'
 import { VoiceOrb } from '@/components/cds/VoiceOrb'
-import { V4, V4Reveal, monoStyle, DeferredImg } from '../shared'
+import { V4, V4Reveal, monoStyle, DeferredImg, eyebrowStyle } from '../shared'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { v4Copy } from '@/lib/i18n/marketing/v4'
 import { deviceScreens } from '@/lib/i18n/marketing/deviceScreens'
@@ -34,7 +34,7 @@ function Moment({ i, children, extraTop = 0 }: { i: number; children: React.Reac
   return (
     <div className="v4-moment" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20, marginTop: extraTop }}>
       <div style={{ fontFamily: V4.serif, fontWeight: 530, fontSize: 58, color: V4.cream, lineHeight: 1 }}>{c.moments[i].time}</div>
-      <div style={monoStyle(10, '.35em', 'rgba(242,233,218,.5)')}>{c.moments[i].tag}</div>
+      <div style={eyebrowStyle('var(--text-faint)')}>{c.moments[i].tag}</div>
       {/* device-UI: the moment's screen content (bubble + card + receipt) */}
       <div data-device-ui="" style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 12, fontFamily: V4.sans }}>
         {children}
@@ -60,7 +60,7 @@ export function Act3() {
       }}
     >
       <div className="v4-w1160" style={{ position: 'relative', zIndex: 5 }}>
-        <div style={monoStyle(10, '.45em', V4.emberEyebrow)}>{c.eyebrow}</div>
+        <div style={eyebrowStyle('var(--accent)')}>{c.eyebrow}</div>
         <div className="v4-statement" style={{ fontFamily: V4.serif, fontWeight: 530, fontSize: 'clamp(30px, 4.4vw, 56px)', lineHeight: 1.14, maxWidth: 820, marginTop: 30, textWrap: 'balance', color: V4.text }}>
           {c.statementPre}
           <span style={{ fontStyle: 'italic', fontWeight: 480, color: V4.cream }}>{c.statementHi}</span>

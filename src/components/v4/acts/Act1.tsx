@@ -2,7 +2,7 @@
 
 import { VoiceOrb } from '@/components/cds/VoiceOrb'
 import { AskBarV4 } from '../AskBarV4'
-import { V4, V4Reveal, monoStyle } from '../shared'
+import { V4, V4Reveal, monoStyle, eyebrowStyle } from '../shared'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { v4Copy } from '@/lib/i18n/marketing/v4'
 
@@ -47,7 +47,7 @@ export function Act1() {
         {c.coords}
       </div>
 
-      <div className="v4-act1-eyebrow" style={{ ...monoStyle(10, '.5em', V4.brass), marginTop: 96, zIndex: 20, textAlign: 'center' }}>
+      <div className="v4-act1-eyebrow" style={{ ...eyebrowStyle('var(--accent)'), marginTop: 96, zIndex: 20, textAlign: 'center' }}>
         {c.eyebrow}
       </div>
 
@@ -81,7 +81,7 @@ export function Act1() {
       </div>
 
       <V4Reveal style={{ position: 'relative', zIndex: 10, marginTop: 'min(30vh, 268px)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18, width: '100%', paddingInline: 20, boxSizing: 'border-box' }}>
-        <div style={{ ...monoStyle(10, '.4em', V4.textSoft), textAlign: 'center' }}>{c.strip}</div>
+        <div style={{ ...eyebrowStyle('var(--text-faint)'), textAlign: 'center' }}>{c.strip}</div>
         <AskBarV4 />
       </V4Reveal>
 
@@ -93,7 +93,7 @@ export function Act1() {
           marginTop: 'auto',
           paddingTop: 70,
           textAlign: 'center',
-          ...monoStyle(10, '.32em', V4.textFaint),
+          ...eyebrowStyle('var(--text-faint)'),
         }}
       >
         {c.proof}

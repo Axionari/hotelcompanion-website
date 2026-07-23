@@ -123,19 +123,21 @@ export function AskBarV4({ chips = null }: { chips?: string[] | null }) {
           className="v4-ask-btn"
           style={{
             flex: 'none',
-            /* ADDENDUM 1 §B4 — terracotta solid action, dark text */
-            background: '#C86A3A',
-            color: '#1A0F06',
+            /* the site's compact primary action (PRODUCT_ARCHITECTURE §11):
+               one button system, sans, sentence case, 44px */
+            background: 'var(--accent)',
+            color: '#1a1207',
             border: 'none',
             borderRadius: 999,
-            padding: '11px 26px',
-            fontFamily: 'var(--font-mono), monospace',
-            fontSize: 11,
-            letterSpacing: '.2em',
+            padding: '0 22px',
+            minHeight: 44,
+            fontFamily: 'var(--font-sans), ui-sans-serif, system-ui, sans-serif',
+            fontSize: 14,
+            fontWeight: 600,
             cursor: 'pointer',
           }}
         >
-          {c.submitLabel.toUpperCase()}
+          {c.submitLabel}
         </button>
       </form>
 

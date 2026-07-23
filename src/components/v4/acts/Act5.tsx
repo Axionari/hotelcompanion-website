@@ -1,6 +1,6 @@
 'use client'
 
-import { V4, V4Reveal, monoStyle } from '../shared'
+import { V4, V4Reveal, monoStyle, eyebrowStyle } from '../shared'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { v4Copy } from '@/lib/i18n/marketing/v4'
 
@@ -23,7 +23,7 @@ export function Act5() {
         boxSizing: 'border-box',
       }}
     >
-      <div style={monoStyle(10, '.45em', V4.brass)}>{c.eyebrow}</div>
+      <div style={eyebrowStyle('var(--accent)')}>{c.eyebrow}</div>
       <div className="v4-statement" style={{ fontFamily: V4.serif, fontWeight: 530, fontSize: 'clamp(30px, 4.4vw, 56px)', lineHeight: 1.12, marginTop: 26, maxWidth: 840, textAlign: 'center', textWrap: 'balance', color: V4.text, paddingInline: 20 }}>
         {c.statementPre}
         <span style={{ fontStyle: 'italic', fontWeight: 480, color: V4.cream }}>{c.statementHi}</span>

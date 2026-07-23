@@ -11,7 +11,8 @@ import { CSSProperties, ReactNode, useEffect, useRef, useState } from 'react'
 /* ------------------------------------------- palette (ADDENDUM 1 §A/§B) */
 export const V4 = {
   bg: '#100e0c',
-  text: '#F2E9DA',
+  /* one body cream site-wide (PRODUCT_ARCHITECTURE §11) */
+  text: 'var(--text)',
   /* §B2 — emphasis is Fraunces italic in cream, never champagne (G-10) */
   cream: '#F2EEE6',
   /* §B5 — brass, micro-accents only (≤20px) */
@@ -23,7 +24,7 @@ export const V4 = {
   barBorder: 'rgba(201,139,78,.4)',
   cardBg: '#1E1610',
   cardBorder: 'rgba(201,139,78,.28)',
-  receiptText: '#C9A87A',
+  receiptText: '#C9A15A',
   ink: '#1A0F06',
   /* §B4 — terracotta solid actions, RC's Request-a-Demo treatment */
   accent: '#C86A3A',
@@ -42,8 +43,19 @@ export const monoStyle = (size: number, tracking: string, color: string): CSSPro
   color,
 })
 
+/** The one marketing-layer eyebrow spec (PRODUCT_ARCHITECTURE §11): mono
+    11px / 0.26em / uppercase; three sanctioned colors — accent (numbered),
+    text-faint (labels), brass (micro). Device-UI mono is exempt. */
+export const eyebrowStyle = (color: string): CSSProperties => ({
+  fontFamily: V4.mono,
+  fontSize: 11,
+  letterSpacing: '0.26em',
+  textTransform: 'uppercase',
+  color,
+})
+
 export function Eyebrow({ children }: { children: ReactNode }) {
-  return <div style={monoStyle(10, '.45em', V4.emberEyebrow)}>{children}</div>
+  return <div style={eyebrowStyle('var(--accent)')}>{children}</div>
 }
 
 /* ------------------------------------------------- entrance reveal (§4) */

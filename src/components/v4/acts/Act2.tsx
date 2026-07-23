@@ -1,6 +1,6 @@
 'use client'
 
-import { V4, V4Reveal, monoStyle } from '../shared'
+import { V4, V4Reveal, eyebrowStyle } from '../shared'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { useLang } from '@/lib/i18n/LanguageContext'
 import { v4Copy } from '@/lib/i18n/marketing/v4'
@@ -26,7 +26,7 @@ export function Act2() {
       }}
     >
       <div className="v4-w1080">
-        <div style={monoStyle(10, '.45em', V4.brass)}>{c.eyebrow}</div>
+        <div style={eyebrowStyle('var(--accent)')}>{c.eyebrow}</div>
         <V4Reveal>
           <div className="v4-act2-grid" style={{ marginTop: 40, alignItems: 'start' }}>
             <div>
@@ -52,7 +52,7 @@ export function Act2() {
               <div style={{ fontFamily: V4.serif, fontWeight: 530, fontSize: 25, color: '#EFE3D0', marginTop: 18, maxWidth: 380, lineHeight: 1.35, textWrap: 'pretty' }}>
                 {c.line1}
               </div>
-              <div style={{ ...monoStyle(10, '.3em', 'rgba(242,233,218,.4)'), marginTop: 16 }}>{c.source1}</div>
+              <div style={{ ...eyebrowStyle('var(--text-faint)'), marginTop: 16 }}>{c.source1}</div>
             </div>
             <div className="v4-act2-right" style={{ marginTop: 230, textAlign: 'right' }}>
               <div data-v4-glow="">
@@ -78,7 +78,7 @@ export function Act2() {
               <div style={{ fontFamily: V4.serif, fontWeight: 530, fontSize: 25, color: '#EFE3D0', marginTop: 18, lineHeight: 1.35, marginLeft: 'auto', maxWidth: 400, textWrap: 'pretty' }}>
                 {c.line2}
               </div>
-              <div style={{ ...monoStyle(10, '.3em', 'rgba(242,233,218,.4)'), marginTop: 16 }}>{c.source2}</div>
+              <div style={{ ...eyebrowStyle('var(--text-faint)'), marginTop: 16 }}>{c.source2}</div>
             </div>
           </div>
         </V4Reveal>

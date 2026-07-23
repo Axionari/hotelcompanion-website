@@ -77,7 +77,8 @@ const en = {
     statementLine1: 'Stop reading about it.',
     statementLine2: 'Ask it something.',
     partnerLine: 'Now partnering with a limited number of visionary hotel groups.',
-    cta: 'BECOME A FOUNDING PARTNER',
+    /* ADDENDUM 2: the founding CTA retired — the primary action is the site's
+       Book a Demo string; /contact#founding is the program's canonical home */
     signoff: 'POWERED BY AXIONARI',
   },
 }
@@ -164,8 +165,6 @@ const es: typeof en = {
     statementLine1: 'Deja de leerlo.',
     statementLine2: 'Pregúntale algo.',
     partnerLine: 'Ahora nos asociamos con un número limitado de grupos hoteleros visionarios.',
-    /* [v3] — foundingCta: Conviértete en Socio Fundador (OQ-10) */
-    cta: 'CONVIÉRTETE EN SOCIO FUNDADOR',
     signoff: 'POWERED BY AXIONARI',
   },
 }
