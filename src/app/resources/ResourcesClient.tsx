@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { SiteNav } from '@/components/site-nav'
 import { SiteFooter } from '@/components/site-footer'
 import { Reveal } from '@/components/cds/Reveal'
-import { SERIF, Em, PageHero, Act, Handoff } from '@/components/v5/Editorial'
+import { SERIF, Em, PageHero, Act, ArticleCards, Handoff } from '@/components/v5/Editorial'
 import { useCopy, type Localized } from '@/lib/i18n/useCopy'
 import { globalCopy } from '@/lib/i18n/marketing/global'
 import { resourcesCopy } from '@/lib/i18n/marketing/resources'
@@ -37,45 +37,6 @@ function splitEm(title: string, em: string): { pre: string; hi: string } {
   const i = em ? title.lastIndexOf(em) : -1
   if (i === -1) return { pre: title, hi: '' }
   return { pre: title.slice(0, i).trimEnd(), hi: title.slice(i) }
-}
-
-/** Calm hairline row for one essay: mono number, serif title, mono meta, arrow. */
-function EssayRow({ essay, delay }: { essay: EssayMeta; delay: number }) {
-  return (
-    <Reveal delay={delay}>
-      <Link
-        href={`/resources/library/${essay.slug}`}
-        className="group grid md:grid-cols-12 gap-x-10 gap-y-2 py-7 items-baseline"
-        style={{ borderTop: '1px solid var(--border-soft)' }}
-      >
-        <div
-          className="md:col-span-1 eyebrow"
-          style={{ color: 'var(--accent)', fontVariantNumeric: 'tabular-nums' }}
-        >
-          {String(essay.order).padStart(2, '0')}
-        </div>
-        <div className="md:col-span-6">
-          <p
-            className="transition-colors group-hover:text-[var(--accent)]"
-            style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(19px, 2vw, 25px)', lineHeight: 1.3, color: 'var(--text)' }}
-          >
-            {essay.title}
-          </p>
-          <p
-            style={{ fontFamily: SERIF, fontStyle: 'italic', fontWeight: 480, fontSize: 15, lineHeight: 1.5, color: 'var(--text-dim)', maxWidth: '52ch' }}
-          >
-            {essay.subtitle}
-          </p>
-        </div>
-        <div className="md:col-span-4 eyebrow" style={{ color: 'var(--text-faint)' }}>
-          {essay.category} · {essay.readingTime}
-        </div>
-        <div className="md:col-span-1 md:text-right" aria-hidden="true" style={{ color: 'var(--accent)' }}>
-          →
-        </div>
-      </Link>
-    </Reveal>
-  )
 }
 
 export default function ResourcesClient({ content }: { content: Localized<ResourcesContent> }) {
@@ -159,10 +120,16 @@ export default function ResourcesClient({ content }: { content: Localized<Resour
               })}
             </div>
           </Reveal>
-          <div className="mt-10">
-            {visible.map((e, i) => (
-              <EssayRow key={e.slug} essay={e} delay={Math.min(i, 6) * 40} />
-            ))}
+          <div className="mt-12">
+            <ArticleCards
+              items={visible.map((e) => ({
+                eyebrow: e.category,
+                title: e.title,
+                body: e.subtitle,
+                meta: e.readingTime,
+                href: `/resources/library/${e.slug}`,
+              }))}
+            />
           </div>
         </div>
       </Act>

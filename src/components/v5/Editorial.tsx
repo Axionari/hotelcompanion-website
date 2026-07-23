@@ -289,37 +289,28 @@ export function TenantStack({
   caption?: string
 }) {
   return (
-    <div>
+    <div style={{ maxWidth: 940, marginInline: 'auto' }}>
       {tiers.map((t, i) => (
         <div key={t.eyebrow}>
           <Reveal delay={i * 90}>
             <div
-              className="rounded-2xl"
-              style={{
-                border: t.highlight ? '1px solid var(--accent)' : '1px solid var(--border-soft)',
-                background: t.highlight ? 'rgba(200,106,58,0.06)' : 'var(--surface-1)',
-                boxShadow: t.highlight ? '0 0 60px rgba(200,106,58,0.12)' : 'none',
-                padding: 'clamp(24px, 3vw, 40px)',
-              }}
+              className={t.highlight ? 'v5-tier-hi' : 'v5-card'}
+              style={{ padding: 'clamp(28px, 3.2vw, 44px)' }}
             >
-              <div className="eyebrow mb-3" style={{ color: t.highlight ? 'var(--accent)' : 'var(--text-faint)' }}>
+              <div className="eyebrow mb-4" style={{ color: t.highlight ? 'var(--accent)' : 'var(--text-faint)' }}>
                 {t.eyebrow}
               </div>
-              <div style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(20px, 2.4vw, 30px)', lineHeight: 1.15, color: 'var(--text)' }}>
+              <div style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(21px, 2.5vw, 31px)', lineHeight: 1.12, letterSpacing: '-0.01em', color: 'var(--text)' }}>
                 {t.title}
               </div>
               {t.sub && (
-                <div className="mt-1.5" style={{ fontSize: 14, color: 'var(--text-dim)' }}>
+                <div className="mt-2" style={{ fontSize: 14.5, color: 'var(--text-dim)' }}>
                   {t.sub}
                 </div>
               )}
-              <div className="mt-5 flex flex-wrap gap-2">
+              <div className="mt-6 flex flex-wrap gap-2.5">
                 {t.chips.map((chip) => (
-                  <span
-                    key={chip}
-                    className="eyebrow"
-                    style={{ border: '1px solid var(--chip-border, rgba(201,139,78,.3))', borderRadius: 999, padding: '8px 14px', color: 'var(--text-dim)' }}
-                  >
+                  <span key={chip} className="v5-chip">
                     {chip}
                   </span>
                 ))}
@@ -329,18 +320,64 @@ export function TenantStack({
           {i < tiers.length - 1 && (
             <div
               aria-hidden="true"
-              style={{ width: 2, height: 'clamp(20px, 3vw, 34px)', background: 'linear-gradient(var(--accent), rgba(200,106,58,0.25))', margin: '0 auto' }}
+              style={{ width: 1.5, height: 'clamp(22px, 3vw, 38px)', background: 'linear-gradient(rgba(200,106,58,0.7), rgba(200,106,58,0.2))', margin: '0 auto' }}
             />
           )}
         </div>
       ))}
       {caption && (
         <Reveal>
-          <p className="eyebrow mt-8" style={{ color: 'var(--text-faint)', textAlign: 'center' }}>
+          <p className="eyebrow mt-10" style={{ color: 'var(--text-faint)', textAlign: 'center', letterSpacing: '0.14em' }}>
             {caption}
           </p>
         </Reveal>
       )}
+    </div>
+  )
+}
+
+/**
+ * ArticleCards — RC/PC's "Product Philosophy" essay cards: an elevated card
+ * per item (eyebrow → serif title → description → meta link with a nudging
+ * arrow on hover). Each card is a link.
+ */
+export function ArticleCards({
+  items,
+  columns = 3,
+}: {
+  items: ReadonlyArray<{ eyebrow?: string; title: string; body: string; meta?: string; href: string }>
+  columns?: 2 | 3
+}) {
+  return (
+    <div className={`grid gap-6 ${columns === 3 ? 'md:grid-cols-3' : 'md:grid-cols-2'}`}>
+      {items.map((it, i) => (
+        <Reveal key={it.href} delay={Math.min(i, 6) * 60}>
+          <a
+            href={it.href}
+            className="v5-card v5-card-link group flex flex-col h-full"
+            style={{ padding: 'clamp(24px, 2.6vw, 34px)' }}
+          >
+            {it.eyebrow && <div className="eyebrow eyebrow-accent">{it.eyebrow}</div>}
+            <p
+              className="mt-4"
+              style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(20px, 1.9vw, 25px)', lineHeight: 1.2, letterSpacing: '-0.01em', color: 'var(--text)' }}
+            >
+              {it.title}
+            </p>
+            <p className="mt-3" style={{ fontSize: 15, lineHeight: 1.6, color: 'var(--text-dim)', flex: 1 }}>
+              {it.body}
+            </p>
+            {it.meta && (
+              <div className="eyebrow mt-8" style={{ color: 'var(--text-faint)' }}>
+                {it.meta}
+                <span className="v5-card-arrow" style={{ color: 'var(--accent)', marginLeft: 8 }} aria-hidden="true">
+                  →
+                </span>
+              </div>
+            )}
+          </a>
+        </Reveal>
+      ))}
     </div>
   )
 }
@@ -379,7 +416,7 @@ export function PostureSplit({
       </div>
       <div className="lg:col-span-6">
         <Reveal delay={140}>
-          <div className="rounded-2xl" style={{ border: '1px solid var(--border-soft)', background: 'var(--surface-1)', padding: 'clamp(28px, 3.4vw, 44px)' }}>
+          <div className="v5-card" style={{ padding: 'clamp(28px, 3.4vw, 44px)' }}>
             <div className="flex items-baseline justify-between mb-6">
               <div style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(20px, 2.2vw, 26px)', color: 'var(--text)' }}>
                 {postureLabel}
@@ -426,7 +463,7 @@ export function LeadershipCards({
     <div className="grid md:grid-cols-2 gap-8">
       {members.map((m, i) => (
         <Reveal key={m.name} delay={Math.min(i, 4) * 70}>
-          <div className="rounded-2xl h-full" style={{ border: '1px solid var(--border-soft)', background: 'var(--surface-1)', padding: 'clamp(24px, 3vw, 40px)' }}>
+          <div className="v5-card h-full" style={{ padding: 'clamp(24px, 3vw, 40px)' }}>
             <div style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(20px, 2.2vw, 26px)', color: 'var(--text)' }}>
               {m.name}
             </div>
