@@ -73,7 +73,7 @@ export function DashboardShowcase({ caption }: { caption?: string }) {
             <div key={i} style={{ width: '10px', height: '10px', borderRadius: '50%', background: 'rgba(232,227,220,0.12)' }} />
           ))}
           <div
-            style={{ marginLeft: '8px', flex: 1, maxWidth: '320px', background: 'rgba(232,227,220,0.04)', border: '1px solid rgba(232,227,220,0.06)', borderRadius: '6px', padding: '4px 12px', fontSize: '12px', color: '#4A4540', fontFamily: 'var(--font-sans)' }}
+            style={{ marginLeft: '8px', flex: 1, maxWidth: '320px', background: 'rgba(232,227,220,0.04)', border: '1px solid rgba(232,227,220,0.06)', borderRadius: '6px', padding: '4px 12px', fontSize: '12px', color: '#7C756D', fontFamily: 'var(--font-sans)' }}
           >
             app.hotelcompanion.ai/dashboard
           </div>
@@ -96,7 +96,7 @@ export function DashboardShowcase({ caption }: { caption?: string }) {
               transition: 'opacity 0.7s ease 0.4s, transform 0.7s ease 0.4s',
             }}
           >
-            <p className="font-sans" style={{ fontSize: '10px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#4A4540', padding: '0 16px', marginBottom: '10px' }}>
+            <p className="font-sans" style={{ fontSize: '10px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#7C756D', padding: '0 16px', marginBottom: '10px' }}>
               {lang === 'es' ? 'Tus hoteles' : 'Your Hotels'}
             </p>
             {[
@@ -107,7 +107,7 @@ export function DashboardShowcase({ caption }: { caption?: string }) {
               <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '9px 16px', background: prop.active ? '#1A1715' : 'transparent', borderLeft: prop.active ? '2px solid #C96A3A' : '2px solid transparent' }}>
                 <span
                   className="font-sans"
-                  style={{ fontSize: '12px', color: prop.active ? '#FAF9F5' : '#6B6560', fontWeight: prop.active ? 500 : 400, background: prop.active ? '#2C1810' : '#1A1715', border: `1px solid ${prop.active ? '#C96A3A' : 'rgba(232,227,220,0.08)'}`, borderRadius: '999px', padding: '3px 10px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: prop.issues > 0 ? '120px' : '150px', display: 'inline-block' }}
+                  style={{ fontSize: '12px', color: prop.active ? '#FAF9F5' : '#9C948C', fontWeight: prop.active ? 500 : 400, background: prop.active ? '#2C1810' : '#1A1715', border: `1px solid ${prop.active ? '#C96A3A' : 'rgba(232,227,220,0.08)'}`, borderRadius: '999px', padding: '3px 10px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: prop.issues > 0 ? '120px' : '150px', display: 'inline-block' }}
                 >
                   {prop.name}
                 </span>
@@ -117,7 +117,7 @@ export function DashboardShowcase({ caption }: { caption?: string }) {
               </div>
             ))}
             <div style={{ marginTop: 'auto', padding: '16px', borderTop: '1px solid rgba(232,227,220,0.06)' }}>
-              <span className="font-sans" style={{ fontSize: '12px', color: '#4A4540' }}>+ {lang === 'es' ? 'Agregar hotel' : 'Add hotel'}</span>
+              <span className="font-sans" style={{ fontSize: '12px', color: '#7C756D' }}>+ {lang === 'es' ? 'Agregar hotel' : 'Add hotel'}</span>
             </div>
           </div>
 
@@ -135,7 +135,7 @@ export function DashboardShowcase({ caption }: { caption?: string }) {
                 lang === 'es' ? 'Despliegue' : 'Deploy',
                 lang === 'es' ? 'Ajustes' : 'Settings',
               ].map((tab, i) => (
-                <div key={i} className="font-sans" style={{ fontSize: '13px', color: i === 0 ? '#FAF9F5' : '#6B6560', padding: '8px 16px', borderBottom: i === 0 ? '2px solid #C96A3A' : '2px solid transparent', marginBottom: '-1px' }}>
+                <div key={i} className="font-sans" style={{ fontSize: '13px', color: i === 0 ? '#FAF9F5' : '#9C948C', padding: '8px 16px', borderBottom: i === 0 ? '2px solid #C96A3A' : '2px solid transparent', marginBottom: '-1px' }}>
                   {tab}
                 </div>
               ))}
@@ -169,7 +169,7 @@ export function DashboardShowcase({ caption }: { caption?: string }) {
                   <div key={kpi.label}>
                     <p className="font-sans" style={{ fontSize: '11px', color: '#A8A099' }}>{kpi.label}</p>
                     <p className="font-serif" style={{ fontSize: '24px', color: kpi.green ? '#2D9E6B' : '#FFFFFF', fontWeight: 600, lineHeight: 1.1, marginTop: '4px' }}>{kpi.value}</p>
-                    <p className="font-sans" style={{ fontSize: '11px', color: '#6B6560', marginTop: '3px' }}>{kpi.sub}</p>
+                    <p className="font-sans" style={{ fontSize: '11px', color: '#9C948C', marginTop: '3px' }}>{kpi.sub}</p>
                   </div>
                 ))}
               </div>
@@ -191,8 +191,8 @@ export function DashboardShowcase({ caption }: { caption?: string }) {
                 </div>
                 <ResponsiveContainer width="100%" height={100}>
                   <LineChart data={days} margin={{ top: 4, right: 4, left: -32, bottom: 0 }}>
-                    <XAxis dataKey="date" tick={{ fontSize: 9, fill: '#4A4540', fontFamily: 'var(--font-sans)' }} tickLine={false} axisLine={false} interval={9} />
-                    <YAxis tick={{ fontSize: 9, fill: '#4A4540', fontFamily: 'var(--font-sans)' }} tickLine={false} axisLine={false} />
+                    <XAxis dataKey="date" tick={{ fontSize: 9, fill: '#7C756D', fontFamily: 'var(--font-sans)' }} tickLine={false} axisLine={false} interval={9} />
+                    <YAxis tick={{ fontSize: 9, fill: '#7C756D', fontFamily: 'var(--font-sans)' }} tickLine={false} axisLine={false} />
                     <Tooltip contentStyle={{ background: '#1F1C19', border: '1px solid rgba(232,227,220,0.08)', borderRadius: '8px', fontSize: '11px', color: '#FAF9F5', fontFamily: 'var(--font-sans)' }} labelStyle={{ color: '#A8A099' }} cursor={{ stroke: 'rgba(232,227,220,0.06)' }} />
                     <Line type="monotone" dataKey="questions" stroke="#C96A3A" strokeWidth={visible ? 2 : 0} dot={false} activeDot={{ r: 3, fill: '#C96A3A', stroke: '#0F0D0B', strokeWidth: 2 }} style={{ transition: 'stroke-width 1s ease 0.8s' }} />
                   </LineChart>
@@ -206,7 +206,7 @@ export function DashboardShowcase({ caption }: { caption?: string }) {
                 <ResponsiveContainer width="100%" height={130}>
                   <BarChart data={categories} layout="vertical" margin={{ top: 0, right: 28, left: 0, bottom: 0 }}>
                     <XAxis type="number" hide />
-                    <YAxis type="category" dataKey="name" tick={{ fontSize: 10, fill: '#6B6560', fontFamily: 'var(--font-sans)' }} tickLine={false} axisLine={false} width={90} />
+                    <YAxis type="category" dataKey="name" tick={{ fontSize: 10, fill: '#9C948C', fontFamily: 'var(--font-sans)' }} tickLine={false} axisLine={false} width={90} />
                     <Tooltip contentStyle={{ background: '#1F1C19', border: '1px solid rgba(232,227,220,0.08)', borderRadius: '8px', fontSize: '11px', color: '#FAF9F5', fontFamily: 'var(--font-sans)' }} formatter={(value) => [`${value}%`, lang === 'es' ? 'Participación' : 'Share'] as [string, string]} cursor={{ fill: 'rgba(232,227,220,0.02)' }} />
                     <Bar dataKey="pct" radius={[0, 4, 4, 0]}>
                       {categories.map((_, index) => (
@@ -225,7 +225,7 @@ export function DashboardShowcase({ caption }: { caption?: string }) {
                   <circle cx="40" cy="40" r="32" fill="none" stroke="rgba(232,227,220,0.06)" strokeWidth="8" />
                   <circle cx="40" cy="40" r="32" fill="none" stroke="#2D9E6B" strokeWidth="8" strokeLinecap="round" transform="rotate(-90 40 40)" style={{ strokeDasharray: visible ? `${2 * Math.PI * 32 * 0.91} ${2 * Math.PI * 32 * 0.09}` : `0 ${2 * Math.PI * 32}`, strokeDashoffset: 2 * Math.PI * 32 * 0.25, transition: 'stroke-dasharray 1.2s ease 1s' }} />
                   <text x="40" y="36" textAnchor="middle" style={{ fontSize: '14px', fontWeight: 600, fill: '#FFFFFF', fontFamily: 'var(--font-serif)' }}>91%</text>
-                  <text x="40" y="50" textAnchor="middle" style={{ fontSize: '8px', fill: '#6B6560', fontFamily: 'var(--font-sans)' }}>resolved</text>
+                  <text x="40" y="50" textAnchor="middle" style={{ fontSize: '8px', fill: '#9C948C', fontFamily: 'var(--font-sans)' }}>resolved</text>
                 </svg>
               </div>
               <div>
@@ -235,7 +235,7 @@ export function DashboardShowcase({ caption }: { caption?: string }) {
                 <p className="font-serif" style={{ fontSize: '20px', color: '#FFFFFF', fontWeight: 600, lineHeight: 1, marginBottom: '4px' }}>
                   {lang === 'es' ? '91% Resuelto' : '91% Resolved'}
                 </p>
-                <p className="font-sans" style={{ fontSize: '12px', color: '#6B6560', lineHeight: 1.5 }}>
+                <p className="font-sans" style={{ fontSize: '12px', color: '#9C948C', lineHeight: 1.5 }}>
                   {lang === 'es' ? '9% escalado a tu equipo — solo lo que realmente necesita un humano.' : '9% escalated to your team — only what genuinely needs a human.'}
                 </p>
               </div>
@@ -252,7 +252,7 @@ export function DashboardShowcase({ caption }: { caption?: string }) {
               { name: 'Villa del Mar', active: false, issues: 1 },
             ].map((p, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
-                <span className="font-sans" style={{ fontSize: '11px', color: p.active ? '#FAF9F5' : '#6B6560', background: p.active ? '#2C1810' : '#1A1715', border: `1px solid ${p.active ? '#C96A3A' : 'rgba(232,227,220,0.08)'}`, borderRadius: '999px', padding: '4px 10px', whiteSpace: 'nowrap' }}>
+                <span className="font-sans" style={{ fontSize: '11px', color: p.active ? '#FAF9F5' : '#9C948C', background: p.active ? '#2C1810' : '#1A1715', border: `1px solid ${p.active ? '#C96A3A' : 'rgba(232,227,220,0.08)'}`, borderRadius: '999px', padding: '4px 10px', whiteSpace: 'nowrap' }}>
                   {p.name}
                 </span>
                 {p.issues > 0 && (
@@ -266,7 +266,7 @@ export function DashboardShowcase({ caption }: { caption?: string }) {
               {lang === 'es' ? 'Ingresos capturados' : 'Revenue captured'}
             </p>
             <p className="font-serif" style={{ fontSize: '24px', color: '#2D9E6B', fontWeight: 600, lineHeight: 1 }}>$38,400</p>
-            <p className="font-sans" style={{ fontSize: '11px', color: '#6B6560', marginTop: '3px' }}>
+            <p className="font-sans" style={{ fontSize: '11px', color: '#9C948C', marginTop: '3px' }}>
               {lang === 'es' ? '214 reservas directas · 0% comisión OTA' : '214 direct bookings · 0% OTA commission'}
             </p>
           </div>
@@ -284,8 +284,8 @@ export function DashboardShowcase({ caption }: { caption?: string }) {
             <p className="font-sans" style={{ fontSize: '10px', color: '#A8A099', marginBottom: '10px' }}>{lang === 'es' ? 'Actividad de huéspedes — 30 días' : 'Guest activity — 30 days'}</p>
             <ResponsiveContainer width="100%" height={80}>
               <LineChart data={days} margin={{ top: 4, right: 4, left: -32, bottom: 0 }}>
-                <XAxis dataKey="date" tick={{ fontSize: 8, fill: '#4A4540', fontFamily: 'var(--font-sans)' }} tickLine={false} axisLine={false} interval={9} />
-                <YAxis tick={{ fontSize: 8, fill: '#4A4540', fontFamily: 'var(--font-sans)' }} tickLine={false} axisLine={false} />
+                <XAxis dataKey="date" tick={{ fontSize: 8, fill: '#7C756D', fontFamily: 'var(--font-sans)' }} tickLine={false} axisLine={false} interval={9} />
+                <YAxis tick={{ fontSize: 8, fill: '#7C756D', fontFamily: 'var(--font-sans)' }} tickLine={false} axisLine={false} />
                 <Line type="monotone" dataKey="questions" stroke="#C96A3A" strokeWidth={1.5} dot={false} />
               </LineChart>
             </ResponsiveContainer>

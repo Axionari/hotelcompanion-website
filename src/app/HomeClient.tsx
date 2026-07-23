@@ -260,10 +260,10 @@ export default function HomeClient() {
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, padding: 'clamp(16px,1.8vw,22px) clamp(20px,2.4vw,30px)', borderBottom: '1px solid var(--border-soft)' }}>
               <span style={{ display: 'inline-flex', alignItems: 'center', gap: 9 }}>
                 <span className="v5-live-dot" style={{ width: 8, height: 8, borderRadius: '50%', background: '#2D9E6B' }} />
-                <span className="eyebrow" style={{ color: 'var(--text-faint)' }}>{c.actV.liveLabel}</span>
+                <span className="eyebrow" style={{ color: 'var(--text-dim)' }}>{c.actV.liveLabel}</span>
               </span>
               <span style={{ textAlign: 'right' }}>
-                <span className="eyebrow" style={{ color: 'var(--text-faint)', display: 'block', fontSize: 10 }}>{c.actV.capturedLabel}</span>
+                <span className="eyebrow" style={{ color: 'var(--text-dim)', display: 'block', fontSize: 10 }}>{c.actV.capturedLabel}</span>
                 <span style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(20px,2.2vw,30px)', color: '#2D9E6B', lineHeight: 1.1 }}>{c.actV.captured}</span>
               </span>
             </div>
@@ -273,7 +273,7 @@ export default function HomeClient() {
               return (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 'clamp(12px,1.6vw,24px)', padding: 'clamp(15px,1.7vw,21px) clamp(20px,2.4vw,30px)', borderBottom: i < c.actV.rows.length - 1 ? '1px solid rgba(243,236,226,0.06)' : 'none' }}>
                   <span style={{ fontFamily: 'var(--font-mono), monospace', fontSize: 'clamp(11px,1.05vw,13.5px)', letterSpacing: '.04em', color: 'var(--accent)', minWidth: 0 }}>
-                    {r.route}<span style={{ color: 'var(--text)' }}>{r.item}</span><span style={{ color: 'var(--text-faint)' }}>{r.tail}</span>
+                    {r.route}<span style={{ color: 'var(--text)' }}>{r.item}</span><span style={{ color: 'var(--text-dim)' }}>{r.tail}</span>
                   </span>
                   <span style={{ display: 'inline-flex', alignItems: 'center', gap: 'clamp(10px,1.4vw,20px)', flexShrink: 0 }}>
                     <span
@@ -290,7 +290,7 @@ export default function HomeClient() {
                     >
                       {r.revenue}
                     </span>
-                    <span style={{ fontFamily: 'var(--font-mono), monospace', fontSize: 'clamp(10px,1vw,12.5px)', color: 'var(--text-faint)', minWidth: 44, textAlign: 'right' }}>{r.time}</span>
+                    <span style={{ fontFamily: 'var(--font-mono), monospace', fontSize: 'clamp(10px,1vw,12.5px)', color: 'var(--text-dim)', minWidth: 44, textAlign: 'right' }}>{r.time}</span>
                   </span>
                 </div>
               )

@@ -327,7 +327,7 @@ export default function EnterpriseClient() {
       {/* ENTERPRISE OUTCOMES {#enterprise-outcomes} — what shared intelligence
           buys (the approved Axionari outcomes row): the page's closing
           argument before the CTA. */}
-      <Band id="enterprise-outcomes" tight>
+      <Band id="enterprise-outcomes">
         <Reveal className="text-center mb-10">
           <div className="eyebrow eyebrow-accent">{c.outcomes.eyebrow}</div>
         </Reveal>

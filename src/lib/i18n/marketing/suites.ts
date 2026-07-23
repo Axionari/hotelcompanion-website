@@ -24,7 +24,7 @@ const en = {
   view: 'View',
   list: [
     { key: 'garden', name: 'Garden Villa', price: '$180', meta: 'Plunge pool · tropical garden', image: '/assets/ui/suite-3.webp' },
-    { key: 'ocean', name: 'Ocean-View Suite', price: '$250', meta: 'Private terrace · ocean view', image: '/assets/ui/suite-1.webp', featured: true },
+    { key: 'ocean', name: 'Ocean-View Suite', price: '$250', meta: 'Private terrace · ocean view', image: '/assets/ui/suite-ocean.webp', featured: true },
     { key: 'penthouse', name: 'Beachfront Penthouse', price: '$520', meta: 'Rooftop terrace · steps to the sand', image: '/assets/ui/suite-2.webp' },
   ],
 
@@ -58,7 +58,7 @@ const en = {
       includesTitle: 'Daily breakfast for two',
       includesNote: 'and a $60 spa credit every stay.',
       cta: 'Add to my stay',
-      images: ['/assets/ui/suite-1.webp', '/assets/ui/suite-2.webp'],
+      images: ['/assets/ui/suite-ocean.webp', '/assets/ui/suite-2.webp'],
     },
     {
       key: 'penthouse',
@@ -72,7 +72,7 @@ const en = {
       includesTitle: 'Private airport transfer',
       includesNote: 'and a bottle of mezcal on arrival.',
       cta: 'Add to my stay',
-      images: ['/assets/ui/suite-2.webp', '/assets/ui/suite-1.webp'],
+      images: ['/assets/ui/suite-2.webp', '/assets/ui/suite-ocean.webp'],
     },
   ],
 
@@ -82,7 +82,7 @@ const en = {
     add: '+ Add an experience',
     reviewCta: 'Review stay',
     items: [
-      { name: 'Ocean-View Suite', meta: '3 nights · $250', price: '$750', qty: 3, image: '/assets/ui/suite-1.webp' },
+      { name: 'Ocean-View Suite', meta: '3 nights · $250', price: '$750', qty: 3, image: '/assets/ui/suite-ocean.webp' },
       { name: 'Cacao Ceremony', meta: 'Spa Ixchel · 90 min', price: '$180', qty: 1, image: '/assets/ui/spa-1.webp' },
       { name: 'Sunset dinner for two', meta: 'Casa Marea', price: '$140', qty: 1, image: '/assets/ui/dish-2.webp' },
     ],
@@ -205,7 +205,7 @@ const es: typeof en = {
   view: 'Ver',
   list: [
     { key: 'garden', name: 'Villa Jardín', price: '$180', meta: 'Alberca privada · jardín tropical', image: '/assets/ui/suite-3.webp' },
-    { key: 'ocean', name: 'Suite Vista al Mar', price: '$250', meta: 'Terraza privada · vista al mar', image: '/assets/ui/suite-1.webp', featured: true },
+    { key: 'ocean', name: 'Suite Vista al Mar', price: '$250', meta: 'Terraza privada · vista al mar', image: '/assets/ui/suite-ocean.webp', featured: true },
     { key: 'penthouse', name: 'Penthouse Frente al Mar', price: '$520', meta: 'Terraza en la azotea · a pasos de la arena', image: '/assets/ui/suite-2.webp' },
   ],
 
@@ -237,7 +237,7 @@ const es: typeof en = {
       includesTitle: 'Desayuno diario para dos',
       includesNote: 'y un crédito de spa de $60 por estancia.',
       cta: 'Agregar a mi estancia',
-      images: ['/assets/ui/suite-1.webp', '/assets/ui/suite-2.webp'],
+      images: ['/assets/ui/suite-ocean.webp', '/assets/ui/suite-2.webp'],
     },
     {
       key: 'penthouse',
@@ -251,7 +251,7 @@ const es: typeof en = {
       includesTitle: 'Traslado privado del aeropuerto',
       includesNote: 'y una botella de mezcal a tu llegada.',
       cta: 'Agregar a mi estancia',
-      images: ['/assets/ui/suite-2.webp', '/assets/ui/suite-1.webp'],
+      images: ['/assets/ui/suite-2.webp', '/assets/ui/suite-ocean.webp'],
     },
   ],
 
@@ -261,7 +261,7 @@ const es: typeof en = {
     add: '+ Agregar una experiencia',
     reviewCta: 'Revisar estancia',
     items: [
-      { name: 'Suite Vista al Mar', meta: '3 noches · $250', price: '$750', qty: 3, image: '/assets/ui/suite-1.webp' },
+      { name: 'Suite Vista al Mar', meta: '3 noches · $250', price: '$750', qty: 3, image: '/assets/ui/suite-ocean.webp' },
       { name: 'Ceremonia de Cacao', meta: 'Spa Ixchel · 90 min', price: '$180', qty: 1, image: '/assets/ui/spa-1.webp' },
       { name: 'Cena al atardecer para dos', meta: 'Casa Marea', price: '$140', qty: 1, image: '/assets/ui/dish-2.webp' },
     ],
