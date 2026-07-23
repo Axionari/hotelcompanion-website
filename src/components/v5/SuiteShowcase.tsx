@@ -238,34 +238,30 @@ function ReviewScreen({ c }: { c: SuiteCopy }) {
 function PaymentScreen({ c }: { c: SuiteCopy }) {
   const p = c.payment
   return (
-    <div style={pad}>
+    <div style={{ ...pad, gap: 'clamp(10px,1.3vw,18px)' }}>
       <TopBar c={c} count={5} />
-      <div style={{ textAlign: 'center', marginTop: 'clamp(4px,0.8vw,12px)', flexShrink: 0 }}>
-        <div style={{ ...MONO, fontSize: 'clamp(8px,0.8vw,11px)', letterSpacing: '.18em', color: TERRA }}>{p.label}</div>
-        <div style={{ fontFamily: SERIF, fontWeight: 500, fontSize: 'clamp(20px,2.2vw,32px)', color: CREAM, marginTop: 4 }}>{p.title}</div>
-        <div style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(22px,2.4vw,36px)', color: TERRA, marginTop: 6 }}>{p.amount}</div>
+      <div style={{ textAlign: 'center', flexShrink: 0 }}>
+        <div style={{ ...MONO, fontSize: 'clamp(8px,0.78vw,11px)', letterSpacing: '.18em', color: TERRA }}>{p.label}</div>
+        <div style={{ fontFamily: SERIF, fontWeight: 500, fontSize: 'clamp(18px,2vw,28px)', color: CREAM, marginTop: 4 }}>
+          {p.title} <span style={{ color: TERRA }}>· {p.amount}</span>
+        </div>
       </div>
-      <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 'clamp(8px,1vw,14px)', marginTop: 'clamp(8px,1vw,14px)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(8px,1vw,14px)' }}>
-          <span style={{ display: 'grid', placeItems: 'center', background: '#000', color: '#fff', borderRadius: 12, padding: 'clamp(10px,1.2vw,16px)', fontFamily: SANS, fontWeight: 600, fontSize: 'clamp(12px,1.2vw,17px)' }}>{p.apple}</span>
-          <span style={{ display: 'grid', placeItems: 'center', background: '#fff', color: '#111', borderRadius: 12, padding: 'clamp(10px,1.2vw,16px)', fontFamily: SANS, fontWeight: 600, fontSize: 'clamp(12px,1.2vw,17px)' }}>{p.google}</span>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12, ...MONO, fontSize: 'clamp(8px,0.75vw,10.5px)', letterSpacing: '.14em', color: DIM }}>
-          <span style={{ flex: 1, height: 1, background: 'rgba(243,236,226,0.12)' }} />{p.orCard}<span style={{ flex: 1, height: 1, background: 'rgba(243,236,226,0.12)' }} />
-        </div>
-        <div style={{ border: '1px solid rgba(200,106,58,0.3)', borderRadius: 14, padding: 'clamp(11px,1.3vw,18px)', background: 'rgba(200,106,58,0.04)' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', ...MONO, fontSize: 'clamp(7.5px,0.72vw,10px)', letterSpacing: '.12em' }}>
-            <span style={{ color: TERRA }}>🔒 {p.secure}</span><span style={{ color: DIM }}>{p.stripe}</span>
-          </div>
-          <div style={{ border: '1px dashed rgba(243,236,226,0.18)', borderRadius: 10, marginTop: 10, padding: 'clamp(10px,1.2vw,16px)', textAlign: 'center' }}>
-            <div style={{ width: 18, height: 18, borderRadius: 4, border: '1px solid rgba(243,236,226,0.3)', margin: '0 auto 9px' }} />
-            <p style={{ fontFamily: SANS, fontSize: 'clamp(9px,0.9vw,12px)', color: 'rgba(242,233,218,0.7)', lineHeight: 1.45 }}>{p.cardNote}</p>
-            <p style={{ ...MONO, fontSize: 'clamp(6.5px,0.66vw,9px)', letterSpacing: '.08em', color: 'rgba(201,161,90,0.7)', marginTop: 9 }}>{p.trust}</p>
-          </div>
-        </div>
-        <div style={{ textAlign: 'center', ...MONO, fontSize: 'clamp(7px,0.7vw,9.5px)', letterSpacing: '.12em', color: DIM }}>🔒 {p.securedBy}</div>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(8px,1vw,14px)', flexShrink: 0 }}>
+        <span style={{ display: 'grid', placeItems: 'center', background: '#000', color: '#fff', borderRadius: 12, padding: 'clamp(11px,1.25vw,16px)', fontFamily: SANS, fontWeight: 600, fontSize: 'clamp(12px,1.15vw,16px)' }}>{p.apple}</span>
+        <span style={{ display: 'grid', placeItems: 'center', background: '#fff', color: '#111', borderRadius: 12, padding: 'clamp(11px,1.25vw,16px)', fontFamily: SANS, fontWeight: 600, fontSize: 'clamp(12px,1.15vw,16px)' }}>{p.google}</span>
       </div>
-      <div style={{ marginTop: 'clamp(8px,1vw,14px)', flexShrink: 0 }}><Cta>{p.pay} · {p.amount}</Cta></div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, ...MONO, fontSize: 'clamp(8px,0.72vw,10px)', letterSpacing: '.14em', color: DIM, flexShrink: 0 }}>
+        <span style={{ flex: 1, height: 1, background: 'rgba(243,236,226,0.12)' }} />{p.orCard}<span style={{ flex: 1, height: 1, background: 'rgba(243,236,226,0.12)' }} />
+      </div>
+      <div style={{ border: '1px solid rgba(200,106,58,0.28)', borderRadius: 14, padding: 'clamp(12px,1.4vw,20px)', background: 'rgba(200,106,58,0.04)', flexShrink: 0 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', ...MONO, fontSize: 'clamp(8px,0.72vw,10px)', letterSpacing: '.12em', marginBottom: 'clamp(9px,1vw,14px)' }}>
+          <span style={{ color: TERRA }}>🔒 {p.secure}</span><span style={{ color: DIM }}>{p.stripe}</span>
+        </div>
+        <p style={{ fontFamily: SANS, fontSize: 'clamp(10px,0.95vw,13px)', color: 'rgba(242,233,218,0.82)', lineHeight: 1.5, textAlign: 'center', maxWidth: '46ch', marginInline: 'auto' }}>{p.cardNote}</p>
+        <p style={{ ...MONO, fontSize: 'clamp(7px,0.7vw,9.5px)', letterSpacing: '.1em', color: 'rgba(201,161,90,0.78)', marginTop: 'clamp(7px,0.8vw,11px)', textAlign: 'center', lineHeight: 1.5 }}>{p.trust}</p>
+      </div>
+      <div style={{ textAlign: 'center', ...MONO, fontSize: 'clamp(7px,0.7vw,9.5px)', letterSpacing: '.12em', color: DIM, flexShrink: 0 }}>🔒 {p.securedBy}</div>
+      <div style={{ marginTop: 'auto', flexShrink: 0 }}><Cta>{p.pay} · {p.amount}</Cta></div>
     </div>
   )
 }
