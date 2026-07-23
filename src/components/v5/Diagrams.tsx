@@ -76,17 +76,21 @@ const chipStyle: CSSProperties = {
 
 /* ───────────────────────────────────────────────── FragmentScatter ── */
 
-/** Scattered chip positions (percent), tuned to feel disordered. */
+/** Diagram coordinate space — the container is aspect-locked to this, so SVG
+ *  and HTML positions correspond exactly (no stretch, no missed endpoints). */
+const FW = 1100
+const FH = 460
+const FC = { x: 550, y: 230 }
+
+/** Chip centers in diagram units. */
 const SCATTER: Array<{ x: number; y: number }> = [
-  { x: 10, y: 12 }, { x: 44, y: 4 }, { x: 78, y: 10 },
-  { x: 3, y: 52 }, { x: 92, y: 42 },
-  { x: 14, y: 88 }, { x: 52, y: 94 }, { x: 84, y: 82 },
+  { x: 150, y: 88 }, { x: 470, y: 50 }, { x: 860, y: 74 },
+  { x: 85, y: 253 }, { x: 1000, y: 207 },
+  { x: 185, y: 386 }, { x: 555, y: 419 }, { x: 935, y: 363 },
 ]
 
-/** Mono failure labels along the broken lines. */
-const MARKS: Array<{ x: number; y: number }> = [
-  { x: 24, y: 30 }, { x: 66, y: 68 }, { x: 30, y: 70 },
-]
+/** Which lines break (gap + × + failure label), one per marker. */
+const BROKEN = [0, 4, 5]
 
 export function FragmentScatter({
   center,
@@ -99,60 +103,77 @@ export function FragmentScatter({
 }) {
   const { ref, cls } = useArmedIn()
   const pts = SCATTER.slice(0, systems.length)
+
+  /** Each line runs center → just short of its chip; at() walks it. */
+  const geom = pts.map((p) => {
+    const dx = p.x - FC.x
+    const dy = p.y - FC.y
+    const len = Math.hypot(dx, dy)
+    const end = { x: p.x - (dx / len) * 70, y: p.y - (dy / len) * 48 }
+    const at = (t: number) => ({ x: FC.x + (end.x - FC.x) * t, y: FC.y + (end.y - FC.y) * t })
+    return { end, at }
+  })
+  const lineStyle = { stroke: 'rgba(200,106,58,0.6)', strokeWidth: 1.5, strokeDasharray: '5 6' }
+
   return (
     <div ref={ref} className={cls}>
-      {/* ── desktop scatter ── */}
-      <div className="relative hidden md:block" style={{ height: 'clamp(340px, 34vw, 480px)' }}>
-        <svg aria-hidden className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-          {pts.map((p, i) => {
-            const mx = (p.x + 50) / 2 + (i % 2 ? 4 : -4)
-            const my = (p.y + 50) / 2 + (i % 3 ? -3 : 3)
+      {/* ── desktop scatter — aspect-locked so every line lands true ── */}
+      <div className="relative hidden md:block" style={{ aspectRatio: `${FW} / ${FH}`, maxWidth: 1200, marginInline: 'auto' }}>
+        <svg aria-hidden className="absolute inset-0 w-full h-full" viewBox={`0 0 ${FW} ${FH}`}>
+          {geom.map((g, i) => {
+            const broken = BROKEN.indexOf(i)
+            if (broken === -1) {
+              return (
+                <line
+                  key={i}
+                  className="lg-line"
+                  x1={FC.x} y1={FC.y} x2={g.end.x} y2={g.end.y}
+                  {...lineStyle}
+                  style={{ transitionDelay: `${180 + i * 70}ms` }}
+                />
+              )
+            }
+            const a = g.at(0.46)
+            const b = g.at(0.62)
+            const m = g.at(0.54)
             return (
-              <path
-                key={i}
-                className="lg-line"
-                pathLength={1}
-                d={`M 50 50 Q ${mx} ${my}, ${p.x} ${p.y}`}
-                stroke="rgba(200,106,58,0.75)"
-                strokeWidth="1.6"
-                strokeDasharray="6 5"
-                fill="none"
-                vectorEffect="non-scaling-stroke"
-                style={{ transitionDelay: `${180 + i * 70}ms` }}
-              />
+              <g key={i}>
+                <line className="lg-line" x1={FC.x} y1={FC.y} x2={a.x} y2={a.y} {...lineStyle} style={{ transitionDelay: `${180 + i * 70}ms` }} />
+                <line className="lg-line" x1={b.x} y1={b.y} x2={g.end.x} y2={g.end.y} {...lineStyle} style={{ transitionDelay: `${240 + i * 70}ms` }} />
+                {/* the break, marked */}
+                <g className="lg-line" style={{ transitionDelay: `${760 + broken * 130}ms` }}>
+                  <line x1={m.x - 8} y1={m.y - 8} x2={m.x + 8} y2={m.y + 8} stroke={TERRA} strokeWidth="2" />
+                  <line x1={m.x + 8} y1={m.y - 8} x2={m.x - 8} y2={m.y + 8} stroke={TERRA} strokeWidth="2" />
+                </g>
+                <text
+                  className="lg-line"
+                  x={m.x} y={m.y - 22}
+                  textAnchor="middle"
+                  style={{ ...MONO, fontSize: 12.5, letterSpacing: '0.2em', fill: 'rgba(242,233,218,0.5)', transitionDelay: `${860 + broken * 130}ms` } as CSSProperties}
+                >
+                  {markers[broken]}
+                </text>
+              </g>
             )
           })}
-          {MARKS.map((m, i) => (
-            <g key={`x${i}`} className="lg-line" style={{ transitionDelay: `${700 + i * 120}ms` }}>
-              <line x1={m.x - 1} y1={m.y - 1.6} x2={m.x + 1} y2={m.y + 1.6} stroke={TERRA} strokeWidth="1.4" vectorEffect="non-scaling-stroke" />
-              <line x1={m.x + 1} y1={m.y - 1.6} x2={m.x - 1} y2={m.y + 1.6} stroke={TERRA} strokeWidth="1.4" vectorEffect="non-scaling-stroke" />
-            </g>
-          ))}
         </svg>
 
         {/* the guest, center */}
-        <div className="lg-item absolute" style={{ left: '50%', top: '50%', transform: 'translate(-50%,-50%)' }}>
+        <div className="lg-item absolute" style={{ left: `${(FC.x / FW) * 100}%`, top: `${(FC.y / FH) * 100}%`, transform: 'translate(-50%,-50%)' }}>
           <div style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(16px,1.6vw,22px)', color: '#1a1207', background: CREAM, borderRadius: 999, padding: 'clamp(12px,1.4vw,18px) clamp(24px,2.8vw,38px)', whiteSpace: 'nowrap', boxShadow: '0 18px 50px -18px rgba(0,0,0,0.7)' }}>
             {center}
           </div>
         </div>
 
-        {/* the systems, scattered — each drifting slowly, unmoored */}
+        {/* the systems — exactly where their lines point, drifting gently */}
         {pts.map((p, i) => (
-          <div key={systems[i]} className="lg-item absolute" style={{ left: `${p.x}%`, top: `${p.y}%`, transform: 'translate(-50%,-50%)', transitionDelay: `${120 + i * 60}ms` }}>
+          <div key={systems[i]} className="lg-item absolute" style={{ left: `${(p.x / FW) * 100}%`, top: `${(p.y / FH) * 100}%`, transform: 'translate(-50%,-50%)', transitionDelay: `${120 + i * 60}ms` }}>
             <span
               className={i % 2 ? 'v5-drift-b' : 'v5-drift-a'}
               style={{ ...chipStyle, display: 'inline-block', animationDuration: `${5.5 + (i % 4) * 1.2}s`, animationDelay: `${-i * 1.3}s` }}
             >
               {systems[i]}
             </span>
-          </div>
-        ))}
-
-        {/* the failure labels */}
-        {MARKS.map((m, i) => (
-          <div key={markers[i]} className="lg-item absolute" style={{ left: `${m.x}%`, top: `${m.y - 7}%`, transform: 'translate(-50%,-50%)', transitionDelay: `${820 + i * 120}ms` }}>
-            <span style={{ ...MONO, fontSize: 'clamp(8px,0.8vw,11px)', letterSpacing: '.18em', color: 'rgba(242,233,218,0.45)', whiteSpace: 'nowrap' }}>{markers[i]}</span>
           </div>
         ))}
       </div>
