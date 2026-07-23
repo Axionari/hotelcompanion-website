@@ -13,6 +13,7 @@ const en = {
     action: 'THE ACTION',
     intelligence: 'THE INTELLIGENCE',
     command: 'THE COMMAND CENTRE',
+    faq: 'COMMON QUESTIONS',
     next: 'NEXT STEP',
   },
   heroChips: ['VOICE-FIRST', 'IN-ROOM TABLET', 'QR CODES', 'WEB WIDGET', 'ANY LANGUAGE', 'MULTI-PROPERTY'],
@@ -210,6 +211,7 @@ const en = {
   },
   dashboards: {
     close: ['Don’t just understand what happened.', 'Understand why.'],
+    live: 'Live in under 30 minutes.',
   },
   enterpriseReady: {
     title: 'Enterprise-Ready.',
@@ -327,6 +329,7 @@ const es: typeof en = {
     action: 'LA ACCIÓN',
     intelligence: 'LA INTELIGENCIA',
     command: 'EL CENTRO DE MANDO',
+    faq: 'PREGUNTAS FRECUENTES',
     next: 'SIGUIENTE PASO',
   },
   heroChips: ['LA VOZ PRIMERO', 'TABLET EN LA HABITACIÓN', 'CÓDIGOS QR', 'WIDGET WEB', 'CUALQUIER IDIOMA', 'MULTIPROPIEDAD'],
@@ -524,6 +527,7 @@ const es: typeof en = {
   },
   dashboards: {
     close: ['No solo entiendas qué pasó.', 'Entiende por qué.'],
+    live: 'En vivo en menos de 30 minutos.',
   },
   enterpriseReady: {
     title: 'Listo para la Empresa.',

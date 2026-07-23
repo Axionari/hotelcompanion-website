@@ -8,7 +8,7 @@ import { Breather } from '@/components/cds/Breather'
 import { MediaBed } from '@/components/cds/MediaBed'
 import { openLiveDemo } from '@/components/cds/LiveDemoModal'
 import { VoiceMorph, TwoStageAlert } from '@/components/cds/interactive'
-import { DashboardMockup } from '@/components/cds/blocks'
+import { DashboardShowcase } from '@/components/v5/DashboardShowcase'
 import {
   SERIF,
   Em,
@@ -18,9 +18,11 @@ import {
   NumberedList,
   StatementCards,
   QuietChips,
+  FaqList,
   Handoff,
 } from '@/components/v5/Editorial'
 import { CompanionTablet } from '@/components/v5/CompanionTablet'
+import { useLang } from '@/lib/i18n/LanguageContext'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { globalCopy } from '@/lib/i18n/marketing/global'
 import { platformCopy } from '@/lib/i18n/marketing/platform'
@@ -56,6 +58,7 @@ export default function PlatformClient() {
   const c = useCopy(platformCopy)
   const g = useCopy(globalCopy)
   const demo = useCopy(liveDemoCopy)
+  const { t } = useLang()
 
   const heroTitle = splitStatement(c.hero.title)
 
@@ -234,17 +237,11 @@ export default function PlatformClient() {
           </>
         }
       >
-        {/* {#dashboards-resolution} — NEEDS CONFIRM on the 91/9 split */}
-        <div id="dashboards-resolution" style={{ maxWidth: 880 }}>
-          <DashboardMockup
-            title={c.dashboard.title}
-            resolvedPct={91}
-            escalatedPct={9}
-            resolvedLabel={c.dashboard.resolvedLabel}
-            escalatedLabel={c.dashboard.escalatedLabel}
-            metrics={c.dashboard.metrics}
-            properties={c.dashboard.properties}
-          />
+        {/* {#dashboards-resolution} — the operator command center, ported from
+            the shipping marketing homepage (placecompanion.com). NEEDS CONFIRM
+            on the 91/9 split. */}
+        <div id="dashboards-resolution">
+          <DashboardShowcase caption={c.dashboards.live} />
         </div>
       </Act>
 
@@ -253,6 +250,12 @@ export default function PlatformClient() {
       <div id="platform-enterprise-ready" className="scroll-mt-20">
         <Handoff statement={c.enterpriseReady.close} href="/enterprise" label={g.nav.enterprise} />
       </div>
+
+      {/* 08 · COMMON QUESTIONS {#platform-faq} — the practical questions,
+          closed-by-default accordion (copy = the shipping site FAQ). */}
+      <Act no="08" label={c.acts.faq} id="platform-faq" statement={t.faq.headline}>
+        <FaqList items={t.faq.items} />
+      </Act>
 
       {/* CLOSING {#platform-final-cta} — warm media band, one action */}
       <MediaBed poster="/assets/img/hero-poolside.webp" scrim={0.72}>

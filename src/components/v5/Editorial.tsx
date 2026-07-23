@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode } from 'react'
+import { ReactNode, useState } from 'react'
 import { Reveal } from '@/components/cds/Reveal'
 
 /**
@@ -497,6 +497,51 @@ export function LeadershipCards({
           </div>
         </Reveal>
       ))}
+    </div>
+  )
+}
+
+/**
+ * FaqList — a calm, closed-by-default accordion (hairline rows, serif question,
+ * a rotating +). One row open at a time reads cleanest; click toggles.
+ */
+export function FaqList({ items }: { items: ReadonlyArray<{ q: string; a: string }> }) {
+  const [open, setOpen] = useState<number | null>(null)
+  return (
+    <div style={{ maxWidth: 820 }}>
+      {items.map((item, i) => {
+        const isOpen = open === i
+        return (
+          <Reveal key={item.q} delay={Math.min(i, 8) * 30}>
+            <div style={{ borderTop: '1px solid var(--border-soft)' }}>
+              <button
+                type="button"
+                onClick={() => setOpen(isOpen ? null : i)}
+                aria-expanded={isOpen}
+                className="w-full flex items-start justify-between gap-6 text-left"
+                style={{ paddingBlock: 'clamp(20px, 2.4vw, 28px)' }}
+              >
+                <span style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(18px, 1.8vw, 22px)', lineHeight: 1.3, color: 'var(--text)' }}>
+                  {item.q}
+                </span>
+                <span
+                  aria-hidden="true"
+                  style={{ flexShrink: 0, marginTop: 4, fontSize: 22, lineHeight: 1, color: 'var(--accent)', transition: 'transform 0.3s var(--ease-standard)', transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)' }}
+                >
+                  +
+                </span>
+              </button>
+              <div style={{ display: 'grid', gridTemplateRows: isOpen ? '1fr' : '0fr', transition: 'grid-template-rows 0.35s var(--ease-standard)' }}>
+                <div style={{ overflow: 'hidden' }}>
+                  <p style={{ fontSize: 16, lineHeight: 1.7, color: 'var(--text-dim)', maxWidth: '62ch', paddingBottom: 'clamp(20px, 2.4vw, 28px)' }}>
+                    {item.a}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        )
+      })}
     </div>
   )
 }
