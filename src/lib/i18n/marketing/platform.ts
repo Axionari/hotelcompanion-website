@@ -271,7 +271,7 @@ const en = {
     steps: [
       { act: 'PRE', title: 'They book direct.', caption: 'The Companion sells the property, answers everything, and closes the booking — no OTA commission.', screen: 'home' as ScreenId, tally: '+$0' },
       { act: 'PRE', title: 'The first upsell, before arrival.', caption: 'An ocean-view suite offered while they are still choosing.', screen: 'upgrade' as ScreenId, tally: '+$250' },
-      { act: 'DURING', title: 'Every answer is a picture.', caption: 'They ask for the best beach. They see it.', screen: 'beach' as ScreenId, tally: '+$250' },
+      { act: 'DURING', title: 'Every answer is a picture.', caption: 'They ask for the best cenote. They see it.', screen: 'beach' as ScreenId, tally: '+$250' },
       { act: 'DURING', title: 'Room service, tapped not typed.', caption: 'A dish grid, an order total, straight to the kitchen.', screen: 'roomservice' as ScreenId, tally: '+$312' },
       { act: 'DURING', title: 'Wellness, booked in one tap.', caption: 'Treatments with real availability, not a phone number.', screen: 'spa' as ScreenId, tally: '+$402' },
       { act: 'AFTER', title: 'The review earns the next booking.', caption: 'A warm follow-up, a direct link, and a guest who returns direct.', screen: 'followup' as ScreenId, tally: '+$402' },
@@ -614,7 +614,7 @@ const es: typeof en = {
     steps: [
       { act: 'ANTES', title: 'Reservan directo.', caption: 'El Companion vende la propiedad, responde todo y cierra la reserva — sin comisión de OTA.', screen: 'home' as ScreenId, tally: '+$0' },
       { act: 'ANTES', title: 'La primera mejora, antes de llegar.', caption: 'Una suite con vista al mar ofrecida mientras aún están eligiendo.', screen: 'upgrade' as ScreenId, tally: '+$250' },
-      { act: 'DURANTE', title: 'Cada respuesta es una imagen.', caption: 'Preguntan por la mejor playa. La ven.', screen: 'beach' as ScreenId, tally: '+$250' },
+      { act: 'DURANTE', title: 'Cada respuesta es una imagen.', caption: 'Preguntan por el mejor cenote. Lo ven.', screen: 'beach' as ScreenId, tally: '+$250' },
       { act: 'DURANTE', title: 'Servicio a cuarto, con un toque.', caption: 'Una parrilla de platillos, un total, directo a la cocina.', screen: 'roomservice' as ScreenId, tally: '+$312' },
       { act: 'DURANTE', title: 'Bienestar, reservado en un toque.', caption: 'Tratamientos con disponibilidad real, no un número de teléfono.', screen: 'spa' as ScreenId, tally: '+$402' },
       { act: 'DESPUÉS', title: 'La reseña gana la próxima reserva.', caption: 'Un seguimiento cálido, un enlace directo y un huésped que vuelve directo.', screen: 'followup' as ScreenId, tally: '+$402' },

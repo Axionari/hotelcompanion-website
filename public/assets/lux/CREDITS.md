@@ -20,3 +20,5 @@ change.
 - exp-cenote  unsplash.com/photos/1719941463960-f3310fe64e46
 
 - suite-ocean.webp — Unsplash (photo-1776500587875-8a0653e9c10e), Unsplash License. Bright ocean/tropical-view suite for the "Ocean-View Suite" upgrade (hero tablet + Every Surface laptop). Swap-ready.
+
+- cenote-steps.webp — Pexels (pexels.com/photo/34749924), Pexels License — free for commercial use, no attribution required. Submerged curved stone steps into glass-clear cenote water; the "Every answer is a picture" journey screen. A distinct cenote from exp-cenote. Landscape crop (3:2) of the portrait original. Swap-ready.

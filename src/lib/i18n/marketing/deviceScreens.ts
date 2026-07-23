@@ -31,11 +31,11 @@ const en = {
   ],
   screens: {
     beach: {
-      ask: 'Best beach near here?',
-      title: 'Akumal',
-      meta: '20 min south · clear water this week',
+      ask: 'Best cenote near here?',
+      title: 'Gran Cenote',
+      meta: '20 min inland · glass-clear water',
       actions: ['Directions', 'Book a taxi'],
-      image: '/assets/ui/beach-akumal.webp',
+      image: '/assets/lux/cenote-steps.webp',
     },
     roomservice: {
       ask: 'Room service, please',
@@ -126,11 +126,11 @@ const es: typeof en = {
   ],
   screens: {
     beach: {
-      ask: '¿La mejor playa cerca?',
-      title: 'Akumal',
-      meta: '20 min al sur · agua clara esta semana',
+      ask: '¿El mejor cenote cerca?',
+      title: 'Gran Cenote',
+      meta: '20 min tierra adentro · agua cristalina',
       actions: ['Cómo llegar', 'Reservar taxi'],
-      image: '/assets/ui/beach-akumal.webp',
+      image: '/assets/lux/cenote-steps.webp',
     },
     roomservice: {
       ask: 'Servicio a cuarto, por favor',
