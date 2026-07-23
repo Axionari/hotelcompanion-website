@@ -8,24 +8,31 @@ import { CSSProperties, ReactNode, useEffect, useRef, useState } from 'react'
  * Homepage.dc.html rendered at 1280 — values ported 1:1.
  */
 
-/* ---------------------------------------------------------------- palette */
+/* ------------------------------------------- palette (ADDENDUM 1 §A/§B) */
 export const V4 = {
-  bg: '#0E0B09',
+  bg: '#100e0c',
   text: '#F2E9DA',
+  /* §B2 — emphasis is Fraunces italic in cream, never champagne (G-10) */
+  cream: '#F2EEE6',
+  /* §B5 — brass, micro-accents only (≤20px) */
+  brass: '#C9A15A',
   textSoft: 'rgba(242,233,218,.55)',
   textFaint: 'rgba(242,233,218,.45)',
-  champagne: '#E7CE86',
-  emberEyebrow: 'rgba(226,155,86,.8)',
+  emberEyebrow: '#C9A15A',
   chipBorder: 'rgba(201,139,78,.3)',
   barBorder: 'rgba(201,139,78,.4)',
   cardBg: '#1E1610',
   cardBorder: 'rgba(201,139,78,.28)',
   receiptText: '#C9A87A',
-  ink: '#171008',
-  serif: "var(--font-v4-serif), 'Instrument Serif', serif",
-  mono: "var(--font-v4-mono), 'IBM Plex Mono', monospace",
-  /* §4 keyframes — the reference's per-act background values */
-  actBg: ['#0E0B09', '#1A110B', '#20150C', '#141009', '#100C08', '#0F0B08', '#0B0807'],
+  ink: '#1A0F06',
+  /* §B4 — terracotta solid actions, RC's Request-a-Demo treatment */
+  accent: '#C86A3A',
+  /* §A — the family faces (already loaded by the site layout) */
+  serif: 'var(--font-serif), Georgia, serif',
+  mono: 'var(--font-mono), ui-monospace, monospace',
+  sans: 'var(--font-sans), ui-sans-serif, system-ui, sans-serif',
+  /* §B6 — --day keyframes flattened onto the RC neutral ladder (#171717 family) */
+  actBg: ['#141210', '#1f1913', '#181512', '#171717', '#141210', '#100e0c', '#100e0c'],
 } as const
 
 export const monoStyle = (size: number, tracking: string, color: string): CSSProperties => ({
@@ -66,14 +73,16 @@ export function V4Reveal({ children, className = '', style }: { children: ReactN
     }
   }, [])
   return (
+    /* §E — the family's reveal values verbatim (.reveal in globals.css):
+       --dur-base / --ease-standard / --reveal-distance-desktop */
     <div
       ref={ref}
       className={className}
       style={{
         ...style,
         opacity: seen ? 1 : 0,
-        transform: seen ? 'none' : 'translateY(16px)',
-        transition: 'opacity 700ms var(--ease-standard), transform 700ms var(--ease-standard)',
+        transform: seen ? 'none' : 'translateY(var(--reveal-distance-desktop, 24px))',
+        transition: 'opacity var(--dur-base) var(--ease-standard), transform var(--dur-base) var(--ease-standard)',
       }}
     >
       {children}
@@ -118,7 +127,7 @@ export function useDayModel(rootRef: React.RefObject<HTMLDivElement | null>) {
     background value sits at its measured top-of-act position (1280 heights),
     with the page's tail holding 2AM. */
 export const DAY_GRADIENT =
-  'linear-gradient(180deg, #0E0B09 0%, #1A110B 12.5%, #20150C 25%, #141009 41%, #100C08 60%, #0F0B08 72%, #0B0807 83%, #0B0807 100%)'
+  'linear-gradient(180deg, #141210 0%, #1f1913 12.5%, #181512 25%, #171717 41%, #141210 60%, #100e0c 72%, #100e0c 83%, #100e0c 100%)'
 
 /** Below-fold act imagery, fetched only when its act approaches the viewport
     (G-7: `loading=lazy` still eager-fetches within ~3000px on fast

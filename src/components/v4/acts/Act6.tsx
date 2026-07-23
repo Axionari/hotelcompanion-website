@@ -23,12 +23,12 @@ export function Act6() {
         boxSizing: 'border-box',
       }}
     >
-      <div style={monoStyle(10, '.45em', V4.emberEyebrow)}>{c.eyebrow}</div>
-      <h2 className="v4-act6-head" style={{ fontFamily: V4.serif, fontWeight: 400, fontSize: 'clamp(40px, 6.9vw, 88px)', lineHeight: 1.04, margin: '30px 0 0', textAlign: 'center', color: V4.text, paddingInline: 20 }}>
+      <div style={monoStyle(10, '.45em', V4.brass)}>{c.eyebrow}</div>
+      <h2 className="v4-act6-head" style={{ fontFamily: V4.serif, fontWeight: 530, fontSize: 'clamp(40px, 6.9vw, 88px)', lineHeight: 1.04, margin: '30px 0 0', textAlign: 'center', color: V4.text, paddingInline: 20 }}>
         {c.statementPre}
-        <span style={{ fontStyle: 'italic', color: V4.champagne }}>{c.statementHi}</span>
+        <span style={{ fontStyle: 'italic', fontWeight: 480, color: V4.cream }}>{c.statementHi}</span>
       </h2>
-      <div style={{ fontFamily: V4.serif, fontSize: 'clamp(20px, 2vw, 26px)', marginTop: 36, maxWidth: 640, textAlign: 'center', color: 'rgba(242,233,218,.75)', lineHeight: 1.4, textWrap: 'balance', paddingInline: 20 }}>
+      <div style={{ fontFamily: V4.serif, fontWeight: 530, fontSize: 'clamp(20px, 2vw, 26px)', marginTop: 36, maxWidth: 640, textAlign: 'center', color: 'rgba(242,233,218,.75)', lineHeight: 1.4, textWrap: 'balance', paddingInline: 20 }}>
         {c.line}
       </div>
       <V4Reveal>

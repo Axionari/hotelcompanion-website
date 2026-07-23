@@ -1,8 +1,8 @@
 'use client'
 
 import { useRef } from 'react'
+import { SiteNav } from '@/components/site-nav'
 import { SiteFooter } from '@/components/site-footer'
-import { instrumentSerif, ibmPlexMono } from '@/components/v4/v4fonts'
 import { useDayModel, DAY_GRADIENT } from '@/components/v4/shared'
 import { Act1 } from '@/components/v4/acts/Act1'
 import { Act2 } from '@/components/v4/acts/Act2'
@@ -25,18 +25,18 @@ export default function HomeV4Client() {
 
   return (
     <main>
+      {/* ADDENDUM 1 §D — one family, one chrome: the standard site nav */}
+      <SiteNav />
       <div
         ref={rootRef}
-        className={`v4-root ${instrumentSerif.variable} ${ibmPlexMono.variable}`}
+        className="v4-root"
         style={{
-          fontFamily: "var(--font-v4-serif), 'Instrument Serif', serif",
+          /* ADDENDUM 1 §A — the family faces (loaded by the layout) */
+          fontFamily: 'var(--font-serif), Georgia, serif',
           color: '#F2E9DA',
-          background: '#0E0B09',
+          background: '#100e0c',
           position: 'relative',
           overflowX: 'clip',
-          /* the layout shell pads every route for the fixed v3 nav; the v4
-             homepage is full-bleed (reference has its own chrome bar) */
-          marginTop: '-4rem',
         }}
       >
         {/* §4 — the day, painted once: acts are transparent over this ramp */}

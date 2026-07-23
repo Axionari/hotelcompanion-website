@@ -1,7 +1,7 @@
 'use client'
 
 import { CSSProperties } from 'react'
-import { ArcOrb } from '@/components/cds/SunArc'
+import { VoiceOrb } from '@/components/cds/VoiceOrb'
 import { V4, V4Reveal, monoStyle, DeferredImg } from '../shared'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { v4Copy } from '@/lib/i18n/marketing/v4'
@@ -33,10 +33,10 @@ function Moment({ i, children, extraTop = 0 }: { i: number; children: React.Reac
   const c = useCopy(v4Copy).actIII
   return (
     <div className="v4-moment" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20, marginTop: extraTop }}>
-      <div style={{ fontFamily: V4.serif, fontSize: 58, color: V4.champagne, lineHeight: 1 }}>{c.moments[i].time}</div>
+      <div style={{ fontFamily: V4.serif, fontWeight: 530, fontSize: 58, color: V4.cream, lineHeight: 1 }}>{c.moments[i].time}</div>
       <div style={monoStyle(10, '.35em', 'rgba(242,233,218,.5)')}>{c.moments[i].tag}</div>
       {/* device-UI: the moment's screen content (bubble + card + receipt) */}
-      <div data-device-ui="" style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 12, fontFamily: 'ui-sans-serif, system-ui, sans-serif' }}>
+      <div data-device-ui="" style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 12, fontFamily: V4.sans }}>
         {children}
       </div>
     </div>
@@ -61,16 +61,16 @@ export function Act3() {
     >
       <div className="v4-w1160" style={{ position: 'relative', zIndex: 5 }}>
         <div style={monoStyle(10, '.45em', V4.emberEyebrow)}>{c.eyebrow}</div>
-        <div className="v4-statement" style={{ fontFamily: V4.serif, fontSize: 'clamp(30px, 4.4vw, 56px)', lineHeight: 1.14, maxWidth: 820, marginTop: 30, textWrap: 'balance', color: V4.text }}>
+        <div className="v4-statement" style={{ fontFamily: V4.serif, fontWeight: 530, fontSize: 'clamp(30px, 4.4vw, 56px)', lineHeight: 1.14, maxWidth: 820, marginTop: 30, textWrap: 'balance', color: V4.text }}>
           {c.statementPre}
-          <span style={{ fontStyle: 'italic', color: V4.champagne }}>{c.statementHi}</span>
+          <span style={{ fontStyle: 'italic', fontWeight: 480, color: V4.cream }}>{c.statementHi}</span>
         </div>
       </div>
 
-      {/* the arc, and the sun ON it */}
+      {/* the arc, with the voice-orb marker ON it (ADDENDUM 1 §B2 — no sun) */}
       <div aria-hidden="true" className="v4-sunarc-line" style={{ position: 'absolute', left: '50%', top: 470, width: 3000, height: 3000, marginLeft: -1500, borderRadius: '50%', border: '1px solid rgba(200,130,70,.22)', zIndex: 1 }} />
-      <div aria-hidden="true" className="v4-breathe v4-sunarc-sun" style={{ position: 'absolute', left: '50%', top: 412, width: 110, height: 110, marginLeft: -55, zIndex: 2 }}>
-        <ArcOrb size={110} core="sunrise" />
+      <div aria-hidden="true" className="v4-sunarc-sun" style={{ position: 'absolute', left: '50%', top: 442, width: 56, height: 56, marginLeft: -28, zIndex: 2 }}>
+        <VoiceOrb size={56} state="idle" showMic={false} />
       </div>
 
       <V4Reveal className="v4-w1160 v4-moments" style={{ margin: '190px auto 0', position: 'relative', zIndex: 5, alignItems: 'start' }}>

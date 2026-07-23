@@ -1,7 +1,7 @@
 'use client'
 
 import { FormEvent, useEffect, useRef, useState } from 'react'
-import { ArcOrb } from '@/components/cds/SunArc'
+import { VoiceOrb } from '@/components/cds/VoiceOrb'
 import { ReceiptCard } from '@/components/cds/ReceiptCard'
 import { Speakable } from '@/components/cds/AskBar'
 import { useCopy } from '@/lib/i18n/useCopy'
@@ -99,7 +99,7 @@ export function AskBarV4({ chips = null }: { chips?: string[] | null }) {
         }}
       >
         <span aria-hidden="true" style={{ flex: 'none' }}>
-          <ArcOrb size={26} core="sunrise" />
+          <VoiceOrb size={26} state="idle" showMic={false} />
         </span>
         <input
           type="text"
@@ -114,7 +114,7 @@ export function AskBarV4({ chips = null }: { chips?: string[] | null }) {
             border: 'none',
             outline: 'none',
             color: '#F2E9DA',
-            fontFamily: 'ui-sans-serif, system-ui, sans-serif',
+            fontFamily: 'var(--font-sans), ui-sans-serif, system-ui, sans-serif',
             fontSize: 15,
           }}
         />
@@ -123,12 +123,13 @@ export function AskBarV4({ chips = null }: { chips?: string[] | null }) {
           className="v4-ask-btn"
           style={{
             flex: 'none',
-            background: '#E7CE86',
-            color: '#171008',
+            /* ADDENDUM 1 §B4 — terracotta solid action, dark text */
+            background: '#C86A3A',
+            color: '#1A0F06',
             border: 'none',
             borderRadius: 999,
             padding: '11px 26px',
-            fontFamily: 'var(--font-v4-mono), monospace',
+            fontFamily: 'var(--font-mono), monospace',
             fontSize: 11,
             letterSpacing: '.2em',
             cursor: 'pointer',
@@ -151,7 +152,7 @@ export function AskBarV4({ chips = null }: { chips?: string[] | null }) {
                 border: '1px solid rgba(201,139,78,.35)',
                 borderRadius: 999,
                 padding: '9px 18px',
-                fontFamily: 'ui-sans-serif, system-ui, sans-serif',
+                fontFamily: 'var(--font-sans), ui-sans-serif, system-ui, sans-serif',
                 fontSize: 12.5,
                 color: 'rgba(242,233,218,.7)',
                 cursor: 'pointer',

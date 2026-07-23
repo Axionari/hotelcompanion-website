@@ -1,7 +1,7 @@
 'use client'
 
 import { CSSProperties, ReactNode, useEffect, useRef, useState } from 'react'
-import { ArcOrb } from '@/components/cds/SunArc'
+import { VoiceOrb } from '@/components/cds/VoiceOrb'
 import { V4, V4Reveal, monoStyle, DeferredImg } from '../shared'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { v4Copy } from '@/lib/i18n/marketing/v4'
@@ -64,9 +64,9 @@ function PhoneScreen() {
   return (
     /* right padding keeps every text node clear of the tablet's 35px overlap
        zone at the phone's right edge (G-4b) */
-    <div className="absolute inset-0 flex flex-col items-center" style={{ background: 'linear-gradient(180deg, #1C1510, #120E0A)', padding: '30px 44px 12px 8px', fontFamily: 'ui-sans-serif, system-ui, sans-serif', boxSizing: 'border-box' }}>
+    <div className="absolute inset-0 flex flex-col items-center" style={{ background: 'linear-gradient(180deg, #1C1510, #120E0A)', padding: '30px 44px 12px 8px', fontFamily: V4.sans, boxSizing: 'border-box' }}>
       <div className="flex-1 flex flex-col items-center justify-center" style={{ gap: 12 }}>
-        <ArcOrb size={56} />
+        <VoiceOrb size={56} state="idle" showMic={false} />
         <div style={{ fontSize: 10, color: 'rgba(242,233,218,.6)', textAlign: 'center' }}>{demo.orbStates.idle}</div>
       </div>
       <div className="self-stretch" style={{ border: '1px solid rgba(243,236,226,0.12)', borderRadius: 999, padding: '7px 10px', fontSize: 9.5, color: 'rgba(242,233,218,.45)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
@@ -83,8 +83,8 @@ function TvScreen() {
     <>
       <DeferredImg alt={tv.greeting} src="/assets/img/luxury-lobby-800.webp" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(11,9,8,0.1), rgba(11,9,8,0.72))' }} />
-      <div className="absolute" style={{ left: 20, bottom: 14, fontFamily: 'ui-sans-serif, system-ui, sans-serif' }}>
-        <div style={monoStyle(8.5, '.24em', V4.champagne)}>{greeting.toUpperCase()}</div>
+      <div className="absolute" style={{ left: 20, bottom: 14, fontFamily: V4.sans }}>
+        <div style={monoStyle(8.5, '.24em', V4.brass)}>{greeting.toUpperCase()}</div>
         <div style={{ fontFamily: V4.serif, fontSize: 20, color: V4.text, marginTop: 4 }}>{tv.greeting}</div>
         <div style={{ fontSize: 11, color: 'rgba(242,233,218,.6)', marginTop: 2 }}>{tv.meta}</div>
       </div>
@@ -100,9 +100,9 @@ function TabletScreen() {
       <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(11,9,8,0.14), transparent 38%, rgba(11,9,8,0.7))' }} />
       {/* text block clears the watch's overlap zone (x < 48) and the puck's
           (y past bottom-26) — G-4b */}
-      <div className="absolute" style={{ left: 48, bottom: 26, fontFamily: 'ui-sans-serif, system-ui, sans-serif' }}>
+      <div className="absolute" style={{ left: 48, bottom: 26, fontFamily: V4.sans }}>
         <div style={{ fontFamily: V4.serif, fontSize: 30, color: V4.text }}>{beach.title}</div>
-        <div style={{ fontSize: 12.5, color: V4.champagne, marginTop: 3 }}>{beach.meta}</div>
+        <div style={{ fontSize: 12.5, color: V4.brass, marginTop: 3 }}>{beach.meta}</div>
       </div>
     </>
   )
@@ -112,9 +112,9 @@ function WatchScreen() {
   const s = useCopy(surfaceWall).watch
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ background: 'linear-gradient(180deg, #17110C, #0E0B08)', gap: 4 }}>
-      <ArcOrb size={16} />
+      <VoiceOrb size={16} state="idle" showMic={false} />
       <div style={{ fontFamily: V4.serif, fontSize: 17, color: V4.text, lineHeight: 1 }}>{s.time}</div>
-      <div style={monoStyle(6.5, '.16em', '#E7CE86')}>{s.glance.toUpperCase()}</div>
+      <div style={monoStyle(6.5, '.16em', V4.brass)}>{s.glance.toUpperCase()}</div>
     </div>
   )
 }
@@ -139,7 +139,7 @@ function Puck() {
         }}
       />
       <div className="absolute" style={{ left: '50%', top: 12, marginLeft: -11 }}>
-        <ArcOrb size={22} />
+        <VoiceOrb size={22} state="idle" showMic={false} />
       </div>
     </div>
   )
@@ -244,10 +244,10 @@ export function Act4() {
       }}
     >
       <div className="v4-w1200" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={monoStyle(10, '.45em', V4.emberEyebrow)}>{c.eyebrow}</div>
-        <div className="v4-statement" style={{ fontFamily: V4.serif, fontSize: 'clamp(30px, 4.4vw, 56px)', lineHeight: 1.1, marginTop: 26, textAlign: 'center', textWrap: 'balance', color: V4.text }}>
+        <div style={monoStyle(10, '.45em', V4.brass)}>{c.eyebrow}</div>
+        <div className="v4-statement" style={{ fontFamily: V4.serif, fontWeight: 530, fontSize: 'clamp(30px, 4.4vw, 56px)', lineHeight: 1.1, marginTop: 26, textAlign: 'center', textWrap: 'balance', color: V4.text }}>
           {c.statementPre}
-          <span style={{ fontStyle: 'italic', color: V4.champagne }}>{c.statementHi}</span>
+          <span style={{ fontStyle: 'italic', fontWeight: 480, color: V4.cream }}>{c.statementHi}</span>
         </div>
 
         {/* desktop cluster */}
@@ -290,9 +290,9 @@ export function Act4() {
           </div>
         </div>
 
-        <div className="v4-act4-close" style={{ fontFamily: V4.serif, fontSize: 'clamp(22px, 2.5vw, 32px)', marginTop: 60, textAlign: 'center', color: '#EFE3D0', textWrap: 'balance' }}>
+        <div className="v4-act4-close" style={{ fontFamily: V4.serif, fontWeight: 530, fontSize: 'clamp(22px, 2.5vw, 32px)', marginTop: 60, textAlign: 'center', color: '#EFE3D0', textWrap: 'balance' }}>
           {c.closingPre}
-          <span style={{ fontStyle: 'italic', color: V4.champagne }}>{c.closingHi}</span>
+          <span style={{ fontStyle: 'italic', fontWeight: 480, color: V4.cream }}>{c.closingHi}</span>
         </div>
       </div>
     </section>

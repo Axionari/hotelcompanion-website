@@ -155,13 +155,14 @@ for (const lang of ['en', 'es']) {
         if (!el || el.closest('[data-device-ui]')) continue
         const fam = getComputedStyle(el).fontFamily.toLowerCase()
         const first = fam.split(',')[0].replace(/["']/g, '').trim()
-        const ok = first.includes('instrument') || first.includes('plex') || first.includes('ibm')
+        /* ADDENDUM 1 §A/§C — Fraunces / Spline Sans Mono outside device UI */
+        const ok = first.includes('fraunces') || first.includes('spline')
         if (!ok) offending.push({ act: id, first, text: n.textContent.trim().slice(0, 24) })
       }
     }
     return offending
   }, ACTS)
-  gate(`G-2 ${lang} · serif/mono only outside [data-device-ui]`, bad.length === 0, bad.length ? JSON.stringify(bad.slice(0, 4)) : 'every reading text node computes Instrument Serif or IBM Plex Mono')
+  gate(`G-2 ${lang} · serif/mono only outside [data-device-ui]`, bad.length === 0, bad.length ? JSON.stringify(bad.slice(0, 4)) : 'every reading text node computes Fraunces or Spline Sans Mono')
   await ctx.close()
 }
 
@@ -202,8 +203,8 @@ for (const lang of ['en', 'es']) {
     a2.outline ? `stroke ${a2.outline.stroke} · color ${a2.outline.color} · ${a2.outline.size}px · sr-only ${a2.outline.sr}` : 'missing'
   )
   gate(
-    `G-3 ${lang} · A2 glow ($160B)`,
-    a2.glow && a2.glow.style === 'italic' && a2.glow.color === 'rgb(231, 206, 134)' && a2.glow.shadow !== 'none' && a2.glow.sr,
+    `G-3 ${lang} · A2 glow ($160B, cream italic per ADDENDUM 1)`,
+    a2.glow && a2.glow.style === 'italic' && a2.glow.color === 'rgb(242, 238, 230)' && a2.glow.shadow !== 'none' && a2.glow.sr,
     a2.glow ? `italic ${a2.glow.style} · ${a2.glow.color} · shadow ${a2.glow.shadow.slice(0, 30)}… · sr-only ${a2.glow.sr}` : 'missing'
   )
   await ctx.close()
@@ -387,46 +388,120 @@ for (const lang of ['en', 'es']) {
   await ctx.close()
 }
 
-/* ============================= G-6 · every orb is the shared component */
+/* ============ G-6 · every orb is the vux VoiceOrb stack (ADDENDUM 1 §B2) */
 {
   const { ctx, page } = await open(1280, 900, 'en')
   const orbs = await page.evaluate(() => {
-    const hosts = [
-      ['hero dome', '.v4-dome'],
-      ['act III sun', '.v4-sunarc-sun'],
-      ['act I ask dot', '#act-i .v4-askbar'],
-      ['act VII ask dot', '#act-vii .v4-askbar'],
-      ['act VII ember', '#act-vii .v4-breathe'],
-    ]
-    const masked = (root) =>
-      root && [...root.querySelectorAll('div')].some((d) => ((getComputedStyle(d).maskImage || getComputedStyle(d).webkitMaskImage) ?? '').includes('radial-gradient'))
-    const results = hosts.map(([name, sel]) => ({ name, ok: masked(document.querySelector(sel)) }))
-    const act4 = document.querySelector('#act-iv .v4-cluster-desktop')
-    const act4Masked = [...act4.querySelectorAll('div')].filter((d) => ((getComputedStyle(d).maskImage || getComputedStyle(d).webkitMaskImage) ?? '').includes('radial-gradient')).length
-    results.push({ name: 'act IV orbs (phone+watch+puck)', ok: act4Masked >= 3, count: act4Masked })
-    return results
+    const visible = (el) => el.getClientRects().length > 0
+    const stackOk = (host) =>
+      !!(host.querySelector('.vstage') && host.querySelector('.vring.r1') && host.querySelector('.vring.r2') && host.querySelector('.vglow') && host.querySelector('.vshimmer'))
+    const counts = {}
+    for (const id of ['act-i', 'act-iii', 'act-iv', 'act-vii']) {
+      const sec = document.getElementById(id)
+      const mics = [...sec.querySelectorAll('.vmic')].filter(visible)
+      counts[id] = { count: mics.length, allStacks: mics.every(stackOk) }
+    }
+    // §B2: zero filled spheres / domes — no masked radial cores anywhere in the v4 root
+    const root = document.querySelector('.v4-root')
+    const filled = [...root.querySelectorAll('div')].filter((d) => {
+      if (!visible(d)) return false
+      const cs = getComputedStyle(d)
+      return ((cs.maskImage || cs.webkitMaskImage) ?? '').includes('radial-gradient')
+    }).length
+    const heroMic = !!document.querySelector('.v4-hero-orb .vmic svg')
+    return { counts, filled, heroMic }
   })
-  for (const o of orbs) gate(`G-6 · ${o.name} via shared ArcOrb`, !!o.ok, o.count !== undefined ? `${o.count} masked cores` : 'masked-fade core present')
+  const expect = { 'act-i': 2, 'act-iii': 1, 'act-iv': 3, 'act-vii': 2 }
+  for (const [id, n] of Object.entries(expect)) {
+    const r = orbs.counts[id]
+    gate(`G-6 · ${id} vux orbs ×${n}`, r.count === n && r.allStacks, `${r.count} visible .vmic · full ring+glow+shimmer stacks: ${r.allStacks}`)
+  }
+  gate('G-6 · zero filled-sphere/dome orbs', orbs.filled === 0, `masked radial cores in v4 root = ${orbs.filled}`)
+  gate('G-6 · hero orb carries the mic badge', orbs.heroMic, orbs.heroMic ? 'mic svg present' : 'missing')
 
-  // zoomed captures — gradient-fade boundary evidence
   mkdirSync(fileURLToPath(new URL('./img', import.meta.url)), { recursive: true })
-  const clipShot = async (sel, name) => {
+  const clipShot = async (sel, name, pad = 10) => {
     const el = await page.$(sel)
     if (!el) return
-    /* manual scroll — continuously animating orbs never report "stable" */
     await page.evaluate((s) => document.querySelector(s)?.scrollIntoView({ block: 'center' }), sel)
     await page.waitForTimeout(800)
     const b = await el.boundingBox()
     if (!b) return
     await page.screenshot({
       path: fileURLToPath(new URL(`./img/${name}`, import.meta.url)),
-      clip: { x: Math.max(0, b.x - 10), y: Math.max(0, b.y - 10), width: b.width + 20, height: b.height + 20 },
+      clip: { x: Math.max(0, b.x - pad), y: Math.max(0, b.y - pad), width: b.width + 2 * pad, height: b.height + 2 * pad },
     })
   }
-  await clipShot('#act-i .v4-askbar form span', 'v4-orb-askdot-zoom.png')
-  await clipShot('.v4-sunarc-sun', 'v4-orb-sun-zoom.png')
-  say('shot · v4-orb-askdot-zoom.png · v4-orb-sun-zoom.png')
+  await clipShot('.v4-hero-orb', 'v4-orb-hero-zoom.png', 24)
+  await clipShot('.v4-sunarc-sun', 'v4-orb-sun-zoom.png', 24)
+  say('shot · v4-orb-hero-zoom.png · v4-orb-sun-zoom.png')
   await ctx.close()
+}
+
+/* ================= G-10 · champagne retired; brass micro-accents only */
+for (const lang of ['en', 'es']) {
+  const { ctx, page } = await open(1280, 900, lang)
+  const r = await page.evaluate(() => {
+    const champagne = []
+    const brass = []
+    document.querySelectorAll('main *').forEach((el) => {
+      if (!el.getClientRects().length) return
+      const cs = getComputedStyle(el)
+      if (cs.color === 'rgb(231, 206, 134)' && el.textContent.trim()) champagne.push({ tag: el.tagName, text: el.textContent.trim().slice(0, 24) })
+      if (cs.color === 'rgb(201, 161, 90)' && el.textContent.trim() && !el.querySelector('*')) brass.push({ size: parseFloat(cs.fontSize), text: el.textContent.trim().slice(0, 24) })
+    })
+    return { champagne, brass }
+  })
+  gate(`G-10 ${lang} · zero champagne text`, r.champagne.length === 0, r.champagne.length ? JSON.stringify(r.champagne.slice(0, 4)) : 'no computed #E7CE86 text')
+  gate(
+    `G-10 ${lang} · brass ≤20px micro-accents only`,
+    r.brass.every((b) => b.size <= 20),
+    `${r.brass.length} brass instances · max ${Math.max(0, ...r.brass.map((b) => b.size))}px`
+  )
+  await ctx.close()
+}
+
+/* ====================== G-11 · family side-by-side vs restaurantcompanion.ai */
+{
+  const { ctx, page } = await open(1280, 900, 'en')
+  await page.screenshot({ path: fileURLToPath(new URL('./img/v4-family-hero-1280.png', import.meta.url)) })
+  await page.evaluate(() => scrollTo(0, 0))
+  await page.waitForTimeout(400)
+  const nav = await page.$('nav, header')
+  if (nav) {
+    const b = await nav.boundingBox()
+    if (b) await page.screenshot({ path: fileURLToPath(new URL('./img/v4-family-nav-1280.png', import.meta.url)), clip: { x: 0, y: 0, width: 1280, height: Math.max(80, b.height + b.y) } })
+  }
+  await ctx.close()
+  try {
+    const rc = await browser.newContext({ viewport: { width: 1280, height: 900 } })
+    const rcPage = await rc.newPage()
+    await rcPage.goto('https://restaurantcompanion.ai', { waitUntil: 'networkidle', timeout: 45000 })
+    await rcPage.waitForTimeout(2000)
+    await rcPage.screenshot({ path: fileURLToPath(new URL('./img/rc-family-hero-1280.png', import.meta.url)) })
+    await rcPage.screenshot({ path: fileURLToPath(new URL('./img/rc-family-nav-1280.png', import.meta.url)), clip: { x: 0, y: 0, width: 1280, height: 96 } })
+    await rcPage.goto('https://restaurantcompanion.ai/features', { waitUntil: 'networkidle', timeout: 45000 })
+    await rcPage.waitForTimeout(2500)
+    const rcOrb = await rcPage.$('.vmic')
+    if (rcOrb) {
+      await rcPage.evaluate(() => document.querySelector('.vmic')?.scrollIntoView({ block: 'center' }))
+      await rcPage.waitForTimeout(900)
+      const b = await rcOrb.boundingBox()
+      if (b) {
+        const x = Math.max(0, Math.min(b.x - 24, 1279))
+        const y = Math.max(0, Math.min(b.y - 24, 899))
+        const w = Math.max(40, Math.min(b.width + 48, 1280 - x))
+        const h = Math.max(40, Math.min(b.height + 48, 900 - y))
+        await rcPage.screenshot({ path: fileURLToPath(new URL('./img/rc-family-orb.png', import.meta.url)), clip: { x, y, width: w, height: h } })
+      }
+    } else {
+      await rcPage.screenshot({ path: fileURLToPath(new URL('./img/rc-family-orb.png', import.meta.url)) })
+    }
+    await rc.close()
+    gate('G-11 · family side-by-sides captured', true, 'v4 hero/nav + RC hero/nav/orb saved to reports/img/')
+  } catch (e) {
+    gate('G-11 · family side-by-sides captured', false, `RC unreachable: ${String(e).slice(0, 80)} — v4 halves saved; retry when online`)
+  }
 }
 
 /* ======================= G-8 · site integrity (v3 routes + FAQ + links) */

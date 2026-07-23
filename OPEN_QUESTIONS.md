@@ -9,6 +9,21 @@ Logged per `docs/v3/01_RULES.md` rule 5. Newest first.
 
 ---
 
+## OQ-13 · V4 ADDENDUM 1: three small implementation choices (logged, work continued)
+
+1. **Trust-line brass vs the G-10 size cap.** §B5 permits brass on `0
+   despertaron a tu equipo`, but the line renders at up to 30px and G-10 caps
+   brass at ≤20px. **Chose** cream italic with the existing glow (the §B2
+   emphasis treatment); brass appears only in true micro-accents (eyebrows,
+   device-screen labels, all ≤12.5px).
+2. **General Sans body-line option.** §C lets the Act II figure sub-lines and
+   the Act VI boundary line be General Sans. **Chose** to keep both in
+   Fraunces (they are §3 serif statements) — one consistent choice, reported;
+   General Sans computes only inside `[data-device-ui]`.
+3. **Coordinates chip.** §D moves the chip into Act I's stage. Counted as a
+   `[data-device-ui]` mono data label (the OQ-12 label rule); Act I ES stays
+   at 34/35 words. Both counts in the G-1 table.
+
 ## OQ-12 · V4: reading-copy measure — Act IV captions, Act VI trust chips, Act I top bar
 
 **What:** §3's per-act word budgets are unreachable if every §3-listed string

@@ -36,7 +36,7 @@ const REVEAL_EARLY = 0.06
     this component). The outermost boundary is a masked fade ≥12px at spec
     sizes — never a hard circle edge; the outer glow lives on the halo layer so
     the mask cannot clip it. */
-export function ArcOrb({ size, core = 'ember' }: { size: number; core?: 'ember' | 'sunrise' }) {
+export function ArcOrb({ size }: { size: number }) {
   return (
     <div className="relative" style={{ width: size, height: size }}>
       <div
@@ -54,12 +54,7 @@ export function ArcOrb({ size, core = 'ember' }: { size: number; core?: 'ember' 
         className="absolute inset-0"
         style={{
           borderRadius: '50%',
-          background:
-            core === 'sunrise'
-              ? /* v4 kit §1.6 — the reference dome/sun ramp on the same shared
-                   component; the ember default is v3's, unchanged */
-                'radial-gradient(circle at 50% 40%, #de9e5b 0%, #c08048 20%, #8a5527 42%, #3a2210 60%, #17100a 74%, #17100a 100%)'
-              : 'radial-gradient(circle at 50% 32%, #b98c58, #8a5f38 45%, #4a3520 78%, #241a11 100%)',
+          background: 'radial-gradient(circle at 50% 32%, #b98c58, #8a5f38 45%, #4a3520 78%, #241a11 100%)',
           boxShadow: 'inset 0 -20px 46px rgba(20,12,6,0.55)',
           WebkitMaskImage: 'radial-gradient(closest-side, #000 70%, transparent 100%)',
           maskImage: 'radial-gradient(closest-side, #000 70%, transparent 100%)',

@@ -23,10 +23,10 @@ export function Act5() {
         boxSizing: 'border-box',
       }}
     >
-      <div style={monoStyle(10, '.45em', V4.emberEyebrow)}>{c.eyebrow}</div>
-      <div className="v4-statement" style={{ fontFamily: V4.serif, fontSize: 'clamp(30px, 4.4vw, 56px)', lineHeight: 1.12, marginTop: 26, maxWidth: 840, textAlign: 'center', textWrap: 'balance', color: V4.text, paddingInline: 20 }}>
+      <div style={monoStyle(10, '.45em', V4.brass)}>{c.eyebrow}</div>
+      <div className="v4-statement" style={{ fontFamily: V4.serif, fontWeight: 530, fontSize: 'clamp(30px, 4.4vw, 56px)', lineHeight: 1.12, marginTop: 26, maxWidth: 840, textAlign: 'center', textWrap: 'balance', color: V4.text, paddingInline: 20 }}>
         {c.statementPre}
-        <span style={{ fontStyle: 'italic', color: V4.champagne }}>{c.statementHi}</span>
+        <span style={{ fontStyle: 'italic', fontWeight: 480, color: V4.cream }}>{c.statementHi}</span>
         {c.statementPost}
       </div>
 
@@ -68,9 +68,9 @@ export function Act5() {
         </div>
       </V4Reveal>
 
-      <div className="v4-act5-close" style={{ fontFamily: V4.serif, fontSize: 'clamp(22px, 2.4vw, 30px)', marginTop: 70, maxWidth: 760, textAlign: 'center', color: '#EFE3D0', lineHeight: 1.4, textWrap: 'balance', paddingInline: 20 }}>
+      <div className="v4-act5-close" style={{ fontFamily: V4.serif, fontWeight: 530, fontSize: 'clamp(22px, 2.4vw, 30px)', marginTop: 70, maxWidth: 760, textAlign: 'center', color: '#EFE3D0', lineHeight: 1.4, textWrap: 'balance', paddingInline: 20 }}>
         {c.footerPre}
-        <span style={{ color: V4.champagne, textShadow: '0 0 30px rgba(231,206,134,.4)' }}>{c.footerHi}</span>
+        <span style={{ fontStyle: 'italic', fontWeight: 480, color: V4.cream, textShadow: '0 0 30px rgba(231,206,134,.4)' }}>{c.footerHi}</span>
       </div>
     </section>
   )

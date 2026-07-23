@@ -1026,15 +1026,8 @@ body {
    Scoped additions only — nothing above this block changed.
    ============================================================ */
 
-/* §4 motion budget: one entrance per act + the orb's 6s breathe. */
-@keyframes v4-breathe {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.015); }
-}
-.v4-breathe { animation: v4-breathe 6s ease-in-out infinite; }
-@media (prefers-reduced-motion: reduce) {
-  .v4-breathe { animation: none !important; }
-}
+/* ADDENDUM 1 §E: motion = the family's reveal utilities + the vux orb's own
+   states; no bespoke keyframes. */
 
 .v4-root ::placeholder { color: rgba(242, 233, 218, 0.38); }
 .v4-root a { text-decoration: none; }
@@ -1051,7 +1044,7 @@ body {
   border: 1px solid rgba(201, 139, 78, 0.28);
   border-radius: 16px;
   padding: 16px 20px;
-  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   font-size: 14px;
   line-height: 1.5;
   color: #efe3d0;
@@ -1064,9 +1057,9 @@ body {
   .v4-h1 { white-space: normal; }
   .v4-topbar { padding: 22px 20px !important; }
   .v4-act1-eyebrow { margin-top: 96px !important; padding-inline: 16px; }
-  /* the dome (fixed-px shared orb) scales as one object on small screens;
-     the `scale` property composes with the breathe animation's transform */
-  .v4-dome { scale: 0.55; transform-origin: 50% 20%; }
+  /* the hero voice-orb scales as one object on small screens */
+  .v4-hero-orb { scale: 0.62; transform-origin: 50% 30%; }
+  .v4-coords { right: 20px !important; top: 20px !important; }
 }
 
 /* Act II — the stacked figures collapse to one column below 900 */

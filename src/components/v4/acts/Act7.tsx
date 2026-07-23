@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { ArcOrb } from '@/components/cds/SunArc'
+import { VoiceOrb } from '@/components/cds/VoiceOrb'
 import { AskBarV4 } from '../AskBarV4'
 import { V4, V4Reveal, monoStyle } from '../shared'
 import { useCopy } from '@/lib/i18n/useCopy'
@@ -32,12 +32,12 @@ export function Act7() {
         boxSizing: 'border-box',
       }}
     >
-      <div style={{ ...monoStyle(10, '.45em', 'rgba(226,155,86,.7)'), position: 'relative', zIndex: 10 }}>{c.eyebrow}</div>
+      <div style={{ ...monoStyle(10, '.45em', V4.brass), position: 'relative', zIndex: 10 }}>{c.eyebrow}</div>
       <h2
         className="v4-act7-head"
         style={{
           fontFamily: V4.serif,
-          fontWeight: 400,
+          fontWeight: 530,
           fontSize: 'clamp(42px, 7.2vw, 92px)',
           lineHeight: 1.05,
           margin: '30px 0 0',
@@ -50,7 +50,7 @@ export function Act7() {
       >
         {c.statementLine1}
         <br />
-        <span style={{ fontStyle: 'italic', color: V4.champagne }}>{c.statementLine2}</span>
+        <span style={{ fontStyle: 'italic', fontWeight: 480, color: V4.cream }}>{c.statementLine2}</span>
       </h2>
 
       <V4Reveal style={{ position: 'relative', zIndex: 10, marginTop: 70, width: '100%', display: 'flex', justifyContent: 'center', paddingInline: 20, boxSizing: 'border-box' }}>
@@ -58,17 +58,18 @@ export function Act7() {
       </V4Reveal>
 
       <div style={{ position: 'relative', zIndex: 10, marginTop: 80, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 28, paddingInline: 20 }}>
-        <div style={{ fontFamily: V4.serif, fontSize: 'clamp(19px, 1.9vw, 24px)', color: 'rgba(242,233,218,.7)', fontStyle: 'italic', textAlign: 'center' }}>{c.partnerLine}</div>
+        <div style={{ fontFamily: V4.serif, fontWeight: 480, fontSize: 'clamp(19px, 1.9vw, 24px)', color: 'rgba(242,233,218,.7)', fontStyle: 'italic', textAlign: 'center' }}>{c.partnerLine}</div>
         <Link
           href="/contact#founding"
           className="v4-cta"
           style={{
-            background: V4.champagne,
+            /* ADDENDUM 1 §B4 — terracotta solid action, dark text (RC CTA) */
+            background: V4.accent,
             color: V4.ink,
             borderRadius: 999,
             padding: '16px 36px',
             ...monoStyle(11, '.24em', V4.ink),
-            boxShadow: '0 0 50px rgba(231,206,134,.2)',
+            boxShadow: '0 0 50px rgba(200,106,58,.22)',
             textAlign: 'center',
           }}
         >
@@ -76,13 +77,13 @@ export function Act7() {
         </Link>
       </div>
 
-      {/* ember below the horizon */}
-      <div style={{ position: 'relative', width: '100%', height: 340, marginTop: 90, overflow: 'hidden' }}>
-        <div aria-hidden="true" className="v4-breathe" style={{ position: 'absolute', left: '50%', top: 110, width: 900, height: 900, marginLeft: -450, opacity: 0.55 }}>
-          <ArcOrb size={900} core="sunrise" />
+      {/* ADDENDUM 1 §B2 — no setting sun: the act closes on warm black with
+          the voice-orb in a dim resting state above the sign-off */}
+      <div style={{ position: 'relative', width: '100%', height: 340, marginTop: 90, overflow: 'hidden', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end', gap: 44, paddingBottom: 30, boxSizing: 'border-box' }}>
+        <div aria-hidden="true" style={{ opacity: 0.55 }}>
+          <VoiceOrb size={150} state="idle" showMic={false} />
         </div>
-        <div aria-hidden="true" style={{ position: 'absolute', left: '50%', top: 76, width: 1030, height: 1030, marginLeft: -515, borderRadius: '50%', border: '1px solid rgba(205,132,68,.2)' }} />
-        <div style={{ position: 'absolute', bottom: 30, left: 0, right: 0, textAlign: 'center', zIndex: 5, ...monoStyle(10, '.4em', 'rgba(242,233,218,.4)') }}>{c.signoff}</div>
+        <div style={{ textAlign: 'center', zIndex: 5, ...monoStyle(10, '.4em', 'rgba(242,233,218,.4)') }}>{c.signoff}</div>
       </div>
     </section>
   )
