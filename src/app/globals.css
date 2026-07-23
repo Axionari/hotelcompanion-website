@@ -1364,8 +1364,9 @@ body {
     width: var(--island-w, 96px); height: var(--island-h, 24px);
     background: #0B0B0D; border-radius: 999px; z-index: 40; pointer-events: none;
   }
-  /* clear the island so the status row never sits under it */
-  .suite-screen > div:first-child { padding-top: 16px; }
+  /* Clear the island. It occupies y 9-33px, so the status row needs ~40px of
+     headroom or the property chip renders under the notch (as it did). */
+  .suite-screen > div:first-child { padding-top: 42px !important; }
 }
 
 @media (max-width: 640px) {
@@ -1380,4 +1381,6 @@ body {
     width: 84px; height: 20px;
     background: #0B0B0D; border-radius: 999px; z-index: 40; pointer-events: none;
   }
+  /* push the absolutely-positioned status row below the island */
+  .tos-screen > div:first-of-type { padding-top: 22px; }
 }
