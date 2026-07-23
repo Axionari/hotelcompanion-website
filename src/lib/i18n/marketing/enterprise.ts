@@ -108,17 +108,6 @@ const en = {
       coda: 'Leadership gains visibility into revenue opportunities that traditionally disappear inside conversations.',
     },
     {
-      id: 'dashboards',
-      eyebrow: '09 · DASHBOARDS',
-      title: 'Executive Dashboards.',
-      body: [
-        'One view of your entire operation.',
-        'Monitor:',
-        'Guest conversations. Revenue opportunities. Operational performance. Knowledge health. Department activity. Service trends. Commercial insights. Guest satisfaction drivers. Property comparisons. Portfolio performance.',
-      ],
-      coda: 'Understand what is happening across your organization—and why.',
-    },
-    {
       id: 'integrates',
       eyebrow: '10 · INTEGRATION',
       title: 'Integrates Into Your Operation.',
@@ -284,17 +273,6 @@ const es: typeof en = {
         'Oportunidades de mejora. Estancias extendidas. Celebraciones. Experiencias premium. Demanda de spa. Interés gastronómico. Necesidades de transporte. Reservas de actividades.',
       ],
       coda: 'La dirección gana visibilidad sobre oportunidades de ingreso que tradicionalmente desaparecen dentro de las conversaciones.',
-    },
-    {
-      id: 'dashboards',
-      eyebrow: '09 · TABLEROS',
-      title: 'Tableros Ejecutivos.',
-      body: [
-        'Una sola vista de toda tu operación.',
-        'Monitorea:',
-        'Conversaciones con huéspedes. Oportunidades de ingreso. Desempeño operativo. Salud del conocimiento. Actividad por departamento. Tendencias de servicio. Perspectivas comerciales. Factores de satisfacción del huésped. Comparaciones entre propiedades. Desempeño del portafolio.',
-      ],
-      coda: 'Comprende lo que está pasando en tu organización—y por qué.',
     },
     {
       id: 'integrates',

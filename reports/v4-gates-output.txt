@@ -4,16 +4,16 @@ PASS · G-1 en · act-iii ≤ 70 — reading 32 (raw 73 − device-ui 41 − chr
 PASS · G-1 en · act-iv ≤ 30 — reading 19 (raw 78 − device-ui 59 − chrome 0 − sr-only 0)
 PASS · G-1 en · act-v ≤ 45 — reading 18 (raw 33 − device-ui 15 − chrome 0 − sr-only 0)
 PASS · G-1 en · act-vi ≤ 25 — reading 17 (raw 28 − device-ui 11 − chrome 0 − sr-only 0)
-PASS · G-1 en · act-vii ≤ 35 — reading 26 (raw 39 − device-ui 13 − chrome 0 − sr-only 0)
-PASS · G-1 en · total ≤ 320 — total reading 162
+PASS · G-1 en · act-vii ≤ 35 — reading 25 (raw 38 − device-ui 13 − chrome 0 − sr-only 0)
+PASS · G-1 en · total ≤ 320 — total reading 161
 PASS · G-1 es · act-i ≤ 35 — reading 34 (raw 37 − device-ui 3 − chrome 0 − sr-only 0)
 PASS · G-1 es · act-ii ≤ 40 — reading 31 (raw 33 − device-ui 0 − chrome 0 − sr-only 2)
 PASS · G-1 es · act-iii ≤ 70 — reading 37 (raw 78 − device-ui 41 − chrome 0 − sr-only 0)
 PASS · G-1 es · act-iv ≤ 30 — reading 18 (raw 83 − device-ui 65 − chrome 0 − sr-only 0)
 PASS · G-1 es · act-v ≤ 45 — reading 24 (raw 39 − device-ui 15 − chrome 0 − sr-only 0)
 PASS · G-1 es · act-vi ≤ 25 — reading 17 (raw 34 − device-ui 17 − chrome 0 − sr-only 0)
-PASS · G-1 es · act-vii ≤ 35 — reading 25 (raw 36 − device-ui 11 − chrome 0 − sr-only 0)
-PASS · G-1 es · total ≤ 320 — total reading 186
+PASS · G-1 es · act-vii ≤ 35 — reading 24 (raw 35 − device-ui 11 − chrome 0 − sr-only 0)
+PASS · G-1 es · total ≤ 320 — total reading 185
 PASS · G-2 en · serif/mono only outside [data-device-ui] — every reading text node computes Fraunces or Spline Sans Mono
 PASS · G-2 es · serif/mono only outside [data-device-ui] — every reading text node computes Fraunces or Spline Sans Mono
 PASS · G-3 en · verbatim §3 strings render — 35 reading + 17 device-UI strings matched
@@ -48,15 +48,22 @@ PASS · G-6 · zero filled-sphere/dome orbs — masked radial cores in v4 root =
 PASS · G-6 · hero orb carries the mic badge — mic svg present
 shot · v4-orb-hero-zoom.png · v4-orb-sun-zoom.png
 PASS · G-10 en · zero champagne text — no computed #E7CE86 text
-PASS · G-10 en · brass ≤20px micro-accents only — 10 brass instances · max 12.5px
+PASS · G-10 en · brass ≤20px micro-accents only — 8 brass instances · max 12.5px
 PASS · G-10 es · zero champagne text — no computed #E7CE86 text
-PASS · G-10 es · brass ≤20px micro-accents only — 10 brass instances · max 12.5px
+PASS · G-10 es · brass ≤20px micro-accents only — 8 brass instances · max 12.5px
 PASS · G-11 · family side-by-sides captured — v4 hero/nav + RC hero/nav/orb saved to reports/img/
 PASS · G-8 · all non-home routes 200 — 16 routes OK
-PASS · G-8 · FAQ reachable at /resources#faq — homepage Q&A present
+PASS · G-8 · the site FAQ lives under the demo form; /faq redirects — demo FAQ present · /faq → /demo
 PASS · G-8 · v3 nav intact on non-home routes — nav renders
-PASS · G-8 · zero dead links on the homepage — 31 links · clean · env-dependent (auth, verify on preview): /auth/login:500
+PASS · G-8 · zero dead links on the homepage — 30 links · clean · env-dependent (auth, verify on preview): /auth/login:500
 PASS · G-8 · Act VII chip → scripted answer renders — reply 187 chars: "At a beach resort: the cabana before sunset, the…"
+PASS · G-12 · home silent on [Companion OS] — silent (footer excluded — it carries the one sanctioned endorsement)
+PASS · G-12 · platform silent on [Companion OS] — silent (footer excluded — it carries the one sanctioned endorsement)
+PASS · G-12 · solutions silent on [Companion OS] — silent (footer excluded — it carries the one sanctioned endorsement)
+PASS · G-12 · enterprise silent on [Companion OS, Executive Dashboards] — silent (footer excluded — it carries the one sanctioned endorsement)
+PASS · G-12 · resources silent on [Founding Partner, Frequently Asked] — silent (footer excluded — it carries the one sanctioned endorsement)
+PASS · G-12 · company silent on [Founding Partner] — silent (footer excluded — it carries the one sanctioned endorsement)
+PASS · G-13 · zero broken in-page anchors — 92 hash links resolve
 PASS · G-9 en · zero horizontal overflow at 390 — scrollWidth − clientWidth = 0
 PASS · G-9 en · Act III moments stack — grid columns = 1
 PASS · G-9 en · Act IV uses v3 mobile treatment — desktop none · mobile block

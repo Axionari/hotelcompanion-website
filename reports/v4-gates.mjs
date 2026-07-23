@@ -63,7 +63,7 @@ const READING = {
     'act-iv': ['04 · EVERY SURFACE', "One conversation. Every screen in the guest's world.", 'Five screens. One memory. She never repeated herself once.'],
     'act-v': ['05 · INTELLIGENCE & EXECUTION', 'Every conversation becomes intelligence — and execution.', 'Tracked from creation to completion. Tonight: 14 conversations · 0 woke your staff.'],
     'act-vi': ['06 · DEPLOYMENT', 'Live in Days. Not Months.', "It doesn't replace your systems. It understands the conversations between them."],
-    'act-vii': ['07 · NEXT STEP', 'Stop reading about it.', 'Ask it something.', 'Now partnering with a limited number of visionary hotel groups.', 'BECOME A FOUNDING PARTNER', 'POWERED BY AXIONARI'],
+    'act-vii': ['07 · NEXT STEP', 'Stop reading about it.', 'Ask it something.', 'Now partnering with a limited number of visionary hotel groups.', 'Book a Demo', 'POWERED BY AXIONARI'],
   },
   es: {
     'act-i': [
@@ -87,7 +87,7 @@ const READING = {
     'act-iv': ['04 · CADA SUPERFICIE', 'Una conversación. Cada pantalla del mundo del huésped.', 'Cinco pantallas. Una memoria. Nunca tuvo que repetirse.'],
     'act-v': ['05 · INTELIGENCIA Y EJECUCIÓN', 'Cada conversación se convierte en inteligencia — y en ejecución.', 'Rastreado de inicio a fin. Esta noche: 14 conversaciones · 0 despertaron a tu equipo.'],
     'act-vi': ['06 · IMPLEMENTACIÓN', 'En Marcha en Días. No en Meses.', 'No reemplaza tus sistemas. Entiende las conversaciones entre ellos.'],
-    'act-vii': ['07 · SIGUIENTE PASO', 'Deja de leerlo.', 'Pregúntale algo.', 'Ahora nos asociamos con un número limitado de grupos hoteleros visionarios.', 'CONVIÉRTETE EN SOCIO FUNDADOR', 'POWERED BY AXIONARI'],
+    'act-vii': ['07 · SIGUIENTE PASO', 'Deja de leerlo.', 'Pregúntale algo.', 'Ahora nos asociamos con un número limitado de grupos hoteleros visionarios.', 'Agenda una Demo', 'POWERED BY AXIONARI'],
   },
 }
 
@@ -153,6 +153,8 @@ for (const lang of ['en', 'es']) {
         if (!n.textContent.trim()) continue
         const el = n.parentElement
         if (!el || el.closest('[data-device-ui]')) continue
+        /* the one button system is sans by design (PRODUCT_ARCHITECTURE §11) */
+        if (el.closest('.btn-primary, .btn-secondary')) continue
         const fam = getComputedStyle(el).fontFamily.toLowerCase()
         const first = fam.split(',')[0].replace(/["']/g, '').trim()
         /* ADDENDUM 1 §A/§C — Fraunces / Spline Sans Mono outside device UI */
@@ -514,10 +516,11 @@ for (const lang of ['en', 'es']) {
   }
   gate('G-8 · all non-home routes 200', bad.length === 0, bad.length ? bad.join(' ') : `${routes.length} routes OK`)
 
-  const { ctx, page } = await open(1280, 900, 'en', '/resources')
-  const faqThere = await page.evaluate(() => document.body.innerText.includes('What is Hotel Companion?'))
+  const { ctx, page } = await open(1280, 900, 'en', '/demo')
+  const faqThere = await page.evaluate(() => document.body.innerText.includes('How long does implementation take?'))
   const navThere = await page.evaluate(() => !!document.querySelector('nav'))
-  gate('G-8 · FAQ reachable at /resources#faq', faqThere, faqThere ? 'homepage Q&A present' : 'MISSING')
+  const redir = await fetch(BASE + '/faq', { redirect: 'follow' })
+  gate('G-8 · the site FAQ lives under the demo form; /faq redirects', faqThere && redir.url.includes('/demo'), `demo FAQ ${faqThere ? 'present' : 'MISSING'} · /faq → ${redir.url.split(BASE)[1] ?? redir.url}`)
   gate('G-8 · v3 nav intact on non-home routes', navThere, navThere ? 'nav renders' : 'MISSING')
   await ctx.close()
 
@@ -551,6 +554,59 @@ for (const lang of ['en', 'es']) {
   const reply = await home.evaluate(() => document.querySelector('#act-vii .v4-reply-card')?.innerText ?? '')
   gate('G-8 · Act VII chip → scripted answer renders', reply.length > 40, `reply ${reply.length} chars: "${reply.slice(0, 48)}…"`)
   await c2.close()
+}
+
+/* ================== G-12 · narrative ownership — Silent cells stay silent */
+{
+  const checks = [
+    { path: '/', name: 'home', mustNotMention: ['Companion OS'], scope: 'acts' },
+    { path: '/platform', name: 'platform', mustNotMention: ['Companion OS'], scope: 'main' },
+    { path: '/solutions', name: 'solutions', mustNotMention: ['Companion OS'], scope: 'main' },
+    { path: '/enterprise', name: 'enterprise', mustNotMention: ['Companion OS', 'Executive Dashboards'], scope: 'main' },
+    { path: '/resources', name: 'resources', mustNotMention: ['Founding Partner', 'Frequently Asked'], scope: 'main' },
+    { path: '/company', name: 'company', mustNotMention: ['Founding Partner'], scope: 'main' },
+  ]
+  for (const chk of checks) {
+    const { ctx, page } = await open(1280, 900, 'en', chk.path)
+    const text = await page.evaluate((scope) => {
+      if (scope === 'acts') {
+        return [...document.querySelectorAll('[data-v4-act]')].map((s) => s.innerText).join(' ')
+      }
+      const main = document.querySelector('main')
+      const clone = main.cloneNode(true)
+      clone.querySelectorAll('footer, nav').forEach((el) => el.remove())
+      return clone.innerText
+    }, chk.scope)
+    const hits = chk.mustNotMention.filter((m) => text.includes(m))
+    gate(`G-12 · ${chk.name} silent on [${chk.mustNotMention.join(', ')}]`, hits.length === 0, hits.length ? `LEAKED: ${hits.join(', ')}` : 'silent (footer excluded — it carries the one sanctioned endorsement)')
+    await ctx.close()
+  }
+}
+
+/* ======================= G-13 · anchor integrity — every hash link resolves */
+{
+  const pages = ['/', '/platform', '/solutions', '/enterprise', '/companion-os', '/resources', '/company', '/contact', '/demo']
+  const targets = {}
+  const links = []
+  for (const p of pages) {
+    const { ctx, page } = await open(1280, 900, 'en', p)
+    const data = await page.evaluate(() => ({
+      ids: [...document.querySelectorAll('[id]')].map((el) => el.id),
+      hrefs: [...document.querySelectorAll('a[href*="#"]')].map((a) => a.getAttribute('href')).filter((h) => h && !h.startsWith('http')),
+    }))
+    targets[p] = new Set(data.ids)
+    data.hrefs.forEach((h) => links.push({ from: p, href: h }))
+    await ctx.close()
+  }
+  const broken = []
+  for (const { from, href } of links) {
+    const [pathPart, hash] = href.split('#')
+    if (!hash) continue
+    const target = pathPart === '' ? from : pathPart.replace(/\/$/, '') || '/'
+    if (!targets[target]) continue // legal/app routes not crawled
+    if (!targets[target].has(hash)) broken.push(`${from} → ${href}`)
+  }
+  gate('G-13 · zero broken in-page anchors', broken.length === 0, broken.length ? broken.slice(0, 6).join(' · ') : `${links.length} hash links resolve`)
 }
 
 /* ============================ G-9 · responsive (390 · one idea per act) */

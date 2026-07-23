@@ -62,8 +62,7 @@ const en = {
           { label: 'Voice Is the New Interface', href: '/resources/library/voice-is-the-new-interface' },
           { label: 'The Future of Organizational Intelligence', href: '/resources/library/what-happens-when-every-guest-conversation-becomes-intelligence' },
           { label: 'Library', href: '/resources#library' },
-          { label: 'Product Updates', href: '/resources#updates' },
-          { label: 'FAQ', href: '/resources#faq' },
+          { label: 'FAQ', href: '/demo#faq' },
         ],
       },
       company: {
@@ -172,8 +171,7 @@ const es: typeof en = {
           { label: 'La Voz Es la Nueva Interfaz', href: '/resources/library/voice-is-the-new-interface' },
           { label: 'El Futuro de la Inteligencia Organizacional', href: '/resources/library/what-happens-when-every-guest-conversation-becomes-intelligence' },
           { label: 'Biblioteca', href: '/resources#library' },
-          { label: 'Actualizaciones de Producto', href: '/resources#updates' },
-          { label: 'Preguntas Frecuentes', href: '/resources#faq' },
+          { label: 'Preguntas Frecuentes', href: '/demo#faq' },
         ],
       },
       company: {
