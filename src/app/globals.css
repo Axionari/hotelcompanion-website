@@ -1252,6 +1252,18 @@ body {
   .v5-drift-a, .v5-drift-b { animation: none; }
 }
 
+/* v5 — fragmentation constellation (axionari field): connectors flow with a
+   marching-ants dash and anchors pulse, so the "before" reads as living but
+   never resolving. Opacity stays owned by .lg-line's reveal gate, so these
+   animate stroke-dashoffset / r only and never fight the in-view fade. */
+@keyframes v5-frag-flow { to { stroke-dashoffset: -120; } }
+@keyframes v5-frag-pulse { 0%, 100% { r: 2px; } 50% { r: 3.6px; } }
+.v5-frag-line { animation: v5-frag-flow 3.4s linear infinite; }
+.v5-frag-dot { animation: v5-frag-pulse 3.2s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .v5-frag-line, .v5-frag-dot { animation: none; }
+}
+
 /* v5 — live operations-feed pulse dot (homepage receipt). */
 .v5-live-dot { animation: v5-live-pulse 2s ease-in-out infinite; }
 @keyframes v5-live-pulse {

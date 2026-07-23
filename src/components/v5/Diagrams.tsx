@@ -5,8 +5,8 @@ import { CSSProperties, ReactNode, useEffect, useRef, useState } from 'react'
 /**
  * Diagrams — RC's three remaining diagram forms, shared (Phase 5):
  *
- *  - FragmentScatter — the "before" chaos: systems scattered around the guest,
- *    dashed lines, × breaks, mono failure labels (RC homepage §02).
+ *  - FragmentScatter — the "before" chaos: systems orbiting the guest,
+ *    animated dashed connectors that flow but never resolve (axionari field).
  *  - PassThrough — the vertical pass-through: one interaction → the layer →
  *    the systems you already run (RC product "Nothing new to operate").
  *  - ArrowFlow — the numbered step flow with arrows (RC pilot "From
@@ -89,73 +89,53 @@ const SCATTER: Array<{ x: number; y: number }> = [
   { x: 185, y: 386 }, { x: 555, y: 419 }, { x: 935, y: 363 },
 ]
 
-/** Which lines break (gap + × + failure label), one per marker. */
-const BROKEN = [0, 4, 5]
-
 export function FragmentScatter({
   center,
   systems,
-  markers,
 }: {
   center: string
   systems: ReadonlyArray<string>
-  markers: ReadonlyArray<string>
+  /** Retained for caller compatibility; the constellation no longer labels breaks. */
+  markers?: ReadonlyArray<string>
 }) {
   const { ref, cls } = useArmedIn()
   const pts = SCATTER.slice(0, systems.length)
 
-  /** Each line runs center → just short of its chip; at() walks it. */
+  /** Each connector runs center → just short of its chip (elliptical stand-off). */
   const geom = pts.map((p) => {
     const dx = p.x - FC.x
     const dy = p.y - FC.y
     const len = Math.hypot(dx, dy)
     const end = { x: p.x - (dx / len) * 70, y: p.y - (dy / len) * 48 }
-    const at = (t: number) => ({ x: FC.x + (end.x - FC.x) * t, y: FC.y + (end.y - FC.y) * t })
-    return { end, at }
+    return { end }
   })
-  const lineStyle = { stroke: 'rgba(200,106,58,0.6)', strokeWidth: 1.5, strokeDasharray: '5 6' }
+  const lineStyle = { stroke: 'rgba(200,106,58,0.55)', strokeWidth: 1.5, strokeDasharray: '5 7' }
 
   return (
     <div ref={ref} className={cls}>
-      {/* ── desktop scatter — aspect-locked so every line lands true ── */}
+      {/* ── desktop constellation — aspect-locked so every line lands true ── */}
       <div className="relative hidden md:block" style={{ aspectRatio: `${FW} / ${FH}`, maxWidth: 1200, marginInline: 'auto' }}>
         <svg aria-hidden className="absolute inset-0 w-full h-full" viewBox={`0 0 ${FW} ${FH}`}>
-          {geom.map((g, i) => {
-            const broken = BROKEN.indexOf(i)
-            if (broken === -1) {
-              return (
-                <line
-                  key={i}
-                  className="lg-line"
-                  x1={FC.x} y1={FC.y} x2={g.end.x} y2={g.end.y}
-                  {...lineStyle}
-                  style={{ transitionDelay: `${180 + i * 70}ms` }}
-                />
-              )
-            }
-            const a = g.at(0.46)
-            const b = g.at(0.62)
-            const m = g.at(0.54)
-            return (
-              <g key={i}>
-                <line className="lg-line" x1={FC.x} y1={FC.y} x2={a.x} y2={a.y} {...lineStyle} style={{ transitionDelay: `${180 + i * 70}ms` }} />
-                <line className="lg-line" x1={b.x} y1={b.y} x2={g.end.x} y2={g.end.y} {...lineStyle} style={{ transitionDelay: `${240 + i * 70}ms` }} />
-                {/* the break, marked */}
-                <g className="lg-line" style={{ transitionDelay: `${760 + broken * 130}ms` }}>
-                  <line x1={m.x - 8} y1={m.y - 8} x2={m.x + 8} y2={m.y + 8} stroke={TERRA} strokeWidth="2" />
-                  <line x1={m.x + 8} y1={m.y - 8} x2={m.x - 8} y2={m.y + 8} stroke={TERRA} strokeWidth="2" />
-                </g>
-                <text
-                  className="lg-line"
-                  x={m.x} y={m.y - 22}
-                  textAnchor="middle"
-                  style={{ ...MONO, fontSize: 12.5, letterSpacing: '0.2em', fill: 'rgba(242,233,218,0.5)', transitionDelay: `${860 + broken * 130}ms` } as CSSProperties}
-                >
-                  {markers[broken]}
-                </text>
-              </g>
-            )
-          })}
+          {/* connectors — dashed, marching-ants flow toward the guest, never resolving */}
+          {geom.map((g, i) => (
+            <line
+              key={i}
+              className="lg-line v5-frag-line"
+              x1={FC.x} y1={FC.y} x2={g.end.x} y2={g.end.y}
+              {...lineStyle}
+              style={{ transitionDelay: `${180 + i * 70}ms`, animationDelay: `${-i * 0.5}s` }}
+            />
+          ))}
+          {/* pulsing anchor where each connector meets its system */}
+          {geom.map((g, i) => (
+            <circle
+              key={`dot-${i}`}
+              className="lg-line v5-frag-dot"
+              cx={g.end.x} cy={g.end.y} r={2.6}
+              fill={TERRA}
+              style={{ transitionDelay: `${180 + i * 70}ms`, animationDelay: `${-i * 0.4}s` }}
+            />
+          ))}
         </svg>
 
         {/* the guest, center */}
@@ -181,12 +161,7 @@ export function FragmentScatter({
       {/* ── mobile — the same story, stacked ── */}
       <div className="md:hidden flex flex-col items-center gap-5">
         <div className="lg-item" style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 20, color: '#1a1207', background: CREAM, borderRadius: 999, padding: '12px 28px' }}>{center}</div>
-        <div className="lg-item flex flex-wrap justify-center gap-x-5 gap-y-2" style={{ transitionDelay: '120ms' }}>
-          {markers.map((m) => (
-            <span key={m} style={{ ...MONO, fontSize: 9, letterSpacing: '.16em', color: TERRA }}>× {m}</span>
-          ))}
-        </div>
-        <div className="lg-item flex flex-wrap justify-center gap-2" style={{ transitionDelay: '220ms' }}>
+        <div className="lg-item flex flex-wrap justify-center gap-2" style={{ transitionDelay: '160ms' }}>
           {systems.map((s) => (
             <span key={s} style={{ ...chipStyle, fontSize: 12, padding: '8px 13px' }}>{s}</span>
           ))}
