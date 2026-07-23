@@ -1382,6 +1382,13 @@ body {
      the long property lockup truncates beside the island and adds no value
      here; the property is named on the welcome screen and in the section copy. */
   .suite-prop { display: none !important; }
+  /* Confirmation: on the landscape frame the card fills the remaining height
+     and centring the line items inside it looks deliberate. On a tall phone
+     that same growth strands them in the middle of a large void, so the card
+     sizes to its content and the whole block centres in the screen instead. */
+  .confirm-wrap { justify-content: center; }
+  .confirm-card { flex: 0 0 auto !important; }
+  .confirm-lines { flex: 0 0 auto !important; justify-content: flex-start !important; gap: 7px; }
 }
 
 @media (max-width: 640px) {

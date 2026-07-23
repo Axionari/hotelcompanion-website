@@ -289,6 +289,28 @@ function CartScreen({ c }: { c: SuiteCopy }) {
 }
 
 /* ── 5 · availability — the PMS handshake, live inventory confirmed ──── */
+/**
+ * Live countdown on the temporary hold. Starts at a fixed 15:00 so server and
+ * client render the same first frame, then ticks once mounted. The screen
+ * remounts each time the flow reaches it, so the clock restarts on its own.
+ */
+function HoldTimer({ label }: { label: string }) {
+  const [left, setLeft] = useState(900)
+  useEffect(() => {
+    const t = setInterval(() => setLeft((s) => (s > 0 ? s - 1 : 0)), 1000)
+    return () => clearInterval(t)
+  }, [])
+  const mm = String(Math.floor(left / 60)).padStart(2, '0')
+  const ss = String(left % 60).padStart(2, '0')
+  return (
+    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, border: '1px solid rgba(200,106,58,0.35)', background: 'rgba(200,106,58,0.1)', borderRadius: 999, padding: 'clamp(6px,0.7vw,9px) clamp(12px,1.3vw,17px)', marginTop: 'clamp(9px, 0.8vw, 12px)' }}>
+      <span aria-hidden style={{ width: 6, height: 6, borderRadius: '50%', background: TERRA }} />
+      <span style={{ ...MONO, fontVariantNumeric: 'tabular-nums', fontSize: 'clamp(11px,1.1vw,15px)', letterSpacing: '.06em', color: TERRA }}>{mm}:{ss}</span>
+      <span style={{ ...MONO, fontSize: 'clamp(8.5px,0.68vw,10px)', letterSpacing: '.16em', color: 'rgba(242,233,218,0.55)' }}>{label}</span>
+    </div>
+  )
+}
+
 function AvailabilityScreen({ c }: { c: SuiteCopy }) {
   const a = c.availability
   return (
@@ -310,6 +332,7 @@ function AvailabilityScreen({ c }: { c: SuiteCopy }) {
             </div>
           ))}
         </div>
+        <HoldTimer label={a.hold} />
         <div style={{ ...MONO, fontSize: 'clamp(9px, 0.7vw, 9.5px)', letterSpacing: '.18em', color: 'rgba(242,233,218,0.4)', marginTop: 'clamp(9px, 0.6vw, 9.5px)' }}>{a.caption}</div>
       </div>
     </div>
@@ -411,19 +434,19 @@ function VerifyingScreen({ c }: { c: SuiteCopy }) {
 function ConfirmedScreen({ c }: { c: SuiteCopy }) {
   const f = c.confirmed
   return (
-    <div style={{ ...pad, alignItems: 'center' }}>
+    <div className="confirm-wrap" style={{ ...pad, alignItems: 'center' }}>
       <div style={{ textAlign: 'center', flexShrink: 0 }}>
         <span aria-hidden style={{ display: 'grid', placeItems: 'center', width: 'clamp(44px,5vw,70px)', height: 'clamp(44px,5vw,70px)', borderRadius: '50%', background: TERRA, color: '#1a1207', fontSize: 'clamp(20px,2.2vw,34px)', margin: '0 auto' }}>✓</span>
         <div style={{ ...MONO, fontSize: 'clamp(9px, 0.8vw, 11px)', letterSpacing: '.2em', color: TERRA, marginTop: 'clamp(10px,1.2vw,16px)' }}>{f.label}</div>
         <div style={{ fontFamily: SERIF, fontWeight: 500, fontSize: 'clamp(20px,2.3vw,34px)', color: CREAM, marginTop: 6 }}>{f.title}</div>
         <div style={{ fontFamily: SANS, fontSize: 'clamp(9.5px,0.95vw,13px)', color: 'rgba(201,161,90,0.85)', marginTop: 6 }}>{f.paid}</div>
       </div>
-      <div style={{ marginTop: 'clamp(12px,1.5vw,20px)', width: '100%', maxWidth: 620, border: '1px solid rgba(243,236,226,0.1)', background: 'rgba(243,236,226,0.03)', borderRadius: 14, padding: 'clamp(12px,1.4vw,20px)', flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
+      <div className="confirm-card" style={{ marginTop: 'clamp(12px,1.5vw,20px)', width: '100%', maxWidth: 620, border: '1px solid rgba(243,236,226,0.1)', background: 'rgba(243,236,226,0.03)', borderRadius: 14, padding: 'clamp(12px,1.4vw,20px)', flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <div><div style={{ ...MONO, fontSize: 'clamp(9px, 0.72vw, 10px)', letterSpacing: '.14em', color: DIM }}>{f.refLabel}</div><div style={{ ...MONO, fontSize: 'clamp(16px,1.7vw,24px)', letterSpacing: '.06em', color: TERRA, marginTop: 4 }}>{f.ref}</div></div>
           <div style={{ textAlign: 'right' }}><div style={{ ...MONO, fontSize: 'clamp(9px, 0.72vw, 10px)', letterSpacing: '.14em', color: DIM }}>{f.whenLabel}</div><div style={{ fontFamily: SANS, fontWeight: 600, fontSize: 'clamp(11px,1.1vw,15px)', color: CREAM, marginTop: 3 }}>{f.when}</div></div>
         </div>
-        <div style={{ borderTop: '1px solid rgba(243,236,226,0.08)', marginTop: 'clamp(9px,1.1vw,14px)', paddingTop: 'clamp(9px,1.1vw,14px)', display: 'flex', flexDirection: 'column', gap: 5, flex: 1, justifyContent: 'center' }}>
+        <div className="confirm-lines" style={{ borderTop: '1px solid rgba(243,236,226,0.08)', marginTop: 'clamp(9px,1.1vw,14px)', paddingTop: 'clamp(9px,1.1vw,14px)', display: 'flex', flexDirection: 'column', gap: 5, flex: 1, justifyContent: 'center' }}>
           {f.summary.map((s) => <div key={s.name} style={{ display: 'flex', justifyContent: 'space-between', fontFamily: SANS, fontSize: 'clamp(9.5px,0.95vw,13px)', color: 'rgba(242,233,218,0.8)' }}><span>{s.name}</span><span style={MONO}>{s.price}</span></div>)}
         </div>
         <div style={{ borderTop: '1px solid rgba(243,236,226,0.08)', paddingTop: 'clamp(9px, 1vw, 12px)', display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>

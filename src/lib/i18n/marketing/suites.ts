@@ -98,6 +98,7 @@ const en = {
       { item: 'Ocean-View Suite', status: 'Rate held · $250/night' },
       { item: 'Spa Ixchel · Cacao Ceremony', status: 'Fri 5:30 PM open' },
     ],
+    hold: 'REMAINING ON YOUR HOLD',
     caption: 'CONFIRMED IN THE PMS · REAL-TIME',
   },
   review: {
@@ -277,6 +278,7 @@ const es: typeof en = {
       { item: 'Suite Vista al Mar', status: 'Tarifa apartada · $250/noche' },
       { item: 'Spa Ixchel · Ceremonia de Cacao', status: 'Vie 5:30 PM libre' },
     ],
+    hold: 'RESTANTE EN TU APARTADO',
     caption: 'CONFIRMADO EN EL PMS · TIEMPO REAL',
   },
   review: {
