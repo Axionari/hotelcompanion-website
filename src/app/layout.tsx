@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 import { LiveDemoModalDeferred } from "@/components/cds/LiveDemoModalDeferred";
+import { StickyCta } from "@/components/cds/StickyCta";
 
 /* Display face — Restaurant Companion uses Fraunces (headline weight 530,
    italic accent 480). Variable axes give us those exact weights. */
@@ -80,6 +81,8 @@ export default function RootLayout({
       <body className={`${fraunces.variable} ${generalSans.variable} ${splineMono.variable} font-sans antialiased`}>
         <LanguageProvider>
           <div className="pt-16">{children}</div>
+          {/* Persistent conversion CTA (RC keeps its CTA pinned; our nav auto-hides). */}
+          <StickyCta />
           {/* One demo instance for every entry point: nav, hero CTA, hero tablet.
               v4: deferred chunk (authorized v3.1 bundle split) — same modal. */}
           <LiveDemoModalDeferred />
