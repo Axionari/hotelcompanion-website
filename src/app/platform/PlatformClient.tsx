@@ -9,6 +9,7 @@ import { MediaBed } from '@/components/cds/MediaBed'
 import { openLiveDemo } from '@/components/cds/LiveDemoModal'
 import { VoiceMorph, TwoStageAlert } from '@/components/cds/interactive'
 import { VoiceStates } from '@/components/v5/VoiceStates'
+import { PassThrough } from '@/components/v5/Diagrams'
 import { DashboardShowcase } from '@/components/v5/DashboardShowcase'
 import { EverySurface } from '@/components/v5/EverySurface'
 import { NextSurface } from '@/components/v5/NextSurface'
@@ -209,8 +210,15 @@ export default function PlatformClient() {
             stages={c.issueDetection.features.slice(1, 3).map((f) => ({ title: f.name, body: f.desc }))}
           />
         </div>
-        <div id="platform-reservations" className="mt-12 scroll-mt-24">
-          <QuietChips items={c.requestAction.departments} />
+        <div id="platform-reservations" className="mt-16 scroll-mt-24">
+          <PassThrough
+            from={c.requestAction.routingFrom}
+            label1={c.requestAction.flow.label1}
+            node={c.requestAction.flow.node}
+            label2={c.requestAction.flow.label2}
+            systems={c.requestAction.departments.slice(0, 6).map((d) => d.replace(/\.$/, ''))}
+            caption={c.requestAction.flow.caption}
+          />
         </div>
         <Reveal>
           <p

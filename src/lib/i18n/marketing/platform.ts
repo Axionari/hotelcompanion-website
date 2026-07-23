@@ -158,6 +158,8 @@ const en = {
     ],
   },
   requestAction: {
+    /* P5.13 — pass-through diagram labels (RC "Nothing new to operate"). */
+    flow: { label1: 'CONTEXT ATTACHED', node: 'Hotel Companion', label2: 'ROUTED · NOTHING RE-KEYED', caption: 'THE TEAMS YOU ALREADY RUN' },
     /* Left-hand label on each routing-flow row. */
     routingFrom: 'Guest request',
     departments: [
@@ -225,7 +227,7 @@ const en = {
   },
   dashboards: {
     close: ['Don’t just understand what happened.', 'Understand why.'],
-    live: 'Live in under 30 minutes.',
+    live: 'Watching from day one.',
   },
   enterpriseReady: {
     title: 'Enterprise-Ready.',
@@ -498,6 +500,7 @@ const es: typeof en = {
     ],
   },
   requestAction: {
+    flow: { label1: 'CONTEXTO ADJUNTO', node: 'Hotel Companion', label2: 'ENRUTADA · SIN VOLVER A TECLEAR', caption: 'LOS EQUIPOS QUE YA OPERAN' },
     /* Etiqueta izquierda de cada fila del flujo de enrutamiento. */
     routingFrom: 'Solicitud del huésped',
     departments: [
@@ -565,7 +568,7 @@ const es: typeof en = {
   },
   dashboards: {
     close: ['No solo entiendas qué pasó.', 'Entiende por qué.'],
-    live: 'En vivo en menos de 30 minutos.',
+    live: 'Observando desde el primer día.',
   },
   enterpriseReady: {
     title: 'Listo para la Empresa.',

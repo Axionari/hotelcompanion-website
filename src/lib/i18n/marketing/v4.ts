@@ -15,7 +15,7 @@ const en = {
     h1Line1: 'Understand Every Guest.',
     h1Line2: 'Capture Every Opportunity.',
     strip: 'NO FORM · NO BROCHURE · THIS IS THE PRODUCT',
-    proof: '0% OTA COMMISSION · 24/7 · IN EVERY LANGUAGE · LIVE IN DAYS',
+    proof: '0% OTA COMMISSION · 24/7 · IN EVERY LANGUAGE · VALUE FROM DAY ONE',
   },
   actII: {
     eyebrow: "02 · WHAT'S AT STAKE",
@@ -71,10 +71,15 @@ const en = {
   },
   actVI: {
     eyebrow: '06 · DEPLOYMENT',
-    statementPre: 'Live in Days. ',
-    statementHi: 'Not Months.',
+    /* P5.13 — deployment claim reframed: promise the architecture, not a
+       calendar. The knowledge layer needs no integration, so value lands
+       before the first system is connected; integrations follow staged.
+       NEEDS CONFIRM (Eduardo): replaces "Live in Days. Not Months." */
+    statementPre: 'Value ',
+    statementHi: 'before integration.',
     line: "It doesn't replace your systems. It understands the conversations between them.",
-    chips: ['LIVE IN DAYS', 'ROLE-BASED ACCESS', 'ENCRYPTED', 'PRIVACY-FIRST', 'WORKS WITH YOUR PMS'],
+    line2: 'The Companion starts answering guests before a single system is connected. PMS, POS and payments follow in a staged rollout — measured together, live in weeks.',
+    chips: ['STAGED ROLLOUT', 'ROLE-BASED ACCESS', 'ENCRYPTED', 'PRIVACY-FIRST', 'WORKS WITH YOUR PMS'],
   },
   actVII: {
     eyebrow: '07 · NEXT STEP',
@@ -97,7 +102,7 @@ const es: typeof en = {
     h1Line2: 'Aprovecha Cada Oportunidad.',
     strip: 'SIN FORMULARIO · SIN FOLLETO · ESTO ES EL PRODUCTO',
     /* [v3] deck {#01}: EN CADA IDIOMA · EN MARCHA EN DÍAS (OQ-10) */
-    proof: '0% COMISIÓN OTA · 24/7 · EN CADA IDIOMA · EN MARCHA EN DÍAS',
+    proof: '0% COMISIÓN OTA · 24/7 · EN CADA IDIOMA · VALOR DESDE EL PRIMER DÍA',
   },
   actII: {
     eyebrow: '02 · LO QUE ESTÁ EN JUEGO',
@@ -153,13 +158,14 @@ const es: typeof en = {
   },
   actVI: {
     eyebrow: '06 · IMPLEMENTACIÓN',
-    /* [v3] — title unchanged in the v3 deck → shipped v3 string (OQ-10) */
-    statementPre: 'En Marcha en Días. ',
-    statementHi: 'No en Meses.',
+    /* P5.13 — NEEDS CONFIRM: reemplaza "En Marcha en Días. No en Meses." */
+    statementPre: 'Valor ',
+    statementHi: 'antes de la integración.',
     line: 'No reemplaza tus sistemas. Entiende las conversaciones entre ellos.',
+    line2: 'El Companion empieza a responder a los huéspedes antes de conectar un solo sistema. PMS, POS y pagos llegan después, en una implementación por etapas — medida en conjunto, en vivo en semanas.',
     /* [v3 trust strings] — v3 security vocabulary, chip-length (OQ-10) */
     chips: [
-      'EN MARCHA EN DÍAS',
+      'IMPLEMENTACIÓN POR ETAPAS',
       'ACCESO BASADO EN ROLES',
       'CIFRADO',
       'CENTRADO EN LA PRIVACIDAD',

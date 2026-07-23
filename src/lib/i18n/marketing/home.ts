@@ -18,6 +18,16 @@ const en = {
     eyebrow: 'WHAT GUESTS ACTUALLY ASK',
     statement: 'Hospitality begins with a question.',
   },
+  /* P5.13 — the "before" diagram (RC homepage §02 applied to hotels), setting
+     up IntelligentLayer's answer. NEEDS CONFIRM: statement is new positioning
+     language (RC structure, hotel-adapted). Chips/markers are diagram labels. */
+  fragmentation: {
+    eyebrow: 'THE PROBLEM',
+    statement: 'Every system holds a piece of the guest. No system holds the guest.',
+    center: 'The guest',
+    systems: ['PMS', 'Booking engine', 'Front desk', 'WhatsApp', 'Spa system', 'POS', 'Housekeeping', 'OTA inbox'],
+    markers: ['CONTEXT LOST', 'ASKED TWICE', 'STARTS OVER'],
+  },
   stake: {
     figure: '$160B',
     /* NEEDS CONFIRM: exact figure, report, year — Eduardo sourcing. Approved for use now. */
@@ -57,6 +67,13 @@ const es: typeof en = {
   marquee: {
     eyebrow: 'LO QUE LOS HUÉSPEDES REALMENTE PREGUNTAN',
     statement: 'La hospitalidad comienza con una pregunta.',
+  },
+  fragmentation: {
+    eyebrow: 'EL PROBLEMA',
+    statement: 'Cada sistema tiene un pedazo del huésped. Ningún sistema tiene al huésped.',
+    center: 'El huésped',
+    systems: ['PMS', 'Motor de reservas', 'Recepción', 'WhatsApp', 'Sistema de spa', 'POS', 'Ama de llaves', 'Bandeja OTA'],
+    markers: ['CONTEXTO PERDIDO', 'PREGUNTADO DOS VECES', 'VUELVE A EMPEZAR'],
   },
   stake: {
     figure: '$160 mil millones',

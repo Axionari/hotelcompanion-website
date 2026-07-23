@@ -9,6 +9,7 @@ import { Breather } from '@/components/cds/Breather'
 import { CompanionTablet } from '@/components/v5/CompanionTablet'
 import { SuiteShowcase } from '@/components/v5/SuiteShowcase'
 import { QuestionMarquee } from '@/components/cds/QuestionMarquee'
+import { FragmentScatter } from '@/components/v5/Diagrams'
 import { IntelligentLayer } from '@/components/v5/IntelligentLayer'
 import { AxionariMark } from '@/components/cds/EndorsementMark'
 import { openLiveDemo } from '@/components/cds/LiveDemoModal'
@@ -218,6 +219,24 @@ export default function HomeClient() {
       {/* Breather — air */}
       <Breather image="/assets/lux/breather-thatch-beach.webp" height="clamp(260px, 42vh, 460px)" darken={0.4} />
 
+      {/* THE PROBLEM — today's stack fragments the guest (RC §02): sets up the
+          intelligent layer's answer directly below. */}
+      <Band id="fragmentation">
+        <Reveal className="mb-12 md:mb-16">
+          <div style={{ maxWidth: '46rem' }}>
+            <div className="eyebrow eyebrow-accent mb-6">{home.fragmentation.eyebrow}</div>
+            <h2 style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(30px, 4vw, 54px)', lineHeight: 1.08, letterSpacing: '-0.015em', color: 'var(--text)', maxWidth: '20ch' }}>
+              {home.fragmentation.statement}
+            </h2>
+          </div>
+        </Reveal>
+        <FragmentScatter
+          center={home.fragmentation.center}
+          systems={home.fragmentation.systems}
+          markers={home.fragmentation.markers}
+        />
+      </Band>
+
       {/* THE OPERATING MODEL — guest → one intelligent layer → the hotel's systems */}
       <IntelligentLayer />
 
@@ -287,6 +306,7 @@ export default function HomeClient() {
             {c.actVI.statementPre}{italic(c.actVI.statementHi)}
           </h2>
           <p className="body-lead mt-7" style={{ maxWidth: '48ch' }}>{c.actVI.line}</p>
+          <p className="mt-4" style={{ fontSize: 'clamp(14px, 1.35vw, 16.5px)', lineHeight: 1.6, color: 'var(--text-dim)', maxWidth: '52ch' }}>{c.actVI.line2}</p>
           <div className="mt-10 flex flex-wrap gap-2.5">
             {c.actVI.chips.map((chip) => (
               <span key={chip} className="eyebrow" style={{ border: '1px solid var(--chip-border, rgba(201,139,78,.3))', borderRadius: 999, padding: '10px 18px', color: 'var(--text-dim)' }}>{chip}</span>

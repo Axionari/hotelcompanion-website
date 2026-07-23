@@ -332,7 +332,7 @@ export const translations = {
     faq: {
       headline: 'Common questions.',
       items: [
-        { q: 'How long does setup take?', a: 'Most hotels are live in under 30 minutes. Paste your website or guest guide and the AI builds your assistant automatically.' },
+        { q: 'How long does setup take?', a: 'The Companion starts answering within days — it builds its knowledge layer from your website and guest guide before any system is connected. Deeper integrations like your PMS, POS, and payments follow a staged rollout over the following weeks.' },
         { q: 'What languages does it support?', a: "Hotel Companion responds in the guest's language automatically. No configuration needed — it detects and matches the conversation language." },
         { q: "Can the assistant match my hotel's personality?", a: "Absolutely. You choose from five distinct conversational styles — from Barefoot Luxury to Refined Concierge — and your assistant speaks in your hotel's authentic voice from day one. No training required." },
         { q: 'What happens when a guest reports an issue?', a: "When a guest mentions any issue, your assistant asks for their room number and sends two email alerts to your team: one immediately when the issue is reported, and a second when the room number is confirmed. Your guest gets a warm, reassuring response. Nothing falls through the cracks." },
@@ -773,7 +773,7 @@ export const translations = {
     faq: {
       headline: 'Preguntas frecuentes.',
       items: [
-        { q: '¿Cuánto tiempo tarda la configuración?', a: 'La mayoría de los hoteles están en vivo en menos de 30 minutos. Pega tu sitio web o guía de huéspedes y la IA construye tu asistente automáticamente.' },
+        { q: '¿Cuánto tiempo tarda la configuración?', a: 'El Companion empieza a responder en cuestión de días — construye su capa de conocimiento a partir de tu sitio web y guía de huéspedes antes de conectar cualquier sistema. Las integraciones más profundas, como tu PMS, POS y pagos, siguen una implementación por etapas durante las semanas siguientes.' },
         { q: '¿Qué idiomas soporta?', a: 'Hotel Companion responde en el idioma del huésped automáticamente. Sin configuración — detecta y coincide con el idioma de la conversación.' },
         { q: '¿Puede el asistente reflejar la personalidad de mi hotel?', a: 'Por supuesto. Eliges entre cinco estilos conversacionales distintos — desde Lujo Sin Zapatos hasta Concierge Refinado — y tu asistente habla con la voz auténtica de tu hotel desde el primer día. Sin entrenamiento adicional.' },
         { q: '¿Qué pasa cuando un huésped reporta una incidencia?', a: 'Cuando un huésped menciona cualquier problema, tu asistente solicita el número de habitación y envía dos alertas por email a tu equipo: una de inmediato al reportar el problema, y una segunda al confirmar la habitación. Tu huésped recibe una respuesta cálida y tranquilizadora. Nada se pierde.' },

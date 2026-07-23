@@ -23,7 +23,7 @@ const en = {
     'ENCRYPTED COMMUNICATIONS',
     'AUDITABILITY',
     'CENTRALIZED GOVERNANCE',
-    'DEPLOY IN DAYS',
+    'STAGED ROLLOUT',
   ],
   hero: {
     title: 'Built for Modern Hospitality Enterprises.',
@@ -79,6 +79,19 @@ const en = {
       { label: 'GOVERNANCE', value: 'Role-based access. Auditability.' },
       { label: 'CONTROL', value: 'Secure authentication. Privacy-first architecture.' },
     ],
+  },
+  /* P5.13 — the staged deployment path (ArrowFlow). Replaces the "Deploy in
+     Days" calendar promise: value lands before integration; connections are
+     staged and measured. NEEDS CONFIRM (Eduardo): stages + phrasing. */
+  deployPath: {
+    title: 'A staged rollout, measured together.',
+    steps: [
+      { title: 'Discovery', sub: 'Your systems, workflows, and goals — one call.' },
+      { title: 'Knowledge live', sub: 'The Companion answers guests before any integration.' },
+      { title: 'Systems woven in', sub: 'PMS, POS, payments — connected in stages, tested together.' },
+      { title: 'Scale', sub: 'Property by property, at your own pace.' },
+    ],
+    caption: 'VALUE BEFORE INTEGRATION · LIVE IN WEEKS · MEASURED TOGETHER',
   },
   /* P5.4 — the hybrid checkout flow (PaymentFlow diagram + steps). Card data
      is captured by Stripe directly; only a token returns to Postgres. */
@@ -269,7 +282,7 @@ const es: typeof en = {
     'COMUNICACIONES CIFRADAS',
     'AUDITABILIDAD',
     'GOBERNANZA CENTRALIZADA',
-    'IMPLEMENTA EN DÍAS',
+    'IMPLEMENTACIÓN POR ETAPAS',
   ],
   hero: {
     title: 'Creado para Empresas Modernas de Hospitalidad.',
@@ -319,6 +332,16 @@ const es: typeof en = {
       { label: 'GOBERNANZA', value: 'Acceso basado en roles. Auditabilidad.' },
       { label: 'CONTROL', value: 'Autenticación segura. Arquitectura centrada en la privacidad.' },
     ],
+  },
+  deployPath: {
+    title: 'Una implementación por etapas, medida en conjunto.',
+    steps: [
+      { title: 'Descubrimiento', sub: 'Tus sistemas, flujos de trabajo y objetivos — una llamada.' },
+      { title: 'Conocimiento en vivo', sub: 'El Companion responde a los huéspedes antes de cualquier integración.' },
+      { title: 'Sistemas integrados', sub: 'PMS, POS, pagos — conectados por etapas, probados en conjunto.' },
+      { title: 'Escala', sub: 'Propiedad por propiedad, a tu propio ritmo.' },
+    ],
+    caption: 'VALOR ANTES DE LA INTEGRACIÓN · EN VIVO EN SEMANAS · MEDIDO EN CONJUNTO',
   },
   payment: {
     statement: 'Los datos de la tarjeta nunca tocan el host.',

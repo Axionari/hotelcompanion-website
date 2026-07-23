@@ -20,6 +20,7 @@ import {
   PostureSplit,
 } from '@/components/v5/Editorial'
 import { PaymentFlow } from '@/components/v5/PaymentFlow'
+import { ArrowFlow } from '@/components/v5/Diagrams'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { globalCopy } from '@/lib/i18n/marketing/global'
 import { enterpriseCopy } from '@/lib/i18n/marketing/enterprise'
@@ -299,16 +300,17 @@ export default function EnterpriseClient() {
         </Reveal>
       </Act>
 
-      {/* 09 · DEPLOYMENT & SCALE {#deploy} — one message: live in days,
-          grows with the portfolio. One artifact: the stages, numbered. */}
+      {/* 09 · DEPLOYMENT & SCALE {#deploy} — one message: a staged rollout,
+          value before integration. One artifact: the deployment path (arrow
+          flow — replaces the retired "Deploy in Days" calendar promise). */}
       <Act
         no="09"
         label={c.acts.deploy}
         id="deploy"
-        statement={byId('deploy').title}
+        statement={c.deployPath.title}
         deck={byId('deploy').body[0]}
       >
-        <NumberedList items={nounRun(byId('deploy').body[2]).map((title) => ({ title }))} />
+        <ArrowFlow steps={c.deployPath.steps} caption={c.deployPath.caption} />
         <div id="grow" className="scroll-mt-24">
           <Reveal>
             <p

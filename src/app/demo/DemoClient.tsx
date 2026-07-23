@@ -7,6 +7,7 @@ import { Reveal } from '@/components/cds/Reveal'
 import { Accordion } from '@/components/cds/blocks'
 import { DemoForm } from '@/components/cds/DemoForm'
 import { openLiveDemo } from '@/components/cds/LiveDemoModal'
+import { ArrowFlow } from '@/components/v5/Diagrams'
 import {
   Em,
   PageHero,
@@ -130,7 +131,7 @@ export default function DemoClient() {
       {/* 04 · DEPLOYMENT {#demo-deployment} — one message: what happens after
           you submit. One artifact: the stages, numbered. */}
       <Act no="04" label={c.acts.deployment} id="demo-deployment" statement={c.deployment.title}>
-        <NumberedList items={c.deployment.stages} />
+        <ArrowFlow steps={c.deployment.stages.map((s) => ({ title: s.title, sub: s.body }))} />
       </Act>
 
       {/* 05 · FAQ {#faq} — the site's ONLY FAQ: hesitation questions at the
