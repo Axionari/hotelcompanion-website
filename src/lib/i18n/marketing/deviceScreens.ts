@@ -74,7 +74,7 @@ const en = {
       title: 'El Pirata',
       meta: 'Town centre · 15 min by taxi',
       actions: ['Directions', 'Reserve a table'],
-      image: '/assets/img/lobby-modern.webp',
+      image: '/assets/lux/breather-thatch-beach.webp',
       mapLabel: 'Riviera Maya',
     },
     issue: {
@@ -169,7 +169,7 @@ const es: typeof en = {
       title: 'El Pirata',
       meta: 'Centro del pueblo · 15 min en taxi',
       actions: ['Cómo llegar', 'Reservar mesa'],
-      image: '/assets/img/lobby-modern.webp',
+      image: '/assets/lux/breather-thatch-beach.webp',
       mapLabel: 'Riviera Maya',
     },
     issue: {
