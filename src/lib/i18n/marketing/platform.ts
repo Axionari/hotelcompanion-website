@@ -24,6 +24,19 @@ const en = {
     body:
       'Hotel Companion combines conversational AI, organizational knowledge, operational execution, and enterprise intelligence into a single platform that helps hotels deliver exceptional guest experiences while increasing revenue and improving operations.',
   },
+  /* P5.7 — RC Features "One Conversation" + "Every way of speaking" (the big
+     orb). Adapted to HC: "host" → "Companion", "mid-order" → "mid-conversation". */
+  oneConversation: {
+    label: 'ONE CONVERSATION',
+    statement: 'Tap. Type. Say.',
+    deck: 'Same Companion. Same conversation. Guests move between touch, typing, and voice mid-conversation — and nothing breaks, repeats, or starts over.',
+  },
+  everyWay: {
+    eyebrow: 'VOICE-FIRST',
+    statement: 'Every way of speaking.',
+    line: 'Guests talk the way they talk. The Companion listens, thinks, and answers — out loud.',
+    states: ['Idle', 'Listening', 'Thinking', 'Speaking'],
+  },
   voiceFirst: {
     title: 'Voice-First by Design.',
     beats: [
@@ -352,6 +365,17 @@ const es: typeof en = {
     positioning: 'La Plataforma de Inteligencia de Huéspedes por Voz creada para la hospitalidad moderna.',
     body:
       'Hotel Companion combina IA conversacional, conocimiento organizacional, ejecución operativa e inteligencia empresarial en una sola plataforma que ayuda a los hoteles a brindar experiencias excepcionales mientras aumentan los ingresos y mejoran las operaciones.',
+  },
+  oneConversation: {
+    label: 'UNA CONVERSACIÓN',
+    statement: 'Toca. Escribe. Habla.',
+    deck: 'El mismo Companion. La misma conversación. Los huéspedes alternan entre el toque, el texto y la voz a mitad de la conversación — y nada se rompe, se repite ni vuelve a empezar.',
+  },
+  everyWay: {
+    eyebrow: 'LA VOZ PRIMERO',
+    statement: 'Cada forma de hablar.',
+    line: 'Los huéspedes hablan como hablan. El Companion escucha, piensa y responde — en voz alta.',
+    states: ['Inactivo', 'Escuchando', 'Pensando', 'Hablando'],
   },
   voiceFirst: {
     title: 'Diseñado con la Voz Primero.',

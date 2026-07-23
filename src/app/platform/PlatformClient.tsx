@@ -8,6 +8,7 @@ import { Breather } from '@/components/cds/Breather'
 import { MediaBed } from '@/components/cds/MediaBed'
 import { openLiveDemo } from '@/components/cds/LiveDemoModal'
 import { VoiceMorph, TwoStageAlert } from '@/components/cds/interactive'
+import { VoiceStates } from '@/components/v5/VoiceStates'
 import { DashboardShowcase } from '@/components/v5/DashboardShowcase'
 import { EverySurface } from '@/components/v5/EverySurface'
 import { NextSurface } from '@/components/v5/NextSurface'
@@ -96,25 +97,42 @@ export default function PlatformClient() {
       {/* Proof strip — quiet mono claims (all from approved copy) */}
       <ChipStrip chips={c.heroChips} />
 
-      {/* 01 · THE VOICE {#platform-voice-first} — one message: it sounds like
-          your hotel. One artifact: the voice, morphing. */}
+      {/* 01 · ONE CONVERSATION {#platform-voice-first} — tap, type, say: one
+          continuous conversation. Artifact 1: the big orb cycling its states
+          (RC's "Every way of speaking"). Artifact 2: the voice morphing to
+          the hotel's own register. */}
       <Act
         no="01"
-        label={c.acts.voice}
+        label={c.oneConversation.label}
         id="platform-voice-first"
-        statement={
-          <>
-            {c.yourVoice.close[0]} <Em>{c.yourVoice.close[1]}</Em>
-          </>
-        }
-        deck={c.voiceFirst.body1}
+        statement={c.oneConversation.statement}
+        deck={c.oneConversation.deck}
       >
-        <div id="platform-your-voice" className="scroll-mt-24">
-          <VoiceMorph
-            voices={c.yourVoice.voices}
-            guestQuestion={c.yourVoice.morphQuestion}
-            deviceLabel={c.yourVoice.morphDeviceLabel}
-          />
+        {/* the big orb — how it listens, thinks, speaks */}
+        <div className="text-center max-w-2xl mx-auto mb-4">
+          <div className="eyebrow eyebrow-accent mb-5">{c.everyWay.eyebrow}</div>
+          <h3 style={{ fontFamily: SERIF, fontStyle: 'italic', fontWeight: 480, fontSize: 'clamp(26px, 3.4vw, 46px)', lineHeight: 1.1, letterSpacing: '-0.01em', color: 'var(--cream, #F2EEE6)' }}>
+            {c.everyWay.statement}
+          </h3>
+          <p className="body-lead mt-5" style={{ marginInline: 'auto', maxWidth: '38ch' }}>{c.everyWay.line}</p>
+        </div>
+        <VoiceStates labels={c.everyWay.states} />
+
+        {/* it sounds like YOUR hotel — the voice, morphing */}
+        <div id="platform-your-voice" className="scroll-mt-24 mt-24 pt-4" style={{ borderTop: '1px solid var(--border-soft)' }}>
+          <Reveal>
+            <h3 className="mt-16" style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(26px, 3vw, 44px)', lineHeight: 1.1, letterSpacing: '-0.012em', color: 'var(--text)', maxWidth: '18ch' }}>
+              {c.yourVoice.close[0]} <Em>{c.yourVoice.close[1]}</Em>
+            </h3>
+            <p className="body-lead mt-6" style={{ maxWidth: '48ch' }}>{c.voiceFirst.body1}</p>
+          </Reveal>
+          <div className="mt-12">
+            <VoiceMorph
+              voices={c.yourVoice.voices}
+              guestQuestion={c.yourVoice.morphQuestion}
+              deviceLabel={c.yourVoice.morphDeviceLabel}
+            />
+          </div>
           <Reveal>
             <p
               className="mt-12"

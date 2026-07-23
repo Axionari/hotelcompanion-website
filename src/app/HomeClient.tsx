@@ -7,6 +7,8 @@ import { Reveal } from '@/components/cds/Reveal'
 import { MediaBed } from '@/components/cds/MediaBed'
 import { Breather } from '@/components/cds/Breather'
 import { CompanionTablet } from '@/components/v5/CompanionTablet'
+import { TabletOS } from '@/components/cds/TabletOS'
+import { QuestionMarquee } from '@/components/cds/QuestionMarquee'
 import { IntelligentLayer } from '@/components/v5/IntelligentLayer'
 import { AxionariMark } from '@/components/cds/EndorsementMark'
 import { openLiveDemo } from '@/components/cds/LiveDemoModal'
@@ -180,10 +182,21 @@ export default function HomeClient() {
         )
       })()}
 
-      {/* THE IN-ROOM COMPANION — the device, full and centered. The tablet
-          cycles its screens (suite, cenote, spa, dining, guest memory — no
-          Akumal); the section replaces the former device-family showcase,
-          which now lives on /platform. */}
+      {/* THE QUESTIONS — the signature scrolling marquee of real guest
+          questions (rescued from the original homepage). Sets up the tablet
+          showcase: these are the questions; every answer is a picture. */}
+      <Band id="guest-questions">
+        <Reveal className="text-center mb-12">
+          <div className="eyebrow eyebrow-accent mb-6">{home.marquee.eyebrow}</div>
+          <h2 style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(28px, 3.6vw, 48px)', lineHeight: 1.1, letterSpacing: '-0.015em', color: 'var(--text)', maxWidth: '18ch', marginInline: 'auto' }}>
+            {home.marquee.statement}
+          </h2>
+        </Reveal>
+      </Band>
+      <QuestionMarquee />
+
+      {/* THE IN-ROOM COMPANION — ONE big, static in-room screen so the app is
+          fully legible (not the cycling hero device). The answer IS a picture. */}
       <Band id="tablet-showcase">
         <Reveal className="text-center">
           <div className="eyebrow eyebrow-accent mb-6">{home.tabletShowcase.eyebrow}</div>
@@ -192,8 +205,10 @@ export default function HomeClient() {
           </h2>
           <p className="body-lead mt-6" style={{ maxWidth: '52ch', marginInline: 'auto' }}>{home.tabletShowcase.caption}</p>
         </Reveal>
-        <Reveal className="mt-14 flex justify-center">
-          <CompanionTablet />
+        <Reveal className="mt-16">
+          <div style={{ maxWidth: 1080, marginInline: 'auto' }}>
+            <TabletOS screen="beach" orbState="listening" />
+          </div>
         </Reveal>
       </Band>
 

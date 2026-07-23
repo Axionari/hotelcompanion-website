@@ -13,6 +13,11 @@ const en = {
     statement: 'Every answer is a picture.',
     caption: 'Speak or tap, in any language. The guest asks in their own words; the Companion answers on the screen — one tap from booked.',
   },
+  /* P5.7 — framing for the guest-question marquee (the signature slider). */
+  marquee: {
+    eyebrow: 'WHAT GUESTS ACTUALLY ASK',
+    statement: 'Hospitality begins with a question.',
+  },
   stake: {
     figure: '$160B',
     /* NEEDS CONFIRM: exact figure, report, year — Eduardo sourcing. Approved for use now. */
@@ -48,6 +53,10 @@ const es: typeof en = {
     eyebrow: 'EL COMPANION EN LA HABITACIÓN',
     statement: 'Cada respuesta es una imagen.',
     caption: 'Habla o toca, en cualquier idioma. El huésped pregunta con sus propias palabras; el Companion responde en la pantalla — a un toque de reservar.',
+  },
+  marquee: {
+    eyebrow: 'LO QUE LOS HUÉSPEDES REALMENTE PREGUNTAN',
+    statement: 'La hospitalidad comienza con una pregunta.',
   },
   stake: {
     figure: '$160 mil millones',
