@@ -7,6 +7,9 @@ import { Reveal } from '@/components/cds/Reveal'
 import { MediaBed } from '@/components/cds/MediaBed'
 import { Breather } from '@/components/cds/Breather'
 import { CompanionTablet } from '@/components/v5/CompanionTablet'
+import { EverySurface } from '@/components/v5/EverySurface'
+import { NextSurface } from '@/components/v5/NextSurface'
+import { IntelligentLayer } from '@/components/v5/IntelligentLayer'
 import { AxionariMark } from '@/components/cds/EndorsementMark'
 import { openLiveDemo } from '@/components/cds/LiveDemoModal'
 import { useCopy } from '@/lib/i18n/useCopy'
@@ -32,7 +35,7 @@ const SERIF = "var(--font-serif), Georgia, serif"
 /** Generous RC section rhythm (~140px), one page background, air over banding. */
 function Band({ children, id }: { children: ReactNode; id?: string }) {
   return (
-    <section id={id} className="scroll-mt-20" style={{ paddingBlock: 'clamp(88px, 12vw, 150px)' }}>
+    <section id={id} className="scroll-mt-20" style={{ paddingBlock: 'clamp(104px, 14vw, 190px)' }}>
       <div className="container-rc">{children}</div>
     </section>
   )
@@ -99,20 +102,19 @@ export default function HomeClient() {
         <section className="relative" style={{ minHeight: 'calc(100vh - 4rem)', display: 'flex', alignItems: 'center', paddingBlock: 'clamp(64px, 9vw, 120px)' }}>
           <div className="container-rc w-full">
             <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-              <div className="lg:col-span-7">
-                <div className="eyebrow eyebrow-accent mb-7">{c.actI.eyebrow}</div>
-                <h1 style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(40px, 6vw, 82px)', lineHeight: 1.02, letterSpacing: '-0.02em', color: 'var(--text)', maxWidth: '15ch' }}>
+              <div className="lg:col-span-5">
+                <h1 style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(34px, 4.5vw, 64px)', lineHeight: 1.05, letterSpacing: '-0.015em', color: 'var(--text)', maxWidth: '15ch' }}>
                   {c.actI.h1Line1}{' '}
                   <em style={{ fontStyle: 'italic', fontWeight: 480, color: 'var(--cream, #F2EEE6)' }}>{c.actI.h1Line2}</em>
                 </h1>
-                <p className="body-lead mt-8" style={{ maxWidth: '46ch' }}>{home.heroLead}</p>
-                <div className="mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                <p className="body-lead mt-7" style={{ maxWidth: '42ch' }}>{home.heroLead}</p>
+                <div className="mt-9 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                   <Link href="/demo" className="btn-primary">{g.nav.bookDemo}</Link>
                   <button type="button" onClick={openLiveDemo} className="btn-secondary">{demo.open}</button>
                 </div>
-                <div className="mt-10"><AxionariMark /></div>
+                <div className="mt-9"><AxionariMark /></div>
               </div>
-              <div className="lg:col-span-5">
+              <div className="lg:col-span-7">
                 <Reveal>
                   <CompanionTablet />
                 </Reveal>
@@ -138,7 +140,7 @@ export default function HomeClient() {
             <p style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(20px, 2.4vw, 28px)', lineHeight: 1.3, color: 'var(--text)', marginTop: 20, maxWidth: '20ch' }}>{c.actII.line1}</p>
             <p className="eyebrow mt-5" style={{ color: 'var(--text-faint)' }}>{c.actII.source1}</p>
           </Reveal>
-          <Reveal>
+          <Reveal delay={140}>
             <div style={{ fontFamily: SERIF, fontStyle: 'italic', fontWeight: 480, fontSize: 'clamp(64px, 12vw, 150px)', lineHeight: 1, letterSpacing: '-0.02em', color: 'var(--cream, #F2EEE6)', textShadow: '0 0 60px rgba(231,206,134,.22)' }}>{c.actII.figure2}</div>
             <p style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(20px, 2.4vw, 28px)', lineHeight: 1.3, color: 'var(--text)', marginTop: 20, maxWidth: '22ch' }}>{c.actII.line2}</p>
             <p className="eyebrow mt-5" style={{ color: 'var(--text-faint)' }}>{c.actII.source2}</p>
@@ -149,31 +151,48 @@ export default function HomeClient() {
       {/* Breather — air, photographic (RC image strip) */}
       <Breather image="/assets/lux/breather-daybeds-hills.webp" height="clamp(260px, 42vh, 460px)" darken={0.42} />
 
-      {/* ONE DAY — the story (statement + palapa architecture) */}
-      <Split
-        id="one-day"
-        eyebrow={c.actIII.eyebrow}
-        statement={<>{c.actIII.statementPre}{italic(c.actIII.statementHi)}</>}
-        image="/assets/lux/arch-palapa.webp"
-        alt="Open palapa architecture framing the landscape"
-      />
+      {/* ONE DAY — text-only editorial: the question (serif lead) resolves into
+          the close (complementary coda). No image; the type carries it. */}
+      {(() => {
+        const parts = c.actIII.statementPre.split('. ').map((x) => x.trim()).filter(Boolean)
+        const lead = parts[0] ? `${parts[0]}.` : c.actIII.statementPre
+        const resolution = parts.length > 1 ? `${parts.slice(1).join('. ')}.` : ''
+        return (
+          <Band id="one-day">
+            <Reveal className="grid lg:grid-cols-12 gap-x-16 gap-y-10 items-start">
+              <div className="lg:col-span-7">
+                <div className="eyebrow eyebrow-accent mb-7">{c.actIII.eyebrow}</div>
+                <h2 style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(30px, 4vw, 54px)', lineHeight: 1.08, letterSpacing: '-0.015em', color: 'var(--text)', maxWidth: '15ch' }}>
+                  {lead}
+                </h2>
+              </div>
+              <div className="lg:col-span-5 lg:pt-24">
+                <div style={{ width: 44, height: 2, background: 'var(--accent)', marginBottom: 24 }} />
+                {resolution && (
+                  <p style={{ fontFamily: 'var(--font-sans), ui-sans-serif, system-ui, sans-serif', fontSize: 'clamp(16px, 1.7vw, 21px)', lineHeight: 1.5, color: 'var(--text-dim, rgba(242,233,220,0.62))', maxWidth: '30ch' }}>
+                    {resolution}
+                  </p>
+                )}
+                <p style={{ fontFamily: SERIF, fontStyle: 'italic', fontWeight: 480, fontSize: 'clamp(26px, 3vw, 44px)', lineHeight: 1.1, letterSpacing: '-0.01em', color: 'var(--cream, #F2EEE6)', marginTop: 18, maxWidth: '16ch' }}>
+                  {c.actIII.statementHi}
+                </p>
+              </div>
+            </Reveal>
+          </Band>
+        )
+      })()}
 
-      {/* EVERY SURFACE — reach (statement + dark suite), reversed for rhythm */}
-      <Split
-        id="every-surface"
-        eyebrow={c.actIV.eyebrow}
-        statement={<>{c.actIV.statementPre}{italic(c.actIV.statementHi)}</>}
-        image="/assets/lux/suite-dark.webp"
-        alt="A quiet, minimal guest suite at dusk"
-        reverse
-      >
-        <p style={{ fontFamily: SERIF, fontSize: 'clamp(18px, 2vw, 24px)', fontWeight: 530, lineHeight: 1.35, color: 'var(--text)', maxWidth: '26ch' }}>
-          {c.actIV.closingPre}{italic(c.actIV.closingHi)}
-        </p>
-      </Split>
+      {/* EVERY SURFACE — one question across the whole device family (cinematic still) */}
+      <EverySurface />
+
+      {/* ON THE HORIZON — the AR surface, signalling where this is going */}
+      <NextSurface />
 
       {/* Breather — air */}
       <Breather image="/assets/lux/breather-thatch-beach.webp" height="clamp(260px, 42vh, 460px)" darken={0.4} />
+
+      {/* THE OPERATING MODEL — guest → one intelligent layer → the hotel's systems */}
+      <IntelligentLayer />
 
       {/* THE RECEIPT — execution as intelligence (copy/data-led ledger) */}
       <Band id="receipt">
@@ -190,7 +209,7 @@ export default function HomeClient() {
             </Reveal>
           </div>
           <div className="lg:col-span-6">
-            <Reveal>
+            <Reveal delay={140}>
               <div data-device-ui="" style={{ background: 'var(--surface-1)', border: '1px solid var(--hairline, rgba(243,236,226,.08))', borderRadius: 14, fontFamily: 'var(--font-mono), monospace', fontSize: 12, letterSpacing: '.06em', color: 'var(--receipt, #C9A87A)' }}>
                 {c.actV.rows.map((r, i) => (
                   <div key={i} style={{ display: 'flex', justifyContent: 'space-between', gap: 16, padding: '16px 22px', borderBottom: i < c.actV.rows.length - 1 ? '1px solid rgba(201,139,78,.16)' : 'none' }}>
@@ -206,7 +225,7 @@ export default function HomeClient() {
 
       {/* LIVE IN DAYS — ease + trust chips (short, RC-brief) */}
       <Band id="live-in-days">
-        <div className="max-w-3xl">
+        <Reveal className="max-w-3xl">
           <div className="eyebrow eyebrow-accent mb-6">{c.actVI.eyebrow}</div>
           <h2 style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(34px, 5vw, 64px)', lineHeight: 1.06, letterSpacing: '-0.015em', color: 'var(--text)' }}>
             {c.actVI.statementPre}{italic(c.actVI.statementHi)}
@@ -217,29 +236,26 @@ export default function HomeClient() {
               <span key={chip} className="eyebrow" style={{ border: '1px solid var(--chip-border, rgba(201,139,78,.3))', borderRadius: 999, padding: '10px 18px', color: 'var(--text-dim)' }}>{chip}</span>
             ))}
           </div>
-        </div>
+        </Reveal>
       </Band>
 
       {/* CLOSING — full-bleed clifftop band, one action: Book a Demo */}
       <MediaBed poster="/assets/lux/band-clifftop-ocean.webp" scrim={0.62}>
         <section style={{ paddingBlock: 'clamp(120px, 18vw, 240px)' }}>
-          <div className="container-rc">
+          <div className="container-rc" style={{ textAlign: 'center' }}>
             <Reveal>
-              <div className="eyebrow eyebrow-accent mb-6">{c.actVII.eyebrow}</div>
-              <h2 style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(40px, 6vw, 84px)', lineHeight: 1.03, letterSpacing: '-0.02em', color: 'var(--text)' }}>
+              <div className="eyebrow eyebrow-accent mb-7">{c.actVII.eyebrow}</div>
+              <h2 style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(34px, 4.5vw, 64px)', lineHeight: 1.05, letterSpacing: '-0.015em', color: 'var(--text)' }}>
                 {c.actVII.statementLine1}<br />{italic(c.actVII.statementLine2)}
               </h2>
-              <p style={{ fontFamily: SERIF, fontStyle: 'italic', fontSize: 'clamp(18px, 2vw, 24px)', color: 'var(--text-dim)', marginTop: 28, maxWidth: '40ch' }}>{c.actVII.partnerLine}</p>
-              <div className="mt-10">
+              <p style={{ fontFamily: SERIF, fontStyle: 'italic', fontSize: 'clamp(18px, 2vw, 24px)', color: 'var(--text-dim)', marginTop: 28, maxWidth: '40ch', marginInline: 'auto' }}>{c.actVII.partnerLine}</p>
+              <div className="mt-10 flex justify-center">
                 <Link href="/demo" className="btn-primary">{g.nav.bookDemo}</Link>
               </div>
             </Reveal>
           </div>
         </section>
       </MediaBed>
-
-      {/* Footer image band (RC closes on imagery before the footer) */}
-      <Breather image="/assets/lux/footer-aerial-cove.webp" height="clamp(280px, 44vh, 520px)" darken={0.4} line={c.actVII.signoff} />
 
       <SiteFooter />
     </main>

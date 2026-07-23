@@ -1094,3 +1094,11 @@ body {
 @keyframes v5-kenburns { from { transform: scale(1.02); } to { transform: scale(1.1); } }
 .v5-kenburns { animation: v5-kenburns 14s ease-in-out infinite alternate; will-change: transform; }
 @media (prefers-reduced-motion: reduce) { .v5-kenburns { animation: none; } }
+
+/* v5 — intelligent-layer diagram. Fail-open like .reveal: the hidden state only
+   exists once JS arms the block (.armed), and .in releases it. Lines draw via
+   pathLength=1 dash; nodes rise. Reduced motion never arms. */
+.v5-layer .lg-item { transition: opacity 0.8s var(--ease-standard), transform 0.8s var(--ease-standard); }
+.v5-layer.armed:not(.in) .lg-item { opacity: 0; transform: translateY(14px); }
+.v5-layer .lg-line { transition: opacity 1.1s var(--ease-standard); }
+.v5-layer.armed:not(.in) .lg-line { opacity: 0; }

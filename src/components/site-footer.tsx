@@ -5,7 +5,6 @@ import { useState } from "react";
 import { useCopy } from "@/lib/i18n/useCopy";
 import { globalCopy } from "@/lib/i18n/marketing/global";
 import LanguageToggle from "@/components/LanguageToggle";
-import { AxionariMark } from "@/components/cds/EndorsementMark";
 
 function FooterColumn({
   title,
@@ -53,31 +52,10 @@ export function SiteFooter() {
   return (
     <footer style={{ background: "var(--surface-1)", borderTop: "1px solid var(--border)" }}>
       <div className="max-w-6xl mx-auto px-4 md:px-6 py-16 md:py-20">
-        {/* Brand block */}
-        <div className="mb-14 max-w-2xl">
-          <div className="eyebrow mb-3">{footer.brand.name}</div>
-          <p className="font-serif heading-card mb-4" style={{ color: "var(--text)" }}>
-            {footer.brand.headline}
-          </p>
-          {/* v3 {#footer}: brand endorsement line removed (G5) — the Companion
-              OS line lives once below, the AXIONARI mark above the copyright. */}
-          <p className="font-sans text-sm leading-relaxed mb-6" style={{ color: "var(--text-secondary)" }}>
-            {footer.brand.body}
-          </p>
-          <Link
-            href="/demo"
-            className="font-sans inline-flex items-center text-white transition-colors hover:bg-[#D4784A]"
-            style={{
-              background: "var(--accent)",
-              borderRadius: "8px",
-              height: "48px",
-              padding: "0 24px",
-              fontSize: "15px",
-              fontWeight: 600,
-            }}
-          >
-            {footer.brand.cta}
-          </Link>
+        {/* Brand block — just the wordmark. The page's own closing band carries
+            the crescendo + CTA (RC ends the page once, not twice). */}
+        <div className="mb-14">
+          <div className="eyebrow">{footer.brand.name}</div>
         </div>
 
         {/* Link columns — v3: four (Company+Legal merged) */}
@@ -176,7 +154,6 @@ export function SiteFooter() {
           style={{ borderTop: "1px solid var(--border)" }}
         >
           <div className="flex flex-col gap-2">
-            <AxionariMark />
             <p className="font-sans text-sm" style={{ color: "var(--text-muted)" }}>
               {footer.legalLine}
             </p>

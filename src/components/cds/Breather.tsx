@@ -151,11 +151,10 @@ export function Breather({
       <div
         className="absolute inset-0"
         style={{
-          // The image-system grade: ~50% over the centre rising to ~90% at the
-          // feathered top and bottom edges. The images themselves carry a warm
-          // copper white-balance and a contrast lift, so at this depth they
-          // read as one art-directed world rather than as darkened stock.
-          background: `linear-gradient(180deg, rgba(10,8,7,0.9) 0%, rgba(10,8,7,${darken}) 30%, rgba(10,8,7,${darken}) 70%, rgba(10,8,7,0.9) 100%)`,
+          // The image-system grade: ~darken over the centre rising to the page
+          // bed (#100e0c) at fully-opaque top and bottom edges, so the strip
+          // bleeds seamlessly into the sections above and below (RC treatment).
+          background: `linear-gradient(180deg, rgba(16,14,12,1) 0%, rgba(16,14,12,${darken}) 26%, rgba(16,14,12,${darken}) 74%, rgba(16,14,12,1) 100%)`,
         }}
       />
       {line && (

@@ -21,6 +21,7 @@ const en = {
   orbHint: 'Speak or touch',
   listening: 'Listening',
   property: 'MarAzul Riviera Maya',
+  askAnything: 'Ask anything…',
   tiles: [
     { id: 'roomservice', label: 'Room Service' },
     { id: 'spa', label: 'Spa' },
@@ -58,11 +59,11 @@ const en = {
     },
     spa: {
       ask: 'Do you have a spa?',
-      title: 'Cenote Spa',
+      title: 'Spa Ixchel',
       meta: 'Open 9am – 8pm',
       book: 'Reserve',
       items: [
-        { name: 'Maya chocolate ritual', price: '90 min', image: '/assets/ui/spa-1.webp' },
+        { name: 'Cacao Ceremony', price: '90 min', image: '/assets/ui/spa-1.webp' },
         { name: 'Deep tissue massage', price: '60 min', image: '/assets/ui/spa-2.webp' },
         { name: 'Sunrise yoga', price: '45 min', image: '/assets/ui/spa-3.webp' },
       ],
@@ -114,6 +115,7 @@ const es: typeof en = {
   orbHint: 'Habla o toca',
   listening: 'Escuchando',
   property: 'MarAzul Riviera Maya',
+  askAnything: 'Pregunta lo que sea…',
   tiles: [
     { id: 'roomservice', label: 'Servicio a Cuarto' },
     { id: 'spa', label: 'Spa' },
@@ -151,11 +153,11 @@ const es: typeof en = {
     },
     spa: {
       ask: '¿Tienen spa?',
-      title: 'Spa Cenote',
+      title: 'Spa Ixchel',
       meta: 'Abierto 9am – 8pm',
       book: 'Reservar',
       items: [
-        { name: 'Ritual de chocolate maya', price: '90 min', image: '/assets/ui/spa-1.webp' },
+        { name: 'Ceremonia de Cacao', price: '90 min', image: '/assets/ui/spa-1.webp' },
         { name: 'Masaje de tejido profundo', price: '60 min', image: '/assets/ui/spa-2.webp' },
         { name: 'Yoga al amanecer', price: '45 min', image: '/assets/ui/spa-3.webp' },
       ],

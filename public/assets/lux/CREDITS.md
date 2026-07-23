@@ -17,3 +17,6 @@ required. Credits recorded here as good practice. Photo pages:
 Swap-ready: replacing any file in this folder with a same-named licensed
 photo (e.g. Getty/iStock/your own shoot) updates the site with zero layout
 change.
+- exp-cenote  unsplash.com/photos/1719941463960-f3310fe64e46
+
+- suite-ocean.webp — Unsplash (photo-1776500587875-8a0653e9c10e), Unsplash License. Bright ocean/tropical-view suite for the "Ocean-View Suite" upgrade (hero tablet + Every Surface laptop). Swap-ready.

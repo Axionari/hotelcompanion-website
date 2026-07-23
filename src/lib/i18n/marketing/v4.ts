@@ -60,7 +60,7 @@ const en = {
       { route: '→ FRONT DESK · ', item: 'LATE CHECKOUT', tail: '', time: '10:04' },
       { route: '→ CONCIERGE · ', item: 'TAXI TO AKUMAL', tail: '', time: '10:12' },
       { route: '→ RESERVATIONS · ', item: 'SUITE UPGRADE', tail: '', time: '18:40' },
-      { route: '→ ENGINEERING · ', item: 'ROOM 214', tail: ' · WORDS ATTACHED', time: '02:14' },
+      { route: '→ ENGINEERING · ', item: 'ROOM 214', tail: ' · MAINTENANCE ALERT', time: '02:14' },
     ],
     footerPre: 'Tracked from creation to completion. Tonight: 14 conversations · ',
     footerHi: '0 woke your staff.',
@@ -138,7 +138,7 @@ const es: typeof en = {
       { route: '→ RECEPCIÓN · ', item: 'SALIDA TARDÍA', tail: '', time: '10:04' },
       { route: '→ CONCIERGE · ', item: 'TAXI A AKUMAL', tail: '', time: '10:12' },
       { route: '→ RESERVAS · ', item: 'MEJORA DE SUITE', tail: '', time: '18:40' },
-      { route: '→ INGENIERÍA · ', item: 'HAB 214', tail: ' · PALABRAS ADJUNTAS', time: '02:14' },
+      { route: '→ INGENIERÍA · ', item: 'HAB 214', tail: ' · ALERTA DE MANTENIMIENTO', time: '02:14' },
     ],
     /* [v3 A3] ADDENDUM_1 */
     footerPre: 'Rastreado de inicio a fin. Esta noche: 14 conversaciones · ',

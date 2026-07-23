@@ -94,6 +94,11 @@ export function MediaBed({
         }}
       />
 
+      {/* Top & bottom bleed — the bed melts into the adjacent sections (page bed
+          #100e0c) so full-bleed imagery never meets a hard section seam (RC). */}
+      <div aria-hidden="true" className="absolute inset-x-0 top-0 -z-10" style={{ height: '18%', background: 'linear-gradient(180deg, var(--bg) 0%, transparent 100%)' }} />
+      <div aria-hidden="true" className="absolute inset-x-0 bottom-0 -z-10" style={{ height: '20%', background: 'linear-gradient(0deg, var(--bg) 0%, transparent 100%)' }} />
+
       {children}
     </div>
   )
