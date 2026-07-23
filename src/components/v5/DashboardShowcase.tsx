@@ -141,6 +141,40 @@ export function DashboardShowcase({ caption }: { caption?: string }) {
               ))}
             </div>
 
+            {/* Revenue & outcomes — the GM/owner headline, highlighted.
+                NEEDS CONFIRM: demo figures. */}
+            <div
+              style={{
+                background: 'linear-gradient(180deg, rgba(201,106,58,0.09), rgba(201,106,58,0.03))',
+                border: '1px solid rgba(201,106,58,0.35)',
+                borderRadius: '12px',
+                padding: '18px',
+                marginBottom: '14px',
+                boxShadow: '0 0 50px -20px rgba(201,106,58,0.35)',
+                opacity: visible ? 1 : 0,
+                transform: visible ? 'translateY(0)' : 'translateY(20px)',
+                transition: 'opacity 0.7s ease 0.6s, transform 0.7s ease 0.6s',
+              }}
+            >
+              <p className="font-sans" style={{ fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#C96A3A', marginBottom: '12px' }}>
+                {lang === 'es' ? 'Ingresos y resultados · este mes' : 'Revenue & outcomes · this month'}
+              </p>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '14px' }}>
+                {[
+                  { label: lang === 'es' ? 'Ingresos capturados' : 'Revenue captured', value: '$38,400', sub: lang === 'es' ? 'vía el Companion' : 'through the Companion', green: true },
+                  { label: lang === 'es' ? 'Reservas directas' : 'Direct bookings', value: '214', sub: lang === 'es' ? '0% comisión OTA' : '0% OTA commission' },
+                  { label: lang === 'es' ? 'Ventas adicionales' : 'Upsells', value: '$11,920', sub: lang === 'es' ? 'Suites, spa y gastronomía' : 'Suites, spa & dining' },
+                  { label: lang === 'es' ? 'Comisión ahorrada' : 'Commission saved', value: '$8,660', sub: lang === 'es' ? 'vs. canal OTA' : 'vs. the OTA channel', green: true },
+                ].map((kpi) => (
+                  <div key={kpi.label}>
+                    <p className="font-sans" style={{ fontSize: '11px', color: '#A8A099' }}>{kpi.label}</p>
+                    <p className="font-serif" style={{ fontSize: '24px', color: kpi.green ? '#2D9E6B' : '#FFFFFF', fontWeight: 600, lineHeight: 1.1, marginTop: '4px' }}>{kpi.value}</p>
+                    <p className="font-sans" style={{ fontSize: '11px', color: '#6B6560', marginTop: '3px' }}>{kpi.sub}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginBottom: '14px' }}>
               {/* Line chart */}
               <div style={{ background: '#1A1715', border: '1px solid rgba(232,227,220,0.06)', borderRadius: '12px', padding: '18px', opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(20px)', transition: 'opacity 0.7s ease 0.65s, transform 0.7s ease 0.65s' }}>
@@ -196,10 +230,10 @@ export function DashboardShowcase({ caption }: { caption?: string }) {
               </div>
               <div>
                 <p className="font-sans" style={{ fontSize: '11px', color: '#A8A099', marginBottom: '4px' }}>
-                  {lang === 'es' ? 'Tasa de resolución por IA' : 'AI resolution rate'}
+                  {lang === 'es' ? 'Tasa de resolución' : 'Resolution rate'}
                 </p>
                 <p className="font-serif" style={{ fontSize: '20px', color: '#FFFFFF', fontWeight: 600, lineHeight: 1, marginBottom: '4px' }}>
-                  {lang === 'es' ? '91% resuelto por IA' : '91% resolved by AI'}
+                  {lang === 'es' ? '91% Resuelto' : '91% Resolved'}
                 </p>
                 <p className="font-sans" style={{ fontSize: '12px', color: '#6B6560', lineHeight: 1.5 }}>
                   {lang === 'es' ? '9% escalado a tu equipo — solo lo que realmente necesita un humano.' : '9% escalated to your team — only what genuinely needs a human.'}
@@ -227,13 +261,22 @@ export function DashboardShowcase({ caption }: { caption?: string }) {
               </div>
             ))}
           </div>
+          <div style={{ background: 'linear-gradient(180deg, rgba(201,106,58,0.09), rgba(201,106,58,0.03))', border: '1px solid rgba(201,106,58,0.35)', borderRadius: '10px', padding: '14px', marginBottom: '10px' }}>
+            <p className="font-sans" style={{ fontSize: '10px', color: '#C96A3A', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '4px' }}>
+              {lang === 'es' ? 'Ingresos capturados' : 'Revenue captured'}
+            </p>
+            <p className="font-serif" style={{ fontSize: '24px', color: '#2D9E6B', fontWeight: 600, lineHeight: 1 }}>$38,400</p>
+            <p className="font-sans" style={{ fontSize: '11px', color: '#6B6560', marginTop: '3px' }}>
+              {lang === 'es' ? '214 reservas directas · 0% comisión OTA' : '214 direct bookings · 0% OTA commission'}
+            </p>
+          </div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '14px' }}>
             <div style={{ background: '#1A1715', border: '1px solid rgba(232,227,220,0.06)', borderRadius: '10px', padding: '14px' }}>
               <p className="font-sans" style={{ fontSize: '10px', color: '#A8A099', marginBottom: '4px' }}>{lang === 'es' ? 'Preguntas este mes' : 'Questions this month'}</p>
               <p className="font-serif" style={{ fontSize: '22px', color: '#FFFFFF', fontWeight: 600, lineHeight: 1 }}>{total.toLocaleString()}</p>
             </div>
             <div style={{ background: '#1A1715', border: '1px solid rgba(232,227,220,0.06)', borderRadius: '10px', padding: '14px' }}>
-              <p className="font-sans" style={{ fontSize: '10px', color: '#A8A099', marginBottom: '4px' }}>{lang === 'es' ? 'Resuelto por IA' : 'Resolved by AI'}</p>
+              <p className="font-sans" style={{ fontSize: '10px', color: '#A8A099', marginBottom: '4px' }}>{lang === 'es' ? 'Resuelto' : 'Resolved'}</p>
               <p className="font-serif" style={{ fontSize: '22px', color: '#2D9E6B', fontWeight: 600, lineHeight: 1 }}>91%</p>
             </div>
           </div>
