@@ -65,6 +65,7 @@ function TopBar({ c, count }: { c: SuiteCopy; count: number }) {
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12, flexShrink: 0 }}>
       <span
+        className="suite-prop"
         style={{ ...MONO, display: 'inline-flex', alignItems: 'center', gap: 7, fontSize: 'clamp(9px, 0.72vw, 10.5px)', letterSpacing: '.16em', color: TERRA, border: '1px solid rgba(200,106,58,0.4)', background: 'rgba(11,9,8,0.4)', borderRadius: 999, padding: '6px 13px' }}
       >
         <span style={{ width: 6, height: 6, borderRadius: '50%', background: TERRA }} />

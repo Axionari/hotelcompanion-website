@@ -1367,6 +1367,10 @@ body {
   /* Clear the island. It occupies y 9-33px, so the status row needs ~40px of
      headroom or the property chip renders under the notch (as it did). */
   .suite-screen > div:first-child { padding-top: 42px !important; }
+  /* Phone top bar stays minimal (EN + cart), per the mobile design reference —
+     the long property lockup truncates beside the island and adds no value
+     here; the property is named on the welcome screen and in the section copy. */
+  .suite-prop { display: none !important; }
 }
 
 @media (max-width: 640px) {
