@@ -7,7 +7,6 @@ import { Reveal } from '@/components/cds/Reveal'
 import { Breather } from '@/components/cds/Breather'
 import { MediaBed } from '@/components/cds/MediaBed'
 import { openLiveDemo } from '@/components/cds/LiveDemoModal'
-import { ConvergenceDiagram } from '@/components/cds/blocks'
 import {
   SERIF,
   Em,
@@ -17,6 +16,8 @@ import {
   NumberedList,
   StatementCards,
   QuietChips,
+  TenantStack,
+  PostureSplit,
 } from '@/components/v5/Editorial'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { globalCopy } from '@/lib/i18n/marketing/global'
@@ -29,10 +30,10 @@ import { liveDemoCopy } from '@/lib/i18n/marketing/liveDemo'
  * now as numbered acts, each carrying ONE message and ONE artifact:
  *
  *   HERO (statement, no device) · proof chips
- *   01 SHARED INTELLIGENCE — one brain, local execution   → ConvergenceDiagram
+ *   01 SHARED INTELLIGENCE — one brain, local execution   → TenantStack
  *   02 MULTI-PROPERTY      — one platform, every property → numbered run
  *   03 KNOWLEDGE & ADMIN   — knowledge as an asset        → two statements
- *   04 SECURITY            — secure by design             → numbered principles
+ *   04 SECURITY            — secure by design             → PostureSplit
  *   05 GOVERNANCE          — consistency without friction → quiet chips
  *   06 INTELLIGENCE        — conversations reveal patterns→ two statements
  *   07 INTEGRATION & BOUNDARIES — fits without risk       → the four "nots"
@@ -105,7 +106,8 @@ export default function EnterpriseClient() {
       <ChipStrip chips={c.heroChips} />
 
       {/* 01 · SHARED INTELLIGENCE {#shared-intel} — one message: one brain
-          across the portfolio. One artifact: the convergence diagram. */}
+          across the portfolio. One artifact: the architecture stack (your
+          organization → Hotel Companion → the foundation). */}
       <Act
         no="01"
         label={c.acts.shared}
@@ -113,15 +115,14 @@ export default function EnterpriseClient() {
         statement={byId('shared-intel').title}
         deck={byId('shared-intel').body[1]}
       >
-        <ConvergenceDiagram inputs={c.sharedIntel.inputs} nodeLabel={c.sharedIntel.node} />
-        <Reveal>
-          <p
-            className="mt-12"
-            style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(20px, 2.2vw, 27px)', lineHeight: 1.35, color: 'var(--text)', maxWidth: '28ch' }}
-          >
-            {byId('shared-intel').coda}
-          </p>
-        </Reveal>
+        <TenantStack
+          caption={c.architecture.caption}
+          tiers={[
+            { ...c.architecture.tiers.org },
+            { ...c.architecture.tiers.layer, highlight: true },
+            { ...c.architecture.tiers.foundation },
+          ]}
+        />
       </Act>
 
       {/* 02 · MULTI-PROPERTY {#multi-property} — one message: one hotel or
@@ -175,7 +176,8 @@ export default function EnterpriseClient() {
       <Breather id="band-enterprise-lagoon" image="/assets/breathers/waterfall-lagoon.webp" />
 
       {/* 04 · SECURITY {#secure} — the page's centerpiece. One message:
-          secure by design. One artifact: the principles, numbered. */}
+          secure by design. One artifact: the principles + a posture card
+          (RC's privacy/security split). */}
       <Act
         no="04"
         label={c.acts.security}
@@ -183,7 +185,12 @@ export default function EnterpriseClient() {
         statement={byId('secure').title}
         deck={byId('secure').body[1]}
       >
-        <NumberedList items={nounRun(byId('secure').body[2]).map((title) => ({ title }))} />
+        <PostureSplit
+          principles={nounRun(byId('secure').body[2])}
+          postureLabel={c.securityPosture.label}
+          postureTag={c.securityPosture.tag}
+          posture={c.securityPosture.rows}
+        />
         <Reveal>
           <p
             className="mt-12"

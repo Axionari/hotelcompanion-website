@@ -13,6 +13,7 @@ import {
   Act,
   StatementCards,
   QuietChips,
+  LeadershipCards,
   Handoff,
 } from '@/components/v5/Editorial'
 import { useCopy } from '@/lib/i18n/useCopy'
@@ -30,7 +31,8 @@ import { companyCopy } from '@/lib/i18n/marketing/company'
  *   02 THE MISSION     — understand every guest                  → quiet chips
  *   03 THE PRINCIPLES  — hospitality is human                    → statement cards
  *   04 THE BUILDER     — Companion OS + Axionari                 → statement cards
- *   05 CONTACT         — the three doors in                      → hairline rows
+ *   05 LEADERSHIP      — built by operators                      → member cards
+ *   06 CONTACT         — the three doors in                      → hairline rows
  *   HAND-OFF → /demo
  *
  * All reading copy is the approved company copy (companyCopy) — condensed
@@ -229,12 +231,33 @@ export default function CompanyClient() {
         </Reveal>
       </Act>
 
+      {/* 05 · LEADERSHIP {#leadership} — one message: built by operators.
+          One artifact: the team, as member cards (RC "Built by operators").
+          NEEDS CONFIRM: roster/bios carried from the Axionari/RC company page. */}
+      <Act
+        no="05"
+        label={c.acts.leadership}
+        id="leadership"
+        statement={c.leadership.title}
+        deck={c.leadership.deck}
+      >
+        <LeadershipCards members={c.leadership.members} linkedinLabel={c.leadership.linkedinLabel} />
+        <Reveal>
+          <p
+            className="mt-12"
+            style={{ fontFamily: SERIF, fontSize: 'clamp(16px, 1.7vw, 21px)', lineHeight: 1.5, color: 'var(--text-dim)', maxWidth: '52ch' }}
+          >
+            {c.leadership.coda}
+          </p>
+        </Reveal>
+      </Act>
+
       {/* Breather — air before the doors in (existing image, this page) */}
       <Breather id="band-company-dusk" image="/assets/breathers/beach-dusk-walk.webp" height="clamp(280px, 44vh, 520px)" />
 
-      {/* 05 · CONTACT {#contact} — one message: three doors in. One artifact:
+      {/* 06 · CONTACT {#contact} — one message: three doors in. One artifact:
           the channels, as calm hairline rows. */}
-      <Act no="05" label={c.acts.contact} id="contact" statement={c.contact.title} deck={c.contact.body}>
+      <Act no="06" label={c.acts.contact} id="contact" statement={c.contact.title} deck={c.contact.body}>
         <div style={{ maxWidth: 640 }}>
           {c.contact.channels.map((ch, i) => (
             <Reveal key={ch.email} delay={Math.min(i, 4) * 60}>

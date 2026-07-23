@@ -268,6 +268,202 @@ export function QuietChips({ items }: { items: ReadonlyArray<string> }) {
   )
 }
 
+/**
+ * TenantStack — RC's enterprise architecture artifact: a vertical stack of
+ * boxed tiers (your org → the product layer → the foundation), joined by a
+ * short accent connector, the product tier highlighted, with a mono caption
+ * beneath. One idea: "one platform sits between your organization and the
+ * foundation it runs on."
+ */
+export function TenantStack({
+  tiers,
+  caption,
+}: {
+  tiers: ReadonlyArray<{
+    eyebrow: string
+    title: string
+    sub?: string
+    chips: ReadonlyArray<string>
+    highlight?: boolean
+  }>
+  caption?: string
+}) {
+  return (
+    <div>
+      {tiers.map((t, i) => (
+        <div key={t.eyebrow}>
+          <Reveal delay={i * 90}>
+            <div
+              className="rounded-2xl"
+              style={{
+                border: t.highlight ? '1px solid var(--accent)' : '1px solid var(--border-soft)',
+                background: t.highlight ? 'rgba(200,106,58,0.06)' : 'var(--surface-1)',
+                boxShadow: t.highlight ? '0 0 60px rgba(200,106,58,0.12)' : 'none',
+                padding: 'clamp(24px, 3vw, 40px)',
+              }}
+            >
+              <div className="eyebrow mb-3" style={{ color: t.highlight ? 'var(--accent)' : 'var(--text-faint)' }}>
+                {t.eyebrow}
+              </div>
+              <div style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(20px, 2.4vw, 30px)', lineHeight: 1.15, color: 'var(--text)' }}>
+                {t.title}
+              </div>
+              {t.sub && (
+                <div className="mt-1.5" style={{ fontSize: 14, color: 'var(--text-dim)' }}>
+                  {t.sub}
+                </div>
+              )}
+              <div className="mt-5 flex flex-wrap gap-2">
+                {t.chips.map((chip) => (
+                  <span
+                    key={chip}
+                    className="eyebrow"
+                    style={{ border: '1px solid var(--chip-border, rgba(201,139,78,.3))', borderRadius: 999, padding: '8px 14px', color: 'var(--text-dim)' }}
+                  >
+                    {chip}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+          {i < tiers.length - 1 && (
+            <div
+              aria-hidden="true"
+              style={{ width: 2, height: 'clamp(20px, 3vw, 34px)', background: 'linear-gradient(var(--accent), rgba(200,106,58,0.25))', margin: '0 auto' }}
+            />
+          )}
+        </div>
+      ))}
+      {caption && (
+        <Reveal>
+          <p className="eyebrow mt-8" style={{ color: 'var(--text-faint)', textAlign: 'center' }}>
+            {caption}
+          </p>
+        </Reveal>
+      )}
+    </div>
+  )
+}
+
+/**
+ * PostureSplit — RC's privacy/security artifact: numbered principles on the
+ * left, a labeled "posture" card on the right (LABEL eyebrow → one-line value).
+ * One idea, shown as claim + posture at a glance.
+ */
+export function PostureSplit({
+  principles,
+  postureLabel,
+  postureTag,
+  posture,
+}: {
+  principles: ReadonlyArray<string>
+  postureLabel: string
+  postureTag?: string
+  posture: ReadonlyArray<{ label: string; value: string }>
+}) {
+  return (
+    <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+      <div className="lg:col-span-6">
+        {principles.map((p, i) => (
+          <Reveal key={p} delay={Math.min(i, 6) * 50}>
+            <div className="grid grid-cols-12 gap-x-6 py-5 items-baseline" style={{ borderTop: '1px solid var(--border-soft)' }}>
+              <div className="col-span-2 eyebrow" style={{ color: 'var(--accent)', fontVariantNumeric: 'tabular-nums' }}>
+                {String(i + 1).padStart(2, '0')}
+              </div>
+              <div className="col-span-10">
+                <p style={{ fontSize: 'clamp(15px, 1.5vw, 17px)', lineHeight: 1.5, color: 'var(--text)' }}>{p}</p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+      <div className="lg:col-span-6">
+        <Reveal delay={140}>
+          <div className="rounded-2xl" style={{ border: '1px solid var(--border-soft)', background: 'var(--surface-1)', padding: 'clamp(28px, 3.4vw, 44px)' }}>
+            <div className="flex items-baseline justify-between mb-6">
+              <div style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(20px, 2.2vw, 26px)', color: 'var(--text)' }}>
+                {postureLabel}
+              </div>
+              {postureTag && (
+                <div className="eyebrow" style={{ color: 'var(--text-faint)' }}>
+                  {postureTag}
+                </div>
+              )}
+            </div>
+            {posture.map((row, i) => (
+              <div key={row.label} style={{ paddingBlock: 18, borderTop: i === 0 ? 'none' : '1px solid var(--border-soft)' }}>
+                <div className="eyebrow eyebrow-accent mb-2">{row.label}</div>
+                <p style={{ fontSize: 15, lineHeight: 1.5, color: 'var(--text-dim)' }}>{row.value}</p>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+      </div>
+    </div>
+  )
+}
+
+/**
+ * LeadershipCards — RC's "Built by operators" artifact: a grid of member cards
+ * (name, role eyebrow, location, bio, skill chips, optional LinkedIn). Calm,
+ * bordered, one card per person.
+ */
+export function LeadershipCards({
+  members,
+  linkedinLabel = 'LINKEDIN',
+}: {
+  members: ReadonlyArray<{
+    name: string
+    role: string
+    location?: string
+    bio: string
+    skills?: ReadonlyArray<string>
+    linkedin?: string
+  }>
+  linkedinLabel?: string
+}) {
+  return (
+    <div className="grid md:grid-cols-2 gap-8">
+      {members.map((m, i) => (
+        <Reveal key={m.name} delay={Math.min(i, 4) * 70}>
+          <div className="rounded-2xl h-full" style={{ border: '1px solid var(--border-soft)', background: 'var(--surface-1)', padding: 'clamp(24px, 3vw, 40px)' }}>
+            <div style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(20px, 2.2vw, 26px)', color: 'var(--text)' }}>
+              {m.name}
+            </div>
+            <div className="eyebrow eyebrow-accent mt-3">{m.role}</div>
+            {m.location && (
+              <div className="mt-3" style={{ fontSize: 14, color: 'var(--text-faint)' }}>
+                {m.location}
+              </div>
+            )}
+            <p className="mt-5" style={{ fontSize: 15, lineHeight: 1.65, color: 'var(--text-dim)' }}>
+              {m.bio}
+            </p>
+            {m.skills && m.skills.length > 0 && (
+              <div className="mt-6 flex flex-wrap gap-2">
+                {m.skills.map((s) => (
+                  <span
+                    key={s}
+                    className="eyebrow"
+                    style={{ border: '1px solid var(--chip-border, rgba(201,139,78,.3))', borderRadius: 999, padding: '7px 13px', color: 'var(--text-dim)' }}
+                  >
+                    {s}
+                  </span>
+                ))}
+              </div>
+            )}
+            {m.linkedin && (
+              <a href={m.linkedin} target="_blank" rel="noopener noreferrer" className="eyebrow eyebrow-accent mt-6 inline-block" style={{ fontSize: 12 }}>
+                {linkedinLabel} ↗
+              </a>
+            )}
+          </div>
+        </Reveal>
+      ))}
+    </div>
+  )
+}
+
 /** Closing hand-off — a pointer to the next page, not a heavy CTA (RC). */
 export function Handoff({
   statement,

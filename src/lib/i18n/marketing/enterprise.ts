@@ -43,6 +43,42 @@ const en = {
     ],
     node: 'Hotel Companion',
   },
+  /* P5.1 — RC "architecture" artifact (TenantStack) for {#shared-intel}.
+     Tier names are structural labels; every chip is drawn from approved copy
+     (admin roles, integrates capabilities, hero trust line). */
+  architecture: {
+    tiers: {
+      org: {
+        eyebrow: 'YOUR ORGANIZATION',
+        title: 'Brands, properties, and teams',
+        chips: ['Multiple brands', 'Every property', 'Roles & permissions'],
+      },
+      layer: {
+        eyebrow: 'HOTEL COMPANION',
+        title: 'One intelligent layer, every property',
+        chips: ['Conversations', 'Teams', 'Knowledge', 'Visibility', 'Execution'],
+      },
+      foundation: {
+        eyebrow: 'THE FOUNDATION',
+        title: 'Companion OS',
+        sub: 'Axionari’s shared intelligence platform',
+        chips: ['Enterprise-grade security', 'Centralized governance', 'Scalable deployment'],
+      },
+    },
+    caption: 'ONE PLATFORM · SHARED INTELLIGENCE · LOCAL EXECUTION',
+  },
+  /* P5.1 — RC "posture" artifact (PostureSplit) for {#secure}. Labels are
+     structural; every value is a verbatim fragment of the security copy. */
+  securityPosture: {
+    label: 'Data posture',
+    tag: 'BY DESIGN',
+    rows: [
+      { label: 'OWNERSHIP', value: 'Your data remains your data.' },
+      { label: 'PROTECTION', value: 'Encrypted communications. Protected knowledge.' },
+      { label: 'GOVERNANCE', value: 'Role-based access. Auditability.' },
+      { label: 'CONTROL', value: 'Secure authentication. Privacy-first architecture.' },
+    ],
+  },
   sections: [
     {
       id: 'shared-intel',
@@ -228,6 +264,37 @@ const es: typeof en = {
       'Personalidad de la propiedad',
     ],
     node: 'Hotel Companion',
+  },
+  architecture: {
+    tiers: {
+      org: {
+        eyebrow: 'TU ORGANIZACIÓN',
+        title: 'Marcas, propiedades y equipos',
+        chips: ['Múltiples marcas', 'Cada propiedad', 'Roles y permisos'],
+      },
+      layer: {
+        eyebrow: 'HOTEL COMPANION',
+        title: 'Una capa inteligente, en cada propiedad',
+        chips: ['Conversaciones', 'Equipos', 'Conocimiento', 'Visibilidad', 'Ejecución'],
+      },
+      foundation: {
+        eyebrow: 'LA BASE',
+        title: 'Companion OS',
+        sub: 'La plataforma de inteligencia compartida de Axionari',
+        chips: ['Seguridad de nivel empresarial', 'Gobernanza centralizada', 'Implementación escalable'],
+      },
+    },
+    caption: 'UNA PLATAFORMA · INTELIGENCIA COMPARTIDA · EJECUCIÓN LOCAL',
+  },
+  securityPosture: {
+    label: 'Postura de datos',
+    tag: 'POR DISEÑO',
+    rows: [
+      { label: 'PROPIEDAD', value: 'Tus datos siguen siendo tuyos.' },
+      { label: 'PROTECCIÓN', value: 'Comunicaciones cifradas. Conocimiento protegido.' },
+      { label: 'GOBERNANZA', value: 'Acceso basado en roles. Auditabilidad.' },
+      { label: 'CONTROL', value: 'Autenticación segura. Arquitectura centrada en la privacidad.' },
+    ],
   },
   sections: [
     {
