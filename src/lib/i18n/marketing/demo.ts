@@ -7,46 +7,12 @@ const en = {
     title: 'Book a Personalized Demonstration',
     body1:
       'Discover how Hotel Companion helps hotels understand every guest, increase revenue, and coordinate operations through conversational intelligence.',
-    body2:
-      'This isn’t a product tour. It’s a working session tailored to your hotel, your guests, and your operational goals.',
-    body3:
-      'We’ll show you how every guest conversation becomes intelligence—and how that intelligence improves guest experiences, operational efficiency, and commercial performance.',
     cta: 'Schedule Your Demonstration',
   },
   experience: {
-    title: 'What You’ll Experience',
     lead: 'Every demonstration is personalized, but typically includes:',
-    items: [
-      {
-        id: 'voice-first',
-        title: 'Voice-First Hospitality',
-        body: 'See how guests naturally interact with Hotel Companion through conversation. Ask questions. Request services. Book experiences. Receive personalized recommendations. No menus. No searching. Just hospitality.',
-      },
-      {
-        id: 'guest-intelligence',
-        title: 'Guest Intelligence',
-        body: 'Discover how every guest interaction becomes organizational intelligence. Identify trends. Understand guest intent. Recognize revenue opportunities. Surface operational insights. Transform conversations into measurable business value.',
-      },
-      {
-        id: 'operational-coordination',
-        title: 'Operational Coordination',
-        body: 'Watch how guest requests become coordinated execution across multiple departments. Housekeeping. Maintenance. Food & Beverage. Spa. Transportation. Front Desk. Guest Services. Every request reaches the right team automatically.',
-      },
-      {
-        id: 'revenue-intelligence',
-        title: 'Revenue Intelligence',
-        body: 'See how Hotel Companion identifies opportunities naturally through conversation. Room upgrades. Late checkout. Dining reservations. Spa treatments. Experiences. Transportation. Recommendations that improve the guest experience while increasing ancillary revenue.',
-      },
-      {
-        id: 'companion-os',
-        title: 'Companion OS',
-        body: 'Understand the intelligence platform powering Hotel Companion. Shared knowledge. Organizational memory. Workflow orchestration. Enterprise analytics. Continuous learning.',
-      },
-    ],
   },
   who: {
-    title: 'Who Should Attend',
-    lead: 'Hotel Companion is designed for hospitality leaders responsible for guest experience, operations, and growth. Particularly valuable for:',
     roles: [
       'Hotel Owners',
       'General Managers',
@@ -62,23 +28,8 @@ const en = {
       'Resorts',
     ],
   },
-  discuss: {
-    title: 'What We’ll Discuss',
-    lead: 'Every property is different. We’ll tailor the demonstration around your specific operation. Typical topics:',
-    body: 'How guests currently discover information. Common operational bottlenecks. Revenue opportunities hidden inside guest conversations. Knowledge management. Staff efficiency. Multilingual guest communication. Voice-enabled guest experiences. Enterprise deployment. Future roadmap.',
-  },
   expect: {
     title: 'What to Expect',
-    items: [
-      { id: 'duration', title: '30–45 Minutes', body: 'A focused executive demonstration.' },
-      { id: 'personalized', title: 'Personalized', body: 'Configured around your property type and operational priorities.' },
-      { id: 'interactive', title: 'Interactive', body: 'Ask questions throughout the session. Explore real hospitality scenarios.' },
-      {
-        id: 'no-obligation',
-        title: 'No Obligation',
-        body: 'Our goal is education—not pressure. If Hotel Companion isn’t the right fit, we’ll tell you.',
-      },
-    ],
   },
   agenda: {
     title: 'Typical Agenda',
@@ -146,14 +97,6 @@ const en = {
       },
     ],
   },
-  finalCta: {
-    title: 'The Future of Hospitality Begins with Understanding.',
-    body1:
-      'Every guest conversation contains an opportunity. An opportunity to delight a guest. To improve an operation. To strengthen a team. To grow revenue. To learn something new.',
-    body2:
-      'Discover how Hotel Companion helps your organization transform everyday conversations into lasting competitive advantage.',
-    cta: 'Book Your Personalized Demonstration',
-  },
 }
 
 /* Copy source: HotelCompanion__Site_Copy_ES.md {#demo}. Verbatim. */
@@ -163,46 +106,12 @@ const es: typeof en = {
     title: 'Agenda una Demostración Personalizada',
     body1:
       'Descubre cómo Hotel Companion ayuda a los hoteles a entender a cada huésped, aumentar los ingresos y coordinar operaciones a través de la inteligencia conversacional.',
-    body2:
-      'Esto no es un recorrido de producto. Es una sesión de trabajo adaptada a tu hotel, tus huéspedes y tus objetivos operativos.',
-    body3:
-      'Te mostraremos cómo cada conversación con un huésped se convierte en inteligencia—y cómo esa inteligencia mejora la experiencia del huésped, la eficiencia operativa y el desempeño comercial.',
     cta: 'Agenda Tu Demostración',
   },
   experience: {
-    title: 'Lo Que Vivirás',
     lead: 'Cada demostración es personalizada, pero por lo general incluye:',
-    items: [
-      {
-        id: 'voice-first',
-        title: 'Hospitalidad por Voz',
-        body: 'Observa cómo los huéspedes interactúan de forma natural con Hotel Companion mediante la conversación. Preguntan. Solicitan servicios. Reservan experiencias. Reciben recomendaciones personalizadas. Sin menús. Sin búsquedas. Solo hospitalidad.',
-      },
-      {
-        id: 'guest-intelligence',
-        title: 'Inteligencia del Huésped',
-        body: 'Descubre cómo cada interacción se convierte en inteligencia organizacional. Identifica tendencias. Entiende la intención. Reconoce oportunidades de ingreso. Detecta perspectivas operativas. Transforma las conversaciones en valor de negocio medible.',
-      },
-      {
-        id: 'operational-coordination',
-        title: 'Coordinación Operativa',
-        body: 'Observa cómo las solicitudes se convierten en ejecución coordinada entre varios departamentos. Ama de Llaves. Mantenimiento. Alimentos y Bebidas. Spa. Transporte. Recepción. Servicios al Huésped. Cada solicitud llega al equipo correcto automáticamente.',
-      },
-      {
-        id: 'revenue-intelligence',
-        title: 'Inteligencia de Ingresos',
-        body: 'Observa cómo Hotel Companion identifica oportunidades de forma natural en la conversación. Mejoras de habitación. Salida tardía. Reservaciones de restaurante. Tratamientos de spa. Experiencias. Transporte. Recomendaciones que mejoran la experiencia mientras aumentan el ingreso complementario.',
-      },
-      {
-        id: 'companion-os',
-        title: 'Companion OS',
-        body: 'Entiende la plataforma de inteligencia que impulsa a Hotel Companion. Conocimiento compartido. Memoria organizacional. Orquestación de flujos de trabajo. Analítica empresarial. Aprendizaje continuo.',
-      },
-    ],
   },
   who: {
-    title: 'Quiénes Deberían Asistir',
-    lead: 'Hotel Companion está diseñado para líderes de hospitalidad responsables de la experiencia del huésped, las operaciones y el crecimiento. Especialmente valioso para:',
     roles: [
       'Propietarios de Hoteles',
       'Gerentes Generales',
@@ -218,23 +127,8 @@ const es: typeof en = {
       'Resorts',
     ],
   },
-  discuss: {
-    title: 'Lo Que Conversaremos',
-    lead: 'Cada propiedad es diferente. Adaptaremos la demostración a tu operación específica. Temas típicos:',
-    body: 'Cómo descubren información tus huéspedes hoy. Cuellos de botella operativos comunes. Oportunidades de ingreso ocultas dentro de las conversaciones. Gestión del conocimiento. Eficiencia del personal. Comunicación multilingüe con huéspedes. Experiencias por voz. Despliegue empresarial. Hoja de ruta futura.',
-  },
   expect: {
     title: 'Qué Esperar',
-    items: [
-      { id: 'duration', title: '30–45 Minutos', body: 'Una demostración ejecutiva enfocada.' },
-      { id: 'personalized', title: 'Personalizada', body: 'Configurada según tu tipo de propiedad y tus prioridades operativas.' },
-      { id: 'interactive', title: 'Interactiva', body: 'Haz preguntas durante toda la sesión. Explora escenarios reales de hospitalidad.' },
-      {
-        id: 'no-obligation',
-        title: 'Sin Compromiso',
-        body: 'Nuestro objetivo es informar—no presionar. Si Hotel Companion no es lo indicado, te lo diremos.',
-      },
-    ],
   },
   agenda: {
     title: 'Agenda Típica',
@@ -301,14 +195,6 @@ const es: typeof en = {
         a: 'No. Hotel Companion está diseñado para hoteles que creen que las experiencias excepcionales crean valor de negocio a largo plazo, desde propiedades boutique hasta grupos hoteleros globales.',
       },
     ],
-  },
-  finalCta: {
-    title: 'El Futuro de la Hospitalidad Comienza con la Comprensión.',
-    body1:
-      'Cada conversación con un huésped contiene una oportunidad. Una oportunidad de deleitar a un huésped. De mejorar una operación. De fortalecer un equipo. De crecer en ingresos. De aprender algo nuevo.',
-    body2:
-      'Descubre cómo Hotel Companion ayuda a tu organización a transformar las conversaciones cotidianas en una ventaja competitiva duradera.',
-    cta: 'Agenda Tu Demostración Personalizada',
   },
 }
 

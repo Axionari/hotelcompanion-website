@@ -5,10 +5,8 @@ import { ReactNode } from 'react'
 import { SiteNav } from '@/components/site-nav'
 import { SiteFooter } from '@/components/site-footer'
 import { Section } from '@/components/cds/Section'
-import type { SectionVariant } from '@/components/cds/Section'
 import { Reveal } from '@/components/cds/Reveal'
 import { EndorsementMark } from '@/components/cds/EndorsementMark'
-import { PersistentCTA } from '@/components/cds/PersistentCTA'
 import { MediaBed } from '@/components/cds/MediaBed'
 import { MultiAccentHeadline } from '@/components/cds/AccentHeadline'
 import { IconChipGrid, ConvergenceDiagram, NodeDiagram } from '@/components/cds/blocks'
@@ -17,15 +15,15 @@ import { companionOsCopy } from '@/lib/i18n/marketing/companionOs'
 import { accents } from '@/lib/i18n/marketing/accents'
 
 /**
- * /companion-os — composed to Restaurant Companion level (Design & Interaction
- * Spec §5). Left-aligned throughout, card-less by default, every section
- * carrying a visual. The convergence diagram at {#companionos-one-platform} is
- * the page's signature graphic.
- *
- * Approved copy is never edited: noun-runs inside `body` lines are only
- * *rendered* differently (chips / step flow), never rewritten. The eight
- * deep-dive ids are load-bearing — CapabilityGrid/CapabilitySurface tiles
- * deep-link to /companion-os#voice … #learning.
+ * /companion-os — PRODUCT_ARCHITECTURE §5/§10: the technology philosophy —
+ * the platform behind the ecosystem, never another Hotel Companion page.
+ * Six sections: Hero · Why (one layer) · The architecture (eight capability
+ * cards — layer language only) · Enterprise foundation · Ecosystem & Axionari
+ * · Next step. The sequential capability storytelling is gone: each former
+ * deep-dive survives as a card carrying its title and first (layer-level)
+ * sentence, with its id preserved as a deep-link target. Depth is held back
+ * deliberately (§8) — the page should leave strategic buyers wanting the
+ * conversation.
  */
 
 /** Splits an approved noun-run body line into its items for chip rendering. */
@@ -54,90 +52,6 @@ function Coda({ children }: { children: ReactNode }) {
   )
 }
 
-/** Workflow chain rendered as a numbered step flow (the `workflow` deep-dive). */
-function StepFlow({ steps }: { steps: ReadonlyArray<string> }) {
-  return (
-    <div className="flex flex-col">
-      {steps.map((step, i) => (
-        <Reveal key={step} delay={Math.min(i, 6) * 70}>
-          <div
-            className="flex items-baseline gap-4 py-4"
-            style={{ borderTop: i === 0 ? '1px solid var(--border-soft)' : 'none', borderBottom: '1px solid var(--border-soft)' }}
-          >
-            <span className="eyebrow eyebrow-accent" style={{ minWidth: 28 }}>
-              {String(i + 1).padStart(2, '0')}
-            </span>
-            <span className="font-sans" style={{ fontSize: 15, color: 'var(--text-dim)' }}>
-              {step}
-            </span>
-            {i < steps.length - 1 && (
-              <span aria-hidden="true" className="ml-auto" style={{ color: 'var(--accent)' }}>
-                ↓
-              </span>
-            )}
-          </div>
-        </Reveal>
-      ))}
-    </div>
-  )
-}
-
-/** The default page shape: text one side, visual the other. */
-function Block({
-  id,
-  eyebrow,
-  title,
-  body,
-  coda,
-  visual,
-  variant,
-  reverse = false,
-}: {
-  id?: string
-  eyebrow: string
-  title: string
-  body: ReadonlyArray<string>
-  coda: string
-  visual: ReactNode
-  variant: SectionVariant
-  reverse?: boolean
-}) {
-  return (
-    <Section id={id} variant={variant}>
-      <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-        <div className={`lg:col-span-6 ${reverse ? 'lg:order-2' : ''}`}>
-          <Reveal>
-            <div className="eyebrow eyebrow-accent mb-5">{eyebrow}</div>
-            <h2 className="heading-section" style={{ color: 'var(--text)', maxWidth: '20ch' }}>
-              {title}
-            </h2>
-            <div className="mt-6 flex flex-col gap-4">
-              {body.map((line, i) => (
-                <p key={i} className="body-lead" style={{ maxWidth: '52ch' }}>
-                  {line}
-                </p>
-              ))}
-            </div>
-            <Coda>{coda}</Coda>
-          </Reveal>
-        </div>
-        <div className={`lg:col-span-6 ${reverse ? 'lg:order-1' : ''}`}>{visual}</div>
-      </div>
-    </Section>
-  )
-}
-
-/** Index of the body line that is a noun-run, per deep-dive id. */
-const RUN_INDEX: Record<string, number> = {
-  voice: 2,
-  knowledge: 1,
-  memory: 2,
-  reasoning: 2,
-  operational: 2,
-  analytics: -1, // uses its own `items` array
-  learning: 1,
-}
-
 export default function CompanionOsClient() {
   const c = useCopy(companionOsCopy)
   const a = useCopy(accents)
@@ -157,10 +71,7 @@ export default function CompanionOsClient() {
       <SiteNav />
 
       {/* HERO {#companionos-hero} — over the tropical loop, text left */}
-      <MediaBed
-        poster="/assets/img/section-tropical-beach-poster.webp"
-        scrim={0.68}
-      >
+      <MediaBed poster="/assets/img/section-tropical-beach-poster.webp" scrim={0.68}>
         <section className="relative pt-16 pb-20 md:pt-24 md:pb-28">
           <div className="container-rc">
             <div className="grid lg:grid-cols-12 gap-10">
@@ -196,7 +107,9 @@ export default function CompanionOsClient() {
         </section>
       </MediaBed>
 
-      {/* 01 · WHY {#companionos-why} — fragmented industries node diagram */}
+      {/* 01 · WHY {#companionos-why} — one layer, many industries
+          (merged: why + one-platform; the convergence diagram is the page's
+          signature visual and closes the argument) */}
       <Section id="companionos-why" eyebrow="WHY" title={c.why.title} variant="bg">
         <Reveal>
           <div className="mt-8 flex flex-col gap-2">
@@ -229,83 +142,70 @@ export default function CompanionOsClient() {
                 </p>
               ))}
             </div>
-            <div className="mt-8">
-              <IconChipGrid items={nounRun(c.why.capabilities)} columns={2} />
-            </div>
           </div>
         </div>
-        <Reveal>
-          <Coda>{c.why.coda}</Coda>
-        </Reveal>
+        <div id="companionos-one-platform" className="mt-16 scroll-mt-24">
+          <Reveal>
+            <p className="body-lead" style={{ color: 'var(--text)', maxWidth: '54ch' }}>
+              {c.onePlatform.body[0]}
+            </p>
+          </Reveal>
+          <div className="mt-12">
+            <ConvergenceDiagram inputs={c.onePlatform.specializations} nodeLabel="Companion OS" />
+          </div>
+          <Reveal>
+            <Coda>{c.onePlatform.coda}</Coda>
+          </Reveal>
+        </div>
       </Section>
 
-      {/* 02 · ONE PLATFORM {#companionos-one-platform} — the page's signature visual */}
+      {/* 02 · THE ARCHITECTURE {#companionos-architecture} — eight capability
+          cards, layer language only; former deep-dive ids kept as anchors */}
       <Section
-        id="companionos-one-platform"
+        id="companionos-architecture"
         eyebrow="ONE PLATFORM"
         title={c.onePlatform.title}
-        support={c.onePlatform.body[0]}
         variant="surface-3"
       >
-        <Reveal>
-          <p className="body-lead mt-4" style={{ maxWidth: '54ch' }}>
-            {c.onePlatform.body[1]}
-          </p>
-        </Reveal>
-        <div className="mt-14">
-          <ConvergenceDiagram inputs={c.onePlatform.specializations} nodeLabel="Companion OS" />
+        <div className="mt-14 grid sm:grid-cols-2 gap-x-12" style={{ borderTop: '1px solid var(--border-soft)' }}>
+          {c.deepDives.map((d, i) => (
+            <Reveal key={d.id} delay={Math.min(i, 6) * 40}>
+              <div id={d.id} className="h-full py-8 scroll-mt-24" style={{ borderBottom: '1px solid var(--border-soft)' }}>
+                <div className="eyebrow eyebrow-accent mb-3">{d.eyebrow}</div>
+                <div className="font-serif" style={{ fontSize: '1.35rem', fontWeight: 530, color: 'var(--text)' }}>
+                  {d.title}
+                </div>
+                <p className="font-sans mt-2.5" style={{ fontSize: 15, lineHeight: 1.65, color: 'var(--text-dim)', maxWidth: '44ch' }}>
+                  {d.body[0]}
+                </p>
+              </div>
+            </Reveal>
+          ))}
         </div>
-        <Reveal>
-          <Coda>{c.onePlatform.coda}</Coda>
-        </Reveal>
       </Section>
 
-      {/* Capability deep-dives {#voice} … {#learning} — ids are deep-link targets */}
-      {c.deepDives.map((d, i) => {
-        const runIdx = RUN_INDEX[d.id]
-        const hasRun = runIdx !== undefined && runIdx >= 0
-        const body = hasRun ? d.body.filter((_, j) => j !== runIdx) : d.body
-
-        let visual: ReactNode
-        if ('chain' in d && d.chain) {
-          visual = <StepFlow steps={d.chain} />
-        } else if ('items' in d && d.items) {
-          visual = <IconChipGrid items={d.items.slice(0, 10)} columns={2} />
-        } else if (hasRun) {
-          visual = <IconChipGrid items={nounRun(d.body[runIdx]).slice(0, 10)} columns={2} />
-        } else {
-          visual = <IconChipGrid items={d.body.slice(0, 10)} columns={2} />
-        }
-
-        const after = 'after' in d && d.after ? d.after : undefined
-
-        return (
-          <Block
-            key={d.id}
-            id={d.id}
-            eyebrow={d.eyebrow}
-            title={d.title}
-            body={after ? [...body, ...after] : body}
-            coda={d.coda}
-            variant={i % 2 === 0 ? 'surface-1' : 'bg'}
-            reverse={i % 2 === 1}
-            visual={visual}
-          />
-        )
-      })}
-
-      {/* 09 · ENTERPRISE {#companionos-enterprise} */}
-      <Block
+      {/* 03 · ENTERPRISE {#companionos-enterprise} — the platform's foundation */}
+      <Section
         id="companionos-enterprise"
         eyebrow="ENTERPRISE"
         title={c.enterprise.title}
-        body={[c.enterprise.body[0]]}
-        coda={c.enterprise.coda}
+        support={c.enterprise.body[0]}
         variant="surface-2"
-        visual={<IconChipGrid items={nounRun(c.enterprise.body[1]).slice(0, 10)} columns={2} />}
-      />
+      >
+        <div className="mt-12 grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          <div className="lg:col-span-6">
+            <IconChipGrid items={nounRun(c.enterprise.body[1]).slice(0, 10)} columns={2} />
+          </div>
+          <div className="lg:col-span-6">
+            <Reveal>
+              <Coda>{c.enterprise.coda}</Coda>
+            </Reveal>
+          </div>
+        </div>
+      </Section>
 
-      {/* 10 · ECOSYSTEM {#companionos-ecosystem} — the family row.
+      {/* 04 · ECOSYSTEM & AXIONARI {#companionos-ecosystem} — the family and
+          its builder, one section (merged: ecosystem + axionari).
           Destination Companion appears as a future NAME ONLY, never a link. */}
       <Section
         id="companionos-ecosystem"
@@ -344,27 +244,11 @@ export default function CompanionOsClient() {
             </div>
           </div>
         </div>
-        <Reveal>
-          <p className="body-lead mt-12" style={{ maxWidth: '54ch' }}>
-            {c.ecosystem.body}
-          </p>
-          <Coda>{c.ecosystem.coda}</Coda>
-        </Reveal>
-      </Section>
-
-      {/* 11 · AXIONARI {#companionos-axionari} */}
-      <Section
-        id="companionos-axionari"
-        eyebrow="AXIONARI"
-        title={c.axionari.title}
-        support={c.axionari.body[0]}
-        variant="surface-3"
-      >
-        <div className="mt-12 grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+        <div id="companionos-axionari" className="mt-16 grid lg:grid-cols-12 gap-10 lg:gap-16 items-center scroll-mt-24">
           <div className="lg:col-span-6">
             <Reveal>
               <p className="body-lead" style={{ color: 'var(--text)', maxWidth: '48ch' }}>
-                {c.axionari.body[1]}
+                {c.axionari.body[0]}
               </p>
               <Coda>{c.axionari.coda}</Coda>
               <div className="mt-8">
@@ -387,12 +271,12 @@ export default function CompanionOsClient() {
         </div>
       </Section>
 
-      {/* 12 · NEXT STEP {#companionos-final-cta} — CTA leads back to Hotel Companion */}
+      {/* 05 · NEXT STEP {#companionos-final-cta} — CTA leads back to Hotel Companion */}
       <MediaBed poster="/assets/img/platform-pool-night.webp" scrim={0.72}>
         <section className="py-24 md:py-36">
           <div className="container-rc">
             <Reveal>
-              <div className="eyebrow eyebrow-accent mb-5">12 · NEXT STEP</div>
+              <div className="eyebrow eyebrow-accent mb-5">NEXT STEP</div>
               <h2 className="heading-section" style={{ color: 'var(--text)', maxWidth: '20ch' }}>
                 {c.finalCta.title}
               </h2>
@@ -401,15 +285,6 @@ export default function CompanionOsClient() {
                 style={{ fontSize: 'clamp(1.3rem, 2.4vw, 1.9rem)', fontWeight: 530, color: 'var(--accent)' }}
               >
                 {c.finalCta.subtitle}
-              </p>
-              <p className="body-lead mt-8" style={{ maxWidth: '56ch' }}>
-                {c.finalCta.body}
-              </p>
-              <p
-                className="font-serif italic mt-8"
-                style={{ fontSize: 'clamp(1.15rem, 2vw, 1.5rem)', color: 'var(--text)' }}
-              >
-                {c.finalCta.platform}
               </p>
               <div className="mt-10">
                 <Link href="/" className="btn-primary">
@@ -421,7 +296,6 @@ export default function CompanionOsClient() {
         </section>
       </MediaBed>
 
-      <PersistentCTA />
       <SiteFooter />
     </main>
   )

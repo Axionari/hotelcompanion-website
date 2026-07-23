@@ -4,25 +4,26 @@ import Link from 'next/link'
 import { Breather } from '@/components/cds/Breather'
 import { SiteNav } from '@/components/site-nav'
 import { SiteFooter } from '@/components/site-footer'
-import { PersistentCTA } from '@/components/cds/PersistentCTA'
 import { Section } from '@/components/cds/Section'
 import { Reveal } from '@/components/cds/Reveal'
-import { EndorsementMark, AxionariMark } from '@/components/cds/EndorsementMark'
+import { EndorsementMark } from '@/components/cds/EndorsementMark'
 import { MultiAccentHeadline } from '@/components/cds/AccentHeadline'
 import { MediaBed } from '@/components/cds/MediaBed'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { companyCopy } from '@/lib/i18n/marketing/company'
 import { accents } from '@/lib/i18n/marketing/accents'
 
-/** Surface ladder — adjacent sections never share a step (ambient banding). */
-const BANDS = ['bg', 'surface-1', 'surface-3', 'surface-1', 'surface-2', 'surface-1', 'surface-3'] as const
-
 export default function CompanyClient() {
   const c = useCopy(companyCopy)
   const a = useCopy(accents)
 
-  const why = c.sections.find((s) => s.id === 'why-hotels')
-  const rest = c.sections.filter((s) => s.id !== 'why-hotels')
+  const byId = (id: string) => c.sections.find((s) => s.id === id)!
+  const why = byId('why-hotels')
+  /* PRODUCT_ARCHITECTURE §10 — one story: the four belief movements read as a
+     single manifesto; Companion OS + Axionari read as one builder section;
+     the Founding Partner band moved to /contact#founding (Silent here, §7). */
+  const manifesto = ['belief', 'mission', 'philosophy', 'approach'].map(byId).filter(Boolean)
+  const builder = ['companion-os', 'axionari'].map(byId).filter(Boolean)
 
   return (
     <main>
@@ -125,12 +126,55 @@ export default function CompanyClient() {
         </section>
       )}
 
-      {/* Belief / Mission / Approach / Companion OS / Axionari / Philosophy / Founding */}
-      {rest.map((s, i) => (
-        <Section key={s.id} id={s.id} eyebrow={s.eyebrow} title={s.title} variant={BANDS[i % BANDS.length]}>
-          <div className="mt-10 grid lg:grid-cols-12 gap-x-16">
-            <div className="lg:col-span-7 flex flex-col gap-5">
-              {s.body.map((line, j) => (
+      {/* {#company-manifesto} — the four belief movements as one narrative
+          section (merged: belief + mission + philosophy + approach). This page
+          is allowed depth: every movement keeps its body and coda. */}
+      <Section id="belief" eyebrow={manifesto[0].eyebrow} title={manifesto[0].title} variant="surface-1">
+        <div className="mt-4 flex flex-col">
+          {manifesto.map((m, i) => (
+            <div key={m.id} id={i === 0 ? undefined : m.id} className="scroll-mt-24 py-10" style={{ borderBottom: i < manifesto.length - 1 ? '1px solid var(--border-soft)' : 'none' }}>
+              {i > 0 && (
+                <div className="font-serif mb-5" style={{ fontSize: 'clamp(1.35rem, 2.2vw, 1.8rem)', fontWeight: 530, color: 'var(--text)', maxWidth: '24ch' }}>
+                  {m.title}
+                </div>
+              )}
+              <div className="grid lg:grid-cols-12 gap-x-16">
+                <div className="lg:col-span-7 flex flex-col gap-5">
+                  {m.body.map((line, j) => (
+                    <Reveal key={j} delay={Math.min(j, 5) * 30}>
+                      <p className="body-lead" style={{ maxWidth: '54ch' }}>
+                        {line}
+                      </p>
+                    </Reveal>
+                  ))}
+                </div>
+                <div className="lg:col-span-5 mt-6 lg:mt-0 flex items-center">
+                  <Reveal>
+                    <p className="font-serif" style={{ fontSize: 'clamp(1.25rem, 2vw, 1.6rem)', fontWeight: 530, lineHeight: 1.3, color: 'var(--text)' }}>
+                      {m.coda}
+                    </p>
+                  </Reveal>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* {#company-axionari} — the builder, one section
+          (merged: companion-os + axionari) */}
+      <Section id="axionari" eyebrow={builder[1].eyebrow} title={builder[1].title} variant="surface-3">
+        <div className="mt-10 grid lg:grid-cols-12 gap-x-16">
+          <div className="lg:col-span-7 flex flex-col gap-5">
+            {builder[1].body.map((line, j) => (
+              <Reveal key={j} delay={Math.min(j, 5) * 30}>
+                <p className="body-lead" style={{ maxWidth: '54ch' }}>
+                  {line}
+                </p>
+              </Reveal>
+            ))}
+            <div id="companion-os" className="scroll-mt-24 mt-4 flex flex-col gap-5">
+              {builder[0].body.map((line, j) => (
                 <Reveal key={j} delay={Math.min(j, 5) * 30}>
                   <p className="body-lead" style={{ maxWidth: '54ch' }}>
                     {line}
@@ -138,53 +182,27 @@ export default function CompanyClient() {
                 </Reveal>
               ))}
             </div>
-            <div className="lg:col-span-5 mt-8 lg:mt-0 flex items-center">
-              <Reveal>
-                <p
-                  className="font-serif"
-                  style={{
-                    fontSize: 'clamp(1.25rem, 2vw, 1.6rem)',
-                    fontWeight: 530,
-                    lineHeight: 1.3,
-                    color: 'var(--text)',
-                  }}
-                >
-                  {s.coda}
-                </p>
-              </Reveal>
-            </div>
           </div>
-
-          {(s.id === 'axionari' || s.id === 'companion-os') && (
+          <div className="lg:col-span-5 mt-8 lg:mt-0 flex items-center">
             <Reveal>
-              <div className="mt-10">
-                {/* v3 P5 G5 pass: the Companion OS badge leaves secondary pages;
-                    the sanctioned mark is Powered by AXIONARI (G6). */}
-                {s.id === 'axionari' ? <EndorsementMark variant="axionari" /> : <AxionariMark />}
-              </div>
-            </Reveal>
-          )}
-
-          {s.id === 'founding-partners' && (
-            <Reveal>
-              <p className="mt-10">
-                <Link
-                  href="/contact#founding"
-                  className="font-sans transition-colors hover:text-[#d4824f]"
-                  style={{ color: 'var(--accent)', fontWeight: 500, fontSize: '15px' }}
-                >
-                  {c.foundingCta} →
-                </Link>
+              <p className="font-serif" style={{ fontSize: 'clamp(1.25rem, 2vw, 1.6rem)', fontWeight: 530, lineHeight: 1.3, color: 'var(--text)' }}>
+                {builder[1].coda}
               </p>
             </Reveal>
-          )}
-        </Section>
-      ))}
+          </div>
+        </div>
+        <Reveal>
+          <div className="mt-10">
+            <EndorsementMark variant="axionari" />
+          </div>
+        </Reveal>
+      </Section>
+
 
       {/* {#company-contact} */}
       <Breather id="band-company-dusk" image="/assets/breathers/beach-dusk-walk.webp" height="clamp(280px, 44vh, 520px)" />
 
-      <Section id="contact" eyebrow="09 · CONTACT" title={c.contact.title} variant="surface-2">
+      <Section id="contact" eyebrow="CONTACT" title={c.contact.title} variant="surface-2">
         <div className="mt-8 body-lead" style={{ maxWidth: '56ch' }}>
           {c.contact.body}
         </div>
@@ -204,19 +222,13 @@ export default function CompanyClient() {
             </Reveal>
           ))}
         </div>
-      </Section>
-
-      {/* {#company-final-cta} — CTA band on the warmest step */}
-      <Section eyebrow="10 · NEXT STEP" title={c.finalCta.title} variant="surface-5">
-        <div className="mt-8 body-lead" style={{ maxWidth: '58ch' }}>
-          {c.finalCta.body}
-        </div>
+        {/* the one place this closing line lives (PRODUCT_ARCHITECTURE §7) */}
         <Reveal>
           <p
-            className="font-serif mt-8"
-            style={{ fontSize: 'clamp(1.35rem, 2.2vw, 1.75rem)', fontWeight: 530, color: 'var(--text)' }}
+            className="font-serif mt-12"
+            style={{ fontSize: 'clamp(1.35rem, 2.2vw, 1.75rem)', fontWeight: 530, color: 'var(--text)', maxWidth: '30ch' }}
           >
-            {c.finalCta.platform}
+            {c.finalCta.title}
           </p>
         </Reveal>
         <Reveal>
@@ -228,7 +240,6 @@ export default function CompanyClient() {
         </Reveal>
       </Section>
 
-      <PersistentCTA />
       <SiteFooter />
     </main>
   )

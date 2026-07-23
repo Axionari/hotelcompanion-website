@@ -94,18 +94,7 @@ const en = {
       ],
       coda: 'That philosophy guides everything we build.',
     },
-    {
-      id: 'founding-partners',
-      eyebrow: '08 · FOUNDING PARTNERS',
-      title: 'Building the Future Together.',
-      body: [
-        'We’re working closely with a limited number of hospitality organizations to shape the future of intelligent guest experiences.',
-        'Our Founding Partners don’t simply use the platform. They help define it.',
-      ],
-      coda: 'Together, we’re building the next generation of hospitality technology.',
-    },
   ],
-  foundingCta: 'Become a Founding Partner',
   contact: {
     title: 'Let’s Build the Future of Hospitality.',
     body:
@@ -118,9 +107,6 @@ const en = {
   },
   finalCta: {
     title: 'The Future of Hospitality Begins with Understanding.',
-    body:
-      'Every guest interaction matters. Every conversation creates intelligence. Every hotel deserves technology that makes hospitality more human—not more complicated.',
-    platform: 'Let’s build it together.',
     cta: 'Book a Demo',
   },
 }
@@ -219,18 +205,7 @@ const es: typeof en = {
       ],
       coda: 'Esa filosofía guía todo lo que construimos.',
     },
-    {
-      id: 'founding-partners',
-      eyebrow: '08 · SOCIOS FUNDADORES',
-      title: 'Construyendo el Futuro Juntos.',
-      body: [
-        'Trabajamos de cerca con un número limitado de organizaciones de hospitalidad para dar forma al futuro de las experiencias inteligentes para huéspedes.',
-        'Nuestros Socios Fundadores no solo usan la plataforma. Ayudan a definirla.',
-      ],
-      coda: 'Juntos, estamos construyendo la próxima generación de tecnología para la hospitalidad.',
-    },
   ],
-  foundingCta: 'Conviértete en Socio Fundador',
   contact: {
     title: 'Construyamos Juntos el Futuro de la Hospitalidad.',
     body:
@@ -243,9 +218,6 @@ const es: typeof en = {
   },
   finalCta: {
     title: 'El Futuro de la Hospitalidad Comienza con la Comprensión.',
-    body:
-      'Cada interacción con un huésped importa. Cada conversación crea inteligencia. Cada hotel merece tecnología que haga la hospitalidad más humana—no más complicada.',
-    platform: 'Construyámoslo juntos.',
     cta: 'Agenda una Demo',
   },
 }

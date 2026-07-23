@@ -72,38 +72,6 @@ const en = {
     eyebrow: '03 · TOPICS',
     title: 'Browse by Topic',
     all: 'All',
-    descriptions: {
-      'Guest Experience': 'Creating memorable stays through intelligent, personalized hospitality.',
-      'Revenue Growth': 'Increasing ancillary revenue through better conversations and smarter recommendations.',
-      'Hotel Operations': 'Improving coordination, efficiency, and service across every department.',
-      'Artificial Intelligence': 'Understanding how AI is transforming hospitality without replacing human service.',
-      'Voice Technology': 'Why conversational interfaces are becoming the new standard for guest interaction.',
-      'Companion OS': 'Insights into the intelligence platform powering Hotel Companion and the future Companion ecosystem.',
-    } as Record<string, string>,
-  },
-  faq: {
-    eyebrow: '04 · FAQ',
-    title: 'Frequently Asked Questions',
-    body:
-      'Learn more about Hotel Companion, Companion OS, implementation, security, multilingual support, enterprise deployment, and guest experience.',
-    cta: 'Explore FAQs',
-  },
-  updates: {
-    eyebrow: '05 · PRODUCT UPDATES',
-    title: 'Product Updates',
-    body:
-      'Follow the evolution of Hotel Companion as we build the next generation of intelligent hospitality software.',
-    lead: 'Stay informed about:',
-    items: [
-      'New capabilities.',
-      'Platform improvements.',
-      'AI enhancements.',
-      'Companion OS updates.',
-      'Enterprise features.',
-      'Performance improvements.',
-      'Release notes.',
-    ],
-    status: 'Coming Soon',
   },
   newsletter: {
     eyebrow: '06 · NEWSLETTER',
@@ -114,13 +82,6 @@ const en = {
     cta: 'Join the Newsletter',
     placeholder: 'Business Email',
     success: 'Thank you — you’re on the list.',
-  },
-  finalCta: {
-    title: 'Great Hospitality Never Stops Learning.',
-    subtitle: 'Neither do we.',
-    body:
-      'Explore new ideas. Challenge conventional thinking. Discover how intelligent hospitality is redefining the guest experience.',
-    cta: 'Book a Demo',
   },
 }
 
@@ -195,38 +156,6 @@ const es: typeof en = {
     eyebrow: '03 · TEMAS',
     title: 'Explora por Tema',
     all: 'Todos',
-    descriptions: {
-      'Experiencia del Huésped': 'Crear estancias memorables mediante una hospitalidad inteligente y personalizada.',
-      'Crecimiento de Ingresos': 'Aumentar el ingreso complementario con mejores conversaciones y recomendaciones más inteligentes.',
-      'Operaciones Hoteleras': 'Mejorar la coordinación, la eficiencia y el servicio en cada departamento.',
-      'Inteligencia Artificial': 'Entender cómo la IA está transformando la hospitalidad sin reemplazar el servicio humano.',
-      'Tecnología de Voz': 'Por qué las interfaces conversacionales se están convirtiendo en el nuevo estándar de interacción con el huésped.',
-      'Companion OS': 'Perspectivas sobre la plataforma de inteligencia que impulsa a Hotel Companion y al futuro ecosistema Companion.',
-    } as Record<string, string>,
-  },
-  faq: {
-    eyebrow: '04 · PREGUNTAS FRECUENTES',
-    title: 'Preguntas Frecuentes',
-    body:
-      'Conoce más sobre Hotel Companion, Companion OS, implementación, seguridad, soporte multilingüe, despliegue empresarial y experiencia del huésped.',
-    cta: 'Explorar Preguntas Frecuentes',
-  },
-  updates: {
-    eyebrow: '05 · ACTUALIZACIONES DE PRODUCTO',
-    title: 'Actualizaciones de Producto',
-    body:
-      'Sigue la evolución de Hotel Companion mientras construimos la próxima generación de software de hospitalidad inteligente.',
-    lead: 'Mantente al tanto de:',
-    items: [
-      'Nuevas capacidades.',
-      'Mejoras de la plataforma.',
-      'Avances de IA.',
-      'Actualizaciones de Companion OS.',
-      'Funciones empresariales.',
-      'Mejoras de rendimiento.',
-      'Notas de versión.',
-    ],
-    status: 'Próximamente',
   },
   newsletter: {
     eyebrow: '06 · NEWSLETTER',
@@ -237,13 +166,6 @@ const es: typeof en = {
     cta: 'Suscríbete al Newsletter',
     placeholder: 'Correo de Trabajo',
     success: 'Gracias — ya estás en la lista.',
-  },
-  finalCta: {
-    title: 'La Gran Hospitalidad Nunca Deja de Aprender.',
-    subtitle: 'Nosotros Tampoco.',
-    body:
-      'Explora nuevas ideas. Cuestiona lo convencional. Descubre cómo la hospitalidad inteligente está redefiniendo la experiencia del huésped.',
-    cta: 'Agenda una Demo',
   },
 }
 

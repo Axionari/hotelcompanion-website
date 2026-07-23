@@ -4,18 +4,12 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { SiteNav } from '@/components/site-nav'
 import { SiteFooter } from '@/components/site-footer'
-import { Teaser, CapabilityStrip } from '@/components/cds/Teaser'
-import { Breather } from '@/components/cds/Breather'
 import { Section } from '@/components/cds/Section'
 import { Reveal } from '@/components/cds/Reveal'
-import { AxionariMark } from '@/components/cds/EndorsementMark'
-import { PersistentCTA } from '@/components/cds/PersistentCTA'
 import { MediaBed } from '@/components/cds/MediaBed'
 import { MultiAccentHeadline } from '@/components/cds/AccentHeadline'
-import { IconChipGrid, CapabilitySurface } from '@/components/cds/blocks'
-import { COMPANION_OS_CAPABILITIES } from '@/lib/capabilities'
+import { IconChipGrid } from '@/components/cds/blocks'
 import { useCopy } from '@/lib/i18n/useCopy'
-import { globalCopy } from '@/lib/i18n/marketing/global'
 import { solutionsCopy } from '@/lib/i18n/marketing/solutions'
 import { accents } from '@/lib/i18n/marketing/accents'
 
@@ -193,7 +187,6 @@ function SegmentIndex({ segments }: { segments: ReadonlyArray<Block> }) {
 
 export default function SolutionsClient() {
   const c = useCopy(solutionsCopy)
-  const g = useCopy(globalCopy)
   const a = useCopy(accents)
 
   return (
@@ -223,9 +216,6 @@ export default function SolutionsClient() {
                   <Link href="/demo" className="btn-primary">
                     {c.finalCta.cta}
                   </Link>
-                </div>
-                <div className="mt-10">
-                  <AxionariMark />
                 </div>
               </div>
             </div>
@@ -264,43 +254,12 @@ export default function SolutionsClient() {
         <SegmentIndex segments={c.segments} />
       </Section>
 
-      {/* 03 · COMPANION OS {#solutions-companion-os} — capability surface */}
-      <Section
-        id="solutions-companion-os"
-        eyebrow="03 · COMPANION OS"
-        title={c.companionOs.title}
-        support={c.companionOs.lead}
-        variant="surface-2"
-      >
-        <div className="mt-14">
-          <Teaser lines={[]} href="/companion-os" label={g.nav.companionOs}>
-            <CapabilityStrip names={COMPANION_OS_CAPABILITIES.map((x) => x.name)} />
-          </Teaser>
-        </div>
-        <Reveal>
-          <p
-            className="font-serif mt-14"
-            style={{
-              fontSize: 'clamp(1.3rem, 2.2vw, 1.75rem)',
-              fontWeight: 530,
-              color: 'var(--text)',
-              maxWidth: '30ch',
-            }}
-          >
-            {c.companionOs.close}
-          </p>
-          <div className="mt-10">
-            <AxionariMark />
-          </div>
-        </Reveal>
-      </Section>
-
-      {/* 04 · NEXT STEP {#solutions-final-cta} — warm media band */}
+      {/* 03 · NEXT STEP {#solutions-final-cta} — warm media band */}
       <MediaBed poster="/assets/img/lobby-modern.webp" scrim={0.72}>
         <section id="solutions-final-cta" className="py-24 md:py-36">
           <div className="container-rc">
             <Reveal>
-              <div className="eyebrow eyebrow-accent mb-5">04 · NEXT STEP</div>
+              <div className="eyebrow eyebrow-accent mb-5">03 · NEXT STEP</div>
               <h2 className="heading-section" style={{ color: 'var(--text)', maxWidth: '18ch' }}>
                 {c.finalCta.title}
               </h2>
@@ -334,7 +293,6 @@ export default function SolutionsClient() {
         </section>
       </MediaBed>
 
-      <PersistentCTA />
       <SiteFooter />
     </main>
   )

@@ -3,14 +3,12 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { Section } from '@/components/cds/Section'
-import { IconChipGrid, Accordion } from '@/components/cds/blocks'
 import { Reveal } from '@/components/cds/Reveal'
 import { Lead, Coda } from '@/components/cds/Prose'
-import { PageShell, PageHero, FinalCta } from '@/components/cds/PageShell'
+import { PageShell, PageHero } from '@/components/cds/PageShell'
 import { MediaBed } from '@/components/cds/MediaBed'
 import { useCopy, type Localized } from '@/lib/i18n/useCopy'
 import { resourcesCopy } from '@/lib/i18n/marketing/resources'
-import { homeCopy } from '@/lib/i18n/marketing/home'
 import { accents } from '@/lib/i18n/marketing/accents'
 import type { EssayMeta } from '@/lib/library'
 
@@ -22,7 +20,6 @@ export interface ResourcesContent {
 export default function ResourcesClient({ content }: { content: Localized<ResourcesContent> }) {
   const c = useCopy(resourcesCopy)
   const a = useCopy(accents)
-  const faq = useCopy(homeCopy).faq
   const { essays, categories } = useCopy(content)
   // null = "all"; stored language-agnostically so switching language keeps the filter valid
   const [active, setActive] = useState<string | null>(null)
@@ -75,12 +72,11 @@ export default function ResourcesClient({ content }: { content: Localized<Resour
             </Reveal>
           ))}
         </div>
-      </Section>
 
-      {/* {#resources-categories} — filters over the full 12-essay library */}
-      <Section id="categories" eyebrow={c.categories.eyebrow} title={c.categories.title} variant="surface-1">
-        <Reveal>
-          <div className="mt-10 flex flex-wrap gap-2.5">
+        {/* the full library, with its built-in category filter */}
+        <div id="categories" className="scroll-mt-24">
+          <Reveal>
+          <div className="mt-14 flex flex-wrap gap-2.5">
             {[null, ...categories].map((cat) => {
               const on = cat === null ? !activeValid : cat === active
               return (
@@ -103,14 +99,7 @@ export default function ResourcesClient({ content }: { content: Localized<Resour
               )
             })}
           </div>
-        </Reveal>
-
-        {activeValid && c.categories.descriptions[active] && (
-          <div className="mt-8">
-            <Lead>{c.categories.descriptions[active]}</Lead>
-          </div>
-        )}
-
+          </Reveal>
         <ul className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {visible.map((e, i) => (
             <li key={e.slug}>
@@ -141,47 +130,7 @@ export default function ResourcesClient({ content }: { content: Localized<Resour
             </li>
           ))}
         </ul>
-      </Section>
-
-      {/* {#resources-faq} — v4 kit §3: the homepage FAQ relocates here
-          (one content move, no redesign; the Q&A text is homeCopy.faq,
-          unchanged). */}
-      <Section id="faq" eyebrow={c.faq.eyebrow} title={c.faq.title}>
-        <div className="mt-6">
-          <Lead>{c.faq.body}</Lead>
         </div>
-        <div className="mt-10" style={{ maxWidth: 860 }}>
-          <Accordion items={faq.items} />
-        </div>
-        <Reveal>
-          <p className="mt-8">
-            <Link
-              href="/demo#faq"
-              className="font-sans text-sm transition-colors hover:text-[#D4784A]"
-              style={{ color: 'var(--accent)', fontWeight: 500 }}
-            >
-              {c.faq.cta} →
-            </Link>
-          </p>
-        </Reveal>
-      </Section>
-
-      {/* {#resources-updates} */}
-      <Section id="updates" eyebrow={c.updates.eyebrow} title={c.updates.title} variant="surface-1">
-        <div className="mt-6">
-          <Lead>{c.updates.body}</Lead>
-        </div>
-        <div className="mt-8">
-          <Lead tone="primary">{c.updates.lead}</Lead>
-        </div>
-        <div className="mt-6">
-          <IconChipGrid items={c.updates.items} columns={2} />
-        </div>
-        <Reveal>
-          <p className="eyebrow mt-10" style={{ color: 'var(--accent)' }}>
-            {c.updates.status}
-          </p>
-        </Reveal>
       </Section>
 
       {/* {#resources-newsletter} */}
@@ -234,14 +183,6 @@ export default function ResourcesClient({ content }: { content: Localized<Resour
         </Reveal>
       </Section>
 
-      {/* {#resources-final-cta} */}
-      <FinalCta
-        eyebrow="07 · NEXT STEP"
-        title={c.finalCta.title}
-        body={c.finalCta.body}
-        beats={[c.finalCta.subtitle]}
-        cta={c.finalCta.cta}
-      />
     </PageShell>
   )
 }

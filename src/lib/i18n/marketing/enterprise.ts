@@ -22,23 +22,6 @@ const en = {
     ],
     node: 'Hotel Companion',
   },
-  /* Executive dashboard mockup for {#enterprise-dashboards}. NEEDS REAL DATA: sample figures. */
-  dashboard: {
-    title: 'Portfolio command centre',
-    resolvedLabel: 'resolved by the assistant',
-    escalatedLabel: 'escalated to your team',
-    metrics: [
-      { label: 'Conversations this month', value: '18,640' },
-      { label: 'Properties reporting', value: '24' },
-      { label: 'Revenue signals surfaced', value: '2,310' },
-      { label: 'Avg. first response', value: 'Instant' },
-    ],
-    properties: [
-      { name: 'Riviera Maya portfolio', value: '7,420' },
-      { name: 'Los Cabos portfolio', value: '6,180' },
-      { name: 'Pacific Coast portfolio', value: '5,040' },
-    ],
-  },
   sections: [
     {
       id: 'shared-intel',
@@ -184,17 +167,6 @@ const en = {
     ],
     close: ['It doesn’t replace your operation.', 'It understands the conversations between every part of it.'],
   },
-  resolution: {
-    /* NEEDS CONFIRM: resolution rate — verify before public launch. */
-    resolved: '91% resolved by the assistant.',
-    escalated: '9% escalated to your team—only what genuinely needs a human.',
-    close: 'Every question answered. Only the moments that need a person reach one.',
-  },
-  companionOs: {
-    title: 'Powered by Companion OS.',
-    lead: 'Every enterprise capability is powered by Companion OS.',
-    close: 'One intelligence platform powering every Companion across every industry.',
-  },
   finalCta: {
     title: 'Enterprise Hospitality Deserves Enterprise Intelligence.',
     beats: [
@@ -227,22 +199,6 @@ const es: typeof en = {
       'Personalidad de la propiedad',
     ],
     node: 'Hotel Companion',
-  },
-  dashboard: {
-    title: 'Centro de mando del portafolio',
-    resolvedLabel: 'resuelto por el asistente',
-    escalatedLabel: 'escalado a tu equipo',
-    metrics: [
-      { label: 'Conversaciones este mes', value: '18,640' },
-      { label: 'Propiedades reportando', value: '24' },
-      { label: 'Señales de ingreso detectadas', value: '2,310' },
-      { label: 'Primera respuesta promedio', value: 'Inmediata' },
-    ],
-    properties: [
-      { name: 'Portafolio Riviera Maya', value: '7,420' },
-      { name: 'Portafolio Los Cabos', value: '6,180' },
-      { name: 'Portafolio Costa del Pacífico', value: '5,040' },
-    ],
   },
   sections: [
     {
@@ -388,17 +344,6 @@ const es: typeof en = {
       { name: 'No es una integración de reemplazo total', desc: 'Complementa los sistemas que ya usas.' },
     ],
     close: ['No reemplaza tu operación.', 'Entiende las conversaciones entre cada parte de ella.'],
-  },
-  resolution: {
-    /* NEEDS CONFIRM: resolution rate — verify before public launch. */
-    resolved: '91% resuelto por el asistente.',
-    escalated: '9% escalado a tu equipo—solo lo que genuinamente necesita a una persona.',
-    close: 'Cada pregunta respondida. Solo los momentos que necesitan a alguien llegan a alguien.',
-  },
-  companionOs: {
-    title: 'Impulsado por Companion OS.',
-    lead: 'Cada capacidad empresarial está impulsada por Companion OS.',
-    close: 'Una plataforma de inteligencia que impulsa a cada Companion en cada industria.',
   },
   finalCta: {
     title: 'La Hospitalidad Empresarial Merece Inteligencia Empresarial.',

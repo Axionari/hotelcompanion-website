@@ -5,35 +5,35 @@ import { SiteNav } from '@/components/site-nav'
 import { SiteFooter } from '@/components/site-footer'
 import { Section } from '@/components/cds/Section'
 import { Reveal } from '@/components/cds/Reveal'
-import { AxionariMark } from '@/components/cds/EndorsementMark'
-import { PersistentCTA } from '@/components/cds/PersistentCTA'
 import { TabletOS } from '@/components/cds/TabletOS'
-import { Teaser, CapabilityStrip } from '@/components/cds/Teaser'
+import { Teaser } from '@/components/cds/Teaser'
 import { Breather } from '@/components/cds/Breather'
 import { MediaBed } from '@/components/cds/MediaBed'
 import { MultiAccentHeadline } from '@/components/cds/AccentHeadline'
+import { openLiveDemo } from '@/components/cds/LiveDemoModal'
 import {
   IconChipGrid,
   RoutingFlow,
   JourneyTimeline,
   NodeDiagram,
   DashboardMockup,
-  RevenueLine,
 } from '@/components/cds/blocks'
 import { VoiceMorph, TwoStageAlert } from '@/components/cds/interactive'
-import { COMPANION_OS_CAPABILITIES } from '@/lib/capabilities'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { globalCopy } from '@/lib/i18n/marketing/global'
 import { platformCopy } from '@/lib/i18n/marketing/platform'
-import { homeCopy } from '@/lib/i18n/marketing/home'
+import { liveDemoCopy } from '@/lib/i18n/marketing/liveDemo'
 import { accents } from '@/lib/i18n/marketing/accents'
 
 /**
- * Platform — composed to Restaurant Companion level (Level-Up plan P2,
- * Design & Interaction Spec §5). Fifteen composed scenes, every one
- * left-aligned and carrying a visual: device, morph, diagram, timeline,
- * alert flow, routing flow, dashboard or photography. No centered text walls,
- * no two adjacent sections sharing a surface step.
+ * Platform — PRODUCT_ARCHITECTURE §5/§10: this page owns capabilities and
+ * answers exactly one question, "What does it actually do?", in six chapters:
+ * Hero · Voice & knowledge · Lifecycle & action · Intelligence ·
+ * Enterprise tease · Next step. Every merged chapter keeps its signature
+ * visual (VoiceMorph, NodeDiagram, JourneyTimeline, TwoStageAlert,
+ * RoutingFlow, DashboardMockup); the duplicate prose between them is gone.
+ * Companion OS is Silent here (§7); the enterprise band is a tease (§8).
+ * Old section ids survive as inner anchors.
  */
 
 /** Hairline named list — card-less rows for name + description runs. */
@@ -92,7 +92,7 @@ export default function PlatformClient() {
   const c = useCopy(platformCopy)
   const g = useCopy(globalCopy)
   const a = useCopy(accents)
-  const home = useCopy(homeCopy)
+  const demo = useCopy(liveDemoCopy)
 
   return (
     <main>
@@ -119,13 +119,10 @@ export default function PlatformClient() {
                   <Link href="/demo" className="btn-primary">
                     {c.finalCta.cta}
                   </Link>
-                  {/* Approved string, reused from the Home hero */}
-                  <a href="#platform-voice-first" className="btn-secondary">
-                    {home.hero.secondaryCta}
-                  </a>
-                </div>
-                <div className="mt-10">
-                  <AxionariMark />
+                  {/* One secondary label site-wide (PRODUCT_ARCHITECTURE §11) */}
+                  <button type="button" onClick={openLiveDemo} className="btn-secondary">
+                    {demo.open}
+                  </button>
                 </div>
               </div>
               <div className="lg:col-span-6">
@@ -136,8 +133,8 @@ export default function PlatformClient() {
         </section>
       </MediaBed>
 
-      {/* 01 · VOICE-FIRST {#platform-voice-first} + channels {#platform-channels}
-          Product-first: the device carries the meaning, the copy is terse. */}
+      {/* 01 · VOICE & YOUR HOTEL'S KNOWLEDGE — merged chapter
+          (was: voice-first + your-voice + knows-property + not-generic-ai) */}
       <Section
         id="platform-voice-first"
         eyebrow="01 · VOICE-FIRST"
@@ -145,19 +142,19 @@ export default function PlatformClient() {
         support={c.voiceFirst.body1}
         variant="surface-1"
       >
-        {/* The full stepper is canonical on Home; this is the teaser. */}
-        <div className="mt-12">
-          {/* v3 Phase 1: the journey captions were deleted from the home deck
-              ({#04}); this teaser now quotes the surviving step titles. */}
-          <Teaser
-            split
-            lines={[home.journey.steps[0].title, home.journey.steps[home.journey.steps.length - 1].title]}
-            href="/#home-revenue"
-            label={home.revenue.title}
-          >
-            <RevenueLine steps={home.journey.steps} label={home.journey.tallyLabel} />
-          </Teaser>
+        {/* the voice, morphing to the hotel's own register */}
+        <div id="platform-your-voice" className="mt-14 scroll-mt-24">
+          <VoiceMorph
+            voices={c.yourVoice.voices}
+            guestQuestion={c.yourVoice.morphQuestion}
+            deviceLabel={c.yourVoice.morphDeviceLabel}
+          />
+          <div className="mt-10">
+            <Beats lines={c.yourVoice.close} size="lg" />
+          </div>
         </div>
+
+        {/* every channel it speaks through */}
         <div id="platform-channels" className="mt-16 grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           <div className="lg:col-span-4">
             <Reveal>
@@ -168,136 +165,65 @@ export default function PlatformClient() {
             <NamedRows items={c.channels.items} columns={2} />
           </div>
         </div>
-      </Section>
 
-      {/* 02 · BRAND VOICE {#platform-your-voice} + {#platform-five-voices} — the voice morph */}
-      <Section
-        id="platform-your-voice"
-        eyebrow="02 · BRAND VOICE"
-        title={c.yourVoice.title}
-        support={c.yourVoice.voicesLead}
-        variant="bg"
-      >
-        <div id="platform-five-voices" className="mt-14">
-          <VoiceMorph
-            voices={c.yourVoice.voices}
-            guestQuestion={c.yourVoice.morphQuestion}
-            deviceLabel={c.yourVoice.morphDeviceLabel}
-          />
-        </div>
-        <div className="mt-14 grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-          <div className="lg:col-span-6">
-            <Reveal>
-              <p className="body-lead" style={{ maxWidth: '48ch' }}>
-                {c.yourVoice.body}
-              </p>
-            </Reveal>
-          </div>
-          <div className="lg:col-span-6">
-            <Beats lines={c.yourVoice.close} size="lg" />
-          </div>
-        </div>
-      </Section>
-
-      {/* 03 · KNOWLEDGE SPLIT {#platform-knows-property} + {#platform-destination} */}
-      <Section
-        id="platform-knows-property"
-        eyebrow="03 · PROPERTY KNOWLEDGE"
-        title={c.knowsProperty.title}
-        support={c.knowsProperty.lead}
-        variant="surface-1"
-      >
-        <div className="mt-14 grid lg:grid-cols-2 gap-12 lg:gap-16">
-          <div>
-            <div className="eyebrow eyebrow-accent mb-6">{c.knowledgeSplit.property}</div>
-            {/* Level-Up §D: the 20-item noun-stack renders as its strongest ten. */}
-            <IconChipGrid items={c.knowsProperty.items.slice(0, 10)} columns={2} />
-          </div>
-          <div id="platform-destination">
-            <div className="eyebrow eyebrow-accent mb-6">{c.knowledgeSplit.destination}</div>
-            <IconChipGrid items={c.destination.items.slice(0, 10)} columns={2} />
+        {/* what it knows — property and destination */}
+        <div id="platform-knows-property" className="mt-16 scroll-mt-24">
+          <Reveal>
+            <p className="body-lead mb-10" style={{ color: 'var(--text)', maxWidth: '48ch' }}>
+              {c.knowsProperty.lead}
+            </p>
+          </Reveal>
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
+            <div>
+              <div className="eyebrow eyebrow-accent mb-6">{c.knowledgeSplit.property}</div>
+              <IconChipGrid items={c.knowsProperty.items.slice(0, 10)} columns={2} />
+            </div>
+            <div id="platform-destination">
+              <div className="eyebrow eyebrow-accent mb-6">{c.knowledgeSplit.destination}</div>
+              <IconChipGrid items={c.destination.items.slice(0, 10)} columns={2} />
+            </div>
           </div>
         </div>
 
-        <div className="mt-16 grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-          <div className="lg:col-span-6">
-            <Beats lines={c.knowsProperty.close} />
-            <Reveal>
-              <p className="body-lead mt-8" style={{ maxWidth: '46ch' }}>
-                {c.destination.close}
-              </p>
-            </Reveal>
-          </div>
-          {/* {#platform-destination-examples} — the vivid, un-PMS-able questions */}
-          <div id="platform-destination-examples" className="lg:col-span-6">
-            <Reveal>
-              <p className="body-lead mb-5" style={{ color: 'var(--text)', maxWidth: '42ch' }}>
-                {c.destinationExamples.lead}
-              </p>
-            </Reveal>
-            <Beats lines={c.destinationExamples.questions} />
-            <Reveal>
-              <div className="mt-8 flex flex-col gap-2" style={{ maxWidth: '48ch' }}>
-                {c.destinationExamples.close.map((l) => (
-                  <p key={l} className="body-lead">
-                    {l}
-                  </p>
-                ))}
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </Section>
-
-      {/* 04 · NOT GENERIC AI {#platform-not-generic-ai} — split node diagram */}
-      <Section
-        id="platform-not-generic-ai"
-        eyebrow="04 · NOT GENERIC AI"
-        title={c.notGenericAi.title}
-        support={c.notGenericAi.body[0]}
-        variant="bg"
-      >
-        <div className="mt-14">
+        {/* the contrast that makes the knowledge matter */}
+        <div id="platform-not-generic-ai" className="mt-16 scroll-mt-24">
           <NodeDiagram nodes={c.notGenericAi.beats} breakLabel={c.notGenericAi.body[1]} />
-        </div>
-        <div className="mt-14 grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-          <div className="lg:col-span-6">
-            <Reveal>
-              <p className="body-lead" style={{ maxWidth: '46ch' }}>
-                {c.notGenericAi.close}
-              </p>
-            </Reveal>
-          </div>
-          <div className="lg:col-span-6">
-            <Beats lines={c.notGenericAi.coda} size="lg" />
+          <div className="mt-10 grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+            <div className="lg:col-span-6">
+              <Reveal>
+                <p className="body-lead" style={{ maxWidth: '46ch' }}>
+                  {c.notGenericAi.close}
+                </p>
+              </Reveal>
+            </div>
+            <div className="lg:col-span-6">
+              <Beats lines={c.knowsProperty.close} size="lg" />
+            </div>
           </div>
         </div>
       </Section>
 
-      {/* 05 · LIFECYCLE {#platform-lifecycle} — the guest's own journey */}
+      <Breather id="band-platform-waterfall" image="/assets/breathers/waterfall-swim.webp" />
+
+      {/* 02 · LIFECYCLE & ACTION — merged chapter
+          (was: lifecycle + issue-detection + reservations + request-action) */}
       <Section
         id="platform-lifecycle"
-        eyebrow="05 · LIFECYCLE"
+        eyebrow="02 · LIFECYCLE"
         title={c.lifecycle.title}
-        variant="surface-2"
+        variant="bg"
       >
         <div className="mt-14">
           <JourneyTimeline stages={c.lifecycle.stages} />
         </div>
-        <div className="mt-12">
-          <Beats lines={c.lifecycle.close} size="lg" />
-        </div>
-      </Section>
 
-      {/* 06 · ISSUE DETECTION {#platform-issue-detection} — the 2 AM two-stage alert */}
-      <Section
-        id="platform-issue-detection"
-        eyebrow="06 · ISSUE DETECTION"
-        title={c.issueDetection.title}
-        support={c.issueDetection.lead}
-        variant="bg"
-      >
-        <div className="mt-14">
+        {/* the 2 AM save — issue detection */}
+        <div id="platform-issue-detection" className="mt-16 scroll-mt-24">
+          <Reveal>
+            <p className="body-lead mb-10" style={{ maxWidth: '48ch' }}>
+              {c.issueDetection.lead}
+            </p>
+          </Reveal>
           <TwoStageAlert
             guest={c.issueAlert.guest}
             reply={c.issueAlert.reply}
@@ -305,83 +231,40 @@ export default function PlatformClient() {
             stages={c.issueDetection.features.slice(1, 3).map((f) => ({ title: f.name, body: f.desc }))}
           />
         </div>
-        <div className="mt-14 grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-          <div className="lg:col-span-5">
-            <Reveal>
-              <p className="body-lead" style={{ maxWidth: '44ch' }}>
-                {c.issueDetection.body}
-              </p>
-            </Reveal>
-          </div>
-          <div className="lg:col-span-7">
-            <NamedRows
-              items={[c.issueDetection.features[0], c.issueDetection.features[3]]}
-              columns={2}
-            />
-          </div>
-        </div>
-      </Section>
 
-      {/* 07 · RESERVATIONS {#platform-reservations} */}
-      <Breather id="band-platform-waterfall" image="/assets/breathers/waterfall-swim.webp" />
-
-      <Section
-        id="platform-reservations"
-        eyebrow="07 · RESERVATIONS"
-        title={c.reservations.title}
-        support={c.reservations.lead}
-        variant="surface-1"
-      >
-        <div className="mt-14 grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-          <div className="lg:col-span-7">
-            <IconChipGrid items={c.reservations.items.slice(0, 10)} columns={2} />
-          </div>
-          <div className="lg:col-span-5">
-            <Beats lines={c.reservations.close} size="lg" />
-          </div>
-        </div>
-      </Section>
-
-      {/* 08 · EXECUTION {#platform-request-action} — routing flow */}
-      <Section
-        id="platform-request-action"
-        eyebrow="08 · EXECUTION"
-        title={c.requestAction.title}
-        support={c.requestAction.body}
-        variant="bg"
-      >
-        <div className="mt-10">
-          <Beats lines={c.requestAction.beats} />
-        </div>
-        <div className="mt-12">
+        {/* every request becomes routed action */}
+        <div id="platform-request-action" className="mt-16 scroll-mt-24">
           <RoutingFlow
             pairs={c.requestAction.departments.map((d) => ({
               from: c.requestAction.routingFrom,
               to: d,
             }))}
           />
-        </div>
-        <div className="mt-12">
-          <Beats lines={c.requestAction.close} />
+          <div className="mt-12 grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+            <div id="platform-reservations" className="lg:col-span-7 scroll-mt-24">
+              <IconChipGrid items={c.reservations.items.slice(0, 10)} columns={2} />
+            </div>
+            <div className="lg:col-span-5">
+              <Beats lines={c.requestAction.close} size="lg" />
+            </div>
+          </div>
         </div>
       </Section>
 
-      {/* 09 · REVENUE INTELLIGENCE {#platform-revenue-intel} */}
+      {/* 03 · INTELLIGENCE — merged chapter; the site's ONLY dashboards telling
+          (was: revenue-intel + guest-memory + dashboards) */}
       <Section
-        id="platform-revenue-intel"
-        eyebrow="09 · REVENUE INTELLIGENCE"
+        id="platform-intelligence"
+        eyebrow="03 · INTELLIGENCE"
         title={c.revenueIntel.title}
         support={c.revenueIntel.lead}
         variant="surface-1"
       >
-        <div className="mt-14 grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+        <div id="platform-revenue-intel" className="mt-14 grid lg:grid-cols-12 gap-10 lg:gap-16 items-start scroll-mt-24">
           <div className="lg:col-span-5">
             <Reveal>
               <p className="body-lead" style={{ maxWidth: '42ch' }}>
                 {c.revenueIntel.body}
-              </p>
-              <p className="body-lead mt-6" style={{ maxWidth: '42ch' }}>
-                {c.revenueIntel.close}
               </p>
             </Reveal>
           </div>
@@ -389,17 +272,9 @@ export default function PlatformClient() {
             <IconChipGrid items={c.revenueIntel.items.slice(0, 10)} columns={2} />
           </div>
         </div>
-      </Section>
 
-      {/* 10 · GUEST MEMORY {#platform-guest-memory} + {#platform-guest-intel} */}
-      <Section
-        id="platform-guest-memory"
-        eyebrow="10 · GUEST MEMORY"
-        title={c.guestMemory.title}
-        support={c.guestMemory.lead}
-        variant="bg"
-      >
-        <div className="mt-14 grid lg:grid-cols-2 gap-12 lg:gap-16">
+        {/* who the guest is — memory and intent */}
+        <div id="platform-guest-memory" className="mt-16 grid lg:grid-cols-2 gap-12 lg:gap-16 scroll-mt-24">
           <div>
             <Reveal>
               <p className="body-lead mb-6" style={{ color: 'var(--text)' }}>
@@ -407,11 +282,6 @@ export default function PlatformClient() {
               </p>
             </Reveal>
             <IconChipGrid items={c.guestMemory.items} columns={2} />
-            <Reveal>
-              <p className="body-lead mt-8" style={{ maxWidth: '44ch' }}>
-                {c.guestMemory.close}
-              </p>
-            </Reveal>
           </div>
           <div id="platform-guest-intel">
             <Reveal>
@@ -421,125 +291,60 @@ export default function PlatformClient() {
               </p>
             </Reveal>
             <IconChipGrid items={c.guestIntel.items} columns={2} />
-            <Reveal>
-              <p className="body-lead mt-8" style={{ maxWidth: '44ch' }}>
-                {c.guestIntel.close}
-              </p>
-            </Reveal>
           </div>
         </div>
-      </Section>
 
-      {/* 11 · DASHBOARDS {#platform-dashboards} — the command centre */}
-      <Section
-        id="platform-dashboards"
-        eyebrow="11 · DASHBOARDS"
-        title={c.dashboards.title}
-        support={c.dashboards.lead}
-        variant="surface-1"
-      >
-        <div className="mt-14 grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          <div className="lg:col-span-5">
-            <Reveal>
-              <div className="eyebrow eyebrow-accent mb-4">{c.dashboards.monitorLead}</div>
-            </Reveal>
-            <IconChipGrid items={c.dashboards.items.slice(0, 10)} columns={2} />
+        {/* the command centre */}
+        <div id="platform-dashboards" className="mt-16 scroll-mt-24">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            <div className="lg:col-span-5">
+              <Reveal>
+                <div className="eyebrow eyebrow-accent mb-4">{c.dashboards.monitorLead}</div>
+              </Reveal>
+              <IconChipGrid items={c.dashboards.items.slice(0, 10)} columns={2} />
+            </div>
+            {/* {#dashboards-resolution} — NEEDS CONFIRM on the 91/9 split */}
+            <div id="dashboards-resolution" className="lg:col-span-7">
+              <DashboardMockup
+                title={c.dashboard.title}
+                resolvedPct={91}
+                escalatedPct={9}
+                resolvedLabel={c.dashboard.resolvedLabel}
+                escalatedLabel={c.dashboard.escalatedLabel}
+                metrics={c.dashboard.metrics}
+                properties={c.dashboard.properties}
+              />
+            </div>
           </div>
-          {/* {#dashboards-resolution} — NEEDS CONFIRM on the 91/9 split */}
-          <div id="dashboards-resolution" className="lg:col-span-7">
-            <DashboardMockup
-              title={c.dashboard.title}
-              resolvedPct={91}
-              escalatedPct={9}
-              resolvedLabel={c.dashboard.resolvedLabel}
-              escalatedLabel={c.dashboard.escalatedLabel}
-              metrics={c.dashboard.metrics}
-              properties={c.dashboard.properties}
-            />
-          </div>
-        </div>
-        <div className="mt-12 grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-          <div className="lg:col-span-6">
-            <Reveal>
-              <p className="body-lead" style={{ maxWidth: '46ch' }}>
-                {c.resolution.close}
-              </p>
-            </Reveal>
-          </div>
-          <div className="lg:col-span-6">
+          <div className="mt-12">
             <Beats lines={c.dashboards.close} size="lg" />
           </div>
         </div>
       </Section>
 
-      {/* 12 · MULTI-PROPERTY {#platform-multi-property} */}
-      <Section
-        id="platform-multi-property"
-        eyebrow="12 · MULTI-PROPERTY"
-        title={c.multiProperty.title}
-        variant="bg"
-      
-        tight>
-        {/* Canonical on Enterprise, which is the portfolio page. */}
-        <div className="mt-12">
-          <Teaser split lines={c.multiProperty.beats.slice(0, 2)} href="/enterprise#shared-intel" label={g.nav.enterprise}>
-            <IconChipGrid items={c.multiProperty.items.slice(0, 4)} columns={2} />
-          </Teaser>
-        </div>
-      </Section>
-
-      {/* 13 · ENTERPRISE-READY {#platform-enterprise-ready} */}
+      {/* 04 · ENTERPRISE-READY — a tease, not a summary (PRODUCT_ARCHITECTURE §8):
+          the enterprise question named, answered only on /enterprise */}
       <Section
         id="platform-enterprise-ready"
-        eyebrow="13 · ENTERPRISE-READY"
+        eyebrow="04 · ENTERPRISE-READY"
         title={c.enterpriseReady.title}
-        support={c.enterpriseReady.lead}
         variant="surface-2"
-      
-        tight>
-        {/* Canonical on Enterprise; a trust strip is enough here. */}
-        <div className="mt-12">
-          <Teaser split lines={[c.enterpriseReady.close]} href="/enterprise" label={g.nav.enterprise}>
-            <CapabilityStrip names={c.enterpriseReady.items} />
-          </Teaser>
-        </div>
-      </Section>
-
-      {/* 14 · COMPANION OS {#platform-companion-os} — capability surface */}
-      <Section
-        id="platform-companion-os"
-        eyebrow="14 · COMPANION OS"
-        title={c.companionOs.title}
-        variant="surface-3"
         tight
       >
-        <div className="mt-12">
-          <Teaser split lines={[c.companionOs.lead]} href="/companion-os" label={g.nav.companionOs}>
-            <CapabilityStrip names={COMPANION_OS_CAPABILITIES.map((x) => x.name)} />
-          </Teaser>
+        <div id="platform-multi-property" className="mt-10 scroll-mt-24">
+          <Teaser split lines={[c.enterpriseReady.close]} href="/enterprise" label={g.nav.enterprise} />
         </div>
-        <div className="mt-14">
-          <Beats lines={c.companionOs.close} size="lg" />
-        </div>
-        <Reveal>
-          <div className="mt-10">
-            <AxionariMark />
-          </div>
-        </Reveal>
       </Section>
 
-      {/* 15 · NEXT STEP {#platform-final-cta} — warm media band */}
+      {/* 05 · NEXT STEP {#platform-final-cta} — warm media band */}
       <MediaBed poster="/assets/img/hero-poolside.webp" scrim={0.72}>
         <section id="platform-final-cta" className="py-24 md:py-36">
           <div className="container-rc">
             <Reveal>
-              <div className="eyebrow eyebrow-accent mb-5">15 · NEXT STEP</div>
+              <div className="eyebrow eyebrow-accent mb-5">05 · NEXT STEP</div>
               <h2 className="heading-section" style={{ color: 'var(--text)', maxWidth: '18ch' }}>
                 {c.finalCta.title}
               </h2>
-              <p className="body-lead mt-8" style={{ maxWidth: '52ch' }}>
-                {c.finalCta.body}
-              </p>
             </Reveal>
             <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-x-10">
               {c.finalCta.beats.map((b) => (
@@ -551,12 +356,6 @@ export default function PlatformClient() {
               ))}
             </div>
             <Reveal>
-              <p
-                className="font-serif mt-10"
-                style={{ fontSize: 'clamp(1.2rem, 2vw, 1.6rem)', fontWeight: 530, color: 'var(--text)' }}
-              >
-                {c.finalCta.platform}
-              </p>
               <div className="mt-10">
                 <Link href="/demo" className="btn-primary">
                   {c.finalCta.cta}
@@ -567,7 +366,6 @@ export default function PlatformClient() {
         </section>
       </MediaBed>
 
-      <PersistentCTA />
       <SiteFooter />
     </main>
   )

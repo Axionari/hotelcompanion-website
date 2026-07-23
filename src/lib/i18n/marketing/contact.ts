@@ -58,31 +58,6 @@ const en = {
     body: 'Rather speak with us directly? Book a personalized demonstration with one of our hospitality specialists.',
     cta: 'Book a Demo',
   },
-  faq: {
-    title: 'Frequently Asked Questions',
-    items: [
-      {
-        q: 'How quickly can we expect a response?',
-        a: 'We aim to respond to all inquiries within one business day.',
-      },
-      {
-        q: 'Do you work with independent hotels?',
-        a: 'Yes. We work with boutique hotels, independent properties, resorts, luxury hotels, and multi-property groups.',
-      },
-      {
-        q: 'Can we start with a pilot?',
-        a: 'Absolutely. Many organizations begin with a pilot deployment before expanding across additional properties.',
-      },
-      {
-        q: 'Do you support international hotels?',
-        a: 'Yes. Hotel Companion is designed for multilingual hospitality environments and global operations.',
-      },
-      {
-        q: 'Are you currently accepting design partners?',
-        a: 'Yes. We’re working closely with a limited number of forward-thinking hospitality organizations to shape the future of Guest Intelligence.',
-      },
-    ],
-  },
   founding: {
     title: 'Join the Founding Partner Program',
     body:
@@ -164,31 +139,6 @@ const es: typeof en = {
     title: 'Agenda una Conversación',
     body: '¿Prefieres hablar directamente con nosotros? Agenda una demostración personalizada con uno de nuestros especialistas en hospitalidad.',
     cta: 'Agenda una Demo',
-  },
-  faq: {
-    title: 'Preguntas Frecuentes',
-    items: [
-      {
-        q: '¿Qué tan rápido podemos esperar respuesta?',
-        a: 'Buscamos responder todas las consultas en un día hábil.',
-      },
-      {
-        q: '¿Trabajan con hoteles independientes?',
-        a: 'Sí. Trabajamos con hoteles boutique, propiedades independientes, resorts, hoteles de lujo y grupos multipropiedad.',
-      },
-      {
-        q: '¿Podemos empezar con un piloto?',
-        a: 'Por supuesto. Muchas organizaciones comienzan con un despliegue piloto antes de expandirse a más propiedades.',
-      },
-      {
-        q: '¿Dan soporte a hoteles internacionales?',
-        a: 'Sí. Hotel Companion está diseñado para entornos multilingües y operaciones globales.',
-      },
-      {
-        q: '¿Están aceptando socios de diseño actualmente?',
-        a: 'Sí. Trabajamos de cerca con un número limitado de organizaciones de hospitalidad visionarias para dar forma al futuro de la Inteligencia de Huéspedes.',
-      },
-    ],
   },
   founding: {
     title: 'Únete al Programa de Socios Fundadores',

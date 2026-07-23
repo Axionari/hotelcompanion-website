@@ -23,8 +23,6 @@ const en = {
       'Every industry has unique workflows, knowledge, and customer expectations.',
       'Yet they all require the same underlying capabilities.',
     ],
-    capabilities: 'Understanding. Reasoning. Memory. Coordination. Execution.',
-    coda: 'Companion OS provides that foundation.',
   },
   onePlatform: {
     title: 'One Platform. Industry Intelligence.',
@@ -93,14 +91,6 @@ const en = {
         'Conversation should lead directly to execution.',
         'Companion OS transforms requests into coordinated operational workflows.',
       ],
-      chain: [
-        'Guest request.',
-        'Correct department.',
-        'Correct information.',
-        'Correct action.',
-        'Completed experience.',
-      ],
-      after: ['Every Companion connects conversations with execution.'],
       coda: 'Nothing is lost. Nothing is forgotten. Everything is coordinated.',
     },
     {
@@ -122,16 +112,6 @@ const en = {
         'Understanding should reach leadership, not just the front line.',
         'Companion OS turns thousands of everyday conversations into executive intelligence.',
       ],
-      items: [
-        'Guest behavior.',
-        'Revenue opportunities.',
-        'Service demand.',
-        'Department performance.',
-        'Knowledge health.',
-        'Emerging trends.',
-        'Portfolio comparisons.',
-      ],
-      after: ['Not another dashboard to monitor.', 'Answers that lead to decisions.'],
       coda: 'Every conversation becomes measurable business intelligence.',
     },
     {
@@ -159,7 +139,6 @@ const en = {
     today: 'Today: Hotel Companion, Restaurant Companion.',
     tomorrow:
       'Tomorrow: Campus Companion, Hospital Companion, Retail Companion, Airport Companion, Destination Companion.',
-    body: 'And every future Companion built on the same intelligence platform.',
     coda: 'One platform. Many industries. Shared intelligence. Specialized expertise.',
   },
   axionari: {
@@ -173,9 +152,6 @@ const en = {
   finalCta: {
     title: 'Intelligence Shouldn’t Be Rebuilt for Every Industry.',
     subtitle: 'It should be shared.',
-    body:
-      'Companion OS gives every Companion the ability to understand, reason, remember, coordinate, and continuously improve—while each product specializes in the needs of its industry.',
-    platform: 'One Intelligence Platform. Unlimited Companions.',
     cta: 'Explore Hotel Companion',
   },
 }
@@ -202,8 +178,6 @@ const es: typeof en = {
       'Cada industria tiene flujos de trabajo, conocimiento y expectativas de cliente únicos.',
       'Sin embargo, todas requieren las mismas capacidades subyacentes.',
     ],
-    capabilities: 'Comprensión. Razonamiento. Memoria. Coordinación. Ejecución.',
-    coda: 'Companion OS proporciona esa base.',
   },
   onePlatform: {
     title: 'Una Plataforma. Inteligencia por Industria.',
@@ -272,14 +246,6 @@ const es: typeof en = {
         'La conversación debería llevar directamente a la ejecución.',
         'Companion OS transforma las solicitudes en flujos de trabajo operativos coordinados.',
       ],
-      chain: [
-        'Solicitud del huésped.',
-        'Departamento correcto.',
-        'Información correcta.',
-        'Acción correcta.',
-        'Experiencia completada.',
-      ],
-      after: ['Cada Companion conecta las conversaciones con la ejecución.'],
       coda: 'Nada se pierde. Nada se olvida. Todo se coordina.',
     },
     {
@@ -301,16 +267,6 @@ const es: typeof en = {
         'La comprensión debería llegar a la dirección, no solo a la primera línea.',
         'Companion OS convierte miles de conversaciones cotidianas en inteligencia ejecutiva.',
       ],
-      items: [
-        'Comportamiento del huésped.',
-        'Oportunidades de ingreso.',
-        'Demanda de servicios.',
-        'Desempeño por departamento.',
-        'Salud del conocimiento.',
-        'Tendencias emergentes.',
-        'Comparaciones entre propiedades.',
-      ],
-      after: ['No es otro tablero para monitorear.', 'Son respuestas que llevan a decisiones.'],
       coda: 'Cada conversación se convierte en inteligencia de negocio medible.',
     },
     {
@@ -338,7 +294,6 @@ const es: typeof en = {
     today: 'Hoy: Hotel Companion, Restaurant Companion.',
     tomorrow:
       'Mañana: Campus Companion, Hospital Companion, Retail Companion, Airport Companion, Destination Companion.',
-    body: 'Y cada futuro Companion construido sobre la misma plataforma de inteligencia.',
     coda: 'Una plataforma. Muchas industrias. Inteligencia compartida. Experiencia especializada.',
   },
   axionari: {
@@ -352,9 +307,6 @@ const es: typeof en = {
   finalCta: {
     title: 'La Inteligencia No Debería Reconstruirse para Cada Industria.',
     subtitle: 'Debería Compartirse.',
-    body:
-      'Companion OS le da a cada Companion la capacidad de entender, razonar, recordar, coordinar y mejorar continuamente—mientras cada producto se especializa en las necesidades de su industria.',
-    platform: 'Una Plataforma de Inteligencia. Companions Ilimitados.',
     cta: 'Explora Hotel Companion',
   },
 }

@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { Section } from '@/components/cds/Section'
 import { RhythmStack } from '@/components/cds/RhythmStack'
-import { Accordion } from '@/components/cds/blocks'
 import { Reveal } from '@/components/cds/Reveal'
 import { Lead, Coda, Card, CardText } from '@/components/cds/Prose'
 import { PageShell, PageHero } from '@/components/cds/PageShell'
@@ -57,41 +56,22 @@ export default function ContactClient() {
             </Card>
           ))}
         </div>
-      </Section>
-
-      {/* {#contact-hq} */}
-      <Section eyebrow="02 · HEADQUARTERS" title={c.hq.title} tight>
-        <div className="mt-6">
-          <Coda>{c.hq.line}</Coda>
-        </div>
-      </Section>
-
-      {/* {#contact-schedule} */}
-      <Section eyebrow="03 · SCHEDULE" title={c.schedule.title} variant="surface-1">
-        <div className="mt-6">
-          <Lead>{c.schedule.body}</Lead>
-        </div>
-        <Reveal>
-          <div className="mt-10">
-            <Link
-              href="/demo"
-              className="btn-primary"
-            >
-              {c.schedule.cta}
-            </Link>
+        {/* headquarters + scheduling fold into the conversation section
+            (PRODUCT_ARCHITECTURE §10 — one section, one idea) */}
+        <div id="contact-hq" className="mt-12 scroll-mt-24 grid md:grid-cols-2 gap-x-12 gap-y-6 items-baseline">
+          <div>
+            <div className="eyebrow mb-3">{c.hq.title}</div>
+            <Coda>{c.hq.line}</Coda>
           </div>
-        </Reveal>
-      </Section>
-
-      {/* {#contact-faq} */}
-      <Section eyebrow="04 · FAQ" title={c.faq.title}>
-        <div className="mt-12">
-          <Accordion items={c.faq.items} />
+          <div id="contact-schedule" className="scroll-mt-24">
+            <div className="eyebrow mb-3">{c.schedule.title}</div>
+            <Lead>{c.schedule.body}</Lead>
+          </div>
         </div>
       </Section>
 
       {/* {#contact-founding} — deep-linked from Home and the footer */}
-      <Section id="founding" eyebrow="05 · FOUNDING PARTNERS" title={c.founding.title} variant="surface-2">
+      <Section id="founding" eyebrow="02 · FOUNDING PARTNERS" title={c.founding.title} variant="surface-2">
         <div className="mt-8">
           <Lead>{c.founding.body}</Lead>
         </div>
@@ -119,7 +99,7 @@ export default function ContactClient() {
       </Section>
 
       {/* {#contact-closing} */}
-      <Section eyebrow="06 · CLOSING" title={c.closing.title} variant="surface-1">
+      <Section eyebrow="03 · CLOSING" title={c.closing.title} variant="surface-1">
         <div className="mt-8 flex flex-col gap-4">
           <Lead tone="primary">{c.closing.body1}</Lead>
           <Lead>{c.closing.body2}</Lead>
@@ -128,9 +108,10 @@ export default function ContactClient() {
           <div className="mt-10">
             <a
               href="mailto:hello@hotelcompanion.ai"
-              className="btn-primary"
+              className="font-sans transition-colors hover:text-[#d4824f]"
+              style={{ color: 'var(--accent)', fontWeight: 500, fontSize: 15 }}
             >
-              {c.closing.cta}
+              {c.closing.cta} →
             </a>
           </div>
         </Reveal>

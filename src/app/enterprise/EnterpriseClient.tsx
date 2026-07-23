@@ -4,32 +4,26 @@ import Link from 'next/link'
 import { ReactNode } from 'react'
 import { SiteNav } from '@/components/site-nav'
 import { SiteFooter } from '@/components/site-footer'
-import { Teaser, CapabilityStrip } from '@/components/cds/Teaser'
 import { Breather } from '@/components/cds/Breather'
 import { Section } from '@/components/cds/Section'
-import type { SectionVariant } from '@/components/cds/Section'
 import { Reveal } from '@/components/cds/Reveal'
-import { AxionariMark } from '@/components/cds/EndorsementMark'
-import { PersistentCTA } from '@/components/cds/PersistentCTA'
 import { MediaBed } from '@/components/cds/MediaBed'
 import { MultiAccentHeadline } from '@/components/cds/AccentHeadline'
-import {
-  IconChipGrid,
-  JourneyTimeline,
-  ConvergenceDiagram,
-  DashboardMockup,
-} from '@/components/cds/blocks'
-import { COMPANION_OS_CAPABILITIES } from '@/lib/capabilities'
+import { openLiveDemo } from '@/components/cds/LiveDemoModal'
+import { IconChipGrid, JourneyTimeline, ConvergenceDiagram } from '@/components/cds/blocks'
 import { useCopy } from '@/lib/i18n/useCopy'
-import { globalCopy } from '@/lib/i18n/marketing/global'
 import { enterpriseCopy } from '@/lib/i18n/marketing/enterprise'
+import { liveDemoCopy } from '@/lib/i18n/marketing/liveDemo'
 import { accents } from '@/lib/i18n/marketing/accents'
 
 /**
- * /enterprise — composed to Restaurant Companion level (Level-Up plan P3,
- * Design & Interaction Spec §5). Left-aligned throughout, card-less by default,
- * every section carrying a visual. This page runs the warmest banding on the
- * site (surface-3/4/5 dominant), per the spec.
+ * /enterprise — PRODUCT_ARCHITECTURE §5/§10: this page removes risk and
+ * answers one question, "Can my organization trust and deploy this?", in six
+ * sections: Hero · Shared intelligence (multi-property) · Trust architecture
+ * (security + governance + administration) · Intelligence for operators ·
+ * Deployment & fit (integration + boundaries + deploy + scale) · Next step.
+ * Dashboards live on /platform (§7 — Silent here); Companion OS is Silent
+ * here (footer carries the endorsement). Old section ids survive as anchors.
  *
  * Approved copy is never edited here: long noun-runs inside `body` lines are
  * only *rendered* differently (chips / timeline), never rewritten.
@@ -53,25 +47,8 @@ const RUN_INDEX: Record<string, number> = {
   governance: 1,
   'operational-intel': 2,
   'commercial-intel': 2,
-  dashboards: 2,
   integrates: 2,
   deploy: 2,
-}
-
-/** Ambient banding — warmest ladder on the site; no two neighbours share a step. */
-const BANDING: Record<string, SectionVariant> = {
-  'shared-intel': 'surface-3',
-  'multi-property': 'surface-4',
-  knowledge: 'surface-3',
-  admin: 'surface-4',
-  secure: 'surface-3',
-  governance: 'surface-4',
-  'operational-intel': 'surface-3',
-  'commercial-intel': 'surface-4',
-  dashboards: 'surface-2',
-  integrates: 'surface-4',
-  deploy: 'surface-4',
-  grow: 'surface-3',
 }
 
 function Coda({ children }: { children: ReactNode }) {
@@ -91,62 +68,16 @@ function Coda({ children }: { children: ReactNode }) {
   )
 }
 
-/** The default enterprise shape: text left (or right), visual opposite. */
-function Block({
-  id,
-  eyebrow,
-  title,
-  body,
-  coda,
-  visual,
-  variant,
-  reverse = false,
-}: {
-  id: string
-  eyebrow: string
-  title: string
-  body: ReadonlyArray<string>
-  coda: string
-  visual: ReactNode
-  variant: SectionVariant
-  reverse?: boolean
-}) {
-  return (
-    <Section id={id} variant={variant}>
-      <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-        <div className={`lg:col-span-6 ${reverse ? 'lg:order-2' : ''}`}>
-          <Reveal>
-            <div className="eyebrow eyebrow-accent mb-5">{eyebrow}</div>
-            <h2 className="heading-section" style={{ color: 'var(--text)', maxWidth: '20ch' }}>
-              {title}
-            </h2>
-            <div className="mt-6 flex flex-col gap-4">
-              {body.map((line, i) => (
-                <p key={i} className="body-lead" style={{ maxWidth: '52ch' }}>
-                  {line}
-                </p>
-              ))}
-            </div>
-            <Coda>{coda}</Coda>
-          </Reveal>
-        </div>
-        <div className={`lg:col-span-6 ${reverse ? 'lg:order-1' : ''}`}>{visual}</div>
-      </div>
-    </Section>
-  )
-}
-
 export default function EnterpriseClient() {
   const c = useCopy(enterpriseCopy)
-  const g = useCopy(globalCopy)
   const a = useCopy(accents)
+  const demo = useCopy(liveDemoCopy)
 
   const byId = (id: string) => c.sections.find((s) => s.id === id)!
-  const dashboards = byId('dashboards')
   const deploy = byId('deploy')
   const grow = byId('grow')
 
-  /** Prose lines for a section — the noun-run line is rendered as the visual instead. */
+  /** Prose lines for a section — the noun-run line is rendered as chips instead. */
   const prose = (id: string) => {
     const s = byId(id)
     const run = RUN_INDEX[id]
@@ -154,21 +85,19 @@ export default function EnterpriseClient() {
   }
   const run = (id: string) => nounRun(byId(id).body[RUN_INDEX[id]])
 
-  /** Standard two-column block driven by the section's own noun-run. */
-  const chipBlock = (id: string, reverse: boolean) => {
+  /** A former standalone band, now a titled column inside a merged section. */
+  const column = (id: string) => {
     const s = byId(id)
     return (
-      <Block
-        key={id}
-        id={id}
-        eyebrow={s.eyebrow}
-        title={s.title}
-        body={prose(id)}
-        coda={s.coda}
-        variant={BANDING[id]}
-        reverse={reverse}
-        visual={<IconChipGrid items={run(id).slice(0, 10)} columns={2} />}
-      />
+      <div id={id} className="scroll-mt-24">
+        <div className="font-serif mb-2" style={{ fontSize: '1.35rem', fontWeight: 530, color: 'var(--text)' }}>
+          {s.title}
+        </div>
+        <p className="body-lead mb-6" style={{ maxWidth: '40ch' }}>
+          {prose(id)[0]}
+        </p>
+        <IconChipGrid items={run(id).slice(0, 8)} columns={2} />
+      </div>
     )
   }
 
@@ -197,12 +126,9 @@ export default function EnterpriseClient() {
                   <Link href="/demo" className="btn-primary">
                     {c.finalCta.cta}
                   </Link>
-                  <Link href="/companion-os" className="btn-secondary">
-                    {c.companionOs.title}
-                  </Link>
-                </div>
-                <div className="mt-10">
-                  <AxionariMark />
+                  <button type="button" onClick={openLiveDemo} className="btn-secondary">
+                    {demo.open}
+                  </button>
                 </div>
               </div>
             </div>
@@ -217,180 +143,143 @@ export default function EnterpriseClient() {
         </div>
       </div>
 
-      {/* 01 · SHARED INTELLIGENCE {#shared-intel} — convergence diagram */}
-      <Block
-        id="shared-intel"
-        eyebrow={byId('shared-intel').eyebrow}
-        title={byId('shared-intel').title}
-        body={byId('shared-intel').body}
-        coda={byId('shared-intel').coda}
-        variant={BANDING['shared-intel']}
-        visual={<ConvergenceDiagram inputs={c.sharedIntel.inputs} nodeLabel={c.sharedIntel.node} />}
-      />
-
-      {/* 02 … 08 — alternating two-column blocks, noun-runs as chip grids */}
-      {chipBlock('multi-property', true)}
-      {chipBlock('knowledge', false)}
-      {chipBlock('admin', true)}
-      {chipBlock('secure', false)}
-      {chipBlock('governance', true)}
-      {chipBlock('operational-intel', false)}
-      {chipBlock('commercial-intel', true)}
-
-      {/* 09 · DASHBOARDS {#dashboards} — the 91/9 command centre */}
-      <Section
-        id="dashboards"
-        eyebrow={dashboards.eyebrow}
-        title={dashboards.title}
-        support={prose('dashboards').join(' ')}
-        variant={BANDING.dashboards}
-      >
-        <div className="mt-14 grid lg:grid-cols-12 gap-12 lg:gap-14 items-center">
-          <div className="lg:col-span-5">
-            <IconChipGrid items={run('dashboards').slice(0, 10)} columns={2} />
+      {/* 01 · SHARED INTELLIGENCE {#shared-intel} — one brain across the
+          portfolio (merged: shared-intel + multi-property + knowledge) */}
+      <Section id="shared-intel" eyebrow={byId('shared-intel').eyebrow} variant="surface-3">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          <div className="lg:col-span-6">
+            <Reveal>
+              <h2 className="heading-section" style={{ color: 'var(--text)', maxWidth: '20ch' }}>
+                {byId('shared-intel').title}
+              </h2>
+              <div className="mt-6 flex flex-col gap-4">
+                {byId('shared-intel').body.map((line, i) => (
+                  <p key={i} className="body-lead" style={{ maxWidth: '52ch' }}>
+                    {line}
+                  </p>
+                ))}
+              </div>
+              <Coda>{byId('shared-intel').coda}</Coda>
+            </Reveal>
           </div>
-          <div className="lg:col-span-7">
-            {/* NEEDS CONFIRM: resolution rate — verify before public launch. */}
-            <DashboardMockup
-              title={c.dashboard.title}
-              resolvedPct={91}
-              escalatedPct={9}
-              resolvedLabel={c.dashboard.resolvedLabel}
-              escalatedLabel={c.dashboard.escalatedLabel}
-              metrics={c.dashboard.metrics}
-              properties={c.dashboard.properties}
-            />
+          <div className="lg:col-span-6">
+            <ConvergenceDiagram inputs={c.sharedIntel.inputs} nodeLabel={c.sharedIntel.node} />
           </div>
         </div>
-        <Reveal>
-          <div className="mt-12 flex flex-col gap-3" style={{ maxWidth: '56ch' }}>
-            <p className="body-lead" style={{ color: 'var(--text)' }}>
-              {c.resolution.resolved}
-            </p>
-            <p className="body-lead">{c.resolution.escalated}</p>
-            <p className="body-lead">{c.resolution.close}</p>
-          </div>
-          <Coda>{dashboards.coda}</Coda>
-        </Reveal>
+        <div className="mt-16 grid lg:grid-cols-2 gap-12 lg:gap-16">
+          {column('multi-property')}
+          {column('knowledge')}
+        </div>
       </Section>
 
-      {/* 10 · INTEGRATION {#integrates} */}
-      {chipBlock('integrates', false)}
+      {/* 02 · TRUST ARCHITECTURE {#secure} — the page's centerpiece
+          (merged: secure + governance + admin; all content kept) */}
+      <Section id="secure" eyebrow={byId('secure').eyebrow.replace(/^\d+/, '02')} title={byId('secure').title} support={prose('secure')[0]} variant="surface-4">
+        <div className="mt-14 grid lg:grid-cols-3 gap-12 lg:gap-14">
+          <div className="scroll-mt-24">
+            <IconChipGrid items={run('secure').slice(0, 8)} columns={2} />
+            <Coda>{byId('secure').coda}</Coda>
+          </div>
+          {column('governance')}
+          {column('admin')}
+        </div>
+      </Section>
 
-      {/* 11 · WHAT IT IS NOT {#what-it-is-not} — the "Not a…" quadrant.
-          Deep-linked from the Home teaser as /enterprise#what-it-is-not. */}
-      <Breather id="band-enterprise-lagoon" image="/assets/breathers/waterfall-lagoon.webp" />
-
+      {/* 03 · INTELLIGENCE FOR OPERATORS (merged: operational + commercial;
+          dashboards are Platform's — Silent here) */}
       <Section
-        id="what-it-is-not"
-        eyebrow="11 · WHAT IT IS NOT"
-        title={c.whatItIsNot.title}
+        id="operational-intel"
+        eyebrow={byId('operational-intel').eyebrow.replace(/^\d+/, '03')}
+        title={byId('operational-intel').title}
+        support={prose('operational-intel')[0]}
         variant="surface-3"
       >
-        <Reveal>
-          <div className="mt-8 flex flex-col gap-4" style={{ maxWidth: '58ch' }}>
-            {c.whatItIsNot.lead.map((line, i) => (
-              <p key={i} className="body-lead" style={i === 0 ? { color: 'var(--text)' } : undefined}>
-                {line}
-              </p>
-            ))}
+        <div className="mt-14 grid lg:grid-cols-2 gap-12 lg:gap-16">
+          <div>
+            <IconChipGrid items={run('operational-intel').slice(0, 8)} columns={2} />
+            <Coda>{byId('operational-intel').coda}</Coda>
           </div>
-        </Reveal>
-        <div className="mt-14 grid sm:grid-cols-2" style={{ borderTop: '1px solid var(--border-soft)' }}>
-          {c.whatItIsNot.items.map((it, i) => (
-            <Reveal key={it.name} delay={Math.min(i, 4) * 45}>
-              <div
-                className={`h-full py-9 ${i % 2 === 1 ? 'sm:border-l sm:pl-10' : 'sm:pr-10'}`}
-                style={{ borderBottom: '1px solid var(--border-soft)', borderLeftColor: 'var(--border-soft)' }}
-              >
-                <div className="eyebrow eyebrow-accent mb-3">{String(i + 1).padStart(2, '0')}</div>
-                <div className="font-serif" style={{ fontSize: '1.35rem', fontWeight: 530, color: 'var(--text)' }}>
-                  {it.name}
-                </div>
-                <p
-                  className="font-sans mt-2.5"
-                  style={{ fontSize: '15px', lineHeight: 1.65, color: 'var(--text-dim)', maxWidth: '36ch' }}
-                >
-                  {it.desc}
+          {column('commercial-intel')}
+        </div>
+      </Section>
+
+      <Breather id="band-enterprise-lagoon" image="/assets/breathers/waterfall-lagoon.webp" />
+
+      {/* 04 · DEPLOYMENT & FIT — it fits without risk
+          (merged: integrates + what-it-is-not + deploy + grow) */}
+      <Section
+        id="integrates"
+        eyebrow={byId('integrates').eyebrow.replace(/^\d+/, '04')}
+        title={byId('integrates').title}
+        support={prose('integrates')[0]}
+        variant="surface-3"
+      >
+        <div className="mt-12">
+          <IconChipGrid items={run('integrates').slice(0, 10)} columns={2} />
+        </div>
+
+        {/* the boundaries — deep-linked from around the site */}
+        <div id="what-it-is-not" className="mt-16 scroll-mt-24">
+          <Reveal>
+            <div className="flex flex-col gap-4" style={{ maxWidth: '58ch' }}>
+              {c.whatItIsNot.lead.map((line, i) => (
+                <p key={i} className="body-lead" style={i === 0 ? { color: 'var(--text)' } : undefined}>
+                  {line}
                 </p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-        <Reveal>
-          <div className="mt-12">
-            {c.whatItIsNot.close.map((line) => (
-              <p
-                key={line}
-                className="font-serif"
-                style={{
-                  fontSize: 'clamp(1.25rem, 2.2vw, 1.7rem)',
-                  fontWeight: 530,
-                  lineHeight: 1.3,
-                  color: 'var(--text)',
-                  maxWidth: '32ch',
-                }}
-              >
-                {line}
-              </p>
+              ))}
+            </div>
+          </Reveal>
+          <div className="mt-10 grid sm:grid-cols-2" style={{ borderTop: '1px solid var(--border-soft)' }}>
+            {c.whatItIsNot.items.map((it, i) => (
+              <Reveal key={it.name} delay={Math.min(i, 4) * 45}>
+                <div
+                  className={`h-full py-9 ${i % 2 === 1 ? 'sm:border-l sm:pl-10' : 'sm:pr-10'}`}
+                  style={{ borderBottom: '1px solid var(--border-soft)', borderLeftColor: 'var(--border-soft)' }}
+                >
+                  <div className="eyebrow eyebrow-accent mb-3">{String(i + 1).padStart(2, '0')}</div>
+                  <div className="font-serif" style={{ fontSize: '1.35rem', fontWeight: 530, color: 'var(--text)' }}>
+                    {it.name}
+                  </div>
+                  <p
+                    className="font-sans mt-2.5"
+                    style={{ fontSize: '15px', lineHeight: 1.65, color: 'var(--text-dim)', maxWidth: '36ch' }}
+                  >
+                    {it.desc}
+                  </p>
+                </div>
+              </Reveal>
             ))}
           </div>
-        </Reveal>
-      </Section>
+        </div>
 
-      {/* 12 · DEPLOYMENT {#deploy} — numbered deploy timeline */}
-      <Section
-        id="deploy"
-        eyebrow={deploy.eyebrow}
-        title={deploy.title}
-        support={prose('deploy').join(' ')}
-        variant={BANDING.deploy}
-      >
-        <div className="mt-14">
+        {/* live in days — the mechanics the homepage withheld */}
+        <div id="deploy" className="mt-16 scroll-mt-24">
+          <Reveal>
+            <p className="body-lead mb-10" style={{ color: 'var(--text)', maxWidth: '52ch' }}>
+              {prose('deploy')[0]}
+            </p>
+          </Reveal>
           <JourneyTimeline stages={run('deploy').map((name) => ({ name, body: '' }))} columns={5} />
+          <Reveal>
+            <Coda>{deploy.coda}</Coda>
+          </Reveal>
         </div>
-        <Reveal>
-          <Coda>{deploy.coda}</Coda>
-        </Reveal>
-      </Section>
 
-      {/* 13 · SCALE {#grow} — the scale ladder */}
-      <Section id="grow" eyebrow={grow.eyebrow} title={grow.title} support={grow.body[1]} variant={BANDING.grow}>
-        <div className="mt-14">
+        {/* and it grows with the portfolio */}
+        <div id="grow" className="mt-16 scroll-mt-24">
           <JourneyTimeline stages={nounRun(grow.body[0]).map((name) => ({ name, body: '' }))} columns={3} />
+          <Reveal>
+            <Coda>{grow.coda}</Coda>
+          </Reveal>
         </div>
-        <Reveal>
-          <Coda>{grow.coda}</Coda>
-        </Reveal>
       </Section>
 
-      {/* 14 · COMPANION OS {#enterprise-companion-os} — capability surface */}
-      <Section
-        id="enterprise-companion-os"
-        eyebrow="14 · COMPANION OS"
-        title={c.companionOs.title}
-        support={c.companionOs.lead}
-        variant="surface-5"
-      >
-        <div className="mt-14">
-          <Teaser lines={[]} href="/companion-os" label={g.nav.companionOs}>
-            <CapabilityStrip names={COMPANION_OS_CAPABILITIES.map((x) => x.name)} />
-          </Teaser>
-        </div>
-        <Reveal>
-          <Coda>{c.companionOs.close}</Coda>
-          <div className="mt-8">
-            <AxionariMark />
-          </div>
-        </Reveal>
-      </Section>
-
-      {/* 15 · NEXT STEP {#enterprise-final-cta} — warm media band */}
+      {/* 05 · NEXT STEP {#enterprise-final-cta} — warm media band */}
       <MediaBed poster="/assets/img/company-reception.webp" scrim={0.72}>
         <section className="py-24 md:py-36">
           <div className="container-rc">
             <Reveal>
-              <div className="eyebrow eyebrow-accent mb-5">15 · NEXT STEP</div>
+              <div className="eyebrow eyebrow-accent mb-5">05 · NEXT STEP</div>
               <h2 className="heading-section" style={{ color: 'var(--text)', maxWidth: '20ch' }}>
                 {c.finalCta.title}
               </h2>
@@ -415,7 +304,6 @@ export default function EnterpriseClient() {
         </section>
       </MediaBed>
 
-      <PersistentCTA />
       <SiteFooter />
     </main>
   )

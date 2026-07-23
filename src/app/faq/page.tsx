@@ -1,35 +1,9 @@
-import type { Metadata } from 'next'
-import FaqClient from './FaqClient'
-import { faqPageCopy } from '@/lib/i18n/marketing/faqPage'
-import { homeCopy } from '@/lib/i18n/marketing/home'
+import { redirect } from 'next/navigation'
 
-export const metadata: Metadata = {
-  title: 'FAQ — Hotel Companion',
-  description:
-    'Frequently asked questions about Hotel Companion, the Voice-First Guest Intelligence Platform for Hotels.',
-}
-
-/* FAQPage JSON-LD (v3 Phase 1 {#12}): schema carries the full indexed set —
-   the four Q&As on this page plus the four kept on the homepage — in EN, the
-   language of the server-rendered HTML. */
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [...faqPageCopy.en.items, ...homeCopy.en.faq.items].map((item) => ({
-    '@type': 'Question',
-    name: item.q,
-    acceptedAnswer: { '@type': 'Answer', text: item.a },
-  })),
-}
-
+/* PRODUCT_ARCHITECTURE §10 (FAQ doctrine): the site's only FAQ is the
+   hesitation accordion under the demo form. Definitional questions are
+   answered by the site itself — a standalone FAQ page would mean the
+   website failed. This route survives only as a redirect. */
 export default function FaqPage() {
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <FaqClient />
-    </>
-  )
+  redirect('/demo#faq')
 }

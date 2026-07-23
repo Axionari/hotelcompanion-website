@@ -31,9 +31,7 @@ const en = {
     close: ['No commands.', 'No menus.', 'No learning curve.', 'Just conversation.'],
   },
   yourVoice: {
-    title: 'Speaks in Your Hotel’s Voice.',
     beats: ['Every hotel has a personality. Now your assistant does too.'],
-    voicesLead: 'Choose a voice, and every guest is met in your hotel’s authentic tone—from the first message.',
     /* One guest question, answered five ways — the voice-morph interaction. */
     morphQuestion: 'Where should we have dinner tonight?',
     morphDeviceLabel: 'MarAzul Riviera Maya',
@@ -64,12 +62,9 @@ const en = {
         reply: 'Almar is quiet at eight, with the water close by. Take your time deciding — I’ll hold a table for you.',
       },
     ],
-    body:
-      'Every response reflects your hospitality standards, communication style, and brand voice, creating a consistent guest experience across every interaction.',
     close: ['It doesn’t sound like AI.', 'It sounds like your hotel.'],
   },
   knowsProperty: {
-    title: 'Knows Everything About Your Property.',
     lead: 'Hotel Companion understands every detail of your operation.',
     items: [
       'Room categories.',
@@ -118,12 +113,8 @@ const en = {
       'Seasonal events',
       'Cultural attractions',
     ],
-    close:
-      'Every recommendation considers the guest’s interests, preferences, and context, creating experiences that feel personal rather than generic.',
   },
   reservations: {
-    title: 'Reservations Made Effortless.',
-    lead: 'Guests can instantly reserve experiences across your property.',
     items: [
       'Restaurants.',
       'Spa treatments.',
@@ -138,12 +129,8 @@ const en = {
       'Kids clubs.',
       'VIP experiences.',
     ],
-    close: ['No waiting.', 'No searching.', 'No phone calls.', 'Guests simply ask.'],
   },
   requestAction: {
-    title: 'Every Request Becomes Action.',
-    beats: ['Hotel Companion doesn’t stop at answering questions.', 'It coordinates execution.'],
-    body: 'Every guest request is automatically routed to the appropriate department with the right information.',
     /* Left-hand label on each routing-flow row. */
     routingFrom: 'Guest request',
     departments: [
@@ -180,12 +167,8 @@ const en = {
       'Retail.',
       'VIP services.',
     ],
-    close:
-      'Recommendations happen naturally within the conversation, making every suggestion feel like exceptional hospitality rather than a sales pitch.',
   },
   guestMemory: {
-    title: 'Guest Memory.',
-    lead: 'Great hospitality remembers.',
     body: 'Hotel Companion continuously builds a richer understanding of every returning guest.',
     items: [
       'Preferred room types.',
@@ -197,7 +180,6 @@ const en = {
       'Past stays.',
       'Previous conversations.',
     ],
-    close: 'Returning guests receive experiences that feel familiar from the very first interaction.',
   },
   guestIntel: {
     title: 'Guest Intelligence.',
@@ -213,11 +195,8 @@ const en = {
       'Operational friction.',
       'Commercial opportunities.',
     ],
-    close: 'Every interaction improves both the guest experience and the performance of your hotel.',
   },
   dashboards: {
-    title: 'Executive Dashboards.',
-    lead: 'Transform conversations into measurable business intelligence.',
     monitorLead: 'Monitor:',
     items: [
       'Guest activity.',
@@ -233,42 +212,11 @@ const en = {
     ],
     close: ['Don’t just understand what happened.', 'Understand why.'],
   },
-  multiProperty: {
-    title: 'Built for Multi-Property Groups.',
-    beats: [
-      'Operate every property from one intelligent platform.',
-      'Maintain corporate standards while preserving each hotel’s unique identity.',
-    ],
-    items: [
-      'Shared knowledge.',
-      'Property-specific knowledge.',
-      'Centralized governance.',
-      'Localized recommendations.',
-      'Portfolio-wide analytics.',
-    ],
-    close: ['One platform.', 'Every property.', 'Consistent hospitality at enterprise scale.'],
-  },
   enterpriseReady: {
     title: 'Enterprise-Ready.',
-    lead: 'Hotel Companion is built for professional hospitality organizations.',
-    items: [
-      'Role-based access.',
-      'Secure infrastructure.',
-      'Encrypted communications.',
-      'Enterprise governance.',
-      'Auditability.',
-      'Scalable architecture.',
-      'Privacy-first design.',
-    ],
     close: 'Ready for a single boutique hotel or a global hospitality portfolio.',
   },
-  companionOs: {
-    title: 'Powered by Companion OS.',
-    lead: 'Hotel Companion is built on Companion OS—the intelligence platform behind every Companion.',
-    close: ['One intelligence platform.', 'Every hotel.', 'Every guest.', 'Every conversation.'],
-  },
   notGenericAi: {
-    title: 'Generic AI Knows Everything About Everywhere. Yours Knows Your Hotel.',
     body: [
       'Ask a general-purpose AI about your spa hours.',
       'It will guess, invent an answer, or tell the guest to check your website.',
@@ -279,7 +227,6 @@ const en = {
       'They needed a conversation.',
     ],
     close: 'That is the difference between general intelligence and trained, contextual knowledge.',
-    coda: ['Knowledge is the foundation.', 'Understanding is what creates value.'],
   },
   lifecycle: {
     title: 'With Your Guests From Arrival to Review.',
@@ -297,12 +244,9 @@ const en = {
         body: 'A warm follow-up with a direct link to leave a review. Happy guests become public advocates.',
       },
     ],
-    close: ['One continuous relationship.', 'Every stage understood.'],
   },
   issueDetection: {
-    title: 'Never Miss a Guest Issue.',
     lead: 'A leak. A broken AC. No hot water.',
-    body: 'When a guest reports a problem, your team gets an instant alert with the room number and the guest’s exact words—no issue falls through the cracks at 2 AM.',
     features: [
       { name: 'Multilingual detection', desc: 'Recognizes maintenance and emergency intent in any language.' },
       { name: 'Room number captured', desc: 'Asks the guest for their room automatically.' },
@@ -363,36 +307,14 @@ const en = {
       },
     ],
   },
-  destinationExamples: {
-    lead: 'Your guests don’t just ask about your hotel.',
-    questions: [
-      'They ask where to watch the sunset.',
-      'Which beach has no seaweed this week.',
-      'Where the locals actually eat on a Tuesday.',
-      'Whether the pharmacy is open on Sunday morning.',
-    ],
-    close: [
-      'This knowledge never lived in any PMS.',
-      'Until now, it lived only in your best team member’s head—and walked out the door every time they clocked off.',
-    ],
-  },
-  resolution: {
-    /* NEEDS CONFIRM: resolution rate — verify before public launch. */
-    resolved: '91% resolved by the assistant.',
-    escalated: '9% escalated to your team—only what genuinely needs a human.',
-    close: 'Every question answered. Only the moments that need a person reach one.',
-  },
   finalCta: {
     title: 'Hospitality Runs on Conversations.',
-    body:
-      'Hotel Companion transforms every conversation into exceptional service, coordinated operations, and measurable business intelligence.',
     beats: [
       'Deliver unforgettable guest experiences.',
       'Increase ancillary revenue.',
       'Empower every department.',
       'Understand every interaction.',
     ],
-    platform: 'One Voice-First Guest Intelligence Platform.',
     cta: 'Book a Demo',
   },
 }
@@ -426,9 +348,7 @@ const es: typeof en = {
     close: ['Sin comandos.', 'Sin menús.', 'Sin curva de aprendizaje.', 'Solo conversación.'],
   },
   yourVoice: {
-    title: 'Habla con la Voz de Tu Hotel.',
     beats: ['Cada hotel tiene una personalidad. Ahora tu asistente también.'],
-    voicesLead: 'Elige una voz, y cada huésped es recibido con el tono auténtico de tu hotel—desde el primer mensaje.',
     /* Una sola pregunta del huésped, respondida de cinco formas. */
     morphQuestion: '¿Dónde deberíamos cenar esta noche?',
     morphDeviceLabel: 'MarAzul Riviera Maya',
@@ -459,12 +379,9 @@ const es: typeof en = {
         reply: 'Almar está tranquilo a las ocho, con el agua muy cerca. Tómate tu tiempo para decidir — te aparto una mesa.',
       },
     ],
-    body:
-      'Cada respuesta refleja tus estándares de hospitalidad, tu estilo de comunicación y la voz de tu marca, creando una experiencia consistente en cada interacción.',
     close: ['No suena como IA.', 'Suena como tu hotel.'],
   },
   knowsProperty: {
-    title: 'Conoce Todo Sobre Tu Propiedad.',
     lead: 'Hotel Companion entiende cada detalle de tu operación.',
     items: [
       'Categorías de habitación.',
@@ -513,12 +430,8 @@ const es: typeof en = {
       'Eventos de temporada',
       'Atracciones culturales',
     ],
-    close:
-      'Cada recomendación considera los intereses, las preferencias y el contexto del huésped, creando experiencias que se sienten personales, no genéricas.',
   },
   reservations: {
-    title: 'Reservaciones Sin Esfuerzo.',
-    lead: 'Los huéspedes pueden reservar experiencias al instante en toda tu propiedad.',
     items: [
       'Restaurantes.',
       'Tratamientos de spa.',
@@ -533,12 +446,8 @@ const es: typeof en = {
       'Clubes para niños.',
       'Experiencias VIP.',
     ],
-    close: ['Sin esperas.', 'Sin búsquedas.', 'Sin llamadas.', 'Los huéspedes simplemente preguntan.'],
   },
   requestAction: {
-    title: 'Cada Solicitud Se Convierte en Acción.',
-    beats: ['Hotel Companion no se detiene en responder preguntas.', 'Coordina la ejecución.'],
-    body: 'Cada solicitud del huésped se enruta automáticamente al departamento indicado con la información correcta.',
     /* Etiqueta izquierda de cada fila del flujo de enrutamiento. */
     routingFrom: 'Solicitud del huésped',
     departments: [
@@ -575,12 +484,8 @@ const es: typeof en = {
       'Retail.',
       'Servicios VIP.',
     ],
-    close:
-      'Las recomendaciones surgen de forma natural dentro de la conversación, haciendo que cada sugerencia se sienta como hospitalidad excepcional y no como una venta.',
   },
   guestMemory: {
-    title: 'Memoria del Huésped.',
-    lead: 'La gran hospitalidad recuerda.',
     body: 'Hotel Companion construye continuamente una comprensión más rica de cada huésped que regresa.',
     items: [
       'Tipos de habitación preferidos.',
@@ -592,7 +497,6 @@ const es: typeof en = {
       'Estancias anteriores.',
       'Conversaciones previas.',
     ],
-    close: 'Los huéspedes que regresan reciben experiencias que se sienten familiares desde la primera interacción.',
   },
   guestIntel: {
     title: 'Inteligencia del Huésped.',
@@ -608,11 +512,8 @@ const es: typeof en = {
       'Fricción operativa.',
       'Oportunidades comerciales.',
     ],
-    close: 'Cada interacción mejora tanto la experiencia del huésped como el desempeño de tu hotel.',
   },
   dashboards: {
-    title: 'Tableros Ejecutivos.',
-    lead: 'Transforma las conversaciones en inteligencia de negocio medible.',
     monitorLead: 'Monitorea:',
     items: [
       'Actividad de huéspedes.',
@@ -628,42 +529,11 @@ const es: typeof en = {
     ],
     close: ['No solo entiendas qué pasó.', 'Entiende por qué.'],
   },
-  multiProperty: {
-    title: 'Creado para Grupos Multipropiedad.',
-    beats: [
-      'Opera cada propiedad desde una sola plataforma inteligente.',
-      'Mantén los estándares corporativos mientras preservas la identidad única de cada hotel.',
-    ],
-    items: [
-      'Conocimiento compartido.',
-      'Conocimiento específico por propiedad.',
-      'Gobernanza centralizada.',
-      'Recomendaciones locales.',
-      'Analítica de todo el portafolio.',
-    ],
-    close: ['Una plataforma.', 'Cada propiedad.', 'Hospitalidad consistente a escala empresarial.'],
-  },
   enterpriseReady: {
     title: 'Listo para la Empresa.',
-    lead: 'Hotel Companion está creado para organizaciones hoteleras profesionales.',
-    items: [
-      'Acceso basado en roles.',
-      'Infraestructura segura.',
-      'Comunicaciones cifradas.',
-      'Gobernanza empresarial.',
-      'Auditabilidad.',
-      'Arquitectura escalable.',
-      'Diseño centrado en la privacidad.',
-    ],
     close: 'Listo para un solo hotel boutique o para un portafolio hotelero global.',
   },
-  companionOs: {
-    title: 'Impulsado por Companion OS.',
-    lead: 'Hotel Companion está construido sobre Companion OS—la plataforma de inteligencia detrás de cada Companion.',
-    close: ['Una plataforma de inteligencia.', 'Cada hotel.', 'Cada huésped.', 'Cada conversación.'],
-  },
   notGenericAi: {
-    title: 'La IA Genérica Sabe de Todo, de Todas Partes. La Tuya Conoce Tu Hotel.',
     body: [
       'Pregúntale a una IA de propósito general por los horarios de tu spa.',
       'Adivinará, inventará una respuesta o le dirá al huésped que revise tu sitio web.',
@@ -674,7 +544,6 @@ const es: typeof en = {
       'Necesitaba una conversación.',
     ],
     close: 'Esa es la diferencia entre la inteligencia general y el conocimiento entrenado y contextual.',
-    coda: ['El conocimiento es la base.', 'La comprensión es lo que crea valor.'],
   },
   lifecycle: {
     title: 'Con Tus Huéspedes Desde la Llegada Hasta la Reseña.',
@@ -692,12 +561,9 @@ const es: typeof en = {
         body: 'Un seguimiento cálido con un enlace directo para dejar una reseña. Los huéspedes felices se vuelven promotores públicos.',
       },
     ],
-    close: ['Una sola relación continua.', 'Cada etapa comprendida.'],
   },
   issueDetection: {
-    title: 'Nunca Pierdas un Problema del Huésped.',
     lead: 'Una fuga. Un aire acondicionado descompuesto. Sin agua caliente.',
-    body: 'Cuando un huésped reporta un problema, tu equipo recibe una alerta inmediata con el número de habitación y las palabras exactas del huésped—nada se pierde a las 2 de la mañana.',
     features: [
       { name: 'Detección multilingüe', desc: 'Reconoce la intención de mantenimiento y emergencia en cualquier idioma.' },
       { name: 'Número de habitación capturado', desc: 'Le pide al huésped su habitación automáticamente.' },
@@ -761,36 +627,14 @@ const es: typeof en = {
       },
     ],
   },
-  destinationExamples: {
-    lead: 'Tus huéspedes no solo preguntan por tu hotel.',
-    questions: [
-      'Preguntan dónde ver el atardecer.',
-      'Qué playa no tiene sargazo esta semana.',
-      'Dónde comen realmente los locales un martes.',
-      'Si la farmacia abre el domingo por la mañana.',
-    ],
-    close: [
-      'Ese conocimiento nunca vivió en ningún PMS.',
-      'Hasta ahora, vivía solo en la cabeza de tu mejor colaborador—y salía por la puerta cada vez que terminaba su turno.',
-    ],
-  },
-  resolution: {
-    /* NEEDS CONFIRM: resolution rate — verify before public launch. */
-    resolved: '91% resuelto por el asistente.',
-    escalated: '9% escalado a tu equipo—solo lo que genuinamente necesita a una persona.',
-    close: 'Cada pregunta respondida. Solo los momentos que necesitan a alguien llegan a alguien.',
-  },
   finalCta: {
     title: 'La Hospitalidad Funciona con Conversaciones.',
-    body:
-      'Hotel Companion transforma cada conversación en servicio excepcional, operaciones coordinadas e inteligencia de negocio medible.',
     beats: [
       'Brinda experiencias inolvidables.',
       'Aumenta el ingreso complementario.',
       'Empodera a cada departamento.',
       'Entiende cada interacción.',
     ],
-    platform: 'Una sola Plataforma de Inteligencia de Huéspedes por Voz.',
     cta: 'Agenda una Demo',
   },
 }

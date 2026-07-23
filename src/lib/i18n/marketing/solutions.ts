@@ -175,11 +175,6 @@ const en = {
       ],
     },
   ],
-  companionOs: {
-    title: 'One Intelligence Platform Behind Every Experience.',
-    lead: 'Every capability in Hotel Companion is powered by Companion OS.',
-    close: 'One platform. Every department. Every guest. Every conversation.',
-  },
   finalCta: {
     title: 'Hospitality Is a Team Sport.',
     body: 'When every department shares the same intelligence, every guest receives a better experience.',
@@ -368,11 +363,6 @@ const es: typeof en = {
       ],
     },
   ],
-  companionOs: {
-    title: 'Una Plataforma de Inteligencia Detrás de Cada Experiencia.',
-    lead: 'Cada capacidad de Hotel Companion está impulsada por Companion OS.',
-    close: 'Una plataforma. Cada departamento. Cada huésped. Cada conversación.',
-  },
   finalCta: {
     title: 'La Hospitalidad Es un Trabajo en Equipo.',
     body: 'Cuando cada departamento comparte la misma inteligencia, cada huésped recibe una mejor experiencia.',
