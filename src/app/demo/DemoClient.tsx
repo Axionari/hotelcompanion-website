@@ -7,6 +7,7 @@ import { Reveal } from '@/components/cds/Reveal'
 import { Accordion } from '@/components/cds/blocks'
 import { DemoForm } from '@/components/cds/DemoForm'
 import { openLiveDemo } from '@/components/cds/LiveDemoModal'
+import { LIVE_DEMO_ENABLED } from '@/lib/flags'
 import { ArrowFlow } from '@/components/v5/Diagrams'
 import {
   Em,
@@ -79,9 +80,11 @@ export default function DemoClient() {
               <a href="#form" className="btn-primary">
                 {c.hero.cta}
               </a>
-              <button type="button" onClick={openLiveDemo} className="btn-secondary">
-                {demo.open}
-              </button>
+              {LIVE_DEMO_ENABLED && (
+                <button type="button" onClick={openLiveDemo} className="btn-secondary">
+                  {demo.open}
+                </button>
+              )}
             </>
           }
         />

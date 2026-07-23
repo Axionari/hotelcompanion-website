@@ -8,6 +8,7 @@ import { globalCopy } from "@/lib/i18n/marketing/global";
 import LanguageToggle from "@/components/LanguageToggle";
 import { openLiveDemo } from "@/components/cds/LiveDemoModal";
 import { liveDemoCopy } from "@/lib/i18n/marketing/liveDemo";
+import { LIVE_DEMO_ENABLED } from "@/lib/flags";
 
 /* v3 G5: the Companion OS nav item is removed — the platform story lives in
    the section-08 band and on axionari.com. The /companion-os page remains. */
@@ -122,15 +123,17 @@ export function SiteNav() {
 
         {/* Desktop CTA */}
         <div className="hidden lg:flex items-center gap-3 xl:gap-4">
-          {/* The product itself, one click from every page */}
-          <button
-            type="button"
-            onClick={openLiveDemo}
-            className="hidden xl:inline-flex font-sans transition-colors hover:text-[#F7F6F1] whitespace-nowrap"
-            style={{ fontSize: "15px", color: "var(--accent)", minHeight: "44px" }}
-          >
-            {demo.open}
-          </button>
+          {/* The product itself, one click from every page (disabled for now) */}
+          {LIVE_DEMO_ENABLED && (
+            <button
+              type="button"
+              onClick={openLiveDemo}
+              className="hidden xl:inline-flex font-sans transition-colors hover:text-[#F7F6F1] whitespace-nowrap"
+              style={{ fontSize: "15px", color: "var(--accent)", minHeight: "44px" }}
+            >
+              {demo.open}
+            </button>
+          )}
           <Link
             href="/demo"
             className="btn-primary whitespace-nowrap flex-shrink-0"
@@ -182,16 +185,18 @@ export function SiteNav() {
             </Link>
           ))}
           <div className="flex flex-col gap-3 mt-4 pb-4">
-            <button
-              type="button"
-              onClick={() => {
-                close();
-                openLiveDemo();
-              }}
-              className="btn-secondary w-full"
-            >
-              {demo.open}
-            </button>
+            {LIVE_DEMO_ENABLED && (
+              <button
+                type="button"
+                onClick={() => {
+                  close();
+                  openLiveDemo();
+                }}
+                className="btn-secondary w-full"
+              >
+                {demo.open}
+              </button>
+            )}
             <Link
               href="/demo"
               onClick={close}

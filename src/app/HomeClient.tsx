@@ -13,6 +13,7 @@ import { FragmentScatter } from '@/components/v5/Diagrams'
 import { IntelligentLayer } from '@/components/v5/IntelligentLayer'
 import { AxionariMark } from '@/components/cds/EndorsementMark'
 import { openLiveDemo } from '@/components/cds/LiveDemoModal'
+import { LIVE_DEMO_ENABLED } from '@/lib/flags'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { v4Copy } from '@/lib/i18n/marketing/v4'
 import { homeCopy } from '@/lib/i18n/marketing/home'
@@ -111,7 +112,7 @@ export default function HomeClient() {
                 <p className="body-lead mt-7" style={{ maxWidth: '42ch' }}>{home.heroLead}</p>
                 <div className="mt-9 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                   <Link href="/demo" className="btn-primary">{g.nav.bookDemo}</Link>
-                  <button type="button" onClick={openLiveDemo} className="btn-secondary">{demo.open}</button>
+                  {LIVE_DEMO_ENABLED && <button type="button" onClick={openLiveDemo} className="btn-secondary">{demo.open}</button>}
                 </div>
                 <div className="mt-9"><AxionariMark /></div>
               </div>

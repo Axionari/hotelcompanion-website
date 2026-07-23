@@ -7,6 +7,7 @@ import { Reveal } from '@/components/cds/Reveal'
 import { Breather } from '@/components/cds/Breather'
 import { MediaBed } from '@/components/cds/MediaBed'
 import { openLiveDemo } from '@/components/cds/LiveDemoModal'
+import { LIVE_DEMO_ENABLED } from '@/lib/flags'
 import {
   SERIF,
   Em,
@@ -98,9 +99,11 @@ export default function EnterpriseClient() {
               <Link href="/demo" className="btn-primary">
                 {c.finalCta.cta}
               </Link>
-              <button type="button" onClick={openLiveDemo} className="btn-secondary">
-                {demo.open}
-              </button>
+              {LIVE_DEMO_ENABLED && (
+                <button type="button" onClick={openLiveDemo} className="btn-secondary">
+                  {demo.open}
+                </button>
+              )}
             </>
           }
         />
