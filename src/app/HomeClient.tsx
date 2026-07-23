@@ -208,8 +208,8 @@ export default function HomeClient() {
             <p className="body-lead mt-6" style={{ maxWidth: '52ch', marginInline: 'auto' }}>{home.tabletShowcase.caption}</p>
           </Reveal>
         </div>
-        <Reveal className="mt-16">
-          <div style={{ width: 'min(1400px, 92vw)', marginInline: 'auto' }}>
+        <Reveal className="mt-14">
+          <div style={{ width: 'min(910px, 92vw)', marginInline: 'auto' }}>
             <SuiteShowcase />
           </div>
         </Reveal>

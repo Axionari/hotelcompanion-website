@@ -121,7 +121,7 @@ const en = {
 
   loyalty: { title: 'Join the MarAzul Circle', note: 'Earn a free night on this stay — one tap' },
 
-  pills: { welcome: 'Welcome', browse: 'Browse', detail: 'Suite', cart: 'Your stay', payment: 'Pay', confirmed: 'Confirmed' },
+  pills: { welcome: 'Welcome', browse: 'Browse', detail: 'Suite', cart: 'Your stay', payment: 'Pay', confirmed: 'Confirmed', hint: 'The guest’s journey — tap any step' },
 }
 
 const es: typeof en = {
@@ -238,7 +238,7 @@ const es: typeof en = {
 
   loyalty: { title: 'Únete al MarAzul Circle', note: 'Gana una noche gratis en esta estancia — con un toque' },
 
-  pills: { welcome: 'Bienvenida', browse: 'Explorar', detail: 'Suite', cart: 'Tu estancia', payment: 'Pagar', confirmed: 'Confirmado' },
+  pills: { welcome: 'Bienvenida', browse: 'Explorar', detail: 'Suite', cart: 'Tu estancia', payment: 'Pagar', confirmed: 'Confirmado', hint: 'El recorrido del huésped — toca cualquier paso' },
 }
 
 export const suitesCopy: Localized<typeof en> = { en, es }

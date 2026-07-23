@@ -385,6 +385,22 @@ export function SuiteShowcase() {
 
   return (
     <div onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+      {/* step nav — above the screen; a segmented control the active step moves
+          through, so it reads as a clickable menu of the flow. */}
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, marginBottom: 'clamp(18px,2.2vw,30px)' }}>
+        <div className="v5-suite-tabs">
+          {phases.map((ph) => {
+            const on = ph.idx === i || (ph.idx === 5 && i === 6) || (ph.idx === 7 && i === 8) || (ph.idx === 2 && i === 4)
+            return (
+              <button key={ph.label} type="button" onClick={() => go(ph.idx)} className={`v5-suite-tab ${on ? 'on' : ''}`} aria-current={on}>
+                {ph.label}
+              </button>
+            )
+          })}
+        </div>
+        <span className="eyebrow" style={{ color: 'var(--text-faint)', fontSize: 11 }}>{c.pills.hint}</span>
+      </div>
+
       <div
         data-device-ui=""
         style={{ width: '100%', aspectRatio: '16 / 10', background: '#0C0B0A', border: '1px solid rgba(190,185,175,0.28)', borderRadius: 26, padding: 12, boxShadow: '0 60px 130px -34px rgba(0,0,0,0.85), 0 0 0 1px rgba(200,106,58,0.05)', boxSizing: 'border-box' }}
@@ -394,23 +410,6 @@ export function SuiteShowcase() {
             {FLOW[i].render(c)}
           </div>
         </div>
-      </div>
-
-      {/* phase pills */}
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'center', marginTop: 'clamp(16px,2vw,26px)' }}>
-        {phases.map((ph) => {
-          const on = ph.idx === i || (ph.idx === 5 && i === 6) || (ph.idx === 7 && i === 8) || (ph.idx === 2 && i === 4)
-          return (
-            <button
-              key={ph.label}
-              type="button"
-              onClick={() => go(ph.idx)}
-              style={{ fontFamily: SANS, fontSize: 'clamp(11px,1vw,13px)', fontWeight: on ? 600 : 500, color: on ? CREAM : 'var(--text-dim, rgba(242,233,218,0.6))', background: on ? 'rgba(200,106,58,0.14)' : 'transparent', border: `1px solid ${on ? 'rgba(200,106,58,0.6)' : 'var(--border-soft, rgba(243,236,226,0.14))'}`, borderRadius: 999, padding: '8px 17px', cursor: 'pointer', transition: 'all .35s var(--ease-standard)' }}
-            >
-              {ph.label}
-            </button>
-          )
-        })}
       </div>
     </div>
   )
