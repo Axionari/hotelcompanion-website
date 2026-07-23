@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
 import { useCopy } from "@/lib/i18n/useCopy";
 import { globalCopy } from "@/lib/i18n/marketing/global";
 import LanguageToggle from "@/components/LanguageToggle";
@@ -47,8 +46,6 @@ function FooterColumn({
 
 export function SiteFooter() {
   const { footer } = useCopy(globalCopy);
-  const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
 
   return (
     <footer style={{ background: "var(--surface-1)", borderTop: "1px solid var(--border)" }}>
@@ -72,56 +69,9 @@ export function SiteFooter() {
           />
         </div>
 
-        {/* Newsletter */}
-        <div className="mb-14 max-w-md">
-          <div className="eyebrow mb-3">{footer.newsletter.title}</div>
-          <p className="font-sans text-sm mb-4" style={{ color: "var(--text-secondary)" }}>
-            {footer.newsletter.body}
-          </p>
-          {subscribed ? (
-            <p className="font-sans text-sm" style={{ color: "var(--green)" }}>
-              {footer.newsletter.success}
-            </p>
-          ) : (
-            <form
-              className="flex gap-2"
-              onSubmit={(e) => {
-                e.preventDefault();
-                if (email.includes("@")) setSubscribed(true);
-              }}
-            >
-              <input
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder={footer.newsletter.placeholder}
-                aria-label={footer.newsletter.placeholder}
-                className="font-sans flex-1 text-sm px-4"
-                style={{
-                  background: "var(--surface-3)",
-                  border: "1px solid var(--border)",
-                  borderRadius: "8px",
-                  height: "44px",
-                  color: "var(--text)",
-                }}
-              />
-              <button
-                type="submit"
-                className="font-sans text-sm px-5 transition-colors hover:border-[rgba(201,106,58,0.5)]"
-                style={{
-                  border: "1px solid var(--border)",
-                  borderRadius: "8px",
-                  height: "44px",
-                  color: "var(--text-secondary)",
-                  background: "transparent",
-                }}
-              >
-                {footer.newsletter.submit}
-              </button>
-            </form>
-          )}
-        </div>
+        {/* Newsletter block removed: the form had no backend (it faked a success
+            state and dropped the address). Copy is retained in global.ts for
+            when a real subscribe endpoint exists. */}
 
         {/* {#footer}: one quiet family endorsement line (was two paragraphs). */}
         <div className="mb-14">
