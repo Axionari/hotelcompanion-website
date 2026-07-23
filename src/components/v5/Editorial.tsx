@@ -251,15 +251,14 @@ export function StatementCards({
 /** Quiet mono chips for enumerations (replaces the old dense icon grids). */
 export function QuietChips({ items }: { items: ReadonlyArray<string> }) {
   return (
-    <div className="flex flex-wrap gap-2.5">
+    <div className="flex flex-wrap gap-2 sm:gap-2.5">
       {items.map((chip) => (
         <span
           key={chip}
-          className="eyebrow"
+          className="eyebrow px-3.5 py-2 sm:px-[18px] sm:py-2.5"
           style={{
             border: '1px solid var(--chip-border, rgba(201,139,78,.3))',
             borderRadius: 999,
-            padding: '10px 18px',
             color: 'var(--text-dim)',
           }}
         >

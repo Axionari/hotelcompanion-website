@@ -226,8 +226,8 @@ export default function PlatformClient() {
         </div>
         <Reveal>
           <p
-            className="mt-12"
-            style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(20px, 2.2vw, 27px)', lineHeight: 1.35, color: 'var(--text)', maxWidth: '26ch' }}
+            className="mt-20 text-center"
+            style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(20px, 2.2vw, 27px)', lineHeight: 1.35, color: 'var(--text)', maxWidth: '26ch', marginInline: 'auto' }}
           >
             {c.requestAction.close.slice(1).join(' ')}
           </p>
