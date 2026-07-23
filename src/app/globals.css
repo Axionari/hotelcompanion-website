@@ -1271,3 +1271,43 @@ body {
   50% { opacity: 0.7; box-shadow: 0 0 0 5px rgba(45, 158, 107, 0); }
 }
 @media (prefers-reduced-motion: reduce) { .v5-live-dot { animation: none; } }
+
+/* ── Mobile: the tablet mockups must not stay locked to a landscape ratio.
+   On a phone a 16/10 frame is ~240px tall, so the absolutely-positioned
+   internals overflow and collide (orb rail over the status bar, suite copy
+   over the voice bar, rows spilling past the bezel). Go portrait so the
+   existing layout has room, let the step nav scroll instead of wrapping into
+   three ragged rows, and stack the multi-column screen bodies. */
+.tos-screen { aspect-ratio: 4 / 3; }
+.suite-frame { aspect-ratio: 16 / 10; }
+
+@media (max-width: 767px) {
+  /* A DEFINITE height (not aspect-ratio/min-height): the screens are absolutely
+     positioned for the cross-fade, so they contribute no intrinsic height and
+     the inner `height:100%` needs a definite parent to resolve against. 700px
+     fits the tallest screen (suite detail) with zero overflow. */
+  .suite-frame { aspect-ratio: auto; height: 700px; }
+
+  /* step nav → one horizontally scrollable row */
+  .v5-suite-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .v5-suite-tabs::-webkit-scrollbar { display: none; }
+  .v5-suite-tab { flex: 0 0 auto; white-space: nowrap; }
+
+  /* side-by-side screen bodies stack */
+  .suite-cols { grid-template-columns: 1fr !important; }
+  /* the suite photo is an absolutely-filled cell — stacked it has no intrinsic
+     height, so give it one or it collapses to a sliver. */
+  .suite-shot { min-height: 150px; }
+}
+
+@media (max-width: 640px) {
+  .tos-screen { aspect-ratio: 3 / 4; }
+}

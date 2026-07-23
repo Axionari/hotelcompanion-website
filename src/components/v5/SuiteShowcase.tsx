@@ -121,7 +121,7 @@ function BrowseScreen({ c }: { c: SuiteCopy }) {
         <span style={{ fontFamily: SERIF, fontWeight: 500, fontSize: 'clamp(20px,2.3vw,34px)', color: CREAM, lineHeight: 1 }}>{c.browseTitle}</span>
         <span style={{ ...MONO, fontSize: 'clamp(8px,0.8vw,11px)', letterSpacing: '.14em', color: 'rgba(242,233,218,0.5)' }}>{c.browseMeta}</span>
       </div>
-      <div style={{ marginTop: 'clamp(11px,1.5vw,20px)', flex: 1, minHeight: 0, display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 'clamp(9px,1.1vw,16px)' }}>
+      <div className="suite-cols" style={{ marginTop: 'clamp(11px,1.5vw,20px)', flex: 1, minHeight: 0, display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 'clamp(9px,1.1vw,16px)' }}>
         {c.list.map((s) => (
           <div key={s.key} style={{ position: 'relative', display: 'flex', flexDirection: 'column', borderRadius: 16, overflow: 'hidden', background: 'rgba(243,236,226,0.04)', border: `1px solid ${s.featured ? 'rgba(200,106,58,0.6)' : 'rgba(243,236,226,0.1)'}`, boxShadow: s.featured ? '0 0 40px -12px rgba(200,106,58,0.5)' : 'none' }}>
             <div style={{ position: 'relative', flex: 1, minHeight: 'clamp(80px,10vw,180px)' }}>
@@ -178,8 +178,8 @@ function DetailScreen({ c }: { c: SuiteCopy }) {
           )
         })}
       </div>
-      <div style={{ marginTop: 'clamp(10px,1.3vw,18px)', flex: 1, minHeight: 0, display: 'grid', gridTemplateColumns: '1.15fr 1fr', gap: 'clamp(14px,1.8vw,28px)' }}>
-        <div style={{ position: 'relative', borderRadius: 16, overflow: 'hidden' }}>
+      <div className="suite-cols" style={{ marginTop: 'clamp(10px,1.3vw,18px)', flex: 1, minHeight: 0, display: 'grid', gridTemplateColumns: '1.15fr 1fr', gap: 'clamp(14px,1.8vw,28px)' }}>
+        <div className="suite-shot" style={{ position: 'relative', borderRadius: 16, overflow: 'hidden' }}>
           {d.images.map((src, i) => (
             // eslint-disable-next-line @next/next/no-img-element
             <img key={src} alt={d.name} src={src} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: i === img ? 1 : 0, transition: 'opacity 0.9s var(--ease-standard)' }} />
@@ -490,7 +490,8 @@ export function SuiteShowcase() {
 
       <div
         data-device-ui=""
-        style={{ width: '100%', aspectRatio: '16 / 10', background: '#0C0B0A', border: '1px solid rgba(190,185,175,0.28)', borderRadius: 26, padding: 12, boxShadow: '0 60px 130px -34px rgba(0,0,0,0.85), 0 0 0 1px rgba(200,106,58,0.05)', boxSizing: 'border-box' }}
+        className="suite-frame"
+        style={{ width: '100%', background: '#0C0B0A', border: '1px solid rgba(190,185,175,0.28)', borderRadius: 26, padding: 12, boxShadow: '0 60px 130px -34px rgba(0,0,0,0.85), 0 0 0 1px rgba(200,106,58,0.05)', boxSizing: 'border-box' }}
       >
         <div style={{ height: '100%', borderRadius: 18, overflow: 'hidden', background: 'radial-gradient(120% 100% at 30% 0%, #17130f 0%, #100e0c 60%, #0c0b0a 100%)', display: 'flex', flexDirection: 'column' }}>
           <div style={{ position: 'relative', flex: 1, minHeight: 0 }}>

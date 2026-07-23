@@ -28,10 +28,11 @@ const FRAME = {
   boxShadow: '0 40px 90px -30px rgba(0,0,0,0.85), 0 0 0 1px rgba(200,106,58,0.05)',
 } as const
 
+/* aspect-ratio lives in CSS (.tos-screen) so phones can go portrait — a 4/3
+   frame at 390px is ~290px tall and the absolute internals collide. */
 const SCREEN = {
   borderRadius: 'calc(var(--device-radius) - var(--bezel))',
   background: 'linear-gradient(168deg, #191410 0%, #12100e 58%, #0f0d0c 100%)',
-  aspectRatio: '4 / 3',
 } as const
 
 /** Photo inside the UI: rounded, faint inner border, slow Ken-Burns. */
@@ -471,7 +472,7 @@ export function TabletOS({
         }}
       />
       <div className="relative mx-auto w-full" style={{ maxWidth: 560, ...FRAME }}>
-        <div className="relative overflow-hidden" style={SCREEN}>
+        <div className="relative overflow-hidden tos-screen" style={SCREEN}>
           {/* status bar */}
           <div className="absolute left-0 right-0 top-0 z-10 flex items-center justify-between px-4 pt-3.5">
             <span
