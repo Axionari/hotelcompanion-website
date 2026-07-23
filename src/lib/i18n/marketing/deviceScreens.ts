@@ -32,8 +32,8 @@ const en = {
   screens: {
     beach: {
       ask: 'Best cenote near here?',
-      title: 'Gran Cenote',
-      meta: '20 min inland · glass-clear water',
+      title: 'Cenote Oxman',
+      meta: 'Rope swing · glass-clear blue',
       actions: ['Directions', 'Book a taxi'],
       image: '/assets/lux/cenote-wild.webp',
     },
@@ -127,8 +127,8 @@ const es: typeof en = {
   screens: {
     beach: {
       ask: '¿El mejor cenote cerca?',
-      title: 'Gran Cenote',
-      meta: '20 min tierra adentro · agua cristalina',
+      title: 'Cenote Oxman',
+      meta: 'Columpio de cuerda · azul cristalino',
       actions: ['Cómo llegar', 'Reservar taxi'],
       image: '/assets/lux/cenote-wild.webp',
     },
