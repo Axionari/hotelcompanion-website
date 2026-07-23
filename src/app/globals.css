@@ -1089,3 +1089,8 @@ body {
   .v4-proofrow { transform: none !important; padding-inline: 16px; }
   .v4-ledger span { letter-spacing: 0.08em; }
 }
+
+/* v5 — Companion tablet: slow ken-burns on the full-bleed answer photo */
+@keyframes v5-kenburns { from { transform: scale(1.02); } to { transform: scale(1.1); } }
+.v5-kenburns { animation: v5-kenburns 14s ease-in-out infinite alternate; will-change: transform; }
+@media (prefers-reduced-motion: reduce) { .v5-kenburns { animation: none; } }

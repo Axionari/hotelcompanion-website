@@ -6,7 +6,7 @@ import { SiteFooter } from '@/components/site-footer'
 import { Reveal } from '@/components/cds/Reveal'
 import { MediaBed } from '@/components/cds/MediaBed'
 import { Breather } from '@/components/cds/Breather'
-import { TabletOS } from '@/components/cds/TabletOS'
+import { CompanionTablet } from '@/components/v5/CompanionTablet'
 import { AxionariMark } from '@/components/cds/EndorsementMark'
 import { openLiveDemo } from '@/components/cds/LiveDemoModal'
 import { useCopy } from '@/lib/i18n/useCopy'
@@ -114,7 +114,7 @@ export default function HomeClient() {
               </div>
               <div className="lg:col-span-5">
                 <Reveal>
-                  <TabletOS cycle={['home', 'beach', 'spa', 'concierge']} />
+                  <CompanionTablet />
                 </Reveal>
               </div>
             </div>
