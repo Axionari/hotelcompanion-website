@@ -9,13 +9,15 @@ import { MediaBed } from '@/components/cds/MediaBed'
 import { openLiveDemo } from '@/components/cds/LiveDemoModal'
 import { VoiceMorph, TwoStageAlert } from '@/components/cds/interactive'
 import { DashboardShowcase } from '@/components/v5/DashboardShowcase'
+import { EverySurface } from '@/components/v5/EverySurface'
+import { NextSurface } from '@/components/v5/NextSurface'
+import { JourneyWalkthrough } from '@/components/cds/JourneyWalkthrough'
 import {
   SERIF,
   Em,
   PageHero,
   ChipStrip,
   Act,
-  NumberedList,
   StatementCards,
   QuietChips,
   FaqList,
@@ -35,13 +37,14 @@ import { liveDemoCopy } from '@/lib/i18n/marketing/liveDemo'
  *
  *   HERO (statement + in-room device) · proof chips
  *   01 THE VOICE        — it sounds like your hotel        → VoiceMorph
- *   02 THE SURFACES     — it meets guests where they are   → numbered channels
- *   03 THE KNOWLEDGE    — it knows the operation + place   → two quiet panels
- *   04 THE LIFECYCLE    — arrival to review                → numbered stages
- *   05 THE ACTION       — every request becomes action     → TwoStageAlert
- *   06 THE INTELLIGENCE — conversations reveal intent      → statement cards
- *   07 THE COMMAND CENTRE — understand why                 → DashboardMockup
- *   HAND-OFF → /enterprise · CLOSING MEDIA BAND (one action)
+ *   EVERY SURFACE       — one conversation, every screen   → device family
+ *   ON THE HORIZON      — the surface after the screen     → AR still
+ *   02 THE KNOWLEDGE    — it knows the operation + place   → two quiet panels
+ *   03 THE LIFECYCLE    — arrival to review                → JourneyWalkthrough
+ *   04 THE ACTION       — every request becomes action     → TwoStageAlert
+ *   05 THE INTELLIGENCE — conversations reveal intent      → statement cards
+ *   06 THE COMMAND CENTRE — understand why                 → DashboardShowcase
+ *   HAND-OFF → /enterprise · 07 FAQ · CLOSING MEDIA BAND (one action)
  *
  * All reading copy is the approved platform copy (platformCopy) — condensed
  * and re-presented, never rewritten. Old section ids survive as anchors.
@@ -123,23 +126,20 @@ export default function PlatformClient() {
         </div>
       </Act>
 
-      {/* 02 · THE SURFACES {#platform-channels} — one message: it meets guests
-          where they already are. One artifact: the channels, numbered. */}
-      <Act
-        no="02"
-        label={c.acts.surfaces}
-        id="platform-channels"
-        statement={c.channels.lead}
-      >
-        <NumberedList items={c.channels.items.map((it) => ({ title: it.name, body: it.desc }))} />
-      </Act>
+      {/* EVERY SURFACE {#every-surface} — one conversation across the whole
+          device family (moved from the homepage; this is platform's surfaces
+          story, richer than the old channels list). */}
+      <EverySurface />
+
+      {/* ON THE HORIZON {#next-surface} — the AR surface, where this is going. */}
+      <NextSurface />
 
       <Breather id="band-platform-waterfall" image="/assets/breathers/waterfall-swim.webp" />
 
-      {/* 03 · THE KNOWLEDGE {#platform-knows-property} — one message: it knows
+      {/* 02 · THE KNOWLEDGE {#platform-knows-property} — one message: it knows
           the operation and the destination. One artifact: the two panels. */}
       <Act
-        no="03"
+        no="02"
         label={c.acts.knowledge}
         id="platform-knows-property"
         statement={c.knowsProperty.lead}
@@ -167,16 +167,17 @@ export default function PlatformClient() {
         </div>
       </Act>
 
-      {/* 04 · THE LIFECYCLE {#platform-lifecycle} — one message: arrival to
-          review. One artifact: the three stages, numbered. */}
-      <Act no="04" label={c.acts.lifecycle} id="platform-lifecycle" statement={c.lifecycle.title}>
-        <NumberedList items={c.lifecycle.stages.map((s) => ({ title: s.name, body: s.body }))} />
+      {/* 03 · THE LIFECYCLE {#platform-lifecycle} — one message: arrival to
+          review. One artifact: the journey walkthrough (stage text advancing
+          beside the tablet screen for each stage; the revenue tally carries). */}
+      <Act no="03" label={c.acts.lifecycle} id="platform-lifecycle" statement={c.lifecycle.title}>
+        <JourneyWalkthrough steps={c.journey.steps} tallyLabel={c.journey.tallyLabel} />
       </Act>
 
-      {/* 05 · THE ACTION {#platform-request-action} — one message: every
+      {/* 04 · THE ACTION {#platform-request-action} — one message: every
           request is tracked to completion. One artifact: the 2 AM save. */}
       <Act
-        no="05"
+        no="04"
         label={c.acts.action}
         id="platform-request-action"
         statement={c.requestAction.close[0]}
@@ -205,10 +206,10 @@ export default function PlatformClient() {
 
       <Breather image="/assets/lux/breather-daybeds-hills.webp" darken={0.42} />
 
-      {/* 06 · THE INTELLIGENCE {#platform-intelligence} — one message: behind
+      {/* 05 · THE INTELLIGENCE {#platform-intelligence} — one message: behind
           every conversation is intelligence. One artifact: two statements. */}
       <Act
-        no="06"
+        no="05"
         label={c.acts.intelligence}
         id="platform-intelligence"
         statement={c.guestIntel.lead}
@@ -225,10 +226,10 @@ export default function PlatformClient() {
         <div id="platform-guest-memory" className="scroll-mt-24" />
       </Act>
 
-      {/* 07 · THE COMMAND CENTRE {#platform-dashboards} — one message:
+      {/* 06 · THE COMMAND CENTRE {#platform-dashboards} — one message:
           understand why. One artifact: the dashboard. */}
       <Act
-        no="07"
+        no="06"
         label={c.acts.command}
         id="platform-dashboards"
         statement={
@@ -251,9 +252,9 @@ export default function PlatformClient() {
         <Handoff statement={c.enterpriseReady.close} href="/enterprise" label={g.nav.enterprise} />
       </div>
 
-      {/* 08 · COMMON QUESTIONS {#platform-faq} — the practical questions,
+      {/* 07 · COMMON QUESTIONS {#platform-faq} — the practical questions,
           closed-by-default accordion (copy = the shipping site FAQ). */}
-      <Act no="08" label={c.acts.faq} id="platform-faq" statement={t.faq.headline}>
+      <Act no="07" label={c.acts.faq} id="platform-faq" statement={t.faq.headline}>
         <FaqList items={t.faq.items} />
       </Act>
 

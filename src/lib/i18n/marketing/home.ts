@@ -6,6 +6,13 @@ import type { ScreenId } from './deviceScreens'
 const en = {
   heroLead:
     'Every guest conversation is an opportunity to deliver exceptional hospitality, generate new revenue, and strengthen your operation.',
+  /* P5.5 — framing for the in-room tablet showcase. Statement reuses the
+     approved journey line ("Every answer is a picture"); eyebrow is a label. */
+  tabletShowcase: {
+    eyebrow: 'THE IN-ROOM COMPANION',
+    statement: 'Every answer is a picture.',
+    caption: 'Speak or tap, in any language. The guest asks in their own words; the Companion answers on the screen — one tap from booked.',
+  },
   stake: {
     figure: '$160B',
     /* NEEDS CONFIRM: exact figure, report, year — Eduardo sourcing. Approved for use now. */
@@ -37,6 +44,11 @@ const en = {
 const es: typeof en = {
   heroLead:
     'Cada conversación con un huésped es una oportunidad para brindar una hospitalidad excepcional, generar nuevos ingresos y fortalecer tu operación.',
+  tabletShowcase: {
+    eyebrow: 'EL COMPANION EN LA HABITACIÓN',
+    statement: 'Cada respuesta es una imagen.',
+    caption: 'Habla o toca, en cualquier idioma. El huésped pregunta con sus propias palabras; el Companion responde en la pantalla — a un toque de reservar.',
+  },
   stake: {
     figure: '$160 mil millones',
     /* NEEDS CONFIRM: cifra exacta, reporte, año. */

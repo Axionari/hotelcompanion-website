@@ -7,8 +7,6 @@ import { Reveal } from '@/components/cds/Reveal'
 import { MediaBed } from '@/components/cds/MediaBed'
 import { Breather } from '@/components/cds/Breather'
 import { CompanionTablet } from '@/components/v5/CompanionTablet'
-import { EverySurface } from '@/components/v5/EverySurface'
-import { NextSurface } from '@/components/v5/NextSurface'
 import { IntelligentLayer } from '@/components/v5/IntelligentLayer'
 import { AxionariMark } from '@/components/cds/EndorsementMark'
 import { openLiveDemo } from '@/components/cds/LiveDemoModal'
@@ -182,11 +180,22 @@ export default function HomeClient() {
         )
       })()}
 
-      {/* EVERY SURFACE — one question across the whole device family (cinematic still) */}
-      <EverySurface />
-
-      {/* ON THE HORIZON — the AR surface, signalling where this is going */}
-      <NextSurface />
+      {/* THE IN-ROOM COMPANION — the device, full and centered. The tablet
+          cycles its screens (suite, cenote, spa, dining, guest memory — no
+          Akumal); the section replaces the former device-family showcase,
+          which now lives on /platform. */}
+      <Band id="tablet-showcase">
+        <Reveal className="text-center">
+          <div className="eyebrow eyebrow-accent mb-6">{home.tabletShowcase.eyebrow}</div>
+          <h2 style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(30px, 4vw, 54px)', lineHeight: 1.08, letterSpacing: '-0.015em', color: 'var(--text)', maxWidth: '20ch', marginInline: 'auto' }}>
+            {home.tabletShowcase.statement}
+          </h2>
+          <p className="body-lead mt-6" style={{ maxWidth: '52ch', marginInline: 'auto' }}>{home.tabletShowcase.caption}</p>
+        </Reveal>
+        <Reveal className="mt-14 flex justify-center">
+          <CompanionTablet />
+        </Reveal>
+      </Band>
 
       {/* Breather — air */}
       <Breather image="/assets/lux/breather-thatch-beach.webp" height="clamp(260px, 42vh, 460px)" darken={0.4} />
