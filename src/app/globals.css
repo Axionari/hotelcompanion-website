@@ -1280,6 +1280,8 @@ body {
    three ragged rows, and stack the multi-column screen bodies. */
 .tos-screen { aspect-ratio: 4 / 3; }
 .suite-frame { aspect-ratio: 16 / 10; }
+/* Phone chrome only: the desktop frame is a landscape tablet with no island. */
+.suite-statusbar { display: none; }
 
 @media (max-width: 767px) {
   /* A DEFINITE height (not aspect-ratio/min-height): the screens are absolutely
@@ -1364,9 +1366,15 @@ body {
     width: var(--island-w, 96px); height: var(--island-h, 24px);
     background: #0B0B0D; border-radius: 999px; z-index: 40; pointer-events: none;
   }
-  /* Clear the island. It occupies y 9-33px, so the status row needs ~40px of
-     headroom or the property chip renders under the notch (as it did). */
-  .suite-screen > div:first-child { padding-top: 42px !important; }
+  /* Clear the island (it occupies y 9-33px) with a real iOS status row rather
+     than padding: the screen body is `position:absolute; inset:0`, so padding
+     on its parent resolves against the padding box and moves nothing. As a
+     flex item the status bar genuinely consumes the band, and 9:41 + the
+     signal/wifi/battery glyphs sit at the edges, clear of the island. */
+  .suite-statusbar {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-shrink: 0; height: 44px; padding: 6px 22px 0;
+  }
   /* Phone top bar stays minimal (EN + cart), per the mobile design reference —
      the long property lockup truncates beside the island and adds no value
      here; the property is named on the welcome screen and in the section copy. */

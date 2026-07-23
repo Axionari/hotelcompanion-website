@@ -61,6 +61,39 @@ function VoiceBar({ c }: { c: SuiteCopy }) {
   )
 }
 
+/**
+ * iOS status bar. Mobile-only (see `.suite-statusbar`): on phones the frame
+ * grows a dynamic island, and this row is what keeps clear of it. It has to be
+ * a real flex item rather than padding on the screen body — the body is
+ * `position:absolute; inset:0`, so padding on its parent resolves against the
+ * padding box and moves nothing.
+ */
+function IOSStatusBar() {
+  return (
+    <div className="suite-statusbar" aria-hidden>
+      <span style={{ fontFamily: SANS, fontWeight: 600, fontSize: 14, color: CREAM, letterSpacing: '.01em' }}>9:41</span>
+      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+        <svg width="17" height="11" viewBox="0 0 17 11" fill={CREAM} aria-hidden>
+          <rect x="0" y="7.5" width="3" height="3.5" rx="1" />
+          <rect x="4.7" y="5.5" width="3" height="5.5" rx="1" />
+          <rect x="9.4" y="3" width="3" height="8" rx="1" />
+          <rect x="14.1" y="0" width="3" height="11" rx="1" />
+        </svg>
+        <svg width="15" height="11" viewBox="0 0 15 11" fill="none" stroke={CREAM} strokeWidth="1.5" strokeLinecap="round" aria-hidden>
+          <path d="M1 3.6a9.4 9.4 0 0 1 13 0" />
+          <path d="M3.6 6.4a5.7 5.7 0 0 1 7.8 0" />
+          <circle cx="7.5" cy="9.4" r="1" fill={CREAM} stroke="none" />
+        </svg>
+        <svg width="25" height="12" viewBox="0 0 25 12" aria-hidden>
+          <rect x="0.5" y="0.5" width="21" height="11" rx="3.2" fill="none" stroke={CREAM} strokeOpacity="0.42" />
+          <rect x="2.2" y="2.2" width="15" height="7.6" rx="1.8" fill={CREAM} />
+          <path d="M23 4.2v3.6a2 2 0 0 0 0-3.6Z" fill={CREAM} fillOpacity="0.42" />
+        </svg>
+      </span>
+    </div>
+  )
+}
+
 function TopBar({ c, count }: { c: SuiteCopy; count: number }) {
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12, flexShrink: 0 }}>
@@ -496,6 +529,7 @@ export function SuiteShowcase() {
         style={{ width: '100%', background: '#0C0B0A', border: '1px solid rgba(190,185,175,0.28)', borderRadius: 26, padding: 12, boxShadow: '0 60px 130px -34px rgba(0,0,0,0.85), 0 0 0 1px rgba(200,106,58,0.05)', boxSizing: 'border-box' }}
       >
         <div className="suite-screen" style={{ height: '100%', borderRadius: 18, overflow: 'hidden', background: 'radial-gradient(120% 100% at 30% 0%, #17130f 0%, #100e0c 60%, #0c0b0a 100%)', display: 'flex', flexDirection: 'column' }}>
+          <IOSStatusBar />
           <div style={{ position: 'relative', flex: 1, minHeight: 0 }}>
             <div style={{ position: 'absolute', inset: 0, opacity: fade ? 0 : 1, transition: 'opacity 0.46s var(--ease-standard)' }}>
               {FLOW[i].render(c)}
