@@ -1212,6 +1212,22 @@ body {
   font-weight: 600;
 }
 
+/* v5 — fragmentation satellites: slow organic drift (two directions, phased
+   per chip via inline duration/delay). Reduced motion stills them. */
+@keyframes v5-drift-a {
+  from { transform: translate(0, 0); }
+  to { transform: translate(9px, -7px); }
+}
+@keyframes v5-drift-b {
+  from { transform: translate(0, 0); }
+  to { transform: translate(-8px, 9px); }
+}
+.v5-drift-a { animation: v5-drift-a 6s ease-in-out infinite alternate; }
+.v5-drift-b { animation: v5-drift-b 7s ease-in-out infinite alternate; }
+@media (prefers-reduced-motion: reduce) {
+  .v5-drift-a, .v5-drift-b { animation: none; }
+}
+
 /* v5 — live operations-feed pulse dot (homepage receipt). */
 .v5-live-dot { animation: v5-live-pulse 2s ease-in-out infinite; }
 @keyframes v5-live-pulse {

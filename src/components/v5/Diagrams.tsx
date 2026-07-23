@@ -113,9 +113,9 @@ export function FragmentScatter({
                 className="lg-line"
                 pathLength={1}
                 d={`M 50 50 Q ${mx} ${my}, ${p.x} ${p.y}`}
-                stroke="rgba(200,106,58,0.4)"
-                strokeWidth="1"
-                strokeDasharray="3 5"
+                stroke="rgba(200,106,58,0.75)"
+                strokeWidth="1.6"
+                strokeDasharray="6 5"
                 fill="none"
                 vectorEffect="non-scaling-stroke"
                 style={{ transitionDelay: `${180 + i * 70}ms` }}
@@ -137,10 +137,15 @@ export function FragmentScatter({
           </div>
         </div>
 
-        {/* the systems, scattered */}
+        {/* the systems, scattered — each drifting slowly, unmoored */}
         {pts.map((p, i) => (
           <div key={systems[i]} className="lg-item absolute" style={{ left: `${p.x}%`, top: `${p.y}%`, transform: 'translate(-50%,-50%)', transitionDelay: `${120 + i * 60}ms` }}>
-            <span style={chipStyle}>{systems[i]}</span>
+            <span
+              className={i % 2 ? 'v5-drift-b' : 'v5-drift-a'}
+              style={{ ...chipStyle, display: 'inline-block', animationDuration: `${5.5 + (i % 4) * 1.2}s`, animationDelay: `${-i * 1.3}s` }}
+            >
+              {systems[i]}
+            </span>
           </div>
         ))}
 
@@ -214,6 +219,45 @@ export function PassThrough({
         <div className="lg-item" style={{ transitionDelay: '680ms' }}>
           <span style={{ ...MONO, display: 'block', marginTop: 'clamp(16px,1.8vw,24px)', fontSize: 'clamp(8px,0.8vw,11px)', letterSpacing: '.22em', color: 'rgba(242,233,218,0.4)' }}>{caption}</span>
         </div>
+      </div>
+    </div>
+  )
+}
+
+/* ─────────────────────────────────────────────────── OutcomeBand ── */
+
+/** Axionari's outcomes row: one bordered band, N columns with dividers —
+ *  mono number, serif outcome, one-line sub. */
+export function OutcomeBand({
+  items,
+}: {
+  items: ReadonlyArray<{ title: string; sub: string }>
+}) {
+  const { ref, cls } = useArmedIn()
+  return (
+    <div ref={ref} className={cls}>
+      <div className="v5-card grid md:grid-cols-4" style={{ overflow: 'hidden' }}>
+        {items.map((it, i) => (
+          <div
+            key={it.title}
+            className="lg-item"
+            style={{
+              padding: 'clamp(24px, 2.8vw, 42px) clamp(22px, 2.4vw, 34px)',
+              borderLeft: i > 0 ? '1px solid rgba(242,238,230,0.07)' : 'none',
+              transitionDelay: `${i * 110}ms`,
+            }}
+          >
+            <div style={{ ...MONO, fontSize: 'clamp(9px,0.85vw,11px)', letterSpacing: '.14em', color: TERRA }}>
+              {String(i + 1).padStart(2, '0')}
+            </div>
+            <div style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(20px,2vw,28px)', lineHeight: 1.15, color: 'var(--text)', marginTop: 12 }}>
+              {it.title}
+            </div>
+            <div style={{ fontFamily: SANS, fontSize: 'clamp(13px,1.1vw,15px)', lineHeight: 1.5, color: 'var(--text-dim)', marginTop: 10 }}>
+              {it.sub}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   )

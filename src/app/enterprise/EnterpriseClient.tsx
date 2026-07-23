@@ -20,7 +20,8 @@ import {
   PostureSplit,
 } from '@/components/v5/Editorial'
 import { PaymentFlow } from '@/components/v5/PaymentFlow'
-import { ArrowFlow } from '@/components/v5/Diagrams'
+import { ArrowFlow, OutcomeBand } from '@/components/v5/Diagrams'
+import { Band } from '@/components/v5/Editorial'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { globalCopy } from '@/lib/i18n/marketing/global'
 import { enterpriseCopy } from '@/lib/i18n/marketing/enterprise'
@@ -322,6 +323,16 @@ export default function EnterpriseClient() {
           </Reveal>
         </div>
       </Act>
+
+      {/* ENTERPRISE OUTCOMES {#enterprise-outcomes} — what shared intelligence
+          buys (the approved Axionari outcomes row): the page's closing
+          argument before the CTA. */}
+      <Band id="enterprise-outcomes" tight>
+        <Reveal className="text-center mb-10">
+          <div className="eyebrow eyebrow-accent">{c.outcomes.eyebrow}</div>
+        </Reveal>
+        <OutcomeBand items={c.outcomes.items} />
+      </Band>
 
       {/* CLOSING {#enterprise-final-cta} — warm media band, one action */}
       <MediaBed poster="/assets/img/company-reception.webp" scrim={0.72}>

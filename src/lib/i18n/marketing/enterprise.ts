@@ -80,6 +80,17 @@ const en = {
       { label: 'CONTROL', value: 'Secure authentication. Privacy-first architecture.' },
     ],
   },
+  /* P5.16 — Enterprise outcomes band (from the approved sales.axionari.com
+     "Enterprise Outcomes" row, verbatim). */
+  outcomes: {
+    eyebrow: 'ENTERPRISE OUTCOMES',
+    items: [
+      { title: 'Better Decisions', sub: 'Understand what matters.' },
+      { title: 'Faster Execution', sub: 'Act immediately.' },
+      { title: 'Organizational Alignment', sub: 'Operate from shared context.' },
+      { title: 'Continuous Learning', sub: 'Every decision improves the system.' },
+    ],
+  },
   /* P5.13 — the staged deployment path (ArrowFlow). Replaces the "Deploy in
      Days" calendar promise: value lands before integration; connections are
      staged and measured. NEEDS CONFIRM (Eduardo): stages + phrasing. */
@@ -331,6 +342,15 @@ const es: typeof en = {
       { label: 'PROTECCIÓN', value: 'Comunicaciones cifradas. Conocimiento protegido.' },
       { label: 'GOBERNANZA', value: 'Acceso basado en roles. Auditabilidad.' },
       { label: 'CONTROL', value: 'Autenticación segura. Arquitectura centrada en la privacidad.' },
+    ],
+  },
+  outcomes: {
+    eyebrow: 'RESULTADOS EMPRESARIALES',
+    items: [
+      { title: 'Mejores Decisiones', sub: 'Entiende lo que importa.' },
+      { title: 'Ejecución Más Rápida', sub: 'Actúa de inmediato.' },
+      { title: 'Alineación Organizacional', sub: 'Opera desde un contexto compartido.' },
+      { title: 'Aprendizaje Continuo', sub: 'Cada decisión mejora el sistema.' },
     ],
   },
   deployPath: {

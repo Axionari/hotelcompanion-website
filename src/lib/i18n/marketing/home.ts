@@ -19,11 +19,13 @@ const en = {
     statement: 'Hospitality begins with a question.',
   },
   /* P5.13 — the "before" diagram (RC homepage §02 applied to hotels), setting
-     up IntelligentLayer's answer. NEEDS CONFIRM: statement is new positioning
-     language (RC structure, hotel-adapted). Chips/markers are diagram labels. */
+     up IntelligentLayer's answer. Statement is the approved Axionari line
+     (sales.axionari.com); the deck is its hotel application. */
   fragmentation: {
     eyebrow: 'THE PROBLEM',
-    statement: 'Every system holds a piece of the guest. No system holds the guest.',
+    statementPre: 'Data exists everywhere. ',
+    statementHi: 'Context exists nowhere.',
+    deck: 'Every system holds a piece of the guest. No system holds the guest.',
     center: 'The guest',
     systems: ['PMS', 'Booking engine', 'Front desk', 'WhatsApp', 'Spa system', 'POS', 'Housekeeping', 'OTA inbox'],
     markers: ['CONTEXT LOST', 'ASKED TWICE', 'STARTS OVER'],
@@ -70,7 +72,9 @@ const es: typeof en = {
   },
   fragmentation: {
     eyebrow: 'EL PROBLEMA',
-    statement: 'Cada sistema tiene un pedazo del huésped. Ningún sistema tiene al huésped.',
+    statementPre: 'Los datos existen en todas partes. ',
+    statementHi: 'El contexto no existe en ninguna.',
+    deck: 'Cada sistema tiene un pedazo del huésped. Ningún sistema tiene al huésped.',
     center: 'El huésped',
     systems: ['PMS', 'Motor de reservas', 'Recepción', 'WhatsApp', 'Sistema de spa', 'POS', 'Ama de llaves', 'Bandeja OTA'],
     markers: ['CONTEXTO PERDIDO', 'PREGUNTADO DOS VECES', 'VUELVE A EMPEZAR'],

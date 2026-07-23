@@ -226,8 +226,9 @@ export default function HomeClient() {
           <div style={{ maxWidth: '46rem' }}>
             <div className="eyebrow eyebrow-accent mb-6">{home.fragmentation.eyebrow}</div>
             <h2 style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(30px, 4vw, 54px)', lineHeight: 1.08, letterSpacing: '-0.015em', color: 'var(--text)', maxWidth: '20ch' }}>
-              {home.fragmentation.statement}
+              {home.fragmentation.statementPre}{italic(home.fragmentation.statementHi)}
             </h2>
+            <p className="body-lead mt-7" style={{ maxWidth: '46ch' }}>{home.fragmentation.deck}</p>
           </div>
         </Reveal>
         <FragmentScatter

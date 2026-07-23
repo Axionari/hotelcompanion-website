@@ -295,35 +295,67 @@ export function TenantStack({
       {tiers.map((t, i) => (
         <div key={t.eyebrow}>
           <Reveal delay={i * 90}>
-            <div
-              className={t.highlight ? 'v5-tier-hi' : 'v5-card'}
-              style={{ padding: 'clamp(28px, 3.2vw, 44px)' }}
-            >
-              <div className="eyebrow mb-4" style={{ color: t.highlight ? 'var(--accent)' : 'var(--text-faint)' }}>
-                {t.eyebrow}
-              </div>
-              <div style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(21px, 2.5vw, 31px)', lineHeight: 1.12, letterSpacing: '-0.01em', color: 'var(--text)' }}>
-                {t.title}
-              </div>
-              {t.sub && (
-                <div className="mt-2" style={{ fontSize: 14.5, color: 'var(--text-dim)' }}>
-                  {t.sub}
+            {t.highlight ? (
+              /* the layer tier — Axionari-premium: identity left, capability
+                 bullets right of a soft divider */
+              <div className="v5-tier-hi" style={{ padding: 'clamp(28px, 3.2vw, 46px)' }}>
+                <div className="grid md:grid-cols-[1.15fr_1fr] items-center" style={{ gap: 'clamp(20px, 2.6vw, 40px)' }}>
+                  <div>
+                    <div className="eyebrow mb-4" style={{ color: 'var(--accent)' }}>{t.eyebrow}</div>
+                    <div style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(22px, 2.7vw, 34px)', lineHeight: 1.1, letterSpacing: '-0.01em', color: 'var(--text)' }}>
+                      {t.title}
+                    </div>
+                    {t.sub && (
+                      <div className="mt-2.5" style={{ fontSize: 14.5, color: 'var(--text-dim)' }}>
+                        {t.sub}
+                      </div>
+                    )}
+                  </div>
+                  <div className="md:pl-8" style={{ borderLeft: '1px solid rgba(200,106,58,0.25)' }}>
+                    {t.chips.map((chip) => (
+                      <div key={chip} className="flex items-baseline gap-3" style={{ padding: '6px 0' }}>
+                        <span aria-hidden style={{ color: 'var(--accent)', fontSize: 11 }}>▸</span>
+                        <span style={{ fontSize: 'clamp(13.5px, 1.15vw, 15.5px)', color: 'rgba(242,238,230,0.85)' }}>{chip}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              )}
-              <div className="mt-6 flex flex-wrap gap-2.5">
-                {t.chips.map((chip) => (
-                  <span key={chip} className="v5-chip">
-                    {chip}
-                  </span>
-                ))}
               </div>
-            </div>
+            ) : (
+              <div className="v5-card" style={{ padding: 'clamp(28px, 3.2vw, 44px)' }}>
+                <div className="eyebrow mb-4" style={{ color: 'var(--text-faint)' }}>{t.eyebrow}</div>
+                <div style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(21px, 2.5vw, 31px)', lineHeight: 1.12, letterSpacing: '-0.01em', color: 'var(--text)' }}>
+                  {t.title}
+                </div>
+                {t.sub && (
+                  <div className="mt-2" style={{ fontSize: 14.5, color: 'var(--text-dim)' }}>
+                    {t.sub}
+                  </div>
+                )}
+                <div className="mt-6 flex flex-wrap gap-2.5">
+                  {t.chips.map((chip) => (
+                    <span key={chip} className="v5-chip">
+                      {chip}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
           </Reveal>
           {i < tiers.length - 1 && (
-            <div
-              aria-hidden="true"
-              style={{ width: 1.5, height: 'clamp(22px, 3vw, 38px)', background: 'linear-gradient(rgba(200,106,58,0.7), rgba(200,106,58,0.2))', margin: '0 auto' }}
-            />
+            /* bidirectional exchange between tiers (Axionari ↑↓ rows) */
+            <div aria-hidden="true" className="flex justify-center" style={{ gap: 'clamp(48px, 10vw, 150px)', padding: 'clamp(10px, 1.2vw, 16px) 0' }}>
+              {[0, 1, 2, 3, 4].map((k) => (
+                <span
+                  key={k}
+                  className={k > 2 ? 'hidden md:flex' : 'flex'}
+                  style={{ flexDirection: 'column', alignItems: 'center', lineHeight: 1.05, fontFamily: 'var(--font-mono), monospace', fontSize: 'clamp(11px, 1vw, 14px)', color: 'rgba(200,106,58,0.85)' }}
+                >
+                  <span>↑</span>
+                  <span>↓</span>
+                </span>
+              ))}
+            </div>
           )}
         </div>
       ))}
