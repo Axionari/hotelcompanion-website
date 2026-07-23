@@ -24,7 +24,7 @@ export function Act6() {
       }}
     >
       <div style={eyebrowStyle('var(--accent)')}>{c.eyebrow}</div>
-      <h2 className="v4-act6-head" style={{ fontFamily: V4.serif, fontWeight: 530, fontSize: 'clamp(40px, 6.9vw, 88px)', lineHeight: 1.04, margin: '30px 0 0', textAlign: 'center', color: V4.text, paddingInline: 20 }}>
+      <h2 className="v4-act6-head" style={{ fontFamily: V4.serif, fontWeight: 530, fontSize: 'clamp(34px, 6vw, 78px)' /* P4 §2: one display scale */, lineHeight: 1.04, margin: '30px 0 0', textAlign: 'center', color: V4.text, paddingInline: 20 }}>
         {c.statementPre}
         <span style={{ fontStyle: 'italic', fontWeight: 480, color: V4.cream }}>{c.statementHi}</span>
       </h2>

@@ -245,7 +245,7 @@ export function Act4() {
     >
       <div className="v4-w1200" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div style={eyebrowStyle('var(--accent)')}>{c.eyebrow}</div>
-        <div className="v4-statement" style={{ fontFamily: V4.serif, fontWeight: 530, fontSize: 'clamp(30px, 4.4vw, 56px)', lineHeight: 1.1, marginTop: 26, textAlign: 'center', textWrap: 'balance', color: V4.text }}>
+        <div className="v4-statement" style={{ fontFamily: V4.serif, fontWeight: 530, fontSize: 'clamp(30px, 4.2vw, 54px)', lineHeight: 1.1, marginTop: 26, textAlign: 'center', textWrap: 'balance', color: V4.text }}>
           {c.statementPre}
           <span style={{ fontStyle: 'italic', fontWeight: 480, color: V4.cream }}>{c.statementHi}</span>
         </div>

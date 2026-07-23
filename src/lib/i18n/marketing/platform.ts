@@ -88,7 +88,6 @@ const en = {
       'Policies.',
       'FAQs.',
     ],
-    close: ['If your team knows it, Hotel Companion knows it.', 'Every answer is immediate, accurate, and always up to date.'],
   },
   destination: {
     title: 'Knows Your Destination Like a Local Expert.',
@@ -197,19 +196,6 @@ const en = {
     ],
   },
   dashboards: {
-    monitorLead: 'Monitor:',
-    items: [
-      'Guest activity.',
-      'Revenue opportunities.',
-      'Service demand.',
-      'Department performance.',
-      'Knowledge health.',
-      'Operational trends.',
-      'Request volumes.',
-      'Commercial insights.',
-      'Guest satisfaction drivers.',
-      'Executive summaries.',
-    ],
     close: ['Don’t just understand what happened.', 'Understand why.'],
   },
   enterpriseReady: {
@@ -405,7 +391,6 @@ const es: typeof en = {
       'Políticas.',
       'Preguntas frecuentes.',
     ],
-    close: ['Si tu equipo lo sabe, Hotel Companion lo sabe.', 'Cada respuesta es inmediata, precisa y siempre actualizada.'],
   },
   destination: {
     title: 'Conoce Tu Destino Como un Experto Local.',
@@ -514,19 +499,6 @@ const es: typeof en = {
     ],
   },
   dashboards: {
-    monitorLead: 'Monitorea:',
-    items: [
-      'Actividad de huéspedes.',
-      'Oportunidades de ingreso.',
-      'Demanda de servicios.',
-      'Desempeño por departamento.',
-      'Salud del conocimiento.',
-      'Tendencias operativas.',
-      'Volumen de solicitudes.',
-      'Perspectivas comerciales.',
-      'Factores de satisfacción del huésped.',
-      'Resúmenes ejecutivos.',
-    ],
     close: ['No solo entiendas qué pasó.', 'Entiende por qué.'],
   },
   enterpriseReady: {

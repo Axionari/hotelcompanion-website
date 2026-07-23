@@ -40,7 +40,7 @@ export function Act7() {
         style={{
           fontFamily: V4.serif,
           fontWeight: 530,
-          fontSize: 'clamp(42px, 7.2vw, 92px)',
+          fontSize: 'clamp(34px, 6vw, 80px)', /* P4 §2: one display scale */
           lineHeight: 1.05,
           margin: '30px 0 0',
           textAlign: 'center',

@@ -61,7 +61,7 @@ export function Act3() {
     >
       <div className="v4-w1160" style={{ position: 'relative', zIndex: 5 }}>
         <div style={eyebrowStyle('var(--accent)')}>{c.eyebrow}</div>
-        <div className="v4-statement" style={{ fontFamily: V4.serif, fontWeight: 530, fontSize: 'clamp(30px, 4.4vw, 56px)', lineHeight: 1.14, maxWidth: 820, marginTop: 30, textWrap: 'balance', color: V4.text }}>
+        <div className="v4-statement" style={{ fontFamily: V4.serif, fontWeight: 530, fontSize: 'clamp(30px, 4.2vw, 54px)', lineHeight: 1.14, maxWidth: 820, marginTop: 30, textWrap: 'balance', color: V4.text }}>
           {c.statementPre}
           <span style={{ fontStyle: 'italic', fontWeight: 480, color: V4.cream }}>{c.statementHi}</span>
         </div>

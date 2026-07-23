@@ -71,47 +71,44 @@ export default function CompanyClient() {
               </h2>
             </Reveal>
 
-            <div className="mt-12 grid lg:grid-cols-12 gap-x-16">
-              <div className="lg:col-span-7 flex flex-col gap-6">
-                {why.body.slice(0, -1).map((line, i) => (
-                  <Reveal key={i} delay={Math.min(i, 6) * 30}>
-                    <p
-                      className="body-lead"
-                      style={{ fontSize: 'clamp(1.05rem, 1.5vw, 1.2rem)', lineHeight: 1.72, maxWidth: '54ch' }}
-                    >
-                      {line}
-                    </p>
-                  </Reveal>
-                ))}
-              </div>
-
-              {/* The "walked out the door" line — pull-quote over the reception still */}
-              <div className="lg:col-span-5 mt-12 lg:mt-0">
-                <MediaBed
-                  poster="/assets/img/company-reception.webp"
-                  scrim={0.74}
-                  className="rounded-2xl h-full flex items-center"
-                >
-                <div className="px-7 py-10">
-                <Reveal>
-                  <blockquote
-                    className="font-serif"
-                    style={{
-                      fontStyle: 'italic',
-                      fontWeight: 480,
-                      fontSize: 'clamp(1.6rem, 2.6vw, 2.1rem)',
-                      lineHeight: 1.28,
-                      color: 'var(--accent)',
-                      borderLeft: '1px solid var(--accent-hairline)',
-                      paddingLeft: '1.75rem',
-                    }}
+            {/* P4 §3/§4: one reading path — prose first, then the quote-on-
+                photograph as the section's single visual anchor */}
+            <div className="mt-12 flex flex-col gap-6" style={{ maxWidth: '58ch' }}>
+              {why.body.slice(0, -1).map((line, i) => (
+                <Reveal key={i} delay={Math.min(i, 6) * 30}>
+                  <p
+                    className="body-lead"
+                    style={{ fontSize: 'clamp(1.05rem, 1.5vw, 1.2rem)', lineHeight: 1.72 }}
                   >
-                    {why.body[why.body.length - 1]}
-                  </blockquote>
+                    {line}
+                  </p>
                 </Reveal>
+              ))}
+            </div>
+            <div className="mt-14" style={{ maxWidth: 880 }}>
+              <MediaBed
+                poster="/assets/img/company-reception.webp"
+                scrim={0.74}
+                className="rounded-2xl flex items-center"
+              >
+                <div className="px-8 py-14 md:px-12 md:py-20">
+                  <Reveal>
+                    <blockquote
+                      className="font-serif"
+                      style={{
+                        fontStyle: 'italic',
+                        fontWeight: 480,
+                        fontSize: 'clamp(1.6rem, 2.6vw, 2.1rem)',
+                        lineHeight: 1.28,
+                        color: 'var(--accent)',
+                        maxWidth: '26ch',
+                      }}
+                    >
+                      {why.body[why.body.length - 1]}
+                    </blockquote>
+                  </Reveal>
                 </div>
-                </MediaBed>
-              </div>
+              </MediaBed>
             </div>
 
             <Reveal>
@@ -138,24 +135,19 @@ export default function CompanyClient() {
                   {m.title}
                 </div>
               )}
-              <div className="grid lg:grid-cols-12 gap-x-16">
-                <div className="lg:col-span-7 flex flex-col gap-5">
-                  {m.body.map((line, j) => (
-                    <Reveal key={j} delay={Math.min(j, 5) * 30}>
-                      <p className="body-lead" style={{ maxWidth: '54ch' }}>
-                        {line}
-                      </p>
-                    </Reveal>
-                  ))}
-                </div>
-                <div className="lg:col-span-5 mt-6 lg:mt-0 flex items-center">
-                  <Reveal>
-                    <p className="font-serif" style={{ fontSize: 'clamp(1.25rem, 2vw, 1.6rem)', fontWeight: 530, lineHeight: 1.3, color: 'var(--text)' }}>
-                      {m.coda}
-                    </p>
+              {/* P4 §7: one reading path — prose, then the movement's coda */}
+              <div className="flex flex-col gap-5" style={{ maxWidth: '54ch' }}>
+                {m.body.map((line, j) => (
+                  <Reveal key={j} delay={Math.min(j, 5) * 30}>
+                    <p className="body-lead">{line}</p>
                   </Reveal>
-                </div>
+                ))}
               </div>
+              <Reveal>
+                <p className="font-serif mt-7" style={{ fontSize: 'clamp(1.25rem, 2vw, 1.6rem)', fontWeight: 530, lineHeight: 1.3, color: 'var(--text)', maxWidth: '34ch' }}>
+                  {m.coda}
+                </p>
+              </Reveal>
             </div>
           ))}
         </div>
@@ -164,8 +156,8 @@ export default function CompanyClient() {
       {/* {#company-axionari} — the builder, one section
           (merged: companion-os + axionari) */}
       <Section id="axionari" eyebrow={builder[1].eyebrow} title={builder[1].title} variant="surface-3">
-        <div className="mt-10 grid lg:grid-cols-12 gap-x-16">
-          <div className="lg:col-span-7 flex flex-col gap-5">
+        <div className="mt-10 flex flex-col gap-5" style={{ maxWidth: '54ch' }}>
+          <div className="flex flex-col gap-5">
             {builder[1].body.map((line, j) => (
               <Reveal key={j} delay={Math.min(j, 5) * 30}>
                 <p className="body-lead" style={{ maxWidth: '54ch' }}>
@@ -183,14 +175,12 @@ export default function CompanyClient() {
               ))}
             </div>
           </div>
-          <div className="lg:col-span-5 mt-8 lg:mt-0 flex items-center">
-            <Reveal>
-              <p className="font-serif" style={{ fontSize: 'clamp(1.25rem, 2vw, 1.6rem)', fontWeight: 530, lineHeight: 1.3, color: 'var(--text)' }}>
-                {builder[1].coda}
-              </p>
-            </Reveal>
-          </div>
         </div>
+        <Reveal>
+          <p className="font-serif mt-7" style={{ fontSize: 'clamp(1.25rem, 2vw, 1.6rem)', fontWeight: 530, lineHeight: 1.3, color: 'var(--text)', maxWidth: '34ch' }}>
+            {builder[1].coda}
+          </p>
+        </Reveal>
         <Reveal>
           <div className="mt-10">
             <EndorsementMark variant="axionari" />

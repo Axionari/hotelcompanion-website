@@ -24,7 +24,7 @@ export function Act5() {
       }}
     >
       <div style={eyebrowStyle('var(--accent)')}>{c.eyebrow}</div>
-      <div className="v4-statement" style={{ fontFamily: V4.serif, fontWeight: 530, fontSize: 'clamp(30px, 4.4vw, 56px)', lineHeight: 1.12, marginTop: 26, maxWidth: 840, textAlign: 'center', textWrap: 'balance', color: V4.text, paddingInline: 20 }}>
+      <div className="v4-statement" style={{ fontFamily: V4.serif, fontWeight: 530, fontSize: 'clamp(30px, 4.2vw, 54px)', lineHeight: 1.12, marginTop: 26, maxWidth: 840, textAlign: 'center', textWrap: 'balance', color: V4.text, paddingInline: 20 }}>
         {c.statementPre}
         <span style={{ fontStyle: 'italic', fontWeight: 480, color: V4.cream }}>{c.statementHi}</span>
         {c.statementPost}

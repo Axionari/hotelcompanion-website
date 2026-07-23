@@ -9,7 +9,7 @@ import { Reveal } from '@/components/cds/Reveal'
 import { EndorsementMark } from '@/components/cds/EndorsementMark'
 import { MediaBed } from '@/components/cds/MediaBed'
 import { MultiAccentHeadline } from '@/components/cds/AccentHeadline'
-import { IconChipGrid, ConvergenceDiagram, NodeDiagram } from '@/components/cds/blocks'
+import { IconChipGrid, ConvergenceDiagram } from '@/components/cds/blocks'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { companionOsCopy } from '@/lib/i18n/marketing/companionOs'
 import { accents } from '@/lib/i18n/marketing/accents'
@@ -130,19 +130,14 @@ export default function CompanionOsClient() {
             ))}
           </div>
         </Reveal>
-        <div className="mt-14 grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          <div className="lg:col-span-7">
-            <NodeDiagram nodes={nounRun(c.why.industries)} breakLabel={c.why.fragmentLabel} />
-          </div>
-          <div className="lg:col-span-5">
-            <div className="flex flex-col gap-4">
-              {c.why.body.map((line, i) => (
-                <p key={i} className="body-lead" style={{ maxWidth: '46ch' }}>
-                  {line}
-                </p>
-              ))}
-            </div>
-          </div>
+        {/* P4 §4: one focal point — the fragmentation diagram competed with
+            the convergence signature below; prose carries the why */}
+        <div className="mt-10 flex flex-col gap-4" style={{ maxWidth: '54ch' }}>
+          {c.why.body.map((line, i) => (
+            <p key={i} className="body-lead">
+              {line}
+            </p>
+          ))}
         </div>
         <div id="companionos-one-platform" className="mt-16 scroll-mt-24">
           <Reveal>

@@ -60,7 +60,7 @@ export function Act1() {
           textAlign: 'center',
           fontWeight: 530,
           fontFamily: V4.serif,
-          fontSize: 'clamp(38px, 7.6vw, 118px)',
+          fontSize: 'clamp(34px, 6.6vw, 100px)', /* P4 §1: −13% — the interface is the hero */
           lineHeight: 0.98,
           letterSpacing: '-.01em',
         }}
@@ -74,13 +74,13 @@ export function Act1() {
           faint concentric hairline arcs remain as backdrop texture. The orb
           sits between the H1 and the bar: mic centered in the glow, the bar
           crossing its lower rings. */}
-      <div aria-hidden="true" className="v4-hero-orb" style={{ position: 'absolute', left: '50%', top: 336, width: 400, height: 400, marginLeft: -200, zIndex: 1 }}>
+      <div aria-hidden="true" className="v4-hero-orb" style={{ position: 'absolute', left: '50%', top: 306, width: 400, height: 400, marginLeft: -200, zIndex: 1 }}>
         <div style={{ position: 'absolute', inset: '-9%', borderRadius: '50%', border: '1px solid rgba(205,132,68,.18)' }} />
         <div style={{ position: 'absolute', inset: '-24%', borderRadius: '50%', border: '1px solid rgba(205,132,68,.1)' }} />
         <VoiceOrb size={400} state="listening" showMic micScale={0.115} />
       </div>
 
-      <V4Reveal style={{ position: 'relative', zIndex: 10, marginTop: 'min(30vh, 268px)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18, width: '100%', paddingInline: 20, boxSizing: 'border-box' }}>
+      <V4Reveal style={{ position: 'relative', zIndex: 10, marginTop: 'min(26vh, 236px)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18, width: '100%', paddingInline: 20, boxSizing: 'border-box' }}>
         <div style={{ ...eyebrowStyle('var(--text-faint)'), textAlign: 'center' }}>{c.strip}</div>
         <AskBarV4 />
       </V4Reveal>

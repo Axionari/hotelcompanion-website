@@ -188,18 +188,12 @@ export default function PlatformClient() {
         {/* the contrast that makes the knowledge matter */}
         <div id="platform-not-generic-ai" className="mt-16 scroll-mt-24">
           <NodeDiagram nodes={c.notGenericAi.beats} breakLabel={c.notGenericAi.body[1]} />
-          <div className="mt-10 grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-            <div className="lg:col-span-6">
-              <Reveal>
-                <p className="body-lead" style={{ maxWidth: '46ch' }}>
-                  {c.notGenericAi.close}
-                </p>
-              </Reveal>
-            </div>
-            <div className="lg:col-span-6">
-              <Beats lines={c.knowsProperty.close} size="lg" />
-            </div>
-          </div>
+          {/* P4 §3: one supporting idea — the competing beat column removed */}
+          <Reveal>
+            <p className="body-lead mt-10" style={{ maxWidth: '52ch' }}>
+              {c.notGenericAi.close}
+            </p>
+          </Reveal>
         </div>
       </Section>
 
@@ -240,13 +234,12 @@ export default function PlatformClient() {
               to: d,
             }))}
           />
-          <div className="mt-12 grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-            <div id="platform-reservations" className="lg:col-span-7 scroll-mt-24">
-              <IconChipGrid items={c.reservations.items.slice(0, 10)} columns={2} />
-            </div>
-            <div className="lg:col-span-5">
-              <Beats lines={c.requestAction.close} size="lg" />
-            </div>
+          {/* P4 §4/§7: one reading path — chips, then the single closing beat */}
+          <div id="platform-reservations" className="mt-12 scroll-mt-24" style={{ maxWidth: 760 }}>
+            <IconChipGrid items={c.reservations.items.slice(0, 8)} columns={2} />
+          </div>
+          <div className="mt-10">
+            <Beats lines={c.requestAction.close} size="lg" />
           </div>
         </div>
       </Section>
@@ -296,25 +289,19 @@ export default function PlatformClient() {
 
         {/* the command centre */}
         <div id="platform-dashboards" className="mt-16 scroll-mt-24">
-          <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            <div className="lg:col-span-5">
-              <Reveal>
-                <div className="eyebrow eyebrow-accent mb-4">{c.dashboards.monitorLead}</div>
-              </Reveal>
-              <IconChipGrid items={c.dashboards.items.slice(0, 10)} columns={2} />
-            </div>
-            {/* {#dashboards-resolution} — NEEDS CONFIRM on the 91/9 split */}
-            <div id="dashboards-resolution" className="lg:col-span-7">
-              <DashboardMockup
-                title={c.dashboard.title}
-                resolvedPct={91}
-                escalatedPct={9}
-                resolvedLabel={c.dashboard.resolvedLabel}
-                escalatedLabel={c.dashboard.escalatedLabel}
-                metrics={c.dashboard.metrics}
-                properties={c.dashboard.properties}
-              />
-            </div>
+          {/* P4 §4: the dashboard is the focal point — the chip column that
+              competed with it is gone */}
+          {/* {#dashboards-resolution} — NEEDS CONFIRM on the 91/9 split */}
+          <div id="dashboards-resolution" style={{ maxWidth: 880 }}>
+            <DashboardMockup
+              title={c.dashboard.title}
+              resolvedPct={91}
+              escalatedPct={9}
+              resolvedLabel={c.dashboard.resolvedLabel}
+              escalatedLabel={c.dashboard.escalatedLabel}
+              metrics={c.dashboard.metrics}
+              properties={c.dashboard.properties}
+            />
           </div>
           <div className="mt-12">
             <Beats lines={c.dashboards.close} size="lg" />
