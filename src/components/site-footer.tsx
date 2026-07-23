@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useCopy } from "@/lib/i18n/useCopy";
 import { globalCopy } from "@/lib/i18n/marketing/global";
 import LanguageToggle from "@/components/LanguageToggle";
+import { AxionariGlyph } from "@/components/cds/EndorsementMark";
 
 function FooterColumn({
   title,
@@ -122,10 +123,13 @@ export function SiteFooter() {
           )}
         </div>
 
-        {/* v3 {#footer}: the two mini-essays are now one line each */}
-        <div className="mb-14 flex flex-col gap-2.5">
-          <p className="font-sans text-sm" style={{ color: "var(--text-secondary)" }}>
-            {footer.osLine.text}{" "}
+        {/* {#footer}: one quiet family endorsement line (was two paragraphs). */}
+        <div className="mb-14">
+          <p
+            className="font-sans text-sm inline-flex flex-wrap items-center gap-x-1.5 gap-y-1"
+            style={{ color: "var(--text-secondary)" }}
+          >
+            <span>{footer.osLine.text}</span>
             <Link
               href="/companion-os"
               className="transition-colors hover:text-[#D4784A]"
@@ -133,17 +137,17 @@ export function SiteFooter() {
             >
               {footer.osLine.link}
             </Link>
-          </p>
-          <p className="font-sans text-sm" style={{ color: "var(--text-secondary)" }}>
-            {footer.axionariLine.text}{" "}
+            <span aria-hidden style={{ opacity: 0.45 }}>·</span>
+            <span>{footer.axionariLine.text}</span>
             <a
               href="https://axionari.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="transition-colors hover:text-[#D4784A]"
-              style={{ color: "var(--accent)", fontWeight: 500 }}
+              className="inline-flex items-center gap-1 transition-opacity hover:opacity-80"
+              style={{ fontWeight: 500 }}
             >
-              {footer.axionariLine.link}
+              <AxionariGlyph size="0.95em" />
+              <span style={{ color: "var(--gold)" }}>{footer.axionariLine.link}</span>
             </a>
           </p>
         </div>

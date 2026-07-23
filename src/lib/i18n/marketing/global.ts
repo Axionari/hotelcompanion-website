@@ -92,14 +92,14 @@ const en = {
       success: 'Thank you — you’re on the list.',
       error: 'Something went wrong. Please try again.',
     },
-    /* v3 {#footer}: the two mini-essays become one line each */
+    /* {#footer}: one quiet family endorsement line (connector + brand link). */
     osLine: {
-      text: 'Built on Companion OS — one intelligence platform, unlimited Companions.',
-      link: 'Learn more →',
+      text: 'Built on',
+      link: 'Companion OS',
     },
     axionariLine: {
-      text: 'Built by Axionari — Organizational Intelligence Platforms.',
-      link: 'Meet Axionari →',
+      text: 'Powered by',
+      link: 'Axionari',
     },
     legalLine: '© 2026 Hotel Companion. All rights reserved.',
     signIn: 'Sign In',
@@ -201,14 +201,14 @@ const es: typeof en = {
       success: 'Gracias — ya estás en la lista.',
       error: 'Algo salió mal. Por favor intenta de nuevo.',
     },
-    /* v3 {#footer}: los dos mini-ensayos se vuelven una línea cada uno */
+    /* {#footer}: una línea sobria de respaldo familiar (conector + marca). */
     osLine: {
-      text: 'Construido sobre Companion OS — una plataforma de inteligencia, Companions ilimitados.',
-      link: 'Conoce más →',
+      text: 'Construido sobre',
+      link: 'Companion OS',
     },
     axionariLine: {
-      text: 'Construido por Axionari — Plataformas de Inteligencia Organizacional.',
-      link: 'Conoce Axionari →',
+      text: 'Impulsado por',
+      link: 'Axionari',
     },
     legalLine: '© 2026 Hotel Companion. Todos los derechos reservados.',
     signIn: 'Iniciar Sesión',
