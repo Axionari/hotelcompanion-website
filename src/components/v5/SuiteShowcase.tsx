@@ -109,19 +109,38 @@ function BrowseScreen({ c }: { c: SuiteCopy }) {
   )
 }
 
-/* ── 3 · detail ──────────────────────────────────────────────────────── */
+/* ── 3 · detail — per-room content; tabs switch the room ─────────────── */
 function DetailScreen({ c }: { c: SuiteCopy }) {
-  const d = c.detail
+  const [room, setRoom] = useState(1) // default: Ocean-View (most booked)
+  const d = c.details[room]
   const [img, setImg] = useState(0)
+  useEffect(() => setImg(0), [room])
   useEffect(() => {
+    if (d.images.length < 2) return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const t = window.setInterval(() => setImg((n) => (n + 1) % d.images.length), 2400)
     return () => window.clearInterval(t)
-  }, [d.images.length])
+  }, [d.images.length, room])
   return (
     <div style={pad}>
       <TopBar c={c} count={5} />
-      <div style={{ marginTop: 'clamp(12px,1.5vw,20px)', flex: 1, minHeight: 0, display: 'grid', gridTemplateColumns: '1.15fr 1fr', gap: 'clamp(14px,1.8vw,28px)' }}>
+      {/* room tabs — the detail content is per room */}
+      <div style={{ display: 'flex', justifyContent: 'center', gap: 'clamp(5px,0.6vw,8px)', marginTop: 'clamp(9px,1.1vw,14px)', flexShrink: 0 }}>
+        {c.details.map((r, idx) => {
+          const on = idx === room
+          return (
+            <button
+              key={r.key}
+              type="button"
+              onClick={() => setRoom(idx)}
+              style={{ fontFamily: SANS, fontSize: 'clamp(9px,0.85vw,12px)', fontWeight: on ? 600 : 500, color: on ? CREAM : DIM, background: on ? 'rgba(200,106,58,0.15)' : 'transparent', border: `1px solid ${on ? 'rgba(200,106,58,0.6)' : 'rgba(243,236,226,0.14)'}`, borderRadius: 999, padding: 'clamp(5px,0.55vw,7px) clamp(11px,1.2vw,16px)', cursor: 'pointer', whiteSpace: 'nowrap', transition: 'all .3s var(--ease-standard)' }}
+            >
+              {r.name}
+            </button>
+          )
+        })}
+      </div>
+      <div style={{ marginTop: 'clamp(10px,1.3vw,18px)', flex: 1, minHeight: 0, display: 'grid', gridTemplateColumns: '1.15fr 1fr', gap: 'clamp(14px,1.8vw,28px)' }}>
         <div style={{ position: 'relative', borderRadius: 16, overflow: 'hidden' }}>
           {d.images.map((src, i) => (
             // eslint-disable-next-line @next/next/no-img-element
@@ -132,9 +151,11 @@ function DetailScreen({ c }: { c: SuiteCopy }) {
             <div style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(18px,2.1vw,30px)', lineHeight: 1.05, color: CREAM }}>{d.name}</div>
             <div style={{ fontFamily: SANS, fontSize: 'clamp(9px,0.95vw,13px)', color: 'rgba(242,233,218,0.75)', marginTop: 4 }}>{d.tagline}</div>
           </div>
-          <div style={{ position: 'absolute', top: 14, right: 14, display: 'flex', gap: 5 }}>
-            {d.images.map((_, i) => <span key={i} style={{ width: i === img ? 16 : 6, height: 6, borderRadius: 999, background: i === img ? TERRA : 'rgba(242,233,218,0.4)', transition: 'width .4s' }} />)}
-          </div>
+          {d.images.length > 1 && (
+            <div style={{ position: 'absolute', top: 14, right: 14, display: 'flex', gap: 5 }}>
+              {d.images.map((_, i) => <span key={i} style={{ width: i === img ? 16 : 6, height: 6, borderRadius: 999, background: i === img ? TERRA : 'rgba(242,233,218,0.4)', transition: 'width .4s' }} />)}
+            </div>
+          )}
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: 0 }}>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 10 }}>
