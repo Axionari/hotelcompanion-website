@@ -221,33 +221,62 @@ export default function HomeClient() {
       {/* THE OPERATING MODEL — guest → one intelligent layer → the hotel's systems */}
       <IntelligentLayer />
 
-      {/* THE RECEIPT — execution as intelligence (copy/data-led ledger) */}
+      {/* THE OPERATIONS FEED — execution as intelligence, in a prominent live
+          terminal: every routed conversation, its revenue, its resolution. */}
       <Band id="receipt">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          <div className="lg:col-span-6">
-            <Reveal>
-              <div className="eyebrow eyebrow-accent mb-6">{c.actV.eyebrow}</div>
-              <h2 style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(30px, 4vw, 52px)', lineHeight: 1.12, letterSpacing: '-0.01em', color: 'var(--text)', maxWidth: '20ch' }}>
-                {c.actV.statementPre}{italic(c.actV.statementHi)}{c.actV.statementPost}
-              </h2>
-              <p style={{ fontFamily: SERIF, fontSize: 'clamp(18px, 2vw, 24px)', fontWeight: 530, lineHeight: 1.4, color: 'var(--text)', marginTop: 28, maxWidth: '30ch' }}>
-                {c.actV.footerPre}{italic(c.actV.footerHi)}
-              </p>
-            </Reveal>
+        <Reveal className="max-w-3xl mb-12">
+          <div className="eyebrow eyebrow-accent mb-6">{c.actV.eyebrow}</div>
+          <h2 style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(30px, 4vw, 52px)', lineHeight: 1.12, letterSpacing: '-0.01em', color: 'var(--text)', maxWidth: '22ch' }}>
+            {c.actV.statementPre}{italic(c.actV.statementHi)}{c.actV.statementPost}
+          </h2>
+          <p className="body-lead mt-7" style={{ maxWidth: '52ch' }}>
+            {c.actV.footerPre}{italic(c.actV.footerHi)}
+          </p>
+        </Reveal>
+
+        <Reveal delay={140}>
+          <div data-device-ui="" className="v5-card" style={{ maxWidth: 940, marginInline: 'auto', overflow: 'hidden', boxShadow: '0 1px 0 rgba(247,242,234,0.04) inset, 0 40px 80px -46px rgba(0,0,0,0.9), 0 0 90px -50px rgba(200,106,58,0.5)' }}>
+            {/* terminal header */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, padding: 'clamp(16px,1.8vw,22px) clamp(20px,2.4vw,30px)', borderBottom: '1px solid var(--border-soft)' }}>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 9 }}>
+                <span className="v5-live-dot" style={{ width: 8, height: 8, borderRadius: '50%', background: '#2D9E6B' }} />
+                <span className="eyebrow" style={{ color: 'var(--text-faint)' }}>{c.actV.liveLabel}</span>
+              </span>
+              <span style={{ textAlign: 'right' }}>
+                <span className="eyebrow" style={{ color: 'var(--text-faint)', display: 'block', fontSize: 10 }}>{c.actV.capturedLabel}</span>
+                <span style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(20px,2.2vw,30px)', color: '#2D9E6B', lineHeight: 1.1 }}>{c.actV.captured}</span>
+              </span>
+            </div>
+            {/* rows */}
+            {c.actV.rows.map((r, i) => {
+              const isRevenue = r.revenue.startsWith('+')
+              return (
+                <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 'clamp(12px,1.6vw,24px)', padding: 'clamp(15px,1.7vw,21px) clamp(20px,2.4vw,30px)', borderBottom: i < c.actV.rows.length - 1 ? '1px solid rgba(243,236,226,0.06)' : 'none' }}>
+                  <span style={{ fontFamily: 'var(--font-mono), monospace', fontSize: 'clamp(11px,1.05vw,13.5px)', letterSpacing: '.04em', color: 'var(--accent)', minWidth: 0 }}>
+                    {r.route}<span style={{ color: 'var(--text)' }}>{r.item}</span><span style={{ color: 'var(--text-faint)' }}>{r.tail}</span>
+                  </span>
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: 'clamp(10px,1.4vw,20px)', flexShrink: 0 }}>
+                    <span
+                      className="eyebrow"
+                      style={{
+                        fontSize: 11,
+                        color: isRevenue ? '#2D9E6B' : 'var(--accent)',
+                        border: `1px solid ${isRevenue ? 'rgba(45,158,107,0.32)' : 'rgba(200,106,58,0.32)'}`,
+                        background: isRevenue ? 'rgba(45,158,107,0.08)' : 'rgba(200,106,58,0.06)',
+                        borderRadius: 999,
+                        padding: '5px 12px',
+                        whiteSpace: 'nowrap',
+                      }}
+                    >
+                      {r.revenue}
+                    </span>
+                    <span style={{ fontFamily: 'var(--font-mono), monospace', fontSize: 'clamp(10px,1vw,12.5px)', color: 'var(--text-faint)', minWidth: 44, textAlign: 'right' }}>{r.time}</span>
+                  </span>
+                </div>
+              )
+            })}
           </div>
-          <div className="lg:col-span-6">
-            <Reveal delay={140}>
-              <div data-device-ui="" style={{ background: 'var(--surface-1)', border: '1px solid var(--hairline, rgba(243,236,226,.08))', borderRadius: 14, fontFamily: 'var(--font-mono), monospace', fontSize: 12, letterSpacing: '.06em', color: 'var(--receipt, #C9A87A)' }}>
-                {c.actV.rows.map((r, i) => (
-                  <div key={i} style={{ display: 'flex', justifyContent: 'space-between', gap: 16, padding: '16px 22px', borderBottom: i < c.actV.rows.length - 1 ? '1px solid rgba(201,139,78,.16)' : 'none' }}>
-                    <span>{r.route}<span style={{ color: 'var(--text)' }}>{r.item}</span>{r.tail}</span>
-                    <span>{r.time}</span>
-                  </div>
-                ))}
-              </div>
-            </Reveal>
-          </div>
-        </div>
+        </Reveal>
       </Band>
 
       {/* LIVE IN DAYS — ease + trust chips (short, RC-brief) */}

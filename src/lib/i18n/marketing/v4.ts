@@ -55,12 +55,16 @@ const en = {
     statementPre: 'Every conversation becomes ',
     statementHi: 'intelligence',
     statementPost: ' — and execution.',
-    /* receipt rows: device-UI */
+    /* operations feed: device-UI. A `revenue` starting with "+" is captured $;
+       otherwise it renders as a resolved-status badge. */
+    liveLabel: 'LIVE · OPERATIONS TONIGHT',
+    capturedLabel: 'Captured tonight',
+    captured: '+$415',
     rows: [
-      { route: '→ FRONT DESK · ', item: 'LATE CHECKOUT', tail: '', time: '10:04' },
-      { route: '→ CONCIERGE · ', item: 'TAXI TO AKUMAL', tail: '', time: '10:12' },
-      { route: '→ RESERVATIONS · ', item: 'SUITE UPGRADE', tail: '', time: '18:40' },
-      { route: '→ ENGINEERING · ', item: 'ROOM 214', tail: ' · MAINTENANCE ALERT', time: '02:14' },
+      { route: '→ FRONT DESK · ', item: 'LATE CHECKOUT', tail: '', revenue: '+$45', time: '10:04' },
+      { route: '→ CONCIERGE · ', item: 'AIRPORT PICKUP', tail: '', revenue: '+$120', time: '10:12' },
+      { route: '→ RESERVATIONS · ', item: 'SUITE UPGRADE', tail: '', revenue: '+$250', time: '18:40' },
+      { route: '→ ENGINEERING · ', item: 'ROOM 214 · AC NOT WORKING', tail: ' · MAINTENANCE ALERT', revenue: 'STAFF NOTIFIED', time: '02:14' },
     ],
     footerPre: 'Tracked from creation to completion. Tonight: 14 conversations · ',
     footerHi: '0 woke your staff.',
@@ -134,11 +138,14 @@ const es: typeof en = {
     statementPre: 'Cada conversación se convierte en ',
     statementHi: 'inteligencia',
     statementPost: ' — y en ejecución.',
+    liveLabel: 'EN VIVO · OPERACIÓN ESTA NOCHE',
+    capturedLabel: 'Capturado esta noche',
+    captured: '+$415',
     rows: [
-      { route: '→ RECEPCIÓN · ', item: 'SALIDA TARDÍA', tail: '', time: '10:04' },
-      { route: '→ CONCIERGE · ', item: 'TAXI A AKUMAL', tail: '', time: '10:12' },
-      { route: '→ RESERVAS · ', item: 'MEJORA DE SUITE', tail: '', time: '18:40' },
-      { route: '→ INGENIERÍA · ', item: 'HAB 214', tail: ' · ALERTA DE MANTENIMIENTO', time: '02:14' },
+      { route: '→ RECEPCIÓN · ', item: 'SALIDA TARDÍA', tail: '', revenue: '+$45', time: '10:04' },
+      { route: '→ CONCIERGE · ', item: 'TRASLADO AL AEROPUERTO', tail: '', revenue: '+$120', time: '10:12' },
+      { route: '→ RESERVAS · ', item: 'MEJORA DE SUITE', tail: '', revenue: '+$250', time: '18:40' },
+      { route: '→ INGENIERÍA · ', item: 'HAB 214 · AIRE NO FUNCIONA', tail: ' · ALERTA DE MANTENIMIENTO', revenue: 'EQUIPO NOTIFICADO', time: '02:14' },
     ],
     /* [v3 A3] ADDENDUM_1 */
     footerPre: 'Rastreado de inicio a fin. Esta noche: 14 conversaciones · ',
