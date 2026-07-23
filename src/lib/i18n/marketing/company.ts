@@ -10,6 +10,15 @@ const en = {
     body2:
       'Hotel Companion is built by Axionari to help hospitality organizations transform conversations into intelligence, execution, and measurable business outcomes.',
   },
+  /* Phase 5 act labels (RC-editorial numbered acts) — labels only, no new
+     positioning language. */
+  acts: {
+    why: 'WHY HOTELS',
+    mission: 'THE MISSION',
+    principles: 'THE PRINCIPLES',
+    builder: 'THE BUILDER',
+    contact: 'CONTACT',
+  },
   sections: [
     {
       id: 'why-hotels',
@@ -120,6 +129,15 @@ const es: typeof en = {
       'Creemos que cada conversación con un huésped debería crear mejores experiencias, operaciones más sólidas y negocios más valiosos.',
     body2:
       'Hotel Companion está construido por Axionari para ayudar a las organizaciones de hospitalidad a transformar las conversaciones en inteligencia, ejecución y resultados de negocio medibles.',
+  },
+  /* Etiquetas de actos Fase 5 (actos numerados RC-editorial) — solo etiquetas,
+     sin nuevo lenguaje de posicionamiento. */
+  acts: {
+    why: 'POR QUÉ LOS HOTELES',
+    mission: 'LA MISIÓN',
+    principles: 'LOS PRINCIPIOS',
+    builder: 'QUIÉN LO CONSTRUYE',
+    contact: 'CONTACTO',
   },
   sections: [
     {

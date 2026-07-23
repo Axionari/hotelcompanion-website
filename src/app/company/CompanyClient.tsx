@@ -1,184 +1,225 @@
 'use client'
 
-import Link from 'next/link'
-import { Breather } from '@/components/cds/Breather'
 import { SiteNav } from '@/components/site-nav'
 import { SiteFooter } from '@/components/site-footer'
-import { Section } from '@/components/cds/Section'
 import { Reveal } from '@/components/cds/Reveal'
+import { Breather } from '@/components/cds/Breather'
 import { EndorsementMark } from '@/components/cds/EndorsementMark'
-import { MultiAccentHeadline } from '@/components/cds/AccentHeadline'
-import { MediaBed } from '@/components/cds/MediaBed'
+import {
+  SERIF,
+  Em,
+  Band,
+  PageHero,
+  Act,
+  StatementCards,
+  QuietChips,
+  Handoff,
+} from '@/components/v5/Editorial'
 import { useCopy } from '@/lib/i18n/useCopy'
+import { globalCopy } from '@/lib/i18n/marketing/global'
 import { companyCopy } from '@/lib/i18n/marketing/company'
-import { accents } from '@/lib/i18n/marketing/accents'
+
+/**
+ * Company — RC-editorial grammar (Phase 5 rollout). This page still answers
+ * exactly one question — "Who is behind this, and why?" — but now as numbered
+ * acts, each carrying ONE message and ONE artifact:
+ *
+ *   HERO (mission statement, text-led — no visual, no action)
+ *   01 WHY HOTELS      — every missed question is a missed moment → text-only
+ *                        two-column essay (statement left, resolve right)
+ *   02 THE MISSION     — understand every guest                  → quiet chips
+ *   03 THE PRINCIPLES  — hospitality is human                    → statement cards
+ *   04 THE BUILDER     — Companion OS + Axionari                 → statement cards
+ *   05 CONTACT         — the three doors in                      → hairline rows
+ *   HAND-OFF → /demo
+ *
+ * All reading copy is the approved company copy (companyCopy) — condensed
+ * and re-presented, never rewritten. Old section ids survive as anchors.
+ */
+
+/** Split a one-sentence-pair statement ("A. B.") into plain + italic halves. */
+function splitStatement(title: string): { pre: string; hi: string } {
+  const i = title.indexOf('. ')
+  if (i === -1) return { pre: title, hi: '' }
+  return { pre: title.slice(0, i + 1), hi: title.slice(i + 1) }
+}
+
+/** Italicise the last N words of a single-sentence statement (hero emphasis). */
+function splitTail(title: string, n = 2): { pre: string; hi: string } {
+  const words = title.split(' ')
+  return { pre: words.slice(0, -n).join(' '), hi: words.slice(-n).join(' ') }
+}
+
+/** Strip the legacy "NN · " prefix off a section eyebrow (acts renumber). */
+function plainEyebrow(eyebrow: string): string {
+  return eyebrow.replace(/^\d+\s*·\s*/, '')
+}
 
 export default function CompanyClient() {
   const c = useCopy(companyCopy)
-  const a = useCopy(accents)
+  const g = useCopy(globalCopy)
 
   const byId = (id: string) => c.sections.find((s) => s.id === id)!
   const why = byId('why-hotels')
-  /* PRODUCT_ARCHITECTURE §10 — one story: the four belief movements read as a
-     single manifesto; Companion OS + Axionari read as one builder section;
-     the Founding Partner band moved to /contact#founding (Silent here, §7). */
-  const manifesto = ['belief', 'mission', 'philosophy', 'approach'].map(byId).filter(Boolean)
-  const builder = ['companion-os', 'axionari'].map(byId).filter(Boolean)
+  const belief = byId('belief')
+  const mission = byId('mission')
+  const philosophy = byId('philosophy')
+  const approach = byId('approach')
+  const companionOs = byId('companion-os')
+  const axionari = byId('axionari')
+
+  const heroTitle = splitTail(c.hero.title)
+  const beliefTitle = splitStatement(belief.title)
+  const builderTitle = splitStatement(companionOs.title)
 
   return (
     <main>
       <SiteNav />
 
-      {/* {#company-hero} — left text, reception still filling the right column */}
-      <section className="pt-16 pb-20 md:pt-28 md:pb-28" style={{ background: 'var(--bg)' }}>
-        <div className="container-rc">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            <div className="lg:col-span-7">
-              <div className="eyebrow eyebrow-accent mb-7">COMPANY</div>
-              <MultiAccentHeadline
-                as="h1"
-                className="heading-page"
-                style={{ color: 'var(--text)', maxWidth: '17ch' }}
-                text={c.hero.title}
-                accents={a.companyHero}
-              />
-              <div className="mt-9 flex flex-col gap-5" style={{ maxWidth: '54ch' }}>
-                <p className="body-lead">{c.hero.body1}</p>
-                <p className="body-lead">{c.hero.body2}</p>
-              </div>
-            </div>
-            <div className="lg:col-span-5">
-              <MediaBed
-                poster="/assets/img/lobby-modern.webp"
-                scrim={0.3}
-                className="rounded-2xl"
-                minHeight="420px"
-              />
-            </div>
+      {/* HERO {#company-hero} — flat page bed, mission statement only. A
+          company page is text-led: no device, no action (RC). */}
+      <div id="company-hero" className="scroll-mt-20">
+        <PageHero
+          eyebrow={g.nav.company}
+          title={
+            <>
+              {heroTitle.pre} <Em>{heroTitle.hi}</Em>
+            </>
+          }
+          deck={c.hero.body1}
+        />
+      </div>
+
+      {/* 01 · WHY HOTELS {#why-hotels} — one message: every missed question is
+          a missed moment. One artifact: the essay itself, two-column text-only
+          (HomeClient's ONE DAY composition — statement left, rule + resolve
+          right, italic coda). */}
+      <Band id="why-hotels">
+        <Reveal className="grid lg:grid-cols-12 gap-x-16 gap-y-10 items-start">
+          <div className="lg:col-span-7">
+            <div className="eyebrow eyebrow-accent mb-7">01 · {c.acts.why}</div>
+            <h2
+              style={{
+                fontFamily: SERIF,
+                fontWeight: 530,
+                fontSize: 'clamp(30px, 4vw, 54px)',
+                lineHeight: 1.08,
+                letterSpacing: '-0.015em',
+                color: 'var(--text)',
+                maxWidth: '18ch',
+              }}
+            >
+              {why.body[7]}
+            </h2>
+            <p className="body-lead mt-7" style={{ maxWidth: '46ch' }}>
+              {why.body[0]}
+            </p>
           </div>
-        </div>
-      </section>
-
-      {/* {#company-why-hotels} — the emotional peak. Editorial passage, generously
-          spaced on the bed; the closing line set as an italic copper pull-quote. */}
-      {why && (
-        <section id="why-hotels" className="scroll-mt-20 py-24 md:py-36" style={{ background: 'var(--surface-3)' }}>
-          <div className="container-rc">
-            <Reveal>
-              <div className="eyebrow eyebrow-accent mb-5">{why.eyebrow}</div>
-              <h2 className="heading-section" style={{ color: 'var(--text)', maxWidth: '16ch' }}>
-                {why.title}
-              </h2>
-            </Reveal>
-
-            {/* P4 §3/§4: one reading path — prose first, then the quote-on-
-                photograph as the section's single visual anchor */}
-            <div className="mt-12 flex flex-col gap-6" style={{ maxWidth: '58ch' }}>
-              {why.body.slice(0, -1).map((line, i) => (
-                <Reveal key={i} delay={Math.min(i, 6) * 30}>
-                  <p
-                    className="body-lead"
-                    style={{ fontSize: 'clamp(1.05rem, 1.5vw, 1.2rem)', lineHeight: 1.72 }}
-                  >
-                    {line}
-                  </p>
-                </Reveal>
-              ))}
-            </div>
-            <div className="mt-14" style={{ maxWidth: 880 }}>
-              <MediaBed
-                poster="/assets/img/company-reception.webp"
-                scrim={0.74}
-                className="rounded-2xl flex items-center"
-              >
-                <div className="px-8 py-14 md:px-12 md:py-20">
-                  <Reveal>
-                    <blockquote
-                      className="font-serif"
-                      style={{
-                        fontStyle: 'italic',
-                        fontWeight: 480,
-                        fontSize: 'clamp(1.6rem, 2.6vw, 2.1rem)',
-                        lineHeight: 1.28,
-                        color: 'var(--accent)',
-                        maxWidth: '26ch',
-                      }}
-                    >
-                      {why.body[why.body.length - 1]}
-                    </blockquote>
-                  </Reveal>
-                </div>
-              </MediaBed>
-            </div>
-
-            <Reveal>
-              <p
-                className="font-serif mt-16"
-                style={{ fontSize: 'clamp(1.5rem, 2.6vw, 2rem)', fontWeight: 530, color: 'var(--text)' }}
-              >
-                {why.coda}
-              </p>
-            </Reveal>
+          <div className="lg:col-span-5 lg:pt-24">
+            <div style={{ width: 44, height: 2, background: 'var(--accent)', marginBottom: 24 }} />
+            <p
+              style={{
+                fontFamily: 'var(--font-sans), ui-sans-serif, system-ui, sans-serif',
+                fontSize: 'clamp(16px, 1.7vw, 21px)',
+                lineHeight: 1.5,
+                color: 'var(--text-dim, rgba(242,233,220,0.62))',
+                maxWidth: '34ch',
+              }}
+            >
+              {why.body[8]} {why.body[9]}
+            </p>
+            <p
+              style={{
+                fontFamily: SERIF,
+                fontStyle: 'italic',
+                fontWeight: 480,
+                fontSize: 'clamp(26px, 3vw, 44px)',
+                lineHeight: 1.1,
+                letterSpacing: '-0.01em',
+                color: 'var(--cream, #F2EEE6)',
+                marginTop: 18,
+                maxWidth: '18ch',
+              }}
+            >
+              {why.coda}
+            </p>
           </div>
-        </section>
-      )}
+        </Reveal>
+      </Band>
 
-      {/* {#company-manifesto} — the four belief movements as one narrative
-          section (merged: belief + mission + philosophy + approach). This page
-          is allowed depth: every movement keeps its body and coda. */}
-      <Section id="belief" eyebrow={manifesto[0].eyebrow} title={manifesto[0].title} variant="surface-1">
-        <div className="mt-4 flex flex-col">
-          {manifesto.map((m, i) => (
-            <div key={m.id} id={i === 0 ? undefined : m.id} className="scroll-mt-24 py-10" style={{ borderBottom: i < manifesto.length - 1 ? '1px solid var(--border-soft)' : 'none' }}>
-              {i > 0 && (
-                <div className="font-serif mb-5" style={{ fontSize: 'clamp(1.35rem, 2.2vw, 1.8rem)', fontWeight: 530, color: 'var(--text)', maxWidth: '24ch' }}>
-                  {m.title}
-                </div>
-              )}
-              {/* P4 §7: one reading path — prose, then the movement's coda */}
-              <div className="flex flex-col gap-5" style={{ maxWidth: '54ch' }}>
-                {m.body.map((line, j) => (
-                  <Reveal key={j} delay={Math.min(j, 5) * 30}>
-                    <p className="body-lead">{line}</p>
-                  </Reveal>
-                ))}
-              </div>
-              <Reveal>
-                <p className="font-serif mt-7" style={{ fontSize: 'clamp(1.25rem, 2vw, 1.6rem)', fontWeight: 530, lineHeight: 1.3, color: 'var(--text)', maxWidth: '34ch' }}>
-                  {m.coda}
-                </p>
-              </Reveal>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* {#company-axionari} — the builder, one section
-          (merged: companion-os + axionari) */}
-      <Section id="axionari" eyebrow={builder[1].eyebrow} title={builder[1].title} variant="surface-3">
-        <div className="mt-10 flex flex-col gap-5" style={{ maxWidth: '54ch' }}>
-          <div className="flex flex-col gap-5">
-            {builder[1].body.map((line, j) => (
-              <Reveal key={j} delay={Math.min(j, 5) * 30}>
-                <p className="body-lead" style={{ maxWidth: '54ch' }}>
-                  {line}
-                </p>
-              </Reveal>
-            ))}
-            <div id="companion-os" className="scroll-mt-24 mt-4 flex flex-col gap-5">
-              {builder[0].body.map((line, j) => (
-                <Reveal key={j} delay={Math.min(j, 5) * 30}>
-                  <p className="body-lead" style={{ maxWidth: '54ch' }}>
-                    {line}
-                  </p>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </div>
+      {/* 02 · THE MISSION {#mission} — one message: understand every guest.
+          One artifact: the six kinds of intelligence, as quiet chips. */}
+      <Act
+        no="02"
+        label={c.acts.mission}
+        id="mission"
+        statement={mission.title}
+        deck={mission.body[0] + ' ' + mission.body[1]}
+      >
+        <QuietChips items={mission.body[2].split('. ')} />
         <Reveal>
-          <p className="font-serif mt-7" style={{ fontSize: 'clamp(1.25rem, 2vw, 1.6rem)', fontWeight: 530, lineHeight: 1.3, color: 'var(--text)', maxWidth: '34ch' }}>
-            {builder[1].coda}
+          <p
+            className="mt-12"
+            style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(20px, 2.2vw, 27px)', lineHeight: 1.35, color: 'var(--text)', maxWidth: '32ch' }}
+          >
+            {mission.coda}
+          </p>
+        </Reveal>
+      </Act>
+
+      {/* 03 · THE PRINCIPLES {#belief} — one message: hospitality is human.
+          One artifact: the three movements (belief / approach / philosophy)
+          as statement cards. */}
+      <Act
+        no="03"
+        label={c.acts.principles}
+        id="belief"
+        statement={
+          <>
+            {beliefTitle.pre} <Em>{beliefTitle.hi}</Em>
+          </>
+        }
+        deck={belief.body[1]}
+      >
+        <div id="approach" className="scroll-mt-24" />
+        <div id="philosophy" className="scroll-mt-24" />
+        <StatementCards
+          items={[
+            { eyebrow: plainEyebrow(belief.eyebrow), title: belief.coda, body: belief.body[2] },
+            { eyebrow: plainEyebrow(approach.eyebrow), title: approach.title, body: approach.body[0] + ' ' + approach.coda },
+            { eyebrow: plainEyebrow(philosophy.eyebrow), title: philosophy.title, body: philosophy.body[2] + ' ' + philosophy.coda },
+          ]}
+        />
+      </Act>
+
+      {/* 04 · THE BUILDER {#axionari} — one message: one platform, one builder.
+          One artifact: Companion OS and Axionari as statement cards, closed by
+          the endorsement mark in a quiet position. */}
+      <Act
+        no="04"
+        label={c.acts.builder}
+        id="axionari"
+        statement={
+          <>
+            {builderTitle.pre} <Em>{builderTitle.hi}</Em>
+          </>
+        }
+        deck={companionOs.body[0]}
+      >
+        <div id="companion-os" className="scroll-mt-24" />
+        <StatementCards
+          columns={2}
+          items={[
+            { eyebrow: plainEyebrow(companionOs.eyebrow), title: companionOs.coda, body: companionOs.body[1] + ' ' + companionOs.body[2] },
+            { eyebrow: plainEyebrow(axionari.eyebrow), title: axionari.title, body: axionari.body[0] + ' ' + axionari.body[1] },
+          ]}
+        />
+        <Reveal>
+          <p
+            className="mt-12"
+            style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(20px, 2.2vw, 27px)', lineHeight: 1.35, color: 'var(--text)', maxWidth: '30ch' }}
+          >
+            {axionari.coda}
           </p>
         </Reveal>
         <Reveal>
@@ -186,49 +227,35 @@ export default function CompanyClient() {
             <EndorsementMark variant="axionari" />
           </div>
         </Reveal>
-      </Section>
+      </Act>
 
-
-      {/* {#company-contact} */}
+      {/* Breather — air before the doors in (existing image, this page) */}
       <Breather id="band-company-dusk" image="/assets/breathers/beach-dusk-walk.webp" height="clamp(280px, 44vh, 520px)" />
 
-      <Section id="contact" eyebrow="CONTACT" title={c.contact.title} variant="surface-2">
-        <div className="mt-8 body-lead" style={{ maxWidth: '56ch' }}>
-          {c.contact.body}
-        </div>
-        <div className="mt-10 flex flex-col gap-px" style={{ maxWidth: '640px' }}>
-          {c.contact.channels.map((ch) => (
-            <Reveal key={ch.email}>
+      {/* 05 · CONTACT {#contact} — one message: three doors in. One artifact:
+          the channels, as calm hairline rows. */}
+      <Act no="05" label={c.acts.contact} id="contact" statement={c.contact.title} deck={c.contact.body}>
+        <div style={{ maxWidth: 640 }}>
+          {c.contact.channels.map((ch, i) => (
+            <Reveal key={ch.email} delay={Math.min(i, 4) * 60}>
               <a
                 href={`mailto:${ch.email}`}
                 className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 py-5 transition-colors hover:text-[#d4824f]"
-                style={{ borderBottom: '1px solid var(--border-soft)', color: 'var(--text)' }}
+                style={{ borderTop: '1px solid var(--border-soft)', color: 'var(--text)' }}
               >
                 <span className="eyebrow">{ch.label}</span>
-                <span className="font-sans" style={{ fontSize: '16px', color: 'var(--accent)' }}>
-                  {ch.email}
-                </span>
+                <span style={{ fontSize: 16, color: 'var(--accent)' }}>{ch.email}</span>
               </a>
             </Reveal>
           ))}
         </div>
-        {/* the one place this closing line lives (PRODUCT_ARCHITECTURE §7) */}
-        <Reveal>
-          <p
-            className="font-serif mt-12"
-            style={{ fontSize: 'clamp(1.35rem, 2.2vw, 1.75rem)', fontWeight: 530, color: 'var(--text)', maxWidth: '30ch' }}
-          >
-            {c.finalCta.title}
-          </p>
-        </Reveal>
-        <Reveal>
-          <div className="mt-10">
-            <Link href="/demo" className="btn-primary">
-              {c.finalCta.cta}
-            </Link>
-          </div>
-        </Reveal>
-      </Section>
+      </Act>
+
+      {/* HAND-OFF {#company-final-cta} — the closing line points back into the
+          product (RC hand-off, not a heavy CTA). */}
+      <div id="company-final-cta" className="scroll-mt-20">
+        <Handoff statement={c.finalCta.title} href="/demo" label={c.finalCta.cta} />
+      </div>
 
       <SiteFooter />
     </main>

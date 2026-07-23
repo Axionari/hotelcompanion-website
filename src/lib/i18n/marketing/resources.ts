@@ -5,10 +5,18 @@ import type { Localized } from '../useCopy'
 const en = {
   hero: {
     title: 'Insights for the Future of Hospitality.',
+    /* styling only — the italic fragment of the (verbatim) title above */
+    em: 'the Future of Hospitality.',
     body1:
       'Explore ideas, research, and practical guidance on guest intelligence, AI, operational excellence, and the future of hospitality.',
     body2:
       'Whether you’re evaluating AI, improving guest experiences, or rethinking hotel operations, our library is designed to help hospitality leaders understand what’s next.',
+  },
+  /* RC-editorial act labels (Phase 5) */
+  acts: {
+    featured: 'FEATURED',
+    library: 'THE LIBRARY',
+    newsletter: 'NEWSLETTER',
   },
   featured: {
     eyebrow: '01 · FEATURED',
@@ -91,10 +99,18 @@ const en = {
 const es: typeof en = {
   hero: {
     title: 'Ideas para el Futuro de la Hospitalidad.',
+    /* solo estilo — el fragmento en itálica del título (verbatim) de arriba */
+    em: 'el Futuro de la Hospitalidad.',
     body1:
       'Explora ideas, investigación y guías prácticas sobre inteligencia de huéspedes, IA, excelencia operativa y el futuro de la hospitalidad.',
     body2:
       'Ya sea que estés evaluando IA, mejorando la experiencia del huésped o repensando las operaciones de tu hotel, nuestra biblioteca está diseñada para ayudar a los líderes de hospitalidad a entender lo que viene.',
+  },
+  /* Etiquetas de actos RC-editorial (Fase 5) */
+  acts: {
+    featured: 'DESTACADO',
+    library: 'LA BIBLIOTECA',
+    newsletter: 'NEWSLETTER',
   },
   featured: {
     eyebrow: '01 · DESTACADO',

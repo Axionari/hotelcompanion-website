@@ -3,8 +3,16 @@ import type { Localized } from '../useCopy'
 /* Copy source: HotelCompanion__Site_Copy.md {#contact}. Verbatim. */
 
 const en = {
+  /* RC-editorial page name + act labels (Phase 5) */
+  eyebrow: 'Contact',
+  acts: {
+    founding: 'FOUNDING PARTNERS',
+    channels: 'GET IN TOUCH',
+  },
   hero: {
     title: 'Let’s Build the Future of Hospitality Together.',
+    /* styling only — the italic fragment of the (verbatim) title above */
+    em: 'the Future of Hospitality Together.',
     body:
       'Whether you’re exploring Hotel Companion, evaluating a pilot, or simply curious about the future of Guest Intelligence, we’d love to hear from you.',
     coda: 'Every conversation starts somewhere. Let’s start one.',
@@ -85,8 +93,16 @@ const en = {
 /* Copy source: HotelCompanion__Site_Copy_ES.md {#contact}. Verbatim. */
 
 const es: typeof en = {
+  /* Nombre de página + etiquetas de actos RC-editorial (Fase 5) */
+  eyebrow: 'Contacto',
+  acts: {
+    founding: 'SOCIOS FUNDADORES',
+    channels: 'PONTE EN CONTACTO',
+  },
   hero: {
     title: 'Construyamos Juntos el Futuro de la Hospitalidad.',
+    /* solo estilo — el fragmento en itálica del título (verbatim) de arriba */
+    em: 'el Futuro de la Hospitalidad.',
     body:
       'Ya sea que estés explorando Hotel Companion, evaluando un piloto o simplemente con curiosidad sobre el futuro de la Inteligencia de Huéspedes, nos encantaría saber de ti.',
     coda: 'Toda conversación comienza en algún lugar. Comencemos una.',

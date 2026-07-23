@@ -1,142 +1,148 @@
 'use client'
 
 import Link from 'next/link'
-import { Section } from '@/components/cds/Section'
+import { SiteNav } from '@/components/site-nav'
+import { SiteFooter } from '@/components/site-footer'
+import { Reveal } from '@/components/cds/Reveal'
 import { Accordion } from '@/components/cds/blocks'
 import { DemoForm } from '@/components/cds/DemoForm'
-import { LiveDemo } from '@/components/cds/LiveDemo'
-import { liveDemoCopy } from '@/lib/i18n/marketing/liveDemo'
-import { Reveal } from '@/components/cds/Reveal'
-import { Lead } from '@/components/cds/Prose'
-import { PageShell, PageHero } from '@/components/cds/PageShell'
+import { openLiveDemo } from '@/components/cds/LiveDemoModal'
+import {
+  Em,
+  PageHero,
+  Act,
+  NumberedList,
+  QuietChips,
+  Handoff,
+} from '@/components/v5/Editorial'
 import { useCopy } from '@/lib/i18n/useCopy'
-import { accents } from '@/lib/i18n/marketing/accents'
+import { globalCopy } from '@/lib/i18n/marketing/global'
 import { demoCopy } from '@/lib/i18n/marketing/demo'
 import { demoFormCopy } from '@/lib/i18n/marketing/demoForm'
+import { contactCopy } from '@/lib/i18n/marketing/contact'
 import { homeCopy } from '@/lib/i18n/marketing/home'
+import { liveDemoCopy } from '@/lib/i18n/marketing/liveDemo'
 
 /**
- * /demo — PRODUCT_ARCHITECTURE §5/§10: this page generates meetings. The form
- * sits at position 2 — a visitor can request a demo within one viewport of
- * scrolling; everything below it exists only to dissolve hesitation:
- * one merged "what to expect", the live product, the site's only FAQ
- * (hesitation questions — §10 FAQ doctrine), and what happens after
- * submitting. The Founding Partner Program appears as a quiet link under the
- * form (its canonical home is /contact#founding).
+ * /demo — RC-editorial grammar (Phase 5 rollout). The RC "Request a Demo"
+ * analog: one editorial hero statement, then numbered acts — each ONE
+ * message and ONE artifact:
+ *
+ *   HERO (statement, form anchor + live demo)
+ *   01 THE SESSION       — what the meeting is        → numbered agenda + roles
+ *   02 WHO SHOULD ATTEND — who the room is for        → QuietChips
+ *   03 THE REQUEST       — the page's one job         → DemoForm {#form}
+ *   04 DEPLOYMENT        — what happens after         → numbered stages
+ *   05 FAQ {#faq}        — hesitation questions       → Accordion (site's only
+ *                          FAQ; footer + /faq redirect link here, JSON-LD in
+ *                          page.tsx reads the same demoCopy.faq.items)
+ *   HAND-OFF → /contact
+ *
+ * All reading copy is the approved demo copy (demoCopy) — condensed and
+ * re-presented, never rewritten.
  */
 
-/** Numbered step list used for the agenda and the deployment sequence. */
-function Steps({ items }: { items: ReadonlyArray<{ title: string; body: string }> }) {
-  return (
-    <ol className="mt-12 flex flex-col gap-6" style={{ maxWidth: 760 }}>
-      {items.map((s, i) => (
-        <Reveal key={s.title} as="li" delay={Math.min(i, 5) * 40}>
-          <div className="flex gap-5">
-            <span className="eyebrow flex-shrink-0 pt-1.5" style={{ color: 'var(--accent)' }}>
-              {String(i + 1).padStart(2, '0')}
-            </span>
-            <div>
-              <h3 className="font-serif mb-1.5" style={{ fontSize: 'clamp(1.15rem, 2.2vw, 1.4rem)', color: 'var(--text)' }}>
-                {s.title}
-              </h3>
-              <p className="font-sans leading-relaxed" style={{ fontSize: '15px', color: 'var(--text-secondary)' }}>
-                {s.body}
-              </p>
-            </div>
-          </div>
-        </Reveal>
-      ))}
-    </ol>
-  )
+/** Split a title into plain + italic halves around its (verbatim) em fragment. */
+function splitEm(title: string, em: string): { pre: string; hi: string } {
+  const i = em ? title.lastIndexOf(em) : -1
+  if (i === -1) return { pre: title, hi: '' }
+  return { pre: title.slice(0, i).trimEnd(), hi: title.slice(i) }
 }
 
 export default function DemoClient() {
   const c = useCopy(demoCopy)
-  const a = useCopy(accents)
+  const g = useCopy(globalCopy)
   const form = useCopy(demoFormCopy)
-  const demo = useCopy(liveDemoCopy)
+  const contact = useCopy(contactCopy)
   const home = useCopy(homeCopy)
+  const demo = useCopy(liveDemoCopy)
+
+  const heroTitle = splitEm(c.hero.title, c.hero.em)
 
   return (
-    <PageShell>
-      {/* {#demo-hero} — one line; by arrival, persuasion is spent (§8) */}
-      <PageHero title={c.hero.title} accents={a.demoHero} poster="/assets/img/platform-pool-night.webp">
-        <Lead reveal={false}>{c.hero.body1}</Lead>
-        <a href="#form" className="btn-primary mt-4">
-          {c.hero.cta}
-        </a>
-      </PageHero>
+    <main>
+      <SiteNav />
 
-      {/* {#demo-form} — position 2: the page's one job */}
-      <Section id="form" eyebrow="01 · REQUEST" title={form.title} variant="surface-1">
-        <div className="mt-6">
-          <Lead>{form.intro}</Lead>
-        </div>
-        <div className="mt-12">
-          <DemoForm />
-        </div>
+      {/* HERO {#demo-hero} — flat page bed, one statement, two quiet actions */}
+      <div id="demo-hero" className="scroll-mt-20">
+        <PageHero
+          eyebrow={g.nav.bookDemo}
+          title={
+            <>
+              {heroTitle.pre} <Em>{heroTitle.hi}</Em>
+            </>
+          }
+          deck={c.hero.body1}
+          actions={
+            <>
+              <a href="#form" className="btn-primary">
+                {c.hero.cta}
+              </a>
+              <button type="button" onClick={openLiveDemo} className="btn-secondary">
+                {demo.open}
+              </button>
+            </>
+          }
+        />
+      </div>
+
+      {/* 01 · THE SESSION {#demo-expect} — one message: what the meeting is.
+          One artifact: the agenda, numbered. */}
+      <Act
+        no="01"
+        label={c.acts.session}
+        id="demo-expect"
+        statement={c.expect.title}
+        deck={c.experience.lead}
+      >
+        <NumberedList items={c.agenda.items} />
+      </Act>
+
+      {/* 02 · WHO SHOULD ATTEND {#demo-who} — one message: the room. One
+          artifact: the roles, as quiet chips. */}
+      <Act no="02" label={c.acts.who} id="demo-who" statement={c.who.lead} tight>
+        <QuietChips items={c.who.roles} />
+      </Act>
+
+      {/* 03 · THE REQUEST {#form} — the page's one job. One artifact: the
+          form itself (functionality untouched). */}
+      <Act
+        no="03"
+        label={c.acts.request}
+        id="form"
+        statement={form.title}
+        deck={form.intro}
+      >
+        <DemoForm />
         {/* the Founding Partner Program, as a quiet signal (Addendum 2) */}
         <Reveal>
           <p className="mt-10">
-            <Link
-              href="/contact#founding"
-              className="font-sans transition-colors hover:text-[#d4824f]"
-              style={{ color: 'var(--accent)', fontWeight: 500, fontSize: 15 }}
-            >
-              {home.foundingCta} →
+            <Link href="/contact#founding" className="eyebrow eyebrow-accent" style={{ fontSize: 13 }}>
+              {home.foundingCta}
+              <span aria-hidden="true" style={{ marginLeft: 12 }}>
+                →
+              </span>
             </Link>
           </p>
         </Reveal>
-      </Section>
+      </Act>
 
-      {/* {#demo-expect} — one description of the meeting
-          (merged: the session + attendees + topics + expectations + agenda) */}
-      <Section eyebrow="02 · WHAT TO EXPECT" title={c.expect.title}>
-        <div className="mt-6">
-          <Lead>{c.experience.lead}</Lead>
-        </div>
-        <Steps items={c.agenda.items} />
-        <div id="demo-who" className="scroll-mt-24">
-          <Reveal>
-            <div className="mt-12 flex flex-wrap gap-2.5">
-              {c.who.roles.map((role) => (
-                <span
-                  key={role}
-                  className="font-sans rounded-full px-4 py-2"
-                  style={{
-                    background: 'var(--surface-2)',
-                    border: '1px solid var(--border)',
-                    fontSize: '14px',
-                    color: 'var(--text-secondary)',
-                  }}
-                >
-                  {role}
-                </span>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </Section>
+      {/* 04 · DEPLOYMENT {#demo-deployment} — one message: what happens after
+          you submit. One artifact: the stages, numbered. */}
+      <Act no="04" label={c.acts.deployment} id="demo-deployment" statement={c.deployment.title}>
+        <NumberedList items={c.deployment.stages} />
+      </Act>
 
-      {/* {#demo-experience} — the product itself, for the not-yet-convinced */}
-      <Section id="try" eyebrow="03 · TRY IT" title={demo.title} support={demo.lead} variant="surface-1">
-        <div style={{ maxWidth: 560 }}>
-          <LiveDemo />
-        </div>
-      </Section>
+      {/* 05 · FAQ {#faq} — the site's ONLY FAQ: hesitation questions at the
+          point of conversion. Footer-linked (/demo#faq); Accordion kept. */}
+      <Act no="05" label={c.acts.faq} id="faq" statement={c.faq.title}>
+        <Accordion items={c.faq.items} />
+      </Act>
 
-      {/* {#demo-faq} — the site's ONLY FAQ: hesitation questions, at the point
-          of conversion (PRODUCT_ARCHITECTURE §10) */}
-      <Section id="faq" eyebrow="04 · FAQ" title={c.faq.title}>
-        <div className="mt-12">
-          <Accordion items={c.faq.items} />
-        </div>
-      </Section>
+      {/* HAND-OFF → /contact — a pointer, not a heavy CTA (RC) */}
+      <Handoff statement={contact.hero.coda} href="/contact" label={contact.closing.cta} />
 
-      {/* {#demo-deployment} — what happens after you submit */}
-      <Section eyebrow="05 · DEPLOYMENT" title={c.deployment.title} variant="surface-1">
-        <Steps items={c.deployment.stages} />
-      </Section>
-    </PageShell>
+      <SiteFooter />
+    </main>
   )
 }

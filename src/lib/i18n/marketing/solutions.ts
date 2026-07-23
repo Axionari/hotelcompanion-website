@@ -3,6 +3,13 @@ import type { Localized } from '../useCopy'
 /* Copy source: HotelCompanion__Site_Copy.md {#solutions}. Verbatim. */
 
 const en = {
+  /* P5 editorial rollout: numbered-act labels only — every reading line
+     below is the approved site copy. Segment acts reuse each segment's own
+     eyebrow as its label (the .eyebrow class renders mono-caps). */
+  acts: {
+    departments: 'THE DEPARTMENTS',
+    next: 'NEXT STEP',
+  },
   hero: {
     title: 'One Platform. Every Department.',
     body1:
@@ -191,6 +198,10 @@ const en = {
 }
 
 const es: typeof en = {
+  acts: {
+    departments: 'LOS DEPARTAMENTOS',
+    next: 'SIGUIENTE PASO',
+  },
   hero: {
     title: 'Una Plataforma. Cada Departamento.',
     body1:

@@ -2,24 +2,85 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { Section } from '@/components/cds/Section'
+import { SiteNav } from '@/components/site-nav'
+import { SiteFooter } from '@/components/site-footer'
 import { Reveal } from '@/components/cds/Reveal'
-import { Lead, Coda } from '@/components/cds/Prose'
-import { PageShell, PageHero } from '@/components/cds/PageShell'
-import { MediaBed } from '@/components/cds/MediaBed'
+import { SERIF, Em, PageHero, Act, Handoff } from '@/components/v5/Editorial'
 import { useCopy, type Localized } from '@/lib/i18n/useCopy'
+import { globalCopy } from '@/lib/i18n/marketing/global'
 import { resourcesCopy } from '@/lib/i18n/marketing/resources'
-import { accents } from '@/lib/i18n/marketing/accents'
 import type { EssayMeta } from '@/lib/library'
+
+/**
+ * /resources — RC-editorial grammar (Phase 5 rollout). The RC "Library"
+ * analog: an editorial index. One statement hero, then numbered acts —
+ * each ONE message and ONE artifact:
+ *
+ *   HERO (statement)
+ *   01 FEATURED    — the flagship essay          → one quiet pointer
+ *   02 THE LIBRARY — the full index {#library}   → hairline essay rows with a
+ *                    quiet mono-caps topic filter {#categories}
+ *   03 NEWSLETTER  — stay ahead                  → the (working) signup form
+ *   HAND-OFF → /demo
+ *
+ * Essays come from @/lib/library (untouched); all reading copy is the
+ * approved resources copy (resourcesCopy) — condensed, never rewritten.
+ */
 
 export interface ResourcesContent {
   essays: EssayMeta[]
   categories: string[]
 }
 
+/** Split a title into plain + italic halves around its (verbatim) em fragment. */
+function splitEm(title: string, em: string): { pre: string; hi: string } {
+  const i = em ? title.lastIndexOf(em) : -1
+  if (i === -1) return { pre: title, hi: '' }
+  return { pre: title.slice(0, i).trimEnd(), hi: title.slice(i) }
+}
+
+/** Calm hairline row for one essay: mono number, serif title, mono meta, arrow. */
+function EssayRow({ essay, delay }: { essay: EssayMeta; delay: number }) {
+  return (
+    <Reveal delay={delay}>
+      <Link
+        href={`/resources/library/${essay.slug}`}
+        className="group grid md:grid-cols-12 gap-x-10 gap-y-2 py-7 items-baseline"
+        style={{ borderTop: '1px solid var(--border-soft)' }}
+      >
+        <div
+          className="md:col-span-1 eyebrow"
+          style={{ color: 'var(--accent)', fontVariantNumeric: 'tabular-nums' }}
+        >
+          {String(essay.order).padStart(2, '0')}
+        </div>
+        <div className="md:col-span-6">
+          <p
+            className="transition-colors group-hover:text-[var(--accent)]"
+            style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(19px, 2vw, 25px)', lineHeight: 1.3, color: 'var(--text)' }}
+          >
+            {essay.title}
+          </p>
+          <p
+            style={{ fontFamily: SERIF, fontStyle: 'italic', fontWeight: 480, fontSize: 15, lineHeight: 1.5, color: 'var(--text-dim)', maxWidth: '52ch' }}
+          >
+            {essay.subtitle}
+          </p>
+        </div>
+        <div className="md:col-span-4 eyebrow" style={{ color: 'var(--text-faint)' }}>
+          {essay.category} · {essay.readingTime}
+        </div>
+        <div className="md:col-span-1 md:text-right" aria-hidden="true" style={{ color: 'var(--accent)' }}>
+          →
+        </div>
+      </Link>
+    </Reveal>
+  )
+}
+
 export default function ResourcesClient({ content }: { content: Localized<ResourcesContent> }) {
   const c = useCopy(resourcesCopy)
-  const a = useCopy(accents)
+  const g = useCopy(globalCopy)
   const { essays, categories } = useCopy(content)
   // null = "all"; stored language-agnostically so switching language keeps the filter valid
   const [active, setActive] = useState<string | null>(null)
@@ -29,118 +90,95 @@ export default function ResourcesClient({ content }: { content: Localized<Resour
   const activeValid = active !== null && categories.includes(active)
   const visible = activeValid ? essays.filter((e) => e.category === active) : essays
 
+  const heroTitle = splitEm(c.hero.title, c.hero.em)
+
   return (
-    <PageShell>
-      {/* {#resources-hero} */}
-      <PageHero title={c.hero.title} accents={a.resourcesHero} poster="/assets/img/ambient-palms-night.webp">
-        <Lead reveal={false}>{c.hero.body1}</Lead>
-        <Lead reveal={false}>{c.hero.body2}</Lead>
-      </PageHero>
+    <main>
+      <SiteNav />
 
-      {/* {#resources-featured} */}
-      <Section eyebrow={c.featured.eyebrow} title={c.featured.title} variant="surface-1">
-        <div className="mt-8 flex flex-col gap-4">
-          <Lead tone="primary">{c.featured.body1}</Lead>
-          <Lead>{c.featured.body2}</Lead>
-        </div>
+      {/* HERO {#resources-hero} — flat page bed, one statement */}
+      <div id="resources-hero" className="scroll-mt-20">
+        <PageHero
+          eyebrow={g.nav.resources}
+          title={
+            <>
+              {heroTitle.pre} <Em>{heroTitle.hi}</Em>
+            </>
+          }
+          deck={c.hero.body1}
+        />
+      </div>
+
+      {/* 01 · FEATURED {#resources-featured} — one message: the flagship
+          essay. One artifact: a quiet pointer to it. */}
+      <Act
+        no="01"
+        label={c.acts.featured}
+        id="resources-featured"
+        statement={c.featured.title}
+        deck={c.featured.body1}
+      >
         <Reveal>
-          <div className="mt-10">
-            <Link href={`/resources/library/${c.featured.slug}`} className="btn-primary">
-              {c.featured.cta} →
+          <p
+            style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(20px, 2.2vw, 27px)', lineHeight: 1.35, color: 'var(--text)', maxWidth: '34ch' }}
+          >
+            {c.featured.body2}
+          </p>
+          <p className="mt-8">
+            <Link href={`/resources/library/${c.featured.slug}`} className="eyebrow eyebrow-accent" style={{ fontSize: 13 }}>
+              {c.featured.cta}
+              <span aria-hidden="true" style={{ marginLeft: 12 }}>
+                →
+              </span>
             </Link>
-          </div>
+          </p>
         </Reveal>
-      </Section>
+      </Act>
 
-      {/* {#resources-library} — featured cards from the copy deck */}
-      <Section id="library" eyebrow={c.library.eyebrow} title={c.library.title}>
-        <div className="mt-12 grid md:grid-cols-2 gap-5 text-left">
-          {c.library.cards.map((card) => (
-            <Reveal key={card.label}>
-              <Link
-                href={`/resources/library/${card.slug}`}
-                className="block rounded-2xl p-6 md:p-7 h-full transition-colors hover:border-[rgba(201,106,58,0.4)]"
-                style={{ background: 'var(--surface-2)', border: '1px solid var(--border)' }}
-              >
-                <h3 className="font-serif mb-3" style={{ fontSize: 'clamp(1.2rem, 2.2vw, 1.5rem)', color: 'var(--text)' }}>
-                  {card.label}
-                </h3>
-                <p className="font-sans leading-relaxed" style={{ fontSize: '15px', color: 'var(--text-secondary)' }}>
-                  {card.dek}
-                </p>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
-
-        {/* the full library, with its built-in category filter */}
+      {/* 02 · THE LIBRARY {#library} — footer-linked (/resources#library).
+          One artifact: the index as hairline rows, with a quiet mono-caps
+          topic filter {#categories}. */}
+      <Act no="02" label={c.acts.library} id="library" statement={c.categories.title} deck={c.hero.body2}>
         <div id="categories" className="scroll-mt-24">
           <Reveal>
-          <div className="mt-14 flex flex-wrap gap-2.5">
-            {[null, ...categories].map((cat) => {
-              const on = cat === null ? !activeValid : cat === active
-              return (
-                <button
-                  key={cat ?? '__all'}
-                  onClick={() => setActive(cat)}
-                  aria-pressed={on}
-                  className="font-sans rounded-full px-4 transition-colors"
-                  style={{
-                    background: on ? 'var(--accent)' : 'transparent',
-                    border: `1px solid ${on ? 'var(--accent)' : 'var(--border)'}`,
-                    color: on ? '#1a1207' : 'var(--text-dim)',
-                    fontWeight: on ? 600 : 400,
-                    fontSize: '14px',
-                    minHeight: '44px',
-                  }}
-                >
-                  {cat ?? c.categories.all}
-                </button>
-              )
-            })}
-          </div>
+            <div className="flex flex-wrap gap-x-7 gap-y-3">
+              {[null, ...categories].map((cat) => {
+                const on = cat === null ? !activeValid : cat === active
+                return (
+                  <button
+                    key={cat ?? '__all'}
+                    type="button"
+                    onClick={() => setActive(cat)}
+                    aria-pressed={on}
+                    className="eyebrow transition-colors"
+                    style={{ color: on ? 'var(--accent)' : 'var(--text-faint)', paddingBlock: 6 }}
+                  >
+                    {cat ?? c.categories.all}
+                  </button>
+                )
+              })}
+            </div>
           </Reveal>
-        <ul className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {visible.map((e, i) => (
-            <li key={e.slug}>
-              <Reveal delay={Math.min(i, 6) * 30}>
-                <Link
-                  href={`/resources/library/${e.slug}`}
-                  className="group flex h-full flex-col rounded-2xl p-6 transition-colors"
-                  style={{ background: 'var(--surface-2)', border: '1px solid var(--border-soft)' }}
-                >
-                  <span className="eyebrow eyebrow-accent mb-4">
-                    {String(e.order).padStart(2, '0')} · {e.category}
-                  </span>
-                  <span
-                    className="font-serif mb-3"
-                    style={{ fontSize: '1.25rem', fontWeight: 530, lineHeight: 1.2, color: 'var(--text)' }}
-                  >
-                    {e.title}
-                  </span>
-                  <span
-                    className="font-serif italic flex-1"
-                    style={{ fontSize: '0.95rem', lineHeight: 1.5, color: 'var(--text-dim)' }}
-                  >
-                    {e.subtitle}
-                  </span>
-                  <span className="eyebrow mt-5">{e.readingTime}</span>
-                </Link>
-              </Reveal>
-            </li>
-          ))}
-        </ul>
+          <div className="mt-10">
+            {visible.map((e, i) => (
+              <EssayRow key={e.slug} essay={e} delay={Math.min(i, 6) * 40} />
+            ))}
+          </div>
         </div>
-      </Section>
+      </Act>
 
-      {/* {#resources-newsletter} */}
-      <Section eyebrow={c.newsletter.eyebrow} title={c.newsletter.title}>
-        <div className="mt-8 flex flex-col gap-4">
-          <Lead tone="primary">{c.newsletter.body1}</Lead>
-          <Lead>{c.newsletter.body2}</Lead>
-        </div>
+      {/* 03 · NEWSLETTER {#resources-newsletter} — one message: stay ahead.
+          One artifact: the (working) signup form. */}
+      <Act
+        no="03"
+        label={c.acts.newsletter}
+        id="resources-newsletter"
+        statement={c.newsletter.title}
+        deck={c.newsletter.body1 + ' ' + c.newsletter.body2}
+        tight
+      >
         <Reveal>
-          <div className="mt-10" style={{ maxWidth: 460 }}>
+          <div style={{ maxWidth: 460 }}>
             {subscribed ? (
               <p className="font-sans" style={{ color: 'var(--green)' }} role="status">
                 {c.newsletter.success}
@@ -181,8 +219,12 @@ export default function ResourcesClient({ content }: { content: Localized<Resour
             )}
           </div>
         </Reveal>
-      </Section>
+      </Act>
 
-    </PageShell>
+      {/* HAND-OFF → /demo — a pointer, not a heavy CTA (RC) */}
+      <Handoff statement={g.footer.brand.headline} href="/demo" label={g.nav.bookDemo} />
+
+      <SiteFooter />
+    </main>
   )
 }

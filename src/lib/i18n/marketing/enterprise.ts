@@ -3,6 +3,27 @@ import type { Localized } from '../useCopy'
 /* Copy source: HotelCompanion__Site_Copy.md {#enterprise}. Verbatim. */
 
 const en = {
+  /* P5 editorial rollout: numbered-act labels + hero proof chips.
+     Labels only — every reading line below is the approved site copy. */
+  acts: {
+    shared: 'SHARED INTELLIGENCE',
+    multi: 'MULTI-PROPERTY',
+    knowledge: 'KNOWLEDGE & ADMINISTRATION',
+    security: 'SECURITY',
+    governance: 'GOVERNANCE',
+    intelligence: 'INTELLIGENCE',
+    fit: 'INTEGRATION & BOUNDARIES',
+    deploy: 'DEPLOYMENT & SCALE',
+    next: 'NEXT STEP',
+  },
+  heroChips: [
+    'MULTI-PROPERTY',
+    'ROLE-BASED ACCESS',
+    'ENCRYPTED COMMUNICATIONS',
+    'AUDITABILITY',
+    'CENTRALIZED GOVERNANCE',
+    'DEPLOY IN DAYS',
+  ],
   hero: {
     title: 'Built for Modern Hospitality Enterprises.',
     positioning: 'Scale exceptional hospitality across every property with confidence.',
@@ -171,6 +192,25 @@ const en = {
 }
 
 const es: typeof en = {
+  acts: {
+    shared: 'INTELIGENCIA COMPARTIDA',
+    multi: 'MULTIPROPIEDAD',
+    knowledge: 'CONOCIMIENTO Y ADMINISTRACIÓN',
+    security: 'SEGURIDAD',
+    governance: 'GOBERNANZA',
+    intelligence: 'INTELIGENCIA',
+    fit: 'INTEGRACIÓN Y LÍMITES',
+    deploy: 'IMPLEMENTACIÓN Y ESCALA',
+    next: 'SIGUIENTE PASO',
+  },
+  heroChips: [
+    'MULTIPROPIEDAD',
+    'ACCESO BASADO EN ROLES',
+    'COMUNICACIONES CIFRADAS',
+    'AUDITABILIDAD',
+    'GOBERNANZA CENTRALIZADA',
+    'IMPLEMENTA EN DÍAS',
+  ],
   hero: {
     title: 'Creado para Empresas Modernas de Hospitalidad.',
     positioning: 'Escala una hospitalidad excepcional en cada propiedad con confianza.',

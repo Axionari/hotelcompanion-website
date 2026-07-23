@@ -1,289 +1,266 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
 import { SiteNav } from '@/components/site-nav'
 import { SiteFooter } from '@/components/site-footer'
-import { Section } from '@/components/cds/Section'
 import { Reveal } from '@/components/cds/Reveal'
+import { Breather } from '@/components/cds/Breather'
 import { MediaBed } from '@/components/cds/MediaBed'
-import { MultiAccentHeadline } from '@/components/cds/AccentHeadline'
-import { IconChipGrid } from '@/components/cds/blocks'
+import { openLiveDemo } from '@/components/cds/LiveDemoModal'
+import {
+  SERIF,
+  Em,
+  PageHero,
+  ChipStrip,
+  Act,
+  NumberedList,
+  QuietChips,
+  Handoff,
+} from '@/components/v5/Editorial'
 import { useCopy } from '@/lib/i18n/useCopy'
+import { globalCopy } from '@/lib/i18n/marketing/global'
 import { solutionsCopy } from '@/lib/i18n/marketing/solutions'
-import { accents } from '@/lib/i18n/marketing/accents'
+import { liveDemoCopy } from '@/lib/i18n/marketing/liveDemo'
 
 /**
- * Solutions — composed to Restaurant Companion level (Level-Up plan §C).
- * The endless centred card stack is replaced by an interactive department
- * index (left rail swaps the right panel) and a hairline segment index.
- * Left-aligned throughout; the six segment ids are footer deep-link targets
- * (/solutions#luxury, #boutique, #resorts, #business, #enterprise-groups,
- * #multi-property) and must survive any future edit.
+ * Solutions — RC-editorial grammar (Phase 5 rollout). This page still answers
+ * exactly one question — "Who is it for?" — but now as numbered acts, each
+ * carrying ONE message and ONE artifact:
+ *
+ *   HERO (statement, no device) · department chips
+ *   01 THE DEPARTMENTS      — one shared intelligence      → numbered index
+ *   02 MULTI-PROPERTY GROUPS — consistency + identity      → quiet chips
+ *   03 LUXURY HOTELS        — recognized, at scale         → quiet chips
+ *   04 RESORTS              — one seamless journey         → quiet chips
+ *   05 BOUTIQUE HOTELS      — distinctly yours             → numbered claims
+ *   06 BUSINESS HOTELS      — speed at any hour            → quiet chips
+ *   07 ENTERPRISE GROUPS    — one platform, every hotel    → quiet chips
+ *   HAND-OFF → /enterprise · CLOSING MEDIA BAND (one action)
+ *
+ * All reading copy is the approved solutions copy (solutionsCopy) — condensed
+ * and re-presented, never rewritten. The footer deep-link ids (#luxury,
+ * #boutique, #resorts, #business, #enterprise-groups, #multi-property) survive
+ * as ids on the corresponding acts and MUST survive any future edit.
  */
 
-type Block = { id: string; eyebrow: string; title: string; body: ReadonlyArray<string> }
+/** Split a one-sentence-pair statement ("A. B.") into plain + italic halves. */
+function splitStatement(title: string): { pre: string; hi: string } {
+  const i = title.indexOf('. ')
+  if (i === -1) return { pre: title, hi: '' }
+  return { pre: title.slice(0, i + 1), hi: title.slice(i + 1) }
+}
 
-/**
- * Several approved body lines are noun-stacks ("Wi-Fi. Parking. Maps. …").
- * Level-Up §D authorises rendering those as their strongest ten as chips —
- * the copy module is never edited, the slice happens here.
- */
-const NOUN_STACK_MIN = 6
-
-function nounStack(line: string): string[] | null {
-  const parts = line
+/** Approved noun-stack / clause lines ("A. B. C.") as their sentences. */
+function sentences(line: string): string[] {
+  return line
     .split('. ')
     .map((p) => p.trim())
     .filter(Boolean)
-  if (parts.length < NOUN_STACK_MIN) return null
-  // A noun-stack has no clause longer than a few words.
-  if (parts.some((p) => p.split(' ').length > 5)) return null
-  return parts.slice(0, 10).map((p) => (p.endsWith('.') ? p : `${p}.`))
-}
-
-/** Body renderer shared by the department panel and the segment rows. */
-function BlockBody({ body, columns = 2 }: { body: ReadonlyArray<string>; columns?: 2 | 3 }) {
-  return (
-    <div className="flex flex-col gap-6">
-      {body.map((line, i) => {
-        const chips = nounStack(line)
-        if (chips) {
-          return <IconChipGrid key={i} items={chips} columns={columns === 3 ? 3 : 2} />
-        }
-        return (
-          <p key={i} className="body-lead" style={{ maxWidth: '58ch' }}>
-            {line}
-          </p>
-        )
-      })}
-    </div>
-  )
-}
-
-/**
- * Department index — left rail selects, right panel swaps.
- * Same interaction grammar as the platform voice-morph: aria-selected rows,
- * 44px targets, copper active border-left. Reduced motion swaps instantly;
- * with no JS the first department is the server-rendered panel.
- */
-function DepartmentIndex({ departments }: { departments: ReadonlyArray<Block> }) {
-  const [active, setActive] = useState(0)
-  const [fading, setFading] = useState(false)
-
-  function pick(i: number) {
-    if (i === active) return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setActive(i)
-      return
-    }
-    setFading(true)
-    window.setTimeout(() => {
-      setActive(i)
-      setFading(false)
-    }, 180)
-  }
-
-  const d = departments[active]
-
-  return (
-    <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-      <div className="lg:col-span-4">
-        <div role="tablist" aria-label="Departments" className="flex flex-col">
-          {departments.map((dep, i) => {
-            const on = i === active
-            return (
-              <button
-                key={dep.id}
-                id={`solutions-${dep.id}`}
-                role="tab"
-                aria-selected={on}
-                onClick={() => pick(i)}
-                onMouseEnter={() => pick(i)}
-                className="scroll-mt-24 text-left py-4 transition-colors"
-                style={{
-                  borderTop: '1px solid var(--border-soft)',
-                  borderLeft: `2px solid ${on ? 'var(--accent)' : 'transparent'}`,
-                  paddingLeft: 16,
-                  minHeight: 44,
-                }}
-              >
-                <span
-                  className="font-serif"
-                  style={{
-                    fontSize: '1.1rem',
-                    fontWeight: 530,
-                    color: on ? 'var(--text)' : 'var(--text-dim)',
-                  }}
-                >
-                  {dep.eyebrow}
-                </span>
-              </button>
-            )
-          })}
-        </div>
-      </div>
-
-      <div
-        className="lg:col-span-8"
-        style={{ opacity: fading ? 0 : 1, transition: 'opacity var(--dur-slow) var(--ease-emphasis)' }}
-      >
-        <div className="eyebrow eyebrow-accent mb-5">{d.eyebrow}</div>
-        <h3
-          className="font-serif"
-          style={{
-            fontSize: 'clamp(1.6rem, 3.2vw, 2.4rem)',
-            fontWeight: 530,
-            lineHeight: 1.15,
-            color: 'var(--text)',
-            maxWidth: '20ch',
-          }}
-        >
-          {d.title}
-        </h3>
-        <div className="mt-8">
-          <BlockBody body={d.body} columns={2} />
-        </div>
-      </div>
-    </div>
-  )
-}
-
-/** Segment index — ruled rows, not cards. The ids are footer deep-link targets. */
-function SegmentIndex({ segments }: { segments: ReadonlyArray<Block> }) {
-  return (
-    <div>
-      {segments.map((s, i) => (
-        <Reveal key={s.id} delay={Math.min(i, 6) * 40}>
-          <div
-            id={s.id}
-            className="scroll-mt-24 grid lg:grid-cols-12 gap-6 lg:gap-16 py-12"
-            style={{ borderTop: '1px solid var(--border-soft)' }}
-          >
-            <div className="lg:col-span-4">
-              <div className="eyebrow eyebrow-accent mb-4">{s.eyebrow}</div>
-              <h3
-                className="font-serif"
-                style={{
-                  fontSize: 'clamp(1.35rem, 2.4vw, 1.9rem)',
-                  fontWeight: 530,
-                  lineHeight: 1.2,
-                  color: 'var(--text)',
-                  maxWidth: '18ch',
-                }}
-              >
-                {s.title}
-              </h3>
-            </div>
-            <div className="lg:col-span-8">
-              <BlockBody body={s.body} columns={3} />
-            </div>
-          </div>
-        </Reveal>
-      ))}
-    </div>
-  )
+    .map((p) => (p.endsWith('.') ? p : `${p}.`))
 }
 
 export default function SolutionsClient() {
   const c = useCopy(solutionsCopy)
-  const a = useCopy(accents)
+  const g = useCopy(globalCopy)
+  const demo = useCopy(liveDemoCopy)
+
+  const heroTitle = splitStatement(c.hero.title)
+
+  /** Footer deep-link segments by id — copy order never leaks into the acts. */
+  const seg = (id: string) => c.segments.find((s) => s.id === id) ?? c.segments[0]
+  const multi = seg('multi-property')
+  const luxury = seg('luxury')
+  const resorts = seg('resorts')
+  const boutique = seg('boutique')
+  const business = seg('business')
+  const enterprise = seg('enterprise-groups')
+
+  const multiTitle = splitStatement(multi.title)
 
   return (
     <main>
       <SiteNav />
 
-      {/* HERO {#solutions-hero} — over the lobby still, text left */}
-      <MediaBed poster="/assets/img/luxury-lobby.webp" scrim={0.7}>
-        <section id="solutions-hero" className="relative pt-16 pb-20 md:pt-24 md:pb-28">
-          <div className="container-rc">
-            <div className="grid lg:grid-cols-12 gap-14 lg:gap-16 items-center">
-              <div className="lg:col-span-7">
-                <MultiAccentHeadline
-                  as="h1"
-                  className="heading-hero"
-                  style={{ color: 'var(--text)', maxWidth: '15ch' }}
-                  text={c.hero.title}
-                  accents={a.solutionsHero}
-                />
-                <p className="body-lead mt-8" style={{ maxWidth: '50ch' }}>
-                  {c.hero.body1}
-                </p>
-                <p className="body-lead mt-5" style={{ maxWidth: '50ch' }}>
-                  {c.hero.body2}
-                </p>
-                <div className="mt-10">
-                  <Link href="/demo" className="btn-primary">
-                    {c.finalCta.cta}
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </MediaBed>
+      {/* HERO {#solutions-hero} — flat page bed, statement left, no device */}
+      <div id="solutions-hero" className="scroll-mt-20">
+        <PageHero
+          eyebrow={g.nav.solutions}
+          title={
+            <>
+              {heroTitle.pre} <Em>{heroTitle.hi}</Em>
+            </>
+          }
+          deck={c.hero.body1}
+          actions={
+            <>
+              <Link href="/demo" className="btn-primary">
+                {c.finalCta.cta}
+              </Link>
+              <button type="button" onClick={openLiveDemo} className="btn-secondary">
+                {demo.open}
+              </button>
+            </>
+          }
+        />
+      </div>
 
-      {/* 01 · BY DEPARTMENT {#solutions-departments} — interactive index */}
-      <Section
+      {/* Proof strip — the nine departments, quiet mono (approved eyebrows) */}
+      <ChipStrip chips={c.departments.map((d) => d.eyebrow)} />
+
+      {/* 01 · THE DEPARTMENTS {#solutions-departments} — one message: every
+          department shares one intelligence. One artifact: the index. */}
+      <Act
+        no="01"
+        label={c.acts.departments}
         id="solutions-departments"
-        eyebrow={c.departmentsEyebrow}
-        title={c.departmentsTitle}
-        variant="surface-1"
+        statement={c.departmentsTitle}
+        deck={c.hero.body2}
       >
-        <div className="mt-14">
-          <DepartmentIndex departments={c.departments} />
-        </div>
-      </Section>
+        <NumberedList
+          items={c.departments.map((d) => ({
+            title: d.eyebrow,
+            body: `${d.title} ${d.body[d.body.length - 1]}`,
+          }))}
+        />
+      </Act>
 
-      {/* Photography moment — introduces the segment index */}
-      <MediaBed poster="/assets/img/lobby-modern.webp" scrim={0.68}>
-        <section className="py-24 md:py-32">
-          <div className="container-rc">
-            <Reveal>
-              <div className="eyebrow eyebrow-accent mb-5">{c.segmentsEyebrow}</div>
-              <h2 className="heading-section" style={{ color: 'var(--text)', maxWidth: '20ch' }}>
-                {c.segmentsTitle}
-              </h2>
-            </Reveal>
-          </div>
-        </section>
-      </MediaBed>
+      <Breather id="band-solutions-lagoon" image="/assets/breathers/waterfall-lagoon.webp" />
 
-      {/* 02 · BY PROPERTY TYPE {#multi-property} … {#enterprise-groups} — hairline index */}
-      <Section id="solutions-segments" variant="bg">
-        <SegmentIndex segments={c.segments} />
-      </Section>
+      {/* 02 · MULTI-PROPERTY GROUPS {#multi-property} — one message: consistency
+          without losing identity. One artifact: the portfolio chips. */}
+      <Act
+        no="02"
+        label={multi.eyebrow}
+        id="multi-property"
+        statement={
+          <>
+            {multiTitle.pre} <Em>{multiTitle.hi}</Em>
+          </>
+        }
+        deck={`${c.segmentsTitle} ${multi.body[0]}`}
+      >
+        <QuietChips items={sentences(multi.body[1])} />
+        <Reveal>
+          <p
+            className="mt-12"
+            style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(20px, 2.2vw, 27px)', lineHeight: 1.35, color: 'var(--text)', maxWidth: '26ch' }}
+          >
+            {multi.body[2]}
+          </p>
+        </Reveal>
+      </Act>
 
-      {/* 03 · NEXT STEP {#solutions-final-cta} — warm media band */}
+      {/* 03 · LUXURY HOTELS {#luxury} — one message: guests feel recognized.
+          One artifact: the white-glove chips. */}
+      <Act no="03" label={luxury.eyebrow} id="luxury" statement={luxury.title} deck={luxury.body[0]}>
+        <QuietChips items={sentences(luxury.body[2])} />
+        <Reveal>
+          <p
+            className="mt-12"
+            style={{ fontFamily: SERIF, fontStyle: 'italic', fontWeight: 480, fontSize: 'clamp(20px, 2.4vw, 30px)', lineHeight: 1.3, color: 'var(--cream, #F2EEE6)', maxWidth: '34ch' }}
+          >
+            {luxury.body[1]}
+          </p>
+        </Reveal>
+      </Act>
+
+      {/* 04 · RESORTS {#resorts} — one message: every amenity, one journey.
+          One artifact: the amenity chips. */}
+      <Act
+        no="04"
+        label={resorts.eyebrow}
+        id="resorts"
+        statement={resorts.title}
+        deck={`${resorts.body[0]} ${resorts.body[1]}`}
+      >
+        <QuietChips items={sentences(resorts.body[2])} />
+        <Reveal>
+          <p
+            className="mt-12"
+            style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(20px, 2.2vw, 27px)', lineHeight: 1.35, color: 'var(--text)', maxWidth: '28ch' }}
+          >
+            {resorts.body[3]}
+          </p>
+        </Reveal>
+      </Act>
+
+      <Breather image="/assets/breathers/beach-dusk-walk.webp" />
+
+      {/* 05 · BOUTIQUE HOTELS {#boutique} — one message: personality survives
+          scale. One artifact: the three claims, numbered. */}
+      <Act
+        no="05"
+        label={boutique.eyebrow}
+        id="boutique"
+        statement={boutique.title}
+        deck={`${boutique.body[0]} ${boutique.body[1]}`}
+      >
+        <NumberedList items={sentences(boutique.body[2]).map((title) => ({ title }))} />
+      </Act>
+
+      {/* 06 · BUSINESS HOTELS {#business} — one message: speed, at any hour.
+          One artifact: the traveler chips. */}
+      <Act
+        no="06"
+        label={business.eyebrow}
+        id="business"
+        statement={business.title}
+        deck={`${business.body[0]} ${business.body[1]}`}
+      >
+        <QuietChips items={sentences(business.body[2])} />
+        <Reveal>
+          <p
+            className="mt-12"
+            style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(20px, 2.2vw, 27px)', lineHeight: 1.35, color: 'var(--text)', maxWidth: '26ch' }}
+          >
+            {business.body[3]}
+          </p>
+        </Reveal>
+      </Act>
+
+      {/* 07 · ENTERPRISE HOTEL GROUPS {#enterprise-groups} — one message: one
+          platform behind every hotel. One artifact: the governance chips. */}
+      <Act
+        no="07"
+        label={enterprise.eyebrow}
+        id="enterprise-groups"
+        statement={enterprise.title}
+        deck={enterprise.body[0]}
+      >
+        <QuietChips items={sentences(enterprise.body[1])} />
+        <Reveal>
+          <p
+            className="mt-12"
+            style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(20px, 2.2vw, 27px)', lineHeight: 1.35, color: 'var(--text)', maxWidth: '28ch' }}
+          >
+            {enterprise.body[2]}
+          </p>
+        </Reveal>
+      </Act>
+
+      {/* HAND-OFF {#solutions-enterprise} — the shared-intelligence promise is
+          named here, answered on /enterprise (RC hand-off, not a CTA). */}
+      <div id="solutions-enterprise" className="scroll-mt-20">
+        <Handoff statement={c.finalCta.body} href="/enterprise" label={g.nav.enterprise} />
+      </div>
+
+      {/* CLOSING {#solutions-final-cta} — warm media band, one action */}
       <MediaBed poster="/assets/img/lobby-modern.webp" scrim={0.72}>
-        <section id="solutions-final-cta" className="py-24 md:py-36">
-          <div className="container-rc">
+        <section id="solutions-final-cta" style={{ paddingBlock: 'clamp(120px, 18vw, 240px)' }}>
+          <div className="container-rc" style={{ textAlign: 'center' }}>
             <Reveal>
-              <div className="eyebrow eyebrow-accent mb-5">03 · NEXT STEP</div>
-              <h2 className="heading-section" style={{ color: 'var(--text)', maxWidth: '18ch' }}>
+              <div className="eyebrow eyebrow-accent mb-7">{c.acts.next}</div>
+              <h2
+                style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(34px, 4.5vw, 64px)', lineHeight: 1.05, letterSpacing: '-0.015em', color: 'var(--text)' }}
+              >
                 {c.finalCta.title}
               </h2>
-              <p className="body-lead mt-8" style={{ maxWidth: '52ch' }}>
-                {c.finalCta.body}
-              </p>
-            </Reveal>
-            <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10">
-              {c.finalCta.beats.map((b) => (
-                <Reveal key={b}>
-                  <p className="font-sans py-3" style={{ fontSize: 15, color: 'var(--text-dim)' }}>
-                    {b}
-                  </p>
-                </Reveal>
-              ))}
-            </div>
-            <Reveal>
               <p
-                className="font-serif mt-10"
-                style={{ fontSize: 'clamp(1.2rem, 2vw, 1.6rem)', fontWeight: 530, color: 'var(--text)' }}
+                style={{ fontFamily: SERIF, fontStyle: 'italic', fontSize: 'clamp(18px, 2vw, 24px)', color: 'var(--text-dim)', marginTop: 28, maxWidth: '40ch', marginInline: 'auto' }}
               >
                 {c.finalCta.platform}
               </p>
-              <div className="mt-10">
+              <div className="mt-10 flex justify-center">
                 <Link href="/demo" className="btn-primary">
                   {c.finalCta.cta}
                 </Link>

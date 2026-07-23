@@ -3,6 +3,19 @@ import type { Localized } from '../useCopy'
 /* Copy source: HotelCompanion__Site_Copy.md {#platform}. Verbatim. */
 
 const en = {
+  /* P5 editorial rollout: numbered-act labels + hero proof chips.
+     Labels only — every reading line below is the approved site copy. */
+  acts: {
+    voice: 'THE VOICE',
+    surfaces: 'THE SURFACES',
+    knowledge: 'THE KNOWLEDGE',
+    lifecycle: 'THE LIFECYCLE',
+    action: 'THE ACTION',
+    intelligence: 'THE INTELLIGENCE',
+    command: 'THE COMMAND CENTRE',
+    next: 'NEXT STEP',
+  },
+  heroChips: ['VOICE-FIRST', 'IN-ROOM TABLET', 'QR CODES', 'WEB WIDGET', 'ANY LANGUAGE', 'MULTI-PROPERTY'],
   hero: {
     title: 'One Platform. Every Guest Interaction.',
     positioning: 'The Voice-First Guest Intelligence Platform built for modern hospitality.',
@@ -306,6 +319,17 @@ const en = {
 }
 
 const es: typeof en = {
+  acts: {
+    voice: 'LA VOZ',
+    surfaces: 'LAS SUPERFICIES',
+    knowledge: 'EL CONOCIMIENTO',
+    lifecycle: 'EL CICLO DE LA ESTANCIA',
+    action: 'LA ACCIÓN',
+    intelligence: 'LA INTELIGENCIA',
+    command: 'EL CENTRO DE MANDO',
+    next: 'SIGUIENTE PASO',
+  },
+  heroChips: ['LA VOZ PRIMERO', 'TABLET EN LA HABITACIÓN', 'CÓDIGOS QR', 'WIDGET WEB', 'CUALQUIER IDIOMA', 'MULTIPROPIEDAD'],
   hero: {
     title: 'Una Plataforma. Cada Interacción con el Huésped.',
     positioning: 'La Plataforma de Inteligencia de Huéspedes por Voz creada para la hospitalidad moderna.',

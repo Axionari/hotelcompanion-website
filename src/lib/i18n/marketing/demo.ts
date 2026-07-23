@@ -5,14 +5,26 @@ import type { Localized } from '../useCopy'
 const en = {
   hero: {
     title: 'Book a Personalized Demonstration',
+    /* styling only — the italic fragment of the (verbatim) title above */
+    em: 'Personalized Demonstration',
     body1:
       'Discover how Hotel Companion helps hotels understand every guest, increase revenue, and coordinate operations through conversational intelligence.',
     cta: 'Schedule Your Demonstration',
+  },
+  /* RC-editorial act labels (Phase 5) */
+  acts: {
+    session: 'THE SESSION',
+    who: 'WHO SHOULD ATTEND',
+    request: 'THE REQUEST',
+    deployment: 'DEPLOYMENT',
+    faq: 'FAQ',
   },
   experience: {
     lead: 'Every demonstration is personalized, but typically includes:',
   },
   who: {
+    /* condensed verbatim fragment of the FAQ answer {#demo} */
+    lead: 'From boutique properties to global hospitality groups.',
     roles: [
       'Hotel Owners',
       'General Managers',
@@ -104,14 +116,26 @@ const en = {
 const es: typeof en = {
   hero: {
     title: 'Agenda una Demostración Personalizada',
+    /* solo estilo — el fragmento en itálica del título (verbatim) de arriba */
+    em: 'Demostración Personalizada',
     body1:
       'Descubre cómo Hotel Companion ayuda a los hoteles a entender a cada huésped, aumentar los ingresos y coordinar operaciones a través de la inteligencia conversacional.',
     cta: 'Agenda Tu Demostración',
+  },
+  /* Etiquetas de actos RC-editorial (Fase 5) */
+  acts: {
+    session: 'LA SESIÓN',
+    who: 'QUIÉN DEBERÍA ASISTIR',
+    request: 'LA SOLICITUD',
+    deployment: 'DESPLIEGUE',
+    faq: 'PREGUNTAS FRECUENTES',
   },
   experience: {
     lead: 'Cada demostración es personalizada, pero por lo general incluye:',
   },
   who: {
+    /* fragmento condensado (verbatim) de la respuesta del FAQ {#demo} */
+    lead: 'Desde propiedades boutique hasta grupos hoteleros globales.',
     roles: [
       'Propietarios de Hoteles',
       'Gerentes Generales',
