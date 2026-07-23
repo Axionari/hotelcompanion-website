@@ -23,6 +23,44 @@ const DIM = 'rgba(242,233,218,0.6)'
 type SuiteCopy = (typeof suitesCopy)['en']
 
 /* ── shared bits ─────────────────────────────────────────────────────── */
+
+/** Persistent voice bar — orb + live frequency + listening label + prompts.
+ *  Sits under every screen: the whole flow is voice-first. */
+function VoiceBar({ c }: { c: SuiteCopy }) {
+  return (
+    <div
+      style={{
+        flexShrink: 0,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        gap: 18,
+        padding: 'clamp(9px,1vw,14px) clamp(16px,2vw,30px)',
+        borderTop: '1px solid rgba(243,236,226,0.08)',
+        background: 'rgba(11,9,8,0.55)',
+      }}
+    >
+      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 'clamp(10px,1.2vw,16px)', minWidth: 0 }}>
+        <VoiceOrb state="listening" size="clamp(24px,2.5vw,36px)" showMic={false} />
+        <span className="v5-eq" aria-hidden>
+          <i /><i /><i /><i /><i />
+        </span>
+        <span style={{ ...MONO, fontSize: 'clamp(7.5px,0.75vw,10.5px)', letterSpacing: '.18em', color: DIM, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+          {c.voiceBar.label}
+        </span>
+      </span>
+      <span className="hidden md:inline-flex" style={{ alignItems: 'center', gap: 'clamp(10px,1.3vw,18px)', flexShrink: 0 }}>
+        {c.voiceBar.chips.map((ch, i) => (
+          <span key={ch} style={{ display: 'inline-flex', alignItems: 'center', gap: 'clamp(10px,1.3vw,18px)' }}>
+            {i > 0 && <span aria-hidden style={{ color: 'rgba(242,233,218,0.3)' }}>·</span>}
+            <span style={{ fontFamily: SANS, fontSize: 'clamp(10px,1vw,14px)', color: 'rgba(242,233,218,0.85)', whiteSpace: 'nowrap' }}>{ch}</span>
+          </span>
+        ))}
+      </span>
+    </div>
+  )
+}
+
 function TopBar({ c, count }: { c: SuiteCopy; count: number }) {
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12, flexShrink: 0 }}>
@@ -454,10 +492,13 @@ export function SuiteShowcase() {
         data-device-ui=""
         style={{ width: '100%', aspectRatio: '16 / 10', background: '#0C0B0A', border: '1px solid rgba(190,185,175,0.28)', borderRadius: 26, padding: 12, boxShadow: '0 60px 130px -34px rgba(0,0,0,0.85), 0 0 0 1px rgba(200,106,58,0.05)', boxSizing: 'border-box' }}
       >
-        <div style={{ position: 'relative', height: '100%', borderRadius: 18, overflow: 'hidden', background: 'radial-gradient(120% 100% at 30% 0%, #17130f 0%, #100e0c 60%, #0c0b0a 100%)' }}>
-          <div style={{ position: 'absolute', inset: 0, opacity: fade ? 0 : 1, transition: 'opacity 0.46s var(--ease-standard)' }}>
-            {FLOW[i].render(c)}
+        <div style={{ height: '100%', borderRadius: 18, overflow: 'hidden', background: 'radial-gradient(120% 100% at 30% 0%, #17130f 0%, #100e0c 60%, #0c0b0a 100%)', display: 'flex', flexDirection: 'column' }}>
+          <div style={{ position: 'relative', flex: 1, minHeight: 0 }}>
+            <div style={{ position: 'absolute', inset: 0, opacity: fade ? 0 : 1, transition: 'opacity 0.46s var(--ease-standard)' }}>
+              {FLOW[i].render(c)}
+            </div>
           </div>
+          <VoiceBar c={c} />
         </div>
       </div>
     </div>

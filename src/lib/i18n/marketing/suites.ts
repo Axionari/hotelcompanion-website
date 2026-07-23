@@ -177,6 +177,11 @@ const en = {
     cta: 'Join · earn a free night on this stay',
   },
 
+  /* Persistent voice bar under every screen — voice-first, always listening. */
+  voiceBar: {
+    label: 'LISTENING — JUST KEEP TALKING',
+    chips: ['Show me the spa', 'Dinner tonight', 'My day plan'],
+  },
   pills: {
     labels: ['Welcome', 'Browse', 'Suite', 'Your stay', 'Availability', 'Review', 'Pay', 'Processing', 'Confirmed', 'Loyalty'],
     hint: 'The guest’s journey — tap any step',
@@ -350,6 +355,10 @@ const es: typeof en = {
     cta: 'Únete · gana una noche gratis en esta estancia',
   },
 
+  voiceBar: {
+    label: 'ESCUCHANDO — SIGUE HABLANDO',
+    chips: ['Muéstrame el spa', 'Cena esta noche', 'Mi plan del día'],
+  },
   pills: {
     labels: ['Bienvenida', 'Explorar', 'Suite', 'Tu estancia', 'Disponibilidad', 'Revisar', 'Pagar', 'Procesando', 'Confirmado', 'Lealtad'],
     hint: 'El recorrido del huésped — toca cualquier paso',
