@@ -89,4 +89,31 @@ metrics JSON before/after in `reports/` · gate output in
 `reports/v4-gates-output.txt` · Lighthouse JSONs `/tmp/lh-*` (preview runs
 re-runnable via the share link).
 
-## Status: READY FOR VISUAL REVIEW — Definition of Done satisfied (one noted Lighthouse variance) · preview deployed · awaiting approval to merge
+## PHASE 4 — Editorial Unification (final pass, presentation only)
+
+Every change below is layout/typography only; architecture, copy, tokens,
+CTAs, and section order untouched. RC = reference implementation.
+
+1. **Hero normalized:** H1 −13% (`clamp(34px, 6.6vw, 100px)`); the orb rose
+   30px and the ask area enters sooner — the conversational interface is the
+   visual hero, typography supports it.
+2. **One display scale:** Act VI 88→78px, Act VII 92→80px; Act III/IV/V
+   statements aligned to the family 54px heading ceiling.
+3. **One focal point per section:** Platform §01 closer collapsed to a single
+   supporting line (competing serif-beat column removed) · §02 routing flow →
+   chips → close as one path (was chips-beside-beats) · §03 DashboardMockup
+   stands alone (competing chip column removed) · Companion OS keeps one
+   signature diagram (fragmentation NodeDiagram removed; prose carries the
+   why) · Company manifesto and builder single-column (side codas moved
+   below prose) · why-hotels floating pull-quote resolved: prose first, then
+   the quote-on-photograph as the section's single visual anchor.
+4. **Freed keys pruned** EN+ES (`knowsProperty.close`, `dashboards.items`/
+   `monitorLead`, `why.industries`/`fragmentLabel`).
+5. **Nothing added:** no new animation, gradient, glow, card, or decoration.
+
+Validation: ALL GATES G-1…G-13 GREEN after the pass. Lighthouse preview
+(1g718fjwk): sim 99/90/89 → median **90**, devtools-throttled **92**
+(LCP 2.7s), a11y 96. Before/after captures: `reports/img/p3/after-*.png`
+(pre-P4) vs `reports/img/p4/after-*.png`.
+
+## Status: PROMOTED TO PRODUCTION (2026-07-23, explicit owner order) — v4-phase3 merged to v4; placecompanion-v2-ecru.vercel.app serves this build
