@@ -150,7 +150,7 @@ function ScreenBody({ id }: { id: ScreenId }) {
 
   if (id === 'home') {
     return (
-      <Canvas image="/assets/img/luxury-lobby.webp" alt={d.property}>
+      <Canvas image="/assets/lux/hero-ocean-pool.webp" alt={d.property}>
         <div className="absolute inset-x-0 bottom-0 p-4">
           <div className="font-serif" style={{ fontSize: 17, fontWeight: 530, color: 'var(--text)' }}>
             {d.greeting}
@@ -209,29 +209,43 @@ function ScreenBody({ id }: { id: ScreenId }) {
   }
 
   if (id === 'upgrade') {
+    // Full-bleed hero — the revenue moment, one big beautiful suite (mirrors the
+    // CompanionTablet hero). The previous inset-card layout with a twin-bed photo
+    // read as a budget listing, not an ocean-view upsell.
     return (
-      <div className="flex h-full flex-col p-4">
-        <AskChip text={s.upgrade.ask} />
-        <div className="mt-3 flex-1">
-          <UiImage src={s.upgrade.images[0]} alt={s.upgrade.title} height="100%" />
+      <Canvas image={s.upgrade.images[0]} alt={s.upgrade.title}>
+        <div className="absolute inset-x-0 top-0 p-3">
+          <AskChip text={s.upgrade.ask} />
         </div>
-        <div className="mt-2 flex gap-1.5">
-          {s.upgrade.images.slice(1).map((img) => (
-            <UiImage key={img} src={img} alt={s.upgrade.title} height={34} kenBurns={false} />
-          ))}
-        </div>
-        <div className="mt-3 flex items-end justify-between gap-3">
-          <div>
-            <div className="font-serif" style={{ fontSize: 16, fontWeight: 530, color: 'var(--text)' }}>
+        <div className="absolute inset-x-0 bottom-0 p-4 flex items-end justify-between gap-3">
+          <div className="min-w-0">
+            {s.upgrade.badge && (
+              <span
+                className="eyebrow inline-block"
+                style={{
+                  fontSize: 7.5,
+                  letterSpacing: '.12em',
+                  color: 'var(--accent)',
+                  border: '1px solid var(--accent-hairline)',
+                  background: 'rgba(11,9,8,0.5)',
+                  borderRadius: 999,
+                  padding: '3px 8px',
+                  marginBottom: 7,
+                }}
+              >
+                {s.upgrade.badge}
+              </span>
+            )}
+            <div className="font-serif" style={{ fontSize: 17, fontWeight: 530, color: 'var(--text)' }}>
               {s.upgrade.title}
             </div>
-            <div className="font-sans" style={{ fontSize: 11, color: 'var(--accent)' }}>
+            <div className="font-sans" style={{ fontSize: 11, color: 'var(--text-dim)' }}>
               {s.upgrade.meta}
             </div>
           </div>
           <ActionRow labels={[s.upgrade.confirm]} />
         </div>
-      </div>
+      </Canvas>
     )
   }
 
@@ -475,7 +489,18 @@ export function TabletOS({
               />
               {d.property}
             </span>
-            <span className="eyebrow" style={{ fontSize: 8 }}>
+            <span className="eyebrow inline-flex items-center gap-1.5" style={{ fontSize: 8 }}>
+              <span
+                aria-hidden="true"
+                style={{
+                  width: 4,
+                  height: 4,
+                  borderRadius: 999,
+                  background: 'var(--accent)',
+                  boxShadow: '0 0 6px rgba(200,106,58,0.8)',
+                  animation: reduce ? 'none' : 'pc-dot-pulse 2s ease-in-out infinite',
+                }}
+              />
               {d.listening}
             </span>
           </div>
@@ -517,21 +542,28 @@ export function TabletOS({
               </span>
 
               <div className="tos-tiles mt-3 w-full flex flex-col gap-1">
-                {d.tiles.slice(0, 4).map((t) => (
-                  <div
-                    key={t.id}
-                    className="rounded px-1.5 py-1.5 text-center"
-                    style={{
-                      background: 'rgba(251,248,242,0.05)',
-                      border: '1px solid var(--border-soft)',
-                      fontSize: 7.5,
-                      color: 'var(--text-dim)',
-                      lineHeight: 1.2,
-                    }}
-                  >
-                    {t.label}
-                  </div>
-                ))}
+                {d.tiles.slice(0, 4).map((t) => {
+                  // The tab for the service on screen lights up — the rail reads
+                  // as live navigation, not decoration (mirrors CompanionTablet).
+                  const on = t.id === active
+                  return (
+                    <div
+                      key={t.id}
+                      className="rounded px-1.5 py-1.5 text-center"
+                      style={{
+                        background: on ? 'rgba(200,106,58,0.16)' : 'rgba(251,248,242,0.05)',
+                        border: `1px solid ${on ? 'rgba(200,106,58,0.6)' : 'var(--border-soft)'}`,
+                        fontSize: 7.5,
+                        fontWeight: on ? 600 : 400,
+                        color: on ? 'var(--text)' : 'var(--text-dim)',
+                        lineHeight: 1.2,
+                        transition: reduce ? 'none' : 'all .45s var(--ease-standard)',
+                      }}
+                    >
+                      {t.label}
+                    </div>
+                  )
+                })}
               </div>
             </aside>
 

@@ -55,7 +55,8 @@ const en = {
       meta: '$250/night · private terrace',
       confirm: 'Confirm upgrade',
       confirmed: 'The front desk will confirm.',
-      images: ['/assets/ui/suite-1.webp', '/assets/ui/suite-2.webp', '/assets/ui/suite-3.webp'],
+      badge: 'DIRECT RATE · NO OTA FEE',
+      images: ['/assets/ui/suite-ocean.webp', '/assets/ui/suite-2.webp', '/assets/ui/suite-3.webp'],
     },
     spa: {
       ask: 'Do you have a spa?',
@@ -149,7 +150,8 @@ const es: typeof en = {
       meta: '$250/noche · terraza privada',
       confirm: 'Confirmar mejora',
       confirmed: 'Recepción confirmará.',
-      images: ['/assets/ui/suite-1.webp', '/assets/ui/suite-2.webp', '/assets/ui/suite-3.webp'],
+      badge: 'TARIFA DIRECTA · SIN OTA',
+      images: ['/assets/ui/suite-ocean.webp', '/assets/ui/suite-2.webp', '/assets/ui/suite-3.webp'],
     },
     spa: {
       ask: '¿Tienen spa?',
