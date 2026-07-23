@@ -458,15 +458,29 @@ function LoyaltyScreen({ c }: { c: SuiteCopy }) {
 }
 
 /* ── driver ──────────────────────────────────────────────────────────── */
-const FLOW: Array<{ key: string; dwell: number; render: (c: SuiteCopy) => React.ReactNode }> = [
+/**
+ * Reading surface for the transactional screens. The mobile reference splits its
+ * flow into airy browsing screens and cinematic arrival moments; this is that
+ * rhythm in our palette rather than its own — same three espresso values as the
+ * base gradient below, just weighted to the warm end so list-and-form screens
+ * sit a step lighter than the image-led ones.
+ */
+const LIFTED = 'linear-gradient(180deg, #17130f 0%, #17130f 58%, #100e0c 100%)'
+
+/**
+ * `lifted` marks the screens whose job is reading — lists, forms, totals.
+ * The rest (welcome, the suite hero, confirmation, loyalty) stay deep and
+ * vignetted so the emotional beats read as cinematic against them.
+ */
+const FLOW: Array<{ key: string; dwell: number; lifted?: boolean; render: (c: SuiteCopy) => React.ReactNode }> = [
   { key: 'welcome', dwell: 2600, render: (c) => <WelcomeScreen c={c} /> },
-  { key: 'browse', dwell: 4200, render: (c) => <BrowseScreen c={c} /> },
+  { key: 'browse', dwell: 4200, lifted: true, render: (c) => <BrowseScreen c={c} /> },
   { key: 'detail', dwell: 4800, render: (c) => <DetailScreen c={c} /> },
-  { key: 'cart', dwell: 4200, render: (c) => <CartScreen c={c} /> },
-  { key: 'availability', dwell: 3000, render: (c) => <AvailabilityScreen c={c} /> },
-  { key: 'review', dwell: 4400, render: (c) => <ReviewScreen c={c} /> },
-  { key: 'payment', dwell: 4600, render: (c) => <PaymentScreen c={c} /> },
-  { key: 'verifying', dwell: 2200, render: (c) => <VerifyingScreen c={c} /> },
+  { key: 'cart', dwell: 4200, lifted: true, render: (c) => <CartScreen c={c} /> },
+  { key: 'availability', dwell: 3000, lifted: true, render: (c) => <AvailabilityScreen c={c} /> },
+  { key: 'review', dwell: 4400, lifted: true, render: (c) => <ReviewScreen c={c} /> },
+  { key: 'payment', dwell: 4600, lifted: true, render: (c) => <PaymentScreen c={c} /> },
+  { key: 'verifying', dwell: 2200, lifted: true, render: (c) => <VerifyingScreen c={c} /> },
   { key: 'confirmed', dwell: 4800, render: (c) => <ConfirmedScreen c={c} /> },
   { key: 'loyalty', dwell: 3600, render: (c) => <LoyaltyScreen c={c} /> },
 ]
@@ -529,10 +543,21 @@ export function SuiteShowcase() {
         style={{ width: '100%', background: '#0C0B0A', border: '1px solid rgba(190,185,175,0.28)', borderRadius: 26, padding: 12, boxShadow: '0 60px 130px -34px rgba(0,0,0,0.85), 0 0 0 1px rgba(200,106,58,0.05)', boxSizing: 'border-box' }}
       >
         <div className="suite-screen" style={{ height: '100%', borderRadius: 18, overflow: 'hidden', background: 'radial-gradient(120% 100% at 30% 0%, #17130f 0%, #100e0c 60%, #0c0b0a 100%)', display: 'flex', flexDirection: 'column' }}>
-          <IOSStatusBar />
-          <div style={{ position: 'relative', flex: 1, minHeight: 0 }}>
-            <div style={{ position: 'absolute', inset: 0, opacity: fade ? 0 : 1, transition: 'opacity 0.46s var(--ease-standard)' }}>
-              {FLOW[i].render(c)}
+          {/* Status bar and content share one toned container so the tone has no
+              seam across the status row. It stops short of the voice bar, whose
+              own dock edge already reads as a boundary. The tone is a separate
+              cross-fading layer because CSS cannot interpolate two gradients —
+              transitioning the background directly would snap. */}
+          <div style={{ position: 'relative', flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
+            <div
+              aria-hidden
+              style={{ position: 'absolute', inset: 0, background: LIFTED, opacity: FLOW[i].lifted ? 1 : 0, transition: 'opacity 0.6s var(--ease-standard)', pointerEvents: 'none' }}
+            />
+            <IOSStatusBar />
+            <div style={{ position: 'relative', flex: 1, minHeight: 0 }}>
+              <div style={{ position: 'absolute', inset: 0, opacity: fade ? 0 : 1, transition: 'opacity 0.46s var(--ease-standard)' }}>
+                {FLOW[i].render(c)}
+              </div>
             </div>
           </div>
           <VoiceBar c={c} />

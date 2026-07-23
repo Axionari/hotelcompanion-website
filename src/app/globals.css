@@ -1374,6 +1374,9 @@ body {
   .suite-statusbar {
     display: flex; align-items: center; justify-content: space-between;
     flex-shrink: 0; height: 44px; padding: 6px 22px 0;
+    /* Positioned so it paints above the absolutely-positioned tone layer that
+       precedes it — an abspos sibling would otherwise cover in-flow content. */
+    position: relative;
   }
   /* Phone top bar stays minimal (EN + cart), per the mobile design reference —
      the long property lockup truncates beside the island and adds no value
