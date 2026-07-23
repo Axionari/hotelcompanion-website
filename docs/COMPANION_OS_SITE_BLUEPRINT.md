@@ -363,10 +363,14 @@ Headless visual verification (how every change in this repo was checked):
   Vercel builds & deploys production.
 - **Primary domain:** `www.hotelcompanion.ai` (set `metadataBase` in
   `layout.tsx` accordingly — already done).
-- **Retiring a domain:** host-based redirect in `next.config.ts`
-  (`has: [{type:'host', value:'…'}]` → `destination`). Use `permanent:false`
-  (307) for a *temporary* retirement so it isn't cached as a permanent 308.
-  placecompanion.com currently 307→ www.hotelcompanion.ai.
+- **Retiring a domain (safely):** host-based redirect in `next.config.ts`
+  (`has: [{type:'host', value:'…'}]` → `destination`, `permanent:false`/307 so a
+  *temporary* retirement isn't cached as a permanent 308). **Gate it behind an
+  env flag** — enabling the redirect before the target domain is attached + DNS
+  live would forward the live site to a dead domain. Order: attach the new
+  domain in Vercel → point DNS → confirm it serves → set the flag
+  (`RETIRE_PLACECOMPANION=1`) + redeploy. Only then does placecompanion.com
+  307→ www.hotelcompanion.ai.
 - **DNS / domain attach** is done in the Vercel dashboard + registrar (add the
   domain to the project, point A/CNAME records). This step is account-gated and
   handled by an operator, not in code.
