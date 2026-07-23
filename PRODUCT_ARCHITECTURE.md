@@ -7,8 +7,11 @@ with it, the proposal is wrong or this document gets amended deliberately;
 nothing drifts. It was produced and approved through the Phase-3 buyer-journey
 review (July 2026) and supersedes ad-hoc page-level reasoning.
 
-Status of record: approved architecture; implementation pending the two
-sign-offs listed in §13.
+**Precedence:** if an implementation decision conflicts with any previous
+prompt, kit, or specification, this document wins. Older documents remain as
+history; this one governs.
+
+Status of record: approved architecture; implementation authorized 2026-07-22 — see §14 for the approval record.
 
 ---
 
@@ -39,7 +42,28 @@ and effortless. Not clever. Not busy. Not sales-driven.
 Hotel Companion isn't selling software. It's selling hospitality — and that is
 reflected everywhere, including here.
 
-## 2 · Do Not Regress
+## 2 · Hospitality Principle
+
+Hotel Companion should never feel like software trying to be friendly. It
+should feel like **a hospitality professional who happens to use software**.
+
+Every interaction should communicate:
+
+- confidence without arrogance
+- warmth without informality
+- intelligence without complexity
+- efficiency without rushing
+- anticipation without assumption
+
+When choosing between two equally valid interface or copy decisions, prefer
+the one that feels more like exceptional hospitality. Technology should
+disappear behind the experience. Guests should remember how they felt, not
+how the interface worked.
+
+(This principle extends the Companion family's HOSPITALITY.md doctrine —
+`restaurant-companion-spec/HOSPITALITY.md` — to this site.)
+
+## 3 · Do Not Regress
 
 The following are signature assets. They must not be weakened by any
 implementation work, ever, without explicit owner approval.
@@ -67,7 +91,7 @@ engine, or a support widget. No copy, component, or interaction may regress
 toward those categories — if a change makes the product read like any of them,
 the change is wrong.
 
-## 3 · The Buyer Journey
+## 4 · The Buyer Journey
 
 The website is a sales conversation, not documentation. Documentation asks
 "where should this information live?" A sales journey asks "**when should the
@@ -93,7 +117,7 @@ produce the same emotional outcome by the same mechanism, one is redundant.
 
 People don't buy because they understand. They buy because they trust.
 
-## 4 · Page Responsibility Matrix
+## 5 · Page Responsibility Matrix
 
 One purpose per page. One primary question per page. One primary CTA
 site-wide: **Book a Demo** (secondary: **See It Live**).
@@ -115,7 +139,7 @@ or governance. No other page may teach in detail what Platform owns. No page
 but Enterprise removes risk. Companion OS is never confused with Hotel
 Companion.
 
-## 5 · Homepage Architecture (locked)
+## 6 · Homepage Architecture (locked)
 
 Seven acts, this order, nothing added, no intermediate CTAs:
 
@@ -131,7 +155,7 @@ Seven acts, this order, nothing added, no intermediate CTAs:
 The page opens and closes as a conversation. The nav pill carries the CTA
 between acts; no mid-page CTA bands.
 
-## 6 · Narrative Ownership
+## 7 · Narrative Ownership
 
 Every major idea has exactly one owner and a defined lifecycle:
 **Tease** (name it, never explain) · **Introduce** · **Expand** ·
@@ -156,7 +180,7 @@ silence. "One-line pointers" are how duplication regrows; they are banned.
 
 Introduce once. Expand once. Reference sparingly. Never re-explain.
 
-## 7 · Preserve Mystery
+## 8 · Preserve Mystery
 
 Enterprise software reveals itself progressively. Information revealed too
 early destroys the motivation to continue.
@@ -176,7 +200,7 @@ early destroys the motivation to continue.
 6. The test for any content, anywhere: **does this answer tomorrow's question
    on today's page?** If yes, it moves or dies.
 
-## 8 · Final Decision Rule
+## 9 · Final Decision Rule
 
 When choosing between two implementation options, prefer the one that produces
 the **stronger buyer journey**, even at the cost of more words, more sections,
@@ -190,7 +214,7 @@ outcomes — and reduction may never be cited as a goal in itself.
 (Recorded precedents: Company kept its narrative depth; Demo kept its FAQ and
 try-it; Platform kept a sixth section as a tease band.)
 
-## 9 · Site Architecture (target state)
+## 10 · Site Architecture (target state)
 
 - **/** — 7 acts (§5)
 - **/platform** — Hero · Voice & your hotel's knowledge · The guest lifecycle,
@@ -224,7 +248,7 @@ FAQ, the website failed. Hesitation questions (deployment time, app download,
 integration, languages, security, boutique fit) live in exactly one place:
 under the demo form, where buyers actually ask them.
 
-## 10 · Design System Rules
+## 11 · Design System Rules
 
 Consistency, not redesign. Visitors should never notice transitions between
 pages.
@@ -249,13 +273,13 @@ pages.
 - If a visual communicates the idea, the explanatory text is deleted. If text
   explains what a screenshot shows, the text is deleted.
 
-## 11 · Definition of Done
+## 12 · Definition of Done
 
 Implementation is complete only when ALL of the following are true.
 
 **Narrative** — every page answers one primary question · every concept has
-one narrative owner · Silent cells in §6 remain silent · progressive
-disclosure (§7) is preserved.
+one narrative owner · Silent cells in §7 remain silent · progressive
+disclosure (§8) is preserved.
 
 **Buyer journey** — a first-time visitor can progress Home → Platform →
 Enterprise/Solutions → Demo without confusion; each page hands off to the
@@ -275,9 +299,10 @@ interrupts or competes with that objective.
 regression · no Lighthouse regression (mobile perf ≥90 · a11y ≥95 · SEO ≥95)
 · all visual gates pass · all existing automated gates pass
 (`reports/v4-gates.mjs`, updated to this spec, plus a narrative-ownership
-check asserting Silent cells stay silent).
+check asserting Silent cells stay silent) · every new section carries a
+completed Architecture Drift Check (§13).
 
-## 12 · Governance
+## 13 · Governance
 
 - **Copy is law.** No one writes marketing copy ad hoc. Implementation may
   delete, relocate, or select among approved strings; new strings require an
@@ -290,11 +315,35 @@ check asserting Silent cells stay silent).
 - Amendments to this document are deliberate and recorded here, never implied
   by code.
 
-## 13 · Open items blocking implementation (as of 2026-07-22)
+**Architecture Drift Check (mandatory for every future section).** Every new
+section proposed for the website must answer, in its PR description:
 
-1. **V4 Addendum 2 sign-off:** Act VII CTA becomes *Book a Demo / Agenda una
-   Demo* → /demo (amends V4 kit §3); partner line retained as the Founding
-   Partner tease; `CONVIÉRTETE EN SOCIO FUNDADOR` string retires.
-2. **Surviving-headings approval:** each merged section's surviving H2 (named
-   in the Phase-3 plan) — approve wholesale or via a headings-only deck.
-3. Gold-token scope on legal/app routes (in or out).
+1. Which page owns this narrative?
+2. Which question does it answer?
+3. Which existing section could now be removed?
+4. Which stage of the buyer journey does it support?
+
+If these questions cannot be answered, the section is not added. This is a
+documentation rule, not a lint rule — it exists to stop the site from
+drifting back into duplication over the next year.
+
+## 14 · Approval record (2026-07-22)
+
+All Phase-3 blockers were resolved by the product owner:
+
+1. **Addendum 2 — APPROVED.** Act VII primary CTA = *Book a Demo* /
+   *Agenda una Demo* → /demo. The Founding Partner line is retained as a
+   subtle scarcity signal above it — partner signal, then Book a Demo. The
+   homepage's job is customers; the program is a strategic opportunity, not
+   the primary conversion objective. `CONVIÉRTETE EN SOCIO FUNDADOR` retires.
+   Recorded as `docs/v4/V4_ADDENDUM_2.md`.
+2. **Surviving headings — APPROVED wholesale.** Headings are implementation
+   details under these constraints; a weak heading is a copy iteration, not
+   an architectural issue.
+3. **Gold token scope — APPROVED, in scope everywhere** including legal
+   pages. One brand. One gold. One design language.
+
+**Execution order:** implement on a dedicated branch, produce a preview
+deployment, run the full validation suite, generate a before/after
+implementation report, and stop. No merge until the implementation is
+visually reviewed and approved.
