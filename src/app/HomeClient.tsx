@@ -279,12 +279,14 @@ export default function HomeClient() {
                     <span
                       className="eyebrow"
                       style={{
-                        fontSize: 11,
-                        color: isRevenue ? '#2D9E6B' : 'var(--accent)',
-                        border: `1px solid ${isRevenue ? 'rgba(45,158,107,0.32)' : 'rgba(200,106,58,0.32)'}`,
-                        background: isRevenue ? 'rgba(45,158,107,0.08)' : 'rgba(200,106,58,0.06)',
+                        fontSize: isRevenue ? 12 : 11,
+                        fontWeight: isRevenue ? 600 : 500,
+                        color: isRevenue ? '#5FD199' : 'var(--accent)',
+                        border: `1px solid ${isRevenue ? 'rgba(63,191,133,0.6)' : 'rgba(200,106,58,0.32)'}`,
+                        background: isRevenue ? 'rgba(45,158,107,0.18)' : 'rgba(200,106,58,0.06)',
+                        boxShadow: isRevenue ? '0 0 22px -6px rgba(45,158,107,0.65)' : 'none',
                         borderRadius: 999,
-                        padding: '5px 12px',
+                        padding: '5px 13px',
                         whiteSpace: 'nowrap',
                       }}
                     >
