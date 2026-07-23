@@ -236,9 +236,11 @@ export function StatementCards({
             <p style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(20px, 2.2vw, 26px)', lineHeight: 1.25, color: 'var(--text)', maxWidth: '18ch' }}>
               {it.title}
             </p>
-            <p className="mt-4" style={{ fontSize: 15, lineHeight: 1.65, color: 'var(--text-dim)', maxWidth: '38ch' }}>
-              {it.body}
-            </p>
+            {it.body && (
+              <p className="mt-4" style={{ fontSize: 15, lineHeight: 1.65, color: 'var(--text-dim)', maxWidth: '38ch' }}>
+                {it.body}
+              </p>
+            )}
           </div>
         </Reveal>
       ))}

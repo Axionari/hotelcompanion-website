@@ -182,6 +182,13 @@ const en = {
       ],
     },
   ],
+  /* P5.6 — TenantStack tiers for the multi-property section (a diagram, not
+     another chip list). Labels are structural; chips are the approved noun-run. */
+  multiDiagram: {
+    property: { eyebrow: 'EVERY PROPERTY', title: 'Keeps its unique identity', chips: ['Property-specific information', 'Localized recommendations'] },
+    platform: { eyebrow: 'HOTEL COMPANION', title: 'One shared intelligence', chips: ['Corporate knowledge', 'Shared governance', 'Portfolio-wide analytics'] },
+    caption: 'ONE COMPANION · UNLIMITED PROPERTIES',
+  },
   finalCta: {
     title: 'Hospitality Is a Team Sport.',
     body: 'When every department shares the same intelligence, every guest receives a better experience.',
@@ -374,6 +381,11 @@ const es: typeof en = {
       ],
     },
   ],
+  multiDiagram: {
+    property: { eyebrow: 'CADA PROPIEDAD', title: 'Conserva su identidad única', chips: ['Información específica por propiedad', 'Recomendaciones locales'] },
+    platform: { eyebrow: 'HOTEL COMPANION', title: 'Una sola inteligencia compartida', chips: ['Conocimiento corporativo', 'Gobernanza compartida', 'Analítica de todo el portafolio'] },
+    caption: 'UN SOLO COMPANION · PROPIEDADES ILIMITADAS',
+  },
   finalCta: {
     title: 'La Hospitalidad Es un Trabajo en Equipo.',
     body: 'Cuando cada departamento comparte la misma inteligencia, cada huésped recibe una mejor experiencia.',
