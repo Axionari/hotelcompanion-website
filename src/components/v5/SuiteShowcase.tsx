@@ -391,10 +391,18 @@ function PaymentScreen({ c }: { c: SuiteCopy }) {
 function VerifyingScreen({ c }: { c: SuiteCopy }) {
   return (
     <div style={{ ...pad, alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
-      <span aria-hidden className="suite-spin" style={{ width: 'clamp(48px,5.5vw,78px)', height: 'clamp(48px,5.5vw,78px)', borderRadius: '50%', border: '2px solid rgba(243,236,226,0.12)', borderTopColor: TERRA }} />
+      {/* Our orb rather than a generic spinner: this is the one screen where the
+          guest is waiting on us, so it should be the companion holding the beat.
+          Thinking state, no mic — nothing is being asked of them here. */}
+      <VoiceOrb state="thinking" size="clamp(56px,6.5vw,96px)" showMic={false} />
       <div style={{ ...MONO, fontSize: 'clamp(9px, 0.8vw, 11px)', letterSpacing: '.2em', color: TERRA, marginTop: 'clamp(16px,2vw,28px)' }}>{c.verifying.label}</div>
       <div style={{ fontFamily: SERIF, fontWeight: 500, fontSize: 'clamp(20px,2.3vw,34px)', color: CREAM, marginTop: 8 }}>{c.verifying.title}</div>
       <div style={{ fontFamily: SANS, fontSize: 'clamp(11px,1.1vw,15px)', color: DIM, marginTop: 8 }}>{c.verifying.note}</div>
+      {/* Reassurance at the moment money moves — the one beat where a guest
+          looks for it. */}
+      <div style={{ ...MONO, fontSize: 'clamp(8.5px,0.68vw,10px)', letterSpacing: '.18em', color: 'rgba(242,233,218,0.42)', marginTop: 'clamp(18px,2.4vw,34px)' }}>
+        {c.verifying.secure}
+      </div>
     </div>
   )
 }
@@ -480,7 +488,7 @@ const FLOW: Array<{ key: string; dwell: number; lifted?: boolean; render: (c: Su
   { key: 'availability', dwell: 3000, lifted: true, render: (c) => <AvailabilityScreen c={c} /> },
   { key: 'review', dwell: 4400, lifted: true, render: (c) => <ReviewScreen c={c} /> },
   { key: 'payment', dwell: 4600, lifted: true, render: (c) => <PaymentScreen c={c} /> },
-  { key: 'verifying', dwell: 2200, lifted: true, render: (c) => <VerifyingScreen c={c} /> },
+  { key: 'verifying', dwell: 2200, render: (c) => <VerifyingScreen c={c} /> },
   { key: 'confirmed', dwell: 4800, render: (c) => <ConfirmedScreen c={c} /> },
   { key: 'loyalty', dwell: 3600, render: (c) => <LoyaltyScreen c={c} /> },
 ]

@@ -141,6 +141,7 @@ const en = {
     label: 'PROCESSING',
     title: 'Confirming your booking',
     note: 'One moment — confirming with your card.',
+    secure: 'ENCRYPTED · YOU CAN STAY ON THIS SCREEN',
   },
 
   confirmed: {
@@ -319,6 +320,7 @@ const es: typeof en = {
     label: 'PROCESANDO',
     title: 'Confirmando tu reserva',
     note: 'Un momento — confirmando con tu tarjeta.',
+    secure: 'CIFRADO · PUEDES QUEDARTE EN ESTA PANTALLA',
   },
 
   confirmed: {
