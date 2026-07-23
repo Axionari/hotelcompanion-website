@@ -87,7 +87,7 @@ const en = {
       meta: 'A note from MarAzul, two days after checkout',
       reply: 'It was a pleasure having you. If you have a moment, we would love your review — and your rate is held for next time.',
       actions: ['Leave a review', 'Book direct again'],
-      image: '/assets/img/luxury-lobby.webp',
+      image: '/assets/lux/footer-aerial-cove.webp',
     },
   },
   chat: {
@@ -181,7 +181,7 @@ const es: typeof en = {
       meta: 'Un mensaje de MarAzul, dos días después de la salida',
       reply: 'Fue un placer recibirlos. Si tiene un momento, nos encantaría su reseña — y su tarifa queda apartada para la próxima.',
       actions: ['Dejar reseña', 'Reservar directo otra vez'],
-      image: '/assets/img/luxury-lobby.webp',
+      image: '/assets/lux/footer-aerial-cove.webp',
     },
   },
   chat: {
