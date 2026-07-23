@@ -4,6 +4,8 @@ import type { ScreenId } from './deviceScreens'
 /* Copy source: HotelCompanion__Site_Copy.md {#home}. Verbatim — do not edit here. */
 
 const en = {
+  heroLead:
+    'Every guest conversation is an opportunity to deliver exceptional hospitality, generate new revenue, and strengthen your operation.',
   stake: {
     figure: '$160B',
     /* NEEDS CONFIRM: exact figure, report, year — Eduardo sourcing. Approved for use now. */
@@ -33,6 +35,8 @@ const en = {
 /* Copy source: HotelCompanion__Site_Copy_ES.md {#home}. Verbatim — do not edit here. */
 
 const es: typeof en = {
+  heroLead:
+    'Cada conversación con un huésped es una oportunidad para brindar una hospitalidad excepcional, generar nuevos ingresos y fortalecer tu operación.',
   stake: {
     figure: '$160 mil millones',
     /* NEEDS CONFIRM: cifra exacta, reporte, año. */
