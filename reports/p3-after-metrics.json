@@ -1,0 +1,1493 @@
+[
+ {
+  "url": "http://localhost:4311/",
+  "slug": "hc-home",
+  "title": "Hotel Companion — The Voice-First Guest Intelligence Platform for Hotels",
+  "pageH": 8818,
+  "totalWords": 480,
+  "headings": [
+   {
+    "tag": "H1",
+    "text": "Understand Every Guest. / Capture Every Opportunity.",
+    "size": 97,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "Live in Days. Not Months.",
+    "size": 88,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "Stop reading about it. / Ask it something.",
+    "size": 92,
+    "weight": "530",
+    "family": "Fraunces"
+   }
+  ],
+  "eyebrowStyles": {
+   "10px/2.8px/rgba(201, 139, 78, 0.85)": 1,
+   "11px/2.86px/rgb(200, 106, 58)": 7,
+   "11px/2.86px/rgba(251, 248, 242, 0.52)": 14,
+   "11px/1.54px/rgb(247, 246, 241)": 1,
+   "8.5px/2.04px/rgb(201, 161, 90)": 1,
+   "9px/1.98px/rgba(242, 233, 218, 0.5)": 6,
+   "11.5px/1.61px/rgb(247, 246, 241)": 4,
+   "11.5px/1.61px/rgb(201, 161, 90)": 4,
+   "10px/2.4px/rgba(242, 233, 218, 0.6)": 5,
+   "11px/2.86px/rgb(201, 161, 90)": 1
+  },
+  "ctas": [
+   {
+    "text": "Book a Demo",
+    "bg": "rgb(200, 106, 58)",
+    "color": "rgb(26, 18, 7)",
+    "font": "generalSans",
+    "size": 14,
+    "minH": 44
+   },
+   {
+    "text": "Ask",
+    "bg": "rgb(200, 106, 58)",
+    "color": "rgb(26, 18, 7)",
+    "font": "generalSans",
+    "size": 14,
+    "minH": 44
+   },
+   {
+    "text": "Ask",
+    "bg": "rgb(200, 106, 58)",
+    "color": "rgb(26, 18, 7)",
+    "font": "generalSans",
+    "size": 14,
+    "minH": 44
+   },
+   {
+    "text": "What would you upsell at my hotel?",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgba(242, 233, 218, 0.7)",
+    "font": "generalSans",
+    "size": 12.5,
+    "minH": 39
+   },
+   {
+    "text": "How do you handle 2AM?",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgba(242, 233, 218, 0.7)",
+    "font": "generalSans",
+    "size": 12.5,
+    "minH": 39
+   },
+   {
+    "text": "Book a Demo",
+    "bg": "rgb(200, 106, 58)",
+    "color": "rgb(26, 18, 7)",
+    "font": "generalSans",
+    "size": 16,
+    "minH": 52
+   }
+  ],
+  "sections": [
+   {
+    "id": "act-i",
+    "h": 912,
+    "padTop": 0,
+    "padBottom": 110,
+    "words": 32,
+    "firstHeading": "Understand Every Guest. / Capture Every Opportunity."
+   },
+   {
+    "id": "act-ii",
+    "h": 900,
+    "padTop": 110,
+    "padBottom": 110,
+    "words": 22,
+    "firstHeading": "02 · WHAT'S AT STAKE / 2–3× / 2–3× / What an OTA booking costs ver"
+   },
+   {
+    "id": "act-iii",
+    "h": 1286,
+    "padTop": 120,
+    "padBottom": 140,
+    "words": 73,
+    "firstHeading": "03 · ONE DAY, ONE VOICE / The booking, the upsell, the 2AM sav"
+   },
+   {
+    "id": "act-iv",
+    "h": 1404,
+    "padTop": 130,
+    "padBottom": 130,
+    "words": 78,
+    "firstHeading": "04 · EVERY SURFACE / One conversation. Every screen in the gue"
+   },
+   {
+    "id": "act-v",
+    "h": 900,
+    "padTop": 130,
+    "padBottom": 130,
+    "words": 33,
+    "firstHeading": "05 · INTELLIGENCE & EXECUTION / Every conversation becomes int"
+   },
+   {
+    "id": "act-vi",
+    "h": 792,
+    "padTop": 130,
+    "padBottom": 130,
+    "words": 28,
+    "firstHeading": "Live in Days. Not Months."
+   },
+   {
+    "id": "act-vii",
+    "h": 1226,
+    "padTop": 150,
+    "padBottom": 0,
+    "words": 38,
+    "firstHeading": "Stop reading about it. / Ask it something."
+   }
+  ],
+  "bgCounts": {
+   "rgb(200, 106, 58)": 5
+  },
+  "navLinks": [
+   "HOTEL COMPANION",
+   "Platform",
+   "Solutions",
+   "Enterprise",
+   "Resources",
+   "Company",
+   "Book a Demo"
+  ]
+ },
+ {
+  "url": "http://localhost:4311/platform",
+  "slug": "hc-platform",
+  "title": "Platform · Hotel Companion",
+  "pageH": 9012,
+  "totalWords": 878,
+  "headings": [
+   {
+    "tag": "H1",
+    "text": "One Platform. Every Guest Interaction.",
+    "size": 69,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "Voice-First by Design.",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "With Your Guests From Arrival to Review.",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "Revenue Intelligence.",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "Enterprise-Ready.",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "Hospitality Runs on Conversations.",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   }
+  ],
+  "eyebrowStyles": {
+   "11px/2.86px/rgb(200, 106, 58)": 21,
+   "8px/2.08px/rgba(251, 248, 242, 0.52)": 1,
+   "7px/1.82px/rgb(200, 106, 58)": 1,
+   "6.5px/1.69px/rgba(251, 248, 242, 0.52)": 1,
+   "11px/2.86px/rgba(251, 248, 242, 0.52)": 20,
+   "11px/2.86px/rgb(201, 161, 90)": 1
+  },
+  "ctas": [
+   {
+    "text": "Book a Demo",
+    "bg": "rgb(200, 106, 58)",
+    "color": "rgb(26, 18, 7)",
+    "font": "generalSans",
+    "size": 14,
+    "minH": 44
+   },
+   {
+    "text": "Book a Demo",
+    "bg": "rgb(200, 106, 58)",
+    "color": "rgb(26, 18, 7)",
+    "font": "generalSans",
+    "size": 16,
+    "minH": 52
+   },
+   {
+    "text": "See It Live",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(247, 246, 241)",
+    "font": "generalSans",
+    "size": 16,
+    "minH": 52
+   },
+   {
+    "text": "Book a Demo",
+    "bg": "rgb(200, 106, 58)",
+    "color": "rgb(26, 18, 7)",
+    "font": "generalSans",
+    "size": 16,
+    "minH": 52
+   }
+  ],
+  "sections": [
+   {
+    "id": "platform-hero",
+    "h": 723,
+    "padTop": 96,
+    "padBottom": 112,
+    "words": 69,
+    "firstHeading": "One Platform. Every Guest Interaction."
+   },
+   {
+    "id": "platform-voice-first",
+    "h": 2193,
+    "padTop": 112,
+    "padBottom": 112,
+    "words": 273,
+    "firstHeading": "Voice-First by Design."
+   },
+   {
+    "id": "platform-lifecycle",
+    "h": 1767,
+    "padTop": 112,
+    "padBottom": 112,
+    "words": 194,
+    "firstHeading": "With Your Guests From Arrival to Review."
+   },
+   {
+    "id": "platform-intelligence",
+    "h": 1560,
+    "padTop": 112,
+    "padBottom": 112,
+    "words": 129,
+    "firstHeading": "Revenue Intelligence."
+   },
+   {
+    "id": "platform-enterprise-ready",
+    "h": 388,
+    "padTop": 80,
+    "padBottom": 80,
+    "words": 15,
+    "firstHeading": "Enterprise-Ready."
+   },
+   {
+    "id": "platform-final-cta",
+    "h": 642,
+    "padTop": 144,
+    "padBottom": 144,
+    "words": 22,
+    "firstHeading": "Hospitality Runs on Conversations."
+   }
+  ],
+  "bgCounts": {
+   "rgb(200, 106, 58)": 4
+  },
+  "navLinks": [
+   "HOTEL COMPANION",
+   "Platform",
+   "Solutions",
+   "Enterprise",
+   "Resources",
+   "Company",
+   "Book a Demo"
+  ]
+ },
+ {
+  "url": "http://localhost:4311/solutions",
+  "slug": "hc-solutions",
+  "title": "Solutions · Hotel Companion",
+  "pageH": 6547,
+  "totalWords": 593,
+  "headings": [
+   {
+    "tag": "H1",
+    "text": "One Platform. Every Department.",
+    "size": 69,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "Every department, one shared intelligence.",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "Built for every kind of hospitality organization.",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "Hospitality Is a Team Sport.",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   }
+  ],
+  "eyebrowStyles": {
+   "11px/2.86px/rgb(200, 106, 58)": 13,
+   "11px/2.86px/rgba(251, 248, 242, 0.52)": 6,
+   "11px/2.86px/rgb(201, 161, 90)": 1
+  },
+  "ctas": [
+   {
+    "text": "Book a Demo",
+    "bg": "rgb(200, 106, 58)",
+    "color": "rgb(26, 18, 7)",
+    "font": "generalSans",
+    "size": 14,
+    "minH": 44
+   },
+   {
+    "text": "Book a Demo",
+    "bg": "rgb(200, 106, 58)",
+    "color": "rgb(26, 18, 7)",
+    "font": "generalSans",
+    "size": 16,
+    "minH": 52
+   },
+   {
+    "text": "Book a Demo",
+    "bg": "rgb(200, 106, 58)",
+    "color": "rgb(26, 18, 7)",
+    "font": "generalSans",
+    "size": 16,
+    "minH": 52
+   }
+  ],
+  "sections": [
+   {
+    "id": "solutions-hero",
+    "h": 667,
+    "padTop": 96,
+    "padBottom": 112,
+    "words": 51,
+    "firstHeading": "One Platform. Every Department."
+   },
+   {
+    "id": "solutions-departments",
+    "h": 971,
+    "padTop": 112,
+    "padBottom": 112,
+    "words": 78,
+    "firstHeading": "Every department, one shared intelligence."
+   },
+   {
+    "id": "",
+    "h": 409,
+    "padTop": 128,
+    "padBottom": 128,
+    "words": 10,
+    "firstHeading": "Built for every kind of hospitality organization."
+   },
+   {
+    "id": "solutions-segments",
+    "h": 2271,
+    "padTop": 112,
+    "padBottom": 112,
+    "words": 235,
+    "firstHeading": "One Platform. Every Property."
+   },
+   {
+    "id": "solutions-final-cta",
+    "h": 833,
+    "padTop": 144,
+    "padBottom": 144,
+    "words": 43,
+    "firstHeading": "Hospitality Is a Team Sport."
+   }
+  ],
+  "bgCounts": {
+   "rgb(200, 106, 58)": 4
+  },
+  "navLinks": [
+   "HOTEL COMPANION",
+   "Platform",
+   "Solutions",
+   "Enterprise",
+   "Resources",
+   "Company",
+   "Book a Demo"
+  ]
+ },
+ {
+  "url": "http://localhost:4311/enterprise",
+  "slug": "hc-enterprise",
+  "title": "Enterprise · Hotel Companion",
+  "pageH": 8024,
+  "totalWords": 656,
+  "headings": [
+   {
+    "tag": "H1",
+    "text": "Built for Modern Hospitality Enterprises.",
+    "size": 69,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "Enterprise Hospitality Starts with Shared Intelligence.",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "Secure by Design.",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "Operational Intelligence.",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "Integrates Into Your Operation.",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "Enterprise Hospitality Deserves Enterprise Intelligence.",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   }
+  ],
+  "eyebrowStyles": {
+   "11px/2.86px/rgb(200, 106, 58)": 11,
+   "11px/2.86px/rgba(251, 248, 242, 0.52)": 7,
+   "11px/2.86px/rgb(201, 161, 90)": 1
+  },
+  "ctas": [
+   {
+    "text": "Book a Demo",
+    "bg": "rgb(200, 106, 58)",
+    "color": "rgb(26, 18, 7)",
+    "font": "generalSans",
+    "size": 14,
+    "minH": 44
+   },
+   {
+    "text": "Book a Demo",
+    "bg": "rgb(200, 106, 58)",
+    "color": "rgb(26, 18, 7)",
+    "font": "generalSans",
+    "size": 16,
+    "minH": 52
+   },
+   {
+    "text": "See It Live",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(247, 246, 241)",
+    "font": "generalSans",
+    "size": 16,
+    "minH": 52
+   },
+   {
+    "text": "Book a Demo",
+    "bg": "rgb(200, 106, 58)",
+    "color": "rgb(26, 18, 7)",
+    "font": "generalSans",
+    "size": 16,
+    "minH": 52
+   }
+  ],
+  "sections": [
+   {
+    "id": "",
+    "h": 723,
+    "padTop": 96,
+    "padBottom": 112,
+    "words": 46,
+    "firstHeading": "Built for Modern Hospitality Enterprises."
+   },
+   {
+    "id": "shared-intel",
+    "h": 1185,
+    "padTop": 112,
+    "padBottom": 112,
+    "words": 121,
+    "firstHeading": "Enterprise Hospitality Starts with Shared Intelligence."
+   },
+   {
+    "id": "secure",
+    "h": 778,
+    "padTop": 112,
+    "padBottom": 112,
+    "words": 67,
+    "firstHeading": "Secure by Design."
+   },
+   {
+    "id": "operational-intel",
+    "h": 764,
+    "padTop": 112,
+    "padBottom": 112,
+    "words": 56,
+    "firstHeading": "Operational Intelligence."
+   },
+   {
+    "id": "integrates",
+    "h": 1975,
+    "padTop": 112,
+    "padBottom": 112,
+    "words": 145,
+    "firstHeading": "Integrates Into Your Operation."
+   },
+   {
+    "id": "",
+    "h": 793,
+    "padTop": 144,
+    "padBottom": 144,
+    "words": 37,
+    "firstHeading": "Enterprise Hospitality Deserves Enterprise Intelligence."
+   }
+  ],
+  "bgCounts": {
+   "rgb(200, 106, 58)": 4
+  },
+  "navLinks": [
+   "HOTEL COMPANION",
+   "Platform",
+   "Solutions",
+   "Enterprise",
+   "Resources",
+   "Company",
+   "Book a Demo"
+  ]
+ },
+ {
+  "url": "http://localhost:4311/companion-os",
+  "slug": "hc-companion-os",
+  "title": "Companion OS · Hotel Companion",
+  "pageH": 6725,
+  "totalWords": 520,
+  "headings": [
+   {
+    "tag": "H1",
+    "text": "One Intelligence Platform. Unlimited Companions.",
+    "size": 69,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "Why Companion OS Exists.",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "One Platform. Industry Intelligence.",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "Built for Enterprise.",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "The Companion Ecosystem.",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "Intelligence Shouldn’t Be Rebuilt for Every Industry.",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   }
+  ],
+  "eyebrowStyles": {
+   "11px/2.86px/rgb(200, 106, 58)": 18,
+   "11px/2.86px/rgba(251, 248, 242, 0.52)": 9,
+   "11px/2.86px/rgb(201, 161, 90)": 1
+  },
+  "ctas": [
+   {
+    "text": "Book a Demo",
+    "bg": "rgb(200, 106, 58)",
+    "color": "rgb(26, 18, 7)",
+    "font": "generalSans",
+    "size": 14,
+    "minH": 44
+   },
+   {
+    "text": "Explore Hotel Companion",
+    "bg": "rgb(200, 106, 58)",
+    "color": "rgb(26, 18, 7)",
+    "font": "generalSans",
+    "size": 16,
+    "minH": 52
+   }
+  ],
+  "sections": [
+   {
+    "id": "",
+    "h": 779,
+    "padTop": 96,
+    "padBottom": 112,
+    "words": 60,
+    "firstHeading": "One Intelligence Platform. Unlimited Companions."
+   },
+   {
+    "id": "companionos-why",
+    "h": 1131,
+    "padTop": 112,
+    "padBottom": 112,
+    "words": 79,
+    "firstHeading": "Why Companion OS Exists."
+   },
+   {
+    "id": "companionos-architecture",
+    "h": 1126,
+    "padTop": 112,
+    "padBottom": 112,
+    "words": 90,
+    "firstHeading": "One Platform. Industry Intelligence."
+   },
+   {
+    "id": "companionos-enterprise",
+    "h": 606,
+    "padTop": 112,
+    "padBottom": 112,
+    "words": 33,
+    "firstHeading": "Built for Enterprise."
+   },
+   {
+    "id": "companionos-ecosystem",
+    "h": 1084,
+    "padTop": 112,
+    "padBottom": 112,
+    "words": 66,
+    "firstHeading": "The Companion Ecosystem."
+   },
+   {
+    "id": "",
+    "h": 602,
+    "padTop": 144,
+    "padBottom": 144,
+    "words": 16,
+    "firstHeading": "Intelligence Shouldn’t Be Rebuilt for Every Industry."
+   }
+  ],
+  "bgCounts": {
+   "rgb(200, 106, 58)": 3
+  },
+  "navLinks": [
+   "HOTEL COMPANION",
+   "Platform",
+   "Solutions",
+   "Enterprise",
+   "Resources",
+   "Company",
+   "Book a Demo"
+  ]
+ },
+ {
+  "url": "http://localhost:4311/resources",
+  "slug": "hc-resources",
+  "title": "Resources · Hotel Companion",
+  "pageH": 5281,
+  "totalWords": 688,
+  "headings": [
+   {
+    "tag": "H1",
+    "text": "Insights for the Future of Hospitality.",
+    "size": 64,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "The Future of Hospitality Is Conversational.",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "Featured Articles",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "Stay Ahead of What’s Next.",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   }
+  ],
+  "eyebrowStyles": {
+   "11px/2.86px/rgb(200, 106, 58)": 15,
+   "11px/2.86px/rgba(251, 248, 242, 0.52)": 18,
+   "11px/2.86px/rgb(201, 161, 90)": 1
+  },
+  "ctas": [
+   {
+    "text": "Book a Demo",
+    "bg": "rgb(200, 106, 58)",
+    "color": "rgb(26, 18, 7)",
+    "font": "generalSans",
+    "size": 14,
+    "minH": 44
+   },
+   {
+    "text": "Read Article →",
+    "bg": "rgb(200, 106, 58)",
+    "color": "rgb(26, 18, 7)",
+    "font": "generalSans",
+    "size": 16,
+    "minH": 52
+   },
+   {
+    "text": "All",
+    "bg": "rgb(200, 106, 58)",
+    "color": "rgb(26, 18, 7)",
+    "font": "generalSans",
+    "size": 14,
+    "minH": 44
+   },
+   {
+    "text": "Voice Technology",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgba(251, 248, 242, 0.7)",
+    "font": "generalSans",
+    "size": 14,
+    "minH": 44
+   },
+   {
+    "text": "Artificial Intelligence",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgba(251, 248, 242, 0.7)",
+    "font": "generalSans",
+    "size": 14,
+    "minH": 44
+   },
+   {
+    "text": "Revenue Growth",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgba(251, 248, 242, 0.7)",
+    "font": "generalSans",
+    "size": 14,
+    "minH": 44
+   },
+   {
+    "text": "Hotel Operations",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgba(251, 248, 242, 0.7)",
+    "font": "generalSans",
+    "size": 14,
+    "minH": 44
+   },
+   {
+    "text": "Guest Experience",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgba(251, 248, 242, 0.7)",
+    "font": "generalSans",
+    "size": 14,
+    "minH": 44
+   },
+   {
+    "text": "Companion OS",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgba(251, 248, 242, 0.7)",
+    "font": "generalSans",
+    "size": 14,
+    "minH": 44
+   }
+  ],
+  "sections": [
+   {
+    "id": "",
+    "h": 473,
+    "padTop": 96,
+    "padBottom": 80,
+    "words": 45,
+    "firstHeading": "Insights for the Future of Hospitality."
+   },
+   {
+    "id": "",
+    "h": 660,
+    "padTop": 112,
+    "padBottom": 112,
+    "words": 54,
+    "firstHeading": "The Future of Hospitality Is Conversational."
+   },
+   {
+    "id": "library",
+    "h": 2211,
+    "padTop": 112,
+    "padBottom": 112,
+    "words": 381,
+    "firstHeading": "Featured Articles"
+   },
+   {
+    "id": "",
+    "h": 540,
+    "padTop": 112,
+    "padBottom": 112,
+    "words": 32,
+    "firstHeading": "Stay Ahead of What’s Next."
+   }
+  ],
+  "bgCounts": {
+   "rgb(200, 106, 58)": 5,
+   "rgb(23, 23, 23)": 20
+  },
+  "navLinks": [
+   "HOTEL COMPANION",
+   "Platform",
+   "Solutions",
+   "Enterprise",
+   "Resources",
+   "Company",
+   "Book a Demo"
+  ]
+ },
+ {
+  "url": "http://localhost:4311/company",
+  "slug": "hc-company",
+  "title": "Company · Hotel Companion",
+  "pageH": 7235,
+  "totalWords": 686,
+  "headings": [
+   {
+    "tag": "H1",
+    "text": "We’re Building the Future of Intelligent Hospitality.",
+    "size": 64,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "Why Hotels.",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "Hospitality Is Human. Intelligence Should Be Invisible.",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "Enterprise Execution Systems.",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "Let’s Build the Future of Hospitality.",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   }
+  ],
+  "eyebrowStyles": {
+   "11px/2.86px/rgb(200, 106, 58)": 5,
+   "11px/2.86px/rgba(251, 248, 242, 0.52)": 10,
+   "11px/2.86px/rgb(201, 161, 90)": 1
+  },
+  "ctas": [
+   {
+    "text": "Book a Demo",
+    "bg": "rgb(200, 106, 58)",
+    "color": "rgb(26, 18, 7)",
+    "font": "generalSans",
+    "size": 14,
+    "minH": 44
+   },
+   {
+    "text": "Book a Demo",
+    "bg": "rgb(200, 106, 58)",
+    "color": "rgb(26, 18, 7)",
+    "font": "generalSans",
+    "size": 16,
+    "minH": 52
+   }
+  ],
+  "sections": [
+   {
+    "id": "",
+    "h": 697,
+    "padTop": 112,
+    "padBottom": 112,
+    "words": 42,
+    "firstHeading": "We’re Building the Future of Intelligent Hospitality."
+   },
+   {
+    "id": "why-hotels",
+    "h": 1131,
+    "padTop": 144,
+    "padBottom": 144,
+    "words": 127,
+    "firstHeading": "Why Hotels."
+   },
+   {
+    "id": "belief",
+    "h": 1797,
+    "padTop": 112,
+    "padBottom": 112,
+    "words": 206,
+    "firstHeading": "Hospitality Is Human. Intelligence Should Be Invisible."
+   },
+   {
+    "id": "axionari",
+    "h": 862,
+    "padTop": 112,
+    "padBottom": 112,
+    "words": 88,
+    "firstHeading": "Enterprise Execution Systems."
+   },
+   {
+    "id": "contact",
+    "h": 955,
+    "padTop": 112,
+    "padBottom": 112,
+    "words": 47,
+    "firstHeading": "Let’s Build the Future of Hospitality."
+   }
+  ],
+  "bgCounts": {
+   "rgb(200, 106, 58)": 3
+  },
+  "navLinks": [
+   "HOTEL COMPANION",
+   "Platform",
+   "Solutions",
+   "Enterprise",
+   "Resources",
+   "Company",
+   "Book a Demo"
+  ]
+ },
+ {
+  "url": "http://localhost:4311/contact",
+  "slug": "hc-contact",
+  "title": "Contact · Hotel Companion",
+  "pageH": 4674,
+  "totalWords": 484,
+  "headings": [
+   {
+    "tag": "H1",
+    "text": "Let’s Build the Future of Hospitality Together.",
+    "size": 64,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "How can we help?",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "Join the Founding Partner Program",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "Every Great Partnership Begins with a Conversation.",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   }
+  ],
+  "eyebrowStyles": {
+   "11px/2.86px/rgb(200, 106, 58)": 3,
+   "11px/2.86px/rgba(251, 248, 242, 0.52)": 13,
+   "11px/2.86px/rgb(201, 161, 90)": 1
+  },
+  "ctas": [
+   {
+    "text": "Book a Demo",
+    "bg": "rgb(200, 106, 58)",
+    "color": "rgb(26, 18, 7)",
+    "font": "generalSans",
+    "size": 14,
+    "minH": 44
+   },
+   {
+    "text": "Become a Founding Partner",
+    "bg": "rgb(200, 106, 58)",
+    "color": "rgb(26, 18, 7)",
+    "font": "generalSans",
+    "size": 16,
+    "minH": 52
+   }
+  ],
+  "sections": [
+   {
+    "id": "",
+    "h": 460,
+    "padTop": 96,
+    "padBottom": 80,
+    "words": 37,
+    "firstHeading": "Let’s Build the Future of Hospitality Together."
+   },
+   {
+    "id": "",
+    "h": 1330,
+    "padTop": 112,
+    "padBottom": 112,
+    "words": 162,
+    "firstHeading": "How can we help?"
+   },
+   {
+    "id": "founding",
+    "h": 912,
+    "padTop": 112,
+    "padBottom": 112,
+    "words": 71,
+    "firstHeading": "Join the Founding Partner Program"
+   },
+   {
+    "id": "",
+    "h": 575,
+    "padTop": 112,
+    "padBottom": 112,
+    "words": 38,
+    "firstHeading": "Every Great Partnership Begins with a Conversation."
+   }
+  ],
+  "bgCounts": {
+   "rgb(200, 106, 58)": 3
+  },
+  "navLinks": [
+   "HOTEL COMPANION",
+   "Platform",
+   "Solutions",
+   "Enterprise",
+   "Resources",
+   "Company",
+   "Book a Demo"
+  ]
+ },
+ {
+  "url": "http://localhost:4311/demo",
+  "slug": "hc-demo",
+  "title": "Book a Demo · Hotel Companion",
+  "pageH": 6850,
+  "totalWords": 585,
+  "headings": [
+   {
+    "tag": "H1",
+    "text": "Book a Personalized Demonstration",
+    "size": 64,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "Schedule Your Demonstration",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "What to Expect",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "Ask it anything.",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "Frequently Asked Questions",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "From Demonstration to Deployment",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   }
+  ],
+  "eyebrowStyles": {
+   "11px/2.86px/rgb(200, 106, 58)": 5,
+   "8.5px/2.21px/rgba(251, 248, 242, 0.52)": 2,
+   "8.5px/2.21px/rgb(200, 106, 58)": 1,
+   "10.5px/1.89px/rgba(251, 248, 242, 0.7)": 1,
+   "11px/2.86px/rgba(251, 248, 242, 0.52)": 6,
+   "11px/2.86px/rgb(201, 161, 90)": 1
+  },
+  "ctas": [
+   {
+    "text": "Book a Demo",
+    "bg": "rgb(200, 106, 58)",
+    "color": "rgb(26, 18, 7)",
+    "font": "generalSans",
+    "size": 14,
+    "minH": 44
+   },
+   {
+    "text": "Schedule Your Demonstration",
+    "bg": "rgb(200, 106, 58)",
+    "color": "rgb(26, 18, 7)",
+    "font": "generalSans",
+    "size": 16,
+    "minH": 52
+   },
+   {
+    "text": "What is the best beach near here?",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgba(251, 248, 242, 0.7)",
+    "font": "generalSans",
+    "size": 12.5,
+    "minH": 40
+   },
+   {
+    "text": "We would like dinner in the room ton",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgba(251, 248, 242, 0.7)",
+    "font": "generalSans",
+    "size": 12.5,
+    "minH": 40
+   },
+   {
+    "text": "Can we upgrade to an ocean view?",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgba(251, 248, 242, 0.7)",
+    "font": "generalSans",
+    "size": 12.5,
+    "minH": 40
+   },
+   {
+    "text": "Where do locals actually eat?",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgba(251, 248, 242, 0.7)",
+    "font": "generalSans",
+    "size": 12.5,
+    "minH": 40
+   },
+   {
+    "text": "Plan our last day",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgba(251, 248, 242, 0.7)",
+    "font": "generalSans",
+    "size": 12.5,
+    "minH": 40
+   },
+   {
+    "text": "↑",
+    "bg": "rgb(200, 106, 58)",
+    "color": "rgb(26, 18, 7)",
+    "font": "generalSans",
+    "size": 16,
+    "minH": 44
+   }
+  ],
+  "sections": [
+   {
+    "id": "",
+    "h": 484,
+    "padTop": 96,
+    "padBottom": 80,
+    "words": 24,
+    "firstHeading": "Book a Personalized Demonstration"
+   },
+   {
+    "id": "form",
+    "h": 1284,
+    "padTop": 112,
+    "padBottom": 112,
+    "words": 80,
+    "firstHeading": "Schedule Your Demonstration"
+   },
+   {
+    "id": "",
+    "h": 883,
+    "padTop": 112,
+    "padBottom": 112,
+    "words": 89,
+    "firstHeading": "What to Expect"
+   },
+   {
+    "id": "try",
+    "h": 1115,
+    "padTop": 112,
+    "padBottom": 112,
+    "words": 101,
+    "firstHeading": "Ask it anything."
+   },
+   {
+    "id": "faq",
+    "h": 846,
+    "padTop": 112,
+    "padBottom": 112,
+    "words": 56,
+    "firstHeading": "Frequently Asked Questions"
+   },
+   {
+    "id": "",
+    "h": 841,
+    "padTop": 112,
+    "padBottom": 112,
+    "words": 59,
+    "firstHeading": "From Demonstration to Deployment"
+   }
+  ],
+  "bgCounts": {
+   "rgb(200, 106, 58)": 5
+  },
+  "navLinks": [
+   "HOTEL COMPANION",
+   "Platform",
+   "Solutions",
+   "Enterprise",
+   "Resources",
+   "Company",
+   "Book a Demo"
+  ]
+ },
+ {
+  "url": "http://localhost:4311/faq",
+  "slug": "hc-faq",
+  "title": "Book a Demo · Hotel Companion",
+  "pageH": 6850,
+  "totalWords": 585,
+  "headings": [
+   {
+    "tag": "H1",
+    "text": "Book a Personalized Demonstration",
+    "size": 64,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "Schedule Your Demonstration",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "What to Expect",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "Ask it anything.",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "Frequently Asked Questions",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   },
+   {
+    "tag": "H2",
+    "text": "From Demonstration to Deployment",
+    "size": 54,
+    "weight": "530",
+    "family": "Fraunces"
+   }
+  ],
+  "eyebrowStyles": {
+   "11px/2.86px/rgb(200, 106, 58)": 5,
+   "8.5px/2.21px/rgba(251, 248, 242, 0.52)": 2,
+   "8.5px/2.21px/rgb(200, 106, 58)": 1,
+   "10.5px/1.89px/rgba(251, 248, 242, 0.7)": 1,
+   "11px/2.86px/rgba(251, 248, 242, 0.52)": 6,
+   "11px/2.86px/rgb(201, 161, 90)": 1
+  },
+  "ctas": [
+   {
+    "text": "Book a Demo",
+    "bg": "rgb(200, 106, 58)",
+    "color": "rgb(26, 18, 7)",
+    "font": "generalSans",
+    "size": 14,
+    "minH": 44
+   },
+   {
+    "text": "Schedule Your Demonstration",
+    "bg": "rgb(200, 106, 58)",
+    "color": "rgb(26, 18, 7)",
+    "font": "generalSans",
+    "size": 16,
+    "minH": 52
+   },
+   {
+    "text": "What is the best beach near here?",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgba(251, 248, 242, 0.7)",
+    "font": "generalSans",
+    "size": 12.5,
+    "minH": 40
+   },
+   {
+    "text": "We would like dinner in the room ton",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgba(251, 248, 242, 0.7)",
+    "font": "generalSans",
+    "size": 12.5,
+    "minH": 40
+   },
+   {
+    "text": "Can we upgrade to an ocean view?",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgba(251, 248, 242, 0.7)",
+    "font": "generalSans",
+    "size": 12.5,
+    "minH": 40
+   },
+   {
+    "text": "Where do locals actually eat?",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgba(251, 248, 242, 0.7)",
+    "font": "generalSans",
+    "size": 12.5,
+    "minH": 40
+   },
+   {
+    "text": "Plan our last day",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgba(251, 248, 242, 0.7)",
+    "font": "generalSans",
+    "size": 12.5,
+    "minH": 40
+   },
+   {
+    "text": "↑",
+    "bg": "rgb(200, 106, 58)",
+    "color": "rgb(26, 18, 7)",
+    "font": "generalSans",
+    "size": 16,
+    "minH": 44
+   }
+  ],
+  "sections": [
+   {
+    "id": "",
+    "h": 484,
+    "padTop": 96,
+    "padBottom": 80,
+    "words": 24,
+    "firstHeading": "Book a Personalized Demonstration"
+   },
+   {
+    "id": "form",
+    "h": 1284,
+    "padTop": 112,
+    "padBottom": 112,
+    "words": 80,
+    "firstHeading": "Schedule Your Demonstration"
+   },
+   {
+    "id": "",
+    "h": 883,
+    "padTop": 112,
+    "padBottom": 112,
+    "words": 89,
+    "firstHeading": "What to Expect"
+   },
+   {
+    "id": "try",
+    "h": 1115,
+    "padTop": 112,
+    "padBottom": 112,
+    "words": 101,
+    "firstHeading": "Ask it anything."
+   },
+   {
+    "id": "faq",
+    "h": 846,
+    "padTop": 112,
+    "padBottom": 112,
+    "words": 56,
+    "firstHeading": "Frequently Asked Questions"
+   },
+   {
+    "id": "",
+    "h": 841,
+    "padTop": 112,
+    "padBottom": 112,
+    "words": 59,
+    "firstHeading": "From Demonstration to Deployment"
+   }
+  ],
+  "bgCounts": {
+   "rgb(200, 106, 58)": 5
+  },
+  "navLinks": [
+   "HOTEL COMPANION",
+   "Platform",
+   "Solutions",
+   "Enterprise",
+   "Resources",
+   "Company",
+   "Book a Demo"
+  ]
+ }
+]
