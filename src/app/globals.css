@@ -1337,3 +1337,47 @@ body {
     mask-image: linear-gradient(to right, transparent 0, #000 14px, #000 calc(100% - 34px), transparent 100%);
   }
 }
+
+/* ── PHONES GET A PHONE. On mobile the device mockups wear real iPhone chrome
+   (machined bezel, glass, dynamic island) instead of tablet bezels — the
+   internals already reflow to a single legible column, so this is the last
+   mile: it should READ as the phone product, not a shrunken tablet.
+   Language matched to the smartphone in EverySurface. */
+@media (max-width: 767px) {
+  .suite-frame {
+    background: linear-gradient(150deg, #9A9AA0, #3A3A40) !important;
+    border: none !important;
+    border-radius: 46px !important;
+    padding: 4px !important;
+    box-shadow: 0 34px 70px -18px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,255,255,0.06) inset !important;
+  }
+  .suite-screen {
+    position: relative;
+    border-radius: 42px !important;
+    box-shadow: 0 0 0 3px #0B0B0D inset;
+  }
+  /* dynamic island */
+  .suite-screen::before {
+    content: "";
+    position: absolute;
+    top: 9px; left: 50%; transform: translateX(-50%);
+    width: var(--island-w, 96px); height: var(--island-h, 24px);
+    background: #0B0B0D; border-radius: 999px; z-index: 40; pointer-events: none;
+  }
+  /* clear the island so the status row never sits under it */
+  .suite-screen > div:first-child { padding-top: 16px; }
+}
+
+@media (max-width: 640px) {
+  .tos-screen {
+    border-radius: 38px !important;
+    box-shadow: 0 0 0 3px #0B0B0D inset;
+  }
+  .tos-screen::before {
+    content: "";
+    position: absolute;
+    top: 8px; left: 50%; transform: translateX(-50%);
+    width: 84px; height: 20px;
+    background: #0B0B0D; border-radius: 999px; z-index: 40; pointer-events: none;
+  }
+}
