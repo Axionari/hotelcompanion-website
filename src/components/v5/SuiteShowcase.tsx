@@ -572,9 +572,9 @@ export function SuiteShowcase() {
       <div
         data-device-ui=""
         className="suite-frame suite-stage"
-        style={{ width: '100%', ...titaniumFrame({ radius: 24, bezel: 6, drop: '0 60px 130px -34px rgba(0,0,0,0.85)' }) }}
+        style={{ width: '100%', ...titaniumFrame({ radius: 22, bezel: 5, drop: '0 60px 130px -34px rgba(0,0,0,0.85)' }) }}
       >
-        <div className="suite-screen" style={{ height: '100%', borderRadius: 18, overflow: 'hidden', background: 'radial-gradient(120% 100% at 30% 0%, #17130f 0%, #100e0c 60%, #0c0b0a 100%)', boxShadow: titaniumScreenShadow(), display: 'flex', flexDirection: 'column' }}>
+        <div className="suite-screen" style={{ height: '100%', borderRadius: 17, overflow: 'hidden', background: 'radial-gradient(120% 100% at 30% 0%, #17130f 0%, #100e0c 60%, #0c0b0a 100%)', boxShadow: titaniumScreenShadow(), display: 'flex', flexDirection: 'column' }}>
           {/* Status bar and content share one toned container so the tone has no
               seam across the status row. It stops short of the voice bar, whose
               own dock edge already reads as a boundary. The tone is a separate

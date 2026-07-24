@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState, CSSProperties } from 'react'
+import { titaniumFrame, titaniumScreenShadow } from '@/components/v5/deviceFrame'
 import { VoiceOrb } from './VoiceOrb'
 
 /* ============================================================================
@@ -20,16 +21,12 @@ const MONO = 'var(--font-mono), ui-monospace, monospace'
 const CREAM = '#F2EEE6'
 
 /** Device frame + inner screen, matching the tablet devices across the site. */
-const FRAME: CSSProperties = {
-  background: 'var(--device-frame)',
-  borderRadius: 'var(--device-radius)',
-  padding: 'var(--bezel)',
-  border: '1px solid rgba(251,248,242,0.08)',
-  boxShadow: '0 40px 90px -30px rgba(0,0,0,0.85), 0 0 0 1px rgba(200,106,58,0.05)',
-}
+// Titanium frame, matching the hero tablets (CompanionTablet / SuiteShowcase).
+const FRAME: CSSProperties = titaniumFrame({ radius: 22, bezel: 4, drop: '0 40px 90px -30px rgba(0,0,0,0.85)' })
 const SCREEN: CSSProperties = {
-  borderRadius: 'calc(var(--device-radius) - var(--bezel))',
+  borderRadius: 18,
   background: 'linear-gradient(168deg, #191410 0%, #12100e 60%, #0f0d0c 100%)',
+  boxShadow: titaniumScreenShadow(),
 }
 
 /** Status bar: property (left, live dot) + state (right, e.g. SPEAKING). */

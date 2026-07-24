@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState, CSSProperties } from 'react'
+import { titaniumFrame, titaniumScreenShadow } from '@/components/v5/deviceFrame'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { deviceScreens, type ScreenId } from '@/lib/i18n/marketing/deviceScreens'
 import { VoiceOrb, type OrbState } from './VoiceOrb'
@@ -20,20 +21,16 @@ import { VoiceOrb, type OrbState } from './VoiceOrb'
  *  - no-JS: the first screen is server-rendered complete, images included
  */
 
-const FRAME = {
-  background: 'var(--device-frame)',
-  borderRadius: 'var(--device-radius)',
-  padding: 'var(--bezel)',
-  border: '1px solid rgba(251,248,242,0.08)',
-  boxShadow: '0 40px 90px -30px rgba(0,0,0,0.85), 0 0 0 1px rgba(200,106,58,0.05)',
-} as const
+// Titanium frame, matching the hero tablets (CompanionTablet / SuiteShowcase).
+const FRAME: CSSProperties = titaniumFrame({ radius: 22, bezel: 4, drop: '0 40px 90px -30px rgba(0,0,0,0.85)' })
 
 /* aspect-ratio lives in CSS (.tos-screen) so phones can go portrait — a 4/3
    frame at 390px is ~290px tall and the absolute internals collide. */
-const SCREEN = {
-  borderRadius: 'calc(var(--device-radius) - var(--bezel))',
+const SCREEN: CSSProperties = {
+  borderRadius: 18,
   background: 'linear-gradient(168deg, #191410 0%, #12100e 58%, #0f0d0c 100%)',
-} as const
+  boxShadow: titaniumScreenShadow(),
+}
 
 /** Photo inside the UI: rounded, faint inner border, slow Ken-Burns. */
 function UiImage({
