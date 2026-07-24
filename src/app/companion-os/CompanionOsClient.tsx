@@ -6,6 +6,7 @@ import { SiteFooter } from '@/components/site-footer'
 import { Reveal } from '@/components/cds/Reveal'
 import { Breather } from '@/components/cds/Breather'
 import { EndorsementMark } from '@/components/cds/EndorsementMark'
+import { IntelligenceModel } from '@/components/v5/IntelligenceModel'
 import {
   Em,
   PageHero,
@@ -29,11 +30,12 @@ import { accents } from '@/lib/i18n/marketing/accents'
  *   HERO (statement, no visual — this is an argument, not a product shot)
  *   proof strip — the eight capabilities, mono
  *   01 WHY              — why the platform exists    → two bare statements
- *   02 ONE PLATFORM     — universal vs specialized   → QuietChips + coda
- *   03 THE ARCHITECTURE — the eight capabilities     → cards (ids preserved)
- *   04 ENTERPRISE       — the foundation             → QuietChips + coda
- *   05 ECOSYSTEM        — the family                 → today / tomorrow
- *   06 AXIONARI         — the builder                → statement + mark
+ *   02 THE MODEL        — the signature diagram      → IntelligenceModel
+ *   03 ONE PLATFORM     — universal vs specialized   → QuietChips + coda
+ *   04 THE ARCHITECTURE — the eight capabilities     → cards (ids preserved)
+ *   05 ENTERPRISE       — the foundation             → QuietChips + coda
+ *   06 ECOSYSTEM        — the family                 → today / tomorrow
+ *   07 AXIONARI         — the builder                → statement + mark
  *   HAND-OFF → /
  *
  * Depth is held back deliberately: the page should leave strategic buyers
@@ -137,11 +139,24 @@ export default function CompanionOsClient() {
         <StatementCards columns={2} items={c.why.body.map((b) => ({ title: b }))} />
       </Act>
 
-      {/* 02 · ONE PLATFORM {#companionos-one-platform} — universal intelligence
+      {/* 02 · THE MODEL {#companionos-model} — the signature diagram. One idea:
+          a conversation becomes shared intelligence that improves the whole
+          hotel. Business model, never architecture. See IntelligenceModel. */}
+      <Act
+        no="02"
+        label={c.model.eyebrow}
+        id="companionos-model"
+        statement={c.model.title}
+        deck={c.model.deck}
+      >
+        <IntelligenceModel c={c.model} />
+      </Act>
+
+      {/* 03 · ONE PLATFORM {#companionos-one-platform} — universal intelligence
           vs industry specialization. The specializations carry the idea, so
           they run as quiet chips rather than a diagram. */}
       <Act
-        no="02"
+        no="03"
         label="ONE PLATFORM"
         id="companionos-one-platform"
         statement={c.onePlatform.title}
@@ -160,7 +175,7 @@ export default function CompanionOsClient() {
 
       <Breather id="band-companionos-palms" image="/assets/img/ambient-palms-night.webp" darken={0.4} />
 
-      {/* 03 · THE ARCHITECTURE {#companionos-architecture} — the eight
+      {/* 04 · THE ARCHITECTURE {#companionos-architecture} — the eight
           capabilities. Rendered inline rather than via StatementCards because
           each card is a deep-link target (/companion-os#voice etc.); the visual
           language is StatementCards' exactly. */}
@@ -168,7 +183,7 @@ export default function CompanionOsClient() {
           claim the eight capabilities actually prove, and reusing
           onePlatform.title would print the same headline twice running. */}
       <Act
-        no="03"
+        no="04"
         label="THE ARCHITECTURE"
         id="companionos-architecture"
         statement={c.hero.close[0]}
@@ -204,9 +219,9 @@ export default function CompanionOsClient() {
         </div>
       </Act>
 
-      {/* 04 · ENTERPRISE {#companionos-enterprise} — the foundation. */}
+      {/* 05 · ENTERPRISE {#companionos-enterprise} — the foundation. */}
       <Act
-        no="04"
+        no="05"
         label="ENTERPRISE"
         id="companionos-enterprise"
         statement={c.enterprise.title}
@@ -221,10 +236,10 @@ export default function CompanionOsClient() {
 
       <Breather image="/assets/lux/breather-thatch-beach.webp" darken={0.4} />
 
-      {/* 05 · ECOSYSTEM {#companionos-ecosystem} — the family today and next.
+      {/* 06 · ECOSYSTEM {#companionos-ecosystem} — the family today and next.
           Destination Companion is a future NAME ONLY, never a link. */}
       <Act
-        no="05"
+        no="06"
         label="ECOSYSTEM"
         id="companionos-ecosystem"
         statement={c.ecosystem.title}
@@ -248,9 +263,9 @@ export default function CompanionOsClient() {
         </>
       </Act>
 
-      {/* 06 · AXIONARI {#companionos-axionari} — the builder behind the platform. */}
+      {/* 07 · AXIONARI {#companionos-axionari} — the builder behind the platform. */}
       <Act
-        no="06"
+        no="07"
         label="THE BUILDER"
         id="companionos-axionari"
         statement={c.axionari.title}

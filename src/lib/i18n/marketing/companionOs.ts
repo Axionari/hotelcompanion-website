@@ -35,6 +35,24 @@ const en = {
     ],
     coda: 'One platform. Unlimited possibilities.',
   },
+  /* The signature diagram (IntelligenceModel v1). Business-model language
+     only — no software terms. Every string here is expected to move as
+     customer conversations tell us which part of the story lands. */
+  model: {
+    eyebrow: 'THE MODEL',
+    title: 'One conversation. The whole hotel.',
+    deck: 'Every guest conversation becomes shared hospitality intelligence that improves the entire hotel.',
+    inputsLabel: 'GUEST INTERACTIONS',
+    inputs: ['Voice', 'Chat', 'QR', 'WhatsApp', 'SMS', 'In-room tablet'],
+    toBand: 'EVERY CONVERSATION',
+    platform: 'Hospitality Intelligence Platform',
+    os: 'POWERED BY THE HOSPITALITY INTELLIGENCE OPERATING SYSTEM',
+    toDepartments: 'SHARED ACROSS EVERY DEPARTMENT',
+    departments: ['Front Desk', 'Housekeeping', 'Maintenance', 'Concierge', 'Food & Beverage', 'Management'],
+    toOutcomes: 'WHICH IMPROVES',
+    outcomes: ['Better experiences', 'Better decisions', 'Higher revenue', 'Stronger operations'],
+    loop: 'AND EVERY OUTCOME SHARPENS THE NEXT CONVERSATION',
+  },
   /* Capability deep-dives — all eight, in canonical taxonomy order. */
   deepDives: [
     {
@@ -187,6 +205,21 @@ const es: typeof en = {
       'Los futuros Companions entenderán sus industrias con la misma profundidad.',
     ],
     coda: 'Una plataforma. Posibilidades ilimitadas.',
+  },
+  model: {
+    eyebrow: 'EL MODELO',
+    title: 'Una conversación. Todo el hotel.',
+    deck: 'Cada conversación con un huésped se convierte en inteligencia hotelera compartida que mejora todo el hotel.',
+    inputsLabel: 'INTERACCIONES DEL HUÉSPED',
+    inputs: ['Voz', 'Chat', 'QR', 'WhatsApp', 'SMS', 'Tablet en la habitación'],
+    toBand: 'CADA CONVERSACIÓN',
+    platform: 'Plataforma de Inteligencia Hotelera',
+    os: 'IMPULSADA POR EL SISTEMA OPERATIVO DE INTELIGENCIA HOTELERA',
+    toDepartments: 'COMPARTIDA CON CADA DEPARTAMENTO',
+    departments: ['Recepción', 'Ama de llaves', 'Mantenimiento', 'Concierge', 'Alimentos y Bebidas', 'Dirección'],
+    toOutcomes: 'LO QUE MEJORA',
+    outcomes: ['Mejores experiencias', 'Mejores decisiones', 'Más ingresos', 'Operaciones más sólidas'],
+    loop: 'Y CADA RESULTADO AFINA LA SIGUIENTE CONVERSACIÓN',
   },
   /* Capability deep-dives — all eight, in canonical taxonomy order. */
   deepDives: [

@@ -22,8 +22,8 @@ const SERIF = 'var(--font-serif), Georgia, serif'
 const TERRA = '#C86A3A'
 const CREAM = '#F2EEE6'
 
-/** Shared reveal gate (mirrors IntelligentLayer's). */
-function useArmedIn() {
+/** Shared reveal gate (mirrors IntelligentLayer's). Exported for IntelligenceModel. */
+export function useArmedIn() {
   const ref = useRef<HTMLDivElement>(null)
   const [armed, setArmed] = useState(false)
   const [inView, setInView] = useState(false)
@@ -62,7 +62,7 @@ function useArmedIn() {
   return { ref, cls: `v5-layer ${armed ? 'armed' : ''} ${inView ? 'in' : ''}` }
 }
 
-const chipStyle: CSSProperties = {
+export const chipStyle: CSSProperties = {
   fontFamily: SANS,
   fontSize: 'clamp(11px, 1.05vw, 14px)',
   fontWeight: 500,
