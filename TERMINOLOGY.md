@@ -8,6 +8,11 @@ three names for one thing are in circulation, every new page picks one at
 random. If you are adding copy and the term you want is not here, add it here
 first.
 
+**Companion documents.** This governs *vocabulary* — which words name which
+things. `BRAND.md` governs *voice* — tone, rhythm, our verbs and nouns, and
+what we never say. `docs/COMPANION_OS_SITE_BLUEPRINT.md` holds the Category
+Principles the whole site is evaluated against.
+
 ---
 
 ## The hierarchy
