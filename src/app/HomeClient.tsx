@@ -296,11 +296,11 @@ export default function HomeClient() {
             {c.actV.rows.map((r, i) => {
               const isRevenue = r.revenue.startsWith('+')
               return (
-                <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 'clamp(12px,1.6vw,24px)', padding: 'clamp(15px,1.7vw,21px) clamp(20px,2.4vw,30px)', borderBottom: i < c.actV.rows.length - 1 ? '1px solid rgba(243,236,226,0.06)' : 'none' }}>
+                <div key={i} className="home-ops-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 'clamp(12px,1.6vw,24px)', padding: 'clamp(15px,1.7vw,21px) clamp(20px,2.4vw,30px)', borderBottom: i < c.actV.rows.length - 1 ? '1px solid rgba(243,236,226,0.06)' : 'none' }}>
                   <span style={{ fontFamily: 'var(--font-mono), monospace', fontSize: 'clamp(11px,1.05vw,13.5px)', letterSpacing: '.04em', color: 'var(--accent)', minWidth: 0 }}>
                     {r.route}<span style={{ color: 'var(--text)' }}>{r.item}</span><span style={{ color: 'var(--text-dim)' }}>{r.tail}</span>
                   </span>
-                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: 'clamp(10px,1.4vw,20px)', flexShrink: 0 }}>
+                  <span className="home-ops-meta" style={{ display: 'inline-flex', alignItems: 'center', gap: 'clamp(10px,1.4vw,20px)', flexShrink: 0 }}>
                     <span
                       className="eyebrow"
                       style={{

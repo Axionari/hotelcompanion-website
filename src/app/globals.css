@@ -1425,3 +1425,13 @@ body {
   .adapt-wide { display: none; }
   .adapt-narrow { display: block; }
 }
+
+/* Live-operations feed (homepage actV) — mobile. On a phone the space-between
+   row squeezes the long ENGINEERING label ("ROOM 214 · AC NOT WORKING ·
+   MAINTENANCE ALERT") into a narrow column beside its status pill, which wraps
+   into a mess. Stack instead: the label takes the full width on its own line,
+   then the pill + time sit on a second line. */
+@media (max-width: 600px) {
+  .home-ops-row { flex-direction: column !important; align-items: flex-start !important; gap: 9px !important; }
+  .home-ops-meta { width: 100%; justify-content: space-between !important; }
+}
