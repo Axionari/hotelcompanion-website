@@ -47,9 +47,9 @@ export function Act1() {
         {c.coords}
       </div>
 
-      <div className="v4-act1-eyebrow" style={{ ...eyebrowStyle('var(--accent)'), marginTop: 96, zIndex: 20, textAlign: 'center' }}>
-        {c.eyebrow}
-      </div>
+      {/* No hero eyebrow by design — a category label stacked above the H1 is
+          the generic SaaS move. Removed from the live v5 hero; dropped here too
+          so the retired v4 acts do not keep the string alive. */}
 
       <h1
         className="v4-h1"

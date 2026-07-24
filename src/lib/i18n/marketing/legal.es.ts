@@ -180,7 +180,7 @@ export const termsEs: LegalDoc = {
     {
       type: 'term',
       label: 'Hotel Companion',
-      text: 'La Plataforma de Inteligencia de Huéspedes provista por Axionari.',
+      text: 'La Plataforma de Inteligencia Hotelera provista por Axionari.',
     },
     {
       type: 'term',

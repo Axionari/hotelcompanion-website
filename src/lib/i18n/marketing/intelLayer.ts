@@ -10,9 +10,9 @@ import type { Localized } from '../useCopy'
 const en = {
   eyebrow: 'THE CATEGORY',
   h2Pre: 'Not another app. ',
-  h2Hi: 'The intelligence operating layer.',
+  h2Hi: 'An intelligence operating system.',
   body:
-    'The next generation of hotel technology is not another application to add to the stack. It is the layer beneath them — connecting every guest conversation, every department, and every operational decision, on top of the systems your hotel already relies on.',
+    'Hotel Companion is the Hospitality Intelligence Platform, powered by a Hospitality Intelligence Operating System — the layer beneath your existing tools that connects every guest conversation, every department, and every operational decision. Not another application to add to the stack.',
   guest: 'The guest',
   center: 'One intelligent layer',
   centerSub: 'EVERY CONVERSATION · EVERY DEPARTMENT',
@@ -22,9 +22,9 @@ const en = {
 const es: typeof en = {
   eyebrow: 'LA CATEGORÍA',
   h2Pre: 'No otra aplicación. ',
-  h2Hi: 'La capa operativa de inteligencia.',
+  h2Hi: 'Un sistema operativo de inteligencia.',
   body:
-    'La próxima generación de tecnología hotelera no es otra aplicación que sumar al stack. Es la capa que va debajo — conectando cada conversación del huésped, cada departamento y cada decisión operativa, sobre los sistemas en los que tu hotel ya confía.',
+    'Hotel Companion es la Plataforma de Inteligencia Hotelera, impulsada por un Sistema Operativo de Inteligencia Hotelera — la capa debajo de tus herramientas actuales que conecta cada conversación con el huésped, cada departamento y cada decisión operativa. No otra aplicación que sumar al stack.',
   guest: 'El huésped',
   center: 'Una capa inteligente',
   centerSub: 'CADA CONVERSACIÓN · CADA DEPARTAMENTO',

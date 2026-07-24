@@ -25,7 +25,7 @@ const en = {
       name: 'HOTEL COMPANION',
       headline: 'Understand Every Guest. Capture Every Opportunity.',
       body:
-        'Hotel Companion is the Voice-First Guest Intelligence Platform for modern hotels, transforming every guest conversation into operational intelligence, revenue opportunities, and exceptional hospitality.',
+        'Hotel Companion is the Hospitality Intelligence Platform, powered by a Hospitality Intelligence Operating System that turns every guest conversation into operational intelligence shared across the hotel.',
       cta: 'Book a Demonstration',
     },
     columns: {
@@ -134,7 +134,7 @@ const es: typeof en = {
       name: 'HOTEL COMPANION',
       headline: 'Entiende a Cada Huésped. Aprovecha Cada Oportunidad.',
       body:
-        'Hotel Companion es la Plataforma de Inteligencia de Huéspedes por Voz para hoteles modernos, que transforma cada conversación en inteligencia operativa, oportunidades de ingreso y hospitalidad excepcional.',
+        'Hotel Companion es la Plataforma de Inteligencia Hotelera, impulsada por un Sistema Operativo de Inteligencia Hotelera que convierte cada conversación con el huésped en inteligencia operativa compartida en todo el hotel.',
       cta: 'Agenda una Demostración',
     },
     columns: {

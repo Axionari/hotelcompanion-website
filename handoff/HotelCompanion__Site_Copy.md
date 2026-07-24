@@ -15,9 +15,9 @@
 
 ## HERO {#home-hero}
 **H1:** Understand Every Guest. Capture Every Opportunity.
-**Subhead (eyebrow/positioning):** The Voice-First Guest Intelligence Platform for Hotels.
+**Subhead (eyebrow/positioning):** The Hospitality Intelligence Platform for Hotels.
 
-The Guest Intelligence Platform that transforms every guest conversation into intelligence, action, and revenue.
+The Hospitality Intelligence Platform that transforms every guest conversation into intelligence, action, and revenue.
 
 Hotel Companion transforms natural conversations into personalized guest experiences, operational intelligence, and coordinated execution—available 24 hours a day, in every language, across every touchpoint.
 
@@ -215,7 +215,7 @@ The opportunity to help shape the future of Companion OS.
 
 ## FAQ {#home-faq}
 **What is Hotel Companion?**
-Hotel Companion is the Voice-First Guest Intelligence Platform that helps hotels deliver exceptional hospitality while increasing revenue and improving operational performance.
+Hotel Companion is the Hospitality Intelligence Platform that helps hotels deliver exceptional hospitality while increasing revenue and improving operational performance.
 
 **Is Hotel Companion an AI concierge?**
 No. AI is simply the interface. Hotel Companion is an enterprise platform that understands guest intent, coordinates operations, identifies commercial opportunities, and continuously learns from every interaction.
@@ -245,7 +245,7 @@ Increase ancillary revenue.
 Understand every guest.
 Coordinate every department.
 Strengthen every operation.
-One Voice-First Guest Intelligence Platform.
+One Hospitality Intelligence Platform.
 **Book a Demo**
 
 ---
@@ -254,7 +254,7 @@ One Voice-First Guest Intelligence Platform.
 
 ## HERO {#platform-hero}
 One Platform. Every Guest Interaction.
-The Voice-First Guest Intelligence Platform built for modern hospitality.
+The Hospitality Intelligence Platform built for modern hospitality.
 Hotel Companion combines conversational AI, organizational knowledge, operational execution, and enterprise intelligence into a single platform that helps hotels deliver exceptional guest experiences while increasing revenue and improving operations.
 
 ## SECTION — Voice-First by Design {#platform-voice-first}
@@ -493,7 +493,7 @@ Deliver unforgettable guest experiences.
 Increase ancillary revenue.
 Empower every department.
 Understand every interaction.
-One Voice-First Guest Intelligence Platform.
+One Hospitality Intelligence Platform.
 **Book a Demo**
 
 ---
@@ -503,7 +503,7 @@ One Voice-First Guest Intelligence Platform.
 ## HERO {#solutions-hero}
 One Platform. Every Department.
 Every guest interaction creates an opportunity to deliver better service, generate more revenue, and operate more efficiently.
-Hotel Companion becomes an intelligent layer across your entire hotel, helping every department respond faster, work smarter, and deliver exceptional hospitality through one Voice-First Guest Intelligence Platform.
+Hotel Companion becomes an intelligent layer across your entire hotel, helping every department respond faster, work smarter, and deliver exceptional hospitality through one Hospitality Intelligence Platform.
 
 ## FRONT DESK {#solutions-front-desk}
 Every Arrival Starts Better.
@@ -611,7 +611,7 @@ One platform. Every department. Every guest. Every conversation.
 Hospitality Is a Team Sport.
 When every department shares the same intelligence, every guest receives a better experience.
 Empower your teams. Increase ancillary revenue. Reduce operational friction. Understand every guest. Coordinate every interaction.
-One Voice-First Guest Intelligence Platform.
+One Hospitality Intelligence Platform.
 **Book a Demo**
 
 ---
@@ -1070,7 +1070,7 @@ We’re excited to learn about your hotel, your guests, and your vision for the 
 > Design note (approved): make Companion OS the centerpiece of the footer, reinforcing Axionari → Companion OS → Hotel Companion on every page.
 
 **Brand block:** HOTEL COMPANION — Understand Every Guest. Capture Every Opportunity.
-Hotel Companion is the Voice-First Guest Intelligence Platform for modern hotels, transforming every guest conversation into operational intelligence, revenue opportunities, and exceptional hospitality.
+Hotel Companion is the Hospitality Intelligence Platform for modern hotels, transforming every guest conversation into operational intelligence, revenue opportunities, and exceptional hospitality.
 Powered by Companion OS.
 CTA: **Book a Demonstration**
 
@@ -1177,7 +1177,7 @@ By accessing or using our services, you agree to these Terms.
 If you are using Hotel Companion on behalf of an organization, you represent that you have the authority to bind that organization to these Terms.
 
 ## Definitions
-Hotel Companion — The Guest Intelligence Platform provided by Axionari.
+Hotel Companion — The Hospitality Intelligence Platform provided by Axionari.
 Companion OS — The underlying Organizational Intelligence Platform that powers Hotel Companion.
 Customer — The organization subscribing to or using Hotel Companion.
 Users — Authorized employees, administrators, contractors, or representatives of the Customer.

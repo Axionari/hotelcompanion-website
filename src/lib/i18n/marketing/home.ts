@@ -5,7 +5,7 @@ import type { ScreenId } from './deviceScreens'
 
 const en = {
   heroLead:
-    'The Guest Intelligence Platform that transforms every guest conversation into intelligence, action, and revenue.',
+    'The Hospitality Intelligence Platform that transforms every guest conversation into intelligence, action, and revenue.',
   /* P5.5 — framing for the in-room tablet showcase. Statement reuses the
      approved journey line ("Every answer is a picture"); eyebrow is a label. */
   tabletShowcase: {
@@ -79,7 +79,7 @@ const en = {
 
 const es: typeof en = {
   heroLead:
-    'La Plataforma de Inteligencia de Huéspedes que convierte cada conversación con el huésped en inteligencia, acción e ingresos.',
+    'La Plataforma de Inteligencia Hotelera que convierte cada conversación con el huésped en inteligencia, acción e ingresos.',
   tabletShowcase: {
     eyebrow: 'EL COMPANION EN LA HABITACIÓN',
     statement: 'Cada respuesta es una imagen.',

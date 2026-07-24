@@ -17,9 +17,9 @@
 
 ## HERO {#home-hero}
 **H1:** Entiende a Cada Huésped. Aprovecha Cada Oportunidad.
-**Subtítulo:** La Plataforma de Inteligencia de Huéspedes por Voz para Hoteles.
+**Subtítulo:** La Plataforma de Inteligencia Hotelera para Hoteles.
 
-La Plataforma de Inteligencia de Huéspedes que convierte cada conversación con el huésped en inteligencia, acción e ingresos.
+La Plataforma de Inteligencia Hotelera que convierte cada conversación con el huésped en inteligencia, acción e ingresos.
 
 Hotel Companion transforma las conversaciones naturales en experiencias personalizadas, inteligencia operativa y ejecución coordinada—disponible las 24 horas, en todos los idiomas, en cada punto de contacto.
 
@@ -217,7 +217,7 @@ La oportunidad de ayudar a dar forma al futuro de Companion OS.
 
 ## FAQ {#home-faq}
 **¿Qué es Hotel Companion?**
-Hotel Companion es la Plataforma de Inteligencia de Huéspedes por Voz que ayuda a los hoteles a brindar una hospitalidad excepcional mientras aumentan los ingresos y mejoran el desempeño operativo.
+Hotel Companion es la Plataforma de Inteligencia Hotelera que ayuda a los hoteles a brindar una hospitalidad excepcional mientras aumentan los ingresos y mejoran el desempeño operativo.
 
 **¿Hotel Companion es un concierge con IA?**
 No. La IA es simplemente la interfaz. Hotel Companion es una plataforma empresarial que entiende la intención del huésped, coordina operaciones, identifica oportunidades comerciales y aprende continuamente de cada interacción.
@@ -247,7 +247,7 @@ Aumenta el ingreso complementario.
 Entiende a cada huésped.
 Coordina cada departamento.
 Fortalece cada operación.
-Una sola Plataforma de Inteligencia de Huéspedes por Voz.
+Una sola Plataforma de Inteligencia Hotelera.
 **Agenda una Demo**
 
 ---
@@ -256,7 +256,7 @@ Una sola Plataforma de Inteligencia de Huéspedes por Voz.
 
 ## HERO {#platform-hero}
 Una Plataforma. Cada Interacción con el Huésped.
-La Plataforma de Inteligencia de Huéspedes por Voz creada para la hospitalidad moderna.
+La Plataforma de Inteligencia Hotelera creada para la hospitalidad moderna.
 Hotel Companion combina IA conversacional, conocimiento organizacional, ejecución operativa e inteligencia empresarial en una sola plataforma que ayuda a los hoteles a brindar experiencias excepcionales mientras aumentan los ingresos y mejoran las operaciones.
 
 ## SECCIÓN — Diseñado con la Voz Primero {#platform-voice-first}
@@ -495,7 +495,7 @@ Brinda experiencias inolvidables.
 Aumenta el ingreso complementario.
 Empodera a cada departamento.
 Entiende cada interacción.
-Una sola Plataforma de Inteligencia de Huéspedes por Voz.
+Una sola Plataforma de Inteligencia Hotelera.
 **Agenda una Demo**
 
 ---
@@ -505,7 +505,7 @@ Una sola Plataforma de Inteligencia de Huéspedes por Voz.
 ## HERO {#solutions-hero}
 Una Plataforma. Cada Departamento.
 Cada interacción con el huésped crea una oportunidad para brindar mejor servicio, generar más ingresos y operar con mayor eficiencia.
-Hotel Companion se convierte en una capa inteligente en todo tu hotel, ayudando a cada departamento a responder más rápido, trabajar mejor y brindar una hospitalidad excepcional a través de una sola Plataforma de Inteligencia de Huéspedes por Voz.
+Hotel Companion se convierte en una capa inteligente en todo tu hotel, ayudando a cada departamento a responder más rápido, trabajar mejor y brindar una hospitalidad excepcional a través de una sola Plataforma de Inteligencia Hotelera.
 
 ## RECEPCIÓN {#solutions-front-desk}
 Cada Llegada Comienza Mejor.
@@ -613,7 +613,7 @@ Una plataforma. Cada departamento. Cada huésped. Cada conversación.
 La Hospitalidad Es un Trabajo en Equipo.
 Cuando cada departamento comparte la misma inteligencia, cada huésped recibe una mejor experiencia.
 Empodera a tus equipos. Aumenta el ingreso complementario. Reduce la fricción operativa. Entiende a cada huésped. Coordina cada interacción.
-Una sola Plataforma de Inteligencia de Huéspedes por Voz.
+Una sola Plataforma de Inteligencia Hotelera.
 **Agenda una Demo**
 
 ---
@@ -1069,7 +1069,7 @@ Nos entusiasma conocer tu hotel, tus huéspedes y tu visión para el futuro de l
 
 # GLOBAL: PIE DE PÁGINA {#footer}
 **Bloque de marca:** HOTEL COMPANION — Entiende a Cada Huésped. Aprovecha Cada Oportunidad.
-Hotel Companion es la Plataforma de Inteligencia de Huéspedes por Voz para hoteles modernos, que transforma cada conversación en inteligencia operativa, oportunidades de ingreso y hospitalidad excepcional.
+Hotel Companion es la Plataforma de Inteligencia Hotelera para hoteles modernos, que transforma cada conversación en inteligencia operativa, oportunidades de ingreso y hospitalidad excepcional.
 Impulsado por Companion OS.
 CTA: **Agenda una Demostración**
 
@@ -1242,7 +1242,7 @@ Al acceder o usar nuestros servicios, aceptas estos Términos.
 Si usas Hotel Companion en nombre de una organización, declaras que tienes la autoridad para obligar a esa organización a estos Términos.
 
 ## Definiciones
-Hotel Companion — La Plataforma de Inteligencia de Huéspedes provista por Axionari.
+Hotel Companion — La Plataforma de Inteligencia Hotelera provista por Axionari.
 Companion OS — La Plataforma de Inteligencia Organizacional subyacente que impulsa a Hotel Companion.
 Cliente — La organización que se suscribe a Hotel Companion o lo usa.
 Usuarios — Empleados, administradores, contratistas o representantes autorizados del Cliente.

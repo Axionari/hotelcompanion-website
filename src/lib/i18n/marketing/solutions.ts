@@ -199,7 +199,7 @@ const en = {
       'Understand every guest.',
       'Coordinate every interaction.',
     ],
-    platform: 'One Voice-First Guest Intelligence Platform.',
+    platform: 'One Hospitality Intelligence Platform.',
     cta: 'Book a Demo',
   },
 }
@@ -396,7 +396,7 @@ const es: typeof en = {
       'Entiende a cada huésped.',
       'Coordina cada interacción.',
     ],
-    platform: 'Una sola Plataforma de Inteligencia de Huéspedes por Voz.',
+    platform: 'Una sola Plataforma de Inteligencia Hotelera.',
     cta: 'Agenda una Demo',
   },
 }

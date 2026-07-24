@@ -11,7 +11,9 @@ const en = {
   actI: {
     wordmark: 'HOTEL COMPANION',
     coords: 'N 20.2114° · W 87.4654°',
-    eyebrow: 'THE VOICE-FIRST GUEST INTELLIGENCE PLATFORM FOR HOTELS',
+    /* No hero eyebrow by design. A category label stacked above the H1 is the
+       generic SaaS move; the hero opens on the statement itself. Deliberately
+       removed — do not reintroduce. */
     h1Line1: 'Understand Every Guest.',
     h1Line2: 'Capture Every Opportunity.',
     strip: 'NO FORM · NO BROCHURE · THIS IS THE PRODUCT',
@@ -96,7 +98,6 @@ const es: typeof en = {
   actI: {
     wordmark: 'HOTEL COMPANION',
     coords: 'N 20.2114° · W 87.4654°',
-    eyebrow: 'LA PLATAFORMA DE INTELIGENCIA DE HUÉSPEDES POR VOZ PARA HOTELES',
     /* [v3] — hero copy unchanged in the v3 deck → shipped v3 string (OQ-10) */
     h1Line1: 'Entiende a Cada Huésped.',
     h1Line2: 'Aprovecha Cada Oportunidad.',

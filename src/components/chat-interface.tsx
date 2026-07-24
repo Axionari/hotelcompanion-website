@@ -90,7 +90,7 @@ function ContrastIcon() {
 }
 
 export function ChatInterface({ config }: { config: ChatConfig }) {
-  const greeting = config.greeting ?? `Welcome to ${config.hotelName}. I'm ${config.assistantName}, your AI Guest Companion. How can I help you today?`;
+  const greeting = config.greeting ?? `Welcome to ${config.hotelName}. I'm ${config.assistantName}, your Hotel Companion. How can I help you today?`;
 
   const [messages, setMessages] = useState<Message[]>([
     { id: GREETING_ID, role: "assistant", text: greeting },

@@ -4,7 +4,7 @@ import PlatformClient from './PlatformClient'
 export const metadata: Metadata = {
   title: 'Platform',
   description:
-    'One Platform. Every Guest Interaction. The Voice-First Guest Intelligence Platform built for modern hospitality.',
+    'One Platform. Every Guest Interaction. Built on the Hospitality Intelligence Operating System — one shared intelligence layer beneath every department.',
 }
 
 export default function PlatformPage() {

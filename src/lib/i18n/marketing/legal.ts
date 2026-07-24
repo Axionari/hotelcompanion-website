@@ -153,7 +153,7 @@ const termsEn: LegalDoc = {
   ],
   blocks: [
     { type: 'h2', text: 'Definitions' },
-    { type: 'term', label: 'Hotel Companion', text: 'The Guest Intelligence Platform provided by Axionari.' },
+    { type: 'term', label: 'Hotel Companion', text: 'The Hospitality Intelligence Platform provided by Axionari.' },
     {
       type: 'term',
       label: 'Companion OS',
