@@ -11,6 +11,7 @@ import { LIVE_DEMO_ENABLED } from '@/lib/flags'
 import { ArrowFlow } from '@/components/v5/Diagrams'
 import {
   Em,
+  StatementCards,
   PageHero,
   Act,
   NumberedList,
@@ -31,11 +32,12 @@ import { liveDemoCopy } from '@/lib/i18n/marketing/liveDemo'
  * message and ONE artifact:
  *
  *   HERO (statement, form anchor + live demo)
- *   01 THE SESSION       — what the meeting is        → numbered agenda + roles
- *   02 WHO SHOULD ATTEND — who the room is for        → QuietChips
- *   03 THE REQUEST       — the page's one job         → DemoForm {#form}
- *   04 DEPLOYMENT        — what happens after         → numbered stages
- *   05 FAQ {#faq}        — hesitation questions       → Accordion (site's only
+ *   01 WHY A DEMO        — the reason to book          → StatementCards
+ *   02 THE SESSION       — what the meeting is        → numbered agenda + roles
+ *   03 WHO SHOULD ATTEND — who the room is for        → QuietChips
+ *   04 THE REQUEST       — the page's one job         → DemoForm {#form}
+ *   05 DEPLOYMENT        — what happens after         → numbered stages
+ *   06 FAQ {#faq}        — hesitation questions       → Accordion (site's only
  *                          FAQ; footer + /faq redirect link here, JSON-LD in
  *                          page.tsx reads the same demoCopy.faq.items)
  *   HAND-OFF → /contact
@@ -90,10 +92,16 @@ export default function DemoClient() {
         />
       </div>
 
-      {/* 01 · THE SESSION {#demo-expect} — one message: what the meeting is.
+      {/* 01 · WHY A DEMO {#demo-why} — the reason to book, before the detail of
+          what the session is. Three bare statements, no bodies. */}
+      <Act no="01" label={c.acts.why} id="demo-why" statement={c.why.title} tight>
+        <StatementCards items={c.why.reasons} />
+      </Act>
+
+      {/* 02 · THE SESSION {#demo-expect} — one message: what the meeting is.
           One artifact: the agenda, numbered. */}
       <Act
-        no="01"
+        no="02"
         label={c.acts.session}
         id="demo-expect"
         statement={c.expect.title}
@@ -102,16 +110,16 @@ export default function DemoClient() {
         <NumberedList items={c.agenda.items} />
       </Act>
 
-      {/* 02 · WHO SHOULD ATTEND {#demo-who} — one message: the room. One
+      {/* 03 · WHO SHOULD ATTEND {#demo-who} — one message: the room. One
           artifact: the roles, as quiet chips. */}
-      <Act no="02" label={c.acts.who} id="demo-who" statement={c.who.lead} tight>
+      <Act no="03" label={c.acts.who} id="demo-who" statement={c.who.lead} tight>
         <QuietChips items={c.who.roles} />
       </Act>
 
-      {/* 03 · THE REQUEST {#form} — the page's one job. One artifact: the
+      {/* 04 · THE REQUEST {#form} — the page's one job. One artifact: the
           form itself (functionality untouched). */}
       <Act
-        no="03"
+        no="04"
         label={c.acts.request}
         id="form"
         statement={form.title}
@@ -131,15 +139,15 @@ export default function DemoClient() {
         </Reveal>
       </Act>
 
-      {/* 04 · DEPLOYMENT {#demo-deployment} — one message: what happens after
+      {/* 05 · DEPLOYMENT {#demo-deployment} — one message: what happens after
           you submit. One artifact: the stages, numbered. */}
-      <Act no="04" label={c.acts.deployment} id="demo-deployment" statement={c.deployment.title}>
+      <Act no="05" label={c.acts.deployment} id="demo-deployment" statement={c.deployment.title}>
         <ArrowFlow steps={c.deployment.stages.map((s) => ({ title: s.title, sub: s.body }))} />
       </Act>
 
-      {/* 05 · FAQ {#faq} — the site's ONLY FAQ: hesitation questions at the
+      {/* 06 · FAQ {#faq} — the site's ONLY FAQ: hesitation questions at the
           point of conversion. Footer-linked (/demo#faq); Accordion kept. */}
-      <Act no="05" label={c.acts.faq} id="faq" statement={c.faq.title}>
+      <Act no="06" label={c.acts.faq} id="faq" statement={c.faq.title}>
         <Accordion items={c.faq.items} />
       </Act>
 

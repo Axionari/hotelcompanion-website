@@ -224,7 +224,8 @@ export function StatementCards({
   items,
   columns = 3,
 }: {
-  items: ReadonlyArray<{ eyebrow?: string; title: string; body: string }>
+  /** `body` is optional — a card can be a bare statement. */
+  items: ReadonlyArray<{ eyebrow?: string; title: string; body?: string }>
   columns?: 2 | 3
 }) {
   return (

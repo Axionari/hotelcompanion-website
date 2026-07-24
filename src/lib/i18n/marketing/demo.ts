@@ -13,11 +13,20 @@ const en = {
   },
   /* RC-editorial act labels (Phase 5) */
   acts: {
+    why: 'WHY A DEMO',
     session: 'THE SESSION',
     who: 'WHO SHOULD ATTEND',
     request: 'THE REQUEST',
     deployment: 'DEPLOYMENT',
     faq: 'FAQ',
+  },
+  why: {
+    title: 'Why schedule a demo?',
+    reasons: [
+      { title: 'See Hotel Companion on your own property.' },
+      { title: 'Discover hidden operational opportunities.' },
+      { title: 'Explore deployment in under 30 minutes.' },
+    ],
   },
   experience: {
     lead: 'Every demonstration is personalized, but typically includes:',
@@ -124,11 +133,20 @@ const es: typeof en = {
   },
   /* Etiquetas de actos RC-editorial (Fase 5) */
   acts: {
+    why: 'POR QUÉ UNA DEMO',
     session: 'LA SESIÓN',
     who: 'QUIÉN DEBERÍA ASISTIR',
     request: 'LA SOLICITUD',
     deployment: 'DESPLIEGUE',
     faq: 'PREGUNTAS FRECUENTES',
+  },
+  why: {
+    title: '¿Por qué agendar una demo?',
+    reasons: [
+      { title: 'Ve Hotel Companion en tu propia propiedad.' },
+      { title: 'Descubre oportunidades operativas ocultas.' },
+      { title: 'Explora el despliegue en menos de 30 minutos.' },
+    ],
   },
   experience: {
     lead: 'Cada demostración es personalizada, pero por lo general incluye:',

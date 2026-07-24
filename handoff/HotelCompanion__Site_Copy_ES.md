@@ -19,7 +19,7 @@
 **H1:** Entiende a Cada Huésped. Aprovecha Cada Oportunidad.
 **Subtítulo:** La Plataforma de Inteligencia de Huéspedes por Voz para Hoteles.
 
-Cada conversación con un huésped es una oportunidad para brindar una hospitalidad excepcional, generar nuevos ingresos y fortalecer tu operación.
+La Plataforma de Inteligencia de Huéspedes que convierte cada conversación con el huésped en inteligencia, acción e ingresos.
 
 Hotel Companion transforma las conversaciones naturales en experiencias personalizadas, inteligencia operativa y ejecución coordinada—disponible las 24 horas, en todos los idiomas, en cada punto de contacto.
 

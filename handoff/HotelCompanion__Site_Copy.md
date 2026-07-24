@@ -17,7 +17,7 @@
 **H1:** Understand Every Guest. Capture Every Opportunity.
 **Subhead (eyebrow/positioning):** The Voice-First Guest Intelligence Platform for Hotels.
 
-Every guest conversation is an opportunity to deliver exceptional hospitality, generate new revenue, and strengthen your operation.
+The Guest Intelligence Platform that transforms every guest conversation into intelligence, action, and revenue.
 
 Hotel Companion transforms natural conversations into personalized guest experiences, operational intelligence, and coordinated execution—available 24 hours a day, in every language, across every touchpoint.
 
