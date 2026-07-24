@@ -18,6 +18,25 @@ const en = {
     next: 'NEXT STEP',
   },
   heroChips: ['VOICE-FIRST', 'IN-ROOM TABLET', 'QR CODES', 'WEB WIDGET', 'ANY LANGUAGE', 'MULTI-PROPERTY'],
+  /* The signature diagram (IntelligenceModel), hospitality realisation. The
+     industry-agnostic cut of the same figure lives on /companion-os — Companion
+     OS is the engine, this is what it looks like in a hotel. Business-model
+     language only; no software terms. */
+  model: {
+    eyebrow: 'THE MODEL',
+    title: 'One conversation. The whole hotel.',
+    deck: 'Every guest conversation becomes shared hospitality intelligence that improves the entire hotel.',
+    inputsLabel: 'GUEST INTERACTIONS',
+    inputs: ['Voice', 'Chat', 'QR', 'WhatsApp', 'SMS', 'In-room tablet'],
+    toBand: 'EVERY CONVERSATION',
+    nodeTitle: 'Hospitality Intelligence Platform',
+    nodeSub: 'POWERED BY THE HOSPITALITY INTELLIGENCE OPERATING SYSTEM',
+    toRecipients: 'SHARED ACROSS EVERY DEPARTMENT',
+    recipients: ['Front Desk', 'Housekeeping', 'Maintenance', 'Concierge', 'Food & Beverage', 'Management'],
+    toOutcomes: 'WHICH IMPROVES',
+    outcomes: ['Better experiences', 'Better decisions', 'Higher revenue', 'Stronger operations'],
+    loop: 'AND EVERY OUTCOME SHARPENS THE NEXT CONVERSATION',
+  },
   hero: {
     title: 'One Platform. Every Guest Interaction.',
     positioning: 'Built on the Hospitality Intelligence Operating System — one shared intelligence layer beneath every department.',
@@ -367,6 +386,21 @@ const es: typeof en = {
     next: 'SIGUIENTE PASO',
   },
   heroChips: ['LA VOZ PRIMERO', 'TABLET EN LA HABITACIÓN', 'CÓDIGOS QR', 'WIDGET WEB', 'CUALQUIER IDIOMA', 'MULTIPROPIEDAD'],
+  model: {
+    eyebrow: 'EL MODELO',
+    title: 'Una conversación. Todo el hotel.',
+    deck: 'Cada conversación con un huésped se convierte en inteligencia hotelera compartida que mejora todo el hotel.',
+    inputsLabel: 'INTERACCIONES DEL HUÉSPED',
+    inputs: ['Voz', 'Chat', 'QR', 'WhatsApp', 'SMS', 'Tablet en la habitación'],
+    toBand: 'CADA CONVERSACIÓN',
+    nodeTitle: 'Plataforma de Inteligencia Hotelera',
+    nodeSub: 'IMPULSADA POR EL SISTEMA OPERATIVO DE INTELIGENCIA HOTELERA',
+    toRecipients: 'COMPARTIDA CON CADA DEPARTAMENTO',
+    recipients: ['Recepción', 'Ama de llaves', 'Mantenimiento', 'Concierge', 'Alimentos y Bebidas', 'Dirección'],
+    toOutcomes: 'LO QUE MEJORA',
+    outcomes: ['Mejores experiencias', 'Mejores decisiones', 'Más ingresos', 'Operaciones más sólidas'],
+    loop: 'Y CADA RESULTADO AFINA LA SIGUIENTE CONVERSACIÓN',
+  },
   hero: {
     title: 'Una Plataforma. Cada Interacción con el Huésped.',
     positioning: 'Construida sobre el Sistema Operativo de Inteligencia Hotelera — una sola capa de inteligencia compartida bajo cada departamento.',

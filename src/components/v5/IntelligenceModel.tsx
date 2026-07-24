@@ -6,8 +6,21 @@ import { useArmedIn, chipStyle } from './Diagrams'
 /**
  * IntelligenceModel — the signature conceptual diagram. VERSION 1.
  *
- * One idea, and only one: every guest conversation becomes shared hospitality
- * intelligence that improves the entire hotel.
+ * One idea, and only one: every interaction becomes shared intelligence that
+ * improves the whole organization.
+ *
+ * Rendered TWICE, at two altitudes, and the distinction matters:
+ *
+ *   /companion-os  — industry-agnostic. Interactions → the Companion Operating
+ *                    System → people, teams, systems, operations. The engine.
+ *   /platform      — the hospitality realisation. Guests → the Hospitality
+ *                    Intelligence Platform → front desk, housekeeping, F&B.
+ *
+ * Companion OS is the engine; Hotel Companion is one implementation of it.
+ * Keeping the OS diagram vertical-neutral is what makes the framework reusable
+ * as Axionari expands past hospitality — so do NOT let hotel vocabulary leak
+ * into the /companion-os copy. That is why the fields are named `nodeTitle`,
+ * `recipients` and so on rather than `platform` and `departments`.
  *
  * This is a BUSINESS MODEL diagram, not an engineering one. It must never
  * acquire APIs, databases, queues, or arrows between services. If a future
@@ -44,13 +57,15 @@ export type IntelligenceModelCopy = {
   inputs: ReadonlyArray<string>
   /** Connector label: inputs → band. */
   toBand: string
-  /** The category. The one serif mass on the page. */
-  platform: string
-  /** The architecture line beneath it. */
-  os: string
-  /** Connector label: band → departments. */
-  toDepartments: string
-  departments: ReadonlyArray<string>
+  /** The layer itself — the one serif mass in the figure. */
+  nodeTitle: string
+  /** The mono line beneath it. */
+  nodeSub: string
+  /** Connector label: band → who receives the intelligence. */
+  toRecipients: string
+  /** Who the intelligence reaches. Departments for a hotel; people, teams,
+      systems and operations for the industry-agnostic version. */
+  recipients: ReadonlyArray<string>
   /** Connector label: departments → outcomes. */
   toOutcomes: string
   outcomes: ReadonlyArray<string>
@@ -127,7 +142,7 @@ export function IntelligenceModel({ c }: { c: IntelligenceModelCopy }) {
                 color: '#F2EEE6',
               }}
             >
-              {c.platform}
+              {c.nodeTitle}
             </div>
             <div
               aria-hidden
@@ -142,18 +157,18 @@ export function IntelligenceModel({ c }: { c: IntelligenceModelCopy }) {
                 color: 'rgba(242,233,218,0.6)',
               }}
             >
-              {c.os}
+              {c.nodeSub}
             </div>
           </div>
 
-          <Connector label={c.toDepartments} delay={520} />
+          <Connector label={c.toRecipients} delay={520} />
 
           {/* ── out: the whole hotel, not one inbox ───────────────────── */}
           <div
             className="lg-item flex flex-wrap justify-center"
             style={{ gap: 'clamp(6px,0.8vw,10px)', transitionDelay: '640ms' }}
           >
-            {c.departments.map((d) => (
+            {c.recipients.map((d) => (
               <span key={d} style={chipStyle}>
                 {d}
               </span>

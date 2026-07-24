@@ -399,7 +399,7 @@ negligible and deleting during active iteration buys nothing. Remove them in a
 dedicated cleanup pass once the system has stabilised, not as a side effect of
 a feature change.
 
-### 2. `/companion-os` needs a signature v5-native diagram
+### 2. The signature diagram — SHIPPED v1, with a known v2 direction
 
 Dropping `ConvergenceDiagram` left the architecture page more text-led than it
 should be. **Do not restore the legacy component.** The page should eventually
@@ -450,3 +450,52 @@ leads with the guest and the property rather than the model, and why "not a
 staff replacement" is stated as confident positioning rather than reassurance.
 
 See `TERMINOLOGY.md` for the vocabulary and `BRAND.md` for the voice.
+
+
+---
+
+## The signature diagram
+
+`IntelligenceModel` (`src/components/v5/IntelligenceModel.tsx`). Version 1
+shipped 2026-07-23. One idea: every interaction becomes shared intelligence
+that improves the whole organization.
+
+### Two altitudes — keep them separate
+
+| Page | Node | Recipients | Register |
+| --- | --- | --- | --- |
+| `/companion-os` | Companion Operating System | People · Teams · Systems · Operations | industry-agnostic |
+| `/platform` | Hospitality Intelligence Platform | Front Desk · Housekeeping · … | hospitality |
+
+**Companion OS is the engine; Hotel Companion is one implementation of it.**
+Keeping the OS cut vertical-neutral is what makes this a reusable framework as
+Axionari expands past hospitality. Do not let hotel vocabulary leak into the
+`/companion-os` copy — that is why the component's fields are named
+`nodeTitle` / `recipients` rather than `platform` / `departments`.
+
+### v2 direction — make the learning explicit
+
+v1 closes the loop with *"and every outcome sharpens the next conversation."*
+That earns the learning-system claim, but keeps it in a single line. v2 should
+promote **organizational learning** to a stage of its own:
+
+```
+Guest Conversations → Hospitality Intelligence → Operational Actions
+  → Guest Outcomes → Organizational Learning ↺
+```
+
+The point of the addition: a hotel does not merely improve one guest
+interaction, it improves **how the organization operates**. That is what makes
+the intelligence belong to the hotel rather than to a conversation — and it is
+the difference between a routing engine and a Hospitality Intelligence
+Platform.
+
+### How to validate a revision
+
+Show it to three GMs and ask: **"If you had to explain this diagram to another
+hotel GM in one sentence, what would you say?"**
+
+Not *"do you understand it?"* — that invites agreement. The one-sentence
+retelling reveals the mental model they actually formed. Three independent
+descriptions that match means the diagram works. Descriptions that diverge mean
+the *message* needs work, not the aesthetics.

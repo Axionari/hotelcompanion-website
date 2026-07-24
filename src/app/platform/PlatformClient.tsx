@@ -11,6 +11,7 @@ import { LIVE_DEMO_ENABLED } from '@/lib/flags'
 import { VoiceMorph, TwoStageAlert } from '@/components/cds/interactive'
 import { VoiceStates } from '@/components/v5/VoiceStates'
 import { PassThrough } from '@/components/v5/Diagrams'
+import { IntelligenceModel } from '@/components/v5/IntelligenceModel'
 import { DashboardShowcase } from '@/components/v5/DashboardShowcase'
 import { EverySurface } from '@/components/v5/EverySurface'
 import { NextSurface } from '@/components/v5/NextSurface'
@@ -101,12 +102,26 @@ export default function PlatformClient() {
       {/* Proof strip — quiet mono claims (all from approved copy) */}
       <ChipStrip chips={c.heroChips} />
 
-      {/* 01 · ONE CONVERSATION {#platform-voice-first} — tap, type, say: one
+      {/* 01 · THE MODEL {#platform-model} — the signature diagram, hospitality
+          cut. The industry-agnostic version is on /companion-os: that is the
+          engine, this is what it looks like in a hotel. It opens the page
+          because everything below is a detail of it. */}
+      <Act
+        no="01"
+        label={c.model.eyebrow}
+        id="platform-model"
+        statement={c.model.title}
+        deck={c.model.deck}
+      >
+        <IntelligenceModel c={c.model} />
+      </Act>
+
+      {/* 02 · ONE CONVERSATION {#platform-voice-first} — tap, type, say: one
           continuous conversation. Artifact 1: the big orb cycling its states
           (RC's "Every way of speaking"). Artifact 2: the voice morphing to
           the hotel's own register. */}
       <Act
-        no="01"
+        no="02"
         label={c.oneConversation.label}
         id="platform-voice-first"
         statement={c.oneConversation.statement}
@@ -160,10 +175,10 @@ export default function PlatformClient() {
 
       <Breather id="band-platform-waterfall" image="/assets/breathers/waterfall-swim.webp" />
 
-      {/* 02 · THE KNOWLEDGE {#platform-knows-property} — one message: it knows
+      {/* 03 · THE KNOWLEDGE {#platform-knows-property} — one message: it knows
           the operation and the destination. One artifact: the two panels. */}
       <Act
-        no="02"
+        no="03"
         label={c.acts.knowledge}
         id="platform-knows-property"
         statement={c.knowsProperty.lead}
@@ -191,17 +206,17 @@ export default function PlatformClient() {
         </div>
       </Act>
 
-      {/* 03 · THE LIFECYCLE {#platform-lifecycle} — one message: arrival to
+      {/* 04 · THE LIFECYCLE {#platform-lifecycle} — one message: arrival to
           review. One artifact: the journey walkthrough (stage text advancing
           beside the tablet screen for each stage; the revenue tally carries). */}
-      <Act no="03" label={c.acts.lifecycle} id="platform-lifecycle" statement={c.lifecycle.title}>
+      <Act no="04" label={c.acts.lifecycle} id="platform-lifecycle" statement={c.lifecycle.title}>
         <JourneyWalkthrough steps={c.journey.steps} tallyLabel={c.journey.tallyLabel} />
       </Act>
 
-      {/* 04 · THE ACTION {#platform-request-action} — one message: every
+      {/* 05 · THE ACTION {#platform-request-action} — one message: every
           request is tracked to completion. One artifact: the 2 AM save. */}
       <Act
-        no="04"
+        no="05"
         label={c.acts.action}
         id="platform-request-action"
         statement={c.requestAction.close[0]}
@@ -239,10 +254,10 @@ export default function PlatformClient() {
 
       <Breather image="/assets/lux/breather-daybeds-hills.webp" darken={0.42} />
 
-      {/* 05 · THE INTELLIGENCE {#platform-intelligence} — one message: behind
+      {/* 06 · THE INTELLIGENCE {#platform-intelligence} — one message: behind
           every conversation is intelligence. One artifact: two statements. */}
       <Act
-        no="05"
+        no="06"
         label={c.acts.intelligence}
         id="platform-intelligence"
         statement={c.guestIntel.lead}
@@ -259,10 +274,10 @@ export default function PlatformClient() {
         <div id="platform-guest-memory" className="scroll-mt-24" />
       </Act>
 
-      {/* 06 · THE COMMAND CENTRE {#platform-dashboards} — one message:
+      {/* 07 · THE COMMAND CENTRE {#platform-dashboards} — one message:
           understand why. One artifact: the dashboard. */}
       <Act
-        no="06"
+        no="07"
         label={c.acts.command}
         id="platform-dashboards"
         statement={
@@ -285,9 +300,9 @@ export default function PlatformClient() {
         <Handoff statement={c.enterpriseReady.close} href="/enterprise" label={g.nav.enterprise} />
       </div>
 
-      {/* 07 · COMMON QUESTIONS {#platform-faq} — the practical questions,
+      {/* 08 · COMMON QUESTIONS {#platform-faq} — the practical questions,
           closed-by-default accordion (copy = the shipping site FAQ). */}
-      <Act no="07" label={c.acts.faq} id="platform-faq" statement={t.faq.headline}>
+      <Act no="08" label={c.acts.faq} id="platform-faq" statement={t.faq.headline}>
         <FaqList items={t.faq.items} />
       </Act>
 
