@@ -380,3 +380,45 @@ Headless visual verification (how every change in this repo was checked):
 *Maintainer note:* when in doubt, open restaurantcompanion.ai and measure. This
 whole system was derived by reading RC's live values — that is the reference
 implementation, and hotelcompanion.ai is the first adaptation of it.
+
+---
+
+## Open design debt
+
+Two decisions taken deliberately, recorded so they are not rediscovered as bugs.
+
+### 1. Retired components stay for now — do not delete
+
+`ConvergenceDiagram` and `IconChipGrid` in `src/components/cds/blocks.tsx` lost
+their last consumer when `/companion-os` moved to the v5 grammar. They are
+**intentionally kept**.
+
+While the design system is still moving, they are part of the exploration
+archive — cheap to keep, and worth borrowing from later. The code savings are
+negligible and deleting during active iteration buys nothing. Remove them in a
+dedicated cleanup pass once the system has stabilised, not as a side effect of
+a feature change.
+
+### 2. `/companion-os` needs a signature v5-native diagram
+
+Dropping `ConvergenceDiagram` left the architecture page more text-led than it
+should be. **Do not restore the legacy component.** The page should eventually
+own a purpose-built, v5-native conceptual diagram.
+
+This is not just another illustration. The intent is *the* defining visual of
+the product — the thing people remember, in the way AWS has its cloud diagrams,
+Stripe its payment flow, Snowflake its data cloud. One memorable diagram, not
+ten.
+
+What it has to explain at a glance: everything above the line feeds in —
+guests, staff, departments, knowledge, properties — through the **Hospitality
+Intelligence Operating System**, and out the other side come insights, actions,
+revenue and experiences. Many inputs, one layer, compounding outputs. (That
+sketch is the *idea*, not the layout.)
+
+Constraints when it gets built: v5 language only — hairline rules, mono labels,
+serif statements, the `--accent` terracotta, `useArmedIn()` reveals; no filled
+card boxes. See `Diagrams.tsx` for the existing vocabulary (`FragmentScatter`,
+`PassThrough`, `ArrowFlow`, `OutcomeBand`).
+
+Scheduled for a future design pass — deliberately not this sprint.
