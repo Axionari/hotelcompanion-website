@@ -140,6 +140,9 @@ export function SiteNav() {
               {demo.open}
             </button>
           )}
+          {/* Language sits LEFT of the CTA (RC nav order): the CTA is the last
+              thing in the bar, so nothing competes with it for the end position. */}
+          <LanguageToggle />
           <Link
             href="/demo"
             className="btn-primary whitespace-nowrap flex-shrink-0"
@@ -147,7 +150,6 @@ export function SiteNav() {
           >
             {nav.bookDemo}
           </Link>
-          <LanguageToggle />
         </div>
 
         {/* Mobile: language toggle + hamburger */}
