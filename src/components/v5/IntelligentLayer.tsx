@@ -130,14 +130,14 @@ export function IntelligentLayer() {
           <div className="relative hidden md:block" style={{ height: 'clamp(300px, 30vw, 430px)' }}>
             {/* connector lines */}
             <svg aria-hidden className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-              {/* guest → layer */}
-              <path className="lg-line" pathLength={1} d="M 15 50 L 34.5 50" stroke={TERRA} strokeWidth="1.5" fill="none" vectorEffect="non-scaling-stroke" style={{ transitionDelay: '100ms' }} />
-              {/* layer → systems (fan, both columns) */}
+              {/* guest → layer (layer left edge now at x=30) */}
+              <path className="lg-line" pathLength={1} d="M 15 50 L 30 50" stroke={TERRA} strokeWidth="1.5" fill="none" vectorEffect="non-scaling-stroke" style={{ transitionDelay: '100ms' }} />
+              {/* layer → systems (fan, both columns; layer right edge now at x=70) */}
               {ROWS.map((y, i) => (
-                <path key={`a${i}`} className="lg-line" pathLength={1} d={`M 65.5 50 C 70 50, 70 ${y}, 73.5 ${y}`} stroke="rgba(242,233,220,0.22)" strokeWidth="1" fill="none" vectorEffect="non-scaling-stroke" style={{ transitionDelay: `${340 + i * 90}ms` }} />
+                <path key={`a${i}`} className="lg-line" pathLength={1} d={`M 70 50 C 71.5 50, 71.5 ${y}, 73.5 ${y}`} stroke="rgba(242,233,220,0.22)" strokeWidth="1" fill="none" vectorEffect="non-scaling-stroke" style={{ transitionDelay: `${340 + i * 90}ms` }} />
               ))}
               {ROWS.map((y, i) => (
-                <path key={`b${i}`} className="lg-line" pathLength={1} d={`M 65.5 50 C 73 50, 80 ${y}, 87 ${y}`} stroke="rgba(242,233,220,0.13)" strokeWidth="1" fill="none" vectorEffect="non-scaling-stroke" style={{ transitionDelay: `${420 + i * 90}ms` }} />
+                <path key={`b${i}`} className="lg-line" pathLength={1} d={`M 70 50 C 76 50, 82 ${y}, 87 ${y}`} stroke="rgba(242,233,220,0.13)" strokeWidth="1" fill="none" vectorEffect="non-scaling-stroke" style={{ transitionDelay: `${420 + i * 90}ms` }} />
               ))}
             </svg>
 
@@ -146,11 +146,13 @@ export function IntelligentLayer() {
               <div style={guestPill}>{c.guest}</div>
             </div>
 
-            {/* the layer */}
-            <div className="lg-item absolute" style={{ left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: '31%', transitionDelay: '160ms' }}>
+            {/* the layer — width holds the sub on one line (the category sub is
+                wider than the old node; Spanish is wider still). Centred at 50%;
+                the connector anchors below meet its edges at x=30 / x=70. */}
+            <div className="lg-item absolute" style={{ left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: '40%', transitionDelay: '160ms' }}>
               <div style={centerNode}>
                 <div style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(17px, 1.9vw, 27px)', color: CREAM, whiteSpace: 'nowrap' }}>{c.center}</div>
-                <div style={{ ...MONO, fontSize: 'clamp(8px, 0.85vw, 11px)', letterSpacing: '.22em', color: TERRA, marginTop: 10, whiteSpace: 'nowrap' }}>{c.centerSub}</div>
+                <div style={{ ...MONO, fontSize: 'clamp(8px, 0.8vw, 10.5px)', letterSpacing: '.16em', color: TERRA, marginTop: 10, whiteSpace: 'nowrap' }}>{c.centerSub}</div>
               </div>
             </div>
 

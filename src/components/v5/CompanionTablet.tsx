@@ -175,16 +175,16 @@ export function CompanionTablet({ className = '', askBar = true }: { className?:
         data-device-ui=""
         style={{
           width: '100%',
-          maxWidth: 860,
+          maxWidth: 800,
           aspectRatio: '7 / 5',
-          ...titaniumFrame({ radius: 24, bezel: 10, drop: '0 50px 110px -30px rgba(0,0,0,0.8)' }),
+          ...titaniumFrame({ radius: 22, bezel: 5, drop: '0 50px 110px -30px rgba(0,0,0,0.8)' }),
         }}
       >
         <div
           style={{
             position: 'relative',
             height: '100%',
-            borderRadius: 14,
+            borderRadius: 17,
             overflow: 'hidden',
             background: 'radial-gradient(120% 100% at 30% 0%, #17130f 0%, #100e0c 60%, #0c0b0a 100%)',
             boxShadow: titaniumScreenShadow(),

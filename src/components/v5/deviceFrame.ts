@@ -15,11 +15,12 @@ import { CSSProperties } from 'react'
  * small tablets in the EverySurface device family, where a row of metal edges
  * would be noise.
  *
- * The three-stop gradient (vs the phone's two) avoids visible banding across
- * the larger surface.
+ * Matches EverySurface's device family exactly: the same two-stop gradient and
+ * a THIN bezel, so the metal reads as a hairline edge catching light rather
+ * than a wide chrome band. The black-glass rim does most of the framing.
  */
 
-const TITANIUM = 'linear-gradient(150deg, #9A9AA0 0%, #56565E 48%, #34343A 100%)'
+const TITANIUM = 'linear-gradient(150deg, #9A9AA0, #3A3A40)'
 
 /** The outer machined edge. `radius`/`bezel` scale per device. */
 export function titaniumFrame({
