@@ -122,14 +122,20 @@ export function IntelligenceModel({ c }: { c: IntelligenceModelCopy }) {
 
           <Connector label={c.toBand} delay={260} />
 
-          {/* ── the layer: the only accented mass in the figure ───────── */}
+          {/* ── the layer ─────────────────────────────────────────────────
+              Deliberately BLEEDS WIDER than everything above and below it.
+              A band the same width as the chips reads as one more node in a
+              stack; a band that runs past them reads as the ground they stand
+              on. That is the whole psychological move — infrastructure, not a
+              box — so keep the negative margin if this is ever restyled. */}
           <div
             className="lg-item"
             style={{
-              width: '100%',
+              alignSelf: 'stretch',
+              marginInline: 'calc(-1 * clamp(10px, 4vw, 90px))',
               transitionDelay: '380ms',
               borderBlock: `1px solid ${ACCENT}0.75)`,
-              background: `radial-gradient(120% 140% at 50% 50%, ${ACCENT}0.10) 0%, transparent 70%)`,
+              background: `radial-gradient(130% 160% at 50% 50%, ${ACCENT}0.12) 0%, transparent 72%)`,
               padding: 'clamp(20px,2.4vw,32px) clamp(16px,2vw,28px)',
             }}
           >

@@ -231,7 +231,7 @@ export default function HomeClient() {
       </section>
 
       {/* Breather — air */}
-      <Breather image="/assets/lux/breather-thatch-beach.webp" height="clamp(260px, 42vh, 460px)" darken={0.4} />
+      <Breather image="/assets/lux/breather-thatch-beach-band.webp" height="clamp(260px, 42vh, 460px)" darken={0.4} />
 
       {/* THE PROBLEM — today's stack fragments the guest (RC §02): sets up the
           intelligent layer's answer directly below. */}

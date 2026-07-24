@@ -490,6 +490,30 @@ the intelligence belong to the hotel rather than to a conversation — and it is
 the difference between a routing engine and a Hospitality Intelligence
 Platform.
 
+### v2 direction — let the recipients imply intelligence
+
+Today the recipients are bare labels: *Front Desk · Housekeeping · Maintenance*.
+That reads as **routing**. Pairing each with a live signal would read as
+**intelligence**:
+
+```
+Front Desk        Guest preferences
+Housekeeping      Room ready
+Maintenance       AC issue
+Revenue           Late checkout demand
+```
+
+The difference is whether the diagram says "the message reached the right
+department" or "the department now knows something it did not know." Deferred
+— it adds a second column of copy to maintain in two locales, and the labels
+should be chosen from real signals the product actually surfaces, not invented.
+
+### Deliberate: the band bleeds wider than everything else
+
+The layer's negative inline margin is not a spacing accident. A band the same
+width as the chips reads as one more node in a stack; a band that runs past
+them reads as the ground they stand on. Infrastructure, not a box. Keep it.
+
 ### How to validate a revision
 
 Show it to three GMs and ask: **"If you had to explain this diagram to another

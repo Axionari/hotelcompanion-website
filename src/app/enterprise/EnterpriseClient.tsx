@@ -276,7 +276,7 @@ export default function EnterpriseClient() {
         </Reveal>
       </Act>
 
-      <Breather image="/assets/lux/breather-thatch-beach.webp" darken={0.4} />
+      <Breather image="/assets/lux/breather-thatch-beach-band.webp" darken={0.4} />
 
       {/* 08 · INTEGRATION & BOUNDARIES {#integrates} — one message: it fits
           without risk. One artifact: the four "nots", numbered. */}

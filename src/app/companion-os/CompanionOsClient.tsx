@@ -234,7 +234,7 @@ export default function CompanionOsClient() {
         </>
       </Act>
 
-      <Breather image="/assets/lux/breather-thatch-beach.webp" darken={0.4} />
+      <Breather image="/assets/lux/breather-thatch-beach-band.webp" darken={0.4} />
 
       {/* 06 · ECOSYSTEM {#companionos-ecosystem} — the family today and next.
           Destination Companion is a future NAME ONLY, never a link. */}

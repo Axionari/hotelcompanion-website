@@ -41,7 +41,7 @@ const en = {
   model: {
     eyebrow: 'THE MODEL',
     title: 'One interaction. The whole organization.',
-    deck: 'Every interaction becomes shared organizational intelligence that improves how the whole business operates.',
+    deck: 'Every interaction becomes intelligence the entire organization can act on.',
     inputsLabel: 'INTERACTIONS',
     inputs: ['Voice', 'Chat', 'Messaging', 'On-site', 'Web', 'Mobile'],
     toBand: 'EVERY INTERACTION',
@@ -209,7 +209,7 @@ const es: typeof en = {
   model: {
     eyebrow: 'EL MODELO',
     title: 'Una interacción. Toda la organización.',
-    deck: 'Cada interacción se convierte en inteligencia organizacional compartida que mejora cómo opera todo el negocio.',
+    deck: 'Cada interacción se convierte en inteligencia sobre la que toda la organización puede actuar.',
     inputsLabel: 'INTERACCIONES',
     inputs: ['Voz', 'Chat', 'Mensajería', 'En sitio', 'Web', 'Móvil'],
     toBand: 'CADA INTERACCIÓN',

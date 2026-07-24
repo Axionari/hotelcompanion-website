@@ -25,7 +25,7 @@ const en = {
   model: {
     eyebrow: 'THE MODEL',
     title: 'One conversation. The whole hotel.',
-    deck: 'Every guest conversation becomes shared hospitality intelligence that improves the entire hotel.',
+    deck: 'Every guest conversation becomes intelligence the entire hotel can act on.',
     inputsLabel: 'GUEST INTERACTIONS',
     inputs: ['Voice', 'Chat', 'QR', 'WhatsApp', 'SMS', 'In-room tablet'],
     toBand: 'EVERY CONVERSATION',
@@ -389,7 +389,7 @@ const es: typeof en = {
   model: {
     eyebrow: 'EL MODELO',
     title: 'Una conversación. Todo el hotel.',
-    deck: 'Cada conversación con un huésped se convierte en inteligencia hotelera compartida que mejora todo el hotel.',
+    deck: 'Cada conversación con un huésped se convierte en inteligencia sobre la que todo el hotel puede actuar.',
     inputsLabel: 'INTERACCIONES DEL HUÉSPED',
     inputs: ['Voz', 'Chat', 'QR', 'WhatsApp', 'SMS', 'Tablet en la habitación'],
     toBand: 'CADA CONVERSACIÓN',

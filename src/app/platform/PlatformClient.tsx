@@ -173,7 +173,7 @@ export default function PlatformClient() {
       {/* ON THE HORIZON {#next-surface} — the AR surface, where this is going. */}
       <NextSurface />
 
-      <Breather id="band-platform-waterfall" image="/assets/breathers/waterfall-swim.webp" />
+      <Breather id="band-platform-waterfall" image="/assets/breathers/waterfall-swim-band.webp" />
 
       {/* 03 · THE KNOWLEDGE {#platform-knows-property} — one message: it knows
           the operation and the destination. One artifact: the two panels. */}
