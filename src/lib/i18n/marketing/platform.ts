@@ -37,6 +37,22 @@ const en = {
     outcomes: ['Better experiences', 'Better decisions', 'Higher revenue', 'Stronger operations'],
     loop: 'AND EVERY OUTCOME SHARPENS THE NEXT CONVERSATION',
   },
+  /* RC's adaptivity diagram applied to hotels: four guest types, four different
+     conversations, one destination. Waypoints are deliberately terse — they are
+     labels on a track, not sentences. */
+  adaptivity: {
+    eyebrow: 'ADAPTIVITY',
+    title: 'Four guests. One Companion. Zero scripts.',
+    deck: 'First-time, returning, celebrating, or in a hurry — the Companion adapts to whoever is asking.',
+    lanes: [
+      { label: 'First-Time Guest', steps: ['ORIENTATION', 'RECOMMENDATION', 'BOOKING'] },
+      { label: 'Returning Guest', steps: ['RECOGNITION', '“THE USUAL”', 'ONE RESPECTFUL UPSELL'] },
+      { label: 'Special Occasion Guest', steps: ['OCCASION', 'RESERVATION', 'EXPERIENCES'] },
+      { label: 'Direct-Task Guest', steps: ['INTENT', 'DONE'] },
+    ],
+    node: ['Booked', 'Confirmed', 'Remembered'],
+    caption: 'FOUR CONVERSATIONS · ONE DESTINATION',
+  },
   hero: {
     title: 'One Platform. Every Guest Interaction.',
     positioning: 'Built on the Hospitality Intelligence Operating System — one shared intelligence layer beneath every department.',
@@ -400,6 +416,19 @@ const es: typeof en = {
     toOutcomes: 'LO QUE MEJORA',
     outcomes: ['Mejores experiencias', 'Mejores decisiones', 'Más ingresos', 'Operaciones más sólidas'],
     loop: 'Y CADA RESULTADO AFINA LA SIGUIENTE CONVERSACIÓN',
+  },
+  adaptivity: {
+    eyebrow: 'ADAPTABILIDAD',
+    title: 'Cuatro huéspedes. Un Companion. Cero guiones.',
+    deck: 'Primera vez, recurrente, celebrando o con prisa — el Companion se adapta a quien pregunta.',
+    lanes: [
+      { label: 'Huésped por primera vez', steps: ['ORIENTACIÓN', 'RECOMENDACIÓN', 'RESERVA'] },
+      { label: 'Huésped recurrente', steps: ['RECONOCIMIENTO', '“LO DE SIEMPRE”', 'UNA MEJORA RESPETUOSA'] },
+      { label: 'Huésped en ocasión especial', steps: ['OCASIÓN', 'RESERVACIÓN', 'EXPERIENCIAS'] },
+      { label: 'Huésped con una tarea', steps: ['INTENCIÓN', 'LISTO'] },
+    ],
+    node: ['Reservado', 'Confirmado', 'Recordado'],
+    caption: 'CUATRO CONVERSACIONES · UN DESTINO',
   },
   hero: {
     title: 'Una Plataforma. Cada Interacción con el Huésped.',

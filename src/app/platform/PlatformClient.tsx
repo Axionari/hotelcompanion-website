@@ -12,6 +12,7 @@ import { VoiceMorph, TwoStageAlert } from '@/components/cds/interactive'
 import { VoiceStates } from '@/components/v5/VoiceStates'
 import { PassThrough } from '@/components/v5/Diagrams'
 import { IntelligenceModel } from '@/components/v5/IntelligenceModel'
+import { AdaptivityFlow } from '@/components/v5/AdaptivityFlow'
 import { DashboardShowcase } from '@/components/v5/DashboardShowcase'
 import { EverySurface } from '@/components/v5/EverySurface'
 import { NextSurface } from '@/components/v5/NextSurface'
@@ -40,15 +41,17 @@ import { liveDemoCopy } from '@/lib/i18n/marketing/liveDemo'
  * acts, each carrying ONE message and ONE artifact:
  *
  *   HERO (statement + in-room device) · proof chips
- *   01 THE VOICE        — it sounds like your hotel        → VoiceMorph
+ *   01 THE MODEL        — the whole argument, once        → IntelligenceModel
+ *   02 ONE CONVERSATION — it sounds like your hotel        → orb + VoiceMorph
+ *   03 ADAPTIVITY       — who it is speaking to            → AdaptivityFlow
  *   EVERY SURFACE       — one conversation, every screen   → device family
  *   ON THE HORIZON      — the surface after the screen     → AR still
- *   02 THE KNOWLEDGE    — it knows the operation + place   → two quiet panels
- *   03 THE LIFECYCLE    — arrival to review                → JourneyWalkthrough
- *   04 THE ACTION       — every request becomes action     → TwoStageAlert
- *   05 THE INTELLIGENCE — conversations reveal intent      → statement cards
- *   06 THE COMMAND CENTRE — understand why                 → DashboardShowcase
- *   HAND-OFF → /enterprise · 07 FAQ · CLOSING MEDIA BAND (one action)
+ *   04 THE KNOWLEDGE    — it knows the operation + place   → two quiet panels
+ *   05 THE LIFECYCLE    — arrival to review                → JourneyWalkthrough
+ *   06 THE ACTION       — every request becomes action     → TwoStageAlert
+ *   07 THE INTELLIGENCE — conversations reveal intent      → statement cards
+ *   08 THE COMMAND CENTRE — understand why                 → DashboardShowcase
+ *   HAND-OFF → /enterprise · 09 FAQ · CLOSING MEDIA BAND (one action)
  *
  * All reading copy is the approved platform copy (platformCopy) — condensed
  * and re-presented, never rewritten. Old section ids survive as anchors.
@@ -165,6 +168,19 @@ export default function PlatformClient() {
         </div>
       </Act>
 
+      {/* 03 · ADAPTIVITY {#platform-adaptivity} — the voice act says how it
+          sounds; this says who it is speaking to. Four guest types, four
+          different conversations, one destination. */}
+      <Act
+        no="03"
+        label={c.adaptivity.eyebrow}
+        id="platform-adaptivity"
+        statement={c.adaptivity.title}
+        deck={c.adaptivity.deck}
+      >
+        <AdaptivityFlow c={c.adaptivity} />
+      </Act>
+
       {/* EVERY SURFACE {#every-surface} — one conversation across the whole
           device family (moved from the homepage; this is platform's surfaces
           story, richer than the old channels list). */}
@@ -175,10 +191,10 @@ export default function PlatformClient() {
 
       <Breather id="band-platform-waterfall" image="/assets/breathers/waterfall-swim-band.webp" />
 
-      {/* 03 · THE KNOWLEDGE {#platform-knows-property} — one message: it knows
+      {/* 04 · THE KNOWLEDGE {#platform-knows-property} — one message: it knows
           the operation and the destination. One artifact: the two panels. */}
       <Act
-        no="03"
+        no="04"
         label={c.acts.knowledge}
         id="platform-knows-property"
         statement={c.knowsProperty.lead}
@@ -206,17 +222,17 @@ export default function PlatformClient() {
         </div>
       </Act>
 
-      {/* 04 · THE LIFECYCLE {#platform-lifecycle} — one message: arrival to
+      {/* 05 · THE LIFECYCLE {#platform-lifecycle} — one message: arrival to
           review. One artifact: the journey walkthrough (stage text advancing
           beside the tablet screen for each stage; the revenue tally carries). */}
-      <Act no="04" label={c.acts.lifecycle} id="platform-lifecycle" statement={c.lifecycle.title}>
+      <Act no="05" label={c.acts.lifecycle} id="platform-lifecycle" statement={c.lifecycle.title}>
         <JourneyWalkthrough steps={c.journey.steps} tallyLabel={c.journey.tallyLabel} />
       </Act>
 
-      {/* 05 · THE ACTION {#platform-request-action} — one message: every
+      {/* 06 · THE ACTION {#platform-request-action} — one message: every
           request is tracked to completion. One artifact: the 2 AM save. */}
       <Act
-        no="05"
+        no="06"
         label={c.acts.action}
         id="platform-request-action"
         statement={c.requestAction.close[0]}
@@ -254,10 +270,10 @@ export default function PlatformClient() {
 
       <Breather image="/assets/lux/breather-daybeds-hills.webp" darken={0.42} />
 
-      {/* 06 · THE INTELLIGENCE {#platform-intelligence} — one message: behind
+      {/* 07 · THE INTELLIGENCE {#platform-intelligence} — one message: behind
           every conversation is intelligence. One artifact: two statements. */}
       <Act
-        no="06"
+        no="07"
         label={c.acts.intelligence}
         id="platform-intelligence"
         statement={c.guestIntel.lead}
@@ -274,10 +290,10 @@ export default function PlatformClient() {
         <div id="platform-guest-memory" className="scroll-mt-24" />
       </Act>
 
-      {/* 07 · THE COMMAND CENTRE {#platform-dashboards} — one message:
+      {/* 08 · THE COMMAND CENTRE {#platform-dashboards} — one message:
           understand why. One artifact: the dashboard. */}
       <Act
-        no="07"
+        no="08"
         label={c.acts.command}
         id="platform-dashboards"
         statement={
@@ -300,9 +316,9 @@ export default function PlatformClient() {
         <Handoff statement={c.enterpriseReady.close} href="/enterprise" label={g.nav.enterprise} />
       </div>
 
-      {/* 08 · COMMON QUESTIONS {#platform-faq} — the practical questions,
+      {/* 09 · COMMON QUESTIONS {#platform-faq} — the practical questions,
           closed-by-default accordion (copy = the shipping site FAQ). */}
-      <Act no="08" label={c.acts.faq} id="platform-faq" statement={t.faq.headline}>
+      <Act no="09" label={c.acts.faq} id="platform-faq" statement={t.faq.headline}>
         <FaqList items={t.faq.items} />
       </Act>
 

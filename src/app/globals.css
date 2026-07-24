@@ -1406,3 +1406,22 @@ body {
   /* push the absolutely-positioned status row below the island */
   .tos-screen > div:first-of-type { padding-top: 22px; }
 }
+
+/* AdaptivityFlow — four guest lanes converging on one destination.
+   Dashes flow toward the node (negative offset = along the path direction),
+   which is the opposite reading to FragmentScatter's never-resolving drift.
+   Opacity stays owned by the .lg-item reveal gate, so this animates
+   stroke-dashoffset ONLY. */
+@keyframes v5-adapt-flow { to { stroke-dashoffset: -110; } }
+.v5-adapt-line { animation: v5-adapt-flow 3.8s linear infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .v5-adapt-line { animation: none; }
+}
+
+/* The convergence cannot survive a phone: below 900px the lanes stack and the
+   destination is stated once, instead of four curves crossing in 320px. */
+.adapt-narrow { display: none; }
+@media (max-width: 899px) {
+  .adapt-wide { display: none; }
+  .adapt-narrow { display: block; }
+}
