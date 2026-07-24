@@ -15,7 +15,7 @@ const en = {
     body1:
       'Every guest interaction creates an opportunity to deliver better service, generate more revenue, and operate more efficiently.',
     body2:
-      'Hotel Companion becomes an intelligent layer across your entire hotel, helping every department respond faster, work smarter, and deliver exceptional hospitality through one Voice-First Guest Intelligence Platform.',
+      'Every department works from the same Hospitality Intelligence Operating System — one shared layer of guest context, so no team starts from zero and no guest is ever asked twice.',
   },
   departmentsEyebrow: '01 · BY DEPARTMENT',
   departmentsTitle: 'Every department, one shared intelligence.',
@@ -214,7 +214,7 @@ const es: typeof en = {
     body1:
       'Cada interacción con el huésped crea una oportunidad para brindar mejor servicio, generar más ingresos y operar con mayor eficiencia.',
     body2:
-      'Hotel Companion se convierte en una capa inteligente en todo tu hotel, ayudando a cada departamento a responder más rápido, trabajar mejor y brindar una hospitalidad excepcional a través de una sola Plataforma de Inteligencia de Huéspedes por Voz.',
+      'Cada departamento trabaja desde el mismo Sistema Operativo de Inteligencia Hotelera — una capa compartida de contexto del huésped, para que ningún equipo empiece de cero y a ningún huésped se le pregunte dos veces.',
   },
   departmentsEyebrow: '01 · POR DEPARTAMENTO',
   departmentsTitle: 'Cada departamento, una sola inteligencia compartida.',

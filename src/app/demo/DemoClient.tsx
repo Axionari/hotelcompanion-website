@@ -37,9 +37,10 @@ import { liveDemoCopy } from '@/lib/i18n/marketing/liveDemo'
  *   03 WHO SHOULD ATTEND — who the room is for        → QuietChips
  *   04 THE REQUEST       — the page's one job         → DemoForm {#form}
  *   05 DEPLOYMENT        — what happens after         → numbered stages
- *   06 FAQ {#faq}        — hesitation questions       → Accordion (site's only
- *                          FAQ; footer + /faq redirect link here, JSON-LD in
- *                          page.tsx reads the same demoCopy.faq.items)
+ *   06 FAQ {#faq}        — hesitation questions       → Accordion (the
+ *                          conversion FAQ; /platform#platform-faq carries the
+ *                          product one. Footer + /faq redirect link here,
+ *                          JSON-LD in page.tsx reads the same demoCopy.faq.items)
  *   HAND-OFF → /contact
  *
  * All reading copy is the approved demo copy (demoCopy) — condensed and
@@ -145,8 +146,9 @@ export default function DemoClient() {
         <ArrowFlow steps={c.deployment.stages.map((s) => ({ title: s.title, sub: s.body }))} />
       </Act>
 
-      {/* 06 · FAQ {#faq} — the site's ONLY FAQ: hesitation questions at the
-          point of conversion. Footer-linked (/demo#faq); Accordion kept. */}
+      {/* 06 · FAQ {#faq} — the conversion FAQ: hesitation questions at the
+          point of decision. Product questions live on /platform#platform-faq;
+          keep the two from drifting. Footer-linked (/demo#faq). */}
       <Act no="06" label={c.acts.faq} id="faq" statement={c.faq.title}>
         <Accordion items={c.faq.items} />
       </Act>

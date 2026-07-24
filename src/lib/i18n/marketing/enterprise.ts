@@ -27,9 +27,9 @@ const en = {
   ],
   hero: {
     title: 'Built for Modern Hospitality Enterprises.',
-    positioning: 'Scale exceptional hospitality across every property with confidence.',
+    positioning: 'The intelligence operating system for hospitality organizations.',
     body:
-      'Hotel Companion combines enterprise-grade security, centralized governance, operational intelligence, and scalable deployment into a platform designed for hospitality organizations of every size—from independent hotels to global brands.',
+      'One shared layer of intelligence across every property — organizational knowledge that compounds instead of resetting, service standards applied consistently, and operations that stay connected as the portfolio grows.',
   },
   /* Trust strip beneath the hero — hairline small-caps row. */
   trust: 'Enterprise-grade security · Centralized governance · Operational intelligence · Scalable deployment',
@@ -298,9 +298,9 @@ const es: typeof en = {
   ],
   hero: {
     title: 'Creado para Empresas Modernas de Hospitalidad.',
-    positioning: 'Escala una hospitalidad excepcional en cada propiedad con confianza.',
+    positioning: 'El sistema operativo de inteligencia para organizaciones hoteleras.',
     body:
-      'Hotel Companion combina seguridad de nivel empresarial, gobernanza centralizada, inteligencia operativa e implementación escalable en una plataforma diseñada para organizaciones de hospitalidad de cualquier tamaño—desde hoteles independientes hasta marcas globales.',
+      'Una sola capa de inteligencia compartida en cada propiedad — conocimiento organizacional que se acumula en lugar de reiniciarse, estándares de servicio aplicados con consistencia y operaciones que permanecen conectadas conforme crece el portafolio.',
   },
   trust:
     'Seguridad de nivel empresarial · Gobernanza centralizada · Inteligencia operativa · Implementación escalable',

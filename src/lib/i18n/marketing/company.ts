@@ -4,11 +4,11 @@ import type { Localized } from '../useCopy'
 
 const en = {
   hero: {
-    title: 'We’re Building the Future of Intelligent Hospitality.',
+    title: 'We’re Building the Operating System for Intelligent Hospitality.',
     body1:
       'We believe every guest conversation should create better experiences, stronger operations, and more valuable businesses.',
     body2:
-      'Hotel Companion is built by Axionari to help hospitality organizations transform conversations into intelligence, execution, and measurable business outcomes.',
+      'Hotel Companion is built by Axionari to be that system — the layer where every guest conversation becomes intelligence, coordinated action, and measurable business value.',
   },
   /* Phase 5 act labels (RC-editorial numbered acts) — labels only, no new
      positioning language. */
@@ -186,11 +186,11 @@ const en = {
 
 const es: typeof en = {
   hero: {
-    title: 'Estamos Construyendo el Futuro de la Hospitalidad Inteligente.',
+    title: 'Estamos Construyendo el Sistema Operativo de la Hospitalidad Inteligente.',
     body1:
       'Creemos que cada conversación con un huésped debería crear mejores experiencias, operaciones más sólidas y negocios más valiosos.',
     body2:
-      'Hotel Companion está construido por Axionari para ayudar a las organizaciones de hospitalidad a transformar las conversaciones en inteligencia, ejecución y resultados de negocio medibles.',
+      'Hotel Companion está construido por Axionari para ser ese sistema — la capa donde cada conversación con un huésped se convierte en inteligencia, acción coordinada y valor de negocio medible.',
   },
   /* Etiquetas de actos Fase 5 (actos numerados RC-editorial) — solo etiquetas,
      sin nuevo lenguaje de posicionamiento. */

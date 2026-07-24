@@ -93,28 +93,36 @@ const en = {
     title: 'Frequently Asked Questions',
     items: [
       {
+        q: 'Do we need anything ready before the demo?',
+        a: 'No preparation required. It helps if someone who knows your daily operation is in the room, but we come to you — the session is built around your property, not a generic script.',
+      },
+      {
+        q: 'Is this a live product or a concept?',
+        a: 'You will see the Companion working. We walk your own guest scenarios through it rather than showing a recorded reel.',
+      },
+      {
+        q: 'How do guests use it?',
+        a: 'By voice or by chat, on whichever surface suits them — the voice companion on the in-room tablet, a voice agent, their own phone via QR, or your website. They can also navigate on their own. It works on every device with no app to download, and chat keeps working offline if a guest saves the property knowledge base to their phone.',
+      },
+      {
+        q: 'How is this different from a guest messaging platform?',
+        a: 'Messaging tools move words between people. Hotel Companion turns those conversations into operational intelligence — context that routes the work and reaches every department. The conversation is the input, not the product.',
+      },
+      {
+        q: 'Does it replace our systems or our staff?',
+        a: 'Neither. It sits above the systems you already run and resolves the routine so your team is free for the moments that matter.',
+      },
+      {
         q: 'How long does implementation take?',
-        a: 'Most deployments can be completed in weeks, depending on the complexity of the property and required integrations.',
-      },
-      {
-        q: 'Do guests need to download an app?',
-        a: 'No. Hotel Companion is designed to minimize friction and can be accessed through multiple channels, including voice-first experiences.',
-      },
-      {
-        q: 'Does Hotel Companion integrate with existing hotel systems?',
-        a: 'Yes. We are building Hotel Companion to integrate with modern hospitality platforms while remaining flexible for different operational environments.',
-      },
-      {
-        q: 'How many languages are supported?',
-        a: 'Hotel Companion is designed for multilingual hospitality environments and continues to expand language support.',
+        a: 'The Companion begins answering guests before a single system is connected. PMS, POS, and payments follow in a staged rollout over the following weeks.',
       },
       {
         q: 'Is guest information secure?',
-        a: 'Yes. Security, privacy, and enterprise governance are foundational principles of Companion OS.',
+        a: 'Yes. Encryption, role-based access, and privacy-first governance are foundational principles of Companion OS.',
       },
       {
         q: 'Is this only for luxury hotels?',
-        a: 'No. Hotel Companion is designed for hotels that believe exceptional guest experiences create long-term business value, from boutique properties to global hospitality groups.',
+        a: 'No. From boutique properties to global hospitality groups — any hotel that believes exceptional guest experience creates long-term business value.',
       },
     ],
   },
@@ -213,28 +221,36 @@ const es: typeof en = {
     title: 'Preguntas Frecuentes',
     items: [
       {
+        q: '¿Necesitamos preparar algo antes de la demo?',
+        a: 'No hace falta preparación. Ayuda que esté alguien que conozca la operación diaria, pero nosotros vamos a ti — la sesión se construye alrededor de tu propiedad, no de un guion genérico.',
+      },
+      {
+        q: '¿Es un producto real o un concepto?',
+        a: 'Verás el Companion funcionando. Pasamos tus propios escenarios de huéspedes por él, en vez de mostrar una grabación.',
+      },
+      {
+        q: '¿Cómo lo usan los huéspedes?',
+        a: 'Por voz o por chat, en la superficie que prefieran — el companion por voz en la tablet de la habitación, un agente de voz, su propio teléfono con código QR o tu sitio web. También pueden navegar por su cuenta. Funciona en cualquier dispositivo y sin app que descargar, y el chat sigue funcionando sin conexión si el huésped guarda la base de conocimiento en su teléfono.',
+      },
+      {
+        q: '¿En qué se diferencia de una plataforma de mensajería para huéspedes?',
+        a: 'Las herramientas de mensajería mueven palabras entre personas. Hotel Companion convierte esas conversaciones en inteligencia operativa — contexto que enruta el trabajo y llega a cada departamento. La conversación es el insumo, no el producto.',
+      },
+      {
+        q: '¿Reemplaza nuestros sistemas o a nuestro personal?',
+        a: 'Ninguno de los dos. Se coloca por encima de los sistemas que ya operas y resuelve lo rutinario para que tu equipo quede libre para los momentos que importan.',
+      },
+      {
         q: '¿Cuánto tarda la implementación?',
-        a: 'La mayoría de los despliegues pueden completarse en semanas, según la complejidad de la propiedad y las integraciones necesarias.',
-      },
-      {
-        q: '¿Los huéspedes necesitan descargar una app?',
-        a: 'No. Hotel Companion está diseñado para minimizar la fricción y puede accederse por múltiples canales, incluidas las experiencias por voz.',
-      },
-      {
-        q: '¿Hotel Companion se integra con los sistemas actuales del hotel?',
-        a: 'Sí. Estamos construyendo Hotel Companion para integrarse con las plataformas modernas de hospitalidad, manteniendo flexibilidad para distintos entornos operativos.',
-      },
-      {
-        q: '¿Cuántos idiomas admite?',
-        a: 'Hotel Companion está diseñado para entornos multilingües y sigue ampliando su soporte de idiomas.',
+        a: 'El Companion empieza a responder a los huéspedes antes de conectar un solo sistema. PMS, POS y pagos siguen en una implementación por etapas durante las semanas siguientes.',
       },
       {
         q: '¿La información del huésped es segura?',
-        a: 'Sí. La seguridad, la privacidad y la gobernanza empresarial son principios fundamentales de Companion OS.',
+        a: 'Sí. El cifrado, el acceso por roles y una gobernanza centrada en la privacidad son principios fundamentales de Companion OS.',
       },
       {
         q: '¿Es solo para hoteles de lujo?',
-        a: 'No. Hotel Companion está diseñado para hoteles que creen que las experiencias excepcionales crean valor de negocio a largo plazo, desde propiedades boutique hasta grupos hoteleros globales.',
+        a: 'No. Desde propiedades boutique hasta grupos hoteleros globales — cualquier hotel que crea que una experiencia excepcional del huésped crea valor de negocio a largo plazo.',
       },
     ],
   },

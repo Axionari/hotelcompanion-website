@@ -8,26 +8,26 @@ import type { Localized } from '../useCopy'
  */
 
 const en = {
-  eyebrow: 'A NEW OPERATING MODEL',
+  eyebrow: 'THE CATEGORY',
   h2Pre: 'Not another app. ',
-  h2Hi: 'One intelligent layer.',
+  h2Hi: 'The intelligence operating layer.',
   body:
-    "The next generation of hotel technology won't be another application. It's one intelligent layer connecting every guest conversation into a single continuous experience — working with the systems your hotel already relies on.",
+    'The next generation of hotel technology is not another application to add to the stack. It is the layer beneath them — connecting every guest conversation, every department, and every operational decision, on top of the systems your hotel already relies on.',
   guest: 'The guest',
   center: 'One intelligent layer',
-  centerSub: 'ONE CONTINUOUS EXPERIENCE',
+  centerSub: 'EVERY CONVERSATION · EVERY DEPARTMENT',
   systems: ['PMS', 'Booking engine', 'POS', 'Spa & wellness', 'Housekeeping', 'Engineering', 'CRM', 'Loyalty'],
 }
 
 const es: typeof en = {
-  eyebrow: 'UN NUEVO MODELO OPERATIVO',
+  eyebrow: 'LA CATEGORÍA',
   h2Pre: 'No otra aplicación. ',
-  h2Hi: 'Una capa inteligente.',
+  h2Hi: 'La capa operativa de inteligencia.',
   body:
-    'La próxima generación de tecnología hotelera no será otra aplicación. Es una capa inteligente que conecta cada conversación del huésped en una sola experiencia continua — trabajando con los sistemas en los que tu hotel ya confía.',
+    'La próxima generación de tecnología hotelera no es otra aplicación que sumar al stack. Es la capa que va debajo — conectando cada conversación del huésped, cada departamento y cada decisión operativa, sobre los sistemas en los que tu hotel ya confía.',
   guest: 'El huésped',
   center: 'Una capa inteligente',
-  centerSub: 'UNA EXPERIENCIA CONTINUA',
+  centerSub: 'CADA CONVERSACIÓN · CADA DEPARTAMENTO',
   systems: ['PMS', 'Motor de reservas', 'POS', 'Spa y bienestar', 'Housekeeping', 'Ingeniería', 'CRM', 'Lealtad'],
 }
 

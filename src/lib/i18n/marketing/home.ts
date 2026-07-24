@@ -18,6 +18,20 @@ const en = {
     eyebrow: 'WHAT GUESTS ACTUALLY ASK',
     statement: 'Hospitality begins with a question.',
   },
+  /* The bridge from philosophy to product: what actually happens when a guest
+     asks. Five beats, deliberately terse — this is the section that has to be
+     understood in seconds. */
+  howItWorks: {
+    eyebrow: 'HOW IT WORKS',
+    statement: 'What happens when a guest asks.',
+    steps: [
+      { title: 'A guest asks', sub: 'In their own words, in any language, on any surface.' },
+      { title: 'Intent is understood', sub: 'Meaning and context — not keywords.' },
+      { title: 'Intelligence is created', sub: 'The moment becomes structured, shareable context.' },
+      { title: 'Work is routed', sub: 'To the right department, already briefed.' },
+      { title: 'The system learns', sub: 'Every resolution sharpens the next answer.' },
+    ],
+  },
   /* P5.13 — the "before" diagram (RC homepage §02 applied to hotels), setting
      up IntelligentLayer's answer. Statement is the approved Axionari line
      (sales.axionari.com); the deck is its hotel application. */
@@ -26,6 +40,11 @@ const en = {
     statementPre: 'Data exists everywhere. ',
     statementHi: 'Context exists nowhere.',
     deck: 'Every system holds a piece of the guest. No system holds the guest.',
+    /* The positioning line — stated flatly, as a category claim rather than a
+       pitch. This is the section that earns it: the problem is fragmentation,
+       so the differentiator is what we do with the fragments. */
+    position:
+      'Unlike guest messaging platforms, Hotel Companion turns every conversation into operational intelligence — shared across every department.',
     center: 'The guest',
     systems: ['PMS', 'Booking engine', 'Front desk', 'WhatsApp', 'Spa system', 'POS', 'Housekeeping', 'OTA inbox'],
     markers: ['CONTEXT LOST', 'ASKED TWICE', 'STARTS OVER'],
@@ -66,6 +85,17 @@ const es: typeof en = {
     statement: 'Cada respuesta es una imagen.',
     caption: 'Habla o toca, en cualquier idioma. El huésped pregunta con sus propias palabras; el Companion responde en la pantalla — a un toque de reservar.',
   },
+  howItWorks: {
+    eyebrow: 'CÓMO FUNCIONA',
+    statement: 'Qué ocurre cuando un huésped pregunta.',
+    steps: [
+      { title: 'Un huésped pregunta', sub: 'En sus propias palabras, en cualquier idioma, en cualquier superficie.' },
+      { title: 'Se entiende la intención', sub: 'Significado y contexto — no palabras clave.' },
+      { title: 'Se crea inteligencia', sub: 'El momento se vuelve contexto estructurado y compartible.' },
+      { title: 'El trabajo se enruta', sub: 'Al departamento correcto, ya informado.' },
+      { title: 'El sistema aprende', sub: 'Cada resolución afina la siguiente respuesta.' },
+    ],
+  },
   marquee: {
     eyebrow: 'LO QUE LOS HUÉSPEDES REALMENTE PREGUNTAN',
     statement: 'La hospitalidad comienza con una pregunta.',
@@ -75,6 +105,8 @@ const es: typeof en = {
     statementPre: 'Los datos existen en todas partes. ',
     statementHi: 'El contexto no existe en ninguna.',
     deck: 'Cada sistema tiene un pedazo del huésped. Ningún sistema tiene al huésped.',
+    position:
+      'A diferencia de las plataformas de mensajería para huéspedes, Hotel Companion convierte cada conversación en inteligencia operativa — compartida entre todos los departamentos.',
     center: 'El huésped',
     systems: ['PMS', 'Motor de reservas', 'Recepción', 'WhatsApp', 'Sistema de spa', 'POS', 'Ama de llaves', 'Bandeja OTA'],
     markers: ['CONTEXTO PERDIDO', 'PREGUNTADO DOS VECES', 'VUELVE A EMPEZAR'],

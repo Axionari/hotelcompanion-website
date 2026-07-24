@@ -20,7 +20,7 @@ const en = {
   heroChips: ['VOICE-FIRST', 'IN-ROOM TABLET', 'QR CODES', 'WEB WIDGET', 'ANY LANGUAGE', 'MULTI-PROPERTY'],
   hero: {
     title: 'One Platform. Every Guest Interaction.',
-    positioning: 'The Voice-First Guest Intelligence Platform built for modern hospitality.',
+    positioning: 'Built on the Hospitality Intelligence Operating System — one shared intelligence layer beneath every department.',
     body:
       'Hotel Companion combines conversational AI, organizational knowledge, operational execution, and enterprise intelligence into a single platform that helps hotels deliver exceptional guest experiences while increasing revenue and improving operations.',
   },
@@ -50,11 +50,12 @@ const en = {
       'Whether asking for fresh towels, booking dinner, upgrading a room, or finding the perfect beach, every interaction feels immediate, effortless, and human.',
     availableLead: 'Available through:',
     surfaces: [
-      'In-room tablets',
+      'In-room voice companion',
+      'Voice agents',
       'Mobile devices',
       'QR codes',
       'Guest messaging',
-      'Future voice-enabled experiences',
+      'Self-service navigation',
     ],
     close: ['No commands.', 'No menus.', 'No learning curve.', 'Just conversation.'],
   },
@@ -368,7 +369,7 @@ const es: typeof en = {
   heroChips: ['LA VOZ PRIMERO', 'TABLET EN LA HABITACIÓN', 'CÓDIGOS QR', 'WIDGET WEB', 'CUALQUIER IDIOMA', 'MULTIPROPIEDAD'],
   hero: {
     title: 'Una Plataforma. Cada Interacción con el Huésped.',
-    positioning: 'La Plataforma de Inteligencia de Huéspedes por Voz creada para la hospitalidad moderna.',
+    positioning: 'Construida sobre el Sistema Operativo de Inteligencia Hotelera — una sola capa de inteligencia compartida bajo cada departamento.',
     body:
       'Hotel Companion combina IA conversacional, conocimiento organizacional, ejecución operativa e inteligencia empresarial en una sola plataforma que ayuda a los hoteles a brindar experiencias excepcionales mientras aumentan los ingresos y mejoran las operaciones.',
   },
@@ -396,11 +397,12 @@ const es: typeof en = {
       'Ya sea pidiendo toallas limpias, reservando una cena, mejorando una habitación o encontrando la playa perfecta, cada interacción se siente inmediata, sencilla y humana.',
     availableLead: 'Disponible a través de:',
     surfaces: [
-      'Tablets en la habitación',
+      'Companion por voz en la habitación',
+      'Agentes de voz',
       'Dispositivos móviles',
       'Códigos QR',
       'Mensajería con el huésped',
-      'Futuras experiencias por voz',
+      'Navegación autónoma',
     ],
     close: ['Sin comandos.', 'Sin menús.', 'Sin curva de aprendizaje.', 'Solo conversación.'],
   },

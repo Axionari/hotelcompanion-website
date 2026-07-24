@@ -9,7 +9,7 @@ import { Breather } from '@/components/cds/Breather'
 import { CompanionTablet } from '@/components/v5/CompanionTablet'
 import { SuiteShowcase } from '@/components/v5/SuiteShowcase'
 import { QuestionMarquee } from '@/components/cds/QuestionMarquee'
-import { FragmentScatter } from '@/components/v5/Diagrams'
+import { ArrowFlow, FragmentScatter } from '@/components/v5/Diagrams'
 import { IntelligentLayer } from '@/components/v5/IntelligentLayer'
 import { AxionariMark } from '@/components/cds/EndorsementMark'
 import { openLiveDemo } from '@/components/cds/LiveDemoModal'
@@ -197,6 +197,19 @@ export default function HomeClient() {
       </Band>
       <QuestionMarquee />
 
+      {/* HOW IT WORKS — the bridge from philosophy to product. The marquee says
+          what guests ask; this says what happens when they do, before the
+          tablet shows it. Five beats on the existing ArrowFlow, no new grammar. */}
+      <Band id="how-it-works">
+        <Reveal className="text-center mb-12">
+          <div className="eyebrow eyebrow-accent mb-6">{home.howItWorks.eyebrow}</div>
+          <h2 style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(28px, 3.6vw, 48px)', lineHeight: 1.1, letterSpacing: '-0.015em', color: 'var(--text)', maxWidth: '18ch', marginInline: 'auto' }}>
+            {home.howItWorks.statement}
+          </h2>
+        </Reveal>
+        <ArrowFlow steps={home.howItWorks.steps} />
+      </Band>
+
       {/* THE IN-ROOM COMPANION — a big, near-full-width tablet that animates
           between the accommodations options (3 cards) and one suite opened in
           detail (RC "browse → open" logic). The answer IS a picture. */}
@@ -237,6 +250,17 @@ export default function HomeClient() {
           systems={home.fragmentation.systems}
           markers={home.fragmentation.markers}
         />
+        {/* The positioning line closes the problem section: the scatter shows the
+            fragments, this says what we do with them. Placed after the diagram
+            so it reads as the conclusion, not a caption. */}
+        <Reveal>
+          <p
+            className="mt-14 md:mt-16 pt-8"
+            style={{ borderTop: '1px solid var(--border-soft)', fontFamily: SERIF, fontWeight: 500, fontSize: 'clamp(17px, 1.7vw, 23px)', lineHeight: 1.45, color: 'var(--text)', maxWidth: '60ch' }}
+          >
+            {home.fragmentation.position}
+          </p>
+        </Reveal>
       </Band>
 
       {/* THE OPERATING MODEL — guest → one intelligent layer → the hotel's systems */}
