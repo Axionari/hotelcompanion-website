@@ -1,7 +1,6 @@
 'use client'
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { titaniumFrame, titaniumScreenShadow } from '@/components/v5/deviceFrame'
 import { useLang } from '@/lib/i18n/LanguageContext'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { liveDemoCopy } from '@/lib/i18n/marketing/liveDemo'
@@ -331,14 +330,19 @@ export function LiveDemo({
       <div
         className="flex flex-col overflow-hidden"
         data-device-ui=""
-        style={titaniumFrame({ radius: 22, bezel: 4, drop: '0 40px 90px -30px rgba(0,0,0,0.85)' })}
+        style={{
+          background: 'var(--device-frame)',
+          borderRadius: 'var(--device-radius)',
+          padding: 'var(--bezel)',
+          border: '1px solid rgba(251,248,242,0.08)',
+          boxShadow: '0 40px 90px -30px rgba(0,0,0,0.85), 0 0 100px -12px rgba(200,106,58,0.26), 0 0 0 1px rgba(200,106,58,0.12)',
+        }}
       >
         <div
           className="flex flex-col overflow-hidden"
           style={{
-            borderRadius: 18,
+            borderRadius: 'calc(var(--device-radius) - var(--bezel))',
             background: 'linear-gradient(168deg, #191410 0%, #12100e 58%, #0f0d0c 100%)',
-            boxShadow: titaniumScreenShadow(),
             height: compact ? 540 : 640,
           }}
         >

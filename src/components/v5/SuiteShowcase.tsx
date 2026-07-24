@@ -1,7 +1,6 @@
 'use client'
 
 import { CSSProperties, useEffect, useRef, useState } from 'react'
-import { titaniumFrame, titaniumScreenShadow } from '@/components/v5/deviceFrame'
 import { VoiceOrb } from '@/components/cds/VoiceOrb'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { suitesCopy } from '@/lib/i18n/marketing/suites'
@@ -572,9 +571,9 @@ export function SuiteShowcase() {
       <div
         data-device-ui=""
         className="suite-frame suite-stage"
-        style={{ width: '100%', ...titaniumFrame({ radius: 22, bezel: 5, drop: '0 60px 130px -34px rgba(0,0,0,0.85)' }) }}
+        style={{ width: '100%', background: '#0C0B0A', border: '1px solid rgba(190,185,175,0.28)', borderRadius: 26, padding: 12, boxShadow: '0 60px 130px -34px rgba(0,0,0,0.85), 0 0 130px -10px rgba(200,106,58,0.28), 0 0 0 1px rgba(200,106,58,0.14)', boxSizing: 'border-box' }}
       >
-        <div className="suite-screen" style={{ height: '100%', borderRadius: 17, overflow: 'hidden', background: 'radial-gradient(120% 100% at 30% 0%, #17130f 0%, #100e0c 60%, #0c0b0a 100%)', boxShadow: titaniumScreenShadow(), display: 'flex', flexDirection: 'column' }}>
+        <div className="suite-screen" style={{ height: '100%', borderRadius: 18, overflow: 'hidden', background: 'radial-gradient(120% 100% at 30% 0%, #17130f 0%, #100e0c 60%, #0c0b0a 100%)', display: 'flex', flexDirection: 'column' }}>
           {/* Status bar and content share one toned container so the tone has no
               seam across the status row. It stops short of the voice bar, whose
               own dock edge already reads as a boundary. The tone is a separate

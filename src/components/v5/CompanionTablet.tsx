@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useMemo, useRef, useState, CSSProperties } from 'react'
-import { titaniumFrame, titaniumScreenShadow } from '@/components/v5/deviceFrame'
 import { VoiceOrb } from '@/components/cds/VoiceOrb'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { deviceScreens } from '@/lib/i18n/marketing/deviceScreens'
@@ -175,19 +174,23 @@ export function CompanionTablet({ className = '', askBar = true }: { className?:
         data-device-ui=""
         style={{
           width: '100%',
-          maxWidth: 800,
+          maxWidth: 860,
           aspectRatio: '7 / 5',
-          ...titaniumFrame({ radius: 22, bezel: 4, drop: '0 50px 110px -30px rgba(0,0,0,0.8)' }),
+          background: '#0C0B0A',
+          border: '1px solid rgba(190,185,175,0.28)',
+          borderRadius: 24,
+          padding: 10,
+          boxShadow: '0 50px 110px -30px rgba(0,0,0,0.8), 0 0 120px -10px rgba(200,106,58,0.30), 0 0 0 1px rgba(200,106,58,0.14)',
+          boxSizing: 'border-box',
         }}
       >
         <div
           style={{
             position: 'relative',
             height: '100%',
-            borderRadius: 18,
+            borderRadius: 16,
             overflow: 'hidden',
             background: 'radial-gradient(120% 100% at 30% 0%, #17130f 0%, #100e0c 60%, #0c0b0a 100%)',
-            boxShadow: titaniumScreenShadow(),
             display: 'grid',
             gridTemplateColumns: '30% 1fr',
           }}
