@@ -422,3 +422,31 @@ card boxes. See `Diagrams.tsx` for the existing vocabulary (`FragmentScatter`,
 `PassThrough`, `ArrowFlow`, `OutcomeBand`).
 
 Scheduled for a future design pass — deliberately not this sprint.
+
+---
+
+## Category Principles
+
+Not copy — the lens. Every future page, feature, diagram, animation and
+investor deck gets evaluated against these. If a proposed section cannot be
+traced back to one of them, it probably does not belong on the site.
+
+1. **Hotel Companion is the Hospitality Intelligence Platform.**
+2. **The platform is powered by the Hospitality Intelligence Operating System.**
+3. **Every guest conversation becomes shared operational intelligence.**
+4. **Intelligence is shared across departments, not isolated inside
+   conversations.**
+5. **Hospitality comes before AI.**
+6. **The platform augments people rather than replacing them.**
+
+Principles 3 and 4 are the load-bearing pair: the first says a conversation is
+an *input*, not the product; the second says its value is only realised when it
+leaves the conversation. Most competitor messaging stops at 3. Everything the
+site claims about departments, routing and compounding knowledge is downstream
+of 4.
+
+Principles 5 and 6 govern register as much as substance. They are why the site
+leads with the guest and the property rather than the model, and why "not a
+staff replacement" is stated as confident positioning rather than reassurance.
+
+See `TERMINOLOGY.md` for the vocabulary and `BRAND.md` for the voice.
