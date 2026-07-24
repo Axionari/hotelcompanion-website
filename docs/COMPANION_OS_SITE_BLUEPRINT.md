@@ -523,3 +523,42 @@ Not *"do you understand it?"* — that invites agreement. The one-sentence
 retelling reveals the mental model they actually formed. Three independent
 descriptions that match means the diagram works. Descriptions that diverge mean
 the *message* needs work, not the aesthetics.
+
+
+---
+
+## Domains and redirects
+
+Live: **www.hotelcompanion.ai**. Every other entry point reaches it in exactly
+**one hop** — verify with `curl -s -o /dev/null -w "%{num_redirects}" -L <url>`.
+
+| From | Hop | Handled by |
+| --- | --- | --- |
+| `hotelcompanion.ai` | 308 → www | Vercel project domain redirect |
+| `placecompanion.com` | 307 → www.hotelcompanion.ai | `next.config.ts` host rule |
+| `www.placecompanion.com` | 307 → www.hotelcompanion.ai | `next.config.ts` host rule |
+
+### The trap: domain redirects run BEFORE the app
+
+`placecompanion.com` used to carry a Vercel **project domain redirect** to
+`www.placecompanion.com`. That fires at the edge, so the `next.config.ts` rule
+for the apex never ran, and every visitor took two hops
+(apex → www.placecompanion → hotelcompanion) — leaking a little link equity.
+
+The config was already right; the domain setting was shadowing it. Fixed by
+clearing the redirect on that domain so the request reaches the app:
+
+```
+PATCH /v9/projects/{projectId}/domains/placecompanion.com   {"redirect": null}
+```
+
+**If you add or re-point a domain, do not set a domain-level redirect for any
+host `next.config.ts` already handles.** Pick one layer. Domain-level is right
+for a plain apex→www canonical (as on hotelcompanion.ai); the app layer is
+right when the target is a different site and paths must be preserved — the
+Next rules use `/:path*`, so `placecompanion.com/platform` lands on
+`/platform` rather than the homepage.
+
+The placecompanion redirects stay `permanent: false` (307) on purpose and are
+gated behind `RETIRE_PLACECOMPANION=1`, so the retirement can be lifted without
+browsers having cached a 308.
