@@ -1,3 +1,11 @@
+# hotelcompanion-website
+
+The Hotel Companion marketing site — [hotelcompanion.ai](https://www.hotelcompanion.ai). Built on Companion OS, powered by Axionari.
+
+- Repo: `Axionari/hotelcompanion-website` (formerly `Axionari/placecompanion`)
+- Hosting: Vercel project `hotelcompanion-website` (Axionari team; formerly `placecompanion-v2`)
+- Language rules: see `TERMINOLOGY.md` before writing any copy
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
