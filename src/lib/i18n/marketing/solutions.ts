@@ -15,7 +15,7 @@ const en = {
     body1:
       'Every guest interaction creates an opportunity to deliver better service, generate more revenue, and operate more efficiently.',
     body2:
-      'Every department works from the same Hospitality Intelligence Operating System — one shared layer of guest context, so no team starts from zero and no guest is ever asked twice.',
+      'Every department works from the same shared intelligence, built on Companion OS — one layer of guest context, so no team starts from zero and no guest is ever asked twice.',
   },
   departmentsEyebrow: '01 · BY DEPARTMENT',
   departmentsTitle: 'Every department, one shared intelligence.',
@@ -199,7 +199,7 @@ const en = {
       'Understand every guest.',
       'Coordinate every interaction.',
     ],
-    platform: 'One Hospitality Intelligence Platform.',
+    platform: 'One hospitality intelligence layer, built on Companion OS.',
     cta: 'Book a Demo',
   },
 }
@@ -214,7 +214,7 @@ const es: typeof en = {
     body1:
       'Cada interacción con el huésped crea una oportunidad para brindar mejor servicio, generar más ingresos y operar con mayor eficiencia.',
     body2:
-      'Cada departamento trabaja desde el mismo Sistema Operativo de Inteligencia Hotelera — una capa compartida de contexto del huésped, para que ningún equipo empiece de cero y a ningún huésped se le pregunte dos veces.',
+      'Cada departamento trabaja desde la misma inteligencia compartida, construida sobre Companion OS — una sola capa de contexto del huésped, para que ningún equipo empiece de cero y a ningún huésped se le pregunte dos veces.',
   },
   departmentsEyebrow: '01 · POR DEPARTAMENTO',
   departmentsTitle: 'Cada departamento, una sola inteligencia compartida.',
@@ -396,7 +396,7 @@ const es: typeof en = {
       'Entiende a cada huésped.',
       'Coordina cada interacción.',
     ],
-    platform: 'Una sola Plataforma de Inteligencia Hotelera.',
+    platform: 'Una sola capa de inteligencia hotelera, construida sobre Companion OS.',
     cta: 'Agenda una Demo',
   },
 }

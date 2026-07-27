@@ -4,18 +4,14 @@ import Link from "next/link";
 import { useCopy } from "@/lib/i18n/useCopy";
 import { globalCopy } from "@/lib/i18n/marketing/global";
 import LanguageToggle from "@/components/LanguageToggle";
-import { AxionariGlyph } from "@/components/cds/EndorsementMark";
+import { CreditLockup } from "@/components/cds/EndorsementMark";
 
 function FooterColumn({
   title,
   links,
-  comingSoon,
-  comingSoonSuffix,
 }: {
   title: string;
   links: ReadonlyArray<{ label: string; href: string }>;
-  comingSoon?: ReadonlyArray<string>;
-  comingSoonSuffix?: string;
 }) {
   return (
     <div>
@@ -30,13 +26,6 @@ function FooterColumn({
             >
               {l.label}
             </Link>
-          </li>
-        ))}
-        {comingSoon?.map((label) => (
-          <li key={label}>
-            <span className="font-sans text-sm" style={{ color: "var(--text-muted)", opacity: 0.55 }}>
-              {label} <span style={{ fontSize: "11px" }}>({comingSoonSuffix})</span>
-            </span>
           </li>
         ))}
       </ul>
@@ -61,45 +50,16 @@ export function SiteFooter() {
           <FooterColumn title={footer.columns.product.title} links={footer.columns.product.links} />
           <FooterColumn title={footer.columns.solutions.title} links={footer.columns.solutions.links} />
           <FooterColumn title={footer.columns.resources.title} links={footer.columns.resources.links} />
-          <FooterColumn
-            title={footer.columns.company.title}
-            links={footer.columns.company.links}
-            comingSoon={footer.columns.company.comingSoon}
-            comingSoonSuffix={footer.columns.company.comingSoonSuffix}
-          />
+          <FooterColumn title={footer.columns.company.title} links={footer.columns.company.links} />
         </div>
 
         {/* Newsletter block removed: the form had no backend (it faked a success
             state and dropped the address). Copy is retained in global.ts for
             when a real subscribe endpoint exists. */}
 
-        {/* {#footer}: one quiet family endorsement line (was two paragraphs). */}
+        {/* The shared family credit lockup — same component as the hero. */}
         <div className="mb-14">
-          <p
-            className="font-sans text-sm inline-flex flex-wrap items-center gap-x-1.5 gap-y-1"
-            style={{ color: "var(--text-secondary)" }}
-          >
-            <span>{footer.osLine.text}</span>
-            <Link
-              href="/companion-os"
-              className="transition-colors hover:text-[#D4784A]"
-              style={{ color: "var(--accent)", fontWeight: 500 }}
-            >
-              {footer.osLine.link}
-            </Link>
-            <span aria-hidden style={{ opacity: 0.45 }}>·</span>
-            <span>{footer.axionariLine.text}</span>
-            <a
-              href="https://axionari.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 transition-opacity hover:opacity-80"
-              style={{ fontWeight: 500 }}
-            >
-              <AxionariGlyph size="0.95em" />
-              <span style={{ color: "var(--gold)" }}>{footer.axionariLine.link}</span>
-            </a>
-          </p>
+          <CreditLockup />
         </div>
 
         {/* Legal line — v3: POWERED BY AXIONARI mark above the copyright */}
@@ -113,13 +73,6 @@ export function SiteFooter() {
             </p>
           </div>
           <div className="flex items-center gap-5">
-            <Link
-              href="/auth/login"
-              className="font-sans text-sm transition-colors hover:text-[#A8A099]"
-              style={{ color: "var(--text-muted)" }}
-            >
-              {footer.signIn}
-            </Link>
             <LanguageToggle />
           </div>
         </div>

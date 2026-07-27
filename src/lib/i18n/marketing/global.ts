@@ -25,7 +25,7 @@ const en = {
       name: 'HOTEL COMPANION',
       headline: 'Understand Every Guest. Capture Every Opportunity.',
       body:
-        'Hotel Companion is the Hospitality Intelligence Platform, powered by a Hospitality Intelligence Operating System that turns every guest conversation into operational intelligence shared across the hotel.',
+        'Hotel Companion is the hospitality intelligence layer for your property — built on Companion OS, turning every guest conversation into operational intelligence shared across the hotel.',
       cta: 'Book a Demonstration',
     },
     columns: {
@@ -79,8 +79,8 @@ const en = {
           { label: 'Trust Center', href: '/trust' },
           { label: 'Accessibility', href: '/accessibility' },
         ],
-        comingSoon: ['Careers', 'Press', 'Brand Assets'],
-        comingSoonSuffix: 'Coming Soon',
+        /* Careers / Press / Brand Assets "Coming Soon" stubs deleted
+           (system-coherence pass) — real entries return when the pages exist. */
       },
     },
     newsletter: {
@@ -102,7 +102,6 @@ const en = {
       link: 'Axionari',
     },
     legalLine: '© 2026 Hotel Companion. All rights reserved.',
-    signIn: 'Sign In',
     more: 'more',
     /* Social: LinkedIn · X · YouTube · GitHub — NEEDS REAL DATA (no profile URLs exist yet);
        not rendered until URLs are provided, to avoid dead links. */
@@ -134,7 +133,7 @@ const es: typeof en = {
       name: 'HOTEL COMPANION',
       headline: 'Entiende a Cada Huésped. Aprovecha Cada Oportunidad.',
       body:
-        'Hotel Companion es la Plataforma de Inteligencia Hotelera, impulsada por un Sistema Operativo de Inteligencia Hotelera que convierte cada conversación con el huésped en inteligencia operativa compartida en todo el hotel.',
+        'Hotel Companion es la capa de inteligencia hotelera de tu propiedad — construida sobre Companion OS, que convierte cada conversación con el huésped en inteligencia operativa compartida en todo el hotel.',
       cta: 'Agenda una Demostración',
     },
     columns: {
@@ -188,8 +187,6 @@ const es: typeof en = {
           { label: 'Centro de Confianza', href: '/trust' },
           { label: 'Accesibilidad', href: '/accessibility' },
         ],
-        comingSoon: ['Carreras', 'Prensa', 'Recursos de Marca'],
-        comingSoonSuffix: 'Próximamente',
       },
     },
     newsletter: {
@@ -211,7 +208,6 @@ const es: typeof en = {
       link: 'Axionari',
     },
     legalLine: '© 2026 Hotel Companion. Todos los derechos reservados.',
-    signIn: 'Iniciar Sesión',
     more: 'más',
   },
 }

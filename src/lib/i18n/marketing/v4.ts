@@ -11,13 +11,13 @@ const en = {
   actI: {
     wordmark: 'HOTEL COMPANION',
     coords: 'N 20.2114° · W 87.4654°',
-    /* No hero eyebrow by design. A category label stacked above the H1 is the
-       generic SaaS move; the hero opens on the statement itself. Deliberately
-       removed — do not reintroduce. */
+    /* Chapter kicker 01 — the numbered 01–07 sequence now starts at the hero
+       (system-coherence pass), superseding the earlier no-eyebrow rule. */
+    kicker: '01 · HOTEL COMPANION',
     h1Line1: 'Understand Every Guest.',
     h1Line2: 'Capture Every Opportunity.',
     strip: 'NO FORM · NO BROCHURE · THIS IS THE PRODUCT',
-    proof: '0% OTA COMMISSION · 24/7 · IN EVERY LANGUAGE · VALUE FROM DAY ONE',
+    proof: '0% OTA COMMISSION · 24/7 · IN EVERY LANGUAGE · MEASURED FROM DAY ONE',
   },
   actII: {
     eyebrow: "02 · WHAT'S AT STAKE",
@@ -59,7 +59,9 @@ const en = {
     statementPost: ' — and execution.',
     /* operations feed: device-UI. A `revenue` starting with "+" is captured $;
        otherwise it renders as a resolved-status badge. */
-    liveLabel: 'LIVE · OPERATIONS TONIGHT',
+    liveLabel: 'SIMULATED NIGHT · DEMO PROPERTY: MARAZUL',
+    feedCaption:
+      'A simulated evening at our demo property — this is the operations view your team would watch.',
     capturedLabel: 'Captured tonight',
     captured: '+$415',
     rows: [
@@ -86,8 +88,8 @@ const en = {
   actVII: {
     eyebrow: '07 · NEXT STEP',
     statementLine1: 'Stop reading about it.',
-    statementLine2: 'Ask it something.',
-    partnerLine: 'Now partnering with a limited number of visionary hotel groups.',
+    statementLine2: 'See it answer.',
+    partnerLine: 'Now selecting founding hotel groups.',
     /* ADDENDUM 2: the founding CTA retired — the primary action is the site's
        Book a Demo string; /contact#founding is the program's canonical home */
     signoff: 'POWERED BY AXIONARI',
@@ -98,12 +100,12 @@ const es: typeof en = {
   actI: {
     wordmark: 'HOTEL COMPANION',
     coords: 'N 20.2114° · W 87.4654°',
+    kicker: '01 · HOTEL COMPANION',
     /* [v3] — hero copy unchanged in the v3 deck → shipped v3 string (OQ-10) */
     h1Line1: 'Entiende a Cada Huésped.',
     h1Line2: 'Aprovecha Cada Oportunidad.',
     strip: 'SIN FORMULARIO · SIN FOLLETO · ESTO ES EL PRODUCTO',
-    /* [v3] deck {#01}: EN CADA IDIOMA · EN MARCHA EN DÍAS (OQ-10) */
-    proof: '0% COMISIÓN OTA · 24/7 · EN CADA IDIOMA · VALOR DESDE EL PRIMER DÍA',
+    proof: '0% COMISIÓN OTA · 24/7 · EN CADA IDIOMA · MEDIDO DESDE EL DÍA UNO',
   },
   actII: {
     eyebrow: '02 · LO QUE ESTÁ EN JUEGO',
@@ -144,7 +146,9 @@ const es: typeof en = {
     statementPre: 'Cada conversación se convierte en ',
     statementHi: 'inteligencia',
     statementPost: ' — y en ejecución.',
-    liveLabel: 'EN VIVO · OPERACIÓN ESTA NOCHE',
+    liveLabel: 'NOCHE SIMULADA · PROPIEDAD DEMO: MARAZUL',
+    feedCaption:
+      'Una noche simulada en nuestra propiedad demo — esta es la vista de operaciones que vería tu equipo.',
     capturedLabel: 'Capturado esta noche',
     captured: '+$415',
     rows: [
@@ -175,10 +179,9 @@ const es: typeof en = {
   },
   actVII: {
     eyebrow: '07 · SIGUIENTE PASO',
-    /* [v3] deck {#13}: Deja de leerlo. Pregúntale algo. (OQ-10) */
     statementLine1: 'Deja de leerlo.',
-    statementLine2: 'Pregúntale algo.',
-    partnerLine: 'Ahora nos asociamos con un número limitado de grupos hoteleros visionarios.',
+    statementLine2: 'Míralo responder.',
+    partnerLine: 'Seleccionando ahora a los grupos hoteleros fundadores.',
     signoff: 'POWERED BY AXIONARI',
   },
 }

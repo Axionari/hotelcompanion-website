@@ -11,7 +11,7 @@ import { SuiteShowcase } from '@/components/v5/SuiteShowcase'
 import { QuestionMarquee } from '@/components/cds/QuestionMarquee'
 import { ArrowFlow, FragmentScatter } from '@/components/v5/Diagrams'
 import { IntelligentLayer } from '@/components/v5/IntelligentLayer'
-import { AxionariMark } from '@/components/cds/EndorsementMark'
+import { CreditLockup } from '@/components/cds/EndorsementMark'
 import { openLiveDemo } from '@/components/cds/LiveDemoModal'
 import { LIVE_DEMO_ENABLED } from '@/lib/flags'
 import { useCopy } from '@/lib/i18n/useCopy'
@@ -105,6 +105,8 @@ export default function HomeClient() {
           <div className="container-rc w-full">
             <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
               <div className="lg:col-span-5">
+                {/* Chapter kicker 01 — opens the numbered 01–07 sequence */}
+                <div className="eyebrow eyebrow-accent mb-6">{c.actI.kicker}</div>
                 <h1 style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(34px, 4.5vw, 64px)', lineHeight: 1.05, letterSpacing: '-0.015em', color: 'var(--text)', maxWidth: '15ch' }}>
                   {c.actI.h1Line1}{' '}
                   <em style={{ fontStyle: 'italic', fontWeight: 480, color: 'var(--cream, #F2EEE6)' }}>{c.actI.h1Line2}</em>
@@ -114,7 +116,7 @@ export default function HomeClient() {
                   <Link href="/demo" className="btn-primary">{g.nav.bookDemo}</Link>
                   {LIVE_DEMO_ENABLED && <button type="button" onClick={openLiveDemo} className="btn-secondary">{demo.open}</button>}
                 </div>
-                <div className="mt-9"><AxionariMark /></div>
+                <div className="mt-9"><CreditLockup /></div>
               </div>
               <div className="lg:col-span-7">
                 <Reveal>
@@ -323,6 +325,13 @@ export default function HomeClient() {
               )
             })}
           </div>
+          {/* Demo-honesty caption: declares the staging without weakening the feed */}
+          <p
+            className="mt-5 text-center font-sans"
+            style={{ fontSize: '13px', lineHeight: 1.5, color: 'var(--text-faint)', maxWidth: '60ch', marginInline: 'auto' }}
+          >
+            {c.actV.feedCaption}
+          </p>
         </Reveal>
       </Band>
 

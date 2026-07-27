@@ -90,9 +90,9 @@ const en = {
 
   /* The PMS handshake — live availability confirmed before booking. */
   availability: {
-    label: 'LIVE AVAILABILITY',
+    label: 'AVAILABILITY',
     title: 'Confirming availability',
-    sub: 'Confirming dates and rate directly in the hotel’s PMS — live inventory, nothing assumed.',
+    sub: 'Confirming dates and rate directly in the hotel’s PMS — real inventory, nothing assumed.',
     checks: [
       { item: 'Jul 25 – 28 · 3 nights · 2 guests', status: 'Available' },
       { item: 'Ocean-View Suite', status: 'Rate held · $250/night' },
@@ -188,6 +188,8 @@ const en = {
     labels: ['Welcome', 'Browse', 'Suite', 'Your stay', 'Availability', 'Review', 'Pay', 'Processing', 'Confirmed', 'Loyalty'],
     hint: 'The guest’s journey — tap any step',
   },
+  /* Demo honesty: the quiet staging label under the in-room journey. */
+  demoNote: 'Guided demonstration · demo property',
 }
 
 const es: typeof en = {
@@ -270,9 +272,9 @@ const es: typeof en = {
   },
 
   availability: {
-    label: 'DISPONIBILIDAD EN VIVO',
+    label: 'DISPONIBILIDAD',
     title: 'Confirmando disponibilidad',
-    sub: 'Confirmando fechas y tarifa directamente en el PMS del hotel — inventario en vivo, nada supuesto.',
+    sub: 'Confirmando fechas y tarifa directamente en el PMS del hotel — inventario real, nada supuesto.',
     checks: [
       { item: '25 – 28 Jul · 3 noches · 2 huéspedes', status: 'Disponible' },
       { item: 'Suite Vista al Mar', status: 'Tarifa apartada · $250/noche' },
@@ -367,6 +369,7 @@ const es: typeof en = {
     labels: ['Bienvenida', 'Explorar', 'Suite', 'Tu estancia', 'Disponibilidad', 'Revisar', 'Pagar', 'Procesando', 'Confirmado', 'Lealtad'],
     hint: 'El recorrido del huésped — toca cualquier paso',
   },
+  demoNote: 'Demostración guiada · propiedad demo',
 }
 
 export const suitesCopy: Localized<typeof en> = { en, es }

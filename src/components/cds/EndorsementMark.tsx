@@ -76,6 +76,46 @@ export function AxionariGlyph({ size = '1.05em', className = '' }: { size?: numb
  * mono CAPS `POWERED BY [glyph] AXIONARI`, `AXIONARI` in gold, with the Axionari
  * wordmark glyph as on the RC site. Locale-invariant.
  */
+/**
+ * The shared family credit lockup (system-coherence pass):
+ * `BUILT ON COMPANION OS · POWERED BY [glyph] AXIONARI` — mono CAPS, both
+ * halves links (Companion OS → /companion-os, Axionari → axionari.com).
+ * Locale-invariant (brand names don't translate). Lives in the hero and the
+ * footer; supersedes AxionariMark in the hero.
+ */
+export function CreditLockup({ className = '' }: { className?: string }) {
+  const linkStyle = { color: 'var(--text-faint)', textDecoration: 'none' as const }
+  return (
+    <span
+      className={`eyebrow inline-flex flex-wrap items-center ${className}`}
+      style={{ color: 'var(--text-faint)', gap: '0.55em', rowGap: '0.4em' }}
+    >
+      <Link
+        href="/companion-os"
+        className="inline-flex items-center transition-colors hover:text-[#d4824f]"
+        style={{ ...linkStyle, gap: '0.34em' }}
+      >
+        <span>BUILT ON</span>
+        <span style={{ color: 'var(--accent)' }}>COMPANION OS</span>
+      </Link>
+      <span aria-hidden style={{ opacity: 0.45 }}>·</span>
+      <a
+        href="https://www.axionari.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center transition-colors hover:text-[#d4824f]"
+        style={{ ...linkStyle, gap: '0.34em' }}
+      >
+        <span>POWERED BY</span>
+        <span className="inline-flex items-center" style={{ gap: '0.34em' }}>
+          <AxionariGlyph />
+          <span style={{ color: 'var(--gold)' }}>AXIONARI</span>
+        </span>
+      </a>
+    </span>
+  )
+}
+
 export function AxionariMark({ className = '' }: { className?: string }) {
   return (
     <a

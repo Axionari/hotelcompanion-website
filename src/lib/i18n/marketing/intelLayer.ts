@@ -8,11 +8,12 @@ import type { Localized } from '../useCopy'
  */
 
 const en = {
-  eyebrow: 'THE CATEGORY',
+  /* Chapter kicker 04 — completes the visible 01–07 sequence on the homepage. */
+  eyebrow: '04 · THE CATEGORY',
   h2Pre: 'Not another app. ',
   h2Hi: 'An intelligence operating system.',
   body:
-    'Hotel Companion is the Hospitality Intelligence Platform, powered by a Hospitality Intelligence Operating System — the layer beneath your existing tools that connects every guest conversation, every department, and every operational decision. Not another application to add to the stack.',
+    'Hotel Companion is the hospitality intelligence layer for your property — built on Companion OS, Axionari’s platform for white-label, voice-native AI Companions. It sits beneath your existing tools, connecting every guest conversation, every department, and every operational decision. Not another application to add to the stack.',
   guest: 'The guest',
   center: 'One intelligent layer',
   centerSub: 'EVERY CONVERSATION · EVERY DEPARTMENT',
@@ -20,11 +21,11 @@ const en = {
 }
 
 const es: typeof en = {
-  eyebrow: 'LA CATEGORÍA',
+  eyebrow: '04 · LA CATEGORÍA',
   h2Pre: 'No otra aplicación. ',
   h2Hi: 'Un sistema operativo de inteligencia.',
   body:
-    'Hotel Companion es la Plataforma de Inteligencia Hotelera, impulsada por un Sistema Operativo de Inteligencia Hotelera — la capa debajo de tus herramientas actuales que conecta cada conversación con el huésped, cada departamento y cada decisión operativa. No otra aplicación que sumar al stack.',
+    'Hotel Companion es la capa de inteligencia hotelera de tu propiedad — construida sobre Companion OS, la plataforma de Axionari para Companions de IA por voz, de marca blanca. Se coloca debajo de tus herramientas actuales, conectando cada conversación con el huésped, cada departamento y cada decisión operativa. No es otra aplicación más en tu stack.',
   guest: 'El huésped',
   center: 'Una capa inteligente',
   centerSub: 'CADA CONVERSACIÓN · CADA DEPARTAMENTO',

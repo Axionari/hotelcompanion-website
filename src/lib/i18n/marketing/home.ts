@@ -5,7 +5,7 @@ import type { ScreenId } from './deviceScreens'
 
 const en = {
   heroLead:
-    'The Hospitality Intelligence Platform that transforms every guest conversation into intelligence, action, and revenue.',
+    'Hotel Companion turns every guest conversation into revenue, action, and intelligence — a Companion for the whole stay, built on Companion OS.',
   /* P5.5 — framing for the in-room tablet showcase. Statement reuses the
      approved journey line ("Every answer is a picture"); eyebrow is a label. */
   tabletShowcase: {
@@ -29,7 +29,7 @@ const en = {
       { title: 'Intent is understood', sub: 'Meaning and context — not keywords.' },
       { title: 'Intelligence is created', sub: 'The moment becomes structured, shareable context.' },
       { title: 'Work is routed', sub: 'To the right department, already briefed.' },
-      { title: 'The system learns', sub: 'Every resolution sharpens the next answer.' },
+      { title: 'The system learns', sub: 'Every resolution sharpens the next answer. That memory lives in Companion OS — and it compounds.' },
     ],
   },
   /* P5.13 — the "before" diagram (RC homepage §02 applied to hotels), setting
@@ -79,7 +79,7 @@ const en = {
 
 const es: typeof en = {
   heroLead:
-    'La Plataforma de Inteligencia Hotelera que convierte cada conversación con el huésped en inteligencia, acción e ingresos.',
+    'Hotel Companion convierte cada conversación con el huésped en ingresos, acción e inteligencia — un Companion para toda la estancia, construido sobre Companion OS.',
   tabletShowcase: {
     eyebrow: 'EL COMPANION EN LA HABITACIÓN',
     statement: 'Cada respuesta es una imagen.',
@@ -93,7 +93,7 @@ const es: typeof en = {
       { title: 'Se entiende la intención', sub: 'Significado y contexto — no palabras clave.' },
       { title: 'Se crea inteligencia', sub: 'El momento se vuelve contexto estructurado y compartible.' },
       { title: 'El trabajo se enruta', sub: 'Al departamento correcto, ya informado.' },
-      { title: 'El sistema aprende', sub: 'Cada resolución afina la siguiente respuesta.' },
+      { title: 'El sistema aprende', sub: 'Cada resolución afina la siguiente respuesta. Esa memoria vive en Companion OS — y se acumula.' },
     ],
   },
   marquee: {

@@ -594,6 +594,11 @@ export function SuiteShowcase() {
           <VoiceBar c={c} />
         </div>
       </div>
+
+      {/* Demo honesty — one quiet staging label under the journey */}
+      <p className="eyebrow" style={{ textAlign: 'center', color: 'var(--text-faint)', fontSize: 11, marginTop: 'clamp(14px,1.6vw,20px)' }}>
+        {c.demoNote}
+      </p>
     </div>
   )
 }

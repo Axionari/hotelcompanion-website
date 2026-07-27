@@ -29,8 +29,8 @@ const en = {
     inputsLabel: 'GUEST INTERACTIONS',
     inputs: ['Voice', 'Chat', 'QR', 'WhatsApp', 'SMS', 'In-room tablet'],
     toBand: 'EVERY CONVERSATION',
-    nodeTitle: 'Hospitality Intelligence Platform',
-    nodeSub: 'POWERED BY THE HOSPITALITY INTELLIGENCE OPERATING SYSTEM',
+    nodeTitle: 'Hotel Companion',
+    nodeSub: 'BUILT ON COMPANION OS',
     toRecipients: 'SHARED ACROSS EVERY DEPARTMENT',
     recipients: ['Front Desk', 'Housekeeping', 'Maintenance', 'Concierge', 'Food & Beverage', 'Management'],
     toOutcomes: 'WHICH IMPROVES',
@@ -55,7 +55,7 @@ const en = {
   },
   hero: {
     title: 'One Platform. Every Guest Interaction.',
-    positioning: 'Built on the Hospitality Intelligence Operating System — one shared intelligence layer beneath every department.',
+    positioning: 'Built on Companion OS — one shared intelligence layer beneath every department.',
     body:
       'Hotel Companion combines conversational AI, organizational knowledge, operational execution, and enterprise intelligence into a single platform that helps hotels deliver exceptional guest experiences while increasing revenue and improving operations.',
   },
@@ -409,8 +409,8 @@ const es: typeof en = {
     inputsLabel: 'INTERACCIONES DEL HUÉSPED',
     inputs: ['Voz', 'Chat', 'QR', 'WhatsApp', 'SMS', 'Tablet en la habitación'],
     toBand: 'CADA CONVERSACIÓN',
-    nodeTitle: 'Plataforma de Inteligencia Hotelera',
-    nodeSub: 'IMPULSADA POR EL SISTEMA OPERATIVO DE INTELIGENCIA HOTELERA',
+    nodeTitle: 'Hotel Companion',
+    nodeSub: 'CONSTRUIDO SOBRE COMPANION OS',
     toRecipients: 'COMPARTIDA CON CADA DEPARTAMENTO',
     recipients: ['Recepción', 'Ama de llaves', 'Mantenimiento', 'Concierge', 'Alimentos y Bebidas', 'Dirección'],
     toOutcomes: 'LO QUE MEJORA',
@@ -432,7 +432,7 @@ const es: typeof en = {
   },
   hero: {
     title: 'Una Plataforma. Cada Interacción con el Huésped.',
-    positioning: 'Construida sobre el Sistema Operativo de Inteligencia Hotelera — una sola capa de inteligencia compartida bajo cada departamento.',
+    positioning: 'Construida sobre Companion OS — una sola capa de inteligencia compartida bajo cada departamento.',
     body:
       'Hotel Companion combina IA conversacional, conocimiento organizacional, ejecución operativa e inteligencia empresarial en una sola plataforma que ayuda a los hoteles a brindar experiencias excepcionales mientras aumentan los ingresos y mejoran las operaciones.',
   },
