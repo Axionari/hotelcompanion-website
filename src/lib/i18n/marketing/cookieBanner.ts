@@ -6,7 +6,7 @@ import type { Localized } from '../useCopy'
 const en = {
   ariaLabel: 'Cookie preferences',
   bodyPre: 'We use cookies to improve your experience. Read our ',
-  linkText: 'Cookie Notice',
+  linkText: 'Cookie Policy',
   bodyPost: '.',
   customize: 'Customize',
   save: 'Save Preferences',
@@ -22,8 +22,9 @@ const en = {
 
 const es: typeof en = {
   ariaLabel: 'Preferencias de cookies',
-  bodyPre: 'Usamos cookies para mejorar tu experiencia. Consulta nuestro ',
-  linkText: 'Aviso de Cookies',
+  /* "nuestra" — Política is feminine (was "nuestro Aviso de Cookies"). */
+  bodyPre: 'Usamos cookies para mejorar tu experiencia. Consulta nuestra ',
+  linkText: 'Política de Cookies',
   bodyPost: '.',
   customize: 'Personalizar',
   save: 'Guardar preferencias',
