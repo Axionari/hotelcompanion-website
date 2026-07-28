@@ -53,7 +53,7 @@ export function StickyCta() {
         href="/demo"
         aria-hidden={!shown}
         tabIndex={shown ? 0 : -1}
-        className="btn-primary hidden sm:inline-flex items-center gap-2 whitespace-nowrap"
+        className="sticky-cta btn-primary hidden sm:inline-flex items-center gap-2 whitespace-nowrap"
         style={{
           position: 'fixed',
           right: 'clamp(18px, 2vw, 28px)',
@@ -72,9 +72,9 @@ export function StickyCta() {
         <span aria-hidden style={{ fontSize: 16, lineHeight: 1 }}>→</span>
       </Link>
 
-      {/* mobile — bottom bar */}
+      {/* mobile — bottom bar (sticky-cta: suppressed while the cookie banner is up) */}
       <div
-        className="sm:hidden"
+        className="sticky-cta sm:hidden"
         aria-hidden={!shown}
         style={{
           position: 'fixed',

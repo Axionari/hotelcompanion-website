@@ -407,6 +407,7 @@ const cookiesEn: LegalDoc = {
       type: 'p',
       text: 'Please note that disabling certain cookies may affect website functionality and your overall experience.',
     },
+    { type: 'manage-cookies' },
 
     { type: 'h2', text: 'Cookie Consent' },
     {

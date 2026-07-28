@@ -454,6 +454,7 @@ export const cookiesEs: LegalDoc = {
       type: 'p',
       text: 'Ten en cuenta que desactivar ciertas cookies puede afectar la funcionalidad del sitio y tu experiencia general.',
     },
+    { type: 'manage-cookies' },
 
     { type: 'h2', text: 'Consentimiento de Cookies' },
     {

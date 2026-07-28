@@ -5,6 +5,7 @@ import "./globals.css";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 import { LiveDemoModalDeferred } from "@/components/cds/LiveDemoModalDeferred";
 import { StickyCta } from "@/components/cds/StickyCta";
+import { CookieBanner } from "@/components/CookieBanner";
 
 /* Display face — Restaurant Companion uses Fraunces (headline weight 530,
    italic accent 480). Variable axes give us those exact weights. */
@@ -86,6 +87,8 @@ export default function RootLayout({
           {/* One demo instance for every entry point: nav, hero CTA, hero tablet.
               v4: deferred chunk (authorized v3.1 bundle split) — same modal. */}
           <LiveDemoModalDeferred />
+          {/* Cookie consent — client-only; renders only while undecided. */}
+          <CookieBanner />
         </LanguageProvider>
       </body>
     </html>

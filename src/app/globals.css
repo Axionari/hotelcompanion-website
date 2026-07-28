@@ -1449,3 +1449,34 @@ body {
   .home-ops-row { flex-direction: column !important; align-items: flex-start !important; gap: 9px !important; }
   .home-ops-meta { width: 100%; justify-content: space-between !important; }
 }
+
+/* ── Cookie consent banner ─────────────────────────────────────────────
+   RC's production banner CSS, translated 1:1 to HC tokens:
+   --surface-0→--surface-2 · --night-ink→--text · --night-line→--border ·
+   --night-70→--text-dim · --night-55→--text-faint · --f-b→--font-sans ·
+   --f-m→--font-mono · --pad→container-rc padding (1.5rem / 2.5rem @768px).
+   RC's rgba(200,106,58,…) accent literals kept (HC --accent is the same hue);
+   RC's rgba(242,238,230,.35) button border re-inked to HC's --text base
+   (rgba(247,246,241,.35)) — no 1:1 HC token exists at 35%. */
+.cbanner{position:fixed;left:0;right:0;bottom:0;z-index:120;background:var(--surface-2);color:var(--text);border-top:1px solid var(--border);box-shadow:0 -18px 40px -22px rgba(0,0,0,.55);padding:16px 1.5rem calc(16px + env(safe-area-inset-bottom,0px));animation:cbup .4s cubic-bezier(.2,.7,.2,1)}
+@media (min-width:768px){.cbanner{padding-inline:2.5rem}}
+@keyframes cbup{0%{transform:translateY(26px);opacity:0}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.cbanner{animation:none}}
+.cbin{max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px}
+.cbtext{font-size:14.5px;line-height:1.55;color:var(--text-dim);margin:0}
+.cbtext a{color:var(--accent-bright);text-decoration:none;border-bottom:1px solid rgba(200,106,58,.4);transition:border-color .18s}
+.cbtext a:hover{border-color:var(--accent-bright)}
+.cbrow{display:flex;flex-wrap:wrap;gap:10px;margin-left:auto}
+.cbtn{font-family:var(--font-sans),ui-sans-serif,system-ui,sans-serif;font-weight:600;font-size:13.5px;color:var(--text);background:none;cursor:pointer;border:1.5px solid rgba(247,246,241,.35);border-radius:100px;padding:10px 20px;min-height:44px;transition:border-color .18s,background .18s}
+.cbtn:hover{border-color:var(--accent-bright);background:rgba(200,106,58,.1)}
+.cbtn:focus-visible{outline:2px solid var(--accent-bright);outline-offset:2px}
+.cbopts{flex-basis:100%;order:3;display:flex;flex-wrap:wrap;gap:8px 26px;padding-top:2px}
+.cbopt{display:inline-flex;align-items:center;gap:9px;font-size:13.5px;color:var(--text);cursor:pointer}
+.cbopt input{accent-color:var(--accent-bright);width:17px;height:17px;cursor:pointer}
+.cbopt input:disabled{opacity:.55;cursor:default}
+.cbopt em{font-style:normal;font-family:var(--font-mono),ui-monospace,monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-faint)}
+@media (max-width:768px){.cbin{gap:12px}.cbrow{margin-left:0;width:100%;flex-direction:column}.cbtn{width:100%;display:inline-flex;justify-content:center}.cbopts{order:0}}
+
+/* While the consent banner is up, suppress HC's bottom-fixed StickyCta
+   (RC does the same for its .mctabar) so the two never stack. */
+body:has(.cbanner) .sticky-cta{opacity:0!important;visibility:hidden!important;pointer-events:none!important}

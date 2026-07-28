@@ -5,6 +5,7 @@ import { SiteNav } from '@/components/site-nav'
 import { SiteFooter } from '@/components/site-footer'
 import { PersistentCTA } from './PersistentCTA'
 import { Reveal } from './Reveal'
+import { ManageCookiesButton } from '@/components/CookieBanner'
 import { useCopy, type Localized } from '@/lib/i18n/useCopy'
 
 export type LegalBlock =
@@ -12,6 +13,9 @@ export type LegalBlock =
   | { type: 'h2'; text: string }
   | { type: 'term'; label: string; text: string }
   | { type: 'link'; label: string; href: string; text?: string }
+  /* Cookie-consent re-open control (RC's "rmanage" equivalent); label is
+     locale-aware via cookieBannerCopy, so the block carries no text. */
+  | { type: 'manage-cookies' }
 
 export interface LegalDoc {
   eyebrow: string
@@ -93,6 +97,13 @@ export function LegalLayout({ doc }: { doc: Localized<LegalDoc> }) {
                     {b.label} →
                   </Link>
                 </p>
+              )
+            }
+            if (b.type === 'manage-cookies') {
+              return (
+                <div key={i} className="mt-2 mb-6">
+                  <ManageCookiesButton />
+                </div>
               )
             }
             return (
