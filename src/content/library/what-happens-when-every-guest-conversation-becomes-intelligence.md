@@ -216,6 +216,6 @@ That is the philosophy behind Hotel Companion.
 Not an AI concierge.
 Not a chatbot.
 Not another application.
-A Guest Intelligence Platform, powered by Companion OS, designed to help every hotel become an organization that listens, learns, and continuously improves.
+A guest intelligence layer, built on Companion OS, designed to help every hotel become an organization that listens, learns, and continuously improves.
 Because the future of hospitality belongs to those who understand their guests best.
 The Future of Organizational Intelligence.

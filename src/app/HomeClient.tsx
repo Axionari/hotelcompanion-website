@@ -361,7 +361,9 @@ export default function HomeClient() {
               <h2 style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(34px, 4.5vw, 64px)', lineHeight: 1.05, letterSpacing: '-0.015em', color: 'var(--text)' }}>
                 {c.actVII.statementLine1}<br />{italic(c.actVII.statementLine2)}
               </h2>
-              <p style={{ fontFamily: SERIF, fontStyle: 'italic', fontSize: 'clamp(18px, 2vw, 24px)', color: 'var(--text-dim)', marginTop: 28, maxWidth: '40ch', marginInline: 'auto' }}>{c.actVII.partnerLine}</p>
+              {/* Site-audit ruling #1: the standard mono-caps kicker, as on the
+                  pilot instrument's framing line. */}
+              <div className="eyebrow eyebrow-accent" style={{ marginTop: 28 }}>{c.actVII.partnerLine}</div>
               <div className="mt-10 flex justify-center">
                 <Link href="/demo" className="btn-primary">{g.nav.bookDemo}</Link>
               </div>

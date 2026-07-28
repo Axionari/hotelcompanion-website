@@ -89,7 +89,8 @@ const en = {
     eyebrow: '07 · NEXT STEP',
     statementLine1: 'Stop reading about it.',
     statementLine2: 'See it answer.',
-    partnerLine: 'Now selecting founding hotel groups.',
+    /* Rendered as the standard mono-caps kicker (site-audit ruling #1). */
+    partnerLine: 'NOW SELECTING FOUNDING HOTEL GROUPS',
     /* ADDENDUM 2: the founding CTA retired — the primary action is the site’s
        Book a Demo string; /contact#founding is the program’s canonical home */
     signoff: 'POWERED BY AXIONARI',
@@ -181,7 +182,7 @@ const es: typeof en = {
     eyebrow: '07 · SIGUIENTE PASO',
     statementLine1: 'Deja de leerlo.',
     statementLine2: 'Míralo responder.',
-    partnerLine: 'Seleccionando ahora a los grupos hoteleros fundadores.',
+    partnerLine: 'SELECCIONANDO A LOS GRUPOS HOTELEROS FUNDADORES',
     signoff: 'POWERED BY AXIONARI',
   },
 }

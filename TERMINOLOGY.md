@@ -135,6 +135,16 @@ generation** — e.g. the essay *Beyond the AI Concierge*.
 
 ---
 
+## Heading case — settled, do not normalize
+
+Ruled 2026-07-28 (site-audit): the site intentionally carries two heading
+conventions. **Legacy sections use Title Case** ("Why Companion OS Exists.");
+**newer sections may use sentence case** ("Every answer is a picture."). New
+work matches its surrounding page. This closes the question — future passes
+must NOT normalize headings in either direction.
+
+---
+
 ## Demo honesty
 
 Nothing on the marketing site is live product. Simulated UI must say so:
@@ -188,6 +198,15 @@ not "fix" these.
   contractual definition, not marketing category language. The Terms contact
   address ("Mexico City, Mexico") is a legal address on a legal page and
   stays.
+- **Factual addresses and bios are exempt from the no-country rule** (ruled
+  2026-07-28): the contact HQ line, the founder bio's location on /company,
+  and the legal-page addresses all keep "Mexico". The no-country rule governs
+  *positioning copy* only — never facts about where the company is.
+- **ES metadata is a known architectural limitation** (logged 2026-07-28):
+  locale is client-side (`localStorage.pc_lang`) on a single URL, so
+  `<title>`/meta/OG tags are server-rendered in EN for both languages. Fixing
+  this requires locale-segmented routing, not copy — do not "fix" it in a
+  copy pass.
 - **Lowercase generic descriptors** — "an intelligence operating system" (The
   Category headline) and "The intelligence operating system for hospitality
   organizations" (Enterprise) are generic descriptions, not the retired proper

@@ -216,6 +216,6 @@ Esa es la filosofía detrás de Hotel Companion.
 No un concierge con IA.
 No un asistente automatizado.
 No otra aplicación.
-Una Plataforma de Inteligencia de Huéspedes, impulsada por Companion OS, diseñada para ayudar a cada hotel a convertirse en una organización que escucha, aprende y mejora continuamente.
+Una capa de inteligencia de huéspedes, construida sobre Companion OS, diseñada para ayudar a cada hotel a convertirse en una organización que escucha, aprende y mejora continuamente.
 Porque el futuro de la hospitalidad pertenece a quienes entienden mejor a sus huéspedes.
 El Futuro de la Inteligencia Organizacional.
