@@ -84,7 +84,8 @@ const en = {
   /* Pilot instrument (pilot-instrument pass): the founding pilot on one page.
      KPI values are deliberately blank — measured in the pilot, never invented. */
   pilot: {
-    framing: 'Now selecting founding hotel groups.',
+    /* Rendered as the standard mono-caps kicker (design-correction pass). */
+    framing: 'NOW SELECTING FOUNDING HOTEL GROUPS',
     title: 'The founding pilot, on one page.',
     sub: 'Ninety days. One property. Four numbers we agree on before we go live.',
     stamp: 'measured in your pilot',
@@ -217,7 +218,7 @@ const es: typeof en = {
   /* Instrumento del piloto: los valores de KPI van en blanco a propósito —
      se miden en el piloto, nunca se inventan. */
   pilot: {
-    framing: 'Seleccionando ahora a los grupos hoteleros fundadores.',
+    framing: 'SELECCIONANDO A LOS GRUPOS HOTELEROS FUNDADORES',
     title: 'El piloto fundador, en una página.',
     sub: 'Noventa días. Una propiedad. Cuatro números que acordamos antes de arrancar.',
     stamp: 'medido en tu piloto',
