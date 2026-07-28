@@ -245,7 +245,11 @@ export function CompanionTablet({ className = '', askBar = true }: { className?:
       </div>
 
       {/* ── context pills — name what you're seeing; click to jump ── */}
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'center', marginTop: 'clamp(14px,1.8vw,22px)' }}>
+      {/* gap 8 -> 6 and pill padding 15 -> 12 buy ~38px of slack in the 601px
+          container, so the row cannot wrap on a font swap or on small metric
+          differences between machines. Card width is load-bearing for the hero
+          fold and is deliberately not touched. */}
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, justifyContent: 'center', marginTop: 'clamp(14px,1.8vw,22px)' }}>
         {screens.map((scr, idx) => {
           const on = idx === i
           return (
@@ -261,7 +265,7 @@ export function CompanionTablet({ className = '', askBar = true }: { className?:
                 background: on ? 'rgba(200,106,58,0.14)' : 'transparent',
                 border: `1px solid ${on ? 'rgba(200,106,58,0.6)' : 'var(--border-soft, rgba(243,236,226,0.14))'}`,
                 borderRadius: 999,
-                padding: '7px 15px',
+                padding: '7px 12px',
                 cursor: 'pointer',
                 transition: 'all .35s var(--ease-standard)',
               }}

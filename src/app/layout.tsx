@@ -41,8 +41,17 @@ const generalSans = localFont({
     { path: "../../public/fonts/GeneralSans-700.woff2", weight: "700", style: "normal" },
   ],
   variable: "--font-sans",
-  display: "swap",
-  preload: false,
+  /* Zero-CLS recipe for the body/UI face. `optional` means the browser either
+     has the font within its short block period or keeps the fallback for that
+     load and never swaps — so text metrics cannot change after first paint.
+     `preload` makes it available inside that window on any reasonable
+     connection, and the size-adjusted Arial fallback keeps the layout close to
+     the intended design in the rare case it isn't. This face sets the demo
+     card's tab row, which had 1px of slack and wrapped on the swap.
+     Serif/mono intentionally left on `swap` — see the report. */
+  display: "optional",
+  adjustFontFallback: "Arial",
+  preload: true,
 });
 
 export const metadata: Metadata = {
