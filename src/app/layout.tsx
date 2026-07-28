@@ -48,14 +48,14 @@ const generalSans = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL("https://hotelcompanion.ai"),
   title: {
-    default: "Hotel Companion — The hospitality intelligence layer for hotels, built on Companion OS",
+    default: "Hotel Companion — A concierge that never forgets, built on Companion OS",
     template: "%s · Hotel Companion",
   },
   description:
     "Understand Every Guest. Capture Every Opportunity. Hotel Companion transforms natural conversations into personalized guest experiences, operational intelligence, and coordinated execution. Powered by Companion OS.",
   openGraph: {
     siteName: "Hotel Companion",
-    title: "Hotel Companion — The hospitality intelligence layer for hotels, built on Companion OS",
+    title: "Hotel Companion — A concierge that never forgets, built on Companion OS",
     description:
       "Understand Every Guest. Capture Every Opportunity. Powered by Companion OS.",
     url: "https://hotelcompanion.ai",
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hotel Companion — The hospitality intelligence layer for hotels, built on Companion OS",
+    title: "Hotel Companion — A concierge that never forgets, built on Companion OS",
     description:
       "Understand Every Guest. Capture Every Opportunity. Powered by Companion OS.",
   },

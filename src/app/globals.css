@@ -80,16 +80,17 @@ body {
   color: var(--accent);
 }
 
-/* Homepage hero headline tiers. ES copy runs ~6 display lines where EN runs 4,
-   pushing the CTA and demo card below the first viewport — so ES steps down one
-   size tier (-17%) with matching line-height. Locale-aware presentation only;
-   EN is untouched. Applied via a conditional class in HomeClient. */
+/* Homepage hero headline tiers. The compact tier (-17%, matching line-height)
+   keeps the whole hero — kicker through demo card — inside the first viewport
+   at 1512x812. Introduced for the longer ES headline; the two-sentence EN
+   headline now runs the same length, so BOTH locales use it (hence --compact,
+   not --es). ES additionally tightens the hero rhythm in HomeClient. */
 .hero-h1 {
   font-size: clamp(34px, 4.5vw, 64px);
   line-height: 1.05;
   letter-spacing: -0.015em;
 }
-.hero-h1--es {
+.hero-h1--compact {
   font-size: clamp(30px, 3.8vw, 53px);
   line-height: 1.08;
 }

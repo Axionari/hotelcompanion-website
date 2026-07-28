@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import HomeClient from './HomeClient'
 
 export const metadata: Metadata = {
-  title: 'Hotel Companion — The hospitality intelligence layer for hotels, built on Companion OS',
+  title: 'Hotel Companion — A concierge that never forgets, built on Companion OS',
   /* v3 G5: "Powered by Companion OS." dropped from the meta description so the
      homepage's Companion OS mentions stay at two (band + footer line). */
   description:

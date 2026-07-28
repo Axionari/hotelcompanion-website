@@ -112,7 +112,7 @@ export default function HomeClient() {
               <div className="lg:col-span-5">
                 {/* Chapter kicker 01 — opens the numbered 01–07 sequence */}
                 <div className={`eyebrow eyebrow-accent ${esHero ? 'mb-4' : 'mb-6'}`}>{c.actI.kicker}</div>
-                <h1 className={esHero ? 'hero-h1 hero-h1--es' : 'hero-h1'} style={{ fontFamily: SERIF, fontWeight: 530, color: 'var(--text)', maxWidth: '15ch' }}>
+                <h1 className="hero-h1 hero-h1--compact" style={{ fontFamily: SERIF, fontWeight: 530, color: 'var(--text)', maxWidth: '15ch' }}>
                   {c.actI.h1Line1}{' '}
                   <em style={{ fontStyle: 'italic', fontWeight: 480, color: 'var(--cream, #F2EEE6)' }}>{c.actI.h1Line2}</em>
                 </h1>

@@ -14,8 +14,8 @@ const en = {
     /* Chapter kicker 01 — the numbered 01–07 sequence now starts at the hero
        (system-coherence pass), superseding the earlier no-eyebrow rule. */
     kicker: '01 · HOTEL COMPANION',
-    h1Line1: 'Understand Every Guest.',
-    h1Line2: 'Capture Every Opportunity.',
+    h1Line1: 'A Front Desk That Never Sleeps.',
+    h1Line2: 'A Concierge That Never Forgets.',
     strip: 'NO FORM · NO BROCHURE · THIS IS THE PRODUCT',
     proof: '0% OTA COMMISSION · 24/7 · IN EVERY LANGUAGE · MEASURED FROM DAY ONE',
   },
@@ -102,9 +102,8 @@ const es: typeof en = {
     wordmark: 'HOTEL COMPANION',
     coords: 'N 20.2114° · W 87.4654°',
     kicker: '01 · HOTEL COMPANION',
-    /* [v3] — hero copy unchanged in the v3 deck → shipped v3 string (OQ-10) */
-    h1Line1: 'Entiende a Cada Huésped.',
-    h1Line2: 'Aprovecha Cada Oportunidad.',
+    h1Line1: 'Una Recepción Que Nunca Duerme.',
+    h1Line2: 'Un Concierge Que Nunca Olvida.',
     strip: 'SIN FORMULARIO · SIN FOLLETO · ESTO ES EL PRODUCTO',
     proof: '0% COMISIÓN OTA · 24/7 · EN CADA IDIOMA · MEDIDO DESDE EL DÍA UNO',
   },

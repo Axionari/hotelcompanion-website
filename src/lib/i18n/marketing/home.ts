@@ -5,7 +5,7 @@ import type { ScreenId } from './deviceScreens'
 
 const en = {
   heroLead:
-    'Hotel Companion turns every guest conversation into revenue, action, and intelligence — a Companion for the whole stay, built on Companion OS.',
+    'Hotel Companion answers every guest — before arrival, at 3am, after checkout — in your brand’s voice, with everything it knows about your property and your city. It’s in every conversation your team can’t be. Built on Companion OS.',
   /* P5.5 — framing for the in-room tablet showcase. Statement reuses the
      approved journey line ("Every answer is a picture"); eyebrow is a label. */
   tabletShowcase: {
@@ -78,8 +78,11 @@ const en = {
 /* Copy source: HotelCompanion__Site_Copy_ES.md {#home}. Verbatim — do not edit here. */
 
 const es: typeof en = {
+  /* Register: tú, matching the rest of the ES site copy (the founding-pilot
+     instrument is the one deliberate ustedes section). Draft arrived in "su"
+     form and was converted so the page never mixes registers. */
   heroLead:
-    'Hotel Companion convierte cada conversación con el huésped en ingresos, acción e inteligencia — un Companion para toda la estancia, construido sobre Companion OS.',
+    'Hotel Companion responde a cada huésped — antes de llegar, a las 3am, después del check-out — con la voz de tu marca y todo lo que sabe de tu propiedad y de tu ciudad. Está en cada conversación en la que tu equipo no puede estar. Construido sobre Companion OS.',
   tabletShowcase: {
     eyebrow: 'EL COMPANION EN LA HABITACIÓN',
     statement: 'Cada respuesta es una imagen.',
