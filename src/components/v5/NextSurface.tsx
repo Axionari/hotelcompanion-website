@@ -7,7 +7,7 @@ import { VoiceOrb } from '@/components/cds/VoiceOrb'
 /**
  * On the horizon — the AR surface. As spatial computing arrives, the Companion
  * becomes a room you look around in: real dishes float in the air, the one you
- * gaze at sharpens while the rest fall back, it's voice-first, and it still
+ * gaze at sharpens while the rest fall back, it’s voice-first, and it still
  * remembers you ("you liked it in March"). Adapted from the spatial-menu
  * reference into our own system — Fraunces / Spline / General Sans, terracotta
  * actions, brass accents, warm dark bed, and the approved VoiceOrb.
@@ -70,7 +70,7 @@ export function NextSurface() {
             The surface after the screen. <em style={{ fontStyle: 'italic', fontWeight: 480, color: CREAM }}>Already fluent.</em>
           </h2>
           <p style={{ ...SANS, marginTop: 20, fontSize: 'clamp(15px, 1.5vw, 18px)', color: 'var(--text-dim, rgba(242,233,220,.6))', maxWidth: '54ch', lineHeight: 1.6 }}>
-            When the glasses arrive, the menu is simply in the room — you gaze at a dish and it comes forward, you say &ldquo;I&apos;ll have it,&rdquo; and it&apos;s on the suite. Nothing to sign. It still remembers what you liked.
+            When the glasses arrive, the menu is simply in the room — you gaze at a dish and it comes forward, you say &ldquo;I’ll have it,&rdquo; and it’s on the suite. Nothing to sign. It still remembers what you liked.
           </p>
         </div>
         </Reveal>
@@ -96,7 +96,7 @@ export function NextSurface() {
           <div className="hidden md:block" style={{ position: 'absolute', top: '6%', right: '4%', ...MONO, fontSize: 'clamp(8px,0.95vw,11px)', letterSpacing: '.24em', color: 'rgba(242,233,220,0.42)' }}>LISTENING</div>
 
           {/* side dishes — out of focus */}
-          <SideDish side="left" title="Ceviche verde" price="$18" meta="bright · citrus · today's catch" image="/assets/ui/dish-1.webp" />
+          <SideDish side="left" title="Ceviche verde" price="$18" meta="bright · citrus · today’s catch" image="/assets/ui/dish-1.webp" />
           <SideDish side="right" title="Tres leches" price="$12" meta="the house classic · save room" image="/assets/ui/dish-3.webp" />
 
           {/* mobile spatial peeks — the menu continues beyond the frame, tilted
@@ -126,7 +126,7 @@ export function NextSurface() {
                   <img alt="Pescado a la talla" src="/assets/ui/dish-2.webp" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
                   <div style={BLOOM} />
                   <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(12,8,5,0.1) 0%, transparent 45%, rgba(12,8,5,0.6) 100%)' }} />
-                  <span style={{ position: 'absolute', top: '7%', right: '7%', ...MONO, fontSize: 'clamp(7.5px,0.8vw,10px)', letterSpacing: '.14em', color: TERRA, border: '1px solid rgba(200,106,58,0.5)', background: 'rgba(11,9,8,0.55)', backdropFilter: 'blur(4px)', borderRadius: 999, padding: '4px 10px' }}>CHEF&apos;S CATCH</span>
+                  <span style={{ position: 'absolute', top: '7%', right: '7%', ...MONO, fontSize: 'clamp(7.5px,0.8vw,10px)', letterSpacing: '.14em', color: TERRA, border: '1px solid rgba(200,106,58,0.5)', background: 'rgba(11,9,8,0.55)', backdropFilter: 'blur(4px)', borderRadius: 999, padding: '4px 10px' }}>CHEF’S CATCH</span>
                 </div>
                 {/* detail */}
                 <div style={{ background: 'rgba(12,8,5,0.78)', padding: 'clamp(13px,1.3vw,20px)' }}>
@@ -136,7 +136,7 @@ export function NextSurface() {
                   </div>
                   <p style={{ ...SANS, fontSize: 'clamp(11px,1.05vw,14px)', lineHeight: 1.45, color: 'rgba(242,233,220,0.78)', marginTop: 9 }}>Caught this morning off Punta Allen — grilled whole over mesquite.</p>
                   <div style={{ display: 'flex', gap: 9, marginTop: 14 }}>
-                    <span style={{ ...SANS, fontWeight: 600, fontSize: 'clamp(11px,1.15vw,15px)', color: '#fff', background: TERRA, borderRadius: 999, padding: 'clamp(8px,0.9vw,12px) clamp(14px,1.6vw,22px)', whiteSpace: 'nowrap' }}>&ldquo;I&apos;ll have it&rdquo;</span>
+                    <span style={{ ...SANS, fontWeight: 600, fontSize: 'clamp(11px,1.15vw,15px)', color: '#fff', background: TERRA, borderRadius: 999, padding: 'clamp(8px,0.9vw,12px) clamp(14px,1.6vw,22px)', whiteSpace: 'nowrap' }}>&ldquo;I’ll have it&rdquo;</span>
                     <span style={{ ...SANS, fontWeight: 500, fontSize: 'clamp(11px,1.15vw,15px)', color: CREAM, border: '1px solid rgba(242,233,220,0.32)', borderRadius: 999, padding: 'clamp(8px,0.9vw,12px) clamp(14px,1.6vw,22px)', whiteSpace: 'nowrap' }}>Pair a wine</span>
                   </div>
                 </div>
@@ -163,7 +163,7 @@ export function NextSurface() {
               <div style={{ position: 'relative' }}><VoiceOrb size="clamp(40px,5vw,64px)" state="speaking" showMic={false} /></div>
             </div>
             <div className="hidden md:flex" style={{ alignItems: 'center', gap: 'clamp(10px,1.4vw,20px)' }}>
-              <span style={{ ...MONO, fontSize: 'clamp(8px,0.95vw,11px)', letterSpacing: '.14em', color: 'rgba(242,233,220,0.5)' }}>&ldquo;WHAT&apos;S LIGHT?&rdquo;</span>
+              <span style={{ ...MONO, fontSize: 'clamp(8px,0.95vw,11px)', letterSpacing: '.14em', color: 'rgba(242,233,220,0.5)' }}>&ldquo;WHAT’S LIGHT?&rdquo;</span>
               <span style={{ width: 3, height: 3, borderRadius: '50%', background: 'rgba(242,233,220,0.4)' }} />
               <span style={{ ...MONO, fontSize: 'clamp(8px,0.95vw,11px)', letterSpacing: '.14em', color: 'rgba(242,233,220,0.5)' }}>&ldquo;ORDER FOR TWO&rdquo;</span>
             </div>

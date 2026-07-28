@@ -228,7 +228,8 @@ export default function ContactClient() {
               <div className="eyebrow mb-3" style={{ color: 'var(--text-faint)' }}>
                 {c.hq.title}
               </div>
-              <p style={{ fontFamily: SERIF, fontStyle: 'italic', fontWeight: 480, fontSize: 15, lineHeight: 1.6, color: 'var(--text-dim)' }}>
+              {/* Site-audit: body register (serif is headline-only on this site) */}
+              <p style={{ fontSize: 15, lineHeight: 1.65, color: 'var(--text-dim)', maxWidth: '44ch' }}>
                 {c.hq.line}
               </p>
             </div>

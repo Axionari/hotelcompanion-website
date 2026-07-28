@@ -179,7 +179,7 @@ export default function AssistantClient({ property }: Props) {
                 marginRight: 'auto',
               }}
             >
-              Hello! I&apos;m your AI assistant for {property.hotel_name}. Ask me anything about the property, local area, or your stay.
+              Hello! I’m your AI assistant for {property.hotel_name}. Ask me anything about the property, local area, or your stay.
             </div>
           </div>
 

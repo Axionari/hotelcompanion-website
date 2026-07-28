@@ -12,7 +12,7 @@ export interface AskBarItem {
 
 const en: { placeholder: string; fallback: string; submitLabel: string; answerRegionLabel: string; items: AskBarItem[] } = {
   placeholder: 'Ask anything…',
-  fallback: "That's a good one — bring it to your demo.",
+  fallback: "That’s a good one — bring it to your demo.",
   submitLabel: 'Ask',
   answerRegionLabel: 'Companion answer',
   items: [

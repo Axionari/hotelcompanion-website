@@ -2,7 +2,7 @@ import type { Localized } from '../useCopy'
 
 /* Copy source: docs/v4/V4_BUILD_KIT.md §3 — VERBATIM LAW.
    Where a §3 line is marked [v3] and the line exists in docs/v3/02_COPY_DECK.md
-   (or its ADDENDA), the v3 string is authoritative per the kit's own rule; the
+   (or its ADDENDA), the v3 string is authoritative per the kit’s own rule; the
    resolved conflicts are logged in OPEN_QUESTIONS.md OQ-10.
    14 conversations / $250 / 10:04 / 18:40 / 02:14 / 10:12:
    /* ILLUSTRATIVE — audit before production promotion */
@@ -20,7 +20,7 @@ const en = {
     proof: '0% OTA COMMISSION · 24/7 · IN EVERY LANGUAGE · MEASURED FROM DAY ONE',
   },
   actII: {
-    eyebrow: "02 · WHAT'S AT STAKE",
+    eyebrow: "02 · WHAT’S AT STAKE",
     figure1: '2–3×',
     line1: 'What an OTA booking costs versus direct.',
     source1: 'SOURCE: KALIBRI LABS.',
@@ -43,12 +43,12 @@ const en = {
     bubble2: '"Can we upgrade to an ocean view?"',
     bubble3: '"There\'s water on the bathroom floor."',
     suitePrice: '$250/night',
-    receipt214: ['→ ENGINEERING · ', 'ROOM 214', ' · 02:14', "GUEST'S EXACT WORDS ATTACHED"],
+    receipt214: ['→ ENGINEERING · ', 'ROOM 214', ' · 02:14', "GUEST’S EXACT WORDS ATTACHED"],
   },
   actIV: {
     eyebrow: '04 · EVERY SURFACE',
     statementPre: 'One conversation. ',
-    statementHi: "Every screen in the guest's world.",
+    statementHi: "Every screen in the guest’s world.",
     closingPre: 'Five screens. One memory. ',
     closingHi: 'She never repeated herself once.',
   },
@@ -81,7 +81,7 @@ const en = {
        NEEDS CONFIRM (Eduardo): replaces "Live in Days. Not Months." */
     statementPre: 'Value ',
     statementHi: 'before integration.',
-    line: "It doesn't replace your systems. It understands the conversations between them.",
+    line: "It doesn’t replace your systems. It understands the conversations between them.",
     line2: 'The Companion starts answering guests before a single system is connected. PMS, POS and payments follow in a staged rollout — measured together, live in weeks.',
     chips: ['STAGED ROLLOUT', 'ROLE-BASED ACCESS', 'ENCRYPTED', 'PRIVACY-FIRST', 'WORKS WITH YOUR PMS'],
   },
@@ -90,8 +90,8 @@ const en = {
     statementLine1: 'Stop reading about it.',
     statementLine2: 'See it answer.',
     partnerLine: 'Now selecting founding hotel groups.',
-    /* ADDENDUM 2: the founding CTA retired — the primary action is the site's
-       Book a Demo string; /contact#founding is the program's canonical home */
+    /* ADDENDUM 2: the founding CTA retired — the primary action is the site’s
+       Book a Demo string; /contact#founding is the program’s canonical home */
     signoff: 'POWERED BY AXIONARI',
   },
 }

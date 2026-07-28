@@ -8,7 +8,7 @@ import { v4Copy } from '@/lib/i18n/marketing/v4'
 import { deviceScreens } from '@/lib/i18n/marketing/deviceScreens'
 
 /**
- * Every Surface — "One conversation. Every screen in the guest's world."
+ * Every Surface — "One conversation. Every screen in the guest’s world."
  * The device family as one cinematic still (Claude Design handoff, Turn 7),
  * built for real: one question — "Best beach near here?" — flowing across a
  * laptop (books before arrival, 0% commission), the in-room tablet (the answer
@@ -201,7 +201,7 @@ export function EverySurface() {
                       <div style={{ position: 'absolute', left: u(14), right: u(14), bottom: u(58), zIndex: 3, display: 'flex', flexDirection: 'column', gap: u(6) }}>
                         <span style={{ ...MONO, alignSelf: 'flex-start', whiteSpace: 'nowrap', fontSize: u(8), letterSpacing: '.14em', color: TERRA, border: '1px solid rgba(200,106,58,.45)', background: 'rgba(9,6,4,.5)', borderRadius: 999, padding: `${u(3)} ${u(8)}` }}>IN TOWN · GOLDEN HOUR 6:48</span>
                         <div style={{ fontFamily: SERIF, fontWeight: 500, fontSize: u(27), lineHeight: 1, color: CREAM }}>Cielo Rooftop</div>
-                        <div style={{ ...SANS, fontSize: u(11), color: TERRA }}>a mezcal list the hotel bar can&apos;t match</div>
+                        <div style={{ ...SANS, fontSize: u(11), color: TERRA }}>a mezcal list the hotel bar can’t match</div>
                         <div style={{ ...SANS, fontSize: u(10.5), lineHeight: 1.4, color: 'rgba(242,233,220,.72)', border: '1px solid rgba(242,233,220,.12)', background: 'rgba(9,6,4,.5)', borderRadius: u(10), padding: `${u(8)} ${u(10)}`, marginTop: u(2) }}>Leave by 6:15 for the light — back in time for your 8:00 table.</div>
                         <div style={{ display: 'flex', gap: u(7), marginTop: u(2) }}>
                           <span style={{ flex: 1, ...SANS, background: TERRA, color: '#fff', borderRadius: 999, padding: `${u(9)} 0`, fontSize: u(11.5), fontWeight: 600, textAlign: 'center' }}>Taxi at 6:15</span>

@@ -38,7 +38,7 @@ const en = {
           { label: 'Enterprise', href: '/enterprise' },
           { label: 'Resources', href: '/resources' },
           { label: 'Company', href: '/company' },
-          { label: 'Book Demo', href: '/demo' },
+          { label: 'Book a Demo', href: '/demo' },
         ],
       },
       solutions: {
@@ -146,7 +146,7 @@ const es: typeof en = {
           { label: 'Enterprise', href: '/enterprise' },
           { label: 'Recursos', href: '/resources' },
           { label: 'Empresa', href: '/company' },
-          { label: 'Agenda Demo', href: '/demo' },
+          { label: 'Agenda una Demo', href: '/demo' },
         ],
       },
       solutions: {

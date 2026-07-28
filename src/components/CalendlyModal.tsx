@@ -50,7 +50,7 @@ export default function CalendlyModal({ onClose }: CalendlyModalProps) {
                 {lang === 'es' ? 'Llamada de Descubrimiento' : 'Quick Discovery Call'}
               </p>
               <p className="font-sans" style={{ fontSize: '13px', color: '#6B6560' }}>
-                {lang === 'es' ? 'Perfecto si estás explorando opciones' : "Perfect if you're exploring your options"}
+                {lang === 'es' ? 'Perfecto si estás explorando opciones' : "Perfect if you’re exploring your options"}
               </p>
             </div>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="#6B6560" strokeWidth="1.25" strokeLinecap="round"/></svg>

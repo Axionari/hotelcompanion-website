@@ -26,7 +26,7 @@ const en = {
       title: 'Explore the platform.',
       body: 'Interested in learning how Hotel Companion can transform your guest experience? Our team will walk you through the platform, answer your questions, and explore whether we’re a good fit for your organization.',
       email: 'sales@hotelcompanion.ai',
-      cta: { label: 'Book a Demonstration', href: '/demo' },
+      cta: { label: 'Book a Demo', href: '/demo' },
     },
     {
       id: 'partnerships',
@@ -160,7 +160,7 @@ const es: typeof en = {
       title: 'Explora la plataforma.',
       body: '¿Te interesa saber cómo Hotel Companion puede transformar tu experiencia del huésped? Nuestro equipo te mostrará la plataforma, responderá tus preguntas y explorará si somos lo indicado para tu organización.',
       email: 'sales@hotelcompanion.ai',
-      cta: { label: 'Agenda una Demostración', href: '/demo' },
+      cta: { label: 'Agenda una Demo', href: '/demo' },
     },
     {
       id: 'partnerships',
@@ -221,7 +221,7 @@ const es: typeof en = {
     framing: 'SELECCIONANDO A LOS GRUPOS HOTELEROS FUNDADORES',
     title: 'El piloto fundador, en una página.',
     sub: 'Noventa días. Una propiedad. Cuatro números que acordamos antes de arrancar.',
-    stamp: 'medido en tu piloto',
+    stamp: 'medido en su piloto',
     kpis: [
       { label: 'Participación de reserva directa', unit: '%' },
       { label: 'Comisión OTA evitada', unit: '$/mes' },

@@ -23,7 +23,7 @@ const en = {
   },
   /** Spoken-language labels shown beneath the big orb. */
   orbStates: {
-    idle: "Talk or type — I'm listening",
+    idle: "Talk or type — I’m listening",
     listening: 'Listening…',
     thinking: 'Thinking…',
     speaking: 'Speaking…',
