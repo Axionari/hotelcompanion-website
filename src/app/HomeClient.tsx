@@ -15,6 +15,7 @@ import { CreditLockup } from '@/components/cds/EndorsementMark'
 import { openLiveDemo } from '@/components/cds/LiveDemoModal'
 import { LIVE_DEMO_ENABLED } from '@/lib/flags'
 import { useCopy } from '@/lib/i18n/useCopy'
+import { useLang } from '@/lib/i18n/LanguageContext'
 import { v4Copy } from '@/lib/i18n/marketing/v4'
 import { homeCopy } from '@/lib/i18n/marketing/home'
 import { globalCopy } from '@/lib/i18n/marketing/global'
@@ -91,6 +92,10 @@ export default function HomeClient() {
   const g = useCopy(globalCopy)
   const demo = useCopy(liveDemoCopy)
   const home = useCopy(homeCopy)
+  /* ES hero tier (see .hero-h1--es in globals.css): the longer ES headline must
+     still land the full hero — kicker to demo card — in the first viewport. */
+  const { lang } = useLang()
+  const esHero = lang === 'es'
 
   const italic = (t: string) => <em style={{ fontStyle: 'italic', fontWeight: 480, color: 'var(--cream, #F2EEE6)' }}>{t}</em>
 
@@ -106,17 +111,17 @@ export default function HomeClient() {
             <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
               <div className="lg:col-span-5">
                 {/* Chapter kicker 01 — opens the numbered 01–07 sequence */}
-                <div className="eyebrow eyebrow-accent mb-6">{c.actI.kicker}</div>
-                <h1 style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(34px, 4.5vw, 64px)', lineHeight: 1.05, letterSpacing: '-0.015em', color: 'var(--text)', maxWidth: '15ch' }}>
+                <div className={`eyebrow eyebrow-accent ${esHero ? 'mb-4' : 'mb-6'}`}>{c.actI.kicker}</div>
+                <h1 className={esHero ? 'hero-h1 hero-h1--es' : 'hero-h1'} style={{ fontFamily: SERIF, fontWeight: 530, color: 'var(--text)', maxWidth: '15ch' }}>
                   {c.actI.h1Line1}{' '}
                   <em style={{ fontStyle: 'italic', fontWeight: 480, color: 'var(--cream, #F2EEE6)' }}>{c.actI.h1Line2}</em>
                 </h1>
-                <p className="body-lead mt-7" style={{ maxWidth: '42ch' }}>{home.heroLead}</p>
-                <div className="mt-9 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                <p className={`body-lead ${esHero ? 'mt-5' : 'mt-7'}`} style={{ maxWidth: '42ch' }}>{home.heroLead}</p>
+                <div className={`${esHero ? 'mt-7' : 'mt-9'} flex flex-col sm:flex-row items-stretch sm:items-center gap-3`}>
                   <Link href="/demo" className="btn-primary">{g.nav.bookDemo}</Link>
                   {LIVE_DEMO_ENABLED && <button type="button" onClick={openLiveDemo} className="btn-secondary">{demo.open}</button>}
                 </div>
-                <div className="mt-9"><CreditLockup /></div>
+                <div className={esHero ? 'mt-7' : 'mt-9'}><CreditLockup /></div>
               </div>
               <div className="lg:col-span-7">
                 <Reveal>

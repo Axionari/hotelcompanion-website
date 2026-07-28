@@ -80,6 +80,20 @@ body {
   color: var(--accent);
 }
 
+/* Homepage hero headline tiers. ES copy runs ~6 display lines where EN runs 4,
+   pushing the CTA and demo card below the first viewport — so ES steps down one
+   size tier (-17%) with matching line-height. Locale-aware presentation only;
+   EN is untouched. Applied via a conditional class in HomeClient. */
+.hero-h1 {
+  font-size: clamp(34px, 4.5vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+}
+.hero-h1--es {
+  font-size: clamp(30px, 3.8vw, 53px);
+  line-height: 1.08;
+}
+
 /* Body copy */
 .body-lead {
   font-size: clamp(1rem, 1.35vw, 1.125rem);
