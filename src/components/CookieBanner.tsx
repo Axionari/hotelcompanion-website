@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { cookieBannerCopy } from '@/lib/i18n/marketing/cookieBanner'
@@ -19,6 +19,7 @@ export function CookieBanner() {
   const [expanded, setExpanded] = useState(false)
   const [analytics, setAnalytics] = useState(false)
   const [marketing, setMarketing] = useState(false)
+  const ref = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     const sync = () => {
@@ -35,6 +36,29 @@ export function CookieBanner() {
     return () => window.removeEventListener(CONSENT_EVENT, sync)
   }, [])
 
+  /* Publish the banner's own height as --cbanner-h so layout can reserve it and
+     nothing interactive ends up underneath — the bar is much taller on mobile
+     (stacked full-width buttons) and taller again when expanded. 0px when the
+     banner isn't mounted, so consumers can use it unconditionally. */
+  useEffect(() => {
+    const root = document.documentElement
+    const el = ref.current
+    if (!visible || !el) {
+      root.style.setProperty('--cbanner-h', '0px')
+      return
+    }
+    const publish = () => root.style.setProperty('--cbanner-h', `${Math.round(el.getBoundingClientRect().height)}px`)
+    publish()
+    const ro = new ResizeObserver(publish)
+    ro.observe(el)
+    window.addEventListener('resize', publish)
+    return () => {
+      ro.disconnect()
+      window.removeEventListener('resize', publish)
+      root.style.setProperty('--cbanner-h', '0px')
+    }
+  }, [visible, expanded])
+
   if (!visible) return null
 
   const decide = (prefs: { analytics: boolean; marketing: boolean }) => {
@@ -43,7 +67,7 @@ export function CookieBanner() {
   }
 
   return (
-    <div className="cbanner" role="dialog" aria-modal="true" aria-label={c.ariaLabel}>
+    <div className="cbanner" ref={ref} role="dialog" aria-modal="true" aria-label={c.ariaLabel}>
       <div className="cbin">
         <p className="cbtext">
           {c.bodyPre}

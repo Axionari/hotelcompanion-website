@@ -4,8 +4,9 @@ import type { ScreenId } from './deviceScreens'
 /* Copy source: HotelCompanion__Site_Copy.md {#home}. Verbatim — do not edit here. */
 
 const en = {
+  /* "Built on Companion OS" lives in the footer credit lockup, not here. */
   heroLead:
-    'Hotel Companion answers every guest — before arrival, at 3am, after checkout — in your brand’s voice, with everything it knows about your property and your city. It’s in every conversation your team can’t be. Built on Companion OS.',
+    'Answers every guest in your brand’s voice — knowing your property and your city — at 3am, before arrival, long after checkout.',
   /* P5.5 — framing for the in-room tablet showcase. Statement reuses the
      approved journey line ("Every answer is a picture"); eyebrow is a label. */
   tabletShowcase: {
@@ -24,12 +25,16 @@ const en = {
   howItWorks: {
     eyebrow: 'HOW IT WORKS',
     statement: 'What happens when a guest asks.',
+    /* Relocated from the hero subhead — too good to delete, and it reads as the
+       chapter's thesis rather than a hero line. */
+    lead: 'It’s in every conversation your team can’t be.',
     steps: [
       { title: 'A guest asks', sub: 'In their own words, in any language, on any surface.' },
       { title: 'Intent is understood', sub: 'Meaning and context — not keywords.' },
       { title: 'Intelligence is created', sub: 'The moment becomes structured, shareable context.' },
       { title: 'Work is routed', sub: 'To the right department, already briefed.' },
       { title: 'The system learns', sub: 'Every resolution sharpens the next answer. That memory lives in Companion OS — and it compounds.' },
+      { title: 'It anticipates', sub: 'Patterns become action — the Companion offers what a guest is likely to need before they ask.' },
     ],
   },
   /* P5.13 — the "before" diagram (RC homepage §02 applied to hotels), setting
@@ -79,10 +84,9 @@ const en = {
 
 const es: typeof en = {
   /* Register: tú, matching the rest of the ES site copy (the founding-pilot
-     instrument is the one deliberate ustedes section). Draft arrived in "su"
-     form and was converted so the page never mixes registers. */
+     instrument is the one deliberate ustedes section). */
   heroLead:
-    'Hotel Companion responde a cada huésped — antes de llegar, a las 3am, después del check-out — con la voz de tu marca y todo lo que sabe de tu propiedad y de tu ciudad. Está en cada conversación en la que tu equipo no puede estar. Construido sobre Companion OS.',
+    'Responde a cada huésped con la voz de tu marca — conociendo tu propiedad y tu ciudad — a las 3am, antes de llegar, mucho después del check-out.',
   tabletShowcase: {
     eyebrow: 'EL COMPANION EN LA HABITACIÓN',
     statement: 'Cada respuesta es una imagen.',
@@ -91,12 +95,14 @@ const es: typeof en = {
   howItWorks: {
     eyebrow: 'CÓMO FUNCIONA',
     statement: 'Qué ocurre cuando un huésped pregunta.',
+    lead: 'Está en cada conversación en la que tu equipo no puede estar.',
     steps: [
       { title: 'Un huésped pregunta', sub: 'En sus propias palabras, en cualquier idioma, en cualquier superficie.' },
       { title: 'Se entiende la intención', sub: 'Significado y contexto — no palabras clave.' },
       { title: 'Se crea inteligencia', sub: 'El momento se vuelve contexto estructurado y compartible.' },
       { title: 'El trabajo se enruta', sub: 'Al departamento correcto, ya informado.' },
       { title: 'El sistema aprende', sub: 'Cada resolución afina la siguiente respuesta. Esa memoria vive en Companion OS — y se acumula.' },
+      { title: 'Anticipa', sub: 'Los patrones se vuelven acción — el Companion ofrece lo que un huésped va a necesitar antes de que lo pida.' },
     ],
   },
   marquee: {

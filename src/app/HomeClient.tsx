@@ -106,14 +106,28 @@ export default function HomeClient() {
       {/* HERO — left text, in-room tablet right, over the ocean-pool still.
           RC composition: not centered, no ask-bar. */}
       <MediaBed poster="/assets/lux/hero-ocean-pool.webp" scrim={0.64} priority>
-        <section className="relative" style={{ minHeight: 'calc(100vh - 4rem)', display: 'flex', alignItems: 'center', paddingBlock: 'clamp(64px, 9vw, 120px)' }}>
+        {/* Hero box reserves the consent banner's height (--cbanner-h, 0 when
+            absent) so nothing lands under it, and its top space is tied to
+            viewport HEIGHT: short laptops give the air back, tall monitors keep
+            it. This is dead space above the first element inside the hero —
+            not inter-section rhythm, which is untouched. */}
+        <section className="relative" style={{ minHeight: 'calc(100dvh - 4rem - var(--cbanner-h, 0px))', display: 'flex', alignItems: 'center', paddingBlock: 'clamp(24px, 4.5vh, 120px)', paddingBottom: 'calc(clamp(24px, 4.5vh, 120px) + var(--cbanner-h, 0px))' }}>
           <div className="container-rc w-full">
-            <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-              <div className="lg:col-span-5">
+            {/* Copy column 503px at the capped container, taken first from the
+                old 64px gutter (now 16px) and then — unavoidably — 26px from the
+                card. 503px is the measured threshold at which the ES headline
+                sets in 4 lines; below it ES runs 5 lines and the card's own tab
+                row falls under the consent banner on a 692px viewport. */}
+            <div className="grid lg:grid-cols-[503fr_601fr] gap-12 lg:gap-4 items-center">
+              <div>
                 {/* Chapter kicker 01 — opens the numbered 01–07 sequence */}
                 <div className={`eyebrow eyebrow-accent ${esHero ? 'mb-4' : 'mb-6'}`}>{c.actI.kicker}</div>
-                <h1 className="hero-h1 hero-h1--compact" style={{ fontFamily: SERIF, fontWeight: 530, color: 'var(--text)', maxWidth: '15ch' }}>
-                  {c.actI.h1Line1}{' '}
+                {/* Explicit break between the two sentences (as in the parent
+                    footer) so the italic sentence always starts its own line —
+                    it must never trail an orphaned "A" onto the line above. */}
+                <h1 className="hero-h1 hero-h1--compact" style={{ fontFamily: SERIF, fontWeight: 530, color: 'var(--text)', maxWidth: '17ch' }}>
+                  {c.actI.h1Line1}
+                  <br />
                   <em style={{ fontStyle: 'italic', fontWeight: 480, color: 'var(--cream, #F2EEE6)' }}>{c.actI.h1Line2}</em>
                 </h1>
                 <p className={`body-lead ${esHero ? 'mt-5' : 'mt-7'}`} style={{ maxWidth: '42ch' }}>{home.heroLead}</p>
@@ -121,9 +135,12 @@ export default function HomeClient() {
                   <Link href="/demo" className="btn-primary">{g.nav.bookDemo}</Link>
                   {LIVE_DEMO_ENABLED && <button type="button" onClick={openLiveDemo} className="btn-secondary">{demo.open}</button>}
                 </div>
-                <div className={esHero ? 'mt-7' : 'mt-9'}><CreditLockup /></div>
+                {/* hero-credit: suppressed while the consent banner is up (same
+                    body:has(.cbanner) pattern as StickyCta) so its links never
+                    sit under the banner. The footer lockup carries the credit. */}
+                <div className={`hero-credit ${esHero ? 'mt-7' : 'mt-9'}`}><CreditLockup /></div>
               </div>
-              <div className="lg:col-span-7">
+              <div className="hero-device">
                 <Reveal>
                   <CompanionTablet />
                 </Reveal>
@@ -213,6 +230,8 @@ export default function HomeClient() {
           <h2 style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(28px, 3.6vw, 48px)', lineHeight: 1.1, letterSpacing: '-0.015em', color: 'var(--text)', maxWidth: '18ch', marginInline: 'auto' }}>
             {home.howItWorks.statement}
           </h2>
+          {/* Lead-in relocated from the hero subhead */}
+          <p className="body-lead mt-6" style={{ maxWidth: '46ch', marginInline: 'auto' }}>{home.howItWorks.lead}</p>
         </Reveal>
         <ArrowFlow steps={home.howItWorks.steps} />
       </Band>

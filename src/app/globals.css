@@ -1479,5 +1479,9 @@ body {
 @media (max-width:768px){.cbin{gap:12px}.cbrow{margin-left:0;width:100%;flex-direction:column}.cbtn{width:100%;display:inline-flex;justify-content:center}.cbopts{order:0}}
 
 /* While the consent banner is up, suppress HC's bottom-fixed StickyCta
-   (RC does the same for its .mctabar) so the two never stack. */
-body:has(.cbanner) .sticky-cta{opacity:0!important;visibility:hidden!important;pointer-events:none!important}
+   (RC does the same for its .mctabar) so the two never stack. The hero credit
+   lockup gets the same treatment: on short laptops it is the one hero element
+   that would fall under the banner, and the footer lockup already carries the
+   credit. visibility (not display) so the hero's geometry does not shift. */
+body:has(.cbanner) .sticky-cta,
+body:has(.cbanner) .hero-credit{opacity:0!important;visibility:hidden!important;pointer-events:none!important}
