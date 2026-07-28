@@ -143,6 +143,11 @@ conventions. **Legacy sections use Title Case** ("Why Companion OS Exists.");
 work matches its surrounding page. This closes the question — future passes
 must NOT normalize headings in either direction.
 
+**Kickers on photographic backgrounds use the light foreground variant**
+(`.eyebrow` with `color: var(--text)`), not accent orange — the accent fails
+WCAG contrast over photography (ruled 2026-07-28; first instance: the
+homepage closing kicker).
+
 ---
 
 ## Demo honesty

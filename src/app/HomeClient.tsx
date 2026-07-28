@@ -353,7 +353,7 @@ export default function HomeClient() {
       </Band>
 
       {/* CLOSING — full-bleed clifftop band, one action: Book a Demo */}
-      <MediaBed poster="/assets/lux/band-clifftop-ocean.webp" scrim={0.62}>
+      <MediaBed poster="/assets/lux/band-clifftop-ocean.webp" scrim={0.72}>
         <section style={{ paddingBlock: 'clamp(120px, 18vw, 240px)' }}>
           <div className="container-rc" style={{ textAlign: 'center' }}>
             <Reveal>
@@ -362,8 +362,10 @@ export default function HomeClient() {
                 {c.actVII.statementLine1}<br />{italic(c.actVII.statementLine2)}
               </h2>
               {/* Site-audit ruling #1: the standard mono-caps kicker, as on the
-                  pilot instrument's framing line. */}
-              <div className="eyebrow eyebrow-accent" style={{ marginTop: 28 }}>{c.actVII.partnerLine}</div>
+                  pilot instrument's framing line. Light foreground here — accent
+                  orange fails contrast over the photo (TERMINOLOGY.md: kickers
+                  on photographic backgrounds use the light variant). */}
+              <div className="eyebrow" style={{ marginTop: 28, color: 'var(--text)' }}>{c.actVII.partnerLine}</div>
               <div className="mt-10 flex justify-center">
                 <Link href="/demo" className="btn-primary">{g.nav.bookDemo}</Link>
               </div>
