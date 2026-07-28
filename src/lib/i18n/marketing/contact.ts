@@ -81,6 +81,49 @@ const en = {
     close: 'If you’re interested in helping shape the future of hospitality, we’d love to hear from you.',
     cta: 'Become a Founding Partner',
   },
+  /* Pilot instrument (pilot-instrument pass): the founding pilot on one page.
+     KPI values are deliberately blank — measured in the pilot, never invented. */
+  pilot: {
+    framing: 'Now selecting founding hotel groups.',
+    title: 'The founding pilot, on one page.',
+    sub: 'Ninety days. One property. Four numbers we agree on before we go live.',
+    stamp: 'measured in your pilot',
+    kpis: [
+      { label: 'Direct-booking share', unit: '%' },
+      { label: 'OTA commission avoided', unit: '$/mo' },
+      { label: 'Upsell revenue per stay', unit: '$' },
+      { label: 'After-hours requests captured', unit: 'req/wk' },
+    ],
+    youBring: {
+      title: 'YOU BRING',
+      items: [
+        'Your room types and rate calendar',
+        'A PMS/front-desk contact',
+        'A champion on property',
+        'Thirty minutes every Monday',
+      ],
+    },
+    weBring: {
+      title: 'WE BRING',
+      items: [
+        'Full install, weeks 1–2',
+        'The Companion, live, weeks 3–12',
+        'Your Monday Briefing, every week',
+        'Every number instrumented from day one',
+      ],
+    },
+    timeline: [
+      {
+        marker: 'Week 0',
+        text: 'We set the four targets together, and the Day-90 meeting goes on the calendar before we start.',
+      },
+      { marker: 'Day 45', text: 'Mid-pilot review.' },
+      {
+        marker: 'Day 90',
+        text: 'The numbers decide. If they clear the bar we set together, we plan the next property. If they don’t, we switch it off — and your data stays yours either way.',
+      },
+    ],
+  },
   closing: {
     title: 'Every Great Partnership Begins with a Conversation.',
     body1: 'Technology doesn’t transform organizations. People do.',
@@ -170,6 +213,49 @@ const es: typeof en = {
     ],
     close: 'Si te interesa ayudar a dar forma al futuro de la hospitalidad, nos encantaría saber de ti.',
     cta: 'Conviértete en Socio Fundador',
+  },
+  /* Instrumento del piloto: los valores de KPI van en blanco a propósito —
+     se miden en el piloto, nunca se inventan. */
+  pilot: {
+    framing: 'Seleccionando ahora a los grupos hoteleros fundadores.',
+    title: 'El piloto fundador, en una página.',
+    sub: 'Noventa días. Una propiedad. Cuatro números que acordamos antes de arrancar.',
+    stamp: 'medido en tu piloto',
+    kpis: [
+      { label: 'Participación de reserva directa', unit: '%' },
+      { label: 'Comisión OTA evitada', unit: '$/mes' },
+      { label: 'Ingreso por upsell por estancia', unit: '$' },
+      { label: 'Solicitudes fuera de horario capturadas', unit: 'sol/sem' },
+    ],
+    youBring: {
+      title: 'USTEDES PONEN',
+      items: [
+        'Sus tipos de habitación y calendario de tarifas',
+        'Un contacto de PMS/recepción',
+        'Un responsable en la propiedad',
+        'Treinta minutos cada lunes',
+      ],
+    },
+    weBring: {
+      title: 'NOSOTROS PONEMOS',
+      items: [
+        'Instalación completa, semanas 1–2',
+        'El Companion en vivo, semanas 3–12',
+        'Su Briefing de los lunes, cada semana',
+        'Cada número instrumentado desde el día uno',
+      ],
+    },
+    timeline: [
+      {
+        marker: 'Semana 0',
+        text: 'Fijamos juntos las cuatro metas, y la reunión del día 90 queda agendada antes de arrancar.',
+      },
+      { marker: 'Día 45', text: 'Revisión de medio piloto.' },
+      {
+        marker: 'Día 90',
+        text: 'Deciden los números. Si superan la meta que fijamos juntos, planeamos la siguiente propiedad. Si no, lo apagamos — y sus datos se quedan con ustedes, pase lo que pase.',
+      },
+    ],
   },
   closing: {
     title: 'Toda Gran Alianza Comienza con una Conversación.',
