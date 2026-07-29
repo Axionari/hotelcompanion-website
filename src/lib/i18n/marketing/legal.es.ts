@@ -151,7 +151,7 @@ export const privacyEs: LegalDoc = {
     { type: 'h2', text: 'Contacto' },
     {
       type: 'p',
-      text: 'Las preguntas sobre este Aviso de Privacidad pueden dirigirse a: privacy@hotelcompanion.ai',
+      text: 'Las preguntas sobre este Aviso de Privacidad pueden dirigirse a: privacy@axionari.com',
     },
     { type: 'p', text: 'Hotel Companion — Construido por Axionari — Ciudad de México, México' },
 
@@ -361,7 +361,7 @@ export const termsEs: LegalDoc = {
     },
 
     { type: 'h2', text: 'Contacto' },
-    { type: 'p', text: 'Las preguntas sobre estos Términos pueden dirigirse a: legal@hotelcompanion.ai' },
+    { type: 'p', text: 'Las preguntas sobre estos Términos pueden dirigirse a: legal@axionari.com' },
     { type: 'p', text: 'Hotel Companion — Construido por Axionari — Ciudad de México, México' },
 
     { type: 'h2', text: 'Declaración Final' },
@@ -483,7 +483,7 @@ export const cookiesEs: LegalDoc = {
     { type: 'h2', text: 'Contacto' },
     {
       type: 'p',
-      text: 'Las preguntas sobre esta Política de Cookies pueden dirigirse a: privacy@hotelcompanion.ai',
+      text: 'Las preguntas sobre esta Política de Cookies pueden dirigirse a: privacy@axionari.com',
     },
     { type: 'p', text: 'Hotel Companion — Construido por Axionari — Ciudad de México, México' },
 
@@ -580,7 +580,7 @@ export const securityEs: LegalDoc = {
     { type: 'h2', text: 'Divulgación Responsable' },
     {
       type: 'p',
-      text: 'Si crees haber identificado una vulnerabilidad de seguridad, te invitamos a una divulgación responsable. Contacto: security@hotelcompanion.ai',
+      text: 'Si crees haber identificado una vulnerabilidad de seguridad, te invitamos a una divulgación responsable. Contacto: security@axionari.com',
     },
     {
       type: 'p',
@@ -605,7 +605,7 @@ export const securityEs: LegalDoc = {
     },
 
     { type: 'h2', text: '¿Preguntas?' },
-    { type: 'p', text: 'Para consultas relacionadas con seguridad, contacta: security@hotelcompanion.ai' },
+    { type: 'p', text: 'Para consultas relacionadas con seguridad, contacta: security@axionari.com' },
   ],
 }
 
@@ -746,7 +746,7 @@ export const trustEs: LegalDoc = {
     { type: 'h2', text: 'Divulgación Responsable' },
     {
       type: 'p',
-      text: 'Si crees haber identificado una vulnerabilidad de seguridad, contacta: security@hotelcompanion.ai',
+      text: 'Si crees haber identificado una vulnerabilidad de seguridad, contacta: security@axionari.com',
     },
     {
       type: 'p',
@@ -756,7 +756,7 @@ export const trustEs: LegalDoc = {
     { type: 'h2', text: 'Contacto' },
     {
       type: 'p',
-      text: 'Las preguntas sobre seguridad, privacidad, cumplimiento o IA responsable pueden dirigirse a: security@hotelcompanion.ai · privacy@hotelcompanion.ai · legal@hotelcompanion.ai',
+      text: 'Las preguntas sobre seguridad, privacidad, cumplimiento o IA responsable pueden dirigirse a: security@axionari.com · privacy@axionari.com · legal@axionari.com',
     },
 
     { type: 'h2', text: 'Nuestro Compromiso' },

@@ -128,7 +128,7 @@ const privacyEn: LegalDoc = {
     { type: 'p', text: 'Material changes will be reflected by updating the “Last Updated” date.' },
 
     { type: 'h2', text: 'Contact' },
-    { type: 'p', text: 'Questions regarding this Privacy Policy may be directed to: privacy@hotelcompanion.ai' },
+    { type: 'p', text: 'Questions regarding this Privacy Policy may be directed to: privacy@axionari.com' },
     { type: 'p', text: 'Hotel Companion — Powered by Axionari — Mexico City, Mexico' },
 
     { type: 'h2', text: 'Our Commitment' },
@@ -317,7 +317,7 @@ const termsEn: LegalDoc = {
     },
 
     { type: 'h2', text: 'Contact' },
-    { type: 'p', text: 'Questions regarding these Terms may be directed to: legal@hotelcompanion.ai' },
+    { type: 'p', text: 'Questions regarding these Terms may be directed to: legal@axionari.com' },
     { type: 'p', text: 'Hotel Companion — Powered by Axionari — Mexico City, Mexico' },
 
     { type: 'h2', text: 'Final Statement' },
@@ -431,7 +431,7 @@ const cookiesEn: LegalDoc = {
     { type: 'p', text: 'The latest version will always be available on this page.' },
 
     { type: 'h2', text: 'Contact' },
-    { type: 'p', text: 'Questions about this Cookie Policy may be directed to: privacy@hotelcompanion.ai' },
+    { type: 'p', text: 'Questions about this Cookie Policy may be directed to: privacy@axionari.com' },
     { type: 'p', text: 'Hotel Companion — Powered by Axionari — Mexico City, Mexico' },
 
     { type: 'h2', text: 'Transparency by Design' },
@@ -527,7 +527,7 @@ const securityEn: LegalDoc = {
     { type: 'h2', text: 'Responsible Disclosure' },
     {
       type: 'p',
-      text: 'If you believe you have identified a security vulnerability, we encourage responsible disclosure. Please contact: security@hotelcompanion.ai',
+      text: 'If you believe you have identified a security vulnerability, we encourage responsible disclosure. Please contact: security@axionari.com',
     },
     {
       type: 'p',
@@ -552,7 +552,7 @@ const securityEn: LegalDoc = {
     },
 
     { type: 'h2', text: 'Questions?' },
-    { type: 'p', text: 'For security-related inquiries, contact: security@hotelcompanion.ai' },
+    { type: 'p', text: 'For security-related inquiries, contact: security@axionari.com' },
   ],
 }
 
@@ -690,14 +690,14 @@ const trustEn: LegalDoc = {
     { type: 'h2', text: 'Responsible Disclosure' },
     {
       type: 'p',
-      text: 'If you believe you have identified a security vulnerability, please contact: security@hotelcompanion.ai',
+      text: 'If you believe you have identified a security vulnerability, please contact: security@axionari.com',
     },
     { type: 'p', text: 'We investigate all legitimate reports responsibly and appreciate coordinated disclosure.' },
 
     { type: 'h2', text: 'Contact' },
     {
       type: 'p',
-      text: 'Questions regarding security, privacy, compliance, or responsible AI can be directed to: security@hotelcompanion.ai · privacy@hotelcompanion.ai · legal@hotelcompanion.ai',
+      text: 'Questions regarding security, privacy, compliance, or responsible AI can be directed to: security@axionari.com · privacy@axionari.com · legal@axionari.com',
     },
 
     { type: 'h2', text: 'Our Commitment' },

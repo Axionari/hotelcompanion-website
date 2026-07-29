@@ -58,7 +58,7 @@ const en: LegalDoc = {
     { type: 'h2', text: 'Feedback' },
     { type: 'p', text: 'If you encounter an accessibility barrier, or you have a suggestion, we want to hear from you.' },
     { type: 'p', text: 'Your feedback helps us improve for everyone.' },
-    { type: 'p', text: 'Contact: accessibility@hotelcompanion.ai' },
+    { type: 'p', text: 'Contact: accessibility@axionari.com' },
     {
       type: 'p',
       text: 'Please describe the page or feature, the issue you experienced, and the assistive technology or browser you were using, if applicable.',
@@ -125,7 +125,7 @@ const es: LegalDoc = {
     { type: 'h2', text: 'Comentarios' },
     { type: 'p', text: 'Si encuentras una barrera de accesibilidad, o tienes una sugerencia, queremos saberlo.' },
     { type: 'p', text: 'Tus comentarios nos ayudan a mejorar para todos.' },
-    { type: 'p', text: 'Contacto: accessibility@hotelcompanion.ai' },
+    { type: 'p', text: 'Contacto: accessibility@axionari.com' },
     {
       type: 'p',
       text: 'Por favor describe la página o función, el problema que experimentaste y la tecnología de asistencia o navegador que usabas, si aplica.',
