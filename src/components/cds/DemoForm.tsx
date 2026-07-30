@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { demoFormCopy } from '@/lib/i18n/marketing/demoForm'
+import { CalendlyInline } from './CalendlyInline'
 
 type Status = 'idle' | 'submitting' | 'success' | 'error'
 
@@ -68,8 +69,8 @@ export function DemoForm() {
   if (status === 'success') {
     return (
       <div
-        className="rounded-2xl p-8 md:p-10 text-center max-w-xl mx-auto"
-        style={{ background: 'var(--surface-2)', border: '1px solid var(--border)' }}
+        className="rounded-2xl p-8 md:p-10 text-center mx-auto"
+        style={{ background: 'var(--surface-2)', border: '1px solid var(--border)', maxWidth: 900 }}
         role="status"
       >
         <p className="font-serif heading-card mb-3" style={{ color: 'var(--text)' }}>
@@ -78,6 +79,21 @@ export function DemoForm() {
         <p className="font-sans text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
           {copy.success.body}
         </p>
+        {/* The email above remains the record of the request; the scheduler is
+            additive. Prefilled from what the visitor already typed. */}
+        <p className="font-sans text-base leading-relaxed mt-6" style={{ color: 'var(--text-secondary)' }}>
+          {copy.success.bookLead}
+        </p>
+        <CalendlyInline
+          prefill={{
+            name: values.name ?? '',
+            email: values.email ?? '',
+            company: values.hotel ?? '',
+            title: values.role ?? '',
+          }}
+          fallbackLabel={copy.success.bookFallback}
+          blockedLabel={copy.success.bookBlocked}
+        />
       </div>
     )
   }

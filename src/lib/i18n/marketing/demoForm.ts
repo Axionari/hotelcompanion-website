@@ -38,6 +38,10 @@ const en = {
   success: {
     title: 'Thank you.',
     body: 'We’ve received your request and will contact you shortly to arrange your personalized demonstration.',
+    /* Calendly confirmation state (booking pass) */
+    bookLead: 'Prefer to lock in a time now? Choose a slot below — your details are already filled in.',
+    bookFallback: 'Open the booking page',
+    bookBlocked: 'The scheduler is a third-party embed that sets its own cookies. Accept non-essential cookies to load it here, or open the booking page directly:',
   },
 }
 
@@ -79,6 +83,9 @@ const es: typeof en = {
   success: {
     title: 'Gracias.',
     body: 'Recibimos tu solicitud y te contactaremos en breve para coordinar tu demostración personalizada.',
+    bookLead: '¿Prefieres apartar un horario ahora? Elige uno abajo — tus datos ya están cargados.',
+    bookFallback: 'Abrir la página de agenda',
+    bookBlocked: 'La agenda es un recurso de terceros que instala sus propias cookies. Acepta las cookies no esenciales para verla aquí, o abre la página directamente:',
   },
 }
 
