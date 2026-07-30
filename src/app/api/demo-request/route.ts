@@ -63,7 +63,11 @@ export async function POST(req: NextRequest) {
 
   try {
     const result = await resend.emails.send({
-      from: 'onboarding@resend.dev',
+      /* axionari.com is the only domain verified for sending in Resend;
+         hotelcompanion.ai is not registered there and has no MX. No-reply
+         sender, with reply-to set to the prospect so a reply reaches them
+         rather than the robot. */
+      from: 'Hotel Companion <no-reply@axionari.com>',
       to,
       replyTo: fields.email,
       subject: `Demo request — ${fields.hotel} (${fields.name})`,
