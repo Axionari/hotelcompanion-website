@@ -34,7 +34,6 @@ const en = {
       {
         name: 'Eduardo Vertiz',
         role: 'Founder & Chief Executive Officer',
-        location: 'Mexico',
         bio:
           'Eduardo is the founder of Axionari and the creator of its vision for organizational intelligence. He shaped the company’s foundational philosophy, product strategy, enterprise architecture, and user experience—the principles that guide both Axionari and Hotel Companion—drawing on more than twenty-five years building companies and leading complex operations.',
         skills: ['Vision & Product Strategy', 'Enterprise Architecture', 'Organizational Intelligence', 'Hospitality Technology', 'Business Development'],
@@ -50,7 +49,7 @@ const en = {
       {
         name: 'Yadir Sánchez-Cuevas',
         role: 'Strategic Partnerships & Capital Formation',
-        location: 'Monterrey, Mexico',
+        location: 'Monterrey',
         bio:
           'Yadir brings more than two decades spanning technology consulting, enterprise software, knowledge management, and business development. At Axionari, he focuses on strategic partnerships, business development, and capital formation, expanding the company’s enterprise network while supporting long-term growth.',
         skills: ['Strategic Partnerships', 'Capital Formation', 'Enterprise Technology', 'Business Development', 'Digital Transformation'],
@@ -68,8 +67,8 @@ const en = {
         role: 'Founding Partner · Project Manager & Strategic Partnerships',
         location: 'Medellín, Colombia',
         bio:
-          'Juan Pablo specializes in strategic partnerships, project leadership, and business development throughout Latin America. At Axionari, he coordinates strategic initiatives, partnership development, and enterprise deployments, supporting the company’s continued regional expansion.',
-        skills: ['Strategic Partnerships', 'Project Management', 'Business Development', 'AI Adoption', 'LATAM Expansion'],
+          'Juan Pablo specializes in strategic partnerships, project leadership, and business development. At Axionari, he coordinates strategic initiatives, partnership development, and enterprise deployments, supporting the company’s continued regional expansion.',
+        skills: ['Strategic Partnerships', 'Project Management', 'Business Development', 'AI Adoption', 'Market Expansion'],
       },
       {
         name: 'Andrés Dapena',
@@ -213,7 +212,6 @@ const es: typeof en = {
       {
         name: 'Eduardo Vertiz',
         role: 'Fundador y Director General',
-        location: 'México',
         bio:
           'Eduardo es el fundador de Axionari y el creador de su visión de inteligencia organizacional. Definió la filosofía fundacional, la estrategia de producto, la arquitectura empresarial y la experiencia de usuario de la compañía—los principios que guían tanto a Axionari como a Hotel Companion—con más de veinticinco años construyendo empresas y liderando operaciones complejas.',
         skills: ['Visión y Estrategia de Producto', 'Arquitectura Empresarial', 'Inteligencia Organizacional', 'Tecnología de Hospitalidad', 'Desarrollo de Negocios'],
@@ -229,7 +227,7 @@ const es: typeof en = {
       {
         name: 'Yadir Sánchez-Cuevas',
         role: 'Alianzas Estratégicas y Formación de Capital',
-        location: 'Monterrey, México',
+        location: 'Monterrey',
         bio:
           'Yadir aporta más de dos décadas que abarcan consultoría tecnológica, software empresarial, gestión del conocimiento y desarrollo de negocios. En Axionari se enfoca en alianzas estratégicas, desarrollo de negocios y formación de capital, expandiendo la red empresarial de la compañía y apoyando el crecimiento a largo plazo.',
         skills: ['Alianzas Estratégicas', 'Formación de Capital', 'Tecnología Empresarial', 'Desarrollo de Negocios', 'Transformación Digital'],
@@ -247,8 +245,8 @@ const es: typeof en = {
         role: 'Socio Fundador · Gerente de Proyectos y Alianzas Estratégicas',
         location: 'Medellín, Colombia',
         bio:
-          'Juan Pablo se especializa en alianzas estratégicas, liderazgo de proyectos y desarrollo de negocios en toda América Latina. En Axionari coordina iniciativas estratégicas, desarrollo de alianzas e implementaciones empresariales, apoyando la expansión regional de la compañía.',
-        skills: ['Alianzas Estratégicas', 'Gestión de Proyectos', 'Desarrollo de Negocios', 'Adopción de IA', 'Expansión LATAM'],
+          'Juan Pablo se especializa en alianzas estratégicas, liderazgo de proyectos y desarrollo de negocios. En Axionari coordina iniciativas estratégicas, desarrollo de alianzas e implementaciones empresariales, apoyando la expansión regional de la compañía.',
+        skills: ['Alianzas Estratégicas', 'Gestión de Proyectos', 'Desarrollo de Negocios', 'Adopción de IA', 'Expansión de Mercado'],
       },
       {
         name: 'Andrés Dapena',

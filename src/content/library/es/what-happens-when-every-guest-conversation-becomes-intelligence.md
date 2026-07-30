@@ -122,7 +122,7 @@ Toda la organización se beneficia.
 ### Cada Propiedad Aprende de Cada Otra Propiedad.
 Ahora imagina un grupo hotelero.
 Un concierge en Tokio descubre una mejor forma de recomendar experiencias locales.
-Un resort en México desarrolla un proceso de llegada notablemente exitoso.
+Un resort desarrolla un proceso de llegada notablemente exitoso.
 Un hotel boutique en Londres resuelve un reto operativo recurrente.
 ¿Por qué deberían esas lecciones permanecer aisladas?
 Cada propiedad debería fortalecer a cada otra propiedad.

@@ -40,11 +40,11 @@ const en = {
   ],
   hq: {
     title: 'Headquarters',
-    line: 'Hotel Companion — Powered by Axionari — Mexico City, Mexico — Serving hospitality organizations worldwide.',
+    line: 'Hotel Companion — Powered by Axionari — Serving hospitality organizations worldwide.',
   },
   schedule: {
     title: 'Schedule a Conversation',
-    body: 'Rather speak with us directly? Book a personalized demonstration with one of our hospitality specialists.',
+    body: 'Rather speak with us directly? Book a personalized demonstration built around your property.',
     cta: 'Book a Demo',
   },
   founding: {
@@ -153,11 +153,11 @@ const es: typeof en = {
   ],
   hq: {
     title: 'Oficinas',
-    line: 'Hotel Companion — Construido por Axionari — Ciudad de México, México — Al servicio de organizaciones de hospitalidad en todo el mundo.',
+    line: 'Hotel Companion — Construido por Axionari — Al servicio de organizaciones de hospitalidad en todo el mundo.',
   },
   schedule: {
     title: 'Agenda una Conversación',
-    body: '¿Prefieres hablar directamente con nosotros? Agenda una demostración personalizada con uno de nuestros especialistas en hospitalidad.',
+    body: '¿Prefieres hablar directamente con nosotros? Agenda una demostración personalizada, centrada en tu propiedad.',
     cta: 'Agenda una Demo',
   },
   founding: {

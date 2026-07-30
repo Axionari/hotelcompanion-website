@@ -150,6 +150,33 @@ homepage closing kicker).
 
 ---
 
+## No mention of Mexico on marketing surfaces
+
+Founder ruling, **2026-07-30**. This **supersedes** the "factual addresses and
+bios are exempt" carve-out of 2026-07-28, which is void — do not reinstate it.
+
+**No mention of Mexico anywhere on a marketing surface**, in either locale:
+credit lockups, footers, heroes, company/about, contact, platform pages,
+library essays, metadata, OG and structured data. This covers every variant —
+`Mexico`, `México`, `Mexico City`, `Ciudad de México`, `CDMX`, `mexicano/a` —
+and the regional forms `Latin America` / `Latinoamérica` / `LATAM`. Where the
+string sits inside a location clause, delete the whole clause; do not leave a
+dangling em dash or middot.
+
+Three deliberate exceptions, all **outside** marketing surfaces:
+
+1. **Legal pages** (`/privacy`, `/terms`, `/cookies`, `/security`,
+   `/accessibility`) — governing law, jurisdiction and data-transfer language
+   may be legally required. Counsel's call, not a copy pass's.
+2. **The registered entity name** "Axionari México, S.A.P.I. de C.V." — a legal
+   proper noun, not editable.
+3. **Runtime tenant/demo config and product-app strings** that never render on
+   a marketing page (`src/lib/marazul-config.ts`, `src/lib/propertyConfigs.ts`,
+   the dashboard's invoice copy in `translations.ts`), plus the historical
+   decks in `handoff/*.md`, `VERIFICATION.md`, `REBUILD*.md`.
+
+---
+
 ## Demo honesty
 
 Nothing on the marketing site is live product. Simulated UI must say so:
@@ -200,13 +227,10 @@ not "fix" these.
   guide.
 - **Legal definitions** (`src/lib/i18n/marketing/legal*.ts`) — Companion OS is
   defined as "the underlying Organizational Intelligence Platform"; that is a
-  contractual definition, not marketing category language. The Terms contact
-  address ("Mexico City, Mexico") is a legal address on a legal page and
-  stays.
-- **Factual addresses and bios are exempt from the no-country rule** (ruled
-  2026-07-28): the contact HQ line, the founder bio's location on /company,
-  and the legal-page addresses all keep "Mexico". The no-country rule governs
-  *positioning copy* only — never facts about where the company is.
+  contractual definition, not marketing category language.
+- ~~**Factual addresses and bios are exempt from the no-country rule** (ruled
+  2026-07-28)~~ — **SUPERSEDED 2026-07-30. Do not reinstate.** See the Mexico
+  ruling below.
 - **ES metadata is a known architectural limitation** (logged 2026-07-28):
   locale is client-side (`localStorage.pc_lang`) on a single URL, so
   `<title>`/meta/OG tags are server-rendered in EN for both languages. Fixing

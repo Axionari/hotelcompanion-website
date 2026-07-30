@@ -122,7 +122,7 @@ The entire organization benefits.
 ### Every Property Learns From Every Other Property.
 Now imagine a hotel group.
 A concierge in Tokyo discovers a better way to recommend local experiences.
-A resort in Mexico develops a remarkably successful arrival process.
+A resort develops a remarkably successful arrival process.
 A boutique hotel in London solves a recurring operational challenge.
 Why should those lessons remain isolated?
 Every property should strengthen every other property.

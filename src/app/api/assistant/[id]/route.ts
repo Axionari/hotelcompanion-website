@@ -36,7 +36,10 @@ function sendIssueAlert(
   const room = roomNumber ?? 'Not provided — assistant is asking'
   const time = new Date().toLocaleString('en-US', { timeZone: 'UTC', hour12: true })
   resend.emails.send({
-    from: 'onboarding@resend.dev',
+    /* axionari.com is the only Resend-verified sending domain; the shared
+       test sender is rejected for arbitrary recipients, which made these
+       alerts fail silently. No replyTo by design — these are one-way alerts. */
+    from: 'Hotel Companion <no-reply@axionari.com>',
     to: alertEmail,
     subject: `Guest Issue — ${hotelName} — Room ${room}`,
     html: `
@@ -65,7 +68,10 @@ function sendRoomUpdateAlert(
   const resend = new Resend(process.env.RESEND_API_KEY)
   const time = new Date().toLocaleString('en-US', { timeZone: 'UTC', hour12: true })
   resend.emails.send({
-    from: 'onboarding@resend.dev',
+    /* axionari.com is the only Resend-verified sending domain; the shared
+       test sender is rejected for arbitrary recipients, which made these
+       alerts fail silently. No replyTo by design — these are one-way alerts. */
+    from: 'Hotel Companion <no-reply@axionari.com>',
     to: alertEmail,
     subject: `Guest Issue UPDATE — Room ${roomNumber} confirmed — ${hotelName}`,
     html: `

@@ -125,7 +125,7 @@ export function DashboardShowcase({ caption }: { caption?: string }) {
           <div style={{ flex: 1, overflowY: 'auto', padding: '24px 28px', background: '#0F0D0B' }}>
             <div style={{ marginBottom: '20px', opacity: visible ? 1 : 0, transition: 'opacity 0.6s ease 0.5s' }}>
               <p className="font-serif" style={{ fontSize: '22px', color: '#FFFFFF', fontWeight: 400 }}>MarAzul Riviera Maya</p>
-              <p className="font-sans" style={{ fontSize: '13px', color: '#A8A099', marginTop: '2px' }}>Riviera Maya, Mexico</p>
+              <p className="font-sans" style={{ fontSize: '13px', color: '#A8A099', marginTop: '2px' }}>Riviera Maya</p>
             </div>
 
             <div style={{ display: 'flex', gap: '4px', borderBottom: '1px solid rgba(232,227,220,0.06)', marginBottom: '24px', opacity: visible ? 1 : 0, transition: 'opacity 0.6s ease 0.55s' }}>
