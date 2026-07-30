@@ -30,7 +30,7 @@ const MODULES = [
 ]
 
 // Values legitimately identical across languages.
-const SHARED_OK = /^(\/|https?:|mailto:|#)|@hotelcompanion\.ai$|^(Hotel Companion|Companion OS|Axionari|Restaurant Companion)\.?$/
+const SHARED_OK = /^(\/|https?:|mailto:|#)|@axionari\.com$|^(Hotel Companion|Companion OS|Axionari|Restaurant Companion)\.?$/
 
 // Structural VALUES that must stay byte-identical across languages: routes,
 // anchors, mailto targets, real email addresses, kebab-case ids/slugs, and the

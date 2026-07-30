@@ -33,7 +33,7 @@ const en = {
   errors: {
     required: 'This field is required.',
     email: 'Please enter a valid business email.',
-    submit: 'Unable to submit right now. Please try again or email sales@hotelcompanion.ai.',
+    submit: 'Unable to submit right now. Please try again or email sales@axionari.com.',
   },
   success: {
     title: 'Thank you.',
@@ -74,7 +74,7 @@ const es: typeof en = {
   errors: {
     required: 'Este campo es obligatorio.',
     email: 'Por favor ingresa un correo de trabajo válido.',
-    submit: 'No fue posible enviar en este momento. Por favor intenta de nuevo o escribe a sales@hotelcompanion.ai.',
+    submit: 'No fue posible enviar en este momento. Por favor intenta de nuevo o escribe a sales@axionari.com.',
   },
   success: {
     title: 'Gracias.',

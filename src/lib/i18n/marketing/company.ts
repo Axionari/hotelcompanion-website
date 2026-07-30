@@ -170,10 +170,10 @@ const en = {
     title: 'Let’s Build the Future of Hospitality.',
     body:
       'Whether you’re exploring new ways to improve guest experiences, increase ancillary revenue, or modernize hotel operations, we’d love to learn about your organization.',
+    /* General Inquiries / Partnerships removed: hello@ and partners@ exist on
+       no domain. Sales repointed to the only domain with mail. */
     channels: [
-      { label: 'General Inquiries', email: 'hello@hotelcompanion.ai' },
-      { label: 'Sales', email: 'sales@hotelcompanion.ai' },
-      { label: 'Partnerships', email: 'partners@hotelcompanion.ai' },
+      { label: 'Sales', email: 'sales@axionari.com' },
     ],
   },
   finalCta: {
@@ -350,9 +350,7 @@ const es: typeof en = {
     body:
       'Ya sea que estés explorando nuevas formas de mejorar la experiencia del huésped, aumentar el ingreso complementario o modernizar las operaciones del hotel, nos encantaría conocer tu organización.',
     channels: [
-      { label: 'Consultas Generales', email: 'hello@hotelcompanion.ai' },
-      { label: 'Ventas', email: 'sales@hotelcompanion.ai' },
-      { label: 'Alianzas', email: 'partners@hotelcompanion.ai' },
+      { label: 'Ventas', email: 'sales@axionari.com' },
     ],
   },
   finalCta: {

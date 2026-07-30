@@ -38,10 +38,10 @@ export async function POST(req: NextRequest) {
 
   if (!process.env.RESEND_API_KEY) {
     console.error('[demo-request] RESEND_API_KEY is not set — cannot deliver demo request')
-    return Response.json({ error: 'Unable to submit right now. Please email sales@hotelcompanion.ai.' }, { status: 503 })
+    return Response.json({ error: 'Unable to submit right now. Please email sales@axionari.com.' }, { status: 503 })
   }
 
-  const to = process.env.DEMO_REQUEST_TO || 'sales@hotelcompanion.ai'
+  const to = process.env.DEMO_REQUEST_TO || 'sales@axionari.com'
   const resend = new Resend(process.env.RESEND_API_KEY)
   const rows = Object.entries({
     Name: fields.name,
