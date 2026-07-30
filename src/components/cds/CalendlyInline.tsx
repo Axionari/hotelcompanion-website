@@ -7,16 +7,13 @@ import { CONSENT_EVENT, readConsent } from '@/lib/consent'
 /**
  * Inline Calendly embed for the demo-form confirmation state.
  *
- * NOTE ON THE EVENT URL: the brief specified
- * `calendly.com/axionari-ai/executive-briefing`, which 404s. The event exists
- * on the same profile under the slug `new-meeting` — verified by loading the
- * profile page, where it is titled "AXIONARI Executive Briefing" (45 min).
- * One constant to change if the slug is later renamed.
+ * EVENT: "Hotel Companion — Executive Briefing" (30 min) on the evertiz-axionari
+ * account. Verified against the Calendly API, not assumed.
  *
- * PREFILL: `a{N}` maps to the event's `question_{N-1}` in rendered order, read
- * off the live booking form rather than assumed. This event carries duplicate
- * required Name/Email custom questions ahead of Company/Title, so Company is
- * a3 and Title is a4 — not a1/a2. See the report.
+ * PREFILL: the event has exactly ONE custom question — "Please share anything
+ * that will help prepare for our meeting", position 0, optional — so `a1` is
+ * the only answer slot. There is no Company field and no Title field; both are
+ * composed into a1 so the context reaches the calendar invite.
  *
  * CONSENT: Calendly is a third-party that sets its own cookies (the site's
  * Cookie Policy lists "Scheduling platforms" under Third-Party Cookies). The
@@ -25,7 +22,7 @@ import { CONSENT_EVENT, readConsent } from '@/lib/consent'
  * Nothing here runs on the server — the script is injected after mount.
  */
 
-const CALENDLY_EVENT = 'https://calendly.com/axionari-ai/new-meeting'
+const CALENDLY_EVENT = 'https://calendly.com/evertiz-axionari/hotel-companion-executive-briefing'
 const WIDGET_SCRIPT = 'https://assets.calendly.com/assets/external/widget.js'
 /** If the third-party script hasn't initialised by now, fall back to the link. */
 const LOAD_TIMEOUT_MS = 8000
@@ -33,22 +30,20 @@ const LOAD_TIMEOUT_MS = 8000
 export interface CalendlyPrefill {
   name: string
   email: string
-  /** Maps to the event's "Company" question. */
   company: string
-  /** Maps to the event's "Title" question. */
   title: string
 }
 
 /** Builds the booking URL. URLSearchParams percent-encodes UTF-8, so accented
  *  company names ("Hotel Misión León") survive intact. */
 export function buildCalendlyUrl(p: CalendlyPrefill, lang: 'en' | 'es'): string {
+  // The single custom question is free text; company and role are composed into
+  // it so both land on the invite. Falls back gracefully if either is blank.
+  const context = [p.company, p.title].filter((v) => v && v.trim()).join(' — ')
   const qs = new URLSearchParams({
     name: p.name,
     email: p.email,
-    a1: p.name, // question_0 — "Name" (required duplicate of the native field)
-    a2: p.email, // question_1 — "Email" (required duplicate)
-    a3: p.company, // question_2 — "Company"
-    a4: p.title, // question_3 — "Title"
+    a1: context, // question_0 — "Please share anything that will help prepare…"
     locale: lang,
     utm_source: 'site',
     utm_medium: 'demo_form',
