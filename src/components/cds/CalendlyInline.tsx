@@ -7,8 +7,9 @@ import { CONSENT_EVENT, readConsent } from '@/lib/consent'
 /**
  * Inline Calendly embed for the demo-form confirmation state.
  *
- * EVENT: "Hotel Companion — Executive Briefing" (30 min) on the evertiz-axionari
- * account. Verified against the Calendly API, not assumed.
+ * EVENT: "Axionari — Executive Briefing" (30 min) — one shared event serving all
+ * three sites. `utm_campaign` is therefore the only signal of which site a
+ * booking came from: keep it `hc` here, `rc` on Restaurant Companion.
  *
  * PREFILL: the event has exactly ONE custom question — "Please share anything
  * that will help prepare for our meeting", position 0, optional — so `a1` is
@@ -22,7 +23,7 @@ import { CONSENT_EVENT, readConsent } from '@/lib/consent'
  * Nothing here runs on the server — the script is injected after mount.
  */
 
-const CALENDLY_EVENT = 'https://calendly.com/evertiz-axionari/hotel-companion-executive-briefing'
+const CALENDLY_EVENT = 'https://calendly.com/evertiz-axionari/axionari-executive-briefing'
 const WIDGET_SCRIPT = 'https://assets.calendly.com/assets/external/widget.js'
 /** If the third-party script hasn't initialised by now, fall back to the link. */
 const LOAD_TIMEOUT_MS = 8000
@@ -122,10 +123,13 @@ export function CalendlyInline({ prefill, fallbackLabel, blockedLabel }: {
 
   if (failed) return <div className="mt-8">{link}</div>
 
+  // -mx-8 reclaims the confirmation card's mobile padding: inside it the embed
+  // was only 276px wide, under Calendly's minimum, and the booking UI rendered
+  // unreliably. Desktop is unaffected.
   return (
-    <div className="mt-8">
-      {/* Calendly's own minimum for the inline widget is ~700px; below that the
-          month grid clips. Height is reported in the viewport table. */}
+    <div className="mt-8 -mx-8 md:mx-0">
+      {/* Calendly's own minimum for the inline widget is ~700px tall; below
+          that the month grid clips. Height is reported in the viewport table. */}
       <div
         ref={holder}
         className="calendly-inline-widget"
