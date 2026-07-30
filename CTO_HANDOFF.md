@@ -127,7 +127,7 @@ flowchart TD
 | Anthropic (`@ai-sdk/anthropic`, `ai`) | LLM for chat + extraction. Model `claude-haiku-4-5-20251001` everywhere. | Server-only; keyed by `ANTHROPIC_API_KEY`. |
 | Supabase (`@supabase/ssr`, `@supabase/supabase-js`) | Auth + Postgres + RLS. | The backend. Auth and authorization both live here. |
 | Stripe (`stripe`) | Subscriptions. | Server-only. |
-| Resend (`resend`) | Issue-alert emails to owners. | Server-only; `RESEND_API_KEY`. Sender is `onboarding@resend.dev`. |
+| Resend (`resend`) | Issue-alert emails to owners. | Server-only; `RESEND_API_KEY`. Sender is `no-reply@axionari.com` (axionari.com is the only Resend-verified sending domain). |
 | `api.qrserver.com` | QR image generation for the public assistant URL. | Client-side `fetch`, no key. External image API. |
 | `recharts` | Dashboard/marketing charts. | Client-only. |
 | `lucide-react` | Icons. | Client-only. |
@@ -546,7 +546,7 @@ Four commits on `handoff-hardening`. Each was built, typechecked, tested, and �
 - Push the branch and confirm CI is green on GitHub.
 - Replay all three migrations on a throwaway Supabase branch (§11 MEDIUM-4).
 - Resolve the Stripe price discrepancy (§16) — it is a business input, not a code fix.
-- Confirm Resend sender domain (`onboarding@resend.dev` is a Resend test sender; production deliverability is **UNKNOWN**).
+- Resend sender domain: **axionari.com**, verified, sending enabled. All senders use `no-reply@axionari.com`. hotelcompanion.ai has no MX and an apex SPF of `v=spf1 -all` **by design** — never register it in Resend.
 
 **Monitor once live:**
 - Anthropic spend (no in-app cost accounting yet; `api_cost_logs` is unused).
@@ -576,7 +576,7 @@ Strictly separated. No redesign proposed.
 
 1. **Stripe pricing (business).** Which is live — UpgradeModal's $299/$549 or the env/`REBUILD.md` $349/$599? Both price IDs are active; the app currently charges $299/$549. Must be confirmed before launch. (§8)
 2. **Coupon reality (business).** `FOUNDING40` is validated client-side only; `REBUILD.md` references `FOUNDING20`. Which coupon(s) exist in Stripe and what are their terms? **UNKNOWN.**
-3. **Email deliverability (ops).** Alerts send from `onboarding@resend.dev` (Resend shared test sender). Is a verified production domain configured? **UNKNOWN.**
+3. **Email deliverability (ops).** Alerts send from `no-reply@axionari.com`; axionari.com is verified in Resend with sending enabled. hotelcompanion.ai has no MX and an apex SPF of `v=spf1 -all` **by design** — never register it in Resend.
 4. **Vercel/domain/env parity (ops).** Deployment specifics come from `REBUILD.md` only; the live Vercel project, its env vars, and whether they match `.env.local` are **UNVERIFIED** here.
 5. **Auth confirmation flow (product).** Is Supabase email confirmation on or off? It changes the onboarding→dashboard redirect behavior. Current code tolerates either but the intended UX is **UNKNOWN.**
 6. **Multi-vertical timing (product).** Is the six-vertical scaffolding a near-term roadmap item (justifying keeping the now-orphaned builder) or should it be removed? (§11 LOW, §15)

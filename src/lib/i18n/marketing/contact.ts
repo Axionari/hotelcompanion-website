@@ -54,7 +54,6 @@ const en = {
     receiveLead: 'Founding partners receive:',
     items: [
       'Early access to new capabilities',
-      'Direct collaboration with our product team',
       'Priority support',
       'Influence over our roadmap',
       'Preferential commercial terms',
@@ -167,7 +166,6 @@ const es: typeof en = {
     receiveLead: 'Los socios fundadores reciben:',
     items: [
       'Acceso anticipado a nuevas capacidades',
-      'Colaboración directa con nuestro equipo de producto',
       'Soporte prioritario',
       'Influencia sobre nuestra hoja de ruta',
       'Condiciones comerciales preferentes',

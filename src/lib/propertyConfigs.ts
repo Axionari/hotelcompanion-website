@@ -15,7 +15,7 @@ export const PROPERTY_CONFIGS: Record<string, PropertyConfig> = {
     accentHover: '#B8922F',
     defaultLanguage: 'en',
     propertyLabel: 'LA VALISE',
-    locationLabel: 'Namron Collection · Mexico City',
+    locationLabel: 'Namron Collection',
     bubbleRadius: '4px'
   },
   condesadf: {
@@ -24,7 +24,7 @@ export const PROPERTY_CONFIGS: Record<string, PropertyConfig> = {
     accentHover: '#6E8E9E',
     defaultLanguage: 'en',
     propertyLabel: 'CONDESA DF',
-    locationLabel: 'Mexico City',
+    locationLabel: 'Condesa',
     bubbleRadius: '8px'
   },
   ahau: {

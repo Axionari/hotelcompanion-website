@@ -66,7 +66,7 @@ Each marketing route returns 19k–37k characters of visible text with the corre
 - Client validation: required fields + email format, inline errors, `aria-invalid`.
 - Server validation confirmed live: missing fields → 400 with the field list; bad email → 400; rate limited to 5/min per IP.
 - Failure path returns a real error state to the user rather than a silent success.
-- ⚠️ **Launch action:** Resend is in test mode and currently rejects sending to `sales@hotelcompanion.ai` (403 `validation_error`). Verify the `hotelcompanion.ai` domain at resend.com/domains, change the `from` address off `onboarding@resend.dev`, and set `DEMO_REQUEST_TO`. The route already reads `DEMO_REQUEST_TO`.
+- ✅ **Resolved 2026-07-30:** senders moved to `no-reply@axionari.com` (axionari.com is verified in Resend, sending enabled); recipient is `sales@axionari.com` and `DEMO_REQUEST_TO` is set in all environments. hotelcompanion.ai has no MX and an apex SPF of `v=spf1 -all` **by design** — never register it in Resend.
 
 ## Accessibility
 
@@ -353,7 +353,7 @@ not add a third unverified stat.
 
 All are Eduardo's to provide; none block the build.
 
-1. **Resend** — verify `hotelcompanion.ai` at resend.com/domains, move `from` off `onboarding@resend.dev`, set `DEMO_REQUEST_TO`. The form works; it currently 403s sending to `sales@` because Resend is in test mode.
+1. **Resend** — done 2026-07-30: `from` is `no-reply@axionari.com`, recipient `sales@axionari.com`, `DEMO_REQUEST_TO` set in all environments. hotelcompanion.ai has no MX and an apex SPF of `v=spf1 -all` **by design** — never register it in Resend.
 2. **Imagery** — `public/` still holds only default Next SVGs. Flagged `NEEDS REAL DATA`: hero in-room tablet render, editorial photography, favicon, designed OG share image, logo lockups. (The Home secondary CTA "Watch Product Tour" no longer points at `/platform` — it opens the working demo, which retires that placeholder.)
 3. **The two unverified numbers** — `$47B` (Home stake) and `91%/9%` (dashboards resolution) are now live on the site per the Round-3 decision, each marked `NEEDS CONFIRM` in EN and ES. Verify both before public launch, and per the addendum do not add a third unverified stat.
 4. **Self-serve `/onboarding`** (P0-4) — still open. Default applied: app routes functional, zero self-serve CTAs or pricing on marketing, Sign In demoted to a footer utility link.

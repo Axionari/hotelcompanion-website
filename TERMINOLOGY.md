@@ -163,17 +163,29 @@ and the regional forms `Latin America` / `Latinoamérica` / `LATAM`. Where the
 string sits inside a location clause, delete the whole clause; do not leave a
 dangling em dash or middot.
 
-Three deliberate exceptions, all **outside** marketing surfaces:
+**Legal pages are NOT exempt** (ruled 2026-07-30, reversing the earlier
+carve-out). The line on `/privacy`, `/terms` and `/cookies` was a decorative
+HQ credit, not governing law — it was removed the same way as `/contact`.
+Verified at the time: the Governing Law clause names "the laws specified in the
+applicable commercial agreement" and jurisdiction "the agreed jurisdiction" —
+no country. **If a future edit introduces a real governing-law, jurisdiction or
+registered-address clause naming Mexico, stop and escalate; do not strip it.**
 
-1. **Legal pages** (`/privacy`, `/terms`, `/cookies`, `/security`,
-   `/accessibility`) — governing law, jurisdiction and data-transfer language
-   may be legally required. Counsel's call, not a copy pass's.
-2. **The registered entity name** "Axionari México, S.A.P.I. de C.V." — a legal
-   proper noun, not editable.
-3. **Runtime tenant/demo config and product-app strings** that never render on
-   a marketing page (`src/lib/marazul-config.ts`, `src/lib/propertyConfigs.ts`,
-   the dashboard's invoice copy in `translations.ts`), plus the historical
-   decks in `handoff/*.md`, `VERIFICATION.md`, `REBUILD*.md`.
+Four permanent exceptions — **do not strip these in a later sweep**:
+
+1. **The registered entity name** "Axionari México, S.A.P.I. de C.V." — a legal
+   proper noun. (Not currently published anywhere on the site.)
+2. **`src/lib/i18n/translations.ts`** — the billing dashboard's `invoiceMxDesc` /
+   `invoiceIntlDesc` strings. RFC, régimen fiscal and CFDI are Mexican fiscal
+   instruments; this is **product function, not positioning** (ruled 2026-07-30).
+3. **`src/lib/demo/useSpeech.ts`** — the `es-MX` speech-recognition locale code.
+   A recognition-accuracy setting, not a country claim (ruled 2026-07-30).
+4. **Historical, non-shipped decks** — `handoff/*.md`, `VERIFICATION.md`,
+   `REBUILD*.md`. Records of what was written, not live copy.
+
+Everything else in shipped code was neutralized on 2026-07-30, including the
+demo-tenant config and the runtime assistant prompt in `marazul-config.ts` and
+the `locationLabel`s in `propertyConfigs.ts`.
 
 ---
 

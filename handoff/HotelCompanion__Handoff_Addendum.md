@@ -50,8 +50,9 @@ toggle renders real Spanish site-wide incl. legal + all 12 essays; zero `NEEDS E
 
 ## Still Eduardo's to provide (not code; unchanged from the brief's open items)
 1. Self-serve `/onboarding`: keep reachable (utility Sign In only) or fully sales-gate? (P0-4 — still open.)
-2. Resend: verify `hotelcompanion.ai` at resend.com/domains, move `from` off `onboarding@resend.dev`, set
-   `DEMO_REQUEST_TO`. (Demo form works; it just can't send to `sales@` until this is done.)
+2. Resend: done 2026-07-30 — `from` is `no-reply@axionari.com` (axionari.com is the only Resend-verified
+   sending domain), recipient `sales@axionari.com`, `DEMO_REQUEST_TO` set in all environments.
+   hotelcompanion.ai has no MX and an apex SPF of `v=spf1 -all` **by design** — never register it in Resend.
 3. Real imagery/brand assets — hero, in-room tablet render, editorial photography, favicon/OG share image,
    logo lockups. `public/` still holds only default Next SVGs.
 4. Vercel project + `hotelcompanion.ai` DNS target (Axionari-org migration) — needed for the Vercel preview so

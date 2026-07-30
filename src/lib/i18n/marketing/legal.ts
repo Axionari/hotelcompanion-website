@@ -129,7 +129,7 @@ const privacyEn: LegalDoc = {
 
     { type: 'h2', text: 'Contact' },
     { type: 'p', text: 'Questions regarding this Privacy Policy may be directed to: privacy@axionari.com' },
-    { type: 'p', text: 'Hotel Companion — Powered by Axionari — Mexico City, Mexico' },
+    { type: 'p', text: 'Hotel Companion — Powered by Axionari' },
 
     { type: 'h2', text: 'Our Commitment' },
     { type: 'p', text: 'Hospitality is built on trust.' },
@@ -318,7 +318,7 @@ const termsEn: LegalDoc = {
 
     { type: 'h2', text: 'Contact' },
     { type: 'p', text: 'Questions regarding these Terms may be directed to: legal@axionari.com' },
-    { type: 'p', text: 'Hotel Companion — Powered by Axionari — Mexico City, Mexico' },
+    { type: 'p', text: 'Hotel Companion — Powered by Axionari' },
 
     { type: 'h2', text: 'Final Statement' },
     { type: 'p', text: 'Hospitality is built on trust.' },
@@ -432,7 +432,7 @@ const cookiesEn: LegalDoc = {
 
     { type: 'h2', text: 'Contact' },
     { type: 'p', text: 'Questions about this Cookie Policy may be directed to: privacy@axionari.com' },
-    { type: 'p', text: 'Hotel Companion — Powered by Axionari — Mexico City, Mexico' },
+    { type: 'p', text: 'Hotel Companion — Powered by Axionari' },
 
     { type: 'h2', text: 'Transparency by Design' },
     { type: 'p', text: 'Hospitality is built on trust.' },

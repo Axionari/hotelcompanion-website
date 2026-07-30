@@ -153,7 +153,7 @@ export const privacyEs: LegalDoc = {
       type: 'p',
       text: 'Las preguntas sobre este Aviso de Privacidad pueden dirigirse a: privacy@axionari.com',
     },
-    { type: 'p', text: 'Hotel Companion — Construido por Axionari — Ciudad de México, México' },
+    { type: 'p', text: 'Hotel Companion — Construido por Axionari' },
 
     { type: 'h2', text: 'Nuestro Compromiso' },
     { type: 'p', text: 'La hospitalidad se construye sobre la confianza.' },
@@ -362,7 +362,7 @@ export const termsEs: LegalDoc = {
 
     { type: 'h2', text: 'Contacto' },
     { type: 'p', text: 'Las preguntas sobre estos Términos pueden dirigirse a: legal@axionari.com' },
-    { type: 'p', text: 'Hotel Companion — Construido por Axionari — Ciudad de México, México' },
+    { type: 'p', text: 'Hotel Companion — Construido por Axionari' },
 
     { type: 'h2', text: 'Declaración Final' },
     { type: 'p', text: 'La hospitalidad se construye sobre la confianza.' },
@@ -485,7 +485,7 @@ export const cookiesEs: LegalDoc = {
       type: 'p',
       text: 'Las preguntas sobre esta Política de Cookies pueden dirigirse a: privacy@axionari.com',
     },
-    { type: 'p', text: 'Hotel Companion — Construido por Axionari — Ciudad de México, México' },
+    { type: 'p', text: 'Hotel Companion — Construido por Axionari' },
 
     { type: 'h2', text: 'Transparencia por Diseño' },
     { type: 'p', text: 'La hospitalidad se construye sobre la confianza.' },
