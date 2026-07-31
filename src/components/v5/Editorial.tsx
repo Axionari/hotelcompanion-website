@@ -85,12 +85,27 @@ export function PageHero({
    * in Spanish, whose CTA sits below the fold at 153px and gets pulled up into
    * the banner at 90px. Those pages need their own pass. Floor (88) and
    * ceiling (160) are identical either way, so tall windows and phones are
-   * unaffected by this flag; only short viewports differ.
+   * unaffected by `true`; only short viewports differ.
+   *
+   * `'tight'` is the same mechanism turned up for heroes that `true` cannot
+   * rescue. /demo is the case: its Spanish H1 runs to three lines AND its deck
+   * to four (English: two and three), 95px more than English, so 13vh still
+   * left its CTA 12px under the banner. 8.5vh gives 59px at 1393x692 and
+   * clears by 20. The floor drops to 56 because at 692 a floor of 88 would
+   * bind and cancel the whole adjustment; the cost is that phones tighten too
+   * (88 -> 72px on a 390x844 screen), which is why this is not the default.
    */
-  shortViewportSafe?: boolean
+  shortViewportSafe?: boolean | 'tight'
 }) {
+  const leading =
+    shortViewportSafe === 'tight'
+      ? 'clamp(56px, 8.5vh, 160px)'
+      : shortViewportSafe
+        ? 'clamp(88px, 13vh, 160px)'
+        : 'clamp(88px, 11vw, 160px)'
+
   return (
-    <section style={{ paddingBlock: shortViewportSafe ? 'clamp(88px, 13vh, 160px)' : 'clamp(88px, 11vw, 160px)' }}>
+    <section style={{ paddingBlock: leading }}>
       <div className="container-rc">
         <div className={`grid lg:grid-cols-12 gap-12 lg:gap-16 items-center`}>
           <div className={visual ? 'lg:col-span-6' : 'lg:col-span-8'}>

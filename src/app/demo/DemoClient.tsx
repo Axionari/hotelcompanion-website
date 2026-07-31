@@ -71,6 +71,12 @@ export default function DemoClient() {
       {/* HERO {#demo-hero} — flat page bed, one statement, two quiet actions */}
       <div id="demo-hero" className="scroll-mt-20">
         <PageHero
+          /* At 1393x692 the ES hero runs 95px longer than EN (H1 three lines to
+             two, deck four to three) and put this CTA under the cookie banner.
+             'tight' rather than plain shortViewportSafe: 13vh still left it 12px
+             short. This is the page that carries the form — an occluded CTA here
+             costs a submission. */
+          shortViewportSafe="tight"
           eyebrow={g.nav.bookDemo}
           title={
             <>
