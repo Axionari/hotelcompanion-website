@@ -64,15 +64,33 @@ export function PageHero({
   deck,
   actions,
   visual,
+  shortViewportSafe = false,
 }: {
   eyebrow: string
   title: ReactNode
   deck?: string
   actions?: ReactNode
   visual?: ReactNode
+  /**
+   * Make the hero's leading space viewport-HEIGHT responsive instead of
+   * width-responsive — the same mechanism the home hero uses.
+   *
+   * The default 11vw knows nothing about how tall the window is: at 1393x692
+   * it puts 153px of air above the kicker, and in Spanish — where the H1 takes
+   * three lines to English's two — that pushed /contact's hero CTA 45px under
+   * the cookie banner. 13vh gives 90px there and restores the clearance.
+   *
+   * OPT-IN, not the default, and deliberately so: measured across all eight
+   * PageHero pages, switching globally improves six but REGRESSES /enterprise
+   * in Spanish, whose CTA sits below the fold at 153px and gets pulled up into
+   * the banner at 90px. Those pages need their own pass. Floor (88) and
+   * ceiling (160) are identical either way, so tall windows and phones are
+   * unaffected by this flag; only short viewports differ.
+   */
+  shortViewportSafe?: boolean
 }) {
   return (
-    <section style={{ paddingBlock: 'clamp(88px, 11vw, 160px)' }}>
+    <section style={{ paddingBlock: shortViewportSafe ? 'clamp(88px, 13vh, 160px)' : 'clamp(88px, 11vw, 160px)' }}>
       <div className="container-rc">
         <div className={`grid lg:grid-cols-12 gap-12 lg:gap-16 items-center`}>
           <div className={visual ? 'lg:col-span-6' : 'lg:col-span-8'}>

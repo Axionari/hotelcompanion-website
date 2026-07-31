@@ -45,6 +45,9 @@ export default function ContactClient() {
       {/* HERO {#contact-hero} — flat page bed, one statement, one action */}
       <div id="contact-hero" className="scroll-mt-20">
         <PageHero
+          /* At 1393x692 the ES H1 runs to three lines and pushed this CTA under
+             the cookie banner. Height-responsive leading space, as on Home. */
+          shortViewportSafe
           eyebrow={c.eyebrow}
           title={
             <>
