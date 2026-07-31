@@ -134,7 +134,7 @@ export function CalendlyInline({ prefill, fallbackLabel, blockedLabel }: {
         ref={holder}
         className="calendly-inline-widget"
         data-url={url}
-        style={{ minWidth: 0, width: '100%', height: 700, borderRadius: 12, overflow: 'hidden' }}
+        style={{ minWidth: 320, width: '100%', height: 700, borderRadius: 12, overflow: 'hidden' }}
       />
       <div className="mt-4">{link}</div>
     </div>
