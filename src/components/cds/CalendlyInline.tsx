@@ -51,7 +51,11 @@ export function buildCalendlyUrl(p: CalendlyPrefill, lang: 'en' | 'es'): string 
     utm_campaign: 'hc',
     utm_content: lang,
   })
-  return `${CALENDLY_EVENT}?${qs.toString()}`
+  // URLSearchParams serialises to form encoding, where a space is `+`. Calendly's
+  // booking form does not decode that, so prospects saw "Dana+Reid". A literal `+`
+  // inside a value is emitted as %2B, so every bare `+` left in the string is
+  // unambiguously an encoded space — this substitution cannot hit anything else.
+  return `${CALENDLY_EVENT}?${qs.toString().replace(/\+/g, '%20')}`
 }
 
 export function CalendlyInline({ prefill, fallbackLabel, blockedLabel }: {
