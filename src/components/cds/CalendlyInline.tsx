@@ -128,13 +128,17 @@ export function CalendlyInline({ prefill, fallbackLabel, blockedLabel }: {
   // unreliably. Desktop is unaffected.
   return (
     <div className="mt-8 -mx-8 md:mx-0">
-      {/* Calendly's own minimum for the inline widget is ~700px tall; below
-          that the month grid clips. Height is reported in the viewport table. */}
+      {/* Height clamps rather than sitting flat at 700px: a flat 700 is taller
+          than the 692px acceptance viewport and pushed the page. Tall windows
+          still get the full 700; short ones let Calendly scroll internally.
+          No hard minWidth: at a 360px viewport the wrapper is 310px, so a 320
+          floor stretched the widget 10px past the card's edge for no benefit —
+          the -mx-8 reclaim above is what actually buys the width. */}
       <div
         ref={holder}
         className="calendly-inline-widget"
         data-url={url}
-        style={{ minWidth: 320, width: '100%', height: 700, borderRadius: 12, overflow: 'hidden' }}
+        style={{ width: '100%', height: 'clamp(560px, 74vh, 700px)', borderRadius: 12, overflow: 'hidden' }}
       />
       <div className="mt-4">{link}</div>
     </div>
