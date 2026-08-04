@@ -147,22 +147,27 @@ function useScreens(): Screen[] {
 }
 
 /**
- * Which screens each page shows. NO PHOTOGRAPH APPEARS IN TWO SETS, and none
- * of them reuses the suites the homepage's SuiteShowcase owns (suite-garden /
- * suite-ocean / suite-2) — the hero tablet used to lead with the Ocean-View
- * Suite on all three pages, directly above the showcase telling that same
- * room's story, which is what made the site feel repetitive.
+ * Which screens each page shows.
  *
- *   home       a day out, then the spa — the suites belong to SuiteShowcase below
- *   platform   the late-night surfaces — the pool, and the room it moves you to
- *   solutions  the dining room, and the returning guest
+ * EVERY PAGE SHOWS THE FULL RANGE. This tablet is the product demo — a GM has
+ * to see that it books a suite, a treatment, a day out, dinner, and that it
+ * remembers the guest. Never trim a page's set to make photography unique;
+ * that trade was made once, cut the homepage from five screens to two, and was
+ * wrong. Pages differ by WHICH SCREEN THEY OPEN ON and by the order after it.
  *
- * Every photograph here is now used exactly once site-wide.
+ *   home       opens on the suite upgrade — the revenue moment
+ *   platform   opens on the late-night pool, then the room it moves you to
+ *   solutions  opens on dinner, then the returning guest
+ *
+ * Consequence, stated plainly: the shared screens reuse their photography
+ * across pages, because the library holds exactly three spa images and three
+ * dish images and each of those screens uses all three at once. Closing that
+ * needs more photographs, not a shorter list.
  */
 const VARIANTS = {
-  home: ['cenote', 'spa'],
-  platform: ['nightpool', 'nightsuite'],
-  solutions: ['dining', 'memory'],
+  home: ['upgrade', 'spa', 'cenote', 'dining', 'memory'],
+  platform: ['nightpool', 'nightsuite', 'cenote', 'dining', 'spa'],
+  solutions: ['dining', 'memory', 'spa', 'cenote', 'nightpool'],
 } as const
 
 export type TabletVariant = keyof typeof VARIANTS
