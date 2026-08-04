@@ -2,6 +2,7 @@
 
 import { CSSProperties, useEffect, useRef, useState } from 'react'
 import { VoiceOrb } from '@/components/cds/VoiceOrb'
+import { DeviceVoiceBar } from './DeviceVoiceBar'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { suitesCopy } from '@/lib/i18n/marketing/suites'
 
@@ -24,41 +25,10 @@ type SuiteCopy = (typeof suitesCopy)['en']
 
 /* ── shared bits ─────────────────────────────────────────────────────── */
 
-/** Persistent voice bar — orb + live frequency + listening label + prompts.
- *  Sits under every screen: the whole flow is voice-first. */
+/** Persistent voice bar — the shared DeviceVoiceBar, carrying this flow's own
+ *  script. Sits under every screen: the whole flow is voice-first. */
 function VoiceBar({ c }: { c: SuiteCopy }) {
-  return (
-    <div
-      style={{
-        flexShrink: 0,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        gap: 18,
-        padding: 'clamp(9px,1vw,14px) clamp(16px,2vw,30px)',
-        borderTop: '1px solid rgba(243,236,226,0.08)',
-        background: 'rgba(11,9,8,0.55)',
-      }}
-    >
-      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 'clamp(10px,1.2vw,16px)', minWidth: 0 }}>
-        <VoiceOrb state="listening" size="clamp(24px,2.5vw,36px)" showMic={false} />
-        <span className="v5-eq" aria-hidden>
-          <i /><i /><i /><i /><i />
-        </span>
-        <span style={{ ...MONO, fontSize: 'clamp(9px, 0.75vw, 10.5px)', letterSpacing: '.18em', color: DIM, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-          {c.voiceBar.label}
-        </span>
-      </span>
-      <span className="hidden md:inline-flex" style={{ alignItems: 'center', gap: 'clamp(10px,1.3vw,18px)', flexShrink: 0 }}>
-        {c.voiceBar.chips.map((ch, i) => (
-          <span key={ch} style={{ display: 'inline-flex', alignItems: 'center', gap: 'clamp(10px,1.3vw,18px)' }}>
-            {i > 0 && <span aria-hidden style={{ color: 'rgba(242,233,218,0.3)' }}>·</span>}
-            <span style={{ fontFamily: SANS, fontSize: 'clamp(10px,1vw,14px)', color: 'rgba(242,233,218,0.85)', whiteSpace: 'nowrap' }}>{ch}</span>
-          </span>
-        ))}
-      </span>
-    </div>
-  )
+  return <DeviceVoiceBar label={c.voiceBar.label} chips={c.voiceBar.chips} />
 }
 
 /**

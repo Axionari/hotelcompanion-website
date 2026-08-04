@@ -1,19 +1,19 @@
 'use client'
 
 import { useEffect, useMemo, useRef, useState, CSSProperties } from 'react'
-import { VoiceOrb } from '@/components/cds/VoiceOrb'
+import { DeviceVoiceBar } from './DeviceVoiceBar'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { deviceScreens } from '@/lib/i18n/marketing/deviceScreens'
 import { intelExecCopy } from '@/lib/i18n/marketing/intelExec'
 
 /**
- * The Companion desktop surface — the pre-arrival experience where a guest can
- * speak or type. Voice + text live together on the left rail (the RC model);
- * the right side answers. The answer ALTERNATES layout so a GM sees the range
- * at a glance: full-bleed hero cards (one outcome, big and readable) and a
- * choices grid (it can merchandise every service). Context pills under the
- * device name what you're looking at — click to jump, or let it cycle.
- * Reduced motion holds the first screen and stills the orb.
+ * The Companion in-room surface — the answer takes the whole screen and the
+ * control sits along the bottom edge (DeviceVoiceBar), the standard every
+ * tablet on the site now shares. The answer ALTERNATES layout so a GM sees the
+ * range at a glance: full-bleed hero cards (one outcome, big and readable), a
+ * choices list, and a cards grid (it can merchandise every service). Context
+ * pills under the device name what you're looking at — click to jump, or let
+ * it cycle. Reduced motion holds the first screen and stills the orb.
  */
 
 const MONO: CSSProperties = { fontFamily: 'var(--font-mono), ui-monospace, monospace' }
@@ -27,7 +27,6 @@ type Layout = 'hero' | 'choices' | 'cards'
 type Screen = {
   key: string
   layout: Layout
-  rail: number
   pill: string
   // hero
   image?: string
@@ -57,7 +56,6 @@ function useScreens(): Screen[] {
       {
         key: 'upgrade',
         layout: 'hero',
-        rail: 2,
         pill: 'Suite upgrade',
         image: '/assets/ui/suite-ocean.webp',
         ask: s.upgrade.ask,
@@ -70,7 +68,6 @@ function useScreens(): Screen[] {
       {
         key: 'spa',
         layout: 'cards',
-        rail: 1,
         pill: 'Spa booking',
         ask: s.spa.ask,
         cardsTitle: s.spa.title,
@@ -86,7 +83,6 @@ function useScreens(): Screen[] {
       {
         key: 'cenote',
         layout: 'hero',
-        rail: 3,
         pill: 'Experiences',
         image: '/assets/lux/exp-cenote.webp',
         ask: 'Plan our last day',
@@ -100,7 +96,6 @@ function useScreens(): Screen[] {
       {
         key: 'dining',
         layout: 'choices',
-        rail: 0,
         pill: 'Room service',
         choicesAsk: 'What’s good tonight?',
         choicesTitle: 'In-room dining',
@@ -110,13 +105,10 @@ function useScreens(): Screen[] {
           { name: 'Tres leches', meta: 'The one everyone orders', price: '$12', image: '/assets/ui/dish-3.webp' },
         ],
       },
-      // 5 · hero — the moat: she returns, it already knows her. No service
-      //     rail lights up: recognition isn't a category (Concierge re-lighting
-      //     here read as a glitch).
+      // 5 · hero — the moat: she returns, it already knows her.
       {
         key: 'memory',
         layout: 'hero',
-        rail: -1,
         pill: 'Guest memory',
         image: '/assets/ui/suite-2.webp',
         ask: '',
@@ -130,10 +122,9 @@ function useScreens(): Screen[] {
   )
 }
 
-export function CompanionTablet({ className = '', askBar = true }: { className?: string; askBar?: boolean }) {
+export function CompanionTablet({ className = '' }: { className?: string }) {
   const d = useCopy(deviceScreens)
   const screens = useScreens()
-  const rail = d.tiles.slice(0, 4)
   const [i, setI] = useState(0)
   const [fade, setFade] = useState(false)
   const [paused, setPaused] = useState(false)
@@ -166,7 +157,6 @@ export function CompanionTablet({ className = '', askBar = true }: { className?:
   }
 
   const sc = screens[i]
-  const activeRail = sc.rail
 
   return (
     <div className={className}>
@@ -191,56 +181,21 @@ export function CompanionTablet({ className = '', askBar = true }: { className?:
             borderRadius: 16,
             overflow: 'hidden',
             background: 'radial-gradient(120% 100% at 30% 0%, #17130f 0%, #100e0c 60%, #0c0b0a 100%)',
-            display: 'grid',
-            gridTemplateColumns: '30% 1fr',
+            display: 'flex',
+            flexDirection: 'column',
           }}
         >
-          {/* ── left panel — voice + type on one refined rail ── */}
-          <div style={{ display: 'flex', flexDirection: 'column', padding: '6% 5.5% 5.5%', borderRight: '1px solid rgba(243,236,226,0.07)', minHeight: 0 }}>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
-              <VoiceOrb size="clamp(34px, 4.8vw, 56px)" state="listening" ripples showMic micScale={0.34} />
-              <div style={{ ...MONO, fontSize: 'clamp(9px, 0.82vw, 9.5px)', letterSpacing: '.2em', color: TERRA, textAlign: 'center', marginTop: '7%' }}>SPEAK OR TYPE</div>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(9px, 0.8vw, 9.5px)', width: '100%', marginTop: 'clamp(12px,1.8vw,20px)' }}>
-              {rail.map((t, idx) => {
-                const on = idx === activeRail
-                return (
-                  <div
-                    key={t.id}
-                    style={{
-                      borderRadius: 999,
-                      padding: 'clamp(9px, 1vw, 10px) clamp(9px, 1.2vw, 14px)',
-                      textAlign: 'center',
-                      fontSize: 'clamp(9px, 1vw, 12px)',
-                      fontWeight: on ? 600 : 500,
-                      fontFamily: SANS,
-                      color: on ? CREAM : 'rgba(242,233,218,0.82)',
-                      background: on ? 'rgba(200,106,58,0.16)' : 'rgba(243,236,226,0.06)',
-                      border: `1px solid ${on ? 'rgba(200,106,58,0.6)' : 'rgba(243,236,226,0.14)'}`,
-                      transition: 'all .45s var(--ease-standard)',
-                    }}
-                  >
-                    {t.label}
-                  </div>
-                )
-              })}
-            </div>
-            {askBar && (
-              <div style={{ marginTop: 'auto', paddingTop: 'clamp(10px,1.6vw,18px)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6, border: '1px solid rgba(243,236,226,0.16)', background: 'rgba(243,236,226,0.05)', borderRadius: 999, padding: 'clamp(9px, 0.6vw, 9.5px) clamp(9px, 0.7vw, 9.5px) clamp(9px, 0.6vw, 9.5px) clamp(10px,1.2vw,14px)' }}>
-                  <span style={{ flex: 1, minWidth: 0, fontFamily: SANS, fontSize: 'clamp(9px, 0.9vw, 11px)', color: 'rgba(242,233,218,0.5)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{d.askAnything}</span>
-                  <span aria-hidden style={{ flexShrink: 0, width: 'clamp(17px,2vw,23px)', height: 'clamp(17px,2vw,23px)', display: 'grid', placeItems: 'center', borderRadius: '50%', background: TERRA, color: '#1a1207', fontSize: 'clamp(9px,1vw,12px)', fontWeight: 700 }}>↑</span>
-                </div>
-              </div>
-            )}
+          {/* ── the answer, full-bleed — cross-fades; layout alternates ── */}
+          <div style={{ position: 'relative', flex: 1, minHeight: 0, overflow: 'hidden', opacity: fade ? 0 : 1, transition: 'opacity .45s var(--ease-standard)' }}>
+            {sc.layout === 'hero' && <HeroScreen sc={sc} />}
+            {sc.layout === 'choices' && <ChoicesScreen sc={sc} />}
+            {sc.layout === 'cards' && <CardsScreen sc={sc} property={d.property} />}
           </div>
 
-          {/* ── right content — cross-fades; layout alternates ── */}
-          <div style={{ position: 'relative', overflow: 'hidden', opacity: fade ? 0 : 1, transition: 'opacity .45s var(--ease-standard)' }}>
-            {sc.layout === 'hero' && <HeroScreen sc={sc} listening={d.listening} />}
-            {sc.layout === 'choices' && <ChoicesScreen sc={sc} listening={d.listening} />}
-            {sc.layout === 'cards' && <CardsScreen sc={sc} listening={d.listening} property={d.property} />}
-          </div>
+          {/* ── the control, along the bottom edge — the site-wide standard.
+              Not optional: the bar IS the tablet's control surface, so a
+              tablet without it is a screenshot, not the product. ── */}
+          <DeviceVoiceBar />
         </div>
       </div>
 
@@ -279,24 +234,13 @@ export function CompanionTablet({ className = '', askBar = true }: { className?:
   )
 }
 
-/* ── Listening chip, shared ── */
-function Listening({ label }: { label: string }) {
-  return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-      <span style={{ width: 6, height: 6, borderRadius: '50%', background: TERRA, boxShadow: '0 0 8px rgba(200,106,58,0.8)' }} />
-      <span style={{ ...MONO, fontSize: 'clamp(9px, 0.8vw, 9.5px)', letterSpacing: '.18em', color: 'rgba(242,233,218,0.62)', textShadow: '0 1px 6px rgba(0,0,0,0.6)' }}>{label.toUpperCase()}</span>
-    </div>
-  )
-}
-
 /* ── Layout A: hero — one outcome, full-bleed, one-line title ── */
-function HeroScreen({ sc, listening }: { sc: Screen; listening: string }) {
+function HeroScreen({ sc }: { sc: Screen }) {
   return (
     <>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img key={sc.key} alt={sc.title} src={sc.image} className="v5-kenburns" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(11,9,8,0.24) 0%, transparent 30%, transparent 42%, rgba(11,9,8,0.95) 100%)' }} />
-      <div style={{ position: 'absolute', top: '5.5%', left: '5%', zIndex: 3 }}><Listening label={listening} /></div>
       {sc.ask && (
         <div style={{ position: 'absolute', top: '5%', right: '5%', maxWidth: '64%', textAlign: 'right', zIndex: 3 }}>
           <span style={{ fontFamily: SANS, fontSize: 'clamp(10px,1.15vw,15px)', color: CREAM, textShadow: '0 2px 12px rgba(0,0,0,0.7)' }}>{sc.ask}</span>
@@ -320,7 +264,7 @@ function HeroScreen({ sc, listening }: { sc: Screen; listening: string }) {
 }
 
 /* ── Layout B: choices — it can merchandise every service ── */
-function ChoicesScreen({ sc, listening }: { sc: Screen; listening: string }) {
+function ChoicesScreen({ sc }: { sc: Screen }) {
   return (
     <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(160deg, #16120e 0%, #100d0b 100%)', display: 'flex', flexDirection: 'column', padding: 'clamp(12px,1.8vw,22px)' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, flexShrink: 0 }}>
@@ -328,7 +272,6 @@ function ChoicesScreen({ sc, listening }: { sc: Screen; listening: string }) {
           <div style={{ fontFamily: SERIF, fontWeight: 500, fontSize: 'clamp(16px,1.8vw,26px)', lineHeight: 1, color: CREAM }}>{sc.choicesTitle}</div>
           <div style={{ fontFamily: SANS, fontSize: 'clamp(9px,1vw,12.5px)', color: TERRA, marginTop: 5 }}>{sc.choicesAsk}</div>
         </div>
-        <Listening label={listening} />
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(9px, 1vw, 11px)', marginTop: 'clamp(10px,1.6vw,18px)' }}>
         {sc.choices?.map((it) => (
@@ -351,7 +294,7 @@ function ChoicesScreen({ sc, listening }: { sc: Screen; listening: string }) {
 }
 
 /* ── Layout C: cards — a service menu, three treatments to reserve ── */
-function CardsScreen({ sc, listening, property }: { sc: Screen; listening: string; property: string }) {
+function CardsScreen({ sc, property }: { sc: Screen; property: string }) {
   return (
     <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(160deg, #16120e 0%, #100d0b 100%)', display: 'flex', flexDirection: 'column', padding: 'clamp(12px,1.7vw,22px)' }}>
       {/* status */}
@@ -359,7 +302,6 @@ function CardsScreen({ sc, listening, property }: { sc: Screen; listening: strin
         <span style={{ ...MONO, display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 'clamp(9px, 0.82vw, 9.5px)', letterSpacing: '.18em', color: TERRA, border: '1px solid rgba(200,106,58,0.4)', background: 'rgba(11,9,8,0.4)', borderRadius: 999, padding: '4px 10px' }}>
           <span style={{ width: 6, height: 6, borderRadius: '50%', background: TERRA }} />{property.toUpperCase()}
         </span>
-        <span style={{ ...MONO, fontSize: 'clamp(9px, 0.8vw, 9.5px)', letterSpacing: '.18em', color: 'rgba(242,233,218,0.5)' }}>{listening.toUpperCase()}</span>
       </div>
       {/* title + question */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: 12, flexShrink: 0, marginTop: 'clamp(9px, 1.2vw, 14px)' }}>

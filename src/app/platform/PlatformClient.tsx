@@ -98,7 +98,7 @@ export default function PlatformClient() {
               )}
             </>
           }
-          visual={<CompanionTablet askBar={false} />}
+          visual={<CompanionTablet />}
         />
       </div>
 

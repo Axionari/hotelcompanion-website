@@ -3,6 +3,7 @@
 import { CSSProperties } from 'react'
 import { Reveal } from '@/components/cds/Reveal'
 import { VoiceOrb } from '@/components/cds/VoiceOrb'
+import { DeviceVoiceBar } from './DeviceVoiceBar'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { v4Copy } from '@/lib/i18n/marketing/v4'
 import { deviceScreens } from '@/lib/i18n/marketing/deviceScreens'
@@ -161,7 +162,6 @@ export function EverySurface() {
                       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg,rgba(9,6,4,.5) 0%,transparent 30%,transparent 45%,rgba(9,6,4,.96) 100%)' }} />
                       <div style={{ position: 'relative', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: `${u(14)} ${u(16)}` }}>
                         <Chip label="MARAZUL" tag />
-                        <span style={{ ...MONO, fontSize: u(9), letterSpacing: '.2em', color: 'rgba(242,233,220,.6)' }}>{ds.listening.toUpperCase()}</span>
                       </div>
                       <div style={{ position: 'relative', textAlign: 'right', padding: `${u(4)} ${u(16)}`, ...SANS, fontSize: u(13.5), color: CREAM, textShadow: '0 2px 10px rgba(0,0,0,.6)' }}>{beach.ask}</div>
                       <div style={{ position: 'relative', marginTop: 'auto', padding: `0 ${u(16)} ${u(16)}`, display: 'flex', flexDirection: 'column', gap: u(9) }}>
@@ -172,6 +172,8 @@ export function EverySurface() {
                           <span style={{ flex: 1, ...SANS, border: `${u(1)} solid rgba(242,233,220,.35)`, color: CREAM, borderRadius: 999, padding: `${u(10)} 0`, fontSize: u(12), textAlign: 'center' }}>{beach.actions[0]}</span>
                         </div>
                       </div>
+                      {/* the standard control bar — same one on every tablet */}
+                      <div style={{ position: 'relative' }}><DeviceVoiceBar compact /></div>
                     </div>
                   </div>
                 </div>

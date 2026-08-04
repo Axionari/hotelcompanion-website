@@ -3,7 +3,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { deviceScreens, type ScreenId } from '@/lib/i18n/marketing/deviceScreens'
-import { VoiceOrb, type OrbState } from './VoiceOrb'
+import { type OrbState } from './VoiceOrb'
+import { DeviceVoiceBar } from '@/components/v5/DeviceVoiceBar'
 
 /**
  * The in-room tablet as an image-rich hospitality display OS
@@ -492,84 +493,15 @@ export function TabletOS({
               />
               {d.property}
             </span>
-            <span className="eyebrow inline-flex items-center gap-1.5" style={{ fontSize: 9 }}>
-              <span
-                aria-hidden="true"
-                style={{
-                  width: 4,
-                  height: 4,
-                  borderRadius: 999,
-                  background: 'var(--accent)',
-                  boxShadow: '0 0 6px rgba(200,106,58,0.8)',
-                  animation: reduce ? 'none' : 'pc-dot-pulse 2s ease-in-out infinite',
-                }}
-              />
-              {d.listening}
-            </span>
           </div>
 
-          {/* -------------------------------------------- rail + canvas
+          {/* -------------------------------------------------- the canvas
 
-              A large surface has room to give the orb its own column, so the
-              control stops floating over the content and the answer gets the
-              whole canvas. Phones and watches keep the centred orb (see
-              DeviceWall) — a 120px rail inside a 9:18 screen is not a layout,
-              it is a stripe. That difference IS the "adapts to the surface"
-              claim, made structurally rather than asserted. */}
+              The answer takes the whole screen. The control lives along the
+              bottom edge (DeviceVoiceBar) on every surface the site shows —
+              tablet, phone, watch — so the product reads as one product
+              rather than one layout per device. */}
           <div className="tos-shell absolute inset-x-0 top-9 bottom-[52px] flex">
-            <aside
-              className="tos-rail flex flex-col items-center flex-shrink-0 px-2.5 pt-3 pb-3"
-              style={{
-                width: '22%',
-                minWidth: 108,
-                maxWidth: 160,
-                borderRight: '1px solid var(--border-soft)',
-                background: 'rgba(251,248,242,0.025)',
-              }}
-            >
-              <div className="device-orb">
-                <VoiceOrb state={orbState} size={72} showMic keepMic micScale={0.3} />
-              </div>
-              <span
-                className="eyebrow mt-2.5 text-center"
-                style={{ fontSize: 9, color: 'var(--accent)', lineHeight: 1.35 }}
-              >
-                {d.orbHint}
-              </span>
-
-              <span
-                className="tos-property eyebrow mt-3 text-center"
-                style={{ fontSize: 9, color: 'var(--text-faint)', lineHeight: 1.3 }}
-              >
-                {d.property}
-              </span>
-
-              <div className="tos-tiles mt-3 w-full flex flex-col gap-1">
-                {d.tiles.slice(0, 4).map((t) => {
-                  // The tab for the service on screen lights up — the rail reads
-                  // as live navigation, not decoration (mirrors CompanionTablet).
-                  const on = t.id === active
-                  return (
-                    <div
-                      key={t.id}
-                      className="rounded px-1.5 py-1.5 text-center"
-                      style={{
-                        background: on ? 'rgba(200,106,58,0.16)' : 'rgba(251,248,242,0.05)',
-                        border: `1px solid ${on ? 'rgba(200,106,58,0.6)' : 'var(--border-soft)'}`,
-                        fontSize: 9,
-                        fontWeight: on ? 600 : 400,
-                        color: on ? 'var(--text)' : 'var(--text-dim)',
-                        lineHeight: 1.2,
-                        transition: reduce ? 'none' : 'all .45s var(--ease-standard)',
-                      }}
-                    >
-                      {t.label}
-                    </div>
-                  )
-                })}
-              </div>
-            </aside>
-
             {/* the canvas cross-fades; the rail never does */}
             <div
               className="relative flex-1 min-w-0"
@@ -585,26 +517,9 @@ export function TabletOS({
             </div>
           </div>
 
-          {/* Chat spans the full bottom, under both rail and canvas. */}
-          <div
-            className="absolute inset-x-0 bottom-0 flex items-center gap-2 px-3 py-2.5"
-            style={{ borderTop: '1px solid var(--border-soft)', background: 'rgba(15,13,12,0.72)' }}
-          >
-            <div
-              className="flex-1 flex items-center rounded-full px-3"
-              style={{ height: 28, background: 'rgba(251,248,242,0.06)', border: '1px solid var(--border-soft)' }}
-            >
-              <span className="font-sans" style={{ fontSize: 10, color: 'var(--text-faint)' }}>
-                {d.chat.placeholder}
-              </span>
-            </div>
-            <span
-              aria-hidden="true"
-              className="grid place-items-center rounded-full flex-shrink-0"
-              style={{ width: 28, height: 28, background: 'var(--accent)', color: '#1a1207', fontSize: 13 }}
-            >
-              ↑
-            </span>
+          {/* the standard control bar — same one on every tablet */}
+          <div className="absolute inset-x-0 bottom-0">
+            <DeviceVoiceBar />
           </div>
         </div>
       </div>
@@ -623,7 +538,9 @@ export function TabletFilmstrip({ screens }: { screens: ScreenId[] }) {
               <ScreenBody id={s} />
             </div>
             {/* the mic stays visible in the static state too */}
-            <FilmstripChrome />
+            <div className="absolute inset-x-0 bottom-0">
+              <DeviceVoiceBar compact />
+            </div>
           </div>
         </div>
       ))}
@@ -631,27 +548,3 @@ export function TabletFilmstrip({ screens }: { screens: ScreenId[] }) {
   )
 }
 
-/** Static version of the device chrome, for the filmstrip / no-JS state. */
-function FilmstripChrome() {
-  const d = useCopy(deviceScreens)
-  return (
-    <div
-      className="absolute inset-x-0 bottom-0 flex items-center gap-1.5 px-2 py-1.5"
-      style={{ borderTop: '1px solid var(--border-soft)', background: 'rgba(15,13,12,0.72)' }}
-    >
-      <VoiceOrb state="idle" size={24} showMic />
-      <div
-        className="flex-1 rounded-full"
-        style={{ height: 20, background: 'rgba(251,248,242,0.06)', border: '1px solid var(--border-soft)' }}
-      />
-      <span
-        aria-hidden="true"
-        className="grid place-items-center rounded-full flex-shrink-0"
-        style={{ width: 20, height: 20, background: 'var(--accent)', color: '#1a1207', fontSize: 10 }}
-      >
-        ↑
-      </span>
-      <span className="sr-only">{d.chat.placeholder}</span>
-    </div>
-  )
-}

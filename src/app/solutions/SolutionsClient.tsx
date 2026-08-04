@@ -128,7 +128,7 @@ export default function SolutionsClient() {
               )}
             </>
           }
-          visual={<CompanionTablet askBar={false} />}
+          visual={<CompanionTablet />}
         />
       </div>
 

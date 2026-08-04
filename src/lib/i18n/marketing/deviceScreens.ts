@@ -22,6 +22,11 @@ const en = {
   listening: 'Listening',
   property: 'MarAzul Riviera Maya',
   askAnything: 'Ask anything…',
+  /** The standard tablet control bar (DeviceVoiceBar) — one bar, every tablet. */
+  voiceBar: {
+    label: 'LISTENING — JUST KEEP TALKING',
+    chips: ['Show me the spa', 'Dinner tonight', 'My day plan'],
+  },
   tiles: [
     { id: 'roomservice', label: 'Room Service' },
     { id: 'spa', label: 'Spa' },
@@ -117,6 +122,10 @@ const es: typeof en = {
   listening: 'Escuchando',
   property: 'MarAzul Riviera Maya',
   askAnything: 'Pregunta lo que sea…',
+  voiceBar: {
+    label: 'ESCUCHANDO — SIGUE HABLANDO',
+    chips: ['Muéstrame el spa', 'Cena esta noche', 'Mi plan del día'],
+  },
   tiles: [
     { id: 'roomservice', label: 'Servicio a Cuarto' },
     { id: 'spa', label: 'Spa' },
