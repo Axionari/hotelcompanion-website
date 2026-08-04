@@ -110,7 +110,7 @@ function useScreens(): Screen[] {
         key: 'memory',
         layout: 'hero',
         pill: 'Guest memory',
-        image: '/assets/ui/suite-2.webp',
+        image: '/assets/ui/suite-sculpted.webp',
         ask: '',
         title: 'Welcome back, Maya',
         meta: mem.chips.slice(0, 4).join(' · '),
@@ -148,20 +148,16 @@ function useScreens(): Screen[] {
 
 /**
  * Which screens each page shows. NO PHOTOGRAPH APPEARS IN TWO SETS, and none
- * of them reuses the three suites the homepage's SuiteShowcase owns
- * (suite-3 / suite-ocean / suite-2) — the hero tablet used to lead with the
- * Ocean-View Suite on all three pages, directly above the showcase telling the
- * same room's story, which is what made the site feel repetitive.
+ * of them reuses the suites the homepage's SuiteShowcase owns (suite-garden /
+ * suite-ocean / suite-2) — the hero tablet used to lead with the Ocean-View
+ * Suite on all three pages, directly above the showcase telling that same
+ * room's story, which is what made the site feel repetitive.
  *
  *   home       a day out, then the spa — the suites belong to SuiteShowcase below
  *   platform   the late-night surfaces — the pool, and the room it moves you to
  *   solutions  the dining room, and the returning guest
  *
- * `memory` is the one near-miss: its photo is also the Beachfront Penthouse
- * thumbnail inside the homepage booking flow. It is a small card there and a
- * full-bleed hero here, on different pages, which is the closest the current
- * photo library allows — there are five room photographs that meet the bar and
- * the showcase needs three of them.
+ * Every photograph here is now used exactly once site-wide.
  */
 const VARIANTS = {
   home: ['cenote', 'spa'],

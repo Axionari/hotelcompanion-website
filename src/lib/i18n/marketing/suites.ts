@@ -23,7 +23,7 @@ const en = {
   featured: 'Most booked',
   view: 'View',
   list: [
-    { key: 'garden', name: 'Garden Villa', price: '$180', meta: 'Plunge pool · tropical garden', image: '/assets/ui/suite-3.webp' },
+    { key: 'garden', name: 'Garden Villa', price: '$180', meta: 'Plunge pool · tropical garden', image: '/assets/ui/suite-garden.webp' },
     { key: 'ocean', name: 'Ocean-View Suite', price: '$250', meta: 'Private terrace · ocean view', image: '/assets/ui/suite-ocean.webp', featured: true },
     { key: 'penthouse', name: 'Beachfront Penthouse', price: '$520', meta: 'Rooftop terrace · steps to the sand', image: '/assets/ui/suite-2.webp' },
   ],
@@ -44,7 +44,7 @@ const en = {
       includesTitle: 'Breakfast in the garden',
       includesNote: 'and late checkout on your last day.',
       cta: 'Add to my stay',
-      images: ['/assets/ui/suite-3.webp'],
+      images: ['/assets/ui/suite-garden.webp'],
     },
     {
       key: 'ocean',
@@ -208,7 +208,7 @@ const es: typeof en = {
   featured: 'La más reservada',
   view: 'Ver',
   list: [
-    { key: 'garden', name: 'Villa Jardín', price: '$180', meta: 'Alberca privada · jardín tropical', image: '/assets/ui/suite-3.webp' },
+    { key: 'garden', name: 'Villa Jardín', price: '$180', meta: 'Alberca privada · jardín tropical', image: '/assets/ui/suite-garden.webp' },
     { key: 'ocean', name: 'Suite Vista al Mar', price: '$250', meta: 'Terraza privada · vista al mar', image: '/assets/ui/suite-ocean.webp', featured: true },
     { key: 'penthouse', name: 'Penthouse Frente al Mar', price: '$520', meta: 'Terraza en la azotea · a pasos de la arena', image: '/assets/ui/suite-2.webp' },
   ],
@@ -227,7 +227,7 @@ const es: typeof en = {
       includesTitle: 'Desayuno en el jardín',
       includesNote: 'y salida tardía en tu último día.',
       cta: 'Agregar a mi estancia',
-      images: ['/assets/ui/suite-3.webp'],
+      images: ['/assets/ui/suite-garden.webp'],
     },
     {
       key: 'ocean',

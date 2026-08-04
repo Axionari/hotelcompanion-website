@@ -114,3 +114,24 @@ Enterprise → company-reception, Companion OS → platform-pool-night.
 Retired as standalone bands: the 9–25KB video-poster stills
 (cta-beach-aerial-poster, hero-coastal-sunset-poster,
 section-tropical-beach-poster). They remain only as posters for their own videos.
+
+## Suite photography added 2026-08-04 → `public/assets/ui/`
+
+**Unsplash License** (free for commercial use, no permission or attribution required —
+a different licence from the Pexels media above, recorded here for the trail).
+Screened against the same art direction: real photography not CGI, no people in frame,
+no recognizable brand signage, resort register.
+
+| File | Source | Used on |
+|---|---|---|
+| `suite-sculpted.webp` | https://unsplash.com/photos/1731336478850-6bce7235e320 | /solutions — Guest-memory hero |
+| `suite-garden.webp` | https://unsplash.com/photos/1761039265583-9489b4246454 | Home SuiteShowcase — Garden Villa |
+
+Both 1400px long edge, cwebp q82 / q74, matching `suite-ocean.webp`'s spec.
+
+**Rejected during screening, do not press into service:** a Barcelona city-hotel room
+(recognizable skyline), a room with a person in the bed, a CGI render, a brick-walled
+suite with a model in frame, and a mosquito-net lodge — all off-register or against the
+art direction. The two pre-existing weak files (`suite-1.webp` twin-bed business room,
+`suite-3.webp` ornate gold suite) are now unused; `suite-3` was the Garden Villa until
+`suite-garden.webp` replaced it.
