@@ -128,7 +128,7 @@ export default function SolutionsClient() {
               )}
             </>
           }
-          visual={<CompanionTablet />}
+          visual={<CompanionTablet variant="solutions" />}
         />
       </div>
 

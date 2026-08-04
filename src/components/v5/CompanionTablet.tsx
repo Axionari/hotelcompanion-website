@@ -117,14 +117,67 @@ function useScreens(): Screen[] {
         primary: 'Her usual suite',
         badge: mem.title,
       },
+      // 6 · hero — a quiet room, the one photo nothing else on the site uses
+      {
+        key: 'nightsuite',
+        layout: 'hero',
+        pill: 'Room change',
+        image: s.nightsuite.image,
+        ask: s.nightsuite.ask,
+        title: s.nightsuite.title,
+        meta: s.nightsuite.meta,
+        primary: s.nightsuite.confirm,
+        badge: s.nightsuite.badge,
+      },
+      // 7 · hero — the late-night amenity
+      {
+        key: 'nightpool',
+        layout: 'hero',
+        pill: 'Pool & bar',
+        image: s.nightpool.image,
+        ask: s.nightpool.ask,
+        title: s.nightpool.title,
+        meta: s.nightpool.meta,
+        primary: s.nightpool.confirm,
+        badge: s.nightpool.badge,
+      },
     ],
     [s, mem]
   )
 }
 
-export function CompanionTablet({ className = '' }: { className?: string }) {
+/**
+ * Which screens each page shows. NO PHOTOGRAPH APPEARS IN TWO SETS, and none
+ * of them reuses the three suites the homepage's SuiteShowcase owns
+ * (suite-3 / suite-ocean / suite-2) — the hero tablet used to lead with the
+ * Ocean-View Suite on all three pages, directly above the showcase telling the
+ * same room's story, which is what made the site feel repetitive.
+ *
+ *   home       a day out, then the spa — the suites belong to SuiteShowcase below
+ *   platform   the late-night surfaces — the pool, and the room it moves you to
+ *   solutions  the dining room, and the returning guest
+ *
+ * `memory` is the one near-miss: its photo is also the Beachfront Penthouse
+ * thumbnail inside the homepage booking flow. It is a small card there and a
+ * full-bleed hero here, on different pages, which is the closest the current
+ * photo library allows — there are five room photographs that meet the bar and
+ * the showcase needs three of them.
+ */
+const VARIANTS = {
+  home: ['cenote', 'spa'],
+  platform: ['nightpool', 'nightsuite'],
+  solutions: ['dining', 'memory'],
+} as const
+
+export type TabletVariant = keyof typeof VARIANTS
+
+export function CompanionTablet({ className = '', variant = 'home' }: { className?: string; variant?: TabletVariant }) {
   const d = useCopy(deviceScreens)
-  const screens = useScreens()
+  const all = useScreens()
+  const screens = useMemo(() => {
+    const want = VARIANTS[variant]
+    return want.map((k) => all.find((x) => x.key === k)).filter(Boolean) as Screen[]
+  }, [all, variant])
   const [i, setI] = useState(0)
   const [fade, setFade] = useState(false)
   const [paused, setPaused] = useState(false)
@@ -273,10 +326,14 @@ function ChoicesScreen({ sc }: { sc: Screen }) {
           <div style={{ fontFamily: SANS, fontSize: 'clamp(9px,1vw,12.5px)', color: TERRA, marginTop: 5 }}>{sc.choicesAsk}</div>
         </div>
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(9px, 1vw, 11px)', marginTop: 'clamp(10px,1.6vw,18px)' }}>
+      {/* flex:1 + minHeight:0 and a smaller thumb: the bottom bar took height
+          off this screen and the third row was sliding under it. */}
+      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', gap: 'clamp(6px, 0.8vw, 9px)', marginTop: 'clamp(8px,1.2vw,14px)', flex: 1, minHeight: 0 }}>
+        {/* The three rows SHARE the height the bar left, rather than each
+            taking its natural size and pushing the last one underneath it. */}
         {sc.choices?.map((it) => (
-          <div key={it.name} style={{ display: 'flex', alignItems: 'center', gap: 'clamp(9px,1.2vw,14px)', background: 'rgba(243,236,226,0.05)', border: '1px solid rgba(243,236,226,0.1)', borderRadius: 14, padding: 'clamp(9px, 0.8vw, 9.5px)' }}>
-            <div style={{ position: 'relative', flexShrink: 0, width: 'clamp(44px,6vw,74px)', height: 'clamp(44px,6vw,74px)', borderRadius: 10, overflow: 'hidden' }}>
+          <div key={it.name} style={{ flex: '1 1 0', minHeight: 0, display: 'flex', alignItems: 'center', gap: 'clamp(9px,1.2vw,14px)', background: 'rgba(243,236,226,0.05)', border: '1px solid rgba(243,236,226,0.1)', borderRadius: 14, padding: 'clamp(6px, 0.7vw, 9px)' }}>
+            <div style={{ position: 'relative', flexShrink: 0, height: '100%', aspectRatio: '1', borderRadius: 10, overflow: 'hidden' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img alt={it.name} src={it.image} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
@@ -312,7 +369,10 @@ function CardsScreen({ sc, property }: { sc: Screen; property: string }) {
       <div style={{ display: 'flex', gap: 'clamp(9px, 1vw, 12px)', marginTop: 'clamp(9px,1.4vw,16px)', flex: 1, minHeight: 0 }}>
         {sc.cards?.map((c) => (
           <div key={c.name} style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', borderRadius: 14, overflow: 'hidden', background: 'rgba(243,236,226,0.04)', border: `1px solid ${c.featured ? 'rgba(200,106,58,0.55)' : 'rgba(243,236,226,0.1)'}` }}>
-            <div style={{ position: 'relative', flex: 1, minHeight: 'clamp(40px,4.4vw,78px)' }}>
+            {/* minHeight 0, not a floor: the bottom bar took height off this
+                screen and a floored photo pushed the Reserve button out of the
+                card, which has overflow:hidden. The photo shrinks instead. */}
+            <div style={{ position: 'relative', flex: 1, minHeight: 0 }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img alt={c.name} src={c.image} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
               <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(11,9,8,0.05) 0%, transparent 50%, rgba(11,9,8,0.4) 100%)' }} />

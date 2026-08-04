@@ -98,7 +98,7 @@ export default function PlatformClient() {
               )}
             </>
           }
-          visual={<CompanionTablet />}
+          visual={<CompanionTablet variant="platform" />}
         />
       </div>
 

@@ -35,6 +35,25 @@ const en = {
     { id: 'upgrade', label: 'Check-out' },
   ],
   screens: {
+    /* Two screens that exist so the three pages carrying a CompanionTablet can
+       each show different photography — see the `variant` sets in that file.
+       Both use rooms/places nothing else on the site uses. */
+    nightsuite: {
+      ask: 'Somewhere quieter, away from the bar?',
+      title: 'Garden King, top floor',
+      meta: '$210/night · quiet side · late checkout',
+      confirm: 'Move us tonight',
+      badge: 'DIRECT RATE · NO OTA FEE',
+      image: '/assets/lux/suite-dark.webp',
+    },
+    nightpool: {
+      ask: 'Is the pool still open?',
+      title: 'The pool, until midnight',
+      meta: 'Towels and a mezcal flight sent down',
+      confirm: 'Send them down',
+      badge: 'OPEN LATE',
+      image: '/assets/img/platform-pool-night.webp',
+    },
     beach: {
       ask: 'Best cenote near here?',
       title: 'Cenote Oxman',
@@ -134,6 +153,22 @@ const es: typeof en = {
     { id: 'upgrade', label: 'Salida' },
   ],
   screens: {
+    nightsuite: {
+      ask: '¿Algo más tranquilo, lejos del bar?',
+      title: 'Garden King, último piso',
+      meta: '$210/noche · lado tranquilo · salida tardía',
+      confirm: 'Cámbianos esta noche',
+      badge: 'TARIFA DIRECTA · SIN COMISIÓN OTA',
+      image: '/assets/lux/suite-dark.webp',
+    },
+    nightpool: {
+      ask: '¿La alberca sigue abierta?',
+      title: 'La alberca, hasta medianoche',
+      meta: 'Toallas y una cata de mezcal en camino',
+      confirm: 'Que las bajen',
+      badge: 'ABIERTO HASTA TARDE',
+      image: '/assets/img/platform-pool-night.webp',
+    },
     beach: {
       ask: '¿El mejor cenote cerca?',
       title: 'Cenote Oxman',

@@ -142,7 +142,7 @@ export default function HomeClient() {
               </div>
               <div className="hero-device">
                 <Reveal>
-                  <CompanionTablet />
+                  <CompanionTablet variant="home" />
                 </Reveal>
               </div>
             </div>
