@@ -68,13 +68,19 @@ export const metadata: Metadata = {
       "Understand Every Guest. Capture Every Opportunity. Powered by Companion OS.",
     url: "https://hotelcompanion.ai",
     type: "website",
-    // NEEDS REAL DATA: designed OG share image (public/og.png) not yet in repo
+    images: [{
+      url: "https://hotelcompanion.ai/og/hotel-companion-og.jpg",
+      width: 1200,
+      height: 630,
+      alt: "Hotel Companion",
+    }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Hotel Companion — A concierge that never forgets, built on Companion OS",
     description:
       "Understand Every Guest. Capture Every Opportunity. Powered by Companion OS.",
+    images: ["https://hotelcompanion.ai/og/hotel-companion-og.jpg"],
   },
 };
 
