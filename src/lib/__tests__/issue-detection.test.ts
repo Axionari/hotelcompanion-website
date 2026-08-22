@@ -32,6 +32,31 @@ describe('extractRoomNumber', () => {
     ]
     expect(extractRoomNumber(msgs)).toBe('305')
   })
+
+  it('reads a #-prefixed room number', () => {
+    expect(extractRoomNumberFromMessage('#412 has no towels')).toBe('412')
+  })
+
+  it('accepts a bare number when it is the entire message', () => {
+    expect(extractRoomNumberFromMessage('304')).toBe('304')
+    expect(extractRoomNumberFromMessage('  304  ')).toBe('304')
+    expect(extractRoomNumberFromMessage('#304')).toBe('304')
+  })
+
+  it('does not treat an unrelated bare number in a sentence as a room number', () => {
+    expect(extractRoomNumberFromMessage('There are 4 of us in the group')).toBeNull()
+    expect(extractRoomNumberFromMessage('I will be back around 5pm')).toBeNull()
+  })
+
+  it('prefers an explicit room mention over an earlier unrelated number', () => {
+    expect(
+      extractRoomNumberFromMessage('I will be back around 5, room 304 has no water')
+    ).toBe('304')
+  })
+
+  it('returns null for messages with no digits', () => {
+    expect(extractRoomNumberFromMessage('the ac is broken')).toBeNull()
+  })
 })
 
 describe('escapeHtml', () => {
