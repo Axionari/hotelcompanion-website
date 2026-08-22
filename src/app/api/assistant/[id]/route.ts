@@ -4,6 +4,7 @@ import { createServiceClient } from '@/lib/supabase/service'
 import { NextRequest } from 'next/server'
 import { Resend } from 'resend'
 import { detectIssue, extractRoomNumber, extractRoomNumberFromMessage, escapeHtml } from '@/lib/issue-detection'
+import { detectRevenueSignal } from '@/lib/revenue-signal'
 import { clientIp, rateLimit, rateLimitResponse } from '@/lib/rate-limit'
 
 const anthropic = createAnthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
@@ -85,17 +86,6 @@ function sendRoomUpdateAlert(
     `,
   }).then(r => console.log('[alert] room update Resend response:', JSON.stringify(r)))
   .catch(e => console.error('[alert] room update Resend error:', e.message))
-}
-
-function detectRevenueSignal(message: string): string | null {
-  const lower = message.toLowerCase()
-  if (lower.includes('spa') || lower.includes('massage') || lower.includes('treatment')) return 'spa'
-  if (lower.includes('restaurant') || lower.includes('dinner') || lower.includes('breakfast') || lower.includes('lunch') || lower.includes('food')) return 'restaurant'
-  if (lower.includes('tour') || lower.includes('activity') || lower.includes('excursion')) return 'activity'
-  if (lower.includes('transport') || lower.includes('taxi') || lower.includes('airport') || lower.includes('transfer')) return 'transport'
-  if (lower.includes('checkout') || lower.includes('check out') || lower.includes('late')) return 'late_checkout'
-  if (lower.includes('upgrade') || lower.includes('room')) return 'room_upgrade'
-  return null
 }
 
 export async function POST(
