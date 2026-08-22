@@ -40,3 +40,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .claude/worktrees/
+
+# RepoWise local index/cache — machine-generated, not shared config
+.repowise/

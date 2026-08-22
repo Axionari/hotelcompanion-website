@@ -1,0 +1,23 @@
+# RepoWise indexing exclusions (added for Claude Code context-tooling evaluation).
+# Belt-and-suspenders on top of the existing .gitignore, which already covers
+# node_modules, .next/, /build, .vercel, and .env*.
+
+.env*
+**/secrets/
+**/secret/
+**/credentials/
+**/credential/
+**/*keychain*
+**/*.pem
+**/*.p12
+**/*.pfx
+node_modules/
+dist/
+build/
+.next/
+.vercel/
+
+# Duplicate Claude Code git-worktree checkouts (generated/parallel branches,
+# one observed to contain a stray .env.local already caught by the .env*
+# rule above). Not primary source; exclude the whole tree defensively.
+.claude/worktrees/
