@@ -15,12 +15,17 @@ export function detectIssue(message: string): boolean {
   return ISSUE_KEYWORDS.some(kw => lower.includes(kw))
 }
 
-const ROOM_PATTERN = /room\s*[#:]?\s*(\d+)|habitaci[oó]n\s*[#:]?\s*(\d+)|cuarto\s*[#:]?\s*(\d+)|#\s*(\d+)|\b(\d{1,4})\b/i
+const EXPLICIT_ROOM_PATTERN = /room\s*[#:]?\s*(\d+)|habitaci[oó]n\s*[#:]?\s*(\d+)|cuarto\s*[#:]?\s*(\d+)|#\s*(\d+)/i
+const BARE_ROOM_NUMBER_PATTERN = /^#?\s*(\d{1,4})$/
 
 export function extractRoomNumberFromMessage(content: string): string | null {
-  const match = content.match(ROOM_PATTERN)
-  if (!match) return null
-  return match[1] ?? match[2] ?? match[3] ?? match[4] ?? match[5] ?? null
+  const explicitMatch = content.match(EXPLICIT_ROOM_PATTERN)
+  if (explicitMatch) {
+    return explicitMatch[1] ?? explicitMatch[2] ?? explicitMatch[3] ?? explicitMatch[4] ?? null
+  }
+
+  const bareMatch = content.trim().match(BARE_ROOM_NUMBER_PATTERN)
+  return bareMatch ? bareMatch[1] : null
 }
 
 export function extractRoomNumber(messages: Array<{ role: string; content: string }>): string | null {
