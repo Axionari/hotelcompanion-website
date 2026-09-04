@@ -34,7 +34,7 @@ const COPY = {
     },
     leaks: {
       eyebrow: '02 · Four leaks, every stay', title: 'You already know them.', titleEm: 'Nobody has connected them for you.',
-      context: 'Verified industry context', stakeLabel: 'AI value at stake', distributionLabel: 'Distribution economics',
+      context: 'Industry context', stakeLabel: 'AI value at stake', distributionLabel: 'Distribution economics',
       items: [
         { time: '08:14', title: 'The booking that went OTA', body: 'A ready guest met a generic answer.' },
         { time: '15:42', title: 'The upgrade never offered', body: 'The reason was obvious. The context was not.' },
@@ -114,7 +114,7 @@ const COPY = {
     },
     leaks: {
       eyebrow: '02 · Cuatro fugas, cada estancia', title: 'Ya las conoces.', titleEm: 'Nadie las ha conectado por ti.',
-      context: 'Contexto sectorial verificado', stakeLabel: 'Valor potencial de la IA', distributionLabel: 'Economía de distribución',
+      context: 'Contexto del sector', stakeLabel: 'Valor potencial de la IA', distributionLabel: 'Economía de distribución',
       items: [
         { time: '08:14', title: 'La reserva que terminó en una OTA', body: 'Un huésped listo encontró una respuesta genérica.' },
         { time: '15:42', title: 'La mejora que nadie ofreció', body: 'La razón era obvia. El contexto no.' },
