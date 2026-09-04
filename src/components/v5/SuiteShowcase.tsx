@@ -1,6 +1,7 @@
 'use client'
 
-import { CSSProperties, useEffect, useRef, useState } from 'react'
+import { CSSProperties, useEffect, useRef, useState, useSyncExternalStore } from 'react'
+import Image from 'next/image'
 import { VoiceOrb } from '@/components/cds/VoiceOrb'
 import { DeviceVoiceBar } from './DeviceVoiceBar'
 import { useCopy } from '@/lib/i18n/useCopy'
@@ -16,19 +17,27 @@ import { suitesCopy } from '@/lib/i18n/marketing/suites'
 
 const MONO: CSSProperties = { fontFamily: 'var(--font-mono), ui-monospace, monospace' }
 const SANS = 'var(--font-sans), ui-sans-serif, system-ui, sans-serif'
-const SERIF = 'var(--font-serif), Georgia, serif'
-const TERRA = '#C86A3A'
-const CREAM = '#F5EDDE'
-const DIM = 'rgba(242,233,218,0.6)'
+const SERIF = "var(--font-editorial), 'Instrument Serif', Georgia, serif"
+const TERRA = '#D97A4F'
+const CREAM = '#F7ECDD'
+const DIM = 'rgba(247,236,221,.66)'
 
 type SuiteCopy = (typeof suitesCopy)['en']
+
+const subscribeToReducedMotion = (callback: () => void) => {
+  const query = window.matchMedia('(prefers-reduced-motion: reduce)')
+  query.addEventListener('change', callback)
+  return () => query.removeEventListener('change', callback)
+}
+const reducedMotionSnapshot = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
+const serverReducedMotionSnapshot = () => false
 
 /* ── shared bits ─────────────────────────────────────────────────────── */
 
 /** Persistent voice bar — the shared DeviceVoiceBar, carrying this flow's own
  *  script. Sits under every screen: the whole flow is voice-first. */
 function VoiceBar({ c }: { c: SuiteCopy }) {
-  return <DeviceVoiceBar label={c.voiceBar.label} chips={c.voiceBar.chips} />
+  return <DeviceVoiceBar label={c.voiceBar.label} chips={c.voiceBar.chips} tone="marazul" />
 }
 
 /**
@@ -101,7 +110,7 @@ const pad: CSSProperties = { position: 'absolute', inset: 0, padding: 'clamp(16p
 function WelcomeScreen({ c }: { c: SuiteCopy }) {
   return (
     <div style={{ ...pad, alignItems: 'center', justifyContent: 'center', textAlign: 'center', gap: 'clamp(10px,1.4vw,20px)' }}>
-      <VoiceOrb state="listening" size="clamp(120px,14vw,190px)" ripples showMic micScale={0.22} />
+      <VoiceOrb className="vmic-marazul" state="listening" size="clamp(120px,14vw,190px)" ripples showMic micScale={0.22} />
       <div style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(22px,2.6vw,40px)', color: CREAM, lineHeight: 1 }}>{c.property}</div>
       <div style={{ ...MONO, fontSize: 'clamp(9px, 0.85vw, 12px)', letterSpacing: '.22em', color: TERRA }}>{c.tagline}</div>
       <div style={{ marginTop: 'clamp(9px, 0.8vw, 12px)', fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(18px,2vw,30px)', color: CREAM, lineHeight: 1.15 }}>
@@ -129,8 +138,7 @@ function BrowseScreen({ c }: { c: SuiteCopy }) {
         {c.list.map((s) => (
           <div key={s.key} style={{ position: 'relative', display: 'flex', flexDirection: 'column', borderRadius: 16, overflow: 'hidden', background: 'rgba(243,236,226,0.04)', border: `1px solid ${s.featured ? 'rgba(200,106,58,0.6)' : 'rgba(243,236,226,0.1)'}`, boxShadow: s.featured ? '0 0 40px -12px rgba(200,106,58,0.5)' : 'none' }}>
             <div style={{ position: 'relative', flex: 1, minHeight: 'clamp(80px,10vw,180px)' }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img alt={s.name} src={s.image} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+              <Image alt={s.name} src={s.image} fill sizes="(max-width: 767px) calc(100vw - 72px), 280px" quality={70} style={{ objectFit: 'cover' }} />
               <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(11,9,8,0.05) 0%, transparent 40%, rgba(11,9,8,0.6) 100%)' }} />
               {s.featured && <span style={{ position: 'absolute', top: 10, left: 10, ...MONO, fontSize: 'clamp(9px, 0.7vw, 9.5px)', letterSpacing: '.08em', color: '#1a1207', background: TERRA, borderRadius: 999, padding: '4px 9px' }}>{c.featured}</span>}
             </div>
@@ -152,17 +160,21 @@ function BrowseScreen({ c }: { c: SuiteCopy }) {
 }
 
 /* ── 3 · detail — per-room content; tabs switch the room ─────────────── */
-function DetailScreen({ c }: { c: SuiteCopy }) {
+function DetailScreen({ c, paused }: { c: SuiteCopy; paused: boolean }) {
   const [room, setRoom] = useState(1) // default: Ocean-View (most booked)
   const d = c.details[room]
   const [img, setImg] = useState(0)
-  useEffect(() => setImg(0), [room])
+  const activeImage = img % d.images.length
   useEffect(() => {
-    if (d.images.length < 2) return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    if (paused || d.images.length < 2) return
     const t = window.setInterval(() => setImg((n) => (n + 1) % d.images.length), 2400)
     return () => window.clearInterval(t)
-  }, [d.images.length, room])
+  }, [d.images.length, room, paused])
+  useEffect(() => {
+    if (paused || d.images.length < 2) return
+    const preload = new window.Image()
+    preload.src = d.images[(activeImage + 1) % d.images.length]
+  }, [activeImage, d.images, paused])
   return (
     <div style={pad}>
       <TopBar c={c} count={5} />
@@ -174,6 +186,7 @@ function DetailScreen({ c }: { c: SuiteCopy }) {
             <button
               key={r.key}
               type="button"
+              aria-pressed={on}
               onClick={() => setRoom(idx)}
               style={{ fontFamily: SANS, fontSize: 'clamp(9px,0.85vw,12px)', fontWeight: on ? 600 : 500, color: on ? CREAM : DIM, background: on ? 'rgba(200,106,58,0.15)' : 'transparent', border: `1px solid ${on ? 'rgba(200,106,58,0.6)' : 'rgba(243,236,226,0.14)'}`, borderRadius: 999, padding: 'clamp(9px, 0.55vw, 9.5px) clamp(11px,1.2vw,16px)', cursor: 'pointer', whiteSpace: 'nowrap', transition: 'all .3s var(--ease-standard)' }}
             >
@@ -184,10 +197,16 @@ function DetailScreen({ c }: { c: SuiteCopy }) {
       </div>
       <div className="suite-cols" style={{ marginTop: 'clamp(10px,1.3vw,18px)', flex: 1, minHeight: 0, display: 'grid', gridTemplateColumns: '1.15fr 1fr', gap: 'clamp(14px,1.8vw,28px)' }}>
         <div className="suite-shot" style={{ position: 'relative', borderRadius: 16, overflow: 'hidden' }}>
-          {d.images.map((src, i) => (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img key={src} alt={d.name} src={src} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: i === img ? 1 : 0, transition: 'opacity 0.9s var(--ease-standard)' }} />
-          ))}
+          <Image
+            key={d.images[activeImage]}
+            alt={d.name}
+            src={d.images[activeImage]}
+            fill
+            sizes="(max-width: 767px) calc(100vw - 72px), 620px"
+            quality={74}
+            className="suite-gallery-image"
+            style={{ objectFit: 'cover' }}
+          />
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 45%, rgba(11,9,8,0.85) 100%)' }} />
           <div style={{ position: 'absolute', left: 'clamp(14px,1.5vw,22px)', bottom: 'clamp(14px,1.5vw,22px)', right: 16 }}>
             <div style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(18px,2.1vw,30px)', lineHeight: 1.05, color: CREAM }}>{d.name}</div>
@@ -195,7 +214,7 @@ function DetailScreen({ c }: { c: SuiteCopy }) {
           </div>
           {d.images.length > 1 && (
             <div style={{ position: 'absolute', top: 14, right: 14, display: 'flex', gap: 5 }}>
-              {d.images.map((_, i) => <span key={i} style={{ width: i === img ? 16 : 6, height: 6, borderRadius: 999, background: i === img ? TERRA : 'rgba(242,233,218,0.4)', transition: 'width .4s' }} />)}
+              {d.images.map((_, i) => <span key={i} style={{ width: i === activeImage ? 16 : 6, height: 6, borderRadius: 999, background: i === activeImage ? TERRA : 'rgba(242,233,218,0.4)', transition: 'width .4s' }} />)}
             </div>
           )}
         </div>
@@ -236,8 +255,7 @@ function CartScreen({ c }: { c: SuiteCopy }) {
         {c.cart.items.map((it) => (
           <div key={it.name} style={{ display: 'flex', alignItems: 'center', gap: 'clamp(10px,1.2vw,16px)', background: 'rgba(243,236,226,0.04)', border: '1px solid rgba(243,236,226,0.1)', borderRadius: 14, padding: 'clamp(9px, 0.9vw, 12px)' }}>
             <div style={{ position: 'relative', flexShrink: 0, width: 'clamp(42px,4.6vw,66px)', height: 'clamp(42px,4.6vw,66px)', borderRadius: 10, overflow: 'hidden' }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img alt={it.name} src={it.image} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+              <Image alt={it.name} src={it.image} width={96} height={96} sizes="(max-width: 767px) 66px, 72px" quality={66} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontFamily: SANS, fontWeight: 600, fontSize: 'clamp(11px,1.1vw,15px)', color: CREAM }}>{it.name}</div>
@@ -264,12 +282,13 @@ function CartScreen({ c }: { c: SuiteCopy }) {
  * client render the same first frame, then ticks once mounted. The screen
  * remounts each time the flow reaches it, so the clock restarts on its own.
  */
-function HoldTimer({ label }: { label: string }) {
+function HoldTimer({ label, paused }: { label: string; paused: boolean }) {
   const [left, setLeft] = useState(900)
   useEffect(() => {
+    if (paused) return
     const t = setInterval(() => setLeft((s) => (s > 0 ? s - 1 : 0)), 1000)
     return () => clearInterval(t)
-  }, [])
+  }, [paused])
   const mm = String(Math.floor(left / 60)).padStart(2, '0')
   const ss = String(left % 60).padStart(2, '0')
   return (
@@ -281,7 +300,7 @@ function HoldTimer({ label }: { label: string }) {
   )
 }
 
-function AvailabilityScreen({ c }: { c: SuiteCopy }) {
+function AvailabilityScreen({ c, paused }: { c: SuiteCopy; paused: boolean }) {
   const a = c.availability
   return (
     <div style={pad}>
@@ -302,7 +321,7 @@ function AvailabilityScreen({ c }: { c: SuiteCopy }) {
             </div>
           ))}
         </div>
-        <HoldTimer label={a.hold} />
+        <HoldTimer label={a.hold} paused={paused} />
         <div style={{ ...MONO, fontSize: 'clamp(9px, 0.7vw, 9.5px)', letterSpacing: '.18em', color: 'rgba(242,233,218,0.4)', marginTop: 'clamp(9px, 0.6vw, 9.5px)' }}>{a.caption}</div>
       </div>
     </div>
@@ -387,7 +406,7 @@ function VerifyingScreen({ c }: { c: SuiteCopy }) {
       {/* Our orb rather than a generic spinner: this is the one screen where the
           guest is waiting on us, so it should be the companion holding the beat.
           Thinking state, no mic — nothing is being asked of them here. */}
-      <VoiceOrb state="thinking" size="clamp(56px,6.5vw,96px)" showMic={false} />
+      <VoiceOrb className="vmic-marazul" state="thinking" size="clamp(56px,6.5vw,96px)" showMic={false} />
       <div style={{ ...MONO, fontSize: 'clamp(9px, 0.8vw, 11px)', letterSpacing: '.2em', color: TERRA, marginTop: 'clamp(16px,2vw,28px)' }}>{c.verifying.label}</div>
       <div style={{ fontFamily: SERIF, fontWeight: 500, fontSize: 'clamp(20px,2.3vw,34px)', color: CREAM, marginTop: 8 }}>{c.verifying.title}</div>
       <div style={{ fontFamily: SANS, fontSize: 'clamp(11px,1.1vw,15px)', color: DIM, marginTop: 8 }}>{c.verifying.note}</div>
@@ -466,19 +485,19 @@ function LoyaltyScreen({ c }: { c: SuiteCopy }) {
  * base gradient below, just weighted to the warm end so list-and-form screens
  * sit a step lighter than the image-led ones.
  */
-const LIFTED = 'linear-gradient(180deg, #17130f 0%, #17130f 58%, #100e0c 100%)'
+const LIFTED = 'radial-gradient(circle at 88% 4%, rgba(134,185,183,.12), transparent 31%), linear-gradient(160deg, #0D373B 0%, #0B3034 58%, #061F24 100%)'
 
 /**
  * `lifted` marks the screens whose job is reading — lists, forms, totals.
  * The rest (welcome, the suite hero, confirmation, loyalty) stay deep and
  * vignetted so the emotional beats read as cinematic against them.
  */
-const FLOW: Array<{ key: string; dwell: number; lifted?: boolean; render: (c: SuiteCopy) => React.ReactNode }> = [
+const FLOW: Array<{ key: string; dwell: number; lifted?: boolean; render: (c: SuiteCopy, paused: boolean) => React.ReactNode }> = [
   { key: 'welcome', dwell: 2600, render: (c) => <WelcomeScreen c={c} /> },
   { key: 'browse', dwell: 4200, lifted: true, render: (c) => <BrowseScreen c={c} /> },
-  { key: 'detail', dwell: 4800, render: (c) => <DetailScreen c={c} /> },
+  { key: 'detail', dwell: 4800, render: (c, paused) => <DetailScreen c={c} paused={paused} /> },
   { key: 'cart', dwell: 4200, lifted: true, render: (c) => <CartScreen c={c} /> },
-  { key: 'availability', dwell: 3000, lifted: true, render: (c) => <AvailabilityScreen c={c} /> },
+  { key: 'availability', dwell: 3000, lifted: true, render: (c, paused) => <AvailabilityScreen c={c} paused={paused} /> },
   { key: 'review', dwell: 4400, lifted: true, render: (c) => <ReviewScreen c={c} /> },
   { key: 'payment', dwell: 4600, lifted: true, render: (c) => <PaymentScreen c={c} /> },
   { key: 'verifying', dwell: 2200, render: (c) => <VerifyingScreen c={c} /> },
@@ -490,37 +509,75 @@ export function SuiteShowcase() {
   const c = useCopy(suitesCopy)
   const [i, setI] = useState(0)
   const [fade, setFade] = useState(false)
-  const [paused, setPaused] = useState(false)
+  const [cyclePaused, setCyclePaused] = useState(false)
+  const [interacting, setInteracting] = useState(false)
+  const [inView, setInView] = useState(false)
+  const [pageVisible, setPageVisible] = useState(true)
+  const reduce = useSyncExternalStore(subscribeToReducedMotion, reducedMotionSnapshot, serverReducedMotionSnapshot)
+  const rootRef = useRef<HTMLDivElement>(null)
   const timer = useRef<number | undefined>(undefined)
+  const fadeTimer = useRef<number | undefined>(undefined)
+  const selectionTimer = useRef<number | undefined>(undefined)
 
   useEffect(() => {
-    if (paused) return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setI(2) // hold the suite detail
-      return
-    }
+    if (cyclePaused || interacting || reduce || !inView || !pageVisible) return
     timer.current = window.setTimeout(() => {
       setFade(true)
-      window.setTimeout(() => {
+      fadeTimer.current = window.setTimeout(() => {
         setI((n) => (n + 1) % FLOW.length)
         setFade(false)
       }, 460)
     }, FLOW[i].dwell)
+    // Interaction cancels the next dwell, but an in-flight cross-fade is
+    // allowed to complete so the product never gets stuck nearly transparent.
     return () => window.clearTimeout(timer.current)
-  }, [i, paused])
+  }, [i, cyclePaused, interacting, reduce, inView, pageVisible])
+
+  useEffect(() => {
+    const root = rootRef.current
+    if (!root) return
+    const observer = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), { rootMargin: '240px 0px', threshold: 0.01 })
+    const onVisibility = () => setPageVisible(!document.hidden)
+    observer.observe(root)
+    onVisibility()
+    document.addEventListener('visibilitychange', onVisibility)
+    return () => {
+      observer.disconnect()
+      document.removeEventListener('visibilitychange', onVisibility)
+    }
+  }, [])
+
+  useEffect(() => () => {
+    window.clearTimeout(timer.current)
+    window.clearTimeout(fadeTimer.current)
+    window.clearTimeout(selectionTimer.current)
+  }, [])
 
   const go = (idx: number) => {
     if (idx === i) return
-    setPaused(true)
+    setCyclePaused(true)
     setFade(true)
-    window.setTimeout(() => {
+    window.clearTimeout(timer.current)
+    window.clearTimeout(fadeTimer.current)
+    window.clearTimeout(selectionTimer.current)
+    selectionTimer.current = window.setTimeout(() => {
       setI(idx)
       setFade(false)
     }, 280)
   }
 
   return (
-    <div className="suite-wrap" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+    <div
+      ref={rootRef}
+      className={`suite-wrap ${inView && pageVisible ? 'is-in-view' : ''}`}
+      style={{ '--accent': TERRA, '--accent-bright': '#EC8B5D', '--gold': '#86B9B7', '--text': CREAM } as CSSProperties}
+      onMouseEnter={() => setInteracting(true)}
+      onMouseLeave={() => setInteracting(false)}
+      onFocusCapture={() => setInteracting(true)}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setInteracting(false)
+      }}
+    >
       {/* step nav — above the screen on desktop. On mobile it drops BELOW the
           device (CSS order): a menu stacked on top of a phone-shaped mockup
           pushes the actual product below the fold and reads as chrome. */}
@@ -529,21 +586,35 @@ export function SuiteShowcase() {
           {c.pills.labels.map((label, idx) => {
             const on = idx === i
             return (
-              <button key={label} type="button" onClick={() => go(idx)} className={`v5-suite-tab ${on ? 'on' : ''}`} aria-current={on}>
+              <button key={label} type="button" onClick={() => go(idx)} className={`v5-suite-tab ${on ? 'on' : ''}`} aria-pressed={on}>
                 {label}
               </button>
             )
           })}
         </div>
         <span className="eyebrow" style={{ color: 'var(--text-faint)', fontSize: 11 }}>{c.pills.hint}</span>
+        {!reduce && (
+          <button
+            type="button"
+            className="product-preview-toggle"
+            onClick={() => {
+              const next = !cyclePaused
+              setCyclePaused(next)
+              if (!next) setInteracting(false)
+            }}
+            style={{ ...MONO, minHeight: 38, padding: '8px 13px', border: '1px solid var(--border-soft)', borderRadius: 999, background: 'transparent', color: 'var(--text-dim)', fontSize: 10, letterSpacing: '.12em', textTransform: 'uppercase', cursor: 'pointer' }}
+          >
+            <span aria-hidden="true">{cyclePaused ? '▶' : 'Ⅱ'}</span>{' '}{cyclePaused ? c.pills.resume : c.pills.pause}
+          </button>
+        )}
       </div>
 
       <div
         data-device-ui=""
         className="suite-frame suite-stage"
-        style={{ width: '100%', background: '#0C0B0A', border: '1px solid rgba(190,185,175,0.28)', borderRadius: 26, padding: 12, boxShadow: '0 60px 130px -34px rgba(0,0,0,0.85), 0 0 130px -10px rgba(200,106,58,0.28), 0 0 0 1px rgba(200,106,58,0.14)', boxSizing: 'border-box' }}
+        style={{ width: '100%', background: '#071719', border: '1px solid rgba(134,185,183,.3)', borderRadius: 26, padding: 12, boxShadow: '0 60px 130px -34px rgba(2,17,19,.9), 0 0 120px -18px rgba(76,143,145,.3), inset 0 0 0 1px rgba(247,236,221,.04)', boxSizing: 'border-box' }}
       >
-        <div className="suite-screen" style={{ height: '100%', borderRadius: 18, overflow: 'hidden', background: 'radial-gradient(120% 100% at 30% 0%, #17130f 0%, #100e0c 60%, #0c0b0a 100%)', display: 'flex', flexDirection: 'column' }}>
+        <div className="suite-screen" style={{ height: '100%', borderRadius: 18, overflow: 'hidden', background: 'radial-gradient(120% 100% at 30% 0%, #0D373B 0%, #0B3034 58%, #061F24 100%)', display: 'flex', flexDirection: 'column' }}>
           {/* Status bar and content share one toned container so the tone has no
               seam across the status row. It stops short of the voice bar, whose
               own dock edge already reads as a boundary. The tone is a separate
@@ -557,7 +628,7 @@ export function SuiteShowcase() {
             <IOSStatusBar />
             <div style={{ position: 'relative', flex: 1, minHeight: 0 }}>
               <div style={{ position: 'absolute', inset: 0, opacity: fade ? 0 : 1, transition: 'opacity 0.46s var(--ease-standard)' }}>
-                {FLOW[i].render(c)}
+                {FLOW[i].render(c, cyclePaused || interacting || reduce || !inView || !pageVisible)}
               </div>
             </div>
           </div>

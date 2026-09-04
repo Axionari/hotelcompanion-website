@@ -1,10 +1,20 @@
 'use client'
 
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore, type CSSProperties } from 'react'
 import { useCopy } from '@/lib/i18n/useCopy'
+import { useLang } from '@/lib/i18n/LanguageContext'
 import { deviceScreens, type ScreenId } from '@/lib/i18n/marketing/deviceScreens'
 import { type OrbState } from './VoiceOrb'
 import { DeviceVoiceBar } from '@/components/v5/DeviceVoiceBar'
+
+const subscribeToReducedMotion = (callback: () => void) => {
+  const media = window.matchMedia('(prefers-reduced-motion: reduce)')
+  media.addEventListener('change', callback)
+  return () => media.removeEventListener('change', callback)
+}
+
+const reducedMotionSnapshot = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
+const serverReducedMotionSnapshot = () => false
 
 /**
  * The in-room tablet as an image-rich hospitality display OS
@@ -22,20 +32,18 @@ import { DeviceVoiceBar } from '@/components/v5/DeviceVoiceBar'
  */
 
 const FRAME = {
-  background: 'var(--device-frame)',
+  background: '#071719',
   borderRadius: 'var(--device-radius)',
   padding: 'var(--bezel)',
-  border: '1px solid rgba(251,248,242,0.08)',
-  // Copper glow (RC's device treatment): a warm halo blooms off the device
-  // into the dark page. Presence through light, not a metal frame.
-  boxShadow: '0 40px 90px -30px rgba(0,0,0,0.85), 0 0 100px -12px rgba(200,106,58,0.26), 0 0 0 1px rgba(200,106,58,0.12)',
+  border: '1px solid rgba(134,185,183,.3)',
+  boxShadow: '0 40px 90px -30px rgba(2,17,19,.9), 0 0 90px -14px rgba(76,143,145,.3), inset 0 0 0 1px rgba(247,236,221,.04)',
 } as const
 
 /* aspect-ratio lives in CSS (.tos-screen) so phones can go portrait — a 4/3
    frame at 390px is ~290px tall and the absolute internals collide. */
 const SCREEN = {
   borderRadius: 'calc(var(--device-radius) - var(--bezel))',
-  background: 'linear-gradient(168deg, #191410 0%, #12100e 58%, #0f0d0c 100%)',
+  background: 'radial-gradient(circle at 88% 4%, rgba(134,185,183,.13), transparent 31%), linear-gradient(160deg, #0D373B 0%, #0B3034 58%, #061F24 100%)',
 } as const
 
 /** Photo inside the UI: rounded, faint inner border, slow Ken-Burns. */
@@ -416,15 +424,18 @@ export function TabletOS({
   orbState?: OrbState
   className?: string
 }) {
+  const { lang } = useLang()
   const d = useCopy(deviceScreens)
   const [i, setI] = useState(0)
   const [fading, setFading] = useState(false)
-  const [reduce, setReduce] = useState(false)
-  const timer = useRef<number | undefined>(undefined)
-
-  useEffect(() => {
-    setReduce(window.matchMedia('(prefers-reduced-motion: reduce)').matches)
-  }, [])
+  const reduce = useSyncExternalStore(subscribeToReducedMotion, reducedMotionSnapshot, serverReducedMotionSnapshot)
+  const [cyclePaused, setCyclePaused] = useState(false)
+  const [interacting, setInteracting] = useState(false)
+  const [inView, setInView] = useState(false)
+  const [pageVisible, setPageVisible] = useState(true)
+  const rootRef = useRef<HTMLDivElement>(null)
+  const dwellTimer = useRef<number | undefined>(undefined)
+  const fadeTimer = useRef<number | undefined>(undefined)
 
   const list = useMemo(() => cycle ?? [], [cycle])
 
@@ -433,44 +444,92 @@ export function TabletOS({
   const [shown, setShown] = useState<ScreenId | undefined>(screen)
   useEffect(() => {
     if (screen === undefined || screen === shown) return
-    if (reduce) {
-      setShown(screen)
-      return
+    let transitionTimer: number | undefined
+    const frame = window.requestAnimationFrame(() => {
+      if (reduce) {
+        setShown(screen)
+        setFading(false)
+        return
+      }
+      setFading(true)
+      transitionTimer = window.setTimeout(() => {
+        setShown(screen)
+        setFading(false)
+      }, 210)
+    })
+    return () => {
+      window.cancelAnimationFrame(frame)
+      window.clearTimeout(transitionTimer)
     }
-    setFading(true)
-    const t = window.setTimeout(() => {
-      setShown(screen)
-      setFading(false)
-    }, 210)
-    return () => window.clearTimeout(t)
   }, [screen, shown, reduce])
 
   useEffect(() => {
-    if (!list.length || reduce) return
-    const t = window.setInterval(() => {
+    if (!list.length || reduce || cyclePaused || interacting || !inView || !pageVisible) return
+    dwellTimer.current = window.setTimeout(() => {
       setFading(true)
-      window.setTimeout(() => {
+      fadeTimer.current = window.setTimeout(() => {
         setI((n) => (n + 1) % list.length)
         setFading(false)
       }, 210)
     }, 4800)
-    return () => window.clearInterval(t)
-  }, [list, reduce])
+    // Do not cancel an in-progress cross-fade when the pointer or keyboard
+    // enters the device; only cancel the upcoming dwell.
+    return () => window.clearTimeout(dwellTimer.current)
+  }, [list, reduce, cyclePaused, interacting, inView, pageVisible, i])
 
-  useEffect(() => () => window.clearTimeout(timer.current), [])
+  useEffect(() => {
+    const root = rootRef.current
+    if (!root) return
+    const observer = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), { rootMargin: '180px 0px', threshold: 0.01 })
+    const onVisibility = () => setPageVisible(!document.hidden)
+    observer.observe(root)
+    onVisibility()
+    document.addEventListener('visibilitychange', onVisibility)
+    return () => {
+      observer.disconnect()
+      document.removeEventListener('visibilitychange', onVisibility)
+    }
+  }, [])
+
+  useEffect(() => () => {
+    window.clearTimeout(dwellTimer.current)
+    window.clearTimeout(fadeTimer.current)
+  }, [])
 
   const active: ScreenId = shown ?? screen ?? list[i] ?? 'home'
 
   return (
     /* data-device-ui: OQ-6 ruling — device-screen text is excluded from the
        reading-copy word measure. */
-    <div className={`relative w-full ${className}`} data-device-ui="">
+    <div
+      ref={rootRef}
+      className={`relative w-full motion-gated ${inView && pageVisible ? 'is-in-view' : ''} ${className}`}
+      data-device-ui=""
+      style={{
+        '--accent': '#D97A4F',
+        '--accent-bright': '#EC8B5D',
+        '--accent-hairline': 'rgba(217,122,79,.42)',
+        '--gold': '#86B9B7',
+        '--text': '#F7ECDD',
+        '--text-dim': 'rgba(247,236,221,.68)',
+        '--text-faint': 'rgba(247,236,221,.5)',
+        '--surface-3': '#0B3034',
+        '--border': 'rgba(134,185,183,.24)',
+        '--border-soft': 'rgba(134,185,183,.2)',
+      } as CSSProperties}
+      onMouseEnter={() => setInteracting(true)}
+      onMouseLeave={() => setInteracting(false)}
+      onFocusCapture={() => setInteracting(true)}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setInteracting(false)
+      }}
+    >
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
           background:
-            'radial-gradient(58% 52% at 60% 42%, rgba(200,106,58,0.2) 0%, rgba(200,106,58,0.06) 44%, transparent 72%)',
+            'radial-gradient(58% 52% at 60% 42%, rgba(134,185,183,.22) 0%, rgba(76,143,145,.08) 44%, transparent 72%)',
           filter: 'blur(14px)',
         }}
       />
@@ -488,7 +547,7 @@ export function TabletOS({
                   height: 4,
                   borderRadius: 999,
                   background: 'var(--accent)',
-                  animation: reduce ? 'none' : 'pc-dot-pulse 2s ease-in-out infinite',
+                  animation: reduce || !inView || !pageVisible ? 'none' : 'pc-dot-pulse 2s ease-in-out infinite',
                 }}
               />
               {d.property}
@@ -519,10 +578,34 @@ export function TabletOS({
 
           {/* the standard control bar — same one on every tablet */}
           <div className="absolute inset-x-0 bottom-0">
-            <DeviceVoiceBar />
+            <DeviceVoiceBar state={orbState} tone="marazul" />
           </div>
         </div>
       </div>
+      {list.length > 1 && !reduce ? (
+        <div className="mt-4 flex justify-center">
+          <button
+            type="button"
+            onClick={() => {
+              const next = !cyclePaused
+              setCyclePaused(next)
+              if (!next) setInteracting(false)
+            }}
+            className="product-preview-toggle rounded-full px-3 py-2"
+            style={{
+              border: '1px solid var(--border-soft)',
+              color: 'var(--text-dim)',
+              fontFamily: 'var(--font-mono), ui-monospace, monospace',
+              fontSize: 9,
+              letterSpacing: '.12em',
+              textTransform: 'uppercase',
+            }}
+          >
+            <span aria-hidden="true">{cyclePaused ? '▶' : 'Ⅱ'}</span>{' '}
+            {cyclePaused ? (lang === 'es' ? 'Reanudar vista' : 'Resume preview') : (lang === 'es' ? 'Pausar vista' : 'Pause preview')}
+          </button>
+        </div>
+      ) : null}
     </div>
   )
 }
@@ -539,7 +622,7 @@ export function TabletFilmstrip({ screens }: { screens: ScreenId[] }) {
             </div>
             {/* the mic stays visible in the static state too */}
             <div className="absolute inset-x-0 bottom-0">
-              <DeviceVoiceBar compact />
+              <DeviceVoiceBar compact state="idle" tone="marazul" />
             </div>
           </div>
         </div>
@@ -547,4 +630,3 @@ export function TabletFilmstrip({ screens }: { screens: ScreenId[] }) {
     </div>
   )
 }
-

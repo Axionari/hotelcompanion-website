@@ -181,12 +181,14 @@ const en = {
 
   /* Persistent voice bar under every screen — voice-first, always listening. */
   voiceBar: {
-    label: 'LISTENING — JUST KEEP TALKING',
+    label: 'MARAZUL · LISTENING',
     chips: ['Show me the spa', 'Dinner tonight', 'My day plan'],
   },
   pills: {
     labels: ['Welcome', 'Browse', 'Suite', 'Your stay', 'Availability', 'Review', 'Pay', 'Processing', 'Confirmed', 'Loyalty'],
     hint: 'The guest’s journey — tap any step',
+    pause: 'Pause journey',
+    resume: 'Resume journey',
   },
   /* Demo honesty: the quiet staging label under the in-room journey. */
   demoNote: 'Guided demonstration · demo property',
@@ -362,12 +364,14 @@ const es: typeof en = {
   },
 
   voiceBar: {
-    label: 'ESCUCHANDO — SIGUE HABLANDO',
+    label: 'MARAZUL · ESCUCHANDO',
     chips: ['Muéstrame el spa', 'Cena esta noche', 'Mi plan del día'],
   },
   pills: {
     labels: ['Bienvenida', 'Explorar', 'Suite', 'Tu estancia', 'Disponibilidad', 'Revisar', 'Pagar', 'Procesando', 'Confirmado', 'Lealtad'],
     hint: 'El recorrido del huésped — toca cualquier paso',
+    pause: 'Pausar recorrido',
+    resume: 'Reanudar recorrido',
   },
   demoNote: 'Demostración guiada · propiedad demo',
 }

@@ -20,9 +20,8 @@ const en = {
     leadership: 'LEADERSHIP',
     contact: 'CONTACT',
   },
-  /* P5.1 — RC "Built by operators" leadership roster. NEEDS CONFIRM: names,
-     titles, and bios are carried from the Axionari/RC company page (same team
-     builds Hotel Companion); verify current and add real LinkedIn URLs. */
+  /* Full leadership biographies from the production Hotel Companion company
+     page. LinkedIn links remain omitted because no verified URLs are published. */
   leadership: {
     title: 'Built by operators.',
     deck:

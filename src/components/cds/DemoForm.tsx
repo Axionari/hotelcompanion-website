@@ -14,7 +14,7 @@ const inputStyle = {
   minHeight: '48px',
   color: 'var(--text)',
   padding: '0 16px',
-  fontSize: '15px',
+  fontSize: '16px',
   width: '100%',
 } as const
 

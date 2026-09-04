@@ -59,6 +59,11 @@ export function CookieBanner() {
     }
   }, [visible, expanded])
 
+  useEffect(() => {
+    document.body.classList.toggle('cookie-banner-open', visible)
+    return () => document.body.classList.remove('cookie-banner-open')
+  }, [visible])
+
   if (!visible) return null
 
   const decide = (prefs: { analytics: boolean; marketing: boolean }) => {
@@ -67,7 +72,7 @@ export function CookieBanner() {
   }
 
   return (
-    <div className="cbanner" ref={ref} role="dialog" aria-modal="true" aria-label={c.ariaLabel}>
+    <div className="cbanner" ref={ref} role="region" aria-label={c.ariaLabel}>
       <div className="cbin">
         <p className="cbtext">
           {c.bodyPre}

@@ -290,7 +290,7 @@ export default function OnboardingPage() {
                   border: '1px solid rgba(232,227,220,0.08)',
                   borderRadius: '12px',
                   padding: '12px 16px',
-                  fontSize: '15px',
+                  fontSize: '16px',
                   color: '#E8E3DC',
                 }}
                 onFocus={e => { e.target.style.borderColor = 'rgba(232,227,220,0.25)' }}
@@ -397,7 +397,7 @@ export default function OnboardingPage() {
                   border: '1px solid rgba(232,227,220,0.08)',
                   borderRadius: '12px',
                   padding: '12px 16px',
-                  fontSize: '15px',
+                  fontSize: '16px',
                   color: '#E8E3DC',
                   lineHeight: 1.6,
                 }}
@@ -579,7 +579,7 @@ export default function OnboardingPage() {
                   height: '44px',
                   padding: '0 24px',
                   borderRadius: '6px',
-                  fontSize: '15px',
+                  fontSize: '16px',
                   background: '#2D9E6B',
                   color: 'white',
                   border: 'none',
@@ -718,7 +718,7 @@ export default function OnboardingPage() {
                   background: '#242019',
                   borderRadius: '8px',
                   padding: '10px 16px',
-                  fontSize: '15px',
+                  fontSize: '16px',
                   color: '#E8E3DC',
                   border: '1px solid transparent',
                 }}

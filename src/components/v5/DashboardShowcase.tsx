@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useLang } from '@/lib/i18n/LanguageContext'
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, BarChart, Bar, Cell } from 'recharts'
 
@@ -33,14 +33,19 @@ export function DashboardShowcase({ caption }: { caption?: string }) {
     return () => observer.disconnect()
   }, [])
 
-  const days = Array.from({ length: 30 }, (_, i) => {
-    const d = new Date()
-    d.setDate(d.getDate() - (29 - i))
+  /* A fixed illustrative month keeps the server and browser output identical
+     across time zones and across the midnight boundary. */
+  const days = useMemo(() => Array.from({ length: 30 }, (_, i) => {
+    const d = new Date(Date.UTC(2026, 7, 6 + i))
     return {
-      date: d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
-      questions: Math.round(18 + Math.sin(i * 0.4) * 12 + i * 1.2 + (d.getDay() === 0 || d.getDay() === 6 ? 15 : 0)),
+      date: d.toLocaleDateString(lang === 'es' ? 'es-MX' : 'en-US', {
+        month: 'short',
+        day: 'numeric',
+        timeZone: 'UTC',
+      }),
+      questions: Math.round(18 + Math.sin(i * 0.4) * 12 + i * 1.2 + (d.getUTCDay() === 0 || d.getUTCDay() === 6 ? 15 : 0)),
     }
-  })
+  }), [lang])
   const categories = [
     { name: lang === 'es' ? 'Alimentos y bebidas' : 'Food & Beverage', pct: 28 },
     { name: lang === 'es' ? 'Actividades' : 'Local Activities', pct: 22 },
@@ -130,7 +135,7 @@ export function DashboardShowcase({ caption }: { caption?: string }) {
 
             <div style={{ display: 'flex', gap: '4px', borderBottom: '1px solid rgba(232,227,220,0.06)', marginBottom: '24px', opacity: visible ? 1 : 0, transition: 'opacity 0.6s ease 0.55s' }}>
               {[
-                'Analytics',
+                lang === 'es' ? 'Analítica' : 'Analytics',
                 lang === 'es' ? 'Incidencias 🔴' : 'Issues 🔴',
                 lang === 'es' ? 'Despliegue' : 'Deploy',
                 lang === 'es' ? 'Ajustes' : 'Settings',
@@ -225,7 +230,7 @@ export function DashboardShowcase({ caption }: { caption?: string }) {
                   <circle cx="40" cy="40" r="32" fill="none" stroke="rgba(232,227,220,0.06)" strokeWidth="8" />
                   <circle cx="40" cy="40" r="32" fill="none" stroke="#2D9E6B" strokeWidth="8" strokeLinecap="round" transform="rotate(-90 40 40)" style={{ strokeDasharray: visible ? `${2 * Math.PI * 32 * 0.91} ${2 * Math.PI * 32 * 0.09}` : `0 ${2 * Math.PI * 32}`, strokeDashoffset: 2 * Math.PI * 32 * 0.25, transition: 'stroke-dasharray 1.2s ease 1s' }} />
                   <text x="40" y="36" textAnchor="middle" style={{ fontSize: '14px', fontWeight: 600, fill: '#FFFFFF', fontFamily: 'var(--font-serif)' }}>91%</text>
-                  <text x="40" y="50" textAnchor="middle" style={{ fontSize: '8px', fill: '#9C948C', fontFamily: 'var(--font-sans)' }}>resolved</text>
+                  <text x="40" y="50" textAnchor="middle" style={{ fontSize: '8px', fill: '#9C948C', fontFamily: 'var(--font-sans)' }}>{lang === 'es' ? 'resuelto' : 'resolved'}</text>
                 </svg>
               </div>
               <div>

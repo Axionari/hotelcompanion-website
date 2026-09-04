@@ -1,12 +1,13 @@
-import type { Metadata } from 'next'
-import PlatformClient from './PlatformClient'
+import NarrativePage from '@/components/editorial/NarrativePage'
+import { createPageMetadata } from '@/lib/siteMetadata'
 
-export const metadata: Metadata = {
-  title: 'Platform',
+export const metadata = createPageMetadata({
+  title: 'Product',
   description:
-    'One Platform. Every Guest Interaction. Built on Companion OS — one shared intelligence layer beneath every department.',
-}
+    'One conversation across booking, arrival, service, revenue, and return — grounded in hotel knowledge and carried through to a verified outcome.',
+  path: '/platform',
+})
 
 export default function PlatformPage() {
-  return <PlatformClient />
+  return <NarrativePage page="platform" />
 }

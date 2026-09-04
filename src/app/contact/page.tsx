@@ -1,11 +1,12 @@
-import type { Metadata } from 'next'
 import ContactClient from './ContactClient'
+import { createPageMetadata } from '@/lib/siteMetadata'
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Contact',
   description:
-    'Let’s Build the Future of Hospitality Together. Talk to the Hotel Companion team about the platform, a pilot, partnerships, or the Founding Partner Program.',
-}
+    'Explore the Hotel Companion Founding Partner Program: one property, ninety days, and four operating measures agreed before launch.',
+  path: '/contact',
+})
 
 export default function ContactPage() {
   return <ContactClient />

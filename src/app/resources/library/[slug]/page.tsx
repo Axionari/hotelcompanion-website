@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { ArticleLayout } from '@/components/cds/ArticleLayout'
 import { ESSAYS, ESSAYS_BY_LANG, getEssay, readEssayBody } from '@/lib/library'
 import type { Language } from '@/lib/i18n/translations'
+import { createPageMetadata } from '@/lib/siteMetadata'
 
 export function generateStaticParams() {
   return ESSAYS.map((e) => ({ slug: e.slug }))
@@ -16,20 +17,12 @@ export async function generateMetadata({
   const { slug } = await params
   const essay = getEssay(slug)
   if (!essay) return {}
-  const url = `https://hotelcompanion.ai/resources/library/${essay.slug}`
-  return {
+  return createPageMetadata({
     title: essay.title,
     description: essay.subtitle,
-    alternates: { canonical: url },
-    openGraph: {
-      title: essay.title,
-      description: essay.subtitle,
-      url,
-      type: 'article',
-      siteName: 'Hotel Companion',
-    },
-    twitter: { card: 'summary_large_image', title: essay.title, description: essay.subtitle },
-  }
+    path: `/resources/library/${essay.slug}`,
+    type: 'article',
+  })
 }
 
 /** Builds the per-language payload the client picks from at render time. */

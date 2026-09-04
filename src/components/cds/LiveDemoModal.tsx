@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { liveDemoCopy } from '@/lib/i18n/marketing/liveDemo'
 import { LiveDemo } from './LiveDemo'
+import { OPEN_LIVE_DEMO_EVENT, openLiveDemo } from './liveDemoEvents'
 
 /**
  * The large modal view of the working demo (Live Demo · D6).
@@ -12,13 +13,6 @@ import { LiveDemo } from './LiveDemo'
  * the nav, the hero CTA, the hero tablet, a future page — can trigger it with a
  * one-line import and no provider plumbing across the server/client boundary.
  */
-
-const OPEN_EVENT = 'hc:open-live-demo'
-
-export function openLiveDemo() {
-  if (typeof window === 'undefined') return
-  window.dispatchEvent(new CustomEvent(OPEN_EVENT))
-}
 
 export function LiveDemoModal() {
   const c = useCopy(liveDemoCopy)
@@ -31,8 +25,8 @@ export function LiveDemoModal() {
       restoreRef.current = document.activeElement as HTMLElement | null
       setOpen(true)
     }
-    window.addEventListener(OPEN_EVENT, onOpen)
-    return () => window.removeEventListener(OPEN_EVENT, onOpen)
+    window.addEventListener(OPEN_LIVE_DEMO_EVENT, onOpen)
+    return () => window.removeEventListener(OPEN_LIVE_DEMO_EVENT, onOpen)
   }, [])
 
   const close = useCallback(() => {
@@ -78,8 +72,8 @@ export function LiveDemoModal() {
 
   return (
     <div
-      className="fixed inset-0 z-[60] flex items-center justify-center p-4 md:p-8"
-      style={{ background: 'rgba(8,7,6,0.86)', backdropFilter: 'blur(10px)' }}
+      className="live-demo-overlay fixed inset-0 z-[60] flex items-center justify-center p-4 md:p-8"
+      style={{ background: 'rgba(8,7,6,0.86)' }}
       onClick={(e) => {
         if (e.target === e.currentTarget) close()
       }}
@@ -89,8 +83,8 @@ export function LiveDemoModal() {
         role="dialog"
         aria-modal="true"
         aria-label={c.title}
-        className="w-full overflow-y-auto"
-        style={{ maxWidth: 620, maxHeight: 'calc(100dvh - 32px)' }}
+        className="live-demo-panel w-full overflow-y-auto"
+        style={{ maxWidth: 620 }}
       >
         <div className="flex items-start gap-4 mb-5">
           <div className="flex-1 min-w-0">

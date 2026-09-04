@@ -1,12 +1,13 @@
-import type { Metadata } from 'next'
-import CompanyClient from './CompanyClient'
+import NarrativePage from '@/components/editorial/NarrativePage'
+import { createPageMetadata } from '@/lib/siteMetadata'
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Company',
   description:
-    'We’re Building the Future of Intelligent Hospitality. Hotel Companion is built by Axionari to help hospitality organizations transform conversations into intelligence, execution, and measurable business outcomes.',
-}
+    'Why Axionari built Hotel Companion: to preserve hospitality judgment, make ownership visible, and turn guest intent into measurable operating value.',
+  path: '/company',
+})
 
 export default function CompanyPage() {
-  return <CompanyClient />
+  return <NarrativePage page="company" />
 }

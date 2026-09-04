@@ -1,8 +1,9 @@
 'use client'
 
 import { CSSProperties, useEffect, useRef, useState } from 'react'
-import { VoiceOrb } from '@/components/cds/VoiceOrb'
+import { VoiceOrb, type OrbState } from '@/components/cds/VoiceOrb'
 import { useCopy } from '@/lib/i18n/useCopy'
+import { useLang } from '@/lib/i18n/LanguageContext'
 import { deviceScreens } from '@/lib/i18n/marketing/deviceScreens'
 
 /**
@@ -30,15 +31,25 @@ export function DeviceVoiceBar({
   label,
   chips,
   compact = false,
+  state = 'listening',
+  tone = 'default',
 }: {
   label?: string
   chips?: readonly string[]
   /** Small frames (in-scene devices, filmstrip cells) — tighter, label only. */
   compact?: boolean
+  state?: OrbState
+  /** Property-specific surface styling without changing the shared behavior. */
+  tone?: 'default' | 'marazul'
 }) {
+  const { lang } = useLang()
   const d = useCopy(deviceScreens)
-  const text = label ?? d.voiceBar.label
+  const text = label ?? (state === 'listening' || state === 'speaking'
+    ? d.voiceBar.label
+    : lang === 'es' ? 'LISTO · TOCA O HABLA' : 'READY · TAP OR SPEAK')
   const prompts = chips ?? d.voiceBar.chips
+  const active = state === 'listening' || state === 'speaking'
+  const isMarAzul = tone === 'marazul'
 
   /* These devices are laid out at wildly different widths — an 860px hero
      tablet, a 560px OS tablet, a filmstrip cell — so the bar sizes itself
@@ -67,22 +78,28 @@ export function DeviceVoiceBar({
         justifyContent: 'space-between',
         gap: compact ? 10 : 18,
         padding: compact ? 'clamp(6px,1.4cqi,9px) clamp(10px,2cqi,16px)' : 'clamp(9px,1.6cqi,14px) clamp(16px,3cqi,30px)',
-        borderTop: '1px solid rgba(243,236,226,0.08)',
-        background: 'rgba(11,9,8,0.55)',
+        borderTop: isMarAzul ? '1px solid rgba(134,185,183,.22)' : '1px solid rgba(243,236,226,0.08)',
+        background: isMarAzul
+          ? 'linear-gradient(90deg, rgba(5,30,34,.96), rgba(8,47,51,.94))'
+          : 'rgba(11,9,8,0.55)',
         containerType: 'inline-size',
       }}
     >
       <span style={{ display: 'inline-flex', alignItems: 'center', gap: compact ? 'clamp(6px,1.4cqi,10px)' : 'clamp(10px,2cqi,16px)', flexShrink: 0 }}>
-        <VoiceOrb state="listening" size={compact ? 'clamp(14px,3.2cqi,22px)' : 'clamp(20px,4.2cqi,36px)'} showMic={false} />
+        <VoiceOrb className={isMarAzul ? 'vmic-marazul' : ''} state={state} size={compact ? 'clamp(14px,3.2cqi,22px)' : 'clamp(20px,4.2cqi,36px)'} showMic={false} />
         <span className="v5-eq" aria-hidden>
-          <i /><i /><i /><i /><i />
+          <i style={{ animationPlayState: active ? 'running' : 'paused', transform: active ? undefined : 'scaleY(.5)' }} />
+          <i style={{ animationPlayState: active ? 'running' : 'paused', transform: active ? undefined : 'scaleY(.5)' }} />
+          <i style={{ animationPlayState: active ? 'running' : 'paused', transform: active ? undefined : 'scaleY(.5)' }} />
+          <i style={{ animationPlayState: active ? 'running' : 'paused', transform: active ? undefined : 'scaleY(.5)' }} />
+          <i style={{ animationPlayState: active ? 'running' : 'paused', transform: active ? undefined : 'scaleY(.5)' }} />
         </span>
         <span
           style={{
             ...MONO,
             fontSize: compact ? 'clamp(8px,1.5cqi,9px)' : 'clamp(8.5px, 1.4cqi, 10.5px)',
             letterSpacing: '.18em',
-            color: DIM,
+            color: isMarAzul ? 'rgba(247,236,221,.72)' : DIM,
             whiteSpace: 'nowrap',
           }}
         >
@@ -93,8 +110,8 @@ export function DeviceVoiceBar({
         <span style={{ display: 'inline-flex', alignItems: 'center', flexWrap: 'nowrap', gap: 'clamp(10px,2cqi,18px)', flexShrink: 0 }}>
           {prompts.map((ch, i) => (
             <span key={ch} style={{ display: 'inline-flex', alignItems: 'center', flexWrap: 'nowrap', gap: 'clamp(10px,2cqi,18px)' }}>
-              {i > 0 && <span aria-hidden style={{ color: 'rgba(242,233,218,0.3)' }}>·</span>}
-              <span style={{ fontFamily: SANS, fontSize: 'clamp(10px,1.6cqi,14px)', color: 'rgba(242,233,218,0.85)', whiteSpace: 'nowrap' }}>{ch}</span>
+              {i > 0 && <span aria-hidden style={{ color: isMarAzul ? 'rgba(134,185,183,.38)' : 'rgba(242,233,218,0.3)' }}>·</span>}
+              <span style={{ fontFamily: SANS, fontSize: 'clamp(10px,1.6cqi,14px)', color: isMarAzul ? 'rgba(247,236,221,.84)' : 'rgba(242,233,218,0.85)', whiteSpace: 'nowrap' }}>{ch}</span>
             </span>
           ))}
         </span>

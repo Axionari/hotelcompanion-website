@@ -3,166 +3,283 @@
 import Link from 'next/link'
 import { SiteNav } from '@/components/site-nav'
 import { SiteFooter } from '@/components/site-footer'
-import { Reveal } from '@/components/cds/Reveal'
-import { Accordion } from '@/components/cds/blocks'
+import { EditorialCloseMedia } from '@/components/editorial/EditorialImage'
 import { DemoForm } from '@/components/cds/DemoForm'
-import { openLiveDemo } from '@/components/cds/LiveDemoModal'
+import { openLiveDemo } from '@/components/cds/liveDemoEvents'
 import { LIVE_DEMO_ENABLED } from '@/lib/flags'
-import { ArrowFlow } from '@/components/v5/Diagrams'
-import {
-  Em,
-  StatementCards,
-  PageHero,
-  Act,
-  NumberedList,
-  QuietChips,
-  Handoff,
-} from '@/components/v5/Editorial'
 import { useCopy } from '@/lib/i18n/useCopy'
-import { globalCopy } from '@/lib/i18n/marketing/global'
 import { demoCopy } from '@/lib/i18n/marketing/demo'
 import { demoFormCopy } from '@/lib/i18n/marketing/demoForm'
-import { contactCopy } from '@/lib/i18n/marketing/contact'
-import { homeCopy } from '@/lib/i18n/marketing/home'
-import { liveDemoCopy } from '@/lib/i18n/marketing/liveDemo'
+import { globalCopy } from '@/lib/i18n/marketing/global'
 
-/**
- * /demo — RC-editorial grammar (Phase 5 rollout). The RC "Request a Demo"
- * analog: one editorial hero statement, then numbered acts — each ONE
- * message and ONE artifact:
- *
- *   HERO (statement, form anchor + live demo)
- *   01 WHY A DEMO        — the reason to book          → StatementCards
- *   02 THE SESSION       — what the meeting is        → numbered agenda + roles
- *   03 WHO SHOULD ATTEND — who the room is for        → QuietChips
- *   04 THE REQUEST       — the page's one job         → DemoForm {#form}
- *   05 DEPLOYMENT        — what happens after         → numbered stages
- *   06 FAQ {#faq}        — hesitation questions       → Accordion (the
- *                          conversion FAQ; /platform#platform-faq carries the
- *                          product one. Footer + /faq redirect link here,
- *                          JSON-LD in page.tsx reads the same demoCopy.faq.items)
- *   HAND-OFF → /contact
- *
- * All reading copy is the approved demo copy (demoCopy) — condensed and
- * re-presented, never rewritten.
- */
-
-/** Split a title into plain + italic halves around its (verbatim) em fragment. */
-function splitEm(title: string, em: string): { pre: string; hi: string } {
-  const i = em ? title.lastIndexOf(em) : -1
-  if (i === -1) return { pre: title, hi: '' }
-  return { pre: title.slice(0, i).trimEnd(), hi: title.slice(i) }
+const editorial = {
+  en: {
+    hero: {
+      eyebrow: 'A working session for hotel leaders',
+      title: 'Show us your hotel.',
+      accent: 'See what it remembers.',
+      body: 'Bring one real stay, one recurring service gap and one revenue question. We’ll map the guest conversation all the way to action.',
+      productDisclosure: 'Guided demonstration · Demo property · Illustrative rates',
+      folioLabel: 'Your working session',
+      folioTitle: 'Built around the property you actually run.',
+      rows: [
+        ['CONTEXT', 'Your hotel, systems and service model'],
+        ['SCENARIO', 'A real guest journey'],
+        ['PROOF', 'Live handoffs and outcomes'],
+        ['NEXT', 'A practical deployment path'],
+      ],
+    },
+    proof: ['YOUR PROPERTY', 'LIVE SCENARIOS', 'REAL HANDOFFS', 'A CLEAR NEXT STEP'],
+    session: {
+      title: 'Not a product tour.',
+      accent: 'A working session.',
+      body: 'We start with the way your property hosts today, then pressure-test Hotel Companion against the moments that matter most.',
+    },
+    room: {
+      title: 'Bring the people who own',
+      accent: 'the guest journey.',
+      body: 'A small cross-functional room makes the session sharper. One person who knows daily operations is enough to begin.',
+    },
+    request: {
+      eyebrow: '03 · REQUEST YOUR SESSION',
+      title: 'Tell us where',
+      accent: 'hospitality gets stuck.',
+      note: 'Your request goes directly to the Hotel Companion team. No generic sales sequence.',
+    },
+    after: {
+      title: 'From first conversation',
+      accent: 'to a live property.',
+      body: 'The path is staged around knowledge, team readiness and the systems that matter to your operation.',
+    },
+    faq: {
+      title: 'The questions worth asking',
+      accent: 'before you invite us in.',
+    },
+    close: {
+      eyebrow: 'PREFER TO START SMALL?',
+      title: 'One property.',
+      accent: 'Ninety days. Four numbers.',
+      body: 'The Founding Partner Program turns the first deployment into a measured operating proof.',
+      link: 'See the founding pilot',
+      imageAlt: 'An intimate Caribbean boutique hotel suite and private pool at blue hour',
+      imageLabel: 'YOUR HOTEL · THE WORKING VIEW',
+    },
+  },
+  es: {
+    hero: {
+      eyebrow: 'Una sesión de trabajo para líderes hoteleros',
+      title: 'Muéstranos tu hotel.',
+      accent: 'Mira lo que recuerda.',
+      body: 'Trae una estancia real, una falla de servicio recurrente y una pregunta de ingresos. Mapearemos la conversación del huésped hasta la acción.',
+      productDisclosure: 'Demostración guiada · Propiedad demo · Tarifas ilustrativas',
+      folioLabel: 'Tu sesión de trabajo',
+      folioTitle: 'Construida alrededor de la propiedad que realmente operas.',
+      rows: [
+        ['CONTEXTO', 'Tu hotel, sistemas y modelo de servicio'],
+        ['ESCENARIO', 'Un viaje real del huésped'],
+        ['PRUEBA', 'Relevos y resultados en vivo'],
+        ['SIGUIENTE', 'Una ruta práctica de despliegue'],
+      ],
+    },
+    proof: ['TU PROPIEDAD', 'ESCENARIOS EN VIVO', 'RELEVOS REALES', 'UN SIGUIENTE PASO CLARO'],
+    session: {
+      title: 'No es un recorrido de producto.',
+      accent: 'Es una sesión de trabajo.',
+      body: 'Comenzamos con la forma en que hoy recibe tu propiedad y ponemos a prueba Hotel Companion en los momentos que más importan.',
+    },
+    room: {
+      title: 'Trae a quienes cuidan',
+      accent: 'el viaje del huésped.',
+      body: 'Un grupo pequeño y multidisciplinario hace la sesión más precisa. Para comenzar basta una persona que conozca la operación diaria.',
+    },
+    request: {
+      eyebrow: '03 · SOLICITA TU SESIÓN',
+      title: 'Cuéntanos dónde',
+      accent: 'se atora la hospitalidad.',
+      note: 'Tu solicitud llega directamente al equipo de Hotel Companion. Sin una secuencia genérica de ventas.',
+    },
+    after: {
+      title: 'De la primera conversación',
+      accent: 'a una propiedad en vivo.',
+      body: 'La ruta avanza por etapas según el conocimiento, la preparación del equipo y los sistemas que importan a tu operación.',
+    },
+    faq: {
+      title: 'Las preguntas que vale la pena hacer',
+      accent: 'antes de invitarnos.',
+    },
+    close: {
+      eyebrow: '¿PREFIERES COMENZAR EN PEQUEÑO?',
+      title: 'Una propiedad.',
+      accent: 'Noventa días. Cuatro números.',
+      body: 'El Programa de Socios Fundadores convierte el primer despliegue en una prueba operativa medible.',
+      link: 'Conoce el piloto fundador',
+      imageAlt: 'Una suite íntima y alberca privada en un hotel boutique caribeño al anochecer',
+      imageLabel: 'TU HOTEL · LA VISTA DE TRABAJO',
+    },
+  },
 }
 
 export default function DemoClient() {
   const c = useCopy(demoCopy)
-  const g = useCopy(globalCopy)
   const form = useCopy(demoFormCopy)
-  const contact = useCopy(contactCopy)
-  const home = useCopy(homeCopy)
-  const demo = useCopy(liveDemoCopy)
-
-  const heroTitle = splitEm(c.hero.title, c.hero.em)
+  const g = useCopy(globalCopy)
+  const e = useCopy(editorial)
 
   return (
-    <main>
-      <SiteNav />
+    <div className="ed-page ed-demo">
+      <a className="ed-skip-link" href="#main-content">{g.nav.skipToContent}</a>
+      <SiteNav appearance="light" />
 
-      {/* HERO {#demo-hero} — flat page bed, one statement, two quiet actions */}
-      <div id="demo-hero" className="scroll-mt-20">
-        <PageHero
-          /* At 1393x692 the ES hero runs 95px longer than EN (H1 three lines to
-             two, deck four to three) and put this CTA under the cookie banner.
-             'tight' rather than plain shortViewportSafe: 13vh still left it 12px
-             short. This is the page that carries the form — an occluded CTA here
-             costs a submission. */
-          shortViewportSafe="tight"
-          eyebrow={g.nav.bookDemo}
-          title={
-            <>
-              {heroTitle.pre} <Em>{heroTitle.hi}</Em>
-            </>
-          }
-          deck={c.hero.body1}
-          actions={
-            <>
-              <a href="#form" className="btn-primary">
-                {c.hero.cta}
-              </a>
+      <main id="main-content">
+      <header className="ed-hero" id="demo-hero">
+        <div className="ed-wrap ed-hero-grid">
+          <div className="ed-hero-copy">
+            <div className="ed-eyebrow">{e.hero.eyebrow}</div>
+            <h1>{e.hero.title}<br /><em>{e.hero.accent}</em></h1>
+            <p>{e.hero.body}</p>
+            <div className="ed-actions">
+              <a className="ed-button ed-button-primary" href="#form">{c.hero.cta}</a>
               {LIVE_DEMO_ENABLED && (
-                <button type="button" onClick={openLiveDemo} className="btn-secondary">
-                  {demo.open}
-                </button>
+                <button className="ed-button ed-button-quiet" type="button" onClick={openLiveDemo}>{g.nav.see} Hotel Companion</button>
               )}
-            </>
-          }
-        />
-      </div>
+            </div>
+          </div>
+          <aside className="ed-session-dossier" aria-labelledby="demo-dossier-title">
+            <div className="ed-session-dossier-head">
+              <span>{e.hero.folioLabel}</span>
+              <span aria-hidden="true">HC / 01</span>
+            </div>
+            <div className="ed-session-dossier-title">
+              <span aria-hidden="true">01</span>
+              <h2 id="demo-dossier-title">{e.hero.folioTitle}</h2>
+            </div>
+            <dl>
+              {e.hero.rows.map(([label, value], index) => (
+                <div key={label}>
+                  <dt><span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>{label}</dt>
+                  <dd>{value}</dd>
+                </div>
+              ))}
+            </dl>
+            <div className="ed-session-dossier-foot">
+              <small>{e.hero.productDisclosure}</small>
+              <span aria-hidden="true">01—04</span>
+            </div>
+          </aside>
+        </div>
+      </header>
 
-      {/* 01 · WHY A DEMO {#demo-why} — the reason to book, before the detail of
-          what the session is. Three bare statements, no bodies. */}
-      <Act no="01" label={c.acts.why} id="demo-why" statement={c.why.title} tight>
-        <StatementCards items={c.why.reasons} />
-      </Act>
+      <div className="ed-proof"><div className="ed-wrap">{e.proof.map((item) => <span key={item}>{item}</span>)}</div></div>
 
-      {/* 02 · THE SESSION {#demo-expect} — one message: what the meeting is.
-          One artifact: the agenda, numbered. */}
-      <Act
-        no="02"
-        label={c.acts.session}
-        id="demo-expect"
-        statement={c.expect.title}
-        deck={c.experience.lead}
-      >
-        <NumberedList items={c.agenda.items} />
-      </Act>
+      <section className="ed-section ed-tone-night" id="demo-why">
+        <span id="demo-expect" className="ed-anchor" aria-hidden="true" />
+        <div className="ed-wrap">
+          <div className="ed-section-head">
+            <div className="ed-eyebrow">01 · {c.acts.session}</div>
+            <h2>{e.session.title}<br /><em>{e.session.accent}</em></h2>
+            <p>{e.session.body}</p>
+          </div>
+          <ol className="ed-flow">
+            {c.agenda.items.map((item, index) => (
+              <li key={item.title}>
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
 
-      {/* 03 · WHO SHOULD ATTEND {#demo-who} — one message: the room. One
-          artifact: the roles, as quiet chips. */}
-      <Act no="03" label={c.acts.who} id="demo-who" statement={c.who.lead} tight>
-        <QuietChips items={c.who.roles} />
-      </Act>
+      <section className="ed-section ed-tone-paper" id="demo-who">
+        <div className="ed-wrap">
+          <div className="ed-section-head">
+            <div className="ed-eyebrow">02 · {c.acts.who}</div>
+            <h2>{e.room.title}<br /><em>{e.room.accent}</em></h2>
+            <p>{e.room.body}</p>
+          </div>
+          <div className="ed-role-cloud" aria-label={c.acts.who}>
+            {c.who.roles.map((role) => <span key={role}>{role}</span>)}
+          </div>
+        </div>
+      </section>
 
-      {/* 04 · THE REQUEST {#form} — the page's one job. One artifact: the
-          form itself (functionality untouched). */}
-      <Act
-        no="04"
-        label={c.acts.request}
-        id="form"
-        statement={form.title}
-        deck={form.intro}
-      >
-        <DemoForm />
-        {/* the Founding Partner Program, as a quiet signal (Addendum 2) */}
-        <Reveal>
-          <p className="mt-10">
-            <Link href="/contact#founding" className="eyebrow eyebrow-accent" style={{ fontSize: 13 }}>
-              {home.foundingCta}
-              <span aria-hidden="true" style={{ marginLeft: 12 }}>
-                →
-              </span>
-            </Link>
-          </p>
-        </Reveal>
-      </Act>
+      <section className="ed-section ed-tone-sand ed-form-section" id="form">
+        <div className="ed-wrap ed-form-grid">
+          <div className="ed-section-head ed-form-heading">
+            <div className="ed-eyebrow">{e.request.eyebrow}</div>
+            <h2>{e.request.title}<br /><em>{e.request.accent}</em></h2>
+            <p>{form.intro}</p>
+            <small>{e.request.note}</small>
+          </div>
+          <div className="ed-form-card">
+            <div className="ed-form-card-head">
+              <span>{form.title}</span>
+              <i aria-hidden="true" />
+            </div>
+            <DemoForm />
+          </div>
+        </div>
+      </section>
 
-      {/* 05 · DEPLOYMENT {#demo-deployment} — one message: what happens after
-          you submit. One artifact: the stages, numbered. */}
-      <Act no="05" label={c.acts.deployment} id="demo-deployment" statement={c.deployment.title}>
-        <ArrowFlow steps={c.deployment.stages.map((s) => ({ title: s.title, sub: s.body }))} />
-      </Act>
+      <section className="ed-section ed-tone-cocoa" id="demo-deployment">
+        <div className="ed-wrap">
+          <div className="ed-section-head">
+            <div className="ed-eyebrow">04 · {c.acts.deployment}</div>
+            <h2>{e.after.title}<br /><em>{e.after.accent}</em></h2>
+            <p>{e.after.body}</p>
+          </div>
+          <ol className="ed-flow">
+            {c.deployment.stages.map((stage, index) => (
+              <li key={stage.title}>
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <h3>{stage.title}</h3>
+                <p>{stage.body}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
 
-      {/* 06 · FAQ {#faq} — the conversion FAQ: hesitation questions at the
-          point of decision. Product questions live on /platform#platform-faq;
-          keep the two from drifting. Footer-linked (/demo#faq). */}
-      <Act no="06" label={c.acts.faq} id="faq" statement={c.faq.title}>
-        <Accordion items={c.faq.items} />
-      </Act>
+      <section className="ed-section ed-tone-paper" id="faq">
+        <div className="ed-wrap">
+          <div className="ed-section-head">
+            <div className="ed-eyebrow">05 · {c.acts.faq}</div>
+            <h2>{e.faq.title}<br /><em>{e.faq.accent}</em></h2>
+          </div>
+          <div className="ed-faq">
+            {c.faq.items.map((item, index) => (
+              <details key={item.q} open={index === 0}>
+                <summary><span>{String(index + 1).padStart(2, '0')}</span>{item.q}</summary>
+                <p>{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
 
-      {/* HAND-OFF → /contact — a pointer, not a heavy CTA (RC) */}
-      <Handoff statement={contact.hero.coda} href="/contact" label={contact.closing.cta} />
+      <section className="ed-close has-media ed-close--demo" id="demo-final-cta">
+        <EditorialCloseMedia visual={{
+          src: '/assets/editorial/hc-boutique-suite-blue-hour.webp',
+          alt: e.close.imageAlt,
+          eyebrow: e.close.imageLabel,
+          position: 'center',
+          overlay: 'soft',
+        }} />
+        <div className="ed-wrap ed-close-grid">
+          <div>
+            <div className="ed-eyebrow">{e.close.eyebrow}</div>
+            <h2>{e.close.title}<br /><em>{e.close.accent}</em></h2>
+          </div>
+          <div className="ed-close-action">
+            <p>{e.close.body}</p>
+            <div className="ed-actions"><Link className="ed-button ed-button-dark" href="/contact#founding">{e.close.link}</Link></div>
+          </div>
+        </div>
+      </section>
+      </main>
 
       <SiteFooter />
-    </main>
+    </div>
   )
 }
