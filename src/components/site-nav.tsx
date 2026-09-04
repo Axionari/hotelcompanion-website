@@ -165,7 +165,11 @@ export function SiteNav({ appearance = "dark" }: { appearance?: "dark" | "light"
         hidden && !open && !resourcesActive && !light ? "-translate-y-full" : "translate-y-0"
       }`}
       style={{
-        background: light ? "rgba(242,233,220,0.93)" : "rgba(16,14,12,0.92)",
+        /* The app shell reserves the masthead's 64px above the page, so a
+           translucent light fill blended against the dark body and arrived as
+           a separate grey band. RC's light masthead reads as part of the page:
+           use the exact editorial paper token on first paint. */
+        background: light ? "var(--hc-paper)" : "rgba(16,14,12,0.92)",
         borderBottom: light ? "1px solid rgba(36,28,23,.12)" : "1px solid var(--border)",
       }}
     >
@@ -308,7 +312,7 @@ export function SiteNav({ appearance = "dark" }: { appearance?: "dark" | "light"
           ref={drawerRef}
           className="site-mobile-drawer lg:hidden px-6 py-5 flex flex-col gap-1 overflow-y-auto"
           style={{
-            background: light ? "rgba(242,233,220,0.99)" : "rgba(16,14,12,0.98)",
+            background: light ? "var(--hc-paper)" : "rgba(16,14,12,0.98)",
             borderTop: light ? "1px solid rgba(36,28,23,.12)" : "1px solid var(--border)",
           }}
         >

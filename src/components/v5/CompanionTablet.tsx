@@ -336,6 +336,7 @@ export function CompanionTablet({ className = '', variant = 'home' }: { classNam
           width: '100%',
           maxWidth: 860,
           aspectRatio: '7 / 5',
+          containerType: 'inline-size',
           background: '#071719',
           border: '1px solid rgba(134,185,183,.3)',
           borderRadius: 24,
@@ -491,44 +492,44 @@ function ChoicesScreen({ sc }: { sc: Screen }) {
 /* ── Layout C: cards — a service menu, three treatments to reserve ── */
 function CardsScreen({ sc, guest }: { sc: Screen; guest: string }) {
   return (
-    <div style={{ position: 'absolute', inset: 0, background: `radial-gradient(circle at 88% 4%, rgba(134,185,183,.16), transparent 30%), linear-gradient(155deg, ${CARIBBEAN_PANEL}, ${CARIBBEAN_INK})`, display: 'flex', flexDirection: 'column', padding: 'clamp(12px,1.7vw,22px)' }}>
+    <div className="marazul-spa-screen" style={{ position: 'absolute', inset: 0, background: `radial-gradient(circle at 88% 4%, rgba(134,185,183,.16), transparent 30%), linear-gradient(155deg, ${CARIBBEAN_PANEL}, ${CARIBBEAN_INK})`, display: 'flex', flexDirection: 'column', padding: 'clamp(10px,2.8cqi,18px)' }}>
       {/* status */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexShrink: 0 }}>
-        <span style={{ ...MONO, display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 'clamp(9px, 0.82vw, 9.5px)', letterSpacing: '.15em', color: SHELL_GOLD, border: '1px solid rgba(215,177,122,.46)', background: 'rgba(4,24,27,.38)', borderRadius: 999, padding: '4px 10px' }}>
+        <span style={{ ...MONO, display: 'inline-flex', alignItems: 'center', gap: 'clamp(4px,1.1cqi,6px)', fontSize: 'clamp(7.5px,1.7cqi,9px)', letterSpacing: '.15em', color: SHELL_GOLD, border: '1px solid rgba(215,177,122,.46)', background: 'rgba(4,24,27,.38)', borderRadius: 999, padding: 'clamp(3px,.8cqi,4px) clamp(7px,1.7cqi,10px)' }}>
           <span style={{ width: 6, height: 6, borderRadius: '50%', background: SEA_GLASS, boxShadow: '0 0 10px rgba(134,185,183,.7)' }} />{guest}
         </span>
         <BrandSignature compact />
       </div>
       {/* title + question */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: 12, flexShrink: 0, marginTop: 'clamp(9px, 1.2vw, 14px)' }}>
-        <div style={{ fontFamily: BRAND_SERIF, fontWeight: 400, fontSize: 'clamp(20px,2.15vw,32px)', letterSpacing: '-.01em', lineHeight: 1, color: SHELL }}>{sc.cardsTitle}</div>
-        <span style={{ fontFamily: SANS, fontSize: 'clamp(9px,1.05vw,14px)', color: 'rgba(247,236,221,.75)' }}>{sc.ask}</span>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: 'clamp(8px,2cqi,12px)', flexShrink: 0, marginTop: 'clamp(6px,1.7cqi,10px)' }}>
+        <div style={{ fontFamily: BRAND_SERIF, fontWeight: 400, fontSize: 'clamp(18px,5cqi,29px)', letterSpacing: '-.01em', lineHeight: 1, color: SHELL }}>{sc.cardsTitle}</div>
+        <span style={{ fontFamily: SANS, fontSize: 'clamp(8.5px,1.9cqi,12px)', color: 'rgba(247,236,221,.75)', whiteSpace: 'nowrap' }}>{sc.ask}</span>
       </div>
       {/* three treatment cards */}
-      <div style={{ display: 'flex', gap: 'clamp(9px, 1vw, 12px)', marginTop: 'clamp(9px,1.4vw,16px)', flex: 1, minHeight: 0 }}>
+      <div className="marazul-spa-cards" style={{ display: 'flex', gap: 'clamp(6px,1.5cqi,11px)', marginTop: 'clamp(7px,1.8cqi,12px)', flex: 1, minHeight: 0 }}>
         {sc.cards?.map((c) => (
-          <div key={c.name} style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', borderRadius: 12, overflow: 'hidden', background: 'rgba(247,236,221,.055)', border: `1px solid ${c.featured ? 'rgba(217,122,79,.72)' : 'rgba(134,185,183,.19)'}`, boxShadow: c.featured ? '0 10px 30px rgba(2,17,19,.22)' : 'none' }}>
-            {/* minHeight 0, not a floor: the bottom bar took height off this
-                screen and a floored photo pushed the Reserve button out of the
-                card, which has overflow:hidden. The photo shrinks instead. */}
-            <div style={{ position: 'relative', flex: 1, minHeight: 0 }}>
+          <div className="marazul-spa-card" key={c.name} style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', borderRadius: 'clamp(9px,2cqi,13px)', overflow: 'hidden', background: c.featured ? 'linear-gradient(180deg, rgba(217,122,79,.1), rgba(247,236,221,.055))' : 'rgba(247,236,221,.055)', border: `1px solid ${c.featured ? 'rgba(217,122,79,.72)' : 'rgba(134,185,183,.19)'}`, boxShadow: c.featured ? '0 12px 32px rgba(2,17,19,.28), inset 0 1px 0 rgba(247,236,221,.05)' : 'inset 0 1px 0 rgba(247,236,221,.025)' }}>
+            {/* The image is absolute for clean cropping, so its wrapper needs a
+                real floor. Device-relative sizing keeps the photographs visible
+                in the compact homepage tablet without crowding the voice bar. */}
+            <div className="marazul-spa-image" style={{ position: 'relative', flex: '0 0 clamp(68px,17cqi,116px)', overflow: 'hidden' }}>
               <Image alt={c.name} src={c.image} width={360} height={260} sizes="(max-width: 767px) 30vw, 220px" quality={68} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(4,25,28,.03) 0%, transparent 48%, rgba(3,22,25,.46) 100%)' }} />
-              {c.badge && <span style={{ position: 'absolute', top: 8, right: 8, ...MONO, fontSize: 'clamp(9px, 0.78vw, 9.5px)', letterSpacing: '.07em', color: CARIBBEAN_INK, background: SHELL_GOLD, borderRadius: 999, padding: '4px 9px' }}>{c.badge}</span>}
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(4,25,28,.02) 0%, transparent 46%, rgba(3,22,25,.38) 100%), linear-gradient(90deg, rgba(6,31,36,.12), transparent 58%)' }} />
+              {c.badge && <span style={{ position: 'absolute', top: 'clamp(5px,1.4cqi,8px)', right: 'clamp(5px,1.4cqi,8px)', ...MONO, fontSize: 'clamp(7px,1.55cqi,9px)', letterSpacing: '.07em', color: CARIBBEAN_INK, background: SHELL_GOLD, boxShadow: '0 5px 16px rgba(2,17,19,.22)', borderRadius: 999, padding: 'clamp(3px,.7cqi,4px) clamp(6px,1.5cqi,9px)' }}>{c.badge}</span>}
             </div>
-            <div style={{ padding: 'clamp(9px, 0.9vw, 12px)', display: 'flex', flexDirection: 'column', gap: 'clamp(9px, 0.7vw, 9.5px)', flexShrink: 0 }}>
+            <div className="marazul-spa-card-copy" style={{ padding: 'clamp(6px,1.45cqi,10px)', display: 'flex', flex: 1, minHeight: 0, flexDirection: 'column', gap: 'clamp(4px,1cqi,7px)' }}>
               <div>
-                <div style={{ fontFamily: SANS, fontWeight: 600, fontSize: 'clamp(9.5px,1vw,13px)', lineHeight: 1.15, color: SHELL }}>{c.name}</div>
-                <div style={{ fontFamily: SANS, fontSize: 'clamp(9px, 0.9vw, 11.5px)', color: 'rgba(247,236,221,.6)', marginTop: 3, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{c.meta}</div>
+                <div style={{ fontFamily: SANS, fontWeight: 600, fontSize: 'clamp(10px,2.3cqi,13.5px)', lineHeight: 1.12, color: SHELL }}>{c.name}</div>
+                <div style={{ fontFamily: SANS, fontSize: 'clamp(7.5px,1.75cqi,10.5px)', lineHeight: 1.2, color: 'rgba(247,236,221,.6)', marginTop: 'clamp(2px,.6cqi,4px)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{c.meta}</div>
               </div>
-              <span style={{ fontFamily: SANS, fontWeight: 600, fontSize: 'clamp(9px, 0.95vw, 12px)', textAlign: 'center', color: c.featured ? CARIBBEAN_INK : SHELL, background: c.featured ? CORAL : 'rgba(134,185,183,.06)', border: c.featured ? '1px solid rgba(255,255,255,.1)' : '1px solid rgba(134,185,183,.48)', borderRadius: 8, padding: 'clamp(9px, 0.75vw, 9.5px) 0' }}>{sc.reserve}</span>
+              <span style={{ marginTop: 'auto', fontFamily: SANS, fontWeight: 600, fontSize: 'clamp(8px,1.8cqi,11px)', lineHeight: 1, textAlign: 'center', color: c.featured ? CARIBBEAN_INK : SHELL, background: c.featured ? CORAL : 'rgba(134,185,183,.06)', border: c.featured ? '1px solid rgba(255,255,255,.1)' : '1px solid rgba(134,185,183,.48)', borderRadius: 'clamp(6px,1.4cqi,8px)', padding: 'clamp(6px,1.25cqi,8px) 0' }}>{sc.reserve}</span>
             </div>
           </div>
         ))}
       </div>
       {/* companion note */}
       {sc.note && (
-        <div className="marazul-spa-note" style={{ flexShrink: 0, marginTop: 'clamp(9px,1.3vw,15px)', fontFamily: SANS, fontSize: 'clamp(9px,1.05vw,14px)', lineHeight: 1.4, color: 'rgba(247,236,221,.82)', border: '1px solid rgba(134,185,183,.18)', background: 'rgba(134,185,183,.055)', borderRadius: 11, padding: 'clamp(9px,1.1vw,14px) clamp(11px,1.3vw,16px)' }}>{sc.note}</div>
+        <div className="marazul-spa-note" style={{ flexShrink: 0, marginTop: 'clamp(6px,1.5cqi,10px)', fontFamily: SANS, fontSize: 'clamp(8px,1.9cqi,12px)', lineHeight: 1.3, color: 'rgba(247,236,221,.82)', border: '1px solid rgba(134,185,183,.18)', background: 'linear-gradient(90deg, rgba(134,185,183,.07), rgba(134,185,183,.035))', borderRadius: 'clamp(8px,1.8cqi,11px)', padding: 'clamp(7px,1.5cqi,10px) clamp(9px,2cqi,14px)' }}>{sc.note}</div>
       )}
     </div>
   )
