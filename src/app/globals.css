@@ -1841,13 +1841,10 @@ body {
 body:has(.cbanner) .sticky-cta,
 body:has(.cbanner) .hero-credit{opacity:0!important;visibility:hidden!important;pointer-events:none!important}
 
-/* `.btn-primary` is intentionally an inline-flex component. Give the two
-   responsive StickyCta variants explicit display rules so that declaration
-   cannot make the desktop pill leak into the mobile layout. */
-.sticky-cta-desktop{display:none!important}
+/* The persistent conversion CTA is mobile-only; the desktop masthead already
+   keeps its demo action visible. */
 .sticky-cta-mobile{display:block!important}
 @media (min-width:640px){
-  .sticky-cta-desktop{display:inline-flex!important}
   .sticky-cta-mobile{display:none!important}
 }
 @media (max-width:639px){

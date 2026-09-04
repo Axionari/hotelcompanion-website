@@ -7,11 +7,9 @@ import { useCopy } from '@/lib/i18n/useCopy'
 import { globalCopy } from '@/lib/i18n/marketing/global'
 
 /**
- * Persistent conversion CTA — RC keeps "See It Live" pinned in its sticky
- * header; HC's nav auto-hides on scroll-down, so this floating CTA carries the
- * always-available path to /demo once the reader is past the hero.
+ * Mobile conversion CTA — the desktop navigation already keeps the demo path
+ * present, while compact navigation benefits from a persistent action.
  *
- *  - desktop (sm+): a pill, bottom-right
  *  - mobile: a full-width bar pinned to the bottom (safe-area aware)
  *  - reveals after ~640px of scroll; reduced motion drops the slide, keeps fade
  *  - hidden on the demo page itself and on the product app routes
@@ -113,61 +111,34 @@ export function StickyCta() {
   const transition = reduce ? 'opacity .3s ease' : 'transform .45s var(--ease-emphasis), opacity .45s var(--ease-standard)'
 
   return (
-    <>
-      {/* desktop — floating pill, bottom-right */}
+    <div
+      className="sticky-cta sticky-cta-mobile sm:hidden"
+      aria-hidden={!visible}
+      style={{
+        position: 'fixed',
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: 40,
+        padding: '10px 16px calc(10px + env(safe-area-inset-bottom, 0px))',
+        background: 'rgba(16,14,12,0.9)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+        borderTop: '1px solid var(--border)',
+        transform: reduce ? 'none' : enter,
+        opacity: visible ? 1 : 0,
+        transition,
+        pointerEvents: visible ? 'auto' : 'none',
+      }}
+    >
       <Link
         href="/demo"
-        aria-hidden={!visible}
         tabIndex={visible ? 0 : -1}
-        className="sticky-cta sticky-cta-desktop btn-primary hidden sm:inline-flex items-center gap-2 whitespace-nowrap"
-        style={{
-          position: 'fixed',
-          right: 'clamp(18px, 2vw, 28px)',
-          bottom: 'clamp(18px, 2vw, 28px)',
-          zIndex: 40,
-          minHeight: 48,
-          fontSize: 15,
-          boxShadow: '0 18px 48px -14px rgba(0,0,0,0.75), 0 0 0 1px rgba(200,106,58,0.14), 0 0 44px -18px rgba(200,106,58,0.6)',
-          opacity: visible ? 1 : 0,
-          transform: reduce ? 'none' : enter,
-          transition,
-          pointerEvents: visible ? 'auto' : 'none',
-        }}
+        className="btn-primary w-full"
+        style={{ minHeight: 48, fontSize: 15 }}
       >
         {nav.bookDemo}
-        <span aria-hidden style={{ fontSize: 16, lineHeight: 1 }}>→</span>
       </Link>
-
-      {/* mobile — bottom bar (sticky-cta: suppressed while the cookie banner is up) */}
-      <div
-        className="sticky-cta sticky-cta-mobile sm:hidden"
-        aria-hidden={!visible}
-        style={{
-          position: 'fixed',
-          left: 0,
-          right: 0,
-          bottom: 0,
-          zIndex: 40,
-          padding: '10px 16px calc(10px + env(safe-area-inset-bottom, 0px))',
-          background: 'rgba(16,14,12,0.9)',
-          backdropFilter: 'blur(12px)',
-          WebkitBackdropFilter: 'blur(12px)',
-          borderTop: '1px solid var(--border)',
-          transform: reduce ? 'none' : enter,
-          opacity: visible ? 1 : 0,
-          transition,
-          pointerEvents: visible ? 'auto' : 'none',
-        }}
-      >
-        <Link
-          href="/demo"
-          tabIndex={visible ? 0 : -1}
-          className="btn-primary w-full"
-          style={{ minHeight: 48, fontSize: 15 }}
-        >
-          {nav.bookDemo}
-        </Link>
-      </div>
-    </>
+    </div>
   )
 }
