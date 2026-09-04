@@ -1,6 +1,6 @@
 'use client'
 
-import Link from 'next/link'
+import { LocalizedLink as Link } from '@/components/LocalizedLink'
 import { useLang } from '@/lib/i18n/LanguageContext'
 
 /* Approved family lockups, EN and ES (copy decks, global rules). */

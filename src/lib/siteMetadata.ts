@@ -13,23 +13,37 @@ export function createPageMetadata({
   description,
   path,
   type = 'website',
+  lang = 'en',
 }: {
   title: string
   description: string
   path: `/${string}`
   type?: 'website' | 'article'
+  lang?: 'en' | 'es'
 }): Metadata {
-  const url = `${SITE_URL}${path === '/' ? '' : path}`
+  const basePath = path === '/' ? '' : path
+  const englishUrl = `${SITE_URL}${basePath}`
+  const spanishUrl = `${SITE_URL}/es${basePath}`
+  const url = lang === 'es' ? spanishUrl : englishUrl
   return {
     title,
     description,
-    alternates: { canonical: url },
+    alternates: {
+      canonical: url,
+      languages: {
+        'en-US': englishUrl,
+        'es-MX': spanishUrl,
+        'x-default': englishUrl,
+      },
+    },
     openGraph: {
       siteName: 'Hotel Companion',
       title,
       description,
       url,
       type,
+      locale: lang === 'es' ? 'es_MX' : 'en_US',
+      alternateLocale: [lang === 'es' ? 'en_US' : 'es_MX'],
       images: [SOCIAL_IMAGE],
     },
     twitter: {

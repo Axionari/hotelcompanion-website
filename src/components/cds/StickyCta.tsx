@@ -1,10 +1,11 @@
 'use client'
 
-import Link from 'next/link'
+import { LocalizedLink as Link } from '@/components/LocalizedLink'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { globalCopy } from '@/lib/i18n/marketing/global'
+import { stripLanguagePrefix } from '@/lib/i18n/paths'
 
 /**
  * Mobile conversion CTA — the desktop navigation already keeps the demo path
@@ -103,7 +104,8 @@ export function StickyCta() {
     return () => observer.disconnect()
   }, [pathname])
 
-  const hidden = HIDE_ON.some((p) => pathname === p || pathname.startsWith(p + '/'))
+  const marketingPathname = stripLanguagePrefix(pathname)
+  const hidden = HIDE_ON.some((p) => marketingPathname === p || marketingPathname.startsWith(p + '/'))
   if (hidden) return null
 
   const visible = shown && !quietZone

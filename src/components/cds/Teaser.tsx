@@ -1,6 +1,6 @@
 'use client'
 
-import Link from 'next/link'
+import { LocalizedLink as Link } from '@/components/LocalizedLink'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { globalCopy } from '@/lib/i18n/marketing/global'
 

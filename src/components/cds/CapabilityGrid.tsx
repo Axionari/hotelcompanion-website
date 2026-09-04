@@ -1,6 +1,6 @@
 'use client'
 
-import Link from 'next/link'
+import { LocalizedLink as Link } from '@/components/LocalizedLink'
 import { COMPANION_OS_CAPABILITIES } from '@/lib/capabilities'
 import { Reveal } from './Reveal'
 

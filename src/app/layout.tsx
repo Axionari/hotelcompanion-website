@@ -112,13 +112,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Apply the URL's language before first paint. The Spanish edition is
+            statically rendered at /es/*; this keeps the document language in
+            sync before the client provider hydrates. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.lang=location.pathname==='/es'||location.pathname.startsWith('/es/')?'es-MX':'en-US'" }} />
       </head>
       <body className={`${fraunces.variable} ${generalSans.variable} ${splineMono.variable} ${instrumentSerif.variable} ${plexMono.variable} font-sans antialiased`}>
         <LanguageProvider>
           <div className="pt-16">{children}</div>
-          {/* Persistent conversion CTA (RC keeps its CTA pinned; our nav auto-hides). */}
+          {/* Compact screens retain a persistent conversion path; desktop uses
+              the always-present masthead CTA. */}
           <StickyCta />
           {/* One demo instance for every entry point: nav, hero CTA, hero tablet.
               v4: deferred chunk (authorized v3.1 bundle split) — same modal. */}

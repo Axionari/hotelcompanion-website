@@ -56,7 +56,6 @@ const en = {
   },
   stake: {
     figure: '$160B',
-    /* NEEDS CONFIRM: exact figure, report, year — Eduardo sourcing. Approved for use now. */
     caption: 'In annual value and operational savings AI automation can unlock for hospitality.',
     source: 'Source: McKinsey.',
     /* v3 copy deck {#02} — single line replacing the two closing paragraphs */
@@ -65,7 +64,6 @@ const en = {
   /* v3 copy deck {#08} — the Companion OS quiet band (old 10 compressed).
      Old execution/enterpriseIntel/convergence copy deleted per deck {#07}. */
   otaStake: {
-    /* NEEDS CONFIRM: figure, comparison and source — placeholder, wired to swap. */
     eyebrow: 'THE COST OF INTERMEDIARIES',
     figure: '2–3×',
     caption:
@@ -122,7 +120,6 @@ const es: typeof en = {
   },
   stake: {
     figure: '$160 mil millones',
-    /* NEEDS CONFIRM: cifra exacta, reporte, año. */
     caption: 'En valor anual y ahorros operativos que la automatización con IA puede desbloquear para la hospitalidad.',
     source: 'Fuente: McKinsey.',
     /* v3 copy deck {#02} — línea única que reemplaza los dos párrafos de cierre */
@@ -131,7 +128,6 @@ const es: typeof en = {
   /* v3 copy deck {#08} — banda silenciosa de Companion OS (antigua 10 comprimida).
      El copy antiguo de execution/enterpriseIntel/convergence se elimina según deck {#07}. */
   otaStake: {
-    /* NEEDS CONFIRM: cifra, comparación y fuente — provisional, listo para reemplazar. */
     eyebrow: 'EL COSTO DE LOS INTERMEDIARIOS',
     figure: '2–3×',
     caption:

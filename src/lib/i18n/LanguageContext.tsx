@@ -1,6 +1,8 @@
 'use client'
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
 import { Language, translations, TranslationKey } from './translations'
+import { languageFromPathname, localizeHref } from './paths'
 
 interface LanguageContextType {
   lang: Language
@@ -15,21 +17,15 @@ const LanguageContext = createContext<LanguageContextType>({
 })
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Language>('en')
+  const pathname = usePathname()
+  const router = useRouter()
+  const routeLang = languageFromPathname(pathname)
+  const [lang, setLangState] = useState<Language>(routeLang)
 
   useEffect(() => {
-    const saved = localStorage.getItem('pc_lang') as Language | null
-    if (saved === 'en' || saved === 'es') {
-      setLangState(saved)
-      return
-    }
-    const browserLang = navigator.language.toLowerCase()
-    if (browserLang.startsWith('es')) {
-      setLangState('es')
-    } else {
-      setLangState('en')
-    }
-  }, [])
+    setLangState(routeLang)
+    localStorage.setItem('pc_lang', routeLang)
+  }, [routeLang])
 
   // Keep <html lang> in sync with the active language for a11y and SEO — the
   // document ships as lang="en" and the toggle is a client-side button, so
@@ -41,6 +37,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   function setLang(newLang: Language) {
     setLangState(newLang)
     localStorage.setItem('pc_lang', newLang)
+    const suffix = `${window.location.search}${window.location.hash}`
+    router.push(localizeHref(`${pathname}${suffix}`, newLang))
   }
 
   return (

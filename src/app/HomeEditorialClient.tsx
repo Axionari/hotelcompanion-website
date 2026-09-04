@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
+import { LocalizedLink as Link } from '@/components/LocalizedLink'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteNav } from '@/components/site-nav'
 import { CompanionTablet } from '@/components/v5/CompanionTablet'
@@ -34,6 +34,7 @@ const COPY = {
     },
     leaks: {
       eyebrow: '02 · Four leaks, every stay', title: 'You already know them.', titleEm: 'Nobody has connected them for you.',
+      context: 'Verified industry context', stakeLabel: 'AI value at stake', distributionLabel: 'Distribution economics',
       items: [
         { time: '08:14', title: 'The booking that went OTA', body: 'A ready guest met a generic answer.' },
         { time: '15:42', title: 'The upgrade never offered', body: 'The reason was obvious. The context was not.' },
@@ -89,10 +90,11 @@ const COPY = {
       fragmentedTitle: 'CURRENT STATE · FRAGMENTED CONTEXT', fragmentedMeta: '08 SYSTEMS · 01 GUEST',
       layerTitle: 'TARGET STATE · SHARED CONTEXT', layerMeta: '01 LAYER · EVERY TEAM',
       systemsLabel: 'HOTEL SYSTEMS & TEAMS', layerCaption: 'ONE CONTEXT · SHARED ACROSS THE STAY',
+      transition: 'From scattered signals to one accountable operating context',
     },
     close: {
       eyebrow: 'A private introduction', title: 'See your hotel', titleEm: 'remember.',
-      body: 'A working session with your team — the guest journey, the service loop and the commercial proof, under your name.',
+      body: 'A working session with your team — the guest journey, the service loop and the commercial logic, under your name.',
       request: 'Request a demo', pilot: 'The founding hotel program',
       imageAlt: 'A candlelit Caribbean boutique hotel courtyard at blue hour',
     },
@@ -112,6 +114,7 @@ const COPY = {
     },
     leaks: {
       eyebrow: '02 · Cuatro fugas, cada estancia', title: 'Ya las conoces.', titleEm: 'Nadie las ha conectado por ti.',
+      context: 'Contexto sectorial verificado', stakeLabel: 'Valor potencial de la IA', distributionLabel: 'Economía de distribución',
       items: [
         { time: '08:14', title: 'La reserva que terminó en una OTA', body: 'Un huésped listo encontró una respuesta genérica.' },
         { time: '15:42', title: 'La mejora que nadie ofreció', body: 'La razón era obvia. El contexto no.' },
@@ -167,10 +170,11 @@ const COPY = {
       fragmentedTitle: 'ESTADO ACTUAL · CONTEXTO FRAGMENTADO', fragmentedMeta: '08 SISTEMAS · 01 HUÉSPED',
       layerTitle: 'ESTADO OBJETIVO · CONTEXTO COMPARTIDO', layerMeta: '01 CAPA · CADA EQUIPO',
       systemsLabel: 'SISTEMAS Y EQUIPOS DEL HOTEL', layerCaption: 'UN CONTEXTO · COMPARTIDO EN TODA LA ESTANCIA',
+      transition: 'De señales dispersas a un contexto operativo único y responsable',
     },
     close: {
       eyebrow: 'Una presentación privada', title: 'Mira a tu hotel', titleEm: 'recordar.',
-      body: 'Una sesión de trabajo con tu equipo — la experiencia del huésped, el ciclo de servicio y la evidencia comercial, bajo tu nombre.',
+      body: 'Una sesión de trabajo con tu equipo — la experiencia del huésped, el ciclo de servicio y la lógica comercial, bajo tu nombre.',
       request: 'Solicita una demo', pilot: 'El programa para hoteles fundadores',
       imageAlt: 'El patio de un hotel boutique caribeño iluminado con velas durante la hora azul',
     },
@@ -229,6 +233,28 @@ export default function HomeEditorialClient() {
           <Eyebrow>{c.leaks.eyebrow}</Eyebrow>
           <h2 id="hc-leaks-title">{c.leaks.title}<br /><em>{c.leaks.titleEm}</em></h2>
           <ol className="hc-leak-grid">{c.leaks.items.map((item) => <li key={item.time + item.title}><span className="hc-time">{item.time}</span><h3>{item.title}</h3><p>{item.body}</p></li>)}</ol>
+          <aside className="hc-benchmark-rail" aria-label={c.leaks.context}>
+            <div className="hc-benchmark-heading"><span>{c.leaks.context}</span><i aria-hidden="true" /></div>
+            <article>
+              <small>{c.leaks.stakeLabel}</small>
+              <strong>{original.stake.figure}</strong>
+              <p>{original.stake.caption}</p>
+              <cite>{original.stake.source}</cite>
+            </article>
+            <article>
+              <small>{c.leaks.distributionLabel}</small>
+              <strong>{original.otaStake.figure}</strong>
+              <p>{original.otaStake.caption}</p>
+              <div className="hc-benchmark-bars" aria-hidden="true">
+                {original.otaStake.compare.map((entry) => (
+                  <span key={entry.label} style={{ '--benchmark-width': `${Math.max(entry.pct * 3.1, 24)}%` } as React.CSSProperties}>
+                    <i className={entry.accent ? 'is-accent' : ''} />
+                  </span>
+                ))}
+              </div>
+              <cite>{original.otaStake.source}</cite>
+            </article>
+          </aside>
           <p className="hc-section-close">{c.leaks.close} <Link href="/contact#founding">{c.leaks.cta}</Link></p>
         </div>
       </section>
@@ -290,6 +316,7 @@ export default function HomeEditorialClient() {
           </div>
 
           <div id="intelligent-layer" className="hc-system-proof hc-system-proof-layer">
+            <div className="hc-system-transition" aria-hidden="true"><span>{c.systems.transition}</span><i /></div>
             <div className="hc-technical-intro">
               <div>
                 <Eyebrow>{layer.eyebrow}</Eyebrow>

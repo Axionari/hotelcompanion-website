@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import Link from 'next/link'
+import { LocalizedLink as Link } from '@/components/LocalizedLink'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { cookieBannerCopy } from '@/lib/i18n/marketing/cookieBanner'
 import { CONSENT_EVENT, clearConsent, readConsent, writeConsent } from '@/lib/consent'
