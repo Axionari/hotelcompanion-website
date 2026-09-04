@@ -20,7 +20,7 @@ export default function LanguageToggle() {
     <div
       role="group"
       aria-label="Language"
-      className="inline-flex items-center font-sans"
+      className="language-toggle inline-flex items-center font-sans"
       style={{
         border: '1px solid rgba(243,236,226,0.16)',
         borderRadius: 999,

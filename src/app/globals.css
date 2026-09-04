@@ -5,6 +5,7 @@ html, body {
   /* v3 Phase 3A: was `hidden`, which turns body into a scroll container and
      silently disables position:sticky (the sun-arc pin). `clip` keeps the
      mobile-overflow protection without creating a scroll container. */
+  overflow-x: hidden;
   overflow-x: clip;
   max-width: 100vw;
 }
@@ -147,6 +148,225 @@ body {
 .btn-secondary:hover { border-color: var(--text-faint); }
 
 /* ============================================================
+   RESOURCES NAV — compact editorial index
+   RC's grouped-library behavior, tailored to Hotel Companion.
+   ============================================================ */
+
+.site-resource-nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+}
+
+/* Invisible bridge keeps the menu open while the pointer travels from the
+   navigation word to the floating index. */
+.site-resource-nav::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: -24px;
+  width: calc(100% + 48px);
+  height: 20px;
+}
+
+.site-resource-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text-dim);
+  cursor: pointer;
+  font: inherit;
+  font-size: 15px;
+  transition: color 180ms var(--ease-standard);
+}
+
+.site-resource-trigger:hover,
+.site-resource-nav.is-open .site-resource-trigger {
+  color: #f7f6f1;
+}
+
+.site-resource-trigger-light {
+  color: rgba(36, 28, 23, .66);
+}
+
+.site-resource-trigger-light:hover,
+.site-resource-nav.is-open .site-resource-trigger-light {
+  color: #241c17;
+}
+
+.site-resource-trigger-icon {
+  transform-origin: center;
+  transition: transform 220ms var(--ease-standard);
+}
+
+.site-resource-nav.is-open .site-resource-trigger-icon {
+  transform: rotate(180deg);
+}
+
+.site-resource-panel {
+  position: absolute;
+  z-index: 2;
+  top: calc(100% + 18px);
+  left: 50%;
+  width: 356px;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 88px);
+  max-height: calc(100dvh - 88px);
+  padding: 16px 20px 18px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: rgba(244, 238, 229, .22) transparent;
+  scrollbar-width: thin;
+  color: #f4eee5;
+  background:
+    linear-gradient(145deg, rgba(168, 130, 58, .055), transparent 35%),
+    rgba(20, 17, 14, .975);
+  border: 1px solid rgba(244, 238, 229, .13);
+  border-radius: 16px;
+  box-shadow: 0 22px 58px rgba(7, 5, 3, .38), 0 4px 14px rgba(7, 5, 3, .24);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  opacity: 1;
+  transform: translate(-50%, 0);
+  transition:
+    opacity 220ms var(--ease-standard),
+    transform 220ms var(--ease-standard);
+  animation: site-resource-in 180ms var(--ease-standard) both;
+}
+@keyframes site-resource-in { from { opacity: 0; transform: translate(-50%, -6px); } }
+
+.site-mobile-drawer {
+  height: calc(100vh - 64px);
+  height: calc(100dvh - 64px);
+  max-height: calc(100vh - 64px);
+  max-height: calc(100dvh - 64px);
+}
+.site-mobile-language { display: flex; justify-content: flex-end; padding: 0 0 12px; }
+.live-demo-overlay { -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.live-demo-panel { max-height: calc(100vh - 32px); max-height: calc(100dvh - 32px); }
+
+.site-resource-group + .site-resource-group {
+  margin-top: 11px;
+  padding-top: 11px;
+  border-top: 1px solid rgba(244, 238, 229, .075);
+}
+
+.site-resource-group-label {
+  margin: 0 0 5px;
+  color: rgba(244, 238, 229, .56);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 8.5px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+}
+
+.site-resource-link {
+  display: block;
+  padding: 4px 0;
+  color: rgba(247, 243, 236, .88);
+  font-family: var(--font-sans), ui-sans-serif, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.34;
+  transition: color 160ms var(--ease-standard), transform 160ms var(--ease-standard);
+}
+
+.site-resource-link:hover,
+.site-resource-link:focus-visible {
+  color: #d4824f;
+  transform: translateX(2px);
+}
+
+.site-resource-all {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 12px;
+  padding-top: 13px;
+  color: rgba(244, 238, 229, .66);
+  border-top: 1px solid rgba(244, 238, 229, .1);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 9px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  transition: color 160ms var(--ease-standard);
+}
+
+.site-resource-all:hover,
+.site-resource-all:focus-visible {
+  color: #d4824f;
+}
+
+.site-mobile-resources-row {
+  display: flex;
+  align-items: center;
+}
+
+.site-mobile-resources-toggle {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  place-items: center;
+}
+
+.site-mobile-resources-toggle svg {
+  transition: transform 220ms var(--ease-standard);
+}
+
+.site-mobile-resources.is-open .site-mobile-resources-toggle svg {
+  transform: rotate(180deg);
+}
+
+.site-mobile-resources-panel {
+  padding: 7px 0 18px 18px;
+  animation: site-mobile-resources-in 220ms var(--ease-standard) both;
+}
+
+.site-mobile-resource-group + .site-mobile-resource-group {
+  margin-top: 15px;
+}
+
+.site-mobile-resource-group a {
+  display: block;
+  padding: 6px 0;
+  color: var(--text-dim);
+  font-family: var(--font-sans), ui-sans-serif, sans-serif;
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.site-nav-light .site-mobile-resource-group a {
+  color: rgba(36, 28, 23, .7);
+}
+
+.site-nav-light .site-mobile-resources-panel .site-resource-group-label {
+  color: rgba(36, 28, 23, .48);
+}
+
+.site-nav-light .site-mobile-resources-panel .site-resource-all {
+  color: rgba(36, 28, 23, .62);
+  border-top-color: rgba(36, 28, 23, .12);
+}
+
+@keyframes site-mobile-resources-in {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
    SIGNATURE ANIMATIONS (preserved, re-tuned to the tokens)
    ============================================================ */
 
@@ -182,8 +402,8 @@ body {
   0% { transform: translateX(-50%); }
   100% { transform: translateX(0); }
 }
-.animate-scroll-left { animation: scroll-left 40s linear infinite; }
-.animate-scroll-right { animation: scroll-right 56s linear infinite; }
+.animate-scroll-left { animation: scroll-left 36s linear infinite; }
+.animate-scroll-right { animation: scroll-right 50s linear infinite; }
 
 @keyframes pulse-ring {
   0% { box-shadow: 0 0 0 0 rgba(200, 106, 58, 0.55); }
@@ -204,13 +424,73 @@ body {
 
 .marquee-row {
   display: flex;
-  gap: 0.75rem;
   width: max-content;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  animation-play-state: paused;
 }
-.marquee-row:hover { animation-play-state: paused; }
+.question-marquee.is-running .marquee-row {
+  animation-play-state: running;
+  will-change: transform;
+}
+.question-marquee-viewport:hover .marquee-row,
+.question-marquee-viewport:focus-within .marquee-row { animation-play-state: paused; }
 .marquee-chip {
+  flex: 0 0 auto;
+  padding: .78rem 1.75rem;
+  border: 1px solid rgba(242, 233, 218, .12);
+  border-radius: 999px;
+  background: rgba(242, 233, 218, .065);
+  color: rgba(242, 233, 218, .72);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: clamp(.98rem, 1.35vw, 1.22rem);
+  font-weight: 400;
+  line-height: 1.35;
+  white-space: nowrap;
   transition: color var(--dur-fast) var(--ease-standard), border-color var(--dur-fast) var(--ease-standard);
 }
+.marquee-group { display: flex; flex: 0 0 auto; gap: .75rem; padding-right: .75rem; }
+.question-marquee { display: grid; gap: 1rem; width: 100%; }
+.question-marquee-viewport {
+  overflow: hidden;
+  contain: layout paint;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+}
+.question-marquee-accessible {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.question-marquee-control {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-self: center;
+  gap: .55rem;
+  padding: .55rem .9rem;
+  border: 1px solid rgba(242, 233, 218, .2);
+  border-radius: 999px;
+  background: rgba(242, 233, 218, .035);
+  color: rgba(242, 233, 218, .64);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: .58rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  transition: color var(--dur-fast) var(--ease-standard), border-color var(--dur-fast) var(--ease-standard), background var(--dur-fast) var(--ease-standard);
+}
+.question-marquee-control:hover,
+.question-marquee-control:focus-visible {
+  border-color: rgba(217, 122, 79, .7);
+  background: rgba(217, 122, 79, .08);
+  color: #f2e9da;
+}
+.question-marquee-control > span { color: var(--accent-bright); font-size: .62rem; }
 
 @keyframes pc-dot-pulse {
   0%, 100% { opacity: 1; }
@@ -230,7 +510,12 @@ body {
     width: auto;
     flex-wrap: wrap;
     justify-content: flex-start;
+    transform: none;
   }
+  .marquee-group { width: 100%; flex-wrap: wrap; padding-right: 0; }
+  .marquee-chip { max-width: min(100%, 32rem); white-space: normal; }
+  .marquee-group-copy { display: none; }
+  .question-marquee-viewport { overflow: visible; -webkit-mask-image: none; mask-image: none; }
   .reveal {
     opacity: 1;
     transform: none;
@@ -242,6 +527,11 @@ body {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+@media (max-width: 560px) {
+  .marquee-chip { padding: .72rem 1.1rem; font-size: .94rem; }
+  .question-marquee-control { min-height: 44px; }
 }
 
 /* Slow Ken-Burns on in-UI card images (Visual Interface Level-Up §D) — <=6% scale */
@@ -296,6 +586,23 @@ body {
 }
 .vring {
   transition: opacity 0.6s var(--ease-standard);
+}
+
+/* MarAzul's in-room surface keeps the shared voice behavior while exchanging
+   the generic copper light for the resort's sea-glass and coral signature. */
+.vmic-marazul .vring.r1 {
+  border-color: rgba(134, 185, 183, .5);
+  box-shadow: 0 0 34px -12px rgba(134, 185, 183, .55), inset 0 0 30px -18px rgba(134, 185, 183, .34);
+}
+.vmic-marazul .vring.r2 {
+  border-color: rgba(217, 122, 79, .72);
+  box-shadow: 0 0 28px -10px rgba(217, 122, 79, .58), inset 0 0 24px -14px rgba(217, 122, 79, .4);
+}
+.vmic-marazul .vglow {
+  background: radial-gradient(circle at 46% 42%, rgba(247, 236, 221, .62), rgba(134, 185, 183, .32) 52%, rgba(217, 122, 79, .12) 70%, transparent 82%);
+}
+.vmic-marazul .vshimmer {
+  background: conic-gradient(transparent 0deg, transparent 76%, rgba(134, 185, 183, .7) 87%, rgba(217, 122, 79, .56) 94%, transparent 100%);
 }
 .vring.r1 {
   inset: 0;
@@ -1108,6 +1415,24 @@ body {
 /* v5 — Companion tablet: slow ken-burns on the full-bleed answer photo */
 @keyframes v5-kenburns { from { transform: scale(1.02); } to { transform: scale(1.1); } }
 .v5-kenburns { animation: v5-kenburns 14s ease-in-out infinite alternate; will-change: transform; }
+.surface-stage .v5-kenburns { animation-play-state: paused; will-change: auto; }
+.surface-stage .surface-focal .v5-kenburns { animation-play-state: running; will-change: transform; }
+.suite-wrap:not(.is-in-view) .v5-kenburns { animation-play-state: paused; will-change: auto; }
+.motion-gated:not(.is-in-view) .v5-kenburns { animation-play-state: paused; will-change: auto; }
+.motion-gated:not(.is-in-view) .tablet-kenburns,
+.motion-gated:not(.is-in-view) .vstage,
+.motion-gated:not(.is-in-view) .vshimmer,
+.motion-gated:not(.is-in-view) .vglow,
+.motion-gated:not(.is-in-view) .vwave i,
+.motion-gated:not(.is-in-view) .vctl-wave i,
+.suite-wrap:not(.is-in-view) .vstage,
+.suite-wrap:not(.is-in-view) .vshimmer,
+.suite-wrap:not(.is-in-view) .vglow,
+.suite-wrap:not(.is-in-view) .vwave i,
+.suite-wrap:not(.is-in-view) .vctl-wave i,
+.suite-wrap:not(.is-in-view) .suite-spin { animation-play-state: paused !important; }
+@keyframes suite-gallery-in { from { opacity: .35; transform: scale(1.018); } to { opacity: 1; transform: scale(1); } }
+.suite-gallery-image { animation: suite-gallery-in .75s var(--ease-standard) both; }
 @media (prefers-reduced-motion: reduce) { .v5-kenburns { animation: none; } }
 
 /* v5 — intelligent-layer diagram. Fail-open like .reveal: the hidden state only
@@ -1211,6 +1536,7 @@ body {
 }
 @media (prefers-reduced-motion: reduce) {
   .v5-eq i { animation: none; transform: scaleY(0.5); }
+  .product-preview-toggle { display: none !important; }
 }
 
 /* v5 — suite showcase verifying spinner. */
@@ -1331,6 +1657,13 @@ body {
   .tos-screen { aspect-ratio: 3 / 5; }
 }
 
+@media (max-width: 560px) {
+  /* The home device stays recognisably horizontal, but gains enough height for
+     the three-card Spa Ixchel state at a phone viewport. */
+  .marazul-hero-tablet { aspect-ratio: 5 / 4 !important; }
+  .marazul-spa-note { display: none !important; }
+}
+
 /* On mobile the step nav drops BELOW the mockup — a menu stacked above a
    phone-shaped device buries the product and reads as chrome. */
 @media (max-width: 767px) {
@@ -1345,14 +1678,34 @@ body {
    "there is more", plus momentum + snap. Without this it just looks broken. */
 .surface-scroller {
   -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: 4px;
   scrollbar-width: none;
 }
 .surface-scroller::-webkit-scrollbar { display: none; }
+.surface-scroller:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.surface-stage-shell { scroll-snap-align: start; }
+.surface-stage {
+  font-size: 12.4px;
+  font-size: 1cqw;
+}
+.surface-swipe-cue {
+  display: none;
+  margin: 15px 0 0;
+  color: var(--text-faint);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: .58rem;
+  letter-spacing: .13em;
+  line-height: 1.5;
+  text-align: center;
+  text-transform: uppercase;
+}
 @media (max-width: 1100px) {
   .surface-scroller {
     -webkit-mask-image: linear-gradient(to right, transparent 0, #000 14px, #000 calc(100% - 34px), transparent 100%);
     mask-image: linear-gradient(to right, transparent 0, #000 14px, #000 calc(100% - 34px), transparent 100%);
   }
+  .surface-swipe-cue { display: block; }
 }
 
 /* ── PHONES GET A PHONE. On mobile the device mockups wear real iPhone chrome
@@ -1459,7 +1812,7 @@ body {
    RC's rgba(200,106,58,…) accent literals kept (HC --accent is the same hue);
    RC's rgba(242,238,230,.35) button border re-inked to HC's --text base
    (rgba(247,246,241,.35)) — no 1:1 HC token exists at 35%. */
-.cbanner{position:fixed;left:0;right:0;bottom:0;z-index:120;background:var(--surface-2);color:var(--text);border-top:1px solid var(--border);box-shadow:0 -18px 40px -22px rgba(0,0,0,.55);padding:16px 1.5rem calc(16px + env(safe-area-inset-bottom,0px));animation:cbup .4s cubic-bezier(.2,.7,.2,1)}
+.cbanner{position:fixed;left:0;right:0;bottom:0;z-index:120;max-height:100vh;max-height:100dvh;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;background:var(--surface-2);color:var(--text);border-top:1px solid var(--border);box-shadow:0 -18px 40px -22px rgba(0,0,0,.55);padding:16px 1.5rem calc(16px + env(safe-area-inset-bottom,0px));animation:cbup .4s cubic-bezier(.2,.7,.2,1)}
 @media (min-width:768px){.cbanner{padding-inline:2.5rem}}
 @keyframes cbup{0%{transform:translateY(26px);opacity:0}to{transform:none;opacity:1}}
 @media (prefers-reduced-motion:reduce){.cbanner{animation:none}}
@@ -1483,5 +1836,24 @@ body {
    lockup gets the same treatment: on short laptops it is the one hero element
    that would fall under the banner, and the footer lockup already carries the
    credit. visibility (not display) so the hero's geometry does not shift. */
+.cookie-banner-open .sticky-cta,
+.cookie-banner-open .hero-credit,
 body:has(.cbanner) .sticky-cta,
 body:has(.cbanner) .hero-credit{opacity:0!important;visibility:hidden!important;pointer-events:none!important}
+
+/* `.btn-primary` is intentionally an inline-flex component. Give the two
+   responsive StickyCta variants explicit display rules so that declaration
+   cannot make the desktop pill leak into the mobile layout. */
+.sticky-cta-desktop{display:none!important}
+.sticky-cta-mobile{display:block!important}
+@media (min-width:640px){
+  .sticky-cta-desktop{display:inline-flex!important}
+  .sticky-cta-mobile{display:none!important}
+}
+@media (max-width:639px){
+  body:has(.sticky-cta-mobile[aria-hidden="false"]) .site-footer{padding-bottom:82px}
+}
+
+@media (max-height:600px) and (orientation:landscape){
+  .suite-frame{height:600px}
+}

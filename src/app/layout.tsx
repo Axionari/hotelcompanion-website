@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
-import { Fraunces, Spline_Sans_Mono } from "next/font/google";
+import { Fraunces, IBM_Plex_Mono, Instrument_Serif, Spline_Sans_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import "./interior-editorial.css";
+import "./interior-pages.css";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 import { LiveDemoModalDeferred } from "@/components/cds/LiveDemoModalDeferred";
 import { StickyCta } from "@/components/cds/StickyCta";
 import { CookieBanner } from "@/components/CookieBanner";
+import { LIVE_DEMO_ENABLED } from "@/lib/flags";
 
 /* Display face — Restaurant Companion uses Fraunces (headline weight 530,
    italic accent 480). Variable axes give us those exact weights. */
@@ -27,6 +30,25 @@ const splineMono = Spline_Sans_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
   variable: "--font-mono",
+  display: "swap",
+  preload: false,
+});
+
+/* The concise editorial homepage uses the same display pair as Restaurant
+   Companion. The rest of Hotel Companion keeps its established type tokens. */
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-editorial",
+  display: "swap",
+  preload: false,
+});
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-editorial-mono",
   display: "swap",
   preload: false,
 });
@@ -54,7 +76,7 @@ const generalSans = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://hotelcompanion.ai"),
+  metadataBase: new URL("https://www.hotelcompanion.ai"),
   title: {
     default: "Hotel Companion — A concierge that never forgets, built on Companion OS",
     template: "%s · Hotel Companion",
@@ -66,10 +88,10 @@ export const metadata: Metadata = {
     title: "Hotel Companion — A concierge that never forgets, built on Companion OS",
     description:
       "Understand Every Guest. Capture Every Opportunity. Powered by Companion OS.",
-    url: "https://hotelcompanion.ai",
+    url: "https://www.hotelcompanion.ai",
     type: "website",
     images: [{
-      url: "https://hotelcompanion.ai/og/hotel-companion-og.jpg",
+      url: "https://www.hotelcompanion.ai/og/hotel-companion-og.jpg",
       width: 1200,
       height: 630,
       alt: "Hotel Companion",
@@ -80,7 +102,7 @@ export const metadata: Metadata = {
     title: "Hotel Companion — A concierge that never forgets, built on Companion OS",
     description:
       "Understand Every Guest. Capture Every Opportunity. Powered by Companion OS.",
-    images: ["https://hotelcompanion.ai/og/hotel-companion-og.jpg"],
+    images: ["https://www.hotelcompanion.ai/og/hotel-companion-og.jpg"],
   },
 };
 
@@ -93,14 +115,14 @@ export default function RootLayout({
     <html lang="en">
       <head>
       </head>
-      <body className={`${fraunces.variable} ${generalSans.variable} ${splineMono.variable} font-sans antialiased`}>
+      <body className={`${fraunces.variable} ${generalSans.variable} ${splineMono.variable} ${instrumentSerif.variable} ${plexMono.variable} font-sans antialiased`}>
         <LanguageProvider>
           <div className="pt-16">{children}</div>
           {/* Persistent conversion CTA (RC keeps its CTA pinned; our nav auto-hides). */}
           <StickyCta />
           {/* One demo instance for every entry point: nav, hero CTA, hero tablet.
               v4: deferred chunk (authorized v3.1 bundle split) — same modal. */}
-          <LiveDemoModalDeferred />
+          {LIVE_DEMO_ENABLED && <LiveDemoModalDeferred />}
           {/* Cookie consent — client-only; renders only while undecided. */}
           <CookieBanner />
         </LanguageProvider>

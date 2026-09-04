@@ -1,8 +1,10 @@
 'use client'
 
-import { useEffect, useMemo, useRef, useState, CSSProperties } from 'react'
+import { useEffect, useId, useMemo, useRef, useState, CSSProperties } from 'react'
+import Image from 'next/image'
 import { DeviceVoiceBar } from './DeviceVoiceBar'
 import { useCopy } from '@/lib/i18n/useCopy'
+import { useLang } from '@/lib/i18n/LanguageContext'
 import { deviceScreens } from '@/lib/i18n/marketing/deviceScreens'
 import { intelExecCopy } from '@/lib/i18n/marketing/intelExec'
 
@@ -18,9 +20,13 @@ import { intelExecCopy } from '@/lib/i18n/marketing/intelExec'
 
 const MONO: CSSProperties = { fontFamily: 'var(--font-mono), ui-monospace, monospace' }
 const SANS = 'var(--font-sans), ui-sans-serif, system-ui, sans-serif'
-const SERIF = "var(--font-serif), Georgia, serif"
-const TERRA = '#C86A3A'
-const CREAM = '#F5EDDE'
+const BRAND_SERIF = "var(--font-editorial), 'Instrument Serif', Georgia, serif"
+const CARIBBEAN_INK = '#061F24'
+const CARIBBEAN_PANEL = '#0B3034'
+const SHELL = '#F7ECDD'
+const CORAL = '#D97A4F'
+const SEA_GLASS = '#86B9B7'
+const SHELL_GOLD = '#D7B17A'
 
 type Layout = 'hero' | 'choices' | 'cards'
 
@@ -47,7 +53,57 @@ type Screen = {
   cards?: { name: string; meta: string; image: string; badge?: string; featured?: boolean }[]
 }
 
+const TABLET_UI = {
+  en: {
+    brand: 'MARAZUL', destination: 'RIVIERA MAYA', guest: 'MAYA · SUITE 214',
+    upgrade: 'Ocean suite', upgradeAction: 'Upgrade this stay', otaSaving: 'MARAZUL DIRECT · SAVE $71', spa: 'Spa Ixchel',
+    spaNote: 'The Cacao Ceremony has a 5:30 opening today — say “book it” and it’s yours. You’d be back for dinner at 7:30.',
+    spaMeta: ['90 min · signature', '60 min · from 6:45', '45 min · 6:30 AM'], spaOpen: '5:30 open',
+    experiences: 'Cenotes & coast', dayAsk: 'Plan our last day', dayTitle: 'Cenote Dos Ojos', dayMeta: '40 min · driver booked',
+    directions: 'Directions', bookDay: 'Book the day', driver: 'DRIVER INCLUDED · $95', roomService: 'MarAzul dining',
+    dinnerAsk: 'What’s good tonight?', diningTitle: 'In-room dining', dishMeta: ['Local catch · lime · serrano', 'Grilled · guajillo · citrus', 'The one everyone orders'],
+    memory: 'For your return', welcome: 'Welcome back, Maya', usualSuite: 'Your usual suite', roomChange: 'Quiet suites', poolBar: 'Pool after dark', pause: 'Pause preview', resume: 'Resume preview', voice: 'MARAZUL · LISTENING',
+  },
+  es: {
+    brand: 'MARAZUL', destination: 'RIVIERA MAYA', guest: 'MAYA · SUITE 214',
+    upgrade: 'Suite frente al mar', upgradeAction: 'Mejorar esta estancia', otaSaving: 'TARIFA MARAZUL · AHORRA $71', spa: 'Spa Ixchel',
+    spaNote: 'La Ceremonia de Cacao tiene un espacio hoy a las 17:30 — di “resérvalo” y es tuyo. Estarás de vuelta para cenar a las 19:30.',
+    spaMeta: ['90 min · firma', '60 min · desde 18:45', '45 min · 6:30'], spaOpen: '17:30 disponible',
+    experiences: 'Cenotes y costa', dayAsk: 'Planea nuestro último día', dayTitle: 'Cenote Dos Ojos', dayMeta: '40 min · conductor reservado',
+    directions: 'Cómo llegar', bookDay: 'Reservar el día', driver: 'CONDUCTOR INCLUIDO · $95', roomService: 'Cocina MarAzul',
+    dinnerAsk: '¿Qué está bueno esta noche?', diningTitle: 'Comedor en la habitación', dishMeta: ['Pesca local · lima · serrano', 'A la parrilla · guajillo · cítricos', 'El que todos piden'],
+    memory: 'Para tu regreso', welcome: 'Qué gusto verte, Maya', usualSuite: 'Tu suite habitual', roomChange: 'Suites tranquilas', poolBar: 'Alberca de noche', pause: 'Pausar vista', resume: 'Reanudar vista', voice: 'MARAZUL · ESCUCHANDO',
+  },
+} as const
+
+function BrandSignature({ compact = false }: { compact?: boolean }) {
+  const { lang } = useLang()
+  const ui = TABLET_UI[lang]
+
+  return (
+    <div
+      aria-label={`${ui.brand}, ${ui.destination}`}
+      style={{
+        display: 'inline-grid',
+        minWidth: 0,
+        gap: 3,
+        color: SHELL,
+        textShadow: '0 2px 18px rgba(0,0,0,.55)',
+      }}
+    >
+      <span style={{ fontFamily: BRAND_SERIF, fontSize: compact ? 'clamp(12px,1.25vw,16px)' : 'clamp(14px,1.5vw,19px)', letterSpacing: '.14em', lineHeight: 1 }}>
+        {ui.brand}
+      </span>
+      <small style={{ ...MONO, overflow: 'hidden', color: 'rgba(247,236,221,.72)', fontSize: 'clamp(8px,.68vw,9px)', letterSpacing: '.15em', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+        {ui.destination}
+      </small>
+    </div>
+  )
+}
+
 function useScreens(): Screen[] {
+  const { lang } = useLang()
+  const ui = TABLET_UI[lang]
   const s = useCopy(deviceScreens).screens
   const mem = useCopy(intelExecCopy).memory
   return useMemo(
@@ -56,72 +112,72 @@ function useScreens(): Screen[] {
       {
         key: 'upgrade',
         layout: 'hero',
-        pill: 'Suite upgrade',
+        pill: ui.upgrade,
         image: '/assets/ui/suite-ocean.webp',
         ask: s.upgrade.ask,
         title: s.upgrade.title,
         meta: s.upgrade.meta,
-        primary: s.upgrade.confirm,
-        badge: '$71 LESS THAN THE OTA',
+        primary: ui.upgradeAction,
+        badge: ui.otaSaving,
       },
       // 2 · cards — a service menu, three treatments to merchandise
       {
         key: 'spa',
         layout: 'cards',
-        pill: 'Spa booking',
+        pill: ui.spa,
         ask: s.spa.ask,
         cardsTitle: s.spa.title,
         reserve: s.spa.book,
-        note: 'The Cacao Ceremony has a 5:30 opening today — say “book it” and it’s yours. You’d be back for dinner at 7:30.',
+        note: ui.spaNote,
         cards: [
-          { name: s.spa.items[0].name, meta: '90 min · signature', image: '/assets/ui/spa-1.webp', badge: '5:30 open', featured: true },
-          { name: 'Deep tissue', meta: '60 min · from 6:45', image: '/assets/ui/spa-2.webp' },
-          { name: 'Sunrise yoga', meta: '45 min · 6:30 AM', image: '/assets/ui/spa-3.webp' },
+          { name: s.spa.items[0].name, meta: ui.spaMeta[0], image: '/assets/ui/spa-1.webp', badge: ui.spaOpen, featured: true },
+          { name: s.spa.items[1].name, meta: ui.spaMeta[1], image: '/assets/ui/spa-2.webp' },
+          { name: s.spa.items[2].name, meta: ui.spaMeta[2], image: '/assets/ui/spa-3.webp' },
         ],
       },
       // 3 · hero — a whole bookable day
       {
         key: 'cenote',
         layout: 'hero',
-        pill: 'Experiences',
+        pill: ui.experiences,
         image: '/assets/lux/exp-cenote.webp',
-        ask: 'Plan our last day',
-        title: 'Cenote Dos Ojos',
-        meta: '40 min · driver booked',
-        secondary: 'Directions',
-        primary: 'Book the day',
-        badge: 'DRIVER INCLUDED · $95',
+        ask: ui.dayAsk,
+        title: ui.dayTitle,
+        meta: ui.dayMeta,
+        secondary: ui.directions,
+        primary: ui.bookDay,
+        badge: ui.driver,
       },
       // 4 · choices — it can merchandise every service
       {
         key: 'dining',
         layout: 'choices',
-        pill: 'Room service',
-        choicesAsk: 'What’s good tonight?',
-        choicesTitle: 'In-room dining',
+        pill: ui.roomService,
+        choicesAsk: ui.dinnerAsk,
+        choicesTitle: ui.diningTitle,
         choices: [
-          { name: 'Ceviche verde', meta: 'Local catch · lime · serrano', price: '$18', image: '/assets/ui/dish-1.webp' },
-          { name: 'Pescado a la talla', meta: 'Grilled · guajillo · citrus', price: '$32', image: '/assets/ui/dish-2.webp' },
-          { name: 'Tres leches', meta: 'The one everyone orders', price: '$12', image: '/assets/ui/dish-3.webp' },
+          { name: s.roomservice.items[0].name, meta: ui.dishMeta[0], price: s.roomservice.items[0].price, image: '/assets/ui/dish-1.webp' },
+          { name: s.roomservice.items[1].name, meta: ui.dishMeta[1], price: s.roomservice.items[1].price, image: '/assets/ui/dish-2.webp' },
+          { name: s.roomservice.items[2].name, meta: ui.dishMeta[2], price: s.roomservice.items[2].price, image: '/assets/ui/dish-3.webp' },
         ],
       },
       // 5 · hero — the moat: she returns, it already knows her.
       {
         key: 'memory',
         layout: 'hero',
-        pill: 'Guest memory',
+        pill: ui.memory,
         image: '/assets/ui/suite-sculpted.webp',
         ask: '',
-        title: 'Welcome back, Maya',
+        title: ui.welcome,
         meta: mem.chips.slice(0, 4).join(' · '),
-        primary: 'Her usual suite',
+        primary: ui.usualSuite,
         badge: mem.title,
       },
       // 6 · hero — a quiet room, the one photo nothing else on the site uses
       {
         key: 'nightsuite',
         layout: 'hero',
-        pill: 'Room change',
+        pill: ui.roomChange,
         image: s.nightsuite.image,
         ask: s.nightsuite.ask,
         title: s.nightsuite.title,
@@ -133,7 +189,7 @@ function useScreens(): Screen[] {
       {
         key: 'nightpool',
         layout: 'hero',
-        pill: 'Pool & bar',
+        pill: ui.poolBar,
         image: s.nightpool.image,
         ask: s.nightpool.ask,
         title: s.nightpool.title,
@@ -142,7 +198,7 @@ function useScreens(): Screen[] {
         badge: s.nightpool.badge,
       },
     ],
-    [s, mem]
+    [s, mem, ui]
   )
 }
 
@@ -173,7 +229,8 @@ const VARIANTS = {
 export type TabletVariant = keyof typeof VARIANTS
 
 export function CompanionTablet({ className = '', variant = 'home' }: { className?: string; variant?: TabletVariant }) {
-  const d = useCopy(deviceScreens)
+  const { lang } = useLang()
+  const ui = TABLET_UI[lang]
   const all = useScreens()
   const screens = useMemo(() => {
     const want = VARIANTS[variant]
@@ -182,49 +239,108 @@ export function CompanionTablet({ className = '', variant = 'home' }: { classNam
   const [i, setI] = useState(0)
   const [fade, setFade] = useState(false)
   const [paused, setPaused] = useState(false)
+  const [interacting, setInteracting] = useState(false)
+  const [inView, setInView] = useState(false)
+  const [pageVisible, setPageVisible] = useState(true)
+  const rootRef = useRef<HTMLDivElement>(null)
   const timer = useRef<number | undefined>(undefined)
+  const cycleFadeTimer = useRef<number | undefined>(undefined)
+  const selectionTimer = useRef<number | undefined>(undefined)
+  const screenId = useId()
 
   useEffect(() => {
-    if (paused) return
+    if (paused || interacting || !inView || !pageVisible) return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const tick = () => {
-      timer.current = window.setTimeout(() => {
-        setFade(true)
-        window.setTimeout(() => {
-          setI((n) => (n + 1) % screens.length)
-          setFade(false)
-          tick()
-        }, 460)
-      }, 4600)
-    }
-    tick()
+    timer.current = window.setTimeout(() => {
+      setFade(true)
+      cycleFadeTimer.current = window.setTimeout(() => {
+        setI((n) => (n + 1) % screens.length)
+        setFade(false)
+      }, 460)
+    }, 4600)
+    // Hovering, focusing, or pausing cancels only the next dwell. If a
+    // cross-fade has already begun, it must finish so the screen cannot remain
+    // stranded at low opacity.
     return () => window.clearTimeout(timer.current)
-  }, [screens.length, paused])
+  }, [screens.length, paused, interacting, inView, pageVisible, i])
+
+  useEffect(() => {
+    const root = rootRef.current
+    if (!root) return
+    const observer = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), { rootMargin: '240px 0px', threshold: 0.01 })
+    const onVisibility = () => setPageVisible(!document.hidden)
+    observer.observe(root)
+    onVisibility()
+    document.addEventListener('visibilitychange', onVisibility)
+    return () => {
+      observer.disconnect()
+      document.removeEventListener('visibilitychange', onVisibility)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!inView || !pageVisible || screens.length < 2) return
+    const nextImage = screens[(i + 1) % screens.length]?.image
+    if (!nextImage) return
+    const preload = new window.Image()
+    preload.src = nextImage
+  }, [i, inView, pageVisible, screens])
+
+  useEffect(() => () => {
+    window.clearTimeout(timer.current)
+    window.clearTimeout(cycleFadeTimer.current)
+    window.clearTimeout(selectionTimer.current)
+  }, [])
 
   const go = (n: number) => {
     setPaused(true)
     setFade(true)
-    window.setTimeout(() => {
+    window.clearTimeout(timer.current)
+    window.clearTimeout(cycleFadeTimer.current)
+    window.clearTimeout(selectionTimer.current)
+    selectionTimer.current = window.setTimeout(() => {
       setI(n)
       setFade(false)
     }, 260)
   }
 
+  const togglePreview = () => {
+    const next = !paused
+    setPaused(next)
+    if (!next) setInteracting(false)
+  }
+
   const sc = screens[i]
 
   return (
-    <div className={className}>
+    <div
+      ref={rootRef}
+      className={`${className} motion-gated ${inView && pageVisible ? 'is-in-view' : ''}`.trim()}
+      style={{
+        '--accent': CORAL,
+        '--accent-bright': '#EC8B5D',
+        '--gold': SEA_GLASS,
+        '--text': SHELL,
+      } as CSSProperties}
+      onMouseEnter={() => setInteracting(true)}
+      onMouseLeave={() => setInteracting(false)}
+      onFocusCapture={() => setInteracting(true)}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setInteracting(false)
+      }}
+    >
       <div
         data-device-ui=""
+        className="marazul-hero-tablet"
         style={{
           width: '100%',
           maxWidth: 860,
           aspectRatio: '7 / 5',
-          background: '#0C0B0A',
-          border: '1px solid rgba(190,185,175,0.28)',
+          background: '#071719',
+          border: '1px solid rgba(134,185,183,.3)',
           borderRadius: 24,
           padding: 10,
-          boxShadow: '0 50px 110px -30px rgba(0,0,0,0.8), 0 0 120px -10px rgba(200,106,58,0.30), 0 0 0 1px rgba(200,106,58,0.14)',
+          boxShadow: '0 50px 110px -30px rgba(2,17,19,.9), 0 0 100px -18px rgba(76,143,145,.32), inset 0 0 0 1px rgba(247,236,221,.04)',
           boxSizing: 'border-box',
         }}
       >
@@ -234,22 +350,22 @@ export function CompanionTablet({ className = '', variant = 'home' }: { classNam
             height: '100%',
             borderRadius: 16,
             overflow: 'hidden',
-            background: 'radial-gradient(120% 100% at 30% 0%, #17130f 0%, #100e0c 60%, #0c0b0a 100%)',
+            background: `radial-gradient(120% 100% at 30% 0%, ${CARIBBEAN_PANEL} 0%, ${CARIBBEAN_INK} 62%, #041417 100%)`,
             display: 'flex',
             flexDirection: 'column',
           }}
         >
           {/* ── the answer, full-bleed — cross-fades; layout alternates ── */}
-          <div style={{ position: 'relative', flex: 1, minHeight: 0, overflow: 'hidden', opacity: fade ? 0 : 1, transition: 'opacity .45s var(--ease-standard)' }}>
-            {sc.layout === 'hero' && <HeroScreen sc={sc} />}
+          <div id={screenId} role="group" aria-label={sc.pill} style={{ position: 'relative', flex: 1, minHeight: 0, overflow: 'hidden', opacity: fade ? 0 : 1, transition: 'opacity .45s var(--ease-standard)' }}>
+            {sc.layout === 'hero' && <HeroScreen sc={sc} eager={i === 0} />}
             {sc.layout === 'choices' && <ChoicesScreen sc={sc} />}
-            {sc.layout === 'cards' && <CardsScreen sc={sc} property={d.property} />}
+            {sc.layout === 'cards' && <CardsScreen sc={sc} guest={ui.guest} />}
           </div>
 
           {/* ── the control, along the bottom edge — the site-wide standard.
               Not optional: the bar IS the tablet's control surface, so a
               tablet without it is a screenshot, not the product. ── */}
-          <DeviceVoiceBar />
+          <DeviceVoiceBar label={ui.voice} tone="marazul" />
         </div>
       </div>
 
@@ -265,14 +381,16 @@ export function CompanionTablet({ className = '', variant = 'home' }: { classNam
             <button
               key={scr.key}
               type="button"
+              aria-pressed={on}
+              aria-controls={screenId}
               onClick={() => go(idx)}
               style={{
                 fontFamily: SANS,
                 fontSize: 'clamp(11px,1vw,13px)',
                 fontWeight: on ? 600 : 500,
-                color: on ? CREAM : 'var(--text-dim, rgba(242,233,218,0.6))',
-                background: on ? 'rgba(200,106,58,0.14)' : 'transparent',
-                border: `1px solid ${on ? 'rgba(200,106,58,0.6)' : 'var(--border-soft, rgba(243,236,226,0.14))'}`,
+                color: on ? SHELL : 'rgba(247,236,221,.72)',
+                background: on ? 'rgba(217,122,79,.2)' : 'rgba(6,31,36,.18)',
+                border: `1px solid ${on ? 'rgba(217,122,79,.82)' : 'rgba(134,185,183,.4)'}`,
                 borderRadius: 999,
                 padding: '7px 12px',
                 cursor: 'pointer',
@@ -283,34 +401,53 @@ export function CompanionTablet({ className = '', variant = 'home' }: { classNam
             </button>
           )
         })}
+        <button
+          type="button"
+          onClick={togglePreview}
+          className="product-preview-toggle"
+          style={{
+            fontFamily: MONO.fontFamily,
+            fontSize: '10px',
+            letterSpacing: '.12em',
+            color: 'rgba(247,236,221,.72)',
+            background: 'rgba(6,31,36,.18)',
+            border: '1px solid rgba(134,185,183,.4)',
+            borderRadius: 999,
+            padding: '7px 12px',
+            cursor: 'pointer',
+            textTransform: 'uppercase',
+          }}
+        >
+          <span aria-hidden="true">{paused ? '▶' : 'Ⅱ'}</span>{' '}{paused ? ui.resume : ui.pause}
+        </button>
       </div>
     </div>
   )
 }
 
 /* ── Layout A: hero — one outcome, full-bleed, one-line title ── */
-function HeroScreen({ sc }: { sc: Screen }) {
+function HeroScreen({ sc, eager }: { sc: Screen; eager: boolean }) {
   return (
     <>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img key={sc.key} alt={sc.title} src={sc.image} className="v5-kenburns" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
-      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(11,9,8,0.24) 0%, transparent 30%, transparent 42%, rgba(11,9,8,0.95) 100%)' }} />
+      {sc.image && <Image key={sc.key} alt={sc.title ?? ''} src={sc.image} fill sizes="(max-width: 767px) calc(100vw - 48px), 760px" quality={74} loading={eager ? 'eager' : 'lazy'} className="v5-kenburns" style={{ objectFit: 'cover' }} />}
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(4,25,28,.48) 0%, transparent 34%, transparent 45%, rgba(3,22,25,.96) 100%), linear-gradient(90deg, rgba(3,27,30,.25), transparent 55%)' }} />
+      <div style={{ position: 'absolute', top: '5%', left: '5%', zIndex: 4 }}><BrandSignature /></div>
       {sc.ask && (
-        <div style={{ position: 'absolute', top: '5%', right: '5%', maxWidth: '64%', textAlign: 'right', zIndex: 3 }}>
-          <span style={{ fontFamily: SANS, fontSize: 'clamp(10px,1.15vw,15px)', color: CREAM, textShadow: '0 2px 12px rgba(0,0,0,0.7)' }}>{sc.ask}</span>
+        <div style={{ position: 'absolute', top: '17%', right: '5%', maxWidth: '58%', textAlign: 'right', zIndex: 3 }}>
+          <span style={{ fontFamily: SANS, fontSize: 'clamp(10px,1.15vw,15px)', color: SHELL, textShadow: '0 2px 12px rgba(0,0,0,0.7)' }}>{sc.ask}</span>
         </div>
       )}
       <div style={{ position: 'absolute', left: '5%', right: '5%', bottom: '6%', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: 'clamp(10px,1.8vw,24px)' }}>
         <div style={{ flex: 1, minWidth: 0 }}>
-          {sc.badge && <span style={{ ...MONO, display: 'inline-block', whiteSpace: 'nowrap', fontSize: 'clamp(9px, 0.78vw, 9.5px)', letterSpacing: '.1em', color: TERRA, border: '1px solid rgba(200,106,58,0.45)', background: 'rgba(11,9,8,0.5)', backdropFilter: 'blur(4px)', borderRadius: 999, padding: '3px 9px', marginBottom: 'clamp(9px, 0.9vw, 10px)' }}>{sc.badge}</span>}
-          <div style={{ fontFamily: SERIF, fontWeight: 500, fontSize: 'clamp(17px,1.85vw,26px)', lineHeight: 1.08, color: CREAM, textWrap: 'balance' } as CSSProperties}>{sc.title}</div>
-          <div style={{ fontFamily: SANS, fontSize: 'clamp(9px,1vw,12.5px)', lineHeight: 1.35, color: 'rgba(242,233,218,0.82)', marginTop: 'clamp(9px, 0.6vw, 9.5px)' }}>{sc.meta}</div>
+          {sc.badge && <span style={{ ...MONO, display: 'inline-block', whiteSpace: 'nowrap', fontSize: 'clamp(9px, 0.78vw, 9.5px)', letterSpacing: '.11em', color: SHELL_GOLD, border: '1px solid rgba(215,177,122,.55)', background: 'rgba(6,31,36,.6)', backdropFilter: 'blur(7px)', borderRadius: 999, padding: '4px 10px', marginBottom: 'clamp(9px, 0.9vw, 10px)' }}>{sc.badge}</span>}
+          <div style={{ fontFamily: BRAND_SERIF, fontWeight: 400, fontSize: 'clamp(19px,2.1vw,30px)', letterSpacing: '-.01em', lineHeight: 1.03, color: SHELL, textWrap: 'balance', textShadow: '0 3px 22px rgba(0,0,0,.52)' } as CSSProperties}>{sc.title}</div>
+          <div style={{ fontFamily: SANS, fontSize: 'clamp(10px,1vw,12.5px)', lineHeight: 1.35, color: 'rgba(247,236,221,.82)', marginTop: 'clamp(8px, 0.6vw, 9.5px)' }}>{sc.meta}</div>
         </div>
         <div style={{ display: 'flex', gap: 6, flexShrink: 0 }}>
           {sc.secondary && (
-            <span style={{ fontFamily: SANS, fontSize: 'clamp(9px,1vw,12px)', fontWeight: 500, color: CREAM, border: '1px solid rgba(243,236,226,0.4)', background: 'rgba(11,9,8,0.35)', borderRadius: 999, padding: 'clamp(9px, 0.8vw, 9.5px) clamp(9px,1.2vw,14px)', whiteSpace: 'nowrap' }}>{sc.secondary}</span>
+            <span style={{ fontFamily: SANS, fontSize: 'clamp(9px,1vw,12px)', fontWeight: 500, color: SHELL, border: '1px solid rgba(134,185,183,.62)', background: 'rgba(8,50,54,.48)', backdropFilter: 'blur(7px)', borderRadius: 9, padding: 'clamp(9px, 0.8vw, 10px) clamp(10px,1.2vw,15px)', whiteSpace: 'nowrap' }}>{sc.secondary}</span>
           )}
-          <span style={{ fontFamily: SANS, fontSize: 'clamp(9px,1vw,12px)', fontWeight: 600, color: '#1a1207', background: TERRA, borderRadius: 999, padding: 'clamp(9px, 0.8vw, 9.5px) clamp(9px,1.2vw,14px)', whiteSpace: 'nowrap' }}>{sc.primary}</span>
+          <span style={{ fontFamily: SANS, fontSize: 'clamp(9px,1vw,12px)', fontWeight: 600, color: CARIBBEAN_INK, background: CORAL, border: '1px solid rgba(255,255,255,.12)', boxShadow: '0 8px 20px rgba(3,22,25,.24)', borderRadius: 9, padding: 'clamp(9px, 0.8vw, 10px) clamp(10px,1.2vw,15px)', whiteSpace: 'nowrap' }}>{sc.primary}</span>
         </div>
       </div>
     </>
@@ -320,12 +457,13 @@ function HeroScreen({ sc }: { sc: Screen }) {
 /* ── Layout B: choices — it can merchandise every service ── */
 function ChoicesScreen({ sc }: { sc: Screen }) {
   return (
-    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(160deg, #16120e 0%, #100d0b 100%)', display: 'flex', flexDirection: 'column', padding: 'clamp(12px,1.8vw,22px)' }}>
+    <div style={{ position: 'absolute', inset: 0, background: `radial-gradient(circle at 88% 4%, rgba(134,185,183,.16), transparent 30%), linear-gradient(155deg, ${CARIBBEAN_PANEL}, ${CARIBBEAN_INK})`, display: 'flex', flexDirection: 'column', padding: 'clamp(12px,1.8vw,22px)' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, flexShrink: 0 }}>
         <div>
-          <div style={{ fontFamily: SERIF, fontWeight: 500, fontSize: 'clamp(16px,1.8vw,26px)', lineHeight: 1, color: CREAM }}>{sc.choicesTitle}</div>
-          <div style={{ fontFamily: SANS, fontSize: 'clamp(9px,1vw,12.5px)', color: TERRA, marginTop: 5 }}>{sc.choicesAsk}</div>
+          <div style={{ fontFamily: BRAND_SERIF, fontWeight: 400, fontSize: 'clamp(18px,2vw,29px)', letterSpacing: '-.01em', lineHeight: 1, color: SHELL }}>{sc.choicesTitle}</div>
+          <div style={{ fontFamily: SANS, fontSize: 'clamp(10px,1vw,12.5px)', color: SEA_GLASS, marginTop: 5 }}>{sc.choicesAsk}</div>
         </div>
+        <BrandSignature compact />
       </div>
       {/* flex:1 + minHeight:0 and a smaller thumb: the bottom bar took height
           off this screen and the third row was sliding under it. */}
@@ -333,17 +471,16 @@ function ChoicesScreen({ sc }: { sc: Screen }) {
         {/* The three rows SHARE the height the bar left, rather than each
             taking its natural size and pushing the last one underneath it. */}
         {sc.choices?.map((it) => (
-          <div key={it.name} style={{ flex: '1 1 0', minHeight: 0, display: 'flex', alignItems: 'center', gap: 'clamp(9px,1.2vw,14px)', background: 'rgba(243,236,226,0.05)', border: '1px solid rgba(243,236,226,0.1)', borderRadius: 14, padding: 'clamp(6px, 0.7vw, 9px)' }}>
+          <div key={it.name} style={{ flex: '1 1 0', minHeight: 0, display: 'flex', alignItems: 'center', gap: 'clamp(9px,1.2vw,14px)', background: 'rgba(247,236,221,.055)', border: '1px solid rgba(134,185,183,.19)', boxShadow: 'inset 0 1px 0 rgba(255,255,255,.025)', borderRadius: 12, padding: 'clamp(6px, 0.7vw, 9px)' }}>
             <div style={{ position: 'relative', flexShrink: 0, height: '100%', aspectRatio: '1', borderRadius: 10, overflow: 'hidden' }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img alt={it.name} src={it.image} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+              <Image alt={it.name} src={it.image} width={160} height={160} sizes="(max-width: 767px) 84px, 120px" quality={68} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontFamily: SANS, fontWeight: 600, fontSize: 'clamp(11px,1.2vw,15px)', color: CREAM, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{it.name}</div>
-              <div style={{ fontFamily: SANS, fontSize: 'clamp(9px, 0.95vw, 12px)', color: 'rgba(242,233,218,0.6)', marginTop: 2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{it.meta}</div>
+              <div style={{ fontFamily: SANS, fontWeight: 600, fontSize: 'clamp(11px,1.2vw,15px)', color: SHELL, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{it.name}</div>
+              <div style={{ fontFamily: SANS, fontSize: 'clamp(9px, 0.95vw, 12px)', color: 'rgba(247,236,221,.6)', marginTop: 2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{it.meta}</div>
             </div>
-            <div style={{ ...MONO, fontSize: 'clamp(10px,1.1vw,14px)', color: CREAM, flexShrink: 0 }}>{it.price}</div>
-            <span aria-hidden style={{ flexShrink: 0, width: 'clamp(22px,2.6vw,30px)', height: 'clamp(22px,2.6vw,30px)', display: 'grid', placeItems: 'center', borderRadius: '50%', background: TERRA, color: '#1a1207', fontSize: 'clamp(13px,1.5vw,18px)', fontWeight: 700 }}>+</span>
+            <div style={{ ...MONO, fontSize: 'clamp(10px,1.1vw,14px)', color: SHELL_GOLD, flexShrink: 0 }}>{it.price}</div>
+            <span aria-hidden style={{ flexShrink: 0, width: 'clamp(24px,2.7vw,32px)', height: 'clamp(24px,2.7vw,32px)', display: 'grid', placeItems: 'center', borderRadius: '50%', background: CORAL, color: CARIBBEAN_INK, boxShadow: '0 5px 14px rgba(2,17,19,.28)', fontSize: 'clamp(13px,1.5vw,18px)', fontWeight: 700 }}>+</span>
           </div>
         ))}
       </div>
@@ -352,46 +489,46 @@ function ChoicesScreen({ sc }: { sc: Screen }) {
 }
 
 /* ── Layout C: cards — a service menu, three treatments to reserve ── */
-function CardsScreen({ sc, property }: { sc: Screen; property: string }) {
+function CardsScreen({ sc, guest }: { sc: Screen; guest: string }) {
   return (
-    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(160deg, #16120e 0%, #100d0b 100%)', display: 'flex', flexDirection: 'column', padding: 'clamp(12px,1.7vw,22px)' }}>
+    <div style={{ position: 'absolute', inset: 0, background: `radial-gradient(circle at 88% 4%, rgba(134,185,183,.16), transparent 30%), linear-gradient(155deg, ${CARIBBEAN_PANEL}, ${CARIBBEAN_INK})`, display: 'flex', flexDirection: 'column', padding: 'clamp(12px,1.7vw,22px)' }}>
       {/* status */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexShrink: 0 }}>
-        <span style={{ ...MONO, display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 'clamp(9px, 0.82vw, 9.5px)', letterSpacing: '.18em', color: TERRA, border: '1px solid rgba(200,106,58,0.4)', background: 'rgba(11,9,8,0.4)', borderRadius: 999, padding: '4px 10px' }}>
-          <span style={{ width: 6, height: 6, borderRadius: '50%', background: TERRA }} />{property.toUpperCase()}
+        <span style={{ ...MONO, display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 'clamp(9px, 0.82vw, 9.5px)', letterSpacing: '.15em', color: SHELL_GOLD, border: '1px solid rgba(215,177,122,.46)', background: 'rgba(4,24,27,.38)', borderRadius: 999, padding: '4px 10px' }}>
+          <span style={{ width: 6, height: 6, borderRadius: '50%', background: SEA_GLASS, boxShadow: '0 0 10px rgba(134,185,183,.7)' }} />{guest}
         </span>
+        <BrandSignature compact />
       </div>
       {/* title + question */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: 12, flexShrink: 0, marginTop: 'clamp(9px, 1.2vw, 14px)' }}>
-        <div style={{ fontFamily: SERIF, fontWeight: 500, fontSize: 'clamp(18px,2vw,30px)', lineHeight: 1, color: CREAM }}>{sc.cardsTitle}</div>
-        <span style={{ fontFamily: SANS, fontSize: 'clamp(9px,1.05vw,14px)', color: 'rgba(242,233,218,0.75)' }}>{sc.ask}</span>
+        <div style={{ fontFamily: BRAND_SERIF, fontWeight: 400, fontSize: 'clamp(20px,2.15vw,32px)', letterSpacing: '-.01em', lineHeight: 1, color: SHELL }}>{sc.cardsTitle}</div>
+        <span style={{ fontFamily: SANS, fontSize: 'clamp(9px,1.05vw,14px)', color: 'rgba(247,236,221,.75)' }}>{sc.ask}</span>
       </div>
       {/* three treatment cards */}
       <div style={{ display: 'flex', gap: 'clamp(9px, 1vw, 12px)', marginTop: 'clamp(9px,1.4vw,16px)', flex: 1, minHeight: 0 }}>
         {sc.cards?.map((c) => (
-          <div key={c.name} style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', borderRadius: 14, overflow: 'hidden', background: 'rgba(243,236,226,0.04)', border: `1px solid ${c.featured ? 'rgba(200,106,58,0.55)' : 'rgba(243,236,226,0.1)'}` }}>
+          <div key={c.name} style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', borderRadius: 12, overflow: 'hidden', background: 'rgba(247,236,221,.055)', border: `1px solid ${c.featured ? 'rgba(217,122,79,.72)' : 'rgba(134,185,183,.19)'}`, boxShadow: c.featured ? '0 10px 30px rgba(2,17,19,.22)' : 'none' }}>
             {/* minHeight 0, not a floor: the bottom bar took height off this
                 screen and a floored photo pushed the Reserve button out of the
                 card, which has overflow:hidden. The photo shrinks instead. */}
             <div style={{ position: 'relative', flex: 1, minHeight: 0 }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img alt={c.name} src={c.image} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(11,9,8,0.05) 0%, transparent 50%, rgba(11,9,8,0.4) 100%)' }} />
-              {c.badge && <span style={{ position: 'absolute', top: 8, right: 8, ...MONO, fontSize: 'clamp(9px, 0.78vw, 9.5px)', letterSpacing: '.06em', color: '#1a1207', background: TERRA, borderRadius: 999, padding: '4px 9px' }}>{c.badge}</span>}
+              <Image alt={c.name} src={c.image} width={360} height={260} sizes="(max-width: 767px) 30vw, 220px" quality={68} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(4,25,28,.03) 0%, transparent 48%, rgba(3,22,25,.46) 100%)' }} />
+              {c.badge && <span style={{ position: 'absolute', top: 8, right: 8, ...MONO, fontSize: 'clamp(9px, 0.78vw, 9.5px)', letterSpacing: '.07em', color: CARIBBEAN_INK, background: SHELL_GOLD, borderRadius: 999, padding: '4px 9px' }}>{c.badge}</span>}
             </div>
             <div style={{ padding: 'clamp(9px, 0.9vw, 12px)', display: 'flex', flexDirection: 'column', gap: 'clamp(9px, 0.7vw, 9.5px)', flexShrink: 0 }}>
               <div>
-                <div style={{ fontFamily: SANS, fontWeight: 600, fontSize: 'clamp(9.5px,1vw,13px)', lineHeight: 1.15, color: CREAM }}>{c.name}</div>
-                <div style={{ fontFamily: SANS, fontSize: 'clamp(9px, 0.9vw, 11.5px)', color: 'rgba(242,233,218,0.6)', marginTop: 3, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{c.meta}</div>
+                <div style={{ fontFamily: SANS, fontWeight: 600, fontSize: 'clamp(9.5px,1vw,13px)', lineHeight: 1.15, color: SHELL }}>{c.name}</div>
+                <div style={{ fontFamily: SANS, fontSize: 'clamp(9px, 0.9vw, 11.5px)', color: 'rgba(247,236,221,.6)', marginTop: 3, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{c.meta}</div>
               </div>
-              <span style={{ fontFamily: SANS, fontWeight: 600, fontSize: 'clamp(9px, 0.95vw, 12px)', textAlign: 'center', color: c.featured ? '#1a1207' : CREAM, background: c.featured ? TERRA : 'transparent', border: c.featured ? '1px solid transparent' : '1px solid rgba(243,236,226,0.35)', borderRadius: 999, padding: 'clamp(9px, 0.75vw, 9.5px) 0' }}>{sc.reserve}</span>
+              <span style={{ fontFamily: SANS, fontWeight: 600, fontSize: 'clamp(9px, 0.95vw, 12px)', textAlign: 'center', color: c.featured ? CARIBBEAN_INK : SHELL, background: c.featured ? CORAL : 'rgba(134,185,183,.06)', border: c.featured ? '1px solid rgba(255,255,255,.1)' : '1px solid rgba(134,185,183,.48)', borderRadius: 8, padding: 'clamp(9px, 0.75vw, 9.5px) 0' }}>{sc.reserve}</span>
             </div>
           </div>
         ))}
       </div>
       {/* companion note */}
       {sc.note && (
-        <div style={{ flexShrink: 0, marginTop: 'clamp(9px,1.3vw,15px)', fontFamily: SANS, fontSize: 'clamp(9px,1.05vw,14px)', lineHeight: 1.4, color: 'rgba(242,233,218,0.82)', border: '1px solid rgba(243,236,226,0.1)', background: 'rgba(243,236,226,0.03)', borderRadius: 12, padding: 'clamp(9px,1.1vw,14px) clamp(11px,1.3vw,16px)' }}>{sc.note}</div>
+        <div className="marazul-spa-note" style={{ flexShrink: 0, marginTop: 'clamp(9px,1.3vw,15px)', fontFamily: SANS, fontSize: 'clamp(9px,1.05vw,14px)', lineHeight: 1.4, color: 'rgba(247,236,221,.82)', border: '1px solid rgba(134,185,183,.18)', background: 'rgba(134,185,183,.055)', borderRadius: 11, padding: 'clamp(9px,1.1vw,14px) clamp(11px,1.3vw,16px)' }}>{sc.note}</div>
       )}
     </div>
   )

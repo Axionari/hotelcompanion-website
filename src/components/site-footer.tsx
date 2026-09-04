@@ -37,7 +37,7 @@ export function SiteFooter() {
   const { footer } = useCopy(globalCopy);
 
   return (
-    <footer style={{ background: "var(--surface-1)", borderTop: "1px solid var(--border)" }}>
+    <footer className="site-footer" style={{ background: "var(--surface-1)", borderTop: "1px solid var(--border)", color: "var(--text)" }}>
       <div className="max-w-6xl mx-auto px-4 md:px-6 py-16 md:py-20">
         {/* Brand block — just the wordmark. The page's own closing band carries
             the crescendo + CTA (RC ends the page once, not twice). */}

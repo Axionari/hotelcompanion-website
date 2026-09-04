@@ -4,18 +4,19 @@ import type { Localized } from '../useCopy'
 
 const en = {
   nav: {
-    platform: 'Platform',
-    solutions: 'Solutions',
+    platform: 'Product',
+    solutions: 'Capabilities',
     enterprise: 'Enterprise',
     companionOs: 'Companion OS',
     resources: 'Resources',
     company: 'Company',
-    bookDemo: 'Book a Demo',
+    bookDemo: 'Request a Demo',
     see: 'See',
     more: 'more',
     wordmark: 'Hotel Companion',
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
+    skipToContent: 'Skip to main content',
   },
   footer: {
     /* v3 {#footer}: 4 columns (Company+Legal merged), Companion OS product
@@ -33,12 +34,12 @@ const en = {
         title: 'Product',
         links: [
           { label: 'Home', href: '/' },
-          { label: 'Platform', href: '/platform' },
-          { label: 'Solutions', href: '/solutions' },
+          { label: 'Product', href: '/platform' },
+          { label: 'Capabilities', href: '/solutions' },
           { label: 'Enterprise', href: '/enterprise' },
           { label: 'Resources', href: '/resources' },
           { label: 'Company', href: '/company' },
-          { label: 'Book a Demo', href: '/demo' },
+          { label: 'Request a Demo', href: '/demo' },
         ],
       },
       solutions: {
@@ -112,18 +113,19 @@ const en = {
 
 const es: typeof en = {
   nav: {
-    platform: 'Plataforma',
-    solutions: 'Soluciones',
+    platform: 'Producto',
+    solutions: 'Capacidades',
     enterprise: 'Enterprise',
     companionOs: 'Companion OS',
     resources: 'Recursos',
     company: 'Empresa',
-    bookDemo: 'Agenda una Demo',
+    bookDemo: 'Solicita una Demo',
     see: 'Ver',
     more: 'más',
     wordmark: 'Hotel Companion',
     openMenu: 'Abrir menú',
     closeMenu: 'Cerrar menú',
+    skipToContent: 'Saltar al contenido principal',
   },
   footer: {
     /* v3 {#footer}: 4 columnas (Empresa+Legal fusionadas), enlace Companion OS
@@ -141,12 +143,12 @@ const es: typeof en = {
         title: 'Producto',
         links: [
           { label: 'Inicio', href: '/' },
-          { label: 'Plataforma', href: '/platform' },
-          { label: 'Soluciones', href: '/solutions' },
+          { label: 'Producto', href: '/platform' },
+          { label: 'Capacidades', href: '/solutions' },
           { label: 'Enterprise', href: '/enterprise' },
           { label: 'Recursos', href: '/resources' },
           { label: 'Empresa', href: '/company' },
-          { label: 'Agenda una Demo', href: '/demo' },
+          { label: 'Solicita una Demo', href: '/demo' },
         ],
       },
       solutions: {

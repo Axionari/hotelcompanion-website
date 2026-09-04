@@ -281,7 +281,7 @@ export default function AssistantClient({ property }: Props) {
               background: '#1F1C19',
               borderRadius: '999px',
               padding: '12px 20px',
-              fontSize: '15px',
+              fontSize: '16px',
               color: '#E8E3DC',
               border: '1px solid transparent',
             }}

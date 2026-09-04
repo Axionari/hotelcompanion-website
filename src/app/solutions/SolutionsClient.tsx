@@ -7,7 +7,7 @@ import { Reveal } from '@/components/cds/Reveal'
 import { Breather } from '@/components/cds/Breather'
 import { MediaBed } from '@/components/cds/MediaBed'
 import { TabletOS } from '@/components/cds/TabletOS'
-import { openLiveDemo } from '@/components/cds/LiveDemoModal'
+import { openLiveDemo } from '@/components/cds/liveDemoEvents'
 import { LIVE_DEMO_ENABLED } from '@/lib/flags'
 import {
   SERIF,

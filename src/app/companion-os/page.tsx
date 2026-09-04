@@ -1,12 +1,13 @@
-import type { Metadata } from 'next'
-import CompanionOsClient from './CompanionOsClient'
+import NarrativePage from '@/components/editorial/NarrativePage'
+import { createPageMetadata } from '@/lib/siteMetadata'
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Companion OS',
   description:
-    'One Intelligence Platform. Unlimited Companions. Companion OS is the shared intelligence platform powering Hotel Companion, Restaurant Companion, and every future Companion.',
-}
+    'The shared operating foundation beneath Hotel Companion and Restaurant Companion — connecting context, approved knowledge, accountable action, and verified outcomes.',
+  path: '/companion-os',
+})
 
 export default function CompanionOsPage() {
-  return <CompanionOsClient />
+  return <NarrativePage page="companion-os" />
 }

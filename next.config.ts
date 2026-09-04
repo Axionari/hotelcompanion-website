@@ -1,10 +1,30 @@
 import type { NextConfig } from "next";
+import path from "node:path";
 
 type Redirects = Awaited<ReturnType<NonNullable<NextConfig["redirects"]>>>;
 
 const HC = "https://www.hotelcompanion.ai";
 
 const nextConfig: NextConfig = {
+  poweredByHeader: false,
+  reactStrictMode: true,
+  turbopack: { root: path.resolve(__dirname) },
+  images: {
+    formats: ["image/avif", "image/webp"],
+    qualities: [66, 68, 70, 72, 74, 75],
+  },
+  async headers() {
+    return [
+      {
+        source: "/assets/:path*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" }],
+      },
+      {
+        source: "/fonts/:path*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=604800, stale-while-revalidate=2592000" }],
+      },
+    ];
+  },
   async redirects() {
     const redirects: Redirects = [
       // Retired marketing routes → their Hotel Companion equivalents (brief §4)

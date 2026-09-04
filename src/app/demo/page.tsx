@@ -1,12 +1,13 @@
-import type { Metadata } from 'next'
 import DemoClient from './DemoClient'
 import { demoCopy } from '@/lib/i18n/marketing/demo'
+import { createPageMetadata } from '@/lib/siteMetadata'
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Book a Demo',
   description:
     'Book a Personalized Demonstration. A working session tailored to your hotel, your guests, and your operational goals — not a product tour.',
-}
+  path: '/demo',
+})
 
 /* FAQPage JSON-LD — the site's only FAQ lives here (PRODUCT_ARCHITECTURE
    §10); schema in EN, the language of the server-rendered HTML. */

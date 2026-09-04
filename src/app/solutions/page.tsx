@@ -1,12 +1,13 @@
-import type { Metadata } from 'next'
-import SolutionsClient from './SolutionsClient'
+import NarrativePage from '@/components/editorial/NarrativePage'
+import { createPageMetadata } from '@/lib/siteMetadata'
 
-export const metadata: Metadata = {
-  title: 'Solutions',
+export const metadata = createPageMetadata({
+  title: 'Capabilities',
   description:
-    'One Platform. Every Department. Hotel Companion becomes an intelligent layer across your entire hotel, helping every department respond faster, work smarter, and deliver exceptional hospitality.',
-}
+    'Give every hotel team the context it needs — from arrival and service recovery to tasteful revenue and the morning operating view.',
+  path: '/solutions',
+})
 
 export default function SolutionsPage() {
-  return <SolutionsClient />
+  return <NarrativePage page="solutions" />
 }

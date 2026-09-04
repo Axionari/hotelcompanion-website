@@ -6,6 +6,24 @@
    ============================================================ */
 
 :root {
+  /* Hotel Companion — "One Stay" editorial palette. These tokens extend the
+     shared Companion family system without changing the established dark
+     surfaces used by the product and interior marketing routes. */
+  --hc-paper: #f2e9dc;
+  --hc-paper-soft: #f8f2e9;
+  --hc-sand: #d9c4a8;
+  --hc-ink: #241c17;
+  --hc-ink-70: #62564d;
+  --hc-ink-55: #8d8074;
+  --hc-cocoa: #2b211b;
+  --hc-night: #100d0b;
+  --hc-cream: #f2e9da;
+  --hc-cream-70: rgba(242, 233, 218, 0.78);
+  --hc-brass: #a8823a;
+  --hc-cognac: #9a5a2e;
+  --hc-peach: #e8c9ae;
+  --hc-hairline: rgba(36, 28, 23, 0.16);
+
   /* Surfaces — near-black tonal ladder. Adjacent sections step one level
      (ambient banding). Measured from RC. */
   --bg: #100e0c;          /* page bed */
@@ -26,6 +44,7 @@
   /* Text on near-black — warm off-white */
   --text: #f7f6f1;
   --text-dim: rgba(251, 248, 242, 0.7);
+  --text-muted: rgba(251, 248, 242, 0.64);
   --text-faint: rgba(251, 248, 242, 0.52);
 
   /* Hairlines */

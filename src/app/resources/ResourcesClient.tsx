@@ -4,192 +4,181 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { SiteNav } from '@/components/site-nav'
 import { SiteFooter } from '@/components/site-footer'
-import { Reveal } from '@/components/cds/Reveal'
-import { SERIF, Em, PageHero, Act, ArticleCards, Handoff } from '@/components/v5/Editorial'
+import { EditorialCloseMedia, EditorialImageBreak } from '@/components/editorial/EditorialImage'
 import { useCopy, type Localized } from '@/lib/i18n/useCopy'
 import { globalCopy } from '@/lib/i18n/marketing/global'
 import { resourcesCopy } from '@/lib/i18n/marketing/resources'
 import type { EssayMeta } from '@/lib/library'
-
-/**
- * /resources — RC-editorial grammar (Phase 5 rollout). The RC "Library"
- * analog: an editorial index. One statement hero, then numbered acts —
- * each ONE message and ONE artifact:
- *
- *   HERO (statement)
- *   01 FEATURED    — the flagship essay          → one quiet pointer
- *   02 THE LIBRARY — the full index {#library}   → hairline essay rows with a
- *                    quiet mono-caps topic filter {#categories}
- *   03 NEWSLETTER  — stay ahead                  → the (working) signup form
- *   HAND-OFF → /demo
- *
- * Essays come from @/lib/library (untouched); all reading copy is the
- * approved resources copy (resourcesCopy) — condensed, never rewritten.
- */
 
 export interface ResourcesContent {
   essays: EssayMeta[]
   categories: string[]
 }
 
-/** Split a title into plain + italic halves around its (verbatim) em fragment. */
-function splitEm(title: string, em: string): { pre: string; hi: string } {
-  const i = em ? title.lastIndexOf(em) : -1
-  if (i === -1) return { pre: title, hi: '' }
-  return { pre: title.slice(0, i).trimEnd(), hi: title.slice(i) }
+const editorial = {
+  en: {
+    heroEyebrow: 'The Hotel Companion Journal',
+    title: 'Hospitality,',
+    accent: 'read between the lines.',
+    proof: ['GUEST EXPERIENCE', 'REVENUE GROWTH', 'HOTEL OPERATIONS', 'ARTIFICIAL INTELLIGENCE', 'VOICE', 'COMPANION OS'],
+    featuredLabel: 'One idea to begin',
+    featuredTitle: 'The guest no longer wants',
+    featuredAccent: 'another interface.',
+    libraryTitle: 'Twelve essays.',
+    libraryAccent: 'One operating thesis.',
+    libraryBody: 'A considered reading list for hotel leaders building more responsive, more profitable and more human properties.',
+    issue: 'ISSUE',
+    closeEyebrow: 'TURN THE THESIS INTO A PROPERTY',
+    closeTitle: 'Bring us one stay.',
+    closeAccent: 'We’ll map what the hotel could know.',
+    closeBody: 'A working session for leaders ready to connect guest experience, operations and revenue.',
+    visual: {
+      dividerAlt: 'A handcrafted open-air Caribbean hotel terrace looking across the sea',
+      dividerLabel: 'FIELD NOTE · HOSPITALITY IS FELT IN THE DETAILS',
+      dividerCaption: 'The best technology leaves more room for the place itself.',
+      closeAlt: 'A secluded reef-blue Caribbean cove with an intimate hotel hidden among palms',
+      closeLabel: 'FROM THE JOURNAL · INTO THE HOTEL',
+    },
+  },
+  es: {
+    heroEyebrow: 'El Journal de Hotel Companion',
+    title: 'Hospitalidad,',
+    accent: 'leída entre líneas.',
+    proof: ['EXPERIENCIA DEL HUÉSPED', 'CRECIMIENTO DE INGRESOS', 'OPERACIÓN HOTELERA', 'INTELIGENCIA ARTIFICIAL', 'VOZ', 'COMPANION OS'],
+    featuredLabel: 'Una idea para comenzar',
+    featuredTitle: 'El huésped ya no quiere',
+    featuredAccent: 'otra interfaz.',
+    libraryTitle: 'Doce ensayos.',
+    libraryAccent: 'Una tesis operativa.',
+    libraryBody: 'Una lectura considerada para líderes que construyen hoteles más receptivos, más rentables y más humanos.',
+    issue: 'EDICIÓN',
+    closeEyebrow: 'CONVIERTE LA TESIS EN UNA PROPIEDAD',
+    closeTitle: 'Tráenos una estancia.',
+    closeAccent: 'Mapearemos lo que el hotel podría saber.',
+    closeBody: 'Una sesión de trabajo para líderes listos para conectar experiencia, operación e ingresos.',
+    visual: {
+      dividerAlt: 'Una terraza artesanal de hotel caribeño abierta hacia el mar',
+      dividerLabel: 'NOTA DE CAMPO · LA HOSPITALIDAD SE SIENTE EN LOS DETALLES',
+      dividerCaption: 'La mejor tecnología deja más espacio para el lugar mismo.',
+      closeAlt: 'Una cala caribeña de arrecife azul con un hotel íntimo escondido entre palmeras',
+      closeLabel: 'DEL JOURNAL · AL HOTEL',
+    },
+  },
 }
 
 export default function ResourcesClient({ content }: { content: Localized<ResourcesContent> }) {
   const c = useCopy(resourcesCopy)
   const g = useCopy(globalCopy)
   const { essays, categories } = useCopy(content)
-  // null = "all"; stored language-agnostically so switching language keeps the filter valid
+  const e = useCopy(editorial)
   const [active, setActive] = useState<string | null>(null)
-  const [email, setEmail] = useState('')
-  const [subscribed, setSubscribed] = useState(false)
 
   const activeValid = active !== null && categories.includes(active)
-  const visible = activeValid ? essays.filter((e) => e.category === active) : essays
-
-  const heroTitle = splitEm(c.hero.title, c.hero.em)
+  const visible = activeValid ? essays.filter((essay) => essay.category === active) : essays
+  const featured = essays.find((essay) => essay.slug === c.featured.slug) ?? essays[0]
 
   return (
-    <main>
-      <SiteNav />
+    <main className="ed-page ed-resources">
+      <SiteNav appearance="light" />
 
-      {/* HERO {#resources-hero} — flat page bed, one statement */}
-      <div id="resources-hero" className="scroll-mt-20">
-        <PageHero
-          eyebrow={g.nav.resources}
-          title={
-            <>
-              {heroTitle.pre} <Em>{heroTitle.hi}</Em>
-            </>
-          }
-          deck={c.hero.body1}
-        />
-      </div>
-
-      {/* 01 · FEATURED {#resources-featured} — one message: the flagship
-          essay. One artifact: a quiet pointer to it. */}
-      <Act
-        no="01"
-        label={c.acts.featured}
-        id="resources-featured"
-        statement={c.featured.title}
-        deck={c.featured.body1}
-      >
-        <Reveal>
-          <p
-            style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(20px, 2.2vw, 27px)', lineHeight: 1.35, color: 'var(--text)', maxWidth: '34ch' }}
-          >
-            {c.featured.body2}
-          </p>
-          <p className="mt-8">
-            <Link href={`/resources/library/${c.featured.slug}`} className="eyebrow eyebrow-accent" style={{ fontSize: 13 }}>
-              {c.featured.cta}
-              <span aria-hidden="true" style={{ marginLeft: 12 }}>
-                →
-              </span>
+      <header className="ed-hero" id="resources-hero">
+        <div className="ed-wrap ed-hero-grid">
+          <div className="ed-hero-copy">
+            <div className="ed-eyebrow">{e.heroEyebrow}</div>
+            <h1>{e.title}<br /><em>{e.accent}</em></h1>
+            <p>{c.hero.body1}</p>
+            <div className="ed-actions"><a className="ed-button ed-button-primary" href="#library">{c.acts.library}</a></div>
+          </div>
+          {featured && (
+            <Link className="ed-journal-cover" href={`/resources/library/${featured.slug}`} aria-label={`${c.featured.cta}: ${featured.title}`}>
+              <div className="ed-journal-cover-top"><span>HOTEL COMPANION</span><span>№ {String(featured.order).padStart(2, '0')}</span></div>
+              <div className="ed-journal-cover-center">
+                <small>{featured.category}</small>
+                <h2>{featured.title}</h2>
+                <p>{featured.subtitle}</p>
+              </div>
+              <div className="ed-journal-cover-bottom"><span>{featured.readingTime}</span><span>{c.featured.cta} →</span></div>
             </Link>
-          </p>
-        </Reveal>
-      </Act>
+          )}
+        </div>
+      </header>
 
-      {/* 02 · THE LIBRARY {#library} — footer-linked (/resources#library).
-          One artifact: the index as hairline rows, with a quiet mono-caps
-          topic filter {#categories}. */}
-      <Act no="02" label={c.acts.library} id="library" statement={c.categories.title} deck={c.hero.body2}>
-        <div id="categories" className="scroll-mt-24">
-          <Reveal>
-            <div className="flex flex-wrap gap-x-7 gap-y-3">
-              {[null, ...categories].map((cat) => {
-                const on = cat === null ? !activeValid : cat === active
+      <div className="ed-proof"><div className="ed-wrap">{e.proof.map((item) => <span key={item}>{item}</span>)}</div></div>
+
+      <section className="ed-section ed-tone-sand" id="resources-featured">
+        <div className="ed-wrap ed-feature-story">
+          <div>
+            <div className="ed-eyebrow">01 · {e.featuredLabel}</div>
+            <h2>{e.featuredTitle}<br /><em>{e.featuredAccent}</em></h2>
+          </div>
+          <div className="ed-feature-story-copy">
+            <blockquote>{c.featured.body1}</blockquote>
+            <p>{c.featured.body2}</p>
+            <Link className="ed-inline-link" href={`/resources/library/${c.featured.slug}`}>{c.featured.cta} <span aria-hidden="true">→</span></Link>
+          </div>
+        </div>
+      </section>
+
+      <EditorialImageBreak visual={{
+        src: '/assets/editorial/hc-caribbean-lobby.webp',
+        alt: e.visual.dividerAlt,
+        eyebrow: e.visual.dividerLabel,
+        caption: e.visual.dividerCaption,
+        position: 'center 50%',
+      }} />
+
+      <section className="ed-section ed-tone-paper" id="library">
+        <div className="ed-wrap">
+          <div className="ed-section-head">
+            <div className="ed-eyebrow">02 · {c.acts.library}</div>
+            <h2>{e.libraryTitle}<br /><em>{e.libraryAccent}</em></h2>
+            <p>{e.libraryBody}</p>
+          </div>
+          <div className="ed-library" id="categories">
+            <div className="ed-library-filter" aria-label={c.categories.title}>
+              {[null, ...categories].map((category) => {
+                const selected = category === null ? !activeValid : category === active
                 return (
-                  <button
-                    key={cat ?? '__all'}
-                    type="button"
-                    onClick={() => setActive(cat)}
-                    aria-pressed={on}
-                    className="eyebrow transition-colors"
-                    style={{ color: on ? 'var(--accent)' : 'var(--text-faint)', paddingBlock: 6 }}
-                  >
-                    {cat ?? c.categories.all}
+                  <button key={category ?? 'all'} type="button" aria-pressed={selected} onClick={() => setActive(category)}>
+                    {category ?? c.categories.all}
                   </button>
                 )
               })}
             </div>
-          </Reveal>
-          <div className="mt-12">
-            <ArticleCards
-              items={visible.map((e) => ({
-                eyebrow: e.category,
-                title: e.title,
-                body: e.subtitle,
-                meta: e.readingTime,
-                href: `/resources/library/${e.slug}`,
-              }))}
-            />
+            <ol className="ed-article-index">
+              {visible.map((essay) => (
+                <li key={essay.slug}>
+                  <Link href={`/resources/library/${essay.slug}`}>
+                    <span>{String(essay.order).padStart(2, '0')}</span>
+                    <div><small>{essay.category}</small><h3>{essay.title}</h3><p>{essay.subtitle}</p></div>
+                    <b>{essay.readingTime}<i aria-hidden="true">↗</i></b>
+                  </Link>
+                </li>
+              ))}
+            </ol>
           </div>
         </div>
-      </Act>
+      </section>
 
-      {/* 03 · NEWSLETTER {#resources-newsletter} — one message: stay ahead.
-          One artifact: the (working) signup form. */}
-      <Act
-        no="03"
-        label={c.acts.newsletter}
-        id="resources-newsletter"
-        statement={c.newsletter.title}
-        deck={c.newsletter.body1 + ' ' + c.newsletter.body2}
-        tight
-      >
-        <Reveal>
-          <div style={{ maxWidth: 460 }}>
-            {subscribed ? (
-              <p className="font-sans" style={{ color: 'var(--green)' }} role="status">
-                {c.newsletter.success}
-              </p>
-            ) : (
-              <form
-                className="flex flex-col sm:flex-row gap-3"
-                onSubmit={(e) => {
-                  e.preventDefault()
-                  if (email.includes('@')) setSubscribed(true)
-                }}
-              >
-                <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder={c.newsletter.placeholder}
-                  aria-label={c.newsletter.placeholder}
-                  className="font-sans flex-1 px-4"
-                  style={{
-                    background: 'var(--surface-3)',
-                    border: '1px solid var(--border)',
-                    borderRadius: '8px',
-                    height: '48px',
-                    color: 'var(--text)',
-                    fontSize: '15px',
-                  }}
-                />
-                <button
-                  type="submit"
-                  className="font-sans text-white transition-colors hover:bg-[#D4784A] px-6"
-                  style={{ background: 'var(--accent)', borderRadius: '8px', height: '48px', fontWeight: 600, fontSize: '15px' }}
-                >
-                  {c.newsletter.cta}
-                </button>
-              </form>
-            )}
+      <section className="ed-close has-media ed-close--resources" id="resources-newsletter">
+        <EditorialCloseMedia visual={{
+          src: '/assets/editorial/hc-secluded-cove.webp',
+          alt: e.visual.closeAlt,
+          eyebrow: e.visual.closeLabel,
+          position: 'center 58%',
+          overlay: 'deep',
+        }} />
+        <div className="ed-wrap ed-close-grid">
+          <div>
+            <div className="ed-eyebrow">{e.closeEyebrow}</div>
+            <h2>{e.closeTitle}<br /><em>{e.closeAccent}</em></h2>
           </div>
-        </Reveal>
-      </Act>
-
-      {/* HAND-OFF → /demo — a pointer, not a heavy CTA (RC) */}
-      <Handoff statement={g.footer.brand.headline} href="/demo" label={g.nav.bookDemo} />
+          <div className="ed-close-action">
+            <p>{e.closeBody}</p>
+            <div className="ed-actions"><Link className="ed-button ed-button-primary" href="/demo">{g.nav.bookDemo}</Link></div>
+          </div>
+        </div>
+      </section>
 
       <SiteFooter />
     </main>

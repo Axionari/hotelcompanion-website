@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useRef, useState } from 'react'
 import { useLang } from '@/lib/i18n/LanguageContext'
 
 /**
@@ -10,42 +11,72 @@ import { useLang } from '@/lib/i18n/LanguageContext'
  * (t.realQuestions) so EN/ES both ship real copy.
  */
 export function QuestionMarquee({ rows }: { rows?: [string[], string[]] }) {
-  const { t } = useLang()
+  const { lang, t } = useLang()
   const row1 = rows?.[0] ?? t.realQuestions.row1
   const row2 = rows?.[1] ?? t.realQuestions.row2
+  const questions = [...row1, ...row2]
+  const rootRef = useRef<HTMLDivElement>(null)
+  const [inView, setInView] = useState(true)
+  const [pageVisible, setPageVisible] = useState(true)
+  const [pausedByGuest, setPausedByGuest] = useState(false)
 
-  const chip = (q: string, i: number) => (
-    <span
-      key={i}
-      className="font-sans flex-shrink-0 rounded-full marquee-chip"
-      style={{
-        background: '#242019',
-        border: '1px solid rgba(232,227,220,0.10)',
-        padding: '12px 28px',
-        fontSize: '20px',
-        fontWeight: 400,
-        color: '#C4BDB6',
-        whiteSpace: 'nowrap',
-      }}
-    >
-      {q}
-    </span>
-  )
+  useEffect(() => {
+    const root = rootRef.current
+    if (!root) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { rootMargin: '120px 0px', threshold: 0.01 },
+    )
+    const onVisibility = () => setPageVisible(!document.hidden)
+
+    observer.observe(root)
+    onVisibility()
+    document.addEventListener('visibilitychange', onVisibility)
+
+    return () => {
+      observer.disconnect()
+      document.removeEventListener('visibilitychange', onVisibility)
+    }
+  }, [])
+
+  const running = inView && pageVisible && !pausedByGuest
+  const pauseLabel = lang === 'es' ? 'Pausar preguntas' : 'Pause questions'
+  const resumeLabel = lang === 'es' ? 'Reanudar preguntas' : 'Resume questions'
+
+  const chips = (questionsInRow: string[]) => questionsInRow.map((question) => (
+    <span key={question} className="marquee-chip">{question}</span>
+  ))
 
   return (
-    <div aria-hidden="false">
-      <div
-        className="overflow-hidden mb-4"
-        style={{ maskImage: 'linear-gradient(to right, transparent, black 8%, black 92%, transparent)' }}
-      >
-        <div className="marquee-row animate-scroll-left">{[...row1, ...row1].map(chip)}</div>
+    <div
+      ref={rootRef}
+      className={`question-marquee ${running ? 'is-running' : 'is-paused'}`}
+    >
+      <ul className="question-marquee-accessible">
+        {questions.map((question, index) => <li key={`${index}-${question}`}>{question}</li>)}
+      </ul>
+      <div className="question-marquee-viewport" aria-hidden="true">
+        <div className="marquee-row animate-scroll-left">
+          <div className="marquee-group">{chips(row1)}</div>
+          <div className="marquee-group marquee-group-copy">{chips(row1)}</div>
+        </div>
       </div>
-      <div
-        className="overflow-hidden"
-        style={{ maskImage: 'linear-gradient(to right, transparent, black 8%, black 92%, transparent)' }}
-      >
-        <div className="marquee-row animate-scroll-right">{[...row2, ...row2].map(chip)}</div>
+      <div className="question-marquee-viewport" aria-hidden="true">
+        <div className="marquee-row animate-scroll-right">
+          <div className="marquee-group">{chips(row2)}</div>
+          <div className="marquee-group marquee-group-copy">{chips(row2)}</div>
+        </div>
       </div>
+      <button
+        type="button"
+        className="question-marquee-control"
+        aria-pressed={pausedByGuest}
+        onClick={() => setPausedByGuest((paused) => !paused)}
+      >
+        <span aria-hidden="true">{pausedByGuest ? '▶' : 'Ⅱ'}</span>
+        {pausedByGuest ? resumeLabel : pauseLabel}
+      </button>
     </div>
   )
 }

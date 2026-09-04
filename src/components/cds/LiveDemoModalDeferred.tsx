@@ -1,6 +1,7 @@
 'use client'
 
 import { ComponentType, useEffect, useState } from 'react'
+import { OPEN_LIVE_DEMO_EVENT } from './liveDemoEvents'
 
 /**
  * v4 G-7 — the authorized demo-engine bundle split (v3.1): the layout no
@@ -10,8 +11,6 @@ import { ComponentType, useEffect, useState } from 'react'
  * before a user reaches a trigger. Behavior is unchanged: every entry point
  * still opens the same modal via `openLiveDemo()`.
  */
-
-const OPEN_EVENT = 'hc:open-live-demo'
 
 export function LiveDemoModalDeferred() {
   const [Modal, setModal] = useState<ComponentType | null>(null)
@@ -27,19 +26,17 @@ export function LiveDemoModalDeferred() {
       setPendingOpen(true)
       load()
     }
-    window.addEventListener(OPEN_EVENT, onOpen)
-    const warm = window.setTimeout(load, 3500)
+    window.addEventListener(OPEN_LIVE_DEMO_EVENT, onOpen)
     return () => {
       mounted = false
-      window.removeEventListener(OPEN_EVENT, onOpen)
-      window.clearTimeout(warm)
+      window.removeEventListener(OPEN_LIVE_DEMO_EVENT, onOpen)
     }
   }, [])
 
   // the freshly mounted modal registers its own listener; replay the open
   useEffect(() => {
     if (!Modal || !pendingOpen) return
-    const id = window.setTimeout(() => window.dispatchEvent(new CustomEvent(OPEN_EVENT)), 60)
+    const id = window.setTimeout(() => window.dispatchEvent(new CustomEvent(OPEN_LIVE_DEMO_EVENT)), 60)
     setPendingOpen(false)
     return () => window.clearTimeout(id)
   }, [Modal, pendingOpen])

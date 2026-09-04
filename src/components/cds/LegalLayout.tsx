@@ -1,9 +1,9 @@
 'use client'
 
+import type { ReactNode } from 'react'
 import Link from 'next/link'
 import { SiteNav } from '@/components/site-nav'
 import { SiteFooter } from '@/components/site-footer'
-import { PersistentCTA } from './PersistentCTA'
 import { Reveal } from './Reveal'
 import { ManageCookiesButton } from '@/components/CookieBanner'
 import { useCopy, type Localized } from '@/lib/i18n/useCopy'
@@ -13,8 +13,6 @@ export type LegalBlock =
   | { type: 'h2'; text: string }
   | { type: 'term'; label: string; text: string }
   | { type: 'link'; label: string; href: string; text?: string }
-  /* Cookie-consent re-open control (RC's "rmanage" equivalent); label is
-     locale-aware via cookieBannerCopy, so the block carries no text. */
   | { type: 'manage-cookies' }
 
 export interface LegalDoc {
@@ -25,101 +23,61 @@ export interface LegalDoc {
   blocks: LegalBlock[]
 }
 
-/**
- * Legal / Trust document layout (brief §7): readable ~680px measure, same
- * warm-dark art direction, "Last Updated" stamp. Fully legible with motion off.
- */
+function withEmailLinks(text: string): ReactNode {
+  return text.split(/([A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,})/gi).map((part, index) =>
+    /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(part)
+      ? <a className="ed-legal-email" href={`mailto:${part}`} key={`${part}-${index}`}>{part}</a>
+      : part
+  )
+}
+
 export function LegalLayout({ doc }: { doc: Localized<LegalDoc> }) {
   const { eyebrow, title, lastUpdated, intro, blocks } = useCopy(doc)
+
   return (
-    <main>
-      <SiteNav />
+    <main className="ed-page ed-legal">
+      <SiteNav appearance="light" />
 
-      <article className="pt-16 md:pt-24 pb-20" style={{ background: 'var(--bg)' }}>
-        <div className="mx-auto px-4 md:px-6" style={{ maxWidth: '720px' }}>
-          <div className="eyebrow mb-6">{eyebrow}</div>
-          <h1 className="heading-page font-serif font-normal text-balance" style={{ color: 'var(--text)' }}>
-            {title}
-          </h1>
-          {lastUpdated && (
-            <p className="font-sans mt-5" style={{ fontSize: '13px', color: 'var(--text-muted)' }}>
-              {lastUpdated}
-            </p>
-          )}
-          {intro && (
-            <div className="mt-8 flex flex-col gap-3">
-              {intro.map((line, i) => (
-                <p
-                  key={i}
-                  className="font-sans"
-                  style={{ fontSize: '17px', lineHeight: 1.7, color: 'var(--text-secondary)' }}
-                >
-                  {line}
-                </p>
-              ))}
+      <article>
+        <header className="ed-legal-hero">
+          <div className="ed-legal-wrap">
+            <div>
+              <div className="ed-eyebrow">{eyebrow}</div>
+              <h1>{title}</h1>
+              {lastUpdated && <p className="ed-legal-updated">{lastUpdated}</p>}
             </div>
-          )}
-          <hr className="mt-10 mb-2" style={{ border: 'none', borderTop: '1px solid var(--border)' }} />
+            <div className="ed-legal-intro">
+              {intro.map((line, index) => <p key={index}>{withEmailLinks(line)}</p>)}
+            </div>
+          </div>
+        </header>
 
-          {blocks.map((b, i) => {
-            if (b.type === 'h2') {
-              return (
-                <Reveal key={i}>
-                  <h2
-                    className="font-serif font-normal mt-12 mb-5"
-                    style={{ fontSize: 'clamp(1.35rem, 3vw, 1.9rem)', lineHeight: 1.2, color: 'var(--text)' }}
-                  >
-                    {b.text}
-                  </h2>
-                </Reveal>
-              )
-            }
-            if (b.type === 'term') {
-              return (
-                <p
-                  key={i}
-                  className="font-sans mb-4"
-                  style={{ fontSize: '17px', lineHeight: 1.7, color: 'var(--text-secondary)' }}
-                >
-                  <strong style={{ color: 'var(--text)', fontWeight: 500 }}>{b.label}</strong> — {b.text}
-                </p>
-              )
-            }
-            if (b.type === 'link') {
-              return (
-                <p key={i} className="font-sans mb-4" style={{ fontSize: '17px', lineHeight: 1.7 }}>
-                  {b.text && <span style={{ color: 'var(--text-secondary)' }}>{b.text} </span>}
-                  <Link
-                    href={b.href}
-                    className="transition-colors hover:text-[#D4784A]"
-                    style={{ color: 'var(--accent)', fontWeight: 500 }}
-                  >
-                    {b.label} →
-                  </Link>
-                </p>
-              )
-            }
-            if (b.type === 'manage-cookies') {
-              return (
-                <div key={i} className="mt-2 mb-6">
-                  <ManageCookiesButton />
-                </div>
-              )
-            }
-            return (
-              <p
-                key={i}
-                className="font-sans mb-4"
-                style={{ fontSize: '17px', lineHeight: 1.7, color: 'var(--text-secondary)' }}
-              >
-                {b.text}
-              </p>
-            )
-          })}
+        <div className="ed-legal-body">
+          <div className="ed-legal-measure">
+            {blocks.map((block, index) => {
+              if (block.type === 'h2') {
+                return <Reveal key={index}><h2>{block.text}</h2></Reveal>
+              }
+              if (block.type === 'term') {
+                return <p className="ed-legal-term" key={index}><strong>{block.label}</strong><span aria-hidden="true"> — </span>{withEmailLinks(block.text)}</p>
+              }
+              if (block.type === 'link') {
+                return (
+                  <p key={index}>
+                    {block.text && <>{withEmailLinks(block.text)} </>}
+                    <Link className="ed-legal-link" href={block.href}>{block.label} <span aria-hidden="true">→</span></Link>
+                  </p>
+                )
+              }
+              if (block.type === 'manage-cookies') {
+                return <div className="ed-cookie-control" key={index}><ManageCookiesButton /></div>
+              }
+              return <p key={index}>{withEmailLinks(block.text)}</p>
+            })}
+          </div>
         </div>
       </article>
 
-      <PersistentCTA />
       <SiteFooter />
     </main>
   )

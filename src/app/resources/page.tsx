@@ -1,12 +1,13 @@
-import type { Metadata } from 'next'
 import ResourcesClient from './ResourcesClient'
 import { ESSAYS, ESSAYS_ES } from '@/lib/library'
+import { createPageMetadata } from '@/lib/siteMetadata'
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Resources',
   description:
     'Insights for the Future of Hospitality. Essays on guest intelligence, AI, operational excellence, and the future of hospitality — written for hotel leaders.',
-}
+  path: '/resources',
+})
 
 /** Category filter options come from each language's own essay index. */
 function categoriesOf(essays: { category: string }[]) {

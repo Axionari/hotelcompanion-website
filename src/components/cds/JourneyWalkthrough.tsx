@@ -45,9 +45,12 @@ export function JourneyWalkthrough({
   const [reduce, setReduce] = useState(true) // assume reduced until proven otherwise (no-JS safe)
   const [paused, setPaused] = useState(false)
   const [seen, setSeen] = useState(false)
+  const [inView, setInView] = useState(false)
+  const [pageVisible, setPageVisible] = useState(true)
   const rootRef = useRef<HTMLDivElement | null>(null)
   const itemRefs = useRef<Array<HTMLButtonElement | null>>([])
   const [bar, setBar] = useState<{ top: number; height: number } | null>(null)
+  const playing = seen && inView && pageVisible && !paused && !reduce
 
   useEffect(() => {
     setReduce(window.matchMedia('(prefers-reduced-motion: reduce)').matches)
@@ -66,27 +69,39 @@ export function JourneyWalkthrough({
     }
     const io =
       typeof IntersectionObserver !== 'undefined'
-        ? new IntersectionObserver((es) => es.some((e) => e.isIntersecting) && show(), {
-            rootMargin: '0px 0px -20% 0px',
-          })
+        ? new IntersectionObserver((es) => {
+            const visible = es.some((e) => e.isIntersecting)
+            setInView(visible)
+            if (visible) show()
+          }, { rootMargin: '160px 0px -20% 0px' })
         : undefined
     io?.observe(el)
-    const onScroll = () => el.getBoundingClientRect().top < window.innerHeight * 0.85 && show()
-    window.addEventListener('scroll', onScroll, { passive: true })
+    const onScroll = () => {
+      if (io) return
+      const rect = el.getBoundingClientRect()
+      const visible = rect.bottom > 0 && rect.top < window.innerHeight * 0.85
+      setInView(visible)
+      if (visible) show()
+    }
+    const onVisibility = () => setPageVisible(!document.hidden)
+    if (!io) window.addEventListener('scroll', onScroll, { passive: true })
     onScroll()
+    onVisibility()
+    document.addEventListener('visibilitychange', onVisibility)
     const failsafe = window.setTimeout(show, 3000)
     return () => {
       io?.disconnect()
       window.removeEventListener('scroll', onScroll)
+      document.removeEventListener('visibilitychange', onVisibility)
       window.clearTimeout(failsafe)
     }
   }, [reduce])
 
   useEffect(() => {
-    if (reduce || !seen || paused) return
+    if (!playing) return
     const t = window.setTimeout(() => setActive((n) => (n + 1) % steps.length), DWELL)
     return () => window.clearTimeout(t)
-  }, [active, reduce, seen, paused, steps.length])
+  }, [active, playing, steps.length])
 
   /**
    * The copper indicator is one absolutely-positioned bar that slides between
@@ -151,7 +166,7 @@ export function JourneyWalkthrough({
   return (
     <div
       ref={rootRef}
-      className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start"
+      className={`grid lg:grid-cols-12 gap-10 lg:gap-14 items-start motion-gated ${inView && pageVisible ? 'is-in-view' : ''}`}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
@@ -254,13 +269,13 @@ export function JourneyWalkthrough({
         <div className="mt-5 pl-4">
           <span aria-hidden="true" className="block" style={{ height: 1, background: 'var(--border-soft)' }}>
             <span
-              key={`${active}-${paused}`}
+              key={`${active}-${playing}`}
               style={{
                 display: 'block',
                 height: 1,
                 background: 'var(--accent)',
-                width: paused ? '100%' : undefined,
-                animation: paused ? 'none' : `journey-progress ${DWELL}ms linear forwards`,
+                width: playing ? undefined : '100%',
+                animation: playing ? `journey-progress ${DWELL}ms linear forwards` : 'none',
               }}
             />
           </span>
@@ -333,7 +348,7 @@ export function JourneyWalkthrough({
 
       {/* ---------------------------------------- the device — now on the right */}
       <div className="lg:col-span-7">
-        <TabletOS screen={steps[active]?.screen} orbState={paused ? 'idle' : 'listening'} />
+        <TabletOS screen={steps[active]?.screen} orbState={playing ? 'listening' : 'idle'} />
       </div>
     </div>
   )
