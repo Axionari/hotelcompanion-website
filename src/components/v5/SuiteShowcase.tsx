@@ -96,9 +96,9 @@ function TopBar({ c, count }: { c: SuiteCopy; count: number }) {
 }
 
 /** Terracotta action treatment: full-width for checkout, compact for offers. */
-function Cta({ children, compact = false }: { children: React.ReactNode; compact?: boolean }) {
+function Cta({ children, compact = false, dense = false }: { children: React.ReactNode; compact?: boolean; dense?: boolean }) {
   return (
-    <div style={{ display: compact ? 'inline-flex' : 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, minHeight: compact ? 42 : undefined, background: TERRA, borderRadius: compact ? 999 : 14, padding: compact ? 'clamp(9px,.85vw,12px) clamp(18px,1.8vw,26px)' : 'clamp(11px,1.3vw,17px)', fontFamily: SANS, fontWeight: 700, fontSize: compact ? 'clamp(10.5px,1vw,14px)' : 'clamp(11px,1.1vw,15px)', color: '#1a1207', letterSpacing: '.01em', whiteSpace: 'nowrap' }}>
+    <div style={{ display: compact ? 'inline-flex' : 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, minHeight: compact ? 42 : undefined, background: TERRA, borderRadius: compact ? 999 : 14, padding: compact ? 'clamp(9px,.85vw,12px) clamp(18px,1.8vw,26px)' : dense ? 'clamp(8px,.75vw,11px) clamp(14px,1.2vw,18px)' : 'clamp(11px,1.3vw,17px)', fontFamily: SANS, fontWeight: 700, fontSize: compact ? 'clamp(10.5px,1vw,14px)' : 'clamp(11px,1.1vw,15px)', color: '#1a1207', letterSpacing: '.01em', whiteSpace: 'nowrap' }}>
       {children}
     </div>
   )
@@ -227,15 +227,16 @@ function DetailScreen({ c, paused }: { c: SuiteCopy; paused: boolean }) {
           <div style={{ marginTop: 'clamp(9px,1.1vw,15px)', display: 'flex', flexWrap: 'wrap', gap: 'clamp(9px, 0.6vw, 9.5px)' }}>
             {d.features.map((f) => <span key={f} style={{ fontFamily: SANS, fontSize: 'clamp(9px, 0.82vw, 11.5px)', color: 'rgba(242,233,218,0.8)', border: '1px solid rgba(243,236,226,0.15)', background: 'rgba(243,236,226,0.04)', borderRadius: 999, padding: 'clamp(9px, 0.55vw, 9.5px) clamp(9px,1vw,13px)', whiteSpace: 'nowrap' }}>{f}</span>)}
           </div>
-          <div style={{ marginTop: 'clamp(10px,1.2vw,16px)', display: 'flex', alignItems: 'center', gap: 'clamp(10px,1.2vw,15px)', border: '1px solid rgba(243,236,226,0.1)', background: 'rgba(243,236,226,0.03)', borderRadius: 14, padding: 'clamp(9px,1.1vw,15px)' }}>
-            <span aria-hidden style={{ flexShrink: 0, width: 'clamp(26px,2.8vw,40px)', height: 'clamp(26px,2.8vw,40px)', display: 'grid', placeItems: 'center', borderRadius: 12, background: 'rgba(200,106,58,0.14)', border: '1px solid rgba(200,106,58,0.3)', fontSize: 'clamp(12px,1.3vw,18px)', color: TERRA }}>✦</span>
-            <div style={{ minWidth: 0 }}>
+          <div style={{ marginTop: 'clamp(7px,.8vw,11px)', display: 'grid', gridTemplateColumns: 'auto minmax(0,1fr) auto', alignItems: 'center', gap: 'clamp(8px,.9vw,12px)', border: '1px solid rgba(200,106,58,0.32)', background: 'linear-gradient(100deg, rgba(200,106,58,0.09), rgba(243,236,226,0.025))', borderRadius: 13, padding: 'clamp(7px,.75vw,10px)' }}>
+            <span aria-hidden style={{ flexShrink: 0, width: 'clamp(25px,2.3vw,32px)', height: 'clamp(25px,2.3vw,32px)', display: 'grid', placeItems: 'center', borderRadius: 10, background: 'rgba(200,106,58,0.14)', border: '1px solid rgba(200,106,58,0.3)', fontSize: 'clamp(11px,1.1vw,15px)', color: TERRA }}>✦</span>
+            <div style={{ minWidth: 0, lineHeight: 1.2 }}>
               <div style={{ ...MONO, fontSize: 'clamp(9px, 0.7vw, 9.5px)', letterSpacing: '.12em', color: TERRA }}>{d.includesLabel}</div>
-              <div style={{ fontFamily: SANS, fontWeight: 600, fontSize: 'clamp(11px,1.05vw,14px)', color: CREAM, marginTop: 2 }}>{d.includesTitle}</div>
-              <div style={{ fontFamily: SANS, fontSize: 'clamp(9px,0.88vw,12px)', color: DIM }}>{d.includesNote}</div>
+              <div style={{ fontFamily: SANS, fontWeight: 600, fontSize: 'clamp(10.5px,.95vw,13px)', color: CREAM, marginTop: 2 }}>{d.includesTitle}</div>
+              <div style={{ fontFamily: SANS, fontSize: 'clamp(9px,.78vw,11px)', color: DIM, marginTop: 1 }}>{d.includesNote}</div>
             </div>
+            <span style={{ flexShrink: 0, border: '1px solid rgba(217,122,79,.55)', borderRadius: 999, padding: 'clamp(6px,.55vw,8px) clamp(9px,.9vw,13px)', color: CREAM, fontFamily: SANS, fontSize: 'clamp(9px,.75vw,10.5px)', fontWeight: 650, whiteSpace: 'nowrap' }}>{c.addOnCta}</span>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', marginTop: 'auto', paddingTop: 'clamp(9px,1vw,13px)', paddingBottom: 2, flexShrink: 0 }}><Cta compact>{d.cta} · {d.price}</Cta></div>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', marginTop: 'auto', paddingTop: 'clamp(7px,.8vw,10px)', paddingBottom: 2, flexShrink: 0 }}><Cta compact>{d.cta} · {d.price}</Cta></div>
         </div>
       </div>
     </div>
@@ -332,37 +333,39 @@ function AvailabilityScreen({ c, paused }: { c: SuiteCopy; paused: boolean }) {
 function ReviewScreen({ c }: { c: SuiteCopy }) {
   const r = c.review
   return (
-    <div style={pad}>
+    <div style={{ ...pad, padding: 'clamp(14px,1.6vw,24px)' }}>
       <TopBar c={c} count={5} />
-      <div style={{ textAlign: 'center', marginTop: 'clamp(9px, 0.8vw, 12px)', flexShrink: 0 }}>
+      <div style={{ textAlign: 'center', marginTop: 'clamp(7px, 0.65vw, 10px)', flexShrink: 0 }}>
         <div style={{ ...MONO, fontSize: 'clamp(9px, 0.8vw, 11px)', letterSpacing: '.18em', color: TERRA }}>{r.label}</div>
-        <div style={{ fontFamily: SERIF, fontWeight: 500, fontSize: 'clamp(20px,2.2vw,32px)', color: CREAM, marginTop: 4 }}>{r.title}</div>
+        <div style={{ fontFamily: SERIF, fontWeight: 500, fontSize: 'clamp(20px,1.9vw,28px)', color: CREAM, marginTop: 3 }}>{r.title}</div>
       </div>
-      <div style={{ marginTop: 'clamp(10px,1.3vw,18px)', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 'clamp(9px, 1vw, 14px)', flexShrink: 0 }}>
+      <div style={{ marginTop: 'clamp(8px,1vw,14px)', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 'clamp(8px, .8vw, 12px)', flexShrink: 0 }}>
         {r.options.map((o) => (
-          <div key={o.title} style={{ textAlign: 'center', borderRadius: 14, padding: 'clamp(10px,1.2vw,16px)', border: `1px solid ${o.active ? 'rgba(200,106,58,0.6)' : 'rgba(243,236,226,0.12)'}`, background: o.active ? 'rgba(200,106,58,0.07)' : 'rgba(243,236,226,0.03)' }}>
-            <div style={{ fontSize: 'clamp(14px,1.5vw,20px)', color: TERRA }}>{o.icon}</div>
-            <div style={{ fontFamily: SANS, fontWeight: 600, fontSize: 'clamp(10px,1vw,13px)', color: CREAM, marginTop: 5 }}>{o.title}</div>
-            <div style={{ fontFamily: SANS, fontSize: 'clamp(9px, 0.85vw, 12px)', color: DIM, marginTop: 1 }}>{o.sub}</div>
+          <div key={o.title} style={{ textAlign: 'center', borderRadius: 14, padding: 'clamp(6px,.55vw,9px)', border: `1px solid ${o.active ? 'rgba(200,106,58,0.6)' : 'rgba(243,236,226,0.12)'}`, background: o.active ? 'rgba(200,106,58,0.07)' : 'rgba(243,236,226,0.03)' }}>
+            <div style={{ fontSize: 'clamp(12px,1.1vw,16px)', color: TERRA }}>{o.icon}</div>
+            <div style={{ fontFamily: SANS, fontWeight: 600, fontSize: 'clamp(10px,.9vw,12.5px)', color: CREAM, marginTop: 2 }}>{o.title}</div>
+            <div style={{ fontFamily: SANS, fontSize: 'clamp(9px, 0.78vw,11px)', color: DIM, marginTop: 1 }}>{o.sub}</div>
           </div>
         ))}
       </div>
-      <div style={{ marginTop: 'clamp(10px,1.3vw,18px)', flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 'clamp(9px, 0.7vw, 9.5px)' }}>
-        {r.summary.map((s) => (
-          <div key={s.name} style={{ display: 'flex', justifyContent: 'space-between', fontFamily: SANS, fontSize: 'clamp(10px,1vw,13.5px)', color: 'rgba(242,233,218,0.82)' }}>
-            <span>{s.name}</span><span style={MONO}>{s.price}</span>
-          </div>
-        ))}
-        <div style={{ borderTop: '1px solid rgba(243,236,226,0.1)', marginTop: 6, paddingTop: 8, display: 'flex', flexDirection: 'column', gap: 5 }}>
+      <div style={{ marginTop: 'clamp(8px,1vw,13px)', flex: 1, minHeight: 0, display: 'grid', gridTemplateRows: 'minmax(0, 1fr) auto', overflow: 'hidden' }}>
+        <div style={{ minHeight: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 'clamp(4px,.45vw,7px)' }}>
+          {r.summary.map((s) => (
+            <div key={s.name} style={{ display: 'flex', justifyContent: 'space-between', gap: 16, fontFamily: SANS, fontSize: 'clamp(10px,.95vw,13px)', color: 'rgba(242,233,218,0.82)' }}>
+              <span>{s.name}</span><span style={{ ...MONO, flexShrink: 0 }}>{s.price}</span>
+            </div>
+          ))}
+        </div>
+        <div style={{ borderTop: '1px solid rgba(243,236,226,0.1)', paddingTop: 'clamp(6px,.6vw,9px)', display: 'flex', flexDirection: 'column', gap: 3, flexShrink: 0 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: SANS, fontSize: 'clamp(9.5px,0.95vw,12.5px)', color: DIM }}><span>{r.subtotalLabel}</span><span style={MONO}>{r.subtotal}</span></div>
           <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: SANS, fontSize: 'clamp(9.5px,0.95vw,12.5px)', color: DIM }}><span>{r.feesLabel}</span><span style={MONO}>{r.fees}</span></div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginTop: 3 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginTop: 2 }}>
             <span style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(13px,1.3vw,18px)', color: CREAM }}>{r.totalLabel}</span>
             <span style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(15px,1.6vw,22px)', color: TERRA }}>{r.total}</span>
           </div>
         </div>
       </div>
-      <div style={{ marginTop: 'clamp(9px, 1vw, 14px)', flexShrink: 0 }}><Cta>{r.cta} →</Cta></div>
+      <div style={{ marginTop: 'clamp(7px, .8vw, 11px)', flexShrink: 0 }}><Cta dense>{r.cta} →</Cta></div>
     </div>
   )
 }
@@ -423,24 +426,28 @@ function VerifyingScreen({ c }: { c: SuiteCopy }) {
 function ConfirmedScreen({ c }: { c: SuiteCopy }) {
   const f = c.confirmed
   return (
-    <div className="confirm-wrap" style={{ ...pad, alignItems: 'center' }}>
+    <div className="confirm-wrap" style={{ ...pad, padding: 'clamp(12px,1.3vw,20px)', alignItems: 'center', justifyContent: 'center' }}>
       <div style={{ textAlign: 'center', flexShrink: 0 }}>
-        <span aria-hidden style={{ display: 'grid', placeItems: 'center', width: 'clamp(44px,5vw,70px)', height: 'clamp(44px,5vw,70px)', borderRadius: '50%', background: TERRA, color: '#1a1207', fontSize: 'clamp(20px,2.2vw,34px)', margin: '0 auto' }}>✓</span>
-        <div style={{ ...MONO, fontSize: 'clamp(9px, 0.8vw, 11px)', letterSpacing: '.2em', color: TERRA, marginTop: 'clamp(10px,1.2vw,16px)' }}>{f.label}</div>
-        <div style={{ fontFamily: SERIF, fontWeight: 500, fontSize: 'clamp(20px,2.3vw,34px)', color: CREAM, marginTop: 6 }}>{f.title}</div>
-        <div style={{ fontFamily: SANS, fontSize: 'clamp(9.5px,0.95vw,13px)', color: 'rgba(201,161,90,0.85)', marginTop: 6 }}>{f.paid}</div>
+        <span aria-hidden style={{ display: 'grid', placeItems: 'center', width: 'clamp(40px,3.8vw,52px)', height: 'clamp(40px,3.8vw,52px)', borderRadius: '50%', background: TERRA, color: '#1a1207', fontSize: 'clamp(18px,1.7vw,25px)', margin: '0 auto' }}>✓</span>
+        <div style={{ ...MONO, fontSize: 'clamp(9px, 0.8vw, 11px)', letterSpacing: '.2em', color: TERRA, marginTop: 'clamp(8px,.9vw,12px)' }}>{f.label}</div>
+        <div style={{ fontFamily: SERIF, fontWeight: 500, fontSize: 'clamp(19px,2vw,30px)', color: CREAM, marginTop: 4 }}>{f.title}</div>
+        <div style={{ fontFamily: SANS, fontSize: 'clamp(9.5px,0.9vw,12px)', color: 'rgba(201,161,90,0.85)', marginTop: 4 }}>{f.paid}</div>
       </div>
-      <div className="confirm-card" style={{ marginTop: 'clamp(12px,1.5vw,20px)', width: '100%', maxWidth: 620, border: '1px solid rgba(243,236,226,0.1)', background: 'rgba(243,236,226,0.03)', borderRadius: 14, padding: 'clamp(12px,1.4vw,20px)', flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
+      <div className="confirm-card" style={{ marginTop: 'clamp(9px,1vw,13px)', width: '100%', maxWidth: 620, boxSizing: 'border-box', border: '1px solid rgba(243,236,226,0.12)', background: 'rgba(243,236,226,0.035)', borderRadius: 14, padding: 'clamp(11px,1.1vw,16px)', flex: '0 0 auto', display: 'grid', gridTemplateRows: 'auto auto auto', overflow: 'hidden' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <div><div style={{ ...MONO, fontSize: 'clamp(9px, 0.72vw, 10px)', letterSpacing: '.14em', color: DIM }}>{f.refLabel}</div><div style={{ ...MONO, fontSize: 'clamp(16px,1.7vw,24px)', letterSpacing: '.06em', color: TERRA, marginTop: 4 }}>{f.ref}</div></div>
           <div style={{ textAlign: 'right' }}><div style={{ ...MONO, fontSize: 'clamp(9px, 0.72vw, 10px)', letterSpacing: '.14em', color: DIM }}>{f.whenLabel}</div><div style={{ fontFamily: SANS, fontWeight: 600, fontSize: 'clamp(11px,1.1vw,15px)', color: CREAM, marginTop: 3 }}>{f.when}</div></div>
         </div>
-        <div className="confirm-lines" style={{ borderTop: '1px solid rgba(243,236,226,0.08)', marginTop: 'clamp(9px,1.1vw,14px)', paddingTop: 'clamp(9px,1.1vw,14px)', display: 'flex', flexDirection: 'column', gap: 5, flex: 1, justifyContent: 'center' }}>
-          {f.summary.map((s) => <div key={s.name} style={{ display: 'flex', justifyContent: 'space-between', fontFamily: SANS, fontSize: 'clamp(9.5px,0.95vw,13px)', color: 'rgba(242,233,218,0.8)' }}><span>{s.name}</span><span style={MONO}>{s.price}</span></div>)}
+        <div className="confirm-lines" style={{ borderTop: '1px solid rgba(243,236,226,0.1)', marginTop: 'clamp(10px,1.1vw,14px)', paddingTop: 'clamp(10px,1.1vw,14px)', display: 'flex', flexDirection: 'column', gap: 'clamp(5px,.55vw,8px)', minHeight: 0 }}>
+          {f.summary.map((s) => <div key={s.name} style={{ display: 'flex', justifyContent: 'space-between', gap: 18, fontFamily: SANS, fontSize: 'clamp(9.5px,0.95vw,13px)', lineHeight: 1.35, color: 'rgba(242,233,218,0.8)' }}><span>{s.name}</span><span style={{ ...MONO, flexShrink: 0 }}>{s.price}</span></div>)}
         </div>
-        <div style={{ borderTop: '1px solid rgba(243,236,226,0.08)', paddingTop: 'clamp(9px, 1vw, 12px)', display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-          <span style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(13px,1.3vw,18px)', color: CREAM }}>{f.totalLabel}</span>
-          <span style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(16px,1.7vw,24px)', color: TERRA }}>{f.total}</span>
+        <div style={{ borderTop: '1px solid rgba(243,236,226,0.13)', marginTop: 'clamp(11px,1.1vw,15px)', paddingTop: 'clamp(9px,.9vw,12px)' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', gap: 18, fontFamily: SANS, fontSize: 'clamp(9px,.82vw,11.5px)', lineHeight: 1.3, color: DIM }}><span>{f.subtotalLabel}</span><span style={{ ...MONO, flexShrink: 0 }}>{f.subtotal}</span></div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', gap: 18, marginTop: 4, fontFamily: SANS, fontSize: 'clamp(9px,.82vw,11.5px)', lineHeight: 1.3, color: DIM }}><span>{f.feesLabel}</span><span style={{ ...MONO, flexShrink: 0 }}>{f.fees}</span></div>
+          <div style={{ borderTop: '1px solid rgba(243,236,226,0.1)', marginTop: 'clamp(7px,.7vw,10px)', paddingTop: 'clamp(7px,.7vw,10px)', display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+            <span style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(13px,1.3vw,18px)', color: CREAM }}>{f.totalLabel}</span>
+            <span style={{ fontFamily: SERIF, fontWeight: 530, fontSize: 'clamp(16px,1.6vw,23px)', color: TERRA }}>{f.total}</span>
+          </div>
         </div>
       </div>
     </div>
