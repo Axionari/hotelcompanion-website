@@ -30,7 +30,13 @@ const COPY = {
       answerLead: 'Welcome back, Maya.', answer: 'It is ready now — and your sunrise yoga mat is already upstairs.',
       label: 'Guided demo · Demo property · Sample data',
       imageAlt: 'An intimate limestone resort beside an infinity pool and the Caribbean Sea',
-      strip: ['Direct bookings', 'Verified service', 'Guest memory', 'Revenue with taste', 'English & Spanish'],
+      outcomesLabel: 'What changes for the hotel',
+      outcomes: [
+        { area: 'Revenue', title: 'Grow direct revenue', body: 'Convert guest intent into bookings, upgrades and experiences.' },
+        { area: 'Service', title: 'Close every service loop', body: 'Give each request an owner and every guest a confirmed outcome.' },
+        { area: 'Team', title: 'Give teams time back', body: 'Resolve routine questions so staff can focus on meaningful moments.' },
+        { area: 'Memory', title: 'Remember every guest', body: 'Carry preferences and context from discovery through every return.' },
+      ],
     },
     leaks: {
       eyebrow: '02 · Four leaks, every stay', title: 'You already know them.', titleEm: 'Nobody has connected them for you.',
@@ -110,7 +116,13 @@ const COPY = {
       answerLead: 'Qué gusto verte de nuevo, Maya.', answer: 'Ya está lista — y tu tapete para yoga al amanecer te espera arriba.',
       label: 'Demo guiada · Propiedad demo · Datos de muestra',
       imageAlt: 'Un resort íntimo de piedra caliza junto a una alberca infinita y el mar Caribe',
-      strip: ['Reservas directas', 'Servicio verificado', 'Memoria del huésped', 'Ingresos con buen gusto', 'Español e inglés'],
+      outcomesLabel: 'Lo que cambia para el hotel',
+      outcomes: [
+        { area: 'Ingresos', title: 'Aumenta los ingresos directos', body: 'Convierte la intención del huésped en reservas, mejoras y experiencias.' },
+        { area: 'Servicio', title: 'Cierra cada ciclo de servicio', body: 'Da un responsable a cada solicitud y un resultado confirmado a cada huésped.' },
+        { area: 'Equipo', title: 'Devuelve tiempo al equipo', body: 'Resuelve preguntas rutinarias para que el equipo cuide los momentos importantes.' },
+        { area: 'Memoria', title: 'Recuerda a cada huésped', body: 'Conserva preferencias y contexto desde el descubrimiento hasta cada regreso.' },
+      ],
     },
     leaks: {
       eyebrow: '02 · Cuatro fugas, cada estancia', title: 'Ya las conoces.', titleEm: 'Nadie las ha conectado por ti.',
@@ -213,7 +225,21 @@ export default function HomeEditorialClient() {
             <div className="hc-hero-device"><CompanionTablet variant="home" /><small className="hc-product-disclosure">{c.hero.label}</small></div>
           </div>
         </div>
-        <div className="hc-wrap"><ul className="hc-proof-strip">{c.hero.strip.map((item) => <li key={item}>{item}</li>)}</ul></div>
+      </section>
+
+      <section className="hc-outcomes" aria-labelledby="hc-outcomes-title">
+        <div className="hc-wrap hc-outcomes-grid">
+          <h2 className="hc-outcomes-label" id="hc-outcomes-title"><span>{c.hero.outcomesLabel}</span><i aria-hidden="true" /></h2>
+          <ol>
+            {c.hero.outcomes.map((outcome) => (
+              <li key={outcome.title}>
+                <span>{outcome.area}</span>
+                <h3>{outcome.title}</h3>
+                <p>{outcome.body}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
       </section>
 
       <section className="hc-questions" id="questions" aria-labelledby="hc-questions-title">

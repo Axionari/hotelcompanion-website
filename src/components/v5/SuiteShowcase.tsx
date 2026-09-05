@@ -95,10 +95,10 @@ function TopBar({ c, count }: { c: SuiteCopy; count: number }) {
   )
 }
 
-/** Big terracotta action bar. */
-function Cta({ children }: { children: React.ReactNode }) {
+/** Terracotta action treatment: full-width for checkout, compact for offers. */
+function Cta({ children, compact = false }: { children: React.ReactNode; compact?: boolean }) {
   return (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, background: TERRA, borderRadius: 14, padding: 'clamp(11px,1.3vw,17px)', fontFamily: SANS, fontWeight: 700, fontSize: 'clamp(11px,1.1vw,15px)', color: '#1a1207', letterSpacing: '.01em' }}>
+    <div style={{ display: compact ? 'inline-flex' : 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, minHeight: compact ? 42 : undefined, background: TERRA, borderRadius: compact ? 999 : 14, padding: compact ? 'clamp(9px,.85vw,12px) clamp(18px,1.8vw,26px)' : 'clamp(11px,1.3vw,17px)', fontFamily: SANS, fontWeight: 700, fontSize: compact ? 'clamp(10.5px,1vw,14px)' : 'clamp(11px,1.1vw,15px)', color: '#1a1207', letterSpacing: '.01em', whiteSpace: 'nowrap' }}>
       {children}
     </div>
   )
@@ -235,7 +235,7 @@ function DetailScreen({ c, paused }: { c: SuiteCopy; paused: boolean }) {
               <div style={{ fontFamily: SANS, fontSize: 'clamp(9px,0.88vw,12px)', color: DIM }}>{d.includesNote}</div>
             </div>
           </div>
-          <div style={{ marginTop: 'auto', paddingTop: 'clamp(11px,1.2vw,16px)' }}><Cta>{d.cta} · {d.price}</Cta></div>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', marginTop: 'auto', paddingTop: 'clamp(9px,1vw,13px)', paddingBottom: 2, flexShrink: 0 }}><Cta compact>{d.cta} · {d.price}</Cta></div>
         </div>
       </div>
     </div>
@@ -626,7 +626,7 @@ export function SuiteShowcase() {
               style={{ position: 'absolute', inset: 0, background: LIFTED, opacity: FLOW[i].lifted ? 1 : 0, transition: 'opacity 0.6s var(--ease-standard)', pointerEvents: 'none' }}
             />
             <IOSStatusBar />
-            <div style={{ position: 'relative', flex: 1, minHeight: 0 }}>
+            <div style={{ position: 'relative', flex: 1, minHeight: 0, overflow: 'hidden' }}>
               <div style={{ position: 'absolute', inset: 0, opacity: fade ? 0 : 1, transition: 'opacity 0.46s var(--ease-standard)' }}>
                 {FLOW[i].render(c, cyclePaused || interacting || reduce || !inView || !pageVisible)}
               </div>
