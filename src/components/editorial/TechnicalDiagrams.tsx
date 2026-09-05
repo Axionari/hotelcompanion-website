@@ -60,6 +60,21 @@ const breakPositions = [
   { left: '65%', top: '73%' },
 ] as const
 
+const contrastNodePoints = [
+  { x: 62, y: 38 },
+  { x: 448, y: 34 },
+  { x: 520, y: 150 },
+  { x: 446, y: 266 },
+  { x: 84, y: 270 },
+  { x: 38, y: 150 },
+] as const
+
+const contrastFaultPoints = [
+  { x: 188, y: 92 },
+  { x: 378, y: 88 },
+  { x: 382, y: 222 },
+] as const
+
 export function FragmentationDiagram({
   labels,
   center,
@@ -174,8 +189,32 @@ export function SystemContrastDiagram({
           <small>{current.label}</small>
           <h3>{current.title}</h3>
           <div className={styles.contrastCurrentMap}>
+            <svg className={styles.contrastCurrentSvg} viewBox="0 0 560 300" aria-hidden="true" preserveAspectRatio="none">
+              {contrastNodePoints.map((point, index) => (
+                <line
+                  className={styles.contrastFragmentLine}
+                  key={`${point.x}-${point.y}`}
+                  x1="280"
+                  y1="150"
+                  x2={point.x}
+                  y2={point.y}
+                  style={{ animationDelay: `${-index * 1.15}s` }}
+                />
+              ))}
+              {contrastNodePoints.map((point) => (
+                <circle className={styles.contrastEndpoint} key={`endpoint-${point.x}-${point.y}`} cx={point.x} cy={point.y} r="2.4" />
+              ))}
+              {contrastFaultPoints.map((point) => (
+                <g className={styles.contrastFault} key={`fault-${point.x}-${point.y}`}>
+                  <circle cx={point.x} cy={point.y} r="7" />
+                  <path d={`M${point.x - 2.5} ${point.y - 2.5}L${point.x + 2.5} ${point.y + 2.5}M${point.x + 2.5} ${point.y - 2.5}L${point.x - 2.5} ${point.y + 2.5}`} />
+                </g>
+              ))}
+            </svg>
             <strong>{current.center}</strong>
-            <ul>{current.systems.slice(0, 6).map((system) => <li key={system}>{system}</li>)}</ul>
+            <ul>{current.systems.slice(0, 6).map((system, index) => (
+              <li key={system}><span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span><b>{system}</b></li>
+            ))}</ul>
           </div>
           <div className={styles.contrastMarkers}>{current.markers.map((marker) => <span key={marker}>{marker}</span>)}</div>
         </section>
