@@ -87,10 +87,10 @@ const en = {
     weBring: {
       title: 'WE BRING',
       items: [
-        'Full install, weeks 1–2',
-        'The Companion, live, weeks 3–12',
-        'Your Monday Briefing, every week',
-        'Every number instrumented from day one',
+        'Initial value live in 1–3 weeks',
+        'Property and destination knowledge, verified',
+        'Priority journeys, workflows, and pilot measures',
+        'System integrations scoped to your stack',
       ],
     },
     timeline: [
@@ -198,10 +198,10 @@ const es: typeof en = {
     weBring: {
       title: 'NOSOTROS PONEMOS',
       items: [
-        'Instalación completa, semanas 1–2',
-        'El Companion en vivo, semanas 3–12',
-        'Su Briefing de los lunes, cada semana',
-        'Cada número instrumentado desde el día uno',
+        'Valor inicial en vivo en 1–3 semanas',
+        'Conocimiento de la propiedad y el destino, verificado',
+        'Recorridos prioritarios, flujos y métricas del piloto',
+        'Integraciones de sistemas definidas para su stack',
       ],
     },
     timeline: [

@@ -82,7 +82,7 @@ const en = {
     statementPre: 'Value ',
     statementHi: 'before integration.',
     line: "It doesn’t replace your systems. It understands the conversations between them.",
-    line2: 'The Companion starts answering guests before a single system is connected. PMS, POS and payments follow in a staged rollout — measured together, live in weeks.',
+    line2: 'A verified property and destination knowledge base, priority guest journeys and team workflows can go live in 1–3 weeks. PMS, POS and payment connections follow in stages, scoped to your stack.',
     chips: ['STAGED ROLLOUT', 'ROLE-BASED ACCESS', 'ENCRYPTED', 'PRIVACY-FIRST', 'WORKS WITH YOUR PMS'],
   },
   actVII: {
@@ -167,7 +167,7 @@ const es: typeof en = {
     statementPre: 'Valor ',
     statementHi: 'antes de la integración.',
     line: 'No reemplaza tus sistemas. Entiende las conversaciones entre ellos.',
-    line2: 'El Companion empieza a responder a los huéspedes antes de conectar un solo sistema. PMS, POS y pagos llegan después, en una implementación por etapas — medida en conjunto, en vivo en semanas.',
+    line2: 'Una base verificada de conocimiento de la propiedad y el destino, los recorridos prioritarios y los flujos del equipo pueden entrar en operación en 1–3 semanas. Las conexiones con PMS, POS y pagos siguen por etapas, adaptadas a tu stack.',
     /* [v3 trust strings] — v3 security vocabulary, chip-length (OQ-10) */
     chips: [
       'IMPLEMENTACIÓN POR ETAPAS',

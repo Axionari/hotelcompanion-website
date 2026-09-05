@@ -114,7 +114,7 @@ const en = {
       },
       {
         q: 'How long does implementation take?',
-        a: 'The Companion begins answering guests before a single system is connected. PMS, POS, and payments follow in a staged rollout over the following weeks.',
+        a: 'A verified property and destination knowledge base, priority guest journeys, and team workflows can go live in 1–3 weeks. PMS, POS, and payment connections follow in stages. Timing depends on API access, provider requirements, and approvals.',
       },
       {
         q: 'Is guest information secure?',
@@ -242,7 +242,7 @@ const es: typeof en = {
       },
       {
         q: '¿Cuánto tarda la implementación?',
-        a: 'El Companion empieza a responder a los huéspedes antes de conectar un solo sistema. PMS, POS y pagos siguen en una implementación por etapas durante las semanas siguientes.',
+        a: 'Una base de conocimiento verificada de la propiedad y el destino, los recorridos prioritarios del huésped y los flujos del equipo pueden entrar en operación en 1–3 semanas. Las conexiones con PMS, POS y pagos siguen por etapas. El plazo depende del acceso a APIs, los requisitos de los proveedores y sus aprobaciones.',
       },
       {
         q: '¿La información del huésped es segura?',

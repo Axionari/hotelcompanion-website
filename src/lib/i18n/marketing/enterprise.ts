@@ -93,14 +93,14 @@ const en = {
      Days" calendar promise: value lands before integration; connections are
      staged and measured. NEEDS CONFIRM (Eduardo): stages + phrasing. */
   deployPath: {
-    title: 'A staged rollout, measured together.',
+    title: 'Initial value in 1–3 weeks. Integrations staged to your stack.',
     steps: [
-      { title: 'Discovery', sub: 'Your systems, workflows, and goals — one call.' },
-      { title: 'Knowledge live', sub: 'The Companion answers guests before any integration.' },
-      { title: 'Systems woven in', sub: 'PMS, POS, payments — connected in stages, tested together.' },
-      { title: 'Scale', sub: 'Property by property, at your own pace.' },
+      { title: 'Initial value', sub: '1–3 weeks · Property knowledge verified and live.' },
+      { title: 'Destination knowledge', sub: 'Local recommendations, policies and context — reviewed with your team.' },
+      { title: 'Guest journeys', sub: 'Priority conversations and team workflows go live first.' },
+      { title: 'System integrations', sub: 'PMS, POS and payments follow; timing depends on access, requirements and approvals.' },
     ],
-    caption: 'VALUE BEFORE INTEGRATION · LIVE IN WEEKS · MEASURED TOGETHER',
+    caption: 'VALUE BEFORE INTEGRATION · STAGED TO YOUR STACK · TIMING SCOPED TOGETHER',
   },
   /* P5.4 — the hybrid checkout flow (PaymentFlow diagram + steps). Card data
      is captured by Stripe directly; only a token returns to Postgres. */
@@ -224,14 +224,14 @@ const en = {
     {
       id: 'deploy',
       eyebrow: '12 · DEPLOYMENT',
-      title: 'Deploy in Days.',
+      title: 'Initial Value in 1–3 Weeks.',
       body: [
-        'Enterprise software shouldn’t require months of implementation.',
-        'Hotel Companion is designed for rapid deployment.',
-        'Quick onboarding. Guided implementation. Minimal training. Immediate value. Scale at your own pace.',
+        'A verified property and destination knowledge base, priority guest journeys, and team workflows go live first.',
+        'PMS, POS, and payment connections follow in a staged rollout.',
+        'Integration timing depends on API access, provider requirements, and approvals.',
       ],
       coda:
-        'Whether deploying a single property or an entire portfolio, your teams can begin delivering value almost immediately.',
+        'Value before integration. Systems staged to your stack.',
     },
     {
       id: 'grow',
@@ -353,14 +353,14 @@ const es: typeof en = {
     ],
   },
   deployPath: {
-    title: 'Una implementación por etapas, medida en conjunto.',
+    title: 'Valor inicial en 1–3 semanas. Integraciones por etapas para tu stack.',
     steps: [
-      { title: 'Descubrimiento', sub: 'Tus sistemas, flujos de trabajo y objetivos — una llamada.' },
-      { title: 'Conocimiento en vivo', sub: 'El Companion responde a los huéspedes antes de cualquier integración.' },
-      { title: 'Sistemas integrados', sub: 'PMS, POS, pagos — conectados por etapas, probados en conjunto.' },
-      { title: 'Escala', sub: 'Propiedad por propiedad, a tu propio ritmo.' },
+      { title: 'Valor inicial', sub: '1–3 semanas · Conocimiento de la propiedad verificado y en vivo.' },
+      { title: 'Conocimiento del destino', sub: 'Recomendaciones locales, políticas y contexto — revisados con tu equipo.' },
+      { title: 'Recorridos del huésped', sub: 'Las conversaciones prioritarias y los flujos del equipo entran en operación primero.' },
+      { title: 'Integraciones de sistemas', sub: 'PMS, POS y pagos siguen; el plazo depende de accesos, requisitos y aprobaciones.' },
     ],
-    caption: 'VALOR ANTES DE LA INTEGRACIÓN · EN VIVO EN SEMANAS · MEDIDO EN CONJUNTO',
+    caption: 'VALOR ANTES DE LA INTEGRACIÓN · POR ETAPAS PARA TU STACK · PLAZOS DEFINIDOS EN CONJUNTO',
   },
   payment: {
     statement: 'Los datos de la tarjeta nunca tocan el host.',
