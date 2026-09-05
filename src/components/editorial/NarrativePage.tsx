@@ -8,7 +8,6 @@ import { EditorialCloseMedia, type EditorialVisual } from '@/components/editoria
 import { TabletOS } from '@/components/cds/TabletOS'
 import { JourneyWalkthrough } from '@/components/cds/JourneyWalkthrough'
 import { TwoStageAlert } from '@/components/cds/interactive'
-import { AdaptivityFlow } from '@/components/v5/AdaptivityFlow'
 import { EverySurface } from '@/components/v5/EverySurface'
 import { IntelligenceModel } from '@/components/v5/IntelligenceModel'
 import { PaymentFlow } from '@/components/v5/PaymentFlow'
@@ -17,12 +16,11 @@ import { MorningBriefing, RevenueMoment } from '@/components/v5/SolutionsProduct
 import { DepartmentPulse } from '@/components/v5/DepartmentPulse'
 import { PlatformThread } from '@/components/v5/PlatformThread'
 import {
-  ArchitectureSpineDiagram,
-  OutcomeLedgerDiagram,
   PortfolioStackDiagram,
   ProcessDiagram,
   RoutingDiagram,
-  SecurityPostureDiagram,
+  SecurityFactsPanel,
+  SystemContrastDiagram,
 } from '@/components/editorial/TechnicalDiagrams'
 import { useCopy } from '@/lib/i18n/useCopy'
 import {
@@ -38,6 +36,8 @@ import {
 } from '@/lib/i18n/marketing/editorialVisuals'
 import { globalCopy } from '@/lib/i18n/marketing/global'
 import { platformCopy } from '@/lib/i18n/marketing/platform'
+import { homeCopy } from '@/lib/i18n/marketing/home'
+import { intelLayerCopy } from '@/lib/i18n/marketing/intelLayer'
 import { companionOsCopy } from '@/lib/i18n/marketing/companionOs'
 import { companyCopy } from '@/lib/i18n/marketing/company'
 import { enterpriseCopy } from '@/lib/i18n/marketing/enterprise'
@@ -304,6 +304,8 @@ function sectionById(copy: EditorialPageCopy, id: string) {
 
 function PlatformPage({ copy, visual }: PageProps) {
   const product = useCopy(platformCopy)
+  const home = useCopy(homeCopy)
+  const layer = useCopy(intelLayerCopy)
   const surfaces = sectionById(copy, 'platform-voice-first')
   const knowledge = sectionById(copy, 'platform-knows-property')
   const loop = sectionById(copy, 'platform-request-action')
@@ -322,15 +324,38 @@ function PlatformPage({ copy, visual }: PageProps) {
       </header>
       <ProofRail items={copy.proof} className="ep-proof-platform" />
 
-      <section className="ep-section ep-platform-model" id="platform-model">
-        <div className="ed-wrap ep-platform-model-layout">
-          <div className="ep-technical-heading is-dark">
-            <Eyebrow>{product.model.eyebrow}</Eyebrow>
-            <h2>{product.model.title}</h2>
-            <p>{product.model.deck}</p>
+      <section className="ep-section ep-platform-contrast" id="platform-model">
+        <Aliases ids={['fragmentation', 'intelligent-layer', 'platform-adaptivity']} />
+        <div className="ed-wrap">
+          <div className="ep-platform-contrast-intro">
+            <div>
+              <Eyebrow>{home.fragmentation.eyebrow}</Eyebrow>
+              <h2>{home.fragmentation.statementPre}<em>{home.fragmentation.statementHi}</em></h2>
+            </div>
+            <p>{home.fragmentation.deck} {layer.body}</p>
           </div>
-          <div className="ep-intelligence-model-stage">
-            <IntelligenceModel c={product.model} />
+          <div className="ep-platform-contrast-stage">
+            <SystemContrastDiagram
+              labels={{
+                title: home.fragmentation.statementHi,
+                meta: layer.h2Hi,
+                caption: home.fragmentation.position,
+              }}
+              current={{
+                label: home.fragmentation.eyebrow,
+                title: home.fragmentation.deck,
+                center: home.fragmentation.center,
+                systems: home.fragmentation.systems,
+                markers: home.fragmentation.markers,
+              }}
+              target={{
+                label: layer.eyebrow,
+                title: `${layer.h2Pre}${layer.h2Hi}`,
+                guest: layer.guest,
+                node: layer.center,
+                systems: layer.systems,
+              }}
+            />
           </div>
         </div>
       </section>
@@ -341,19 +366,6 @@ function PlatformPage({ copy, visual }: PageProps) {
           <SectionIntro section={surfaces} />
           <div className="ep-every-surface-stage">
             <EverySurface id="platform-device-family" showHeader={false} compact />
-          </div>
-        </div>
-      </section>
-
-      <section className="ep-section ep-platform-adaptivity" id="platform-adaptivity">
-        <div className="ed-wrap ep-platform-adaptivity-layout">
-          <div className="ep-technical-heading is-dark">
-            <Eyebrow>{product.adaptivity.eyebrow}</Eyebrow>
-            <h2>{product.adaptivity.title}</h2>
-            <p>{product.adaptivity.deck}</p>
-          </div>
-          <div className="ep-adaptivity-stage">
-            <AdaptivityFlow c={product.adaptivity} />
           </div>
         </div>
       </section>
@@ -395,6 +407,7 @@ function PlatformPage({ copy, visual }: PageProps) {
               routeLabel={product.requestAction.flow.label2}
               systemsLabel={product.requestAction.flow.caption}
               systems={product.requestAction.departments}
+              fallback={product.requestAction.fallback}
             />
           </div>
           <SectionMeta section={loop} />
@@ -556,7 +569,7 @@ function EnterprisePage({ copy, visual }: PageProps) {
           <EditorialPhoto visual={visual.divider} className="ep-secure-photo" sizes="(max-width: 820px) 100vw, 46vw" />
         </div>
         <div className="ed-wrap ep-security-architecture">
-          <SecurityPostureDiagram
+          <SecurityFactsPanel
             labels={{
               title: enterprise.securityPosture.label,
               meta: enterprise.securityPosture.tag,
@@ -582,12 +595,6 @@ function EnterprisePage({ copy, visual }: PageProps) {
         <div className="ed-wrap">
           <SectionIntro section={signals} />
           <ArticleItems section={signals} className="ep-portfolio-signals" />
-          <div className="ep-outcome-ledger-stage">
-            <OutcomeLedgerDiagram
-              labels={{ title: enterprise.outcomes.eyebrow, meta: signals.label }}
-              items={enterprise.outcomes.items}
-            />
-          </div>
         </div>
       </section>
 
@@ -616,10 +623,7 @@ function EnterprisePage({ copy, visual }: PageProps) {
 function CompanionOsPage({ copy, visual }: PageProps) {
   const product = useCopy(companionOsCopy)
   const cycle = sectionById(copy, 'companionos-model')
-  const companions = sectionById(copy, 'companionos-one-platform')
-  const architecture = sectionById(copy, 'companionos-architecture')
   const governance = sectionById(copy, 'companionos-enterprise')
-  const ecosystem = sectionById(copy, 'companionos-ecosystem')
   return (
     <PageShell className="ep-os ed-page-companion-os">
       <header className="ep-hero ep-os-hero" id={copy.hero.id}>
@@ -641,50 +645,12 @@ function CompanionOsPage({ copy, visual }: PageProps) {
         </div>
       </section>
 
-      <section className="ep-section ep-os-companions" id={companions.id}>
-        <Aliases ids={companions.aliases} />
-        <div className="ed-wrap ep-os-companions-layout">
-          <SectionIntro section={companions} />
-          <div className="ep-companion-pair-stage">
-            <ArticleItems section={companions} className="ep-companion-pair" />
-            {companions.motif ? <span className="ep-companion-pair-label" aria-hidden="true">{companions.motif}</span> : null}
-          </div>
-        </div>
-      </section>
-
-      <section className="ep-os-architecture" id={architecture.id}>
-        <Aliases ids={architecture.aliases} />
-        <div className="ep-os-architecture-grid">
-          <div className="ep-os-architecture-copy">
-            <SectionIntro section={architecture} />
-          </div>
-          <div className="ep-os-spine-diagram">
-            <ArchitectureSpineDiagram
-              labels={{
-                title: architecture.label,
-                meta: `${architecture.no} / ${String(architecture.items.length).padStart(2, '0')}`,
-              }}
-              items={architecture.items}
-              loop={cycle.motif ?? product.model.loop}
-            />
-          </div>
-        </div>
-      </section>
-
       <section className="ep-section ep-os-governance" id={governance.id}>
-        <Aliases ids={governance.aliases} />
+        <Aliases ids={['companionos-one-platform', 'companionos-architecture', 'companionos-ecosystem', 'companionos-axionari', ...(governance.aliases ?? [])]} />
         <div className="ed-wrap">
-          <SectionIntro section={governance} />
-          <ArticleItems section={governance} className="ep-governance-matrix" />
+          <SectionIntro section={{ ...governance, no: '02' }} />
+          <ArticleItems section={{ ...governance, items: governance.items.slice(0, 3) }} className="ep-governance-matrix is-compact" />
           <SectionMeta section={governance} />
-        </div>
-      </section>
-
-      <section className="ep-section ep-os-ecosystem" id={ecosystem.id}>
-        <Aliases ids={ecosystem.aliases} />
-        <div className="ed-wrap ep-ecosystem-layout">
-          <SectionIntro section={ecosystem} />
-          <ArticleItems section={ecosystem} className="ep-family-tree" />
         </div>
       </section>
       <ImageClosing copy={copy} visual={visual} variant="os" />
@@ -696,7 +662,6 @@ function CompanyPage({ copy, visual }: PageProps) {
   const originalCompany = useCopy(companyCopy)
   const why = sectionById(copy, 'why-hotels')
   const mission = sectionById(copy, 'mission')
-  const principles = sectionById(copy, 'belief')
   const builder = sectionById(copy, 'axionari')
   const leadership = sectionById(copy, 'leadership')
   const contact = sectionById(copy, 'contact')
@@ -707,49 +672,36 @@ function CompanyPage({ copy, visual }: PageProps) {
           <HeroCopy copy={copy.hero} />
           <div className="ep-company-portrait">
             <EditorialPhoto visual={visual.divider} className="ep-company-hero-photo" />
-            <HeroFolio copy={copy.hero} className="ep-company-belief" />
           </div>
         </div>
       </header>
       <ProofRail items={copy.proof} className="ep-proof-company" />
 
-      <section className="ep-section ep-company-why" id={why.id}>
-        <Aliases ids={why.aliases} />
+      <section className="ep-section ep-company-essentials" id={why.id}>
+        <Aliases ids={[
+          ...(why.aliases ?? []),
+          'mission',
+          'belief',
+          'approach',
+          'philosophy',
+          'axionari',
+          'companion-os',
+        ]} />
         <div className="ed-wrap">
           <SectionIntro section={why} />
-          <ArticleItems section={why} className="ep-company-moments" />
-          <SectionMeta section={why} />
-        </div>
-      </section>
-
-      <section className="ep-section ep-company-mission" id={mission.id}>
-        <Aliases ids={mission.aliases} />
-        <div className="ed-wrap ep-company-manifesto">
-          <SectionIntro section={mission} />
-          <ArticleItems section={mission} className="ep-mission-pillars" />
-        </div>
-      </section>
-
-      <section className="ep-section ep-company-principles" id={principles.id}>
-        <Aliases ids={principles.aliases} />
-        <div className="ed-wrap ep-principles-layout">
-          <SectionIntro section={principles} />
-          <ArticleItems section={principles} className="ep-principles-list" />
-        </div>
-      </section>
-
-      <section className="ep-section ep-company-builder" id={builder.id}>
-        <Aliases ids={builder.aliases} />
-        <div className="ed-wrap ep-builder-layout">
-          <SectionIntro section={builder} />
-          <ArticleItems section={builder} className="ep-builder-stack" />
+          <ArticleItems section={mission} className="ep-company-essential-grid" />
+          <div className="ep-company-builder-note">
+            <span>{builder.label}</span>
+            <h3>{builder.title}{' '}<em>{builder.accent}</em></h3>
+            <p>{builder.body}</p>
+          </div>
         </div>
       </section>
 
       <section className="ep-section ep-company-leadership" id={leadership.id}>
         <Aliases ids={leadership.aliases} />
         <div className="ed-wrap">
-          <SectionIntro section={{ ...leadership, body: originalCompany.leadership.deck }} />
+          <SectionIntro section={{ ...leadership, no: '02', body: originalCompany.leadership.deck }} />
           <LeadershipProfiles members={originalCompany.leadership.members} />
           <p className="ep-leadership-coda">{originalCompany.leadership.coda}</p>
         </div>
@@ -758,7 +710,7 @@ function CompanyPage({ copy, visual }: PageProps) {
       <section className="ep-section ep-company-contact" id={contact.id}>
         <Aliases ids={contact.aliases} />
         <div className="ed-wrap ep-company-contact-layout">
-          <SectionIntro section={contact} />
+          <SectionIntro section={{ ...contact, no: '03' }} />
           <ArticleItems section={contact} className="ep-company-paths" />
           <SectionMeta section={contact} />
         </div>

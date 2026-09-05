@@ -145,6 +145,58 @@ export function IntelligenceLayerDiagram({
   )
 }
 
+export function SystemContrastDiagram({
+  labels,
+  current,
+  target,
+}: {
+  labels: DiagramLabels
+  current: {
+    label: string
+    title: string
+    center: string
+    systems: ReadonlyArray<string>
+    markers: ReadonlyArray<string>
+  }
+  target: {
+    label: string
+    title: string
+    guest: string
+    node: string
+    systems: ReadonlyArray<string>
+  }
+}) {
+  return (
+    <figure className={`${styles.plate} ${styles.contrastPlate}`} aria-label={`${labels.title}. ${labels.caption ?? ''}`}>
+      <div className={styles.plateHeader}><span>{labels.title}</span><span>{labels.meta}</span></div>
+      <div className={styles.contrastGrid}>
+        <section className={styles.contrastCurrent}>
+          <small>{current.label}</small>
+          <h3>{current.title}</h3>
+          <div className={styles.contrastCurrentMap}>
+            <strong>{current.center}</strong>
+            <ul>{current.systems.slice(0, 6).map((system) => <li key={system}>{system}</li>)}</ul>
+          </div>
+          <div className={styles.contrastMarkers}>{current.markers.map((marker) => <span key={marker}>{marker}</span>)}</div>
+        </section>
+
+        <div className={styles.contrastBridge} aria-hidden="true"><i /><span>Hotel Companion</span><i /></div>
+
+        <section className={styles.contrastTarget}>
+          <small>{target.label}</small>
+          <h3>{target.title}</h3>
+          <div className={styles.contrastTargetMap}>
+            <span>{target.guest}</span>
+            <strong>{target.node}</strong>
+            <ul>{target.systems.slice(0, 6).map((system) => <li key={system}>{system}</li>)}</ul>
+          </div>
+        </section>
+      </div>
+      {labels.caption ? <figcaption className={styles.plateFooter}><span>{labels.caption}</span></figcaption> : null}
+    </figure>
+  )
+}
+
 export type PortfolioTier = {
   eyebrow: string
   title: string
@@ -216,6 +268,7 @@ export function RoutingDiagram({
   routeLabel,
   systemsLabel,
   systems,
+  fallback,
 }: {
   labels: DiagramLabels
   from: string
@@ -224,6 +277,7 @@ export function RoutingDiagram({
   routeLabel: string
   systemsLabel: string
   systems: ReadonlyArray<string>
+  fallback?: { label: string; action: string }
 }) {
   return (
     <figure className={`${styles.plate} ${styles.darkPlate} ${styles.routingPlate}`} aria-label={`${labels.title}. ${labels.caption ?? ''}`}>
@@ -253,12 +307,18 @@ export function RoutingDiagram({
           <ul>{systems.map((system, index) => <li key={system}><span>{String(index + 1).padStart(2, '0')}</span>{system}</li>)}</ul>
         </div>
       </div>
+      {fallback ? (
+        <div className={styles.routingFallback}>
+          <span>{fallback.label}</span>
+          <strong>{fallback.action}</strong>
+        </div>
+      ) : null}
       {labels.caption ? <figcaption className={styles.plateFooter}><span>{labels.caption}</span>{labels.trailing ? <span>{labels.trailing}</span> : null}</figcaption> : null}
     </figure>
   )
 }
 
-export function SecurityPostureDiagram({
+export function SecurityFactsPanel({
   labels,
   rows,
 }: {
@@ -266,7 +326,7 @@ export function SecurityPostureDiagram({
   rows: ReadonlyArray<{ label: string; value: string }>
 }) {
   return (
-    <figure className={`${styles.plate} ${styles.darkPlate} ${styles.posturePlate}`} aria-label={labels.title}>
+    <section className={`${styles.plate} ${styles.darkPlate} ${styles.posturePlate}`} aria-label={labels.title}>
       <div className={styles.plateHeader}><span>{labels.title}</span><span>{labels.meta}</span></div>
       <ol className={styles.postureRows}>
         {rows.map((row, index) => (
@@ -279,7 +339,7 @@ export function SecurityPostureDiagram({
         ))}
       </ol>
       {labels.caption ? <figcaption className={styles.plateFooter}><span>{labels.caption}</span>{labels.trailing ? <span>{labels.trailing}</span> : null}</figcaption> : null}
-    </figure>
+    </section>
   )
 }
 

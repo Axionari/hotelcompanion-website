@@ -343,7 +343,7 @@ const osEn: EditorialPageCopy = {
       { label: 'TODAY', title: 'Hotel Companion · Restaurant Companion' }, { label: 'FOUNDATION', title: 'Companion OS' }, { label: 'BUILDER', title: 'Axionari · Enterprise Execution Systems' },
     ] },
   ],
-  closing: { id: 'companionos-final', eyebrow: 'HOSPITALITY, APPLIED', title: 'The engine stays underneath.', accent: 'The guest feels the hotel.', body: 'Return to Hotel Companion to see the shared intelligence layer expressed through a complete stay.', primary: 'Meet Hotel Companion', primaryHref: '/', secondary: 'About Axionari', secondaryHref: '/company' },
+  closing: { id: 'companionos-final', eyebrow: 'HOSPITALITY, APPLIED', title: 'The engine stays underneath.', accent: 'The guest feels the hotel.', body: 'Companion OS is the shared Axionari foundation beneath Hotel Companion and Restaurant Companion. See it expressed through a complete stay.', primary: 'Meet Hotel Companion', primaryHref: '/', secondary: 'About Axionari', secondaryHref: '/company' },
 }
 
 const osEs: EditorialPageCopy = {
@@ -369,7 +369,7 @@ const osEs: EditorialPageCopy = {
       { label: 'HOY', title: 'Hotel Companion · Restaurant Companion' }, { label: 'BASE', title: 'Companion OS' }, { label: 'CREADOR', title: 'Axionari · Enterprise Execution Systems' },
     ] },
   ],
-  closing: { ...osEn.closing, eyebrow: 'HOSPITALIDAD, APLICADA', title: 'El motor permanece debajo.', accent: 'El huésped siente el hotel.', body: 'Vuelve a Hotel Companion para ver la capa de inteligencia expresada durante una estancia completa.', primary: 'Conoce Hotel Companion', secondary: 'Acerca de Axionari' },
+  closing: { ...osEn.closing, eyebrow: 'HOSPITALIDAD, APLICADA', title: 'El motor permanece debajo.', accent: 'El huésped siente el hotel.', body: 'Companion OS es la base compartida de Axionari bajo Hotel Companion y Restaurant Companion. Mírala expresada durante una estancia completa.', primary: 'Conoce Hotel Companion', secondary: 'Acerca de Axionari' },
 }
 
 const companyEn: EditorialPageCopy = {

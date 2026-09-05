@@ -200,6 +200,10 @@ const en = {
     flow: { label1: 'CONTEXT ATTACHED', node: 'Hotel Companion', label2: 'ROUTED · NOTHING RE-KEYED', caption: 'THE TEAMS YOU ALREADY RUN' },
     /* Left-hand label on each routing-flow row. */
     routingFrom: 'Guest request',
+    fallback: {
+      label: 'IF THE ANSWER IS NOT VERIFIED',
+      action: 'Ask a clarifying question or hand the complete context to a responsible person.',
+    },
     departments: [
       'Housekeeping.',
       'Engineering.',
@@ -574,6 +578,10 @@ const es: typeof en = {
     flow: { label1: 'CONTEXTO ADJUNTO', node: 'Hotel Companion', label2: 'ENRUTADA · SIN VOLVER A TECLEAR', caption: 'LOS EQUIPOS QUE YA OPERAN' },
     /* Etiqueta izquierda de cada fila del flujo de enrutamiento. */
     routingFrom: 'Solicitud del huésped',
+    fallback: {
+      label: 'SI LA RESPUESTA NO ESTÁ VERIFICADA',
+      action: 'Hace una pregunta aclaratoria o entrega todo el contexto a una persona responsable.',
+    },
     departments: [
       'Ama de Llaves.',
       'Ingeniería.',

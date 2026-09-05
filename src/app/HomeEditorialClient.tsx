@@ -7,15 +7,10 @@ import { SiteNav } from '@/components/site-nav'
 import { CompanionTablet } from '@/components/v5/CompanionTablet'
 import { SuiteShowcase } from '@/components/v5/SuiteShowcase'
 import { QuestionMarquee } from '@/components/cds/QuestionMarquee'
-import {
-  FragmentationDiagram,
-  IntelligenceLayerDiagram,
-  ProcessDiagram,
-} from '@/components/editorial/TechnicalDiagrams'
+import { ProcessDiagram } from '@/components/editorial/TechnicalDiagrams'
 import { useLang } from '@/lib/i18n/LanguageContext'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { homeCopy } from '@/lib/i18n/marketing/home'
-import { intelLayerCopy } from '@/lib/i18n/marketing/intelLayer'
 import './home-editorial.css'
 
 const COPY = {
@@ -201,7 +196,6 @@ export default function HomeEditorialClient() {
   const { lang } = useLang()
   const c = COPY[lang]
   const original = useCopy(homeCopy)
-  const layer = useCopy(intelLayerCopy)
 
   return (
     <div className="hc-stay">
@@ -314,57 +308,6 @@ export default function HomeEditorialClient() {
             <p>{c.journey.productLead}</p>
           </div>
           <div className="hc-suite-product"><SuiteShowcase /></div>
-        </div>
-      </section>
-
-      <section className="hc-act hc-systems" aria-labelledby="hc-fragmentation-title">
-        <div className="hc-wrap">
-          <div id="fragmentation" className="hc-system-proof">
-            <div className="hc-technical-intro">
-              <div>
-                <Eyebrow>{original.fragmentation.eyebrow}</Eyebrow>
-                <h2 id="hc-fragmentation-title">{original.fragmentation.statementPre}<em>{original.fragmentation.statementHi}</em></h2>
-              </div>
-              <p>{original.fragmentation.deck}</p>
-            </div>
-            <div className="hc-technical-figure">
-              <FragmentationDiagram
-                labels={{
-                  title: c.systems.fragmentedTitle,
-                  meta: c.systems.fragmentedMeta,
-                  caption: original.fragmentation.position,
-                }}
-                center={original.fragmentation.center}
-                systems={original.fragmentation.systems}
-                markers={original.fragmentation.markers}
-              />
-            </div>
-          </div>
-
-          <div id="intelligent-layer" className="hc-system-proof hc-system-proof-layer">
-            <div className="hc-system-transition" aria-hidden="true"><span>{c.systems.transition}</span><i /></div>
-            <div className="hc-technical-intro">
-              <div>
-                <Eyebrow>{layer.eyebrow}</Eyebrow>
-                <h2>{layer.h2Pre}<em>{layer.h2Hi}</em></h2>
-              </div>
-              <p>{layer.body}</p>
-            </div>
-            <div className="hc-technical-figure">
-              <IntelligenceLayerDiagram
-                labels={{
-                  title: c.systems.layerTitle,
-                  meta: c.systems.layerMeta,
-                  caption: c.systems.layerCaption,
-                }}
-                guest={layer.guest}
-                node={layer.center}
-                nodeSub={layer.centerSub}
-                systemsLabel={c.systems.systemsLabel}
-                systems={layer.systems}
-              />
-            </div>
-          </div>
         </div>
       </section>
 

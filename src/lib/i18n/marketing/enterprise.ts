@@ -68,16 +68,14 @@ const en = {
     },
     caption: 'ONE PLATFORM · SHARED INTELLIGENCE · LOCAL EXECUTION',
   },
-  /* P5.1 — RC "posture" artifact (PostureSplit) for {#secure}. Labels are
-     structural; every value is a verbatim fragment of the security copy. */
   securityPosture: {
-    label: 'Data posture',
-    tag: 'BY DESIGN',
+    label: 'Current security facts',
+    tag: 'SEPTEMBER 2026',
     rows: [
-      { label: 'OWNERSHIP', value: 'Your data remains your data.' },
-      { label: 'PROTECTION', value: 'Encrypted communications. Protected knowledge.' },
-      { label: 'GOVERNANCE', value: 'Role-based access. Auditability.' },
-      { label: 'CONTROL', value: 'Secure authentication. Privacy-first architecture.' },
+      { label: 'ENCRYPTION', value: 'Customer data is encrypted in transit and at rest.' },
+      { label: 'PAYMENTS', value: 'Raw card data goes directly to Stripe; Hotel Companion receives a tokenized reference.' },
+      { label: 'CUSTOMER CONTROL', value: 'Hotel knowledge remains customer-owned, with role-based access and accountable content owners.' },
+      { label: 'ASSURANCE STATUS', value: 'No external certification is claimed here. Current controls and documentation are reviewed during procurement.' },
     ],
   },
   /* P5.16 — Enterprise outcomes band (from the approved sales.axionari.com
@@ -336,13 +334,13 @@ const es: typeof en = {
     caption: 'UNA PLATAFORMA · INTELIGENCIA COMPARTIDA · EJECUCIÓN LOCAL',
   },
   securityPosture: {
-    label: 'Postura de datos',
-    tag: 'POR DISEÑO',
+    label: 'Hechos actuales de seguridad',
+    tag: 'SEPTIEMBRE DE 2026',
     rows: [
-      { label: 'PROPIEDAD', value: 'Tus datos siguen siendo tuyos.' },
-      { label: 'PROTECCIÓN', value: 'Comunicaciones cifradas. Conocimiento protegido.' },
-      { label: 'GOBERNANZA', value: 'Acceso basado en roles. Auditabilidad.' },
-      { label: 'CONTROL', value: 'Autenticación segura. Arquitectura centrada en la privacidad.' },
+      { label: 'CIFRADO', value: 'Los datos del cliente se cifran en tránsito y en reposo.' },
+      { label: 'PAGOS', value: 'Los datos de tarjeta van directamente a Stripe; Hotel Companion recibe una referencia tokenizada.' },
+      { label: 'CONTROL DEL CLIENTE', value: 'El conocimiento del hotel pertenece al cliente, con acceso por roles y responsables de contenido.' },
+      { label: 'ESTADO DE GARANTÍAS', value: 'Aquí no se afirma ninguna certificación externa. Los controles y la documentación actuales se revisan durante el proceso de compra.' },
     ],
   },
   outcomes: {

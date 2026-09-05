@@ -399,6 +399,114 @@
 .systemGrid li:nth-child(even) { border-right: 0; }
 .systemGrid li::before { content: ''; position: absolute; top: 25px; left: 7px; width: 4px; height: 4px; border-radius: 50%; background: var(--td-accent); }
 
+/* ── Fragmented state → shared context, in one compact plate ───────── */
+
+.contrastGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 118px minmax(0, 1fr);
+  min-height: 520px;
+  border-bottom: 1px solid var(--td-rule);
+}
+
+.contrastCurrent,
+.contrastTarget { padding: clamp(40px, 5vw, 68px); }
+
+.contrastCurrent > small,
+.contrastTarget > small,
+.contrastMarkers,
+.contrastBridge,
+.contrastTargetMap > span {
+  font-family: var(--font-editorial-mono), ui-monospace, monospace;
+  font-size: .68rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.contrastCurrent > small,
+.contrastTarget > small { color: var(--td-accent); }
+.contrastCurrent h3,
+.contrastTarget h3 {
+  max-width: 15ch;
+  margin: 19px 0 0;
+  font-family: var(--font-editorial), Georgia, serif;
+  font-size: clamp(1.8rem, 2.6vw, 2.7rem);
+  font-weight: 400;
+  letter-spacing: -.025em;
+  line-height: 1;
+}
+
+.contrastCurrentMap { position: relative; min-height: 230px; margin-top: 34px; }
+.contrastCurrentMap strong {
+  position: absolute;
+  top: 50%; left: 50%;
+  display: grid;
+  width: 104px;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid var(--td-rule-strong);
+  border-radius: 50%;
+  background: var(--td-paper);
+  font-family: var(--font-editorial), Georgia, serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+.contrastCurrentMap ul { position: absolute; inset: 0; margin: 0; padding: 0; list-style: none; }
+.contrastCurrentMap li {
+  position: absolute;
+  padding: 7px 10px;
+  border-block: 1px solid var(--td-rule);
+  background: var(--td-paper);
+  font-size: .75rem;
+}
+.contrastCurrentMap li:nth-child(1) { top: 3%; left: 5%; }
+.contrastCurrentMap li:nth-child(2) { top: 1%; right: 4%; }
+.contrastCurrentMap li:nth-child(3) { top: 45%; right: 0; }
+.contrastCurrentMap li:nth-child(4) { right: 8%; bottom: 2%; }
+.contrastCurrentMap li:nth-child(5) { bottom: 1%; left: 6%; }
+.contrastCurrentMap li:nth-child(6) { top: 45%; left: 0; }
+.contrastMarkers { display: flex; flex-wrap: wrap; gap: 8px 18px; color: var(--td-accent); }
+.contrastMarkers span::before { content: '×'; margin-right: 7px; }
+
+.contrastBridge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: var(--td-accent);
+  text-align: center;
+}
+.contrastBridge i { width: 1px; height: 72px; background: linear-gradient(transparent, var(--td-accent)); }
+.contrastBridge i:last-child { background: linear-gradient(var(--td-accent), transparent); }
+
+.contrastTarget {
+  background: radial-gradient(circle at 78% 16%, rgba(200,106,58,.18), transparent 34%), #19120f;
+  color: var(--td-cream);
+}
+.contrastTarget > small { color: var(--td-ember); }
+.contrastTarget h3 { color: var(--td-cream); }
+.contrastTargetMap {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 16px;
+  margin-top: 42px;
+}
+.contrastTargetMap > span { grid-column: 1 / -1; color: var(--td-cream-muted); }
+.contrastTargetMap > strong {
+  display: flex;
+  align-items: center;
+  padding: 24px;
+  border: 1px solid rgba(200,106,58,.45);
+  color: var(--td-cream);
+  font-family: var(--font-editorial), Georgia, serif;
+  font-size: clamp(1.35rem, 2vw, 2rem);
+  font-weight: 400;
+}
+.contrastTargetMap ul { display: grid; margin: 0; padding: 0; border-top: 1px solid rgba(242,233,218,.16); list-style: none; }
+.contrastTargetMap li { padding: 9px 12px; border-bottom: 1px solid rgba(242,233,218,.16); color: var(--td-cream-muted); font-size: .78rem; }
+
 /* ── Enterprise portfolio stack ───────────────────────────────────── */
 
 .portfolioStack { margin-top: 0; }
@@ -686,6 +794,17 @@
 .routingTargets li:nth-child(3n) { border-right: 0; }
 .routingTargets li span { color: var(--td-ember); font-family: var(--font-editorial-mono), ui-monospace, monospace; font-size: .72rem; letter-spacing: .1em; }
 
+.routingFallback {
+  display: grid;
+  grid-template-columns: minmax(180px, .55fr) minmax(0, 1.45fr);
+  gap: 24px;
+  align-items: baseline;
+  padding: 24px 0;
+  border-top: 1px solid rgba(242,233,218,.14);
+}
+.routingFallback span { color: var(--td-ember); font-family: var(--font-editorial-mono), ui-monospace, monospace; font-size: .68rem; letter-spacing: .15em; text-transform: uppercase; }
+.routingFallback strong { color: var(--td-cream); font-family: var(--font-editorial), Georgia, serif; font-size: clamp(1.2rem, 2vw, 1.75rem); font-weight: 400; line-height: 1.2; }
+
 /* ── Enterprise trust posture ─────────────────────────────────────── */
 
 .postureRows { margin: 34px 0 0; padding: 0; border-bottom: 1px solid var(--td-rule); list-style: none; }
@@ -720,6 +839,9 @@
   .routingBody { grid-template-columns: minmax(115px, .55fr) 76px minmax(170px, .8fr) 76px minmax(280px, 1.4fr); }
   .routingTargets { padding-left: 20px; }
   .routingTargets li { grid-template-columns: 1fr; gap: 4px; }
+  .contrastGrid { grid-template-columns: minmax(0, 1fr) 64px minmax(0, 1fr); }
+  .contrastCurrent,
+  .contrastTarget { padding: 36px 26px; }
 }
 
 @media (max-width: 760px) {
@@ -755,6 +877,15 @@
   .layerSystems { padding: 54px 0 30px; }
   .layerSystems::before { top: 0; left: 50%; width: 1px; height: 32px; }
 
+  .contrastGrid { grid-template-columns: 1fr; }
+  .contrastBridge { flex-direction: row; padding: 24px; }
+  .contrastBridge i { width: 72px; height: 1px; background: linear-gradient(90deg, transparent, var(--td-accent)); }
+  .contrastBridge i:last-child { background: linear-gradient(90deg, var(--td-accent), transparent); }
+  .contrastCurrent,
+  .contrastTarget { padding: 38px 18px; }
+  .contrastTargetMap { grid-template-columns: 1fr; }
+  .contrastTargetMap > span { grid-column: auto; }
+
   .portfolioLayers { padding: 22px 0; }
   .portfolioTier,
   .portfolioTier.isHighlight { grid-template-columns: 1fr; gap: 14px; min-height: 0; margin-inline: 0; padding: 26px 22px; }
@@ -786,6 +917,7 @@
   .routingTargets li { grid-template-columns: 24px 1fr; min-height: 62px; }
   .routingTargets li:nth-child(3n) { border-right: 1px solid var(--td-rule); }
   .routingTargets li:nth-child(even) { border-right: 0; }
+  .routingFallback { grid-template-columns: 1fr; gap: 10px; }
 
   .postureRows li { grid-template-columns: 42px 1fr 18px; gap: 10px 16px; padding: 22px 0; }
   .postureRows strong { grid-column: 2; }
