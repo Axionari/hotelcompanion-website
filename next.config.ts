@@ -30,6 +30,8 @@ const nextConfig: NextConfig = {
       // Retired marketing routes → their Hotel Companion equivalents (brief §4)
       { source: "/features", destination: "/platform", permanent: true },
       { source: "/about", destination: "/company", permanent: true },
+      { source: "/companion-os", destination: "/platform#platform-model", permanent: true },
+      { source: "/es/companion-os", destination: "/es/platform#platform-model", permanent: true },
     ];
 
     // Domain move: placecompanion.com is TEMPORARILY retired — every request

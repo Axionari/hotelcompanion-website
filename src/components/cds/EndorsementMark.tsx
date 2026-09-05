@@ -10,7 +10,7 @@ const LOCKUPS = {
 } as const
 
 /**
- * Family lockups (brief §6): Companion OS → /companion-os,
+ * Family lockups (brief §6): Companion OS → the Product operating model,
  * Axionari → axionari.com. No underline; accent-shift hover.
  */
 export function EndorsementMark({
@@ -36,7 +36,7 @@ export function EndorsementMark({
     )
   }
   return (
-    <Link href="/companion-os" className={cls} style={style}>
+    <Link href="/platform#platform-model" className={cls} style={style}>
       {label}
     </Link>
   )
@@ -79,7 +79,7 @@ export function AxionariGlyph({ size = '1.05em', className = '' }: { size?: numb
 /**
  * The shared family credit lockup (system-coherence pass):
  * `BUILT ON COMPANION OS · POWERED BY [glyph] AXIONARI` — mono CAPS, both
- * halves links (Companion OS → /companion-os, Axionari → axionari.com).
+ * halves links (Companion OS → the Product operating model, Axionari → axionari.com).
  * Locale-invariant (brand names don't translate). Lives in the hero and the
  * footer; supersedes AxionariMark in the hero.
  */
@@ -91,7 +91,7 @@ export function CreditLockup({ className = '' }: { className?: string }) {
       style={{ color: 'var(--text-faint)', gap: '0.55em', rowGap: '0.4em' }}
     >
       <Link
-        href="/companion-os"
+        href="/platform#platform-model"
         className="inline-flex items-center transition-colors hover:text-[#d4824f]"
         style={{ ...linkStyle, gap: '0.34em' }}
       >

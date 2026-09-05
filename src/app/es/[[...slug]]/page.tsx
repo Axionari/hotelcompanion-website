@@ -31,7 +31,6 @@ const PUBLIC_ROUTES = [
   'platform',
   'solutions',
   'enterprise',
-  'companion-os',
   'resources',
   'company',
   'demo',
@@ -62,10 +61,6 @@ const SPANISH_META: Record<string, { title: string; description: string }> = {
   enterprise: {
     title: 'Enterprise',
     description: 'Gobierna estándares compartidos, identidad local, conocimiento, roles, permisos, integraciones e inteligencia de portafolio desde una sola capa de hospitalidad.',
-  },
-  'companion-os': {
-    title: 'Companion OS',
-    description: 'La base operativa compartida bajo Hotel Companion y Restaurant Companion — conectando contexto, conocimiento aprobado, acción responsable y resultados verificados.',
   },
   resources: {
     title: 'Recursos',
@@ -224,7 +219,7 @@ export default async function SpanishPage({
         <HomeEditorialClient />
       </>
     )
-  } else if (key === 'platform' || key === 'solutions' || key === 'enterprise' || key === 'companion-os' || key === 'company') {
+  } else if (key === 'platform' || key === 'solutions' || key === 'enterprise' || key === 'company') {
     page = <NarrativePage page={key} />
   } else if (key === 'resources') {
     page = (

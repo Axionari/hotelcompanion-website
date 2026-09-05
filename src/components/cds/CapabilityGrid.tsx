@@ -7,7 +7,7 @@ import { Reveal } from './Reveal'
 /**
  * The 8 Companion OS capabilities (canonical taxonomy, brief §8).
  * Reused identically on Home, Platform, Solutions, Enterprise and
- * Companion OS. Each tile deep-links to its section on /companion-os.
+ * Companion OS. When linked, the tiles point to Product's operating model.
  */
 export function CapabilityGrid({ linked = true }: { linked?: boolean }) {
   return (
@@ -29,7 +29,7 @@ export function CapabilityGrid({ linked = true }: { linked?: boolean }) {
         return (
           <Reveal key={cap.id} delay={Math.min(i, 6) * 40}>
             {linked ? (
-              <Link href={`/companion-os#${cap.id}`} className="block h-full hover:opacity-90">
+              <Link href="/platform#platform-model" className="block h-full hover:opacity-90">
                 {inner}
               </Link>
             ) : (

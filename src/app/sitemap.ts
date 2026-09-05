@@ -6,7 +6,6 @@ const routes = [
   '/platform',
   '/solutions',
   '/enterprise',
-  '/companion-os',
   '/resources',
   '/company',
   '/demo',

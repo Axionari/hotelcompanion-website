@@ -2,7 +2,6 @@ import type { Language } from './translations'
 
 const LOCALIZED_ROOTS = new Set([
   'accessibility',
-  'companion-os',
   'company',
   'contact',
   'cookies',

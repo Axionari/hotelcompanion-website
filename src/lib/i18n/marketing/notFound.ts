@@ -15,10 +15,10 @@ const en = {
       href: '/',
     },
     {
-      title: 'Interested in Companion OS?',
-      body: 'Learn about the intelligence platform powering Hotel Companion and the next generation of organizational intelligence.',
-      cta: 'Explore Companion OS',
-      href: '/companion-os',
+      title: 'Looking for How It Works?',
+      body: 'See how Hotel Companion connects guest intent, hotel knowledge, accountable action and verified outcomes.',
+      cta: 'Explore the Product',
+      href: '/platform#platform-model',
     },
     {
       title: 'Want to See It in Action?',
@@ -70,10 +70,10 @@ const es: typeof en = {
       href: '/',
     },
     {
-      title: '¿Te interesa Companion OS?',
-      body: 'Conoce la plataforma de inteligencia que impulsa a Hotel Companion y la próxima generación de inteligencia organizacional.',
-      cta: 'Explora Companion OS',
-      href: '/companion-os',
+      title: '¿Buscas Cómo Funciona?',
+      body: 'Descubre cómo Hotel Companion conecta la intención del huésped, el conocimiento del hotel, la acción responsable y los resultados verificados.',
+      cta: 'Explora el Producto',
+      href: '/platform#platform-model',
     },
     {
       title: '¿Quieres Verlo en Acción?',

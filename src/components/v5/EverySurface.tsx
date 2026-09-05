@@ -15,9 +15,9 @@ import { deviceScreens } from '@/lib/i18n/marketing/deviceScreens'
  * The device family as one cinematic still (Claude Design handoff, Turn 7),
  * built for real: one question — "Best beach near here?" — flowing across a
  * laptop (books before arrival, 0% commission), the in-room tablet (the answer
- * is a picture), a smartphone (talk or type), a watch, an in-room display (greets
- * on arrival), and a voice-only puck. Real hospitality photography; the RC VoiceOrb
- * alive on the voice surfaces. The stage is a container-query composition: every
+ * is a picture), a smartphone (talk or type), a watch, and an in-room display
+ * (greets on arrival). Real hospitality photography; the RC VoiceOrb stays alive
+ * on the guest-facing voice surfaces. The stage is a container-query composition: every
  * dimension is em/cqw against the stage width, so it scales as one still and can
  * scroll on narrow screens without reflow. Reduced motion stills the orbs.
  *
@@ -59,8 +59,7 @@ const SURFACE_UI = {
     phoneTitle: 'MarAzul Sunset Bar', phoneSub: 'Terrace · corner table available', phoneBody: 'I can hold the 6:30 table now and add it to your evening plan.',
     taxi: 'Hold the table', more: 'See the menu', phoneLabel: 'SMARTPHONE · CONCIERGE THAT BOOKS', watchLabel: 'WATCH', watchEvent: 'CACAO CEREMONY',
     displayAlt: 'MarAzul arrival path overlooking the Caribbean', displayMeta: 'OCEAN SUITE 214 · READY', welcome: 'Welcome,',
-    terrace: 'Sunset 6:48 · your dinner table is held for 8:00', displayLabel: 'IN-ROOM DISPLAY · GREETS ON ARRIVAL',
-    voiceLabel: 'VOICE ONLY · DESCRIBED ALOUD', voiceActive: 'MARAZUL · LISTENING',
+    terrace: 'Sunset 6:48 · your dinner table is held for 8:00', displayLabel: 'IN-ROOM DISPLAY · GREETS ON ARRIVAL', voiceActive: 'MARAZUL · LISTENING',
     swipeCue: 'Swipe the device family · arrow keys also work', surfaceLabel: 'Hotel Companion across guest devices',
   },
   es: {
@@ -73,8 +72,7 @@ const SURFACE_UI = {
     phoneTitle: 'Bar Atardecer MarAzul', phoneSub: 'Terraza · mesa esquinera disponible', phoneBody: 'Puedo apartar la mesa de las 18:30 y agregarla a tu plan de esta noche.',
     taxi: 'Apartar la mesa', more: 'Ver el menú', phoneLabel: 'SMARTPHONE · CONCIERGE QUE RESERVA', watchLabel: 'RELOJ', watchEvent: 'RITUAL DE CACAO',
     displayAlt: 'El sendero de llegada a MarAzul frente al Caribe', displayMeta: 'SUITE MAR 214 · LISTA', welcome: 'Bienvenida,',
-    terrace: 'Atardecer 18:48 · tu mesa está apartada para las 20:00', displayLabel: 'PANTALLA EN LA HABITACIÓN · RECIBE AL LLEGAR',
-    voiceLabel: 'SOLO VOZ · DESCRITO EN VOZ ALTA', voiceActive: 'MARAZUL · ESCUCHANDO',
+    terrace: 'Atardecer 18:48 · tu mesa está apartada para las 20:00', displayLabel: 'PANTALLA EN LA HABITACIÓN · RECIBE AL LLEGAR', voiceActive: 'MARAZUL · ESCUCHANDO',
     swipeCue: 'Desliza la familia de dispositivos · también puedes usar las flechas', surfaceLabel: 'Hotel Companion en los dispositivos del huésped',
   },
 } as const
@@ -351,17 +349,6 @@ export function EverySurface({
                   </div>
                 </div>
                 <div style={label()}>{ui.displayLabel}</div>
-              </div>
-
-              {/* ── VOICE PUCK — voice only, described aloud ── */}
-              <div style={{ position: 'absolute', left: u(450), bottom: 0, width: u(190), display: 'flex', flexDirection: 'column', alignItems: 'center', gap: u(12), zIndex: 3 }}>
-                <div style={{ position: 'relative', width: u(150), height: u(96), display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 50% 28%,#F0E4D2 0%,#C9B79D 38%,#42696A 72%,#173A3D 100%)', border: `${u(1)} solid rgba(247,236,221,.34)`, borderRadius: '50%', boxShadow: '0 24px 50px rgba(0,10,12,.7), inset 0 -12px 26px rgba(6,31,36,.28)' }} />
-                  <div style={{ position: 'relative', marginTop: u(-14) }}>
-                    <GlowOrb size={c(44)} halo={104} state="speaking" />
-                  </div>
-                </div>
-                <div style={{ textAlign: 'center', ...MONO, fontSize: u(10), letterSpacing: '.24em', color: 'rgba(247,236,221,.68)' }}>{ui.voiceLabel}</div>
               </div>
 
             </div>
