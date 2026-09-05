@@ -35,7 +35,6 @@ export function SiteNav({ appearance = "dark" }: { appearance?: "dark" | "light"
   const drawerRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const resourcesRef = useRef<HTMLDivElement>(null);
-  const resourcesButtonRef = useRef<HTMLButtonElement>(null);
   const lastY = useRef(0);
   const scrollFrame = useRef<number | null>(null);
   const light = appearance === "light";
@@ -103,7 +102,7 @@ export function SiteNav({ appearance = "dark" }: { appearance?: "dark" | "light"
     function onKeyDown(event: KeyboardEvent) {
       if (event.key !== "Escape") return;
       setResourcesActive(false);
-      resourcesButtonRef.current?.focus();
+      document.getElementById("desktop-resources-trigger")?.focus();
     }
 
     document.addEventListener("pointerdown", onPointerDown);
@@ -206,23 +205,22 @@ export function SiteNav({ appearance = "dark" }: { appearance?: "dark" | "light"
                   }
                 }}
               >
-                <button
-                  ref={resourcesButtonRef}
-                  type="button"
+                <Link
+                  id="desktop-resources-trigger"
+                  href={l.href}
                   className={`site-resource-trigger font-sans whitespace-nowrap ${
                     light ? "site-resource-trigger-light" : ""
                   }`}
                   aria-haspopup="true"
                   aria-expanded={resourcesActive}
                   aria-controls="desktop-resources-panel"
-                  onClick={() => {
-                    setResourcesActive((active) => !active);
+                  onFocus={() => {
+                    setResourcesActive(true);
                     setHidden(false);
                   }}
                 >
                   {nav[l.key]}
-                  <ChevronDown className="site-resource-trigger-icon" aria-hidden="true" size={14} strokeWidth={1.7} />
-                </button>
+                </Link>
 
                 {resourcesActive && <div id="desktop-resources-panel" className="site-resource-panel" aria-label={resourceNav.ariaLabel}>
                   {resourceNav.groups.map((group) => (

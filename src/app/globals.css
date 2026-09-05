@@ -154,9 +154,9 @@ body {
 
 .site-resource-nav {
   position: relative;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  align-self: stretch;
+  margin-inline: -12px;
 }
 
 /* Invisible bridge keeps the menu open while the pointer travels from the
@@ -166,29 +166,28 @@ body {
   position: absolute;
   z-index: 1;
   top: 100%;
-  left: -24px;
-  width: calc(100% + 48px);
+  left: -16px;
+  right: -16px;
   height: 20px;
 }
 
 .site-resource-trigger {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  min-height: 44px;
-  padding: 0;
-  border: 0;
+  display: block;
+  padding: 8px 12px;
+  border-radius: 8px;
   background: transparent;
   color: var(--text-dim);
-  cursor: pointer;
-  font: inherit;
   font-size: 15px;
-  transition: color 180ms var(--ease-standard);
+  font-weight: 400;
+  line-height: normal;
+  text-decoration: none;
+  transition: color 150ms var(--ease-standard), background 150ms var(--ease-standard);
 }
 
 .site-resource-trigger:hover,
 .site-resource-nav.is-open .site-resource-trigger {
   color: #f7f6f1;
+  background: rgba(128, 110, 90, .1);
 }
 
 .site-resource-trigger-light {
@@ -198,15 +197,7 @@ body {
 .site-resource-trigger-light:hover,
 .site-resource-nav.is-open .site-resource-trigger-light {
   color: #241c17;
-}
-
-.site-resource-trigger-icon {
-  transform-origin: center;
-  transition: transform 220ms var(--ease-standard);
-}
-
-.site-resource-nav.is-open .site-resource-trigger-icon {
-  transform: rotate(180deg);
+  background: rgba(36, 28, 23, .06);
 }
 
 .site-resource-panel {
