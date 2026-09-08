@@ -458,31 +458,6 @@ body {
   white-space: nowrap;
   border: 0;
 }
-.question-marquee-control {
-  display: inline-flex;
-  min-height: 40px;
-  align-items: center;
-  justify-self: center;
-  gap: .55rem;
-  padding: .55rem .9rem;
-  border: 1px solid rgba(242, 233, 218, .2);
-  border-radius: 999px;
-  background: rgba(242, 233, 218, .035);
-  color: rgba(242, 233, 218, .64);
-  font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: .58rem;
-  letter-spacing: .15em;
-  text-transform: uppercase;
-  transition: color var(--dur-fast) var(--ease-standard), border-color var(--dur-fast) var(--ease-standard), background var(--dur-fast) var(--ease-standard);
-}
-.question-marquee-control:hover,
-.question-marquee-control:focus-visible {
-  border-color: rgba(217, 122, 79, .7);
-  background: rgba(217, 122, 79, .08);
-  color: #f2e9da;
-}
-.question-marquee-control > span { color: var(--accent-bright); font-size: .62rem; }
-
 @keyframes pc-dot-pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.3; }
@@ -522,7 +497,6 @@ body {
 
 @media (max-width: 560px) {
   .marquee-chip { padding: .72rem 1.1rem; font-size: .94rem; }
-  .question-marquee-control { min-height: 44px; }
 }
 
 /* Slow Ken-Burns on in-UI card images (Visual Interface Level-Up §D) — <=6% scale */
