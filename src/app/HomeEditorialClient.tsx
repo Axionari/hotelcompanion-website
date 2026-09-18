@@ -7,6 +7,7 @@ import { SiteNav } from '@/components/site-nav'
 import { CompanionTablet } from '@/components/v5/CompanionTablet'
 import { SuiteShowcase } from '@/components/v5/SuiteShowcase'
 import { QuestionMarquee } from '@/components/cds/QuestionMarquee'
+import { ProductFilms } from '@/components/cds/ProductFilms'
 import { ProcessDiagram } from '@/components/editorial/TechnicalDiagrams'
 import { useLang } from '@/lib/i18n/LanguageContext'
 import { useCopy } from '@/lib/i18n/useCopy'
@@ -51,6 +52,17 @@ const COPY = {
       quote: 'We land at three. Can the room be ready?', quoteBody: 'Arrival time becomes context the whole hotel can use.',
       chip: 'Arrival · preference · permission',
       thirdKicker: 'Revenue', third: 'The right addition, offered with taste — not pressure.',
+    },
+    films: {
+      eyebrow: '04 · Hotel Companion in action',
+      title: 'A remarkable host for every guest.',
+      titleEm: 'A sharper view for every hotel.',
+      lead: 'See the guest experience and the operating intelligence behind it — two sides of one hospitality system.',
+      play: 'Watch film',
+      items: [
+        { eyebrow: 'The guest experience', title: 'Hospitality that is always available.', body: 'Before, during and after the stay, the Companion recommends, arranges and remembers through voice, web, chat or messaging.' },
+        { eyebrow: 'Companion Control', title: 'Every conversation becomes operating intelligence.', body: 'Guest demand becomes practical revenue recommendations, visible outcomes and portfolio insight your team can act on.' },
+      ],
     },
     loop: {
       eyebrow: '05 · Two in the morning', title: 'Sent is not', titleEm: 'resolved.',
@@ -137,6 +149,17 @@ const COPY = {
       quote: 'Llegamos a las tres. ¿Puede estar lista la habitación?', quoteBody: 'La hora de llegada se vuelve contexto para todo el hotel.',
       chip: 'Llegada · preferencia · permiso',
       thirdKicker: 'Ingresos', third: 'La adición correcta, ofrecida con gusto — no con presión.',
+    },
+    films: {
+      eyebrow: '04 · Hotel Companion en acción',
+      title: 'Un anfitrión excepcional para cada huésped.',
+      titleEm: 'Una visión más clara para cada hotel.',
+      lead: 'Descubre la experiencia del huésped y la inteligencia operativa que la hace posible — dos lados de un mismo sistema de hospitalidad.',
+      play: 'Ver video',
+      items: [
+        { eyebrow: 'La experiencia del huésped', title: 'Hospitalidad siempre disponible.', body: 'Antes, durante y después de la estancia, el Companion recomienda, coordina y recuerda por voz, web, chat o mensajería.' },
+        { eyebrow: 'Companion Control', title: 'Cada conversación se convierte en inteligencia operativa.', body: 'La demanda de los huéspedes se transforma en recomendaciones de ingresos, resultados visibles e inteligencia accionable para todo el portafolio.' },
+      ],
     },
     loop: {
       eyebrow: '05 · Dos de la mañana', title: 'Enviado no es', titleEm: 'resuelto.',
@@ -308,6 +331,19 @@ export default function HomeEditorialClient() {
             <p>{c.journey.productLead}</p>
           </div>
           <div className="hc-suite-product"><SuiteShowcase /></div>
+        </div>
+      </section>
+
+      <section className="hc-act hc-films" id="product-films" aria-labelledby="hc-films-title">
+        <div className="hc-wrap">
+          <div className="hc-product-head hc-film-head">
+            <div>
+              <Eyebrow>{c.films.eyebrow}</Eyebrow>
+              <h2 id="hc-films-title">{c.films.title}<br /><em>{c.films.titleEm}</em></h2>
+            </div>
+            <p>{c.films.lead}</p>
+          </div>
+          <ProductFilms lang={lang} playLabel={c.films.play} films={c.films.items} />
         </div>
       </section>
 
