@@ -4,6 +4,8 @@ import { ESSAYS } from '@/lib/library'
 const routes = [
   '',
   '/platform',
+  '/revenue',
+  '/implementation',
   '/solutions',
   '/enterprise',
   '/resources',

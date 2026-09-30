@@ -1,10 +1,9 @@
 import type { Metadata } from 'next'
 import { notFound, redirect } from 'next/navigation'
-import HomeEditorialClient from '@/app/HomeEditorialClient'
+import HomeExperienceClient from '@/app/HomeExperienceClient'
 import ResourcesClient from '@/app/resources/ResourcesClient'
 import DemoClient from '@/app/demo/DemoClient'
-import ContactClient from '@/app/contact/ContactClient'
-import NarrativePage from '@/components/editorial/NarrativePage'
+import ExperiencePage from '@/components/experience/ExperiencePages'
 import { ArticleLayout } from '@/components/cds/ArticleLayout'
 import { LegalLayout } from '@/components/cds/LegalLayout'
 import { accessibilityDoc } from '@/lib/i18n/marketing/accessibility'
@@ -29,6 +28,8 @@ import { createPageMetadata } from '@/lib/siteMetadata'
 
 const PUBLIC_ROUTES = [
   'platform',
+  'revenue',
+  'implementation',
   'solutions',
   'enterprise',
   'resources',
@@ -46,21 +47,23 @@ const PUBLIC_ROUTES = [
 ] as const
 
 const SPANISH_META: Record<string, { title: string; description: string }> = {
+  revenue: { title: 'Ingresos', description: 'Recomendaciones con contexto, paquetes aprobados y contribución adicional medible para hoteles.' },
+  implementation: { title: 'Implementación y piloto', description: 'Una implementación enfocada con conexiones verificadas, reglas aprobadas y piloto elegible basado en resultados.' },
   '': {
-    title: 'Hotel Companion — La estancia recuerda',
-    description: 'Una conversación para reservar, llegar, recibir servicio, generar ingresos y volver — personal antes de la llegada y útil mucho después de partir.',
+    title: 'Hotel Companion — Mejores ofertas. Más ingresos.',
+    description: 'Convierte conversaciones en ofertas relevantes, compras completadas y contribución adicional medible. Voz, contexto, atención 24/7 y un piloto basado en resultados.',
   },
   platform: {
     title: 'Producto',
     description: 'Una conversación durante la reserva, la llegada, el servicio, los ingresos y el regreso — basada en conocimiento hotelero y llevada hasta un resultado verificado.',
   },
   solutions: {
-    title: 'Capacidades',
-    description: 'Da a cada equipo del hotel el contexto que necesita — desde la llegada y la recuperación del servicio hasta los ingresos con buen gusto y la vista operativa de la mañana.',
+    title: 'Experiencia del huésped',
+    description: 'Teléfono, web y móvil, con voz natural, contexto y una transferencia clara al equipo del hotel. Tablets opcionales.',
   },
   enterprise: {
-    title: 'Enterprise',
-    description: 'Gobierna estándares compartidos, identidad local, conocimiento, roles, permisos, integraciones e inteligencia de portafolio desde una sola capa de hospitalidad.',
+    title: 'Grupos hoteleros',
+    description: 'Estándares compartidos, identidad por hotel y una vista operativa del portafolio. Empieza en un hotel y amplía con evidencia.',
   },
   resources: {
     title: 'Recursos',
@@ -76,7 +79,7 @@ const SPANISH_META: Record<string, { title: string; description: string }> = {
   },
   contact: {
     title: 'Contacto',
-    description: 'Explora el Programa de Socios Fundadores de Hotel Companion: una propiedad, noventa días y cuatro medidas operativas acordadas antes del lanzamiento.',
+    description: 'Explora un piloto enfocado en tu hotel, con alcance, medición y condiciones acordados antes del lanzamiento.',
   },
   trust: {
     title: 'Centro de confianza',
@@ -216,11 +219,11 @@ export default async function SpanishPage({
     page = (
       <>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(spanishHomeSchema).replace(/</g, '\\u003c') }} />
-        <HomeEditorialClient />
+        <HomeExperienceClient />
       </>
     )
-  } else if (key === 'platform' || key === 'solutions' || key === 'enterprise' || key === 'company') {
-    page = <NarrativePage page={key} />
+  } else if (key === 'platform' || key === 'solutions' || key === 'enterprise' || key === 'company' || key === 'revenue' || key === 'implementation' || key === 'contact') {
+    page = <ExperiencePage page={key} />
   } else if (key === 'resources') {
     page = (
       <ResourcesClient content={{
@@ -235,8 +238,6 @@ export default async function SpanishPage({
         <DemoClient />
       </>
     )
-  } else if (key === 'contact') {
-    page = <ContactClient />
   } else if (key === 'trust') {
     page = <LegalLayout doc={trustDoc} />
   } else if (key === 'security') {

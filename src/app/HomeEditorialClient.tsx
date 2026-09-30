@@ -4,7 +4,8 @@ import Image from 'next/image'
 import { LocalizedLink as Link } from '@/components/LocalizedLink'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteNav } from '@/components/site-nav'
-import { CompanionTablet } from '@/components/v5/CompanionTablet'
+import { StayConversation, FocusedRevenue } from '@/components/revenue/FocusedExperience'
+import { focusedHomeCopy } from '@/lib/i18n/marketing/focusedHome'
 import { SuiteShowcase } from '@/components/v5/SuiteShowcase'
 import { QuestionMarquee } from '@/components/cds/QuestionMarquee'
 import { ProductFilms } from '@/components/cds/ProductFilms'
@@ -13,6 +14,7 @@ import { useLang } from '@/lib/i18n/LanguageContext'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { homeCopy } from '@/lib/i18n/marketing/home'
 import './home-editorial.css'
+import './home-focused.css'
 
 const COPY = {
   en: {
@@ -54,7 +56,7 @@ const COPY = {
       thirdKicker: 'Revenue', third: 'The right addition, offered with taste — not pressure.',
     },
     films: {
-      eyebrow: '04 · Hotel Companion in action',
+      eyebrow: '05 · Hotel Companion in action',
       title: 'A remarkable host for every guest.',
       titleEm: 'A sharper view for every hotel.',
       lead: 'See the guest experience and the operating intelligence behind it — two sides of one hospitality system.',
@@ -151,7 +153,7 @@ const COPY = {
       thirdKicker: 'Ingresos', third: 'La adición correcta, ofrecida con gusto — no con presión.',
     },
     films: {
-      eyebrow: '04 · Hotel Companion en acción',
+      eyebrow: '05 · Hotel Companion en acción',
       title: 'Un anfitrión excepcional para cada huésped.',
       titleEm: 'Una visión más clara para cada hotel.',
       lead: 'Descubre la experiencia del huésped y la inteligencia operativa que la hace posible — dos lados de un mismo sistema de hospitalidad.',
@@ -219,9 +221,10 @@ export default function HomeEditorialClient() {
   const { lang } = useLang()
   const c = COPY[lang]
   const original = useCopy(homeCopy)
+  const focused = useCopy(focusedHomeCopy)
 
   return (
-    <div className="hc-stay">
+    <div className="hc-stay hc-focused">
       <a className="ed-skip-link" href="#main-content">{c.skip}</a>
       <SiteNav appearance="light" />
 
@@ -236,10 +239,11 @@ export default function HomeEditorialClient() {
               <Link className="hc-button hc-button-solid" href="/demo">{c.hero.request}</Link>
               <a className="hc-button hc-button-quiet" href="#guest-journey">{c.hero.see}</a>
             </div>
+            <p className="hc-focused-channel-line">{focused.channelLine}</p>
           </div>
           <div className="hc-hero-photo">
             <Image src="/assets/lux/hotel-companion-hero-v2.webp" alt={c.hero.imageAlt} fill priority fetchPriority="high" sizes="(max-width: 920px) 100vw, 58vw" style={{ objectFit: 'cover' }} />
-            <div className="hc-hero-device"><CompanionTablet variant="home" /><small className="hc-product-disclosure">{c.hero.label}</small></div>
+            <div className="hc-focused-conversation"><StayConversation /></div>
           </div>
         </div>
       </section>
@@ -330,7 +334,15 @@ export default function HomeEditorialClient() {
             </div>
             <p>{c.journey.productLead}</p>
           </div>
-          <div className="hc-suite-product"><SuiteShowcase /></div>
+          <div className="hc-suite-product"><SuiteShowcase surface="web" /></div>
+          <p className="hc-focused-optional">{focused.channelNote}</p>
+        </div>
+      </section>
+
+      <section className="hc-act hc-revenue hc-focused-revenue" id="revenue-offers" aria-labelledby="hc-revenue-title">
+        <div className="hc-wrap">
+          <div className="hc-product-head"><div><Eyebrow>{focused.revenue.eyebrow}</Eyebrow><h2 id="hc-revenue-title">{c.revenue.title}<br /><em>{c.revenue.titleEm}</em></h2></div><p>{c.revenue.body}</p></div>
+          <FocusedRevenue />
         </div>
       </section>
 
@@ -350,7 +362,7 @@ export default function HomeEditorialClient() {
       <section className="hc-close" aria-labelledby="hc-close-title">
         <Image src="/assets/lux/hotel-companion-closing-blue-hour-v2.webp" alt={c.close.imageAlt} fill sizes="100vw" style={{ objectFit: 'cover' }} />
         <div className="hc-close-scrim" />
-        <div className="hc-wrap hc-close-copy"><Eyebrow>{c.close.eyebrow}</Eyebrow><h2 id="hc-close-title">{c.close.title}<br /><em>{c.close.titleEm}</em></h2><p>{c.close.body}</p><div className="hc-actions"><Link className="hc-button hc-button-solid" href="/demo">{c.close.request}</Link><Link className="hc-button hc-button-quiet hc-button-light" href="/contact#founding">{c.close.pilot}</Link></div></div>
+        <div className="hc-wrap hc-close-copy"><Eyebrow>{c.close.eyebrow}</Eyebrow><h2 id="hc-close-title">{c.close.title}<br /><em>{c.close.titleEm}</em></h2><p>{c.close.body}</p><p className="hc-focused-pilot">{focused.pilot.body}</p><div className="hc-actions"><Link className="hc-button hc-button-solid" href="/contact#founding">{focused.pilot.primary}</Link><Link className="hc-button hc-button-quiet hc-button-light" href="/demo">{c.close.request}</Link></div><small className="hc-focused-pilot-note">{focused.pilot.note}</small></div>
       </section>
       </main>
 

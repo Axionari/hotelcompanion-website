@@ -1,10 +1,10 @@
-import HomeEditorialClient from './HomeEditorialClient'
+import HomeExperienceClient from './HomeExperienceClient'
 import { createPageMetadata } from '@/lib/siteMetadata'
 
 export const metadata = createPageMetadata({
-  title: 'Hotel Companion — The stay remembers',
+  title: 'Hotel Companion — Smarter offers. More revenue.',
   description:
-    'One conversation for booking, arrival, service, revenue and the return — personal before the guest arrives, and useful long after they leave.',
+    'Turn guest conversations into relevant offers, completed purchases and measurable additional contribution. Conversational voice, guest context, 24/7 service and an outcome-based pilot.',
   path: '/',
 })
 
@@ -25,7 +25,7 @@ const structuredData = {
       operatingSystem: 'Web',
       url: 'https://www.hotelcompanion.ai',
       description:
-        'A hospitality intelligence layer that connects hotel booking, arrival, service, revenue and guest memory in one conversation.',
+        'An AI hotel companion that uses conversation and guest-approved context to recommend relevant upgrades, experiences and packages, answer questions and coordinate service requests.',
       provider: { '@id': 'https://www.hotelcompanion.ai/#organization' },
     },
   ],
@@ -38,7 +38,7 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }}
       />
-      <HomeEditorialClient />
+      <HomeExperienceClient />
     </>
   )
 }

@@ -105,7 +105,7 @@ export function StickyCta() {
   }, [pathname])
 
   const marketingPathname = stripLanguagePrefix(pathname)
-  const hidden = HIDE_ON.some((p) => marketingPathname === p || marketingPathname.startsWith(p + '/'))
+  const hidden = marketingPathname === '/' || HIDE_ON.some((p) => marketingPathname === p || marketingPathname.startsWith(p + '/'))
   if (hidden) return null
 
   const visible = shown && !quietZone

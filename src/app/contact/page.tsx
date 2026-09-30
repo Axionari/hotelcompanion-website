@@ -1,13 +1,13 @@
-import ContactClient from './ContactClient'
+import ExperiencePage from '@/components/experience/ExperiencePages'
 import { createPageMetadata } from '@/lib/siteMetadata'
 
 export const metadata = createPageMetadata({
   title: 'Contact',
   description:
-    'Explore the Hotel Companion Founding Partner Program: one property, ninety days, and four operating measures agreed before launch.',
+    'Contact the Hotel Companion team for a tailored demonstration or a qualified outcome-based pilot.',
   path: '/contact',
 })
 
 export default function ContactPage() {
-  return <ContactClient />
+  return <ExperiencePage page="contact" />
 }

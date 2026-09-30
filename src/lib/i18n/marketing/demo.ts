@@ -1,6 +1,6 @@
 import type { Localized } from '../useCopy'
 
-/* Copy source: HotelCompanion__Site_Copy.md {#demo}. Verbatim. */
+/* Source: HotelCompanion__Site_Copy.md, including the 2026-09-29 addendum. */
 
 const en = {
   hero: {
@@ -60,8 +60,8 @@ const en = {
         body: 'Property type. Guest profile. Current technology stack. Operational priorities. Business goals.',
       },
       {
-        title: 'Live Product Demonstration',
-        body: 'Voice conversations. Recommendations. Service requests. Operational workflows. Executive dashboards.',
+        title: 'Guided Product Demonstration',
+        body: 'Voice and text on mobile and desktop web. Contextual recommendations. Approved deals. Service requests. Companion Control.',
       },
       { title: 'Companion OS', body: 'Knowledge. Memory. Reasoning. Workflow orchestration. Analytics.' },
       {
@@ -85,7 +85,7 @@ const en = {
       { title: 'Team Onboarding', body: 'Training your staff and administrators.' },
       {
         title: 'Go Live',
-        body: 'Launch with continuous optimization as Hotel Companion learns from every guest interaction.',
+        body: 'Launch the agreed scope, verify outcomes and compare results before expanding automation.',
       },
     ],
   },
@@ -98,11 +98,11 @@ const en = {
       },
       {
         q: 'Is this a live product or a concept?',
-        a: 'You will see the Companion working. We walk your own guest scenarios through it rather than showing a recorded reel.',
+        a: 'You will see a guided product demonstration. We distinguish working capabilities, illustrative scenarios and the connections your hotel would need before launch.',
       },
       {
         q: 'How do guests use it?',
-        a: 'By voice or by chat, on whichever surface suits them — the voice companion on the in-room tablet, a voice agent, their own phone via QR, or your website. They can also navigate on their own. It works on every device with no app to download, and chat keeps working offline if a guest saves the property knowledge base to their phone.',
+        a: 'Guests speak or type on mobile and desktop web, opening a link or QR code without installing an app. Telephone and WhatsApp connections are scoped for the pilot. In-room tablets are optional, with hardware and setup covered by the hotel.',
       },
       {
         q: 'How is this different from a guest messaging platform?',
@@ -114,7 +114,7 @@ const en = {
       },
       {
         q: 'How long does implementation take?',
-        a: 'A verified property and destination knowledge base, priority guest journeys, and team workflows can go live in 1–3 weeks. PMS, POS, and payment connections follow in stages. Timing depends on API access, provider requirements, and approvals.',
+        a: 'We agree launch timing after defining the pilot scope, reviewing property knowledge and confirming the workflows. Any PMS, POS or payment connections are scoped separately and depend on provider access, validation and approvals.',
       },
       {
         q: 'Is guest information secure?',
@@ -128,7 +128,7 @@ const en = {
   },
 }
 
-/* Copy source: HotelCompanion__Site_Copy_ES.md {#demo}. Verbatim. */
+/* Source: HotelCompanion__Site_Copy_ES.md, including the 2026-09-29 addendum. */
 
 const es: typeof en = {
   hero: {
@@ -188,8 +188,8 @@ const es: typeof en = {
         body: 'Tipo de propiedad. Perfil del huésped. Stack tecnológico actual. Prioridades operativas. Objetivos de negocio.',
       },
       {
-        title: 'Demostración en Vivo',
-        body: 'Conversaciones por voz. Recomendaciones. Solicitudes de servicio. Flujos de trabajo operativos. Tableros ejecutivos.',
+        title: 'Demostración Guiada',
+        body: 'Voz y texto en web móvil y computadora. Recomendaciones con contexto. Ofertas aprobadas. Solicitudes de servicio. Companion Control.',
       },
       { title: 'Companion OS', body: 'Conocimiento. Memoria. Razonamiento. Orquestación de flujos. Analítica.' },
       {
@@ -213,7 +213,7 @@ const es: typeof en = {
       { title: 'Incorporación del Equipo', body: 'Capacitar a tu personal y administradores.' },
       {
         title: 'Puesta en Marcha',
-        body: 'Lanzamiento con optimización continua mientras Hotel Companion aprende de cada interacción.',
+        body: 'Lanza el alcance acordado, verifica resultados y compara antes de ampliar la automatización.',
       },
     ],
   },
@@ -226,11 +226,11 @@ const es: typeof en = {
       },
       {
         q: '¿Es un producto real o un concepto?',
-        a: 'Verás el Companion funcionando. Pasamos tus propios escenarios de huéspedes por él, en vez de mostrar una grabación.',
+        a: 'Verás una demostración guiada. Distinguimos capacidades disponibles, escenarios ilustrativos y las conexiones que tu hotel necesitaría antes del lanzamiento.',
       },
       {
         q: '¿Cómo lo usan los huéspedes?',
-        a: 'Por voz o por chat, en la superficie que prefieran — el companion por voz en la tablet de la habitación, un agente de voz, su propio teléfono con código QR o tu sitio web. También pueden navegar por su cuenta. Funciona en cualquier dispositivo y sin app que descargar, y el chat sigue funcionando sin conexión si el huésped guarda la base de conocimiento en su teléfono.',
+        a: 'El huésped habla o escribe en web móvil o computadora, desde un enlace o QR y sin instalar una aplicación. Teléfono y WhatsApp se definen para el piloto. Las tablets son opcionales, con dispositivos e instalación cubiertos por el hotel.',
       },
       {
         q: '¿En qué se diferencia de una plataforma de mensajería para huéspedes?',
@@ -242,7 +242,7 @@ const es: typeof en = {
       },
       {
         q: '¿Cuánto tarda la implementación?',
-        a: 'Una base de conocimiento verificada de la propiedad y el destino, los recorridos prioritarios del huésped y los flujos del equipo pueden entrar en operación en 1–3 semanas. Las conexiones con PMS, POS y pagos siguen por etapas. El plazo depende del acceso a APIs, los requisitos de los proveedores y sus aprobaciones.',
+        a: 'Acordamos el plazo después de definir el alcance del piloto, revisar el conocimiento del hotel y confirmar los flujos de trabajo. Las conexiones con PMS, POS o pagos se definen por separado y dependen de acceso, validación y aprobaciones.',
       },
       {
         q: '¿La información del huésped es segura?',

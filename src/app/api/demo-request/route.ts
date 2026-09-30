@@ -4,11 +4,11 @@ import { escapeHtml } from '@/lib/issue-detection'
 import { clientIp, rateLimit, rateLimitResponse } from '@/lib/rate-limit'
 
 /**
- * Book-a-Demo form submission (#demo-form). Reuses the existing Resend
+ * Demo inquiry form submission (#demo-form). Reuses the existing Resend
  * mechanism (same env contract as the guest-issue alerts).
  */
 
-const REQUIRED_FIELDS = ['name', 'hotel', 'role', 'email', 'country', 'propertyType', 'properties', 'interest'] as const
+const REQUIRED_FIELDS = ['name', 'hotel', 'email'] as const
 
 export async function POST(req: NextRequest) {
   if (!rateLimit(`demo:${clientIp(req)}`, 5, 60_000)) {
@@ -21,9 +21,13 @@ export async function POST(req: NextRequest) {
   } catch {
     return Response.json({ error: 'Invalid request body.' }, { status: 400 })
   }
+  if (!body || typeof body !== 'object' || Array.isArray(body)) {
+    return Response.json({ error: 'Invalid request body.' }, { status: 400 })
+  }
 
   const fields: Record<string, string> = {}
-  for (const key of [...REQUIRED_FIELDS, 'phone', 'message'] as const) {
+  // Accept the earlier optional message field while a cached client refreshes.
+  for (const key of [...REQUIRED_FIELDS, 'goal', 'message'] as const) {
     const value = body[key]
     fields[key] = typeof value === 'string' ? value.trim().slice(0, 2000) : ''
   }
@@ -46,14 +50,8 @@ export async function POST(req: NextRequest) {
   const rows = Object.entries({
     Name: fields.name,
     Hotel: fields.hotel,
-    Role: fields.role,
     'Business Email': fields.email,
-    Phone: fields.phone || '—',
-    Country: fields.country,
-    'Property Type': fields.propertyType,
-    'Number of Properties': fields.properties,
-    'Wants to explore': fields.interest,
-    Message: fields.message || '—',
+    Goal: fields.goal || fields.message || '—',
   })
     .map(
       ([k, v]) =>

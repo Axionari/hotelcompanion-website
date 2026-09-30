@@ -3,9 +3,9 @@ import { demoCopy } from '@/lib/i18n/marketing/demo'
 import { createPageMetadata } from '@/lib/siteMetadata'
 
 export const metadata = createPageMetadata({
-  title: 'Book a Demo',
+  title: 'Request a Demo',
   description:
-    'Book a Personalized Demonstration. A working session tailored to your hotel, your guests, and your operational goals — not a product tour.',
+    'See guest conversations, relevant recommendations and approved offers. Explore a scoped Hotel Companion pilot and agree how to measure results.',
   path: '/demo',
 })
 

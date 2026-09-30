@@ -7,7 +7,7 @@ type Row = { label: string; value: string }
 
 const COPY = {
   en: {
-    property: 'MARAZUL · LIVE STAY',
+    property: 'MARAZUL · ILLUSTRATIVE STAY',
     context: 'ONE GUEST · SHARED CONTEXT',
     guest: 'MAYA · RETURNING GUEST',
     arrival: 'Arrival 15:42',
@@ -18,10 +18,10 @@ const COPY = {
     statusLabel: 'STATUS',
     state: ['VERIFIED', 'KNOWN', 'DELIVERED', 'READY'],
     footer: 'GUIDED PRODUCT VIEW · ILLUSTRATIVE STAY · THE GUEST SPEAKS ONCE · EACH TEAM SEES WHAT IT NEEDS',
-    aria: 'A live hotel operations view showing one guest context shared across departments',
+    aria: 'An illustrative hotel operations view showing sample guest context shared across departments',
   },
   es: {
-    property: 'MARAZUL · ESTANCIA ACTIVA',
+    property: 'MARAZUL · ESTANCIA ILUSTRATIVA',
     context: 'UN HUÉSPED · CONTEXTO COMPARTIDO',
     guest: 'MAYA · HUÉSPED RECURRENTE',
     arrival: 'Llegada 15:42',
@@ -32,7 +32,7 @@ const COPY = {
     statusLabel: 'ESTADO',
     state: ['VERIFICADO', 'CONOCIDO', 'ENTREGADO', 'LISTO'],
     footer: 'VISTA GUIADA DEL PRODUCTO · ESTANCIA ILUSTRATIVA · EL HUÉSPED HABLA UNA VEZ · CADA EQUIPO VE LO QUE NECESITA',
-    aria: 'Vista operativa del hotel que muestra el contexto de un huésped compartido entre departamentos',
+    aria: 'Vista ilustrativa de la operación del hotel con contexto de ejemplo compartido entre departamentos',
   },
 } as const
 

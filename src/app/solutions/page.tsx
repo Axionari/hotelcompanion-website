@@ -1,13 +1,13 @@
-import NarrativePage from '@/components/editorial/NarrativePage'
+import ExperiencePage from '@/components/experience/ExperiencePages'
 import { createPageMetadata } from '@/lib/siteMetadata'
 
 export const metadata = createPageMetadata({
-  title: 'Capabilities',
+  title: 'Guest experience',
   description:
-    'Give every hotel team the context it needs — from arrival and service recovery to tasteful revenue and the morning operating view.',
+    'Telephone, desktop web, mobile web and optional in-room tablets for a connected hotel guest experience.',
   path: '/solutions',
 })
 
 export default function SolutionsPage() {
-  return <NarrativePage page="solutions" />
+  return <ExperiencePage page="solutions" />
 }

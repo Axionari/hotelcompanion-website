@@ -1,0 +1,62 @@
+.conversation, .workbench, .control, .capabilities, .channelOptions {
+  --revenue-ink: var(--hc-ink, #241c17);
+  --revenue-paper: var(--hc-paper, #f2e9dc);
+  --revenue-muted: #62564d;
+  --revenue-accent: var(--hc-cognac, #985b38);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  box-sizing: border-box;
+}
+.conversation { width: 100%; margin: 0; color: var(--revenue-ink); background: var(--revenue-paper); border: 1px solid rgba(255,255,255,.55); border-radius: 17px; overflow: hidden; box-shadow: 0 30px 70px -25px rgba(0,0,0,.52); }
+.conversation > figcaption { padding: 13px 20px; background: var(--hc-night); color: var(--hc-cream); font-family: var(--font-editorial-mono), monospace; font-size: .6rem; letter-spacing: .12em; }
+.browserBar { display: flex; align-items: center; justify-content: space-between; padding: 16px 22px; border-bottom: 1px solid rgba(36,28,23,.16); font-size: .7rem; letter-spacing: .12em; }
+.browserBar > span:first-child { letter-spacing: .2em; opacity: .5; }
+.thread { padding: clamp(18px, 2.4vw, 30px); }
+.channel { display: flex; align-items: center; gap: 8px; font-size: .72rem; color: var(--revenue-muted); }
+.guest { margin: 22px 0 21px 25px !important; padding: 17px 19px; border-radius: 16px 16px 3px 16px; background: #e2d4c1; color: var(--revenue-ink); font: 400 clamp(1.18rem, 1.65vw, 1.5rem)/1.25 var(--font-editorial), Georgia, serif; }
+.reply { margin: 0 0 23px !important; color: var(--revenue-muted); font-size: .95rem; line-height: 1.55; }
+.package { display: flex; align-items: flex-start; gap: 14px; padding: 17px; border: 1px solid rgba(36,28,23,.22); border-radius: 10px; }
+.package > span { color: var(--revenue-accent); }
+.package strong { display: block; font-size: 1rem; font-weight: 600; }
+.package p { margin: 7px 0 0 !important; font-size: .8rem; line-height: 1.45; color: var(--revenue-muted); }
+.caption { display: block; padding: 0 22px 18px; font-size: .66rem; line-height: 1.4; color: var(--revenue-muted); }
+.capabilities { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(26px,5vw,72px); color: var(--hc-cream); }
+.capabilities article { padding-block: 27px; border-top: 1px solid rgba(242,233,218,.25); }
+.capabilities article > span { color: var(--hc-peach); font-family: var(--font-editorial-mono), monospace; font-size: .7rem; }
+.capabilities h3 { margin: 20px 0 14px !important; font: 400 clamp(1.7rem, 2.8vw, 2.5rem)/1.1 var(--font-editorial), Georgia, serif; color: var(--hc-cream); }
+.capabilities p { font-size: 1rem; line-height: 1.65; color: rgba(242,233,218,.82); }
+.workbench { margin-top: 38px; color: var(--revenue-ink); }
+.options { display: flex; flex-wrap: wrap; gap: 9px; padding-bottom: 19px; }
+.options button { min-height: 46px; padding: 11px 19px; border: 1px solid rgba(242,233,218,.35); border-radius: 30px; background: transparent; color: var(--hc-cream); cursor: pointer; font-size: .85rem; font-weight: 500; }
+.options button[aria-pressed='true'] { background: var(--hc-peach); border-color: var(--hc-peach); color: var(--revenue-ink); }
+.options button:focus-visible { outline: 3px solid var(--hc-peach); outline-offset: 4px; }
+.example { display: grid; grid-template-columns: 1.2fr 1fr; min-height: 360px; border-radius: 12px; overflow: hidden; background: var(--revenue-paper); }
+.exampleGuest, .exampleRules { padding: clamp(23px, 4vw, 48px); }
+.exampleRules { background: #e5d9c7; border-left: 1px solid rgba(36,28,23,.1); }
+.example span { display: block; color: var(--revenue-accent); font-family: var(--font-editorial-mono), monospace; font-size: .66rem; line-height: 1.4; letter-spacing: .1em; text-transform: uppercase; }
+.example blockquote { margin: 17px 0 34px !important; font: 400 clamp(1.5rem, 2.8vw, 2.3rem)/1.15 var(--font-editorial), Georgia, serif; color: var(--revenue-ink); }
+.exampleGuest p { margin-top: 15px !important; font-size: 1.06rem; line-height: 1.6; }
+.exampleRules h3 { margin: 15px 0 33px !important; font: 400 clamp(1.35rem, 2.1vw, 1.75rem)/1.25 var(--font-editorial), Georgia, serif; color: var(--revenue-ink); }
+.exampleRules p { margin-top: 14px !important; font-size: .94rem; line-height: 1.6; color: var(--revenue-muted); }
+.disclosure { max-width: 100ch; margin-top: 19px !important; color: rgba(242,233,218,.76); font-size: .8rem; line-height: 1.6; }
+.control { margin: 0; padding: clamp(25px,4vw,43px); background: #fbf6ee; border: 1px solid rgba(36,28,23,.2); border-radius: 12px; color: var(--revenue-ink); box-shadow: 0 25px 55px -30px rgba(36,28,23,.2); }
+.control figcaption { font: 500 .62rem/1.5 var(--font-editorial-mono), monospace; letter-spacing: .11em; color: var(--revenue-accent); }
+.control h3 { margin: 25px 0 13px !important; font: 400 clamp(1.8rem,3vw,2.6rem)/1.1 var(--font-editorial), Georgia, serif; color: var(--revenue-ink); }
+.control > p { font-size: .95rem; color: var(--revenue-muted); line-height: 1.5; }
+.control dl { margin-top: 26px; }
+.control dl > div { padding-block: 15px; border-top: 1px solid rgba(36,28,23,.16); }
+.control dt { display: flex; align-items: center; gap: 8px; color: var(--revenue-accent); font-size: .74rem; font-weight: 600; }
+.control dd { margin: 7px 0 0 22px !important; font-size: .93rem; line-height: 1.5; }
+.channelGrid { display: grid; grid-template-columns: repeat(3,1fr); gap: clamp(24px,4vw,56px); }
+.channelGrid article { border-top: 1px solid rgba(36,28,23,.25); padding-top: 26px; color: var(--revenue-ink); }
+.channelGrid svg { color: var(--revenue-accent); }
+.channelGrid h3 { margin: 22px 0 14px !important; color: var(--revenue-ink); font: 400 clamp(1.5rem,2.5vw,2.25rem)/1.1 var(--font-editorial), Georgia, serif; }
+.channelGrid p, .optional { color: var(--revenue-muted); font-size: 1rem; line-height: 1.6; }
+.optional { margin-top: 30px !important; padding-top: 24px; border-top: 1px solid rgba(36,28,23,.16); font-size: .87rem; }
+@media(max-width:760px) {
+  .example, .capabilities, .channelGrid { grid-template-columns: 1fr; }
+  .exampleRules { border-left: 0; border-top: 1px solid rgba(36,28,23,.1); }
+  .capabilities { gap: 10px; }
+  .options button { flex: 1 1 170px; }
+  .example { min-height: 0; }
+  .guest { font-size: 1.3rem; }
+}

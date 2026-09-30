@@ -9,6 +9,8 @@ const LOCALIZED_ROOTS = new Set([
   'enterprise',
   'faq',
   'platform',
+  'revenue',
+  'implementation',
   'privacy',
   'resources',
   'responsible-ai',

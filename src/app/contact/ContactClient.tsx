@@ -6,95 +6,14 @@ import { SiteFooter } from '@/components/site-footer'
 import { EditorialCloseMedia } from '@/components/editorial/EditorialImage'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { contactCopy } from '@/lib/i18n/marketing/contact'
+import { contactEditorialCopy } from '@/lib/i18n/marketing/contactEditorial'
 import { globalCopy } from '@/lib/i18n/marketing/global'
 
-const editorial = {
-  en: {
-    hero: {
-      eyebrow: 'Founding Partner Program',
-      title: 'One hotel.',
-      accent: 'Ninety days. Four numbers.',
-      body: 'A focused operating proof for hospitality leaders who want to shape Hotel Companion — and measure what it changes.',
-      folioLabel: 'The pilot contract',
-      folioTitle: 'Not a promise. An operating proof.',
-      rows: [
-        ['SCOPE', 'One property'],
-        ['DAY 0', 'Four targets set together'],
-        ['DAY 45', 'Mid-pilot review'],
-        ['DAY 90', 'The numbers decide'],
-      ],
-    },
-    proof: ['EARLY ACCESS', 'PRIORITY SUPPORT', 'ROADMAP INFLUENCE', 'PREFERENTIAL TERMS'],
-    founding: {
-      title: 'Build it with us.',
-      accent: 'Measure it with your guests.',
-    },
-    commitments: {
-      title: 'A pilot with',
-      accent: 'mutual obligations.',
-      body: 'The strongest proof has a champion, a cadence and visible ownership on both sides.',
-    },
-    timeline: {
-      title: 'The decision is scheduled',
-      accent: 'before we begin.',
-      body: 'Targets are agreed at the start. Progress is reviewed in the middle. At Day 90, the evidence determines what happens next.',
-    },
-    contact: {
-      title: 'Start with',
-      accent: 'a direct conversation.',
-      body: 'Explore the product, discuss a pilot or reach the team already supporting your hotel.',
-    },
-    closeVisual: {
-      alt: 'A private limestone Caribbean hotel appearing through tropical foliage at first light',
-      label: 'ONE PROPERTY · A CLEAR PROOF',
-    },
-  },
-  es: {
-    hero: {
-      eyebrow: 'Programa de Socios Fundadores',
-      title: 'Un hotel.',
-      accent: 'Noventa días. Cuatro números.',
-      body: 'Una prueba operativa enfocada para líderes de hospitalidad que quieren dar forma a Hotel Companion — y medir lo que cambia.',
-      folioLabel: 'El acuerdo del piloto',
-      folioTitle: 'No es una promesa. Es una prueba operativa.',
-      rows: [
-        ['ALCANCE', 'Una propiedad'],
-        ['DÍA 0', 'Cuatro metas acordadas'],
-        ['DÍA 45', 'Revisión de medio piloto'],
-        ['DÍA 90', 'Los números deciden'],
-      ],
-    },
-    proof: ['ACCESO ANTICIPADO', 'SOPORTE PRIORITARIO', 'INFLUENCIA EN LA HOJA DE RUTA', 'TÉRMINOS PREFERENTES'],
-    founding: {
-      title: 'Constrúyelo con nosotros.',
-      accent: 'Mídelo con tus huéspedes.',
-    },
-    commitments: {
-      title: 'Un piloto con',
-      accent: 'compromisos mutuos.',
-      body: 'La prueba más sólida tiene un responsable, una cadencia y dueños visibles de ambos lados.',
-    },
-    timeline: {
-      title: 'La decisión se agenda',
-      accent: 'antes de comenzar.',
-      body: 'Las metas se acuerdan al inicio. El progreso se revisa a la mitad. En el Día 90, la evidencia determina qué sigue.',
-    },
-    contact: {
-      title: 'Comienza con',
-      accent: 'una conversación directa.',
-      body: 'Explora el producto, conversa sobre un piloto o contacta al equipo que ya acompaña a tu hotel.',
-    },
-    closeVisual: {
-      alt: 'Un hotel privado de piedra caliza que aparece entre vegetación tropical al amanecer',
-      label: 'UNA PROPIEDAD · UNA PRUEBA CLARA',
-    },
-  },
-}
 
 export default function ContactClient() {
   const c = useCopy(contactCopy)
   const g = useCopy(globalCopy)
-  const e = useCopy(editorial)
+  const e = useCopy(contactEditorialCopy)
 
   return (
     <main className="ed-page ed-contact">
@@ -146,7 +65,7 @@ export default function ContactClient() {
       <section className="ed-section ed-tone-sand">
         <div className="ed-wrap">
           <div className="ed-section-head">
-            <div className="ed-eyebrow">02 · PILOT COMMITMENTS</div>
+            <div className="ed-eyebrow">02 · {e.commitmentsLabel}</div>
             <h2>{e.commitments.title}<br /><em>{e.commitments.accent}</em></h2>
             <p>{e.commitments.body}</p>
           </div>
@@ -164,7 +83,7 @@ export default function ContactClient() {
       <section className="ed-section ed-tone-cocoa">
         <div className="ed-wrap">
           <div className="ed-section-head">
-            <div className="ed-eyebrow">03 · 0 / 45 / 90</div>
+            <div className="ed-eyebrow">03 · {e.timelineLabel}</div>
             <h2>{e.timeline.title}<br /><em>{e.timeline.accent}</em></h2>
             <p>{e.timeline.body}</p>
           </div>

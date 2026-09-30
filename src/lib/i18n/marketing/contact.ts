@@ -1,6 +1,6 @@
 import type { Localized } from '../useCopy'
 
-/* Copy source: HotelCompanion__Site_Copy.md {#contact}. Verbatim. */
+/* Source: HotelCompanion__Site_Copy.md, including the 2026-09-29 addendum. */
 
 const en = {
   /* RC-editorial page name + act labels (Phase 5) */
@@ -67,41 +67,41 @@ const en = {
     /* Rendered as the standard mono-caps kicker (design-correction pass). */
     framing: 'NOW SELECTING FOUNDING HOTEL GROUPS',
     title: 'The founding pilot, on one page.',
-    sub: 'Ninety days. One property. Four numbers we agree on before we go live.',
+    sub: 'One property. A defined guest journey. A comparison and success measures agreed before launch.',
     stamp: 'measured in your pilot',
     kpis: [
-      { label: 'Direct-booking share', unit: '%' },
-      { label: 'OTA commission avoided', unit: '$/mo' },
-      { label: 'Upsell revenue per stay', unit: '$' },
-      { label: 'After-hours requests captured', unit: 'req/wk' },
+      { label: 'Additional contribution', unit: '$' },
+      { label: 'Completed, paid offer value', unit: '$' },
+      { label: 'Offer contribution after costs', unit: '$' },
+      { label: 'Guest declines respected', unit: '%' },
     ],
     youBring: {
       title: 'YOU BRING',
       items: [
-        'Your room types and rate calendar',
+        'Your approved catalogue, prices and service costs',
         'A PMS/front-desk contact',
         'A champion on property',
-        'Thirty minutes every Monday',
+        'Outcome data and an agreed comparison group',
       ],
     },
     weBring: {
       title: 'WE BRING',
       items: [
-        'Initial value live in 1–3 weeks',
+        'Proposed standard pilot: no upfront software or implementation fee',
         'Property and destination knowledge, verified',
-        'Priority journeys, workflows, and pilot measures',
-        'System integrations scoped to your stack',
+        'Contextual recommendations and hotel-approved deals',
+        'An agreed share of verified additional contribution; connections scoped first',
       ],
     },
     timeline: [
       {
-        marker: 'Week 0',
-        text: 'We set the four targets together, and the Day-90 meeting goes on the calendar before we start.',
+        marker: 'Before launch',
+        text: 'We agree eligibility, supported connections, costs, measurement, commercial terms and the pilot duration before launch.',
       },
-      { marker: 'Day 45', text: 'Mid-pilot review.' },
+      { marker: 'During the pilot', text: 'Review guest experience, fulfillment, paid outcomes and data quality.' },
       {
-        marker: 'Day 90',
-        text: 'The numbers decide. If they clear the bar we set together, we plan the next property. If they don’t, we switch it off — and your data stays yours either way.',
+        marker: 'At review',
+        text: 'Review the measured additional contribution. Expand only when the evidence supports it; uncertain results are not a success claim. The hotel keeps its data.',
       },
     ],
   },
@@ -114,7 +114,7 @@ const en = {
   },
 }
 
-/* Copy source: HotelCompanion__Site_Copy_ES.md {#contact}. Verbatim. */
+/* Source: HotelCompanion__Site_Copy_ES.md, including the 2026-09-29 addendum. */
 
 const es: typeof en = {
   /* Nombre de página + etiquetas de actos RC-editorial (Fase 5) */
@@ -178,41 +178,41 @@ const es: typeof en = {
   pilot: {
     framing: 'SELECCIONANDO A LOS GRUPOS HOTELEROS FUNDADORES',
     title: 'El piloto fundador, en una página.',
-    sub: 'Noventa días. Una propiedad. Cuatro números que acordamos antes de arrancar.',
+    sub: 'Una propiedad. Una experiencia definida. Comparación y medidas de éxito acordadas antes de comenzar.',
     stamp: 'medido en su piloto',
     kpis: [
-      { label: 'Participación de reserva directa', unit: '%' },
-      { label: 'Comisión OTA evitada', unit: '$/mes' },
-      { label: 'Ingreso por upsell por estancia', unit: '$' },
-      { label: 'Solicitudes fuera de horario capturadas', unit: 'sol/sem' },
+      { label: 'Contribución adicional', unit: '$' },
+      { label: 'Valor de ofertas completadas y pagadas', unit: '$' },
+      { label: 'Contribución de ofertas después de costos', unit: '$' },
+      { label: 'Rechazos del huésped respetados', unit: '%' },
     ],
     youBring: {
       title: 'USTEDES PONEN',
       items: [
-        'Sus tipos de habitación y calendario de tarifas',
+        'Su catálogo aprobado, precios y costos de servicio',
         'Un contacto de PMS/recepción',
         'Un responsable en la propiedad',
-        'Treinta minutos cada lunes',
+        'Datos de resultados y un grupo de comparación acordado',
       ],
     },
     weBring: {
       title: 'NOSOTROS PONEMOS',
       items: [
-        'Valor inicial en vivo en 1–3 semanas',
+        'Propuesta de piloto estándar: sin pago inicial por software o implementación',
         'Conocimiento de la propiedad y el destino, verificado',
-        'Recorridos prioritarios, flujos y métricas del piloto',
-        'Integraciones de sistemas definidas para su stack',
+        'Recomendaciones con contexto y ofertas aprobadas por el hotel',
+        'Parte acordada de la contribución adicional verificada; conexiones definidas antes',
       ],
     },
     timeline: [
       {
-        marker: 'Semana 0',
-        text: 'Fijamos juntos las cuatro metas, y la reunión del día 90 queda agendada antes de arrancar.',
+        marker: 'Antes del lanzamiento',
+        text: 'Acordamos elegibilidad, conexiones compatibles, costos, medición, términos comerciales y duración antes de comenzar.',
       },
-      { marker: 'Día 45', text: 'Revisión de medio piloto.' },
+      { marker: 'Durante el piloto', text: 'Revisamos experiencia, prestación, pagos y calidad de los datos.' },
       {
-        marker: 'Día 90',
-        text: 'Deciden los números. Si superan la meta que fijamos juntos, planeamos la siguiente propiedad. Si no, lo apagamos — y sus datos se quedan con ustedes, pase lo que pase.',
+        marker: 'En la revisión',
+        text: 'Revisamos la contribución adicional medida. Ampliamos solo cuando la evidencia lo justifica; la incertidumbre no se presenta como éxito. El hotel conserva sus datos.',
       },
     ],
   },

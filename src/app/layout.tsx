@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
-import { Fraunces, IBM_Plex_Mono, Instrument_Serif, Spline_Sans_Mono } from "next/font/google";
-import localFont from "next/font/local";
+import type { Metadata, Viewport } from "next";
+import { Fraunces, IBM_Plex_Mono, Instrument_Serif, Spline_Sans_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import "./interior-editorial.css";
 import "./interior-pages.css";
+import "./site-reading.css";
+import "./mobile-refinement.css";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 import { LiveDemoModalDeferred } from "@/components/cds/LiveDemoModalDeferred";
-import { StickyCta } from "@/components/cds/StickyCta";
 import { CookieBanner } from "@/components/CookieBanner";
 import { LIVE_DEMO_ENABLED } from "@/lib/flags";
 
@@ -53,41 +53,29 @@ const plexMono = IBM_Plex_Mono({
   preload: false,
 });
 
-/* Body / UI face — RC uses General Sans (Fontshare, not Google). Self-hosted
-   from public/fonts so there is no third-party request at runtime. */
-const generalSans = localFont({
-  src: [
-    { path: "../../public/fonts/GeneralSans-400.woff2", weight: "400", style: "normal" },
-    { path: "../../public/fonts/GeneralSans-500.woff2", weight: "500", style: "normal" },
-    { path: "../../public/fonts/GeneralSans-600.woff2", weight: "600", style: "normal" },
-    { path: "../../public/fonts/GeneralSans-700.woff2", weight: "700", style: "normal" },
-  ],
+/* One clean reading face for the shared website and product illustrations. */
+const generalSans = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-sans",
-  /* `swap` + a size-adjusted Arial fallback. The fallback's metrics are matched
-     to General Sans, so the swap moves text by very little; the tab-row wrap it
-     used to trigger is fixed by headroom (39px of slack), not by suppressing
-     the swap. Deliberately NOT `optional`: this is the body face, and on a slow
-     cold connection `optional` would keep Arial for the whole page view — the
-     wrong trade for readers on mobile data.
-     preload stays false per v4 G-7 below: re-adding it is its own decision. */
   display: "swap",
-  adjustFontFallback: "Arial",
-  preload: false,
 });
+
+export const viewport: Viewport = { width: "device-width", initialScale: 1, viewportFit: "cover" };
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.hotelcompanion.ai"),
   title: {
-    default: "Hotel Companion — A concierge that never forgets, built on Companion OS",
+    default: "Hotel Companion — AI guest service for hotels",
     template: "%s · Hotel Companion",
   },
   description:
-    "Understand Every Guest. Capture Every Opportunity. Hotel Companion transforms natural conversations into personalized guest experiences, operational intelligence, and coordinated execution. Powered by Companion OS.",
+    "Answer guest questions, recommend relevant hotel services and send requests to your team. Voice and chat for mobile and desktop web.",
   openGraph: {
     siteName: "Hotel Companion",
-    title: "Hotel Companion — A concierge that never forgets, built on Companion OS",
+    title: "Hotel Companion — AI guest service for hotels",
     description:
-      "Understand Every Guest. Capture Every Opportunity. Powered by Companion OS.",
+      "AI guest service. Relevant hotel offers. A focused outcome-based pilot.",
     url: "https://www.hotelcompanion.ai",
     type: "website",
     images: [{
@@ -99,9 +87,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hotel Companion — A concierge that never forgets, built on Companion OS",
+    title: "Hotel Companion — AI guest service for hotels",
     description:
-      "Understand Every Guest. Capture Every Opportunity. Powered by Companion OS.",
+      "AI guest service. Relevant hotel offers. A focused outcome-based pilot.",
     images: ["https://www.hotelcompanion.ai/og/hotel-companion-og.jpg"],
   },
 };
@@ -124,7 +112,7 @@ export default function RootLayout({
           <div className="pt-16">{children}</div>
           {/* Compact screens retain a persistent conversion path; desktop uses
               the always-present masthead CTA. */}
-          <StickyCta />
+
           {/* One demo instance for every entry point: nav, hero CTA, hero tablet.
               v4: deferred chunk (authorized v3.1 bundle split) — same modal. */}
           {LIVE_DEMO_ENABLED && <LiveDemoModalDeferred />}

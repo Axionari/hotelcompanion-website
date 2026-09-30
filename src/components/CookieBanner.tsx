@@ -76,7 +76,7 @@ export function CookieBanner() {
       <div className="cbin">
         <p className="cbtext">
           {c.bodyPre}
-          <Link href="/cookies">{c.linkText}</Link>
+          <Link prefetch={false} href="/cookies">{c.linkText}</Link>
           {c.bodyPost}
         </p>
         {expanded && (

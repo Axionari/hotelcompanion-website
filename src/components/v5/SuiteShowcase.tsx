@@ -6,9 +6,11 @@ import { VoiceOrb } from '@/components/cds/VoiceOrb'
 import { DeviceVoiceBar } from './DeviceVoiceBar'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { suitesCopy } from '@/lib/i18n/marketing/suites'
+import './SuiteShowcaseWeb.css'
 
 /**
- * SuiteShowcase — the homepage's big in-room tablet, running the full guided
+ * SuiteShowcase — a guided journey in a tablet or optional browser surface,
+ * running the full guided
  * booking flow (the RC ordering demo's logic, applied to a hotel stay):
  * welcome → browse → suite → your stay → review → payment → confirming →
  * confirmed → loyalty. Auto-advances; phase pills jump; reduced motion holds
@@ -512,7 +514,7 @@ const FLOW: Array<{ key: string; dwell: number; lifted?: boolean; render: (c: Su
   { key: 'loyalty', dwell: 3600, render: (c) => <LoyaltyScreen c={c} /> },
 ]
 
-export function SuiteShowcase() {
+export function SuiteShowcase({ surface = 'tablet' }: { surface?: 'tablet' | 'web' } = {}) {
   const c = useCopy(suitesCopy)
   const [i, setI] = useState(0)
   const [fade, setFade] = useState(false)
@@ -576,7 +578,7 @@ export function SuiteShowcase() {
   return (
     <div
       ref={rootRef}
-      className={`suite-wrap ${inView && pageVisible ? 'is-in-view' : ''}`}
+      className={`suite-wrap ${surface === 'web' ? 'suite-surface-web' : ''} ${inView && pageVisible ? 'is-in-view' : ''}`}
       style={{ '--accent': TERRA, '--accent-bright': '#EC8B5D', '--gold': '#86B9B7', '--text': CREAM } as CSSProperties}
       onMouseEnter={() => setInteracting(true)}
       onMouseLeave={() => setInteracting(false)}
@@ -619,8 +621,15 @@ export function SuiteShowcase() {
       <div
         data-device-ui=""
         className="suite-frame suite-stage"
-        style={{ width: '100%', background: '#071719', border: '1px solid rgba(134,185,183,.3)', borderRadius: 26, padding: 12, boxShadow: '0 60px 130px -34px rgba(2,17,19,.9), 0 0 120px -18px rgba(76,143,145,.3), inset 0 0 0 1px rgba(247,236,221,.04)', boxSizing: 'border-box' }}
+        style={surface === 'web' ? undefined : { width: '100%', background: '#071719', border: '1px solid rgba(134,185,183,.3)', borderRadius: 26, padding: 12, boxShadow: '0 60px 130px -34px rgba(2,17,19,.9), 0 0 120px -18px rgba(76,143,145,.3), inset 0 0 0 1px rgba(247,236,221,.04)', boxSizing: 'border-box' }}
       >
+        {surface === 'web' && (
+          <div className="suite-browser-toolbar" aria-hidden="true">
+            <span className="suite-browser-dots"><i /><i /><i /></span>
+            <span className="suite-browser-title">{c.property}</span>
+            <span className="suite-browser-window" />
+          </div>
+        )}
         <div className="suite-screen" style={{ height: '100%', borderRadius: 18, overflow: 'hidden', background: 'radial-gradient(120% 100% at 30% 0%, #0D373B 0%, #0B3034 58%, #061F24 100%)', display: 'flex', flexDirection: 'column' }}>
           {/* Status bar and content share one toned container so the tone has no
               seam across the status row. It stops short of the voice bar, whose
@@ -632,7 +641,7 @@ export function SuiteShowcase() {
               aria-hidden
               style={{ position: 'absolute', inset: 0, background: LIFTED, opacity: FLOW[i].lifted ? 1 : 0, transition: 'opacity 0.6s var(--ease-standard)', pointerEvents: 'none' }}
             />
-            <IOSStatusBar />
+            {surface === 'tablet' && <IOSStatusBar />}
             <div style={{ position: 'relative', flex: 1, minHeight: 0, overflow: 'hidden' }}>
               <div style={{ position: 'absolute', inset: 0, opacity: fade ? 0 : 1, transition: 'opacity 0.46s var(--ease-standard)' }}>
                 {FLOW[i].render(c, cyclePaused || interacting || reduce || !inView || !pageVisible)}

@@ -1,13 +1,13 @@
-import NarrativePage from '@/components/editorial/NarrativePage'
+import ExperiencePage from '@/components/experience/ExperiencePages'
 import { createPageMetadata } from '@/lib/siteMetadata'
 
 export const metadata = createPageMetadata({
-  title: 'Enterprise',
+  title: 'Hotel groups',
   description:
-    'Govern shared standards, local hotel identity, knowledge, roles, permissions, integrations, and portfolio insight from one hospitality intelligence layer.',
+    'Shared service standards, local hotel identity and an evidence-based portfolio rollout.',
   path: '/enterprise',
 })
 
 export default function EnterprisePage() {
-  return <NarrativePage page="enterprise" />
+  return <ExperiencePage page="enterprise" />
 }

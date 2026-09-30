@@ -73,7 +73,7 @@ const en = {
     tag: 'SEPTEMBER 2026',
     rows: [
       { label: 'ENCRYPTION', value: 'Customer data is encrypted in transit and at rest.' },
-      { label: 'PAYMENTS', value: 'Raw card data goes directly to Stripe; Hotel Companion receives a tokenized reference.' },
+      { label: 'PAYMENTS', value: 'Payment requires a verified processor connection. Otherwise, the hotel team handles payment and confirmation.' },
       { label: 'CUSTOMER CONTROL', value: 'Hotel knowledge remains customer-owned, with role-based access and accountable content owners.' },
       { label: 'ASSURANCE STATUS', value: 'No external certification is claimed here. Current controls and documentation are reviewed during procurement.' },
     ],
@@ -93,36 +93,36 @@ const en = {
      Days" calendar promise: value lands before integration; connections are
      staged and measured. NEEDS CONFIRM (Eduardo): stages + phrasing. */
   deployPath: {
-    title: 'Initial value in 1–3 weeks. Integrations staged to your stack.',
+    title: 'Launch timing agreed after scoping. Integrations staged to your stack.',
     steps: [
-      { title: 'Initial value', sub: '1–3 weeks · Property knowledge verified and live.' },
+      { title: 'Initial value', sub: 'Property knowledge verified before the agreed launch.' },
       { title: 'Destination knowledge', sub: 'Local recommendations, policies and context — reviewed with your team.' },
       { title: 'Guest journeys', sub: 'Priority conversations and team workflows go live first.' },
-      { title: 'System integrations', sub: 'PMS, POS and payments follow; timing depends on access, requirements and approvals.' },
+      { title: 'System integrations', sub: 'Supported PMS, POS and payment connections are verified separately; timing depends on access, requirements and approvals.' },
     ],
     caption: 'VALUE BEFORE INTEGRATION · STAGED TO YOUR STACK · TIMING SCOPED TOGETHER',
   },
-  /* P5.4 — the hybrid checkout flow (PaymentFlow diagram + steps). Card data
-     is captured by Stripe directly; only a token returns to Postgres. */
+  /* Illustrative processor checkout. This does not establish a live connection
+     or booking capability for any hotel. */
   payment: {
-    statement: 'Card data never touches the host.',
+    statement: 'Payments require a verified connection.',
     deck:
-      'When a guest pays on the companion screen, the raw card data flows straight to Stripe — never through Hotel Companion. Only a token comes back.',
+      'Illustrative payment flow for a supported connection to the hotel’s approved processor. Without that verified connection, the hotel team handles payment and reservation confirmation.',
     lanes: {
-      client: { label: 'THE GUEST', sub: 'The companion screen' },
-      api: { label: 'HOTEL COMPANION', sub: 'Booking & guest records' },
-      stripe: { label: 'STRIPE', sub: 'PCI Level 1 · certified vault' },
+      client: { label: 'THE GUEST', sub: 'Illustrative checkout' },
+      api: { label: 'HOTEL COMPANION', sub: 'Verified connection only' },
+      stripe: { label: 'PROCESSOR', sub: 'Hotel-approved checkout' },
     },
-    device: { total: 'Order total', amount: '$45.90', cta: 'Tap to pay' },
+    device: { total: 'Example total', amount: '$45.90', cta: 'Example' },
     bypass: 'Raw card data never enters Hotel Companion',
     token: 'Tokenized reference — never the card',
-    record: { title: 'BOOKING · MAR-4192', row: 'Ocean-View Suite · 3 nights', token: 'CARD · •••• 4242 · TOKEN ONLY' },
+    record: { title: 'EXAMPLE · MAR-4192', row: 'Sample order · not a reservation', token: 'REFERENCE ONLY · EXAMPLE' },
     steps: [
-      { name: 'Intent', desc: 'The Companion confirms the total and opens a secure payment session.' },
-      { name: 'Sandboxed rendering', desc: 'The payment form is Stripe’s own, rendered inside a secure frame — never the Companion’s.' },
-      { name: 'Isolated capture', desc: 'The guest enters details or uses Apple Pay. Raw card data flows directly to Stripe’s Level 1 vault.' },
-      { name: 'Tokenization', desc: 'A secure reference token returns to the booking record. Raw card data is never stored.' },
-      { name: 'Fulfillment', desc: 'The Companion masks the display and resumes the conversation: “Thank you — your reservation is confirmed.”' },
+      { name: 'Intent', desc: 'A supported connection can request a payment session after the hotel confirms the offer and total.' },
+      { name: 'Sandboxed rendering', desc: 'The approved processor provides the payment form through the verified connection.' },
+      { name: 'Isolated capture', desc: 'The guest enters payment details with the processor. Available payment methods depend on that connection.' },
+      { name: 'Tokenization', desc: 'Where supported, the processor returns a payment reference and status. A payment attempt is not a confirmed reservation.' },
+      { name: 'Fulfillment', desc: 'A reservation is confirmed only by an authorized connected system or the hotel team. Payment success alone does not confirm availability or fulfillment.' },
     ],
   },
   sections: [
@@ -224,11 +224,11 @@ const en = {
     {
       id: 'deploy',
       eyebrow: '12 · DEPLOYMENT',
-      title: 'Initial Value in 1–3 Weeks.',
+      title: 'Launch Timing Agreed After Scoping.',
       body: [
-        'A verified property and destination knowledge base, priority guest journeys, and team workflows go live first.',
-        'PMS, POS, and payment connections follow in a staged rollout.',
-        'Integration timing depends on API access, provider requirements, and approvals.',
+        'Verified property knowledge, priority guest journeys and team workflows form the agreed initial scope.',
+        'Supported PMS, POS and payment connections are scoped and verified separately.',
+        'Launch and integration timing depend on scope, provider access, validation and approvals.',
       ],
       coda:
         'Value before integration. Systems staged to your stack.',
@@ -338,7 +338,7 @@ const es: typeof en = {
     tag: 'SEPTIEMBRE DE 2026',
     rows: [
       { label: 'CIFRADO', value: 'Los datos del cliente se cifran en tránsito y en reposo.' },
-      { label: 'PAGOS', value: 'Los datos de tarjeta van directamente a Stripe; Hotel Companion recibe una referencia tokenizada.' },
+      { label: 'PAGOS', value: 'El pago requiere una conexión verificada con el procesador. En los demás casos, el equipo del hotel gestiona el pago y la confirmación.' },
       { label: 'CONTROL DEL CLIENTE', value: 'El conocimiento del hotel pertenece al cliente, con acceso por roles y responsables de contenido.' },
       { label: 'ESTADO DE GARANTÍAS', value: 'Aquí no se afirma ninguna certificación externa. Los controles y la documentación actuales se revisan durante el proceso de compra.' },
     ],
@@ -353,34 +353,34 @@ const es: typeof en = {
     ],
   },
   deployPath: {
-    title: 'Valor inicial en 1–3 semanas. Integraciones por etapas para tu stack.',
+    title: 'Plazos acordados después de definir el alcance. Integraciones por etapas para tu stack.',
     steps: [
-      { title: 'Valor inicial', sub: '1–3 semanas · Conocimiento de la propiedad verificado y en vivo.' },
+      { title: 'Valor inicial', sub: 'Conocimiento del hotel verificado antes del lanzamiento acordado.' },
       { title: 'Conocimiento del destino', sub: 'Recomendaciones locales, políticas y contexto — revisados con tu equipo.' },
       { title: 'Recorridos del huésped', sub: 'Las conversaciones prioritarias y los flujos del equipo entran en operación primero.' },
-      { title: 'Integraciones de sistemas', sub: 'PMS, POS y pagos siguen; el plazo depende de accesos, requisitos y aprobaciones.' },
+      { title: 'Integraciones de sistemas', sub: 'Las conexiones compatibles con PMS, POS y pagos se verifican por separado; el plazo depende de accesos, requisitos y aprobaciones.' },
     ],
     caption: 'VALOR ANTES DE LA INTEGRACIÓN · POR ETAPAS PARA TU STACK · PLAZOS DEFINIDOS EN CONJUNTO',
   },
   payment: {
-    statement: 'Los datos de la tarjeta nunca tocan el host.',
+    statement: 'Los pagos requieren una conexión verificada.',
     deck:
-      'Cuando un huésped paga en la pantalla del companion, los datos de la tarjeta van directo a Stripe — nunca pasan por Hotel Companion. Solo regresa un token.',
+      'Flujo de pago ilustrativo para una conexión compatible con el procesador aprobado por el hotel. Sin esa conexión verificada, el equipo del hotel gestiona el pago y confirma la reserva.',
     lanes: {
-      client: { label: 'EL HUÉSPED', sub: 'La pantalla del companion' },
-      api: { label: 'HOTEL COMPANION', sub: 'Reservas y registros del huésped' },
-      stripe: { label: 'STRIPE', sub: 'PCI Nivel 1 · bóveda certificada' },
+      client: { label: 'EL HUÉSPED', sub: 'Pago ilustrativo' },
+      api: { label: 'HOTEL COMPANION', sub: 'Solo con conexión verificada' },
+      stripe: { label: 'PROCESADOR', sub: 'Pago aprobado por el hotel' },
     },
-    device: { total: 'Total del pedido', amount: '$45.90', cta: 'Toca para pagar' },
+    device: { total: 'Total de ejemplo', amount: '$45.90', cta: 'Ejemplo' },
     bypass: 'Los datos de la tarjeta nunca entran a Hotel Companion',
     token: 'Referencia tokenizada — nunca la tarjeta',
-    record: { title: 'RESERVA · MAR-4192', row: 'Suite Vista al Mar · 3 noches', token: 'TARJETA · •••• 4242 · SOLO TOKEN' },
+    record: { title: 'EJEMPLO · MAR-4192', row: 'Pedido de ejemplo · no es reserva', token: 'SOLO REFERENCIA · EJEMPLO' },
     steps: [
-      { name: 'Intención', desc: 'El Companion confirma el total y abre una sesión de pago segura.' },
-      { name: 'Renderizado aislado', desc: 'El formulario de pago es el de Stripe, dentro de un marco seguro — nunca el del Companion.' },
-      { name: 'Captura aislada', desc: 'El huésped ingresa sus datos o usa Apple Pay. Los datos de la tarjeta van directo a la bóveda Nivel 1 de Stripe.' },
-      { name: 'Tokenización', desc: 'Un token de referencia seguro regresa al registro de la reserva. Los datos de la tarjeta nunca se almacenan.' },
-      { name: 'Cumplimiento', desc: 'El Companion oculta la pantalla y retoma la conversación: “Gracias — tu reservación está confirmada.”' },
+      { name: 'Intención', desc: 'Una conexión compatible puede solicitar una sesión de pago después de que el hotel confirme la oferta y el total.' },
+      { name: 'Renderizado aislado', desc: 'El procesador aprobado proporciona el formulario de pago mediante la conexión verificada.' },
+      { name: 'Captura aislada', desc: 'El huésped ingresa los datos de pago con el procesador. Los métodos disponibles dependen de esa conexión.' },
+      { name: 'Tokenización', desc: 'Donde existe soporte, el procesador devuelve una referencia y un estado de pago. Un intento de pago no es una reserva confirmada.' },
+      { name: 'Cumplimiento', desc: 'Solo un sistema conectado autorizado o el equipo del hotel confirma la reserva. Un pago exitoso no confirma por sí solo disponibilidad ni cumplimiento.' },
     ],
   },
   sections: [
@@ -482,14 +482,14 @@ const es: typeof en = {
     {
       id: 'deploy',
       eyebrow: '12 · IMPLEMENTACIÓN',
-      title: 'Implementa en Días.',
+      title: 'Plazos Acordados Después de Definir el Alcance.',
       body: [
-        'El software empresarial no debería requerir meses de implementación.',
-        'Hotel Companion está diseñado para una implementación rápida.',
-        'Incorporación ágil. Implementación guiada. Capacitación mínima. Valor inmediato. Escala a tu propio ritmo.',
+        'El conocimiento verificado del hotel y los recorridos prioritarios del huésped forman el alcance inicial acordado.',
+        'Las conexiones compatibles con PMS, POS y pagos se definen y verifican por separado.',
+        'El plazo depende del alcance, el acceso a los proveedores, la validación y las aprobaciones.',
       ],
       coda:
-        'Ya sea que implementes una sola propiedad o todo un portafolio, tus equipos pueden empezar a generar valor casi de inmediato.',
+        'Alcance inicial acordado. Conexiones por etapas para tu operación.',
     },
     {
       id: 'grow',

@@ -65,7 +65,7 @@ const platformEn: EditorialPageCopy = {
     eyebrow: 'Product',
     title: 'One conversation',
     accent: 'follows the stay.',
-    body: 'Across voice, tablet, QR, web and messaging, the guest keeps one continuous relationship with the hotel — from the first question to the return.',
+    body: 'Guests speak or type on mobile and desktop web — from the first question to the return. Telephone and WhatsApp connections are scoped for the pilot; in-room tablets are optional.',
     primary: 'Request a Demo',
     primaryHref: '/demo',
     secondary: 'See the service loop',
@@ -79,19 +79,19 @@ const platformEn: EditorialPageCopy = {
       { label: '04 · VERIFIED', value: 'The guest confirms the outcome' },
     ],
   },
-  proof: ['VOICE', 'TABLET', 'QR', 'WEB', 'MESSAGING', 'ENGLISH & SPANISH'],
+  proof: ['VOICE & TEXT', 'MOBILE WEB', 'DESKTOP WEB', 'LINK OR QR', 'ENGLISH & SPANISH'],
   sections: [
     {
       id: 'platform-voice-first',
       aliases: ['platform-model', 'platform-your-voice', 'platform-adaptivity', 'every-surface', 'next-surface'],
       no: '01', label: 'EVERYWHERE THE GUEST ALREADY IS',
       title: 'The surface changes.', accent: 'The conversation does not.',
-      body: 'Hotel Companion carries context across the moments that already make up a stay. Each surface is useful on its own; together they feel like one hotel remembering.',
+      body: 'Hotel Companion brings guest context to voice and text on mobile and desktop web. Additional channels and shared context depend on the connections agreed for your pilot.',
       tone: 'paper', presentation: 'ledger',
       items: [
-        { label: 'BEFORE', title: 'A direct answer becomes a direct path.', body: 'Questions about rooms, dates and experiences can move into the hotel’s verified booking flow.' },
+        { label: 'BEFORE', title: 'A direct answer becomes a direct path.', body: 'Questions about rooms, dates and experiences can lead to a supported booking flow or a request for the hotel team to confirm.' },
         { label: 'ARRIVAL', title: 'The welcome already has context.', body: 'Arrival time, language, permission and preferences move with the guest.' },
-        { label: 'DURING', title: 'A request keeps its history.', body: 'The guest can speak, tap or scan without explaining the stay again.' },
+        { label: 'DURING', title: 'A request keeps its history.', body: 'The guest can speak or type on mobile and desktop web, reached through a link or QR.' },
         { label: 'RETURN', title: 'Recognition begins with consent.', body: 'Useful memory is preserved according to the hotel’s policy and the guest’s permission.' },
       ],
     },
@@ -105,7 +105,7 @@ const platformEn: EditorialPageCopy = {
       items: [
         { label: 'THE HOTEL', title: 'Rooms, rituals, policies and people.', body: 'The knowledge guests need, with owners and an update path.' },
         { label: 'THE PLACE', title: 'A destination with judgment.', body: 'Recommendations reflect distance, timing, suitability and the hotel’s point of view.' },
-        { label: 'THE BOUNDARY', title: 'Availability is checked, never imagined.', body: 'Rates, inventory, payments and fulfillment remain with the systems authorized to confirm them.' },
+        { label: 'THE BOUNDARY', title: 'Availability is checked, never imagined.', body: 'Rates, inventory, payments and fulfillment require a supported connection or confirmation from the hotel team.' },
       ],
       note: 'Hotel Companion complements the PMS, booking engine and operating systems. It does not replace them.',
     },
@@ -133,7 +133,7 @@ const platformEn: EditorialPageCopy = {
       body: 'Hotel Companion helps the hotel act on what the guest is already trying to do — without turning the stay into a sales funnel.',
       tone: 'cocoa', presentation: 'cards',
       items: [
-        { label: 'DIRECT', title: 'Keep the ready guest close.', body: 'Answer the real question and guide them into the hotel’s own verified booking path.' },
+        { label: 'DIRECT', title: 'Keep the ready guest close.', body: 'Answer the real question and guide them to a supported hotel booking path or the team for confirmation.' },
         { label: 'UPGRADE', title: 'Offer more when the reason is clear.', body: 'Space, view, arrival pattern and occasion create context; availability and price still require confirmation.' },
         { label: 'RETURN', title: 'Remember what made the stay work.', body: 'Use permitted preferences to make the next arrival feel recognized.' },
       ],
@@ -160,7 +160,7 @@ const platformEn: EditorialPageCopy = {
       items: [
         { title: 'Does Hotel Companion replace our PMS or booking engine?', body: 'No. It provides the conversational and intelligence layer around the systems your hotel already trusts.' },
         { title: 'Can it use our hotel’s own voice and knowledge?', body: 'Yes. Brand language and approved knowledge are configured for the property, with governance over what is published.' },
-        { title: 'How are payments handled?', body: 'Payment details go directly to the authorized processor through a secure session. Hotel Companion receives only the reference needed to continue the workflow.' },
+        { title: 'How are payments handled?', body: 'Payment flows require a supported, verified connection to the hotel’s approved processor. Without that connection, the hotel team handles payment and confirms the reservation. The Companion does not confirm a booking from a payment attempt.' },
         { title: 'Can we start without a deep integration?', body: 'Yes. The founding pilot starts with verified knowledge and a tightly defined guest journey, then adds connections where they create measurable value.' },
       ],
       link: { href: '/enterprise', label: 'See enterprise architecture' },
@@ -179,7 +179,7 @@ const platformEs: EditorialPageCopy = {
   hero: {
     ...platformEn.hero,
     eyebrow: 'Producto', title: 'Una conversación', accent: 'acompaña toda la estancia.',
-    body: 'Por voz, tablet, QR, web y mensajería, el huésped mantiene una relación continua con el hotel — desde la primera pregunta hasta su regreso.',
+    body: 'El huésped habla o escribe en web móvil y computadora — desde la primera pregunta hasta su regreso. Teléfono y WhatsApp se definen para el piloto; las tablets en habitación son opcionales.',
     primary: 'Solicita una Demo', secondary: 'Mira el ciclo de servicio',
     folioLabel: 'UN SOLO HILO OPERATIVO', folioTitle: 'El huésped pregunta una vez.',
     folioRows: [
@@ -189,30 +189,30 @@ const platformEs: EditorialPageCopy = {
       { label: '04 · VERIFICADO', value: 'El huésped confirma el resultado' },
     ],
   },
-  proof: ['VOZ', 'TABLET', 'QR', 'WEB', 'MENSAJERÍA', 'ESPAÑOL E INGLÉS'],
+  proof: ['VOZ Y TEXTO', 'WEB MÓVIL', 'WEB EN COMPUTADORA', 'ENLACE O QR', 'ESPAÑOL E INGLÉS'],
   sections: [
-    { ...platformEn.sections[0], label: 'DONDE EL HUÉSPED YA ESTÁ', title: 'La superficie cambia.', accent: 'La conversación no.', body: 'Hotel Companion lleva el contexto por los momentos que ya forman una estancia. Cada superficie funciona por sí sola; juntas se sienten como un hotel que recuerda.', items: [
-      { label: 'ANTES', title: 'Una respuesta directa se vuelve una ruta directa.', body: 'Las preguntas sobre habitaciones, fechas y experiencias pueden avanzar al flujo verificado de reserva del hotel.' },
+    { ...platformEn.sections[0], label: 'DONDE EL HUÉSPED YA ESTÁ', title: 'La superficie cambia.', accent: 'La conversación no.', body: 'Hotel Companion aporta contexto a las conversaciones por voz y texto en web móvil y computadora. Los canales adicionales y el contexto compartido dependen de las conexiones acordadas para el piloto.', items: [
+      { label: 'ANTES', title: 'Una respuesta directa se vuelve una ruta directa.', body: 'Las preguntas sobre habitaciones, fechas y experiencias pueden llevar a un flujo de reserva compatible o a una solicitud que confirme el equipo del hotel.' },
       { label: 'LLEGADA', title: 'La bienvenida ya tiene contexto.', body: 'Hora de llegada, idioma, permiso y preferencias acompañan al huésped.' },
-      { label: 'DURANTE', title: 'Una solicitud conserva su historia.', body: 'El huésped puede hablar, tocar o escanear sin volver a explicar la estancia.' },
+      { label: 'DURANTE', title: 'Una solicitud conserva su historia.', body: 'El huésped puede hablar o escribir en web móvil y computadora, desde un enlace o QR.' },
       { label: 'REGRESO', title: 'El reconocimiento comienza con permiso.', body: 'La memoria útil se conserva según la política del hotel y el consentimiento del huésped.' },
     ] },
     { ...platformEn.sections[1], label: 'SABE QUÉ ES VERDAD', title: 'Cálido en el tono.', accent: 'Fundado en hechos.', body: 'El Companion habla con la voz del hotel, pero responde desde conocimiento gobernado y sistemas conectados — no desde conjeturas genéricas.', items: [
       { label: 'EL HOTEL', title: 'Habitaciones, rituales, políticas y personas.', body: 'El conocimiento que el huésped necesita, con responsables y una ruta de actualización.' },
       { label: 'EL LUGAR', title: 'Un destino con criterio.', body: 'Las recomendaciones consideran distancia, horario, afinidad y el punto de vista del hotel.' },
-      { label: 'EL LÍMITE', title: 'La disponibilidad se verifica, nunca se inventa.', body: 'Tarifas, inventario, pagos y cumplimiento permanecen en los sistemas autorizados para confirmarlos.' },
+      { label: 'EL LÍMITE', title: 'La disponibilidad se verifica, nunca se inventa.', body: 'Tarifas, inventario, pagos y cumplimiento requieren una conexión compatible o la confirmación del equipo del hotel.' },
     ], note: 'Hotel Companion complementa el PMS, el motor de reservas y los sistemas operativos. No los reemplaza.' },
     { ...platformEn.sections[2], label: 'DE SOLICITUD A RESOLUCIÓN VERIFICADA', title: 'Enviado es un mensaje.', accent: 'Resuelto es un resultado.', body: 'Cada solicitud conserva habitación, estancia, contexto y equipo responsable hasta que el huésped confirma el resultado.', items: [
       { title: 'Entendido', body: 'Vinculado con la estancia y la capacidad real del hotel.' }, { title: 'Aceptado', body: 'Una persona o sistema conectado asume la responsabilidad.' }, { title: 'En progreso', body: 'El huésped recibe una actualización útil.' }, { title: 'Completado', body: 'El hotel registra el trabajo como terminado.' }, { title: 'Verificado', body: 'El huésped confirma el resultado.' },
     ], note: 'EJEMPLO GUIADO · EL ENRUTAMIENTO REAL DEPENDE DE LOS SISTEMAS CONECTADOS DE CADA HOTEL' },
     { ...platformEn.sections[3], label: 'SERVICIO PRIMERO. INGRESOS EN CONTEXTO.', title: 'El reconocimiento se vuelve servicio.', accent: 'La intención, oportunidad.', body: 'Hotel Companion ayuda al hotel a actuar sobre lo que el huésped ya intenta hacer — sin convertir la estancia en un embudo de ventas.', items: [
-      { label: 'DIRECTO', title: 'Mantén cerca al huésped listo.', body: 'Responde la pregunta real y guíalo a la ruta verificada de reserva del hotel.' }, { label: 'MEJORA', title: 'Ofrece más cuando la razón es clara.', body: 'Espacio, vista, llegada y ocasión aportan contexto; disponibilidad y precio aún deben confirmarse.' }, { label: 'REGRESO', title: 'Recuerda qué hizo funcionar la estancia.', body: 'Usa preferencias permitidas para que la próxima llegada se sienta reconocida.' },
+      { label: 'DIRECTO', title: 'Mantén cerca al huésped listo.', body: 'Responde la pregunta real y guíalo a una ruta de reserva compatible o al equipo para que confirme.' }, { label: 'MEJORA', title: 'Ofrece más cuando la razón es clara.', body: 'Espacio, vista, llegada y ocasión aportan contexto; disponibilidad y precio aún deben confirmarse.' }, { label: 'REGRESO', title: 'Recuerda qué hizo funcionar la estancia.', body: 'Usa preferencias permitidas para que la próxima llegada se sienta reconocida.' },
     ] },
     { ...platformEn.sections[4], label: 'EL HOTEL APRENDE AL AMANECER', title: 'Qué pasó.', accent: 'Qué puede mejorar el equipo.', body: 'Las preguntas cotidianas revelan demanda, fricción operativa e intención comercial. El informe matutino las convierte en una lista breve y revisable.', items: [
       { label: 'OBSERVADO', title: 'Las solicitudes de cena tardía se concentran después del cierre.' }, { label: 'VERIFICADO', title: 'Recepción las recuperó con un menú frío sencillo.' }, { label: 'RECOMENDADO', title: 'Aprobar una prueba de menú tardío durante siete días.' },
     ], note: 'INFORME ILUSTRATIVO · DATOS DE UNA PROPIEDAD DE MUESTRA' },
     { ...platformEn.sections[5], label: 'PREGUNTAS PRÁCTICAS', title: 'Límites claros.', accent: 'Antes del primer huésped.', items: [
-      { title: '¿Hotel Companion reemplaza nuestro PMS o motor de reservas?', body: 'No. Aporta la capa conversacional y de inteligencia alrededor de los sistemas que el hotel ya utiliza.' }, { title: '¿Puede usar la voz y el conocimiento de nuestro hotel?', body: 'Sí. El lenguaje de marca y el conocimiento aprobado se configuran para la propiedad, con gobierno sobre lo publicado.' }, { title: '¿Cómo se manejan los pagos?', body: 'Los datos van directo al procesador autorizado mediante una sesión segura. Hotel Companion recibe solo la referencia necesaria para continuar.' }, { title: '¿Podemos comenzar sin una integración profunda?', body: 'Sí. El piloto inicia con conocimiento verificado y una experiencia acotada, y después conecta donde haya valor medible.' },
+      { title: '¿Hotel Companion reemplaza nuestro PMS o motor de reservas?', body: 'No. Aporta la capa conversacional y de inteligencia alrededor de los sistemas que el hotel ya utiliza.' }, { title: '¿Puede usar la voz y el conocimiento de nuestro hotel?', body: 'Sí. El lenguaje de marca y el conocimiento aprobado se configuran para la propiedad, con gobierno sobre lo publicado.' }, { title: '¿Cómo se manejan los pagos?', body: 'Los pagos requieren una conexión compatible y verificada con el procesador aprobado por el hotel. Sin esa conexión, el equipo gestiona el pago y confirma la reserva. El Companion no confirma una reserva a partir de un intento de pago.' }, { title: '¿Podemos comenzar sin una integración profunda?', body: 'Sí. El piloto inicia con conocimiento verificado y una experiencia acotada, y después conecta donde haya valor medible.' },
     ], link: { href: '/enterprise', label: 'Ver arquitectura enterprise' } },
   ],
   closing: { ...platformEn.closing, eyebrow: 'UNA SESIÓN DE TRABAJO', title: 'Tráenos una experiencia del huésped.', accent: 'Haremos visible el hilo operativo.', body: 'Tu ruta de reserva, una solicitud, un momento de ingreso y la evidencia de la mañana — bajo el nombre de tu hotel.', primary: 'Solicita una Demo', secondary: 'Enterprise' },
@@ -281,14 +281,14 @@ const enterpriseEn: EditorialPageCopy = {
     { id: 'knowledge', aliases: ['admin', 'governance'], no: '02', label: 'KNOWLEDGE WITH OWNERS', title: 'A living asset.', accent: 'Never an uncontrolled answer bank.', body: 'Publishing, permission and accountability are designed into how hotel knowledge changes.', tone: 'sand', presentation: 'ledger', items: [
       { label: 'OWNERSHIP', title: 'Every knowledge domain has a responsible team.', body: 'Brand, property and department content can remain distinct.' }, { label: 'APPROVAL', title: 'Changes follow the organization’s review path.', body: 'Draft, approve, publish and retire with visibility.' }, { label: 'PERMISSION', title: 'Access follows role and scope.', body: 'People see and change only what their responsibility requires.' }, { label: 'HISTORY', title: 'Important changes remain reviewable.', body: 'Versioning and auditability support operational trust.' },
     ] },
-    { id: 'secure', aliases: ['payment', 'integrates', 'what-it-is-not'], no: '03', label: 'TRUST HAS AN ARCHITECTURE', title: 'Connected.', accent: 'With clear boundaries.', body: 'Hotel Companion complements the PMS, payment processor and hotel systems through governed connections. It does not replace them, and raw card data does not enter Hotel Companion.', tone: 'night', presentation: 'cards', items: [
-      { label: 'ACCESS', title: 'Role-based control.', body: 'Authentication, permissions and accountable ownership around sensitive knowledge.' }, { label: 'DATA', title: 'The customer remains in control.', body: 'Organizational knowledge stays the customer’s asset and is used to deliver the service.' }, { label: 'PAYMENTS', title: 'Processor-first handling.', body: 'Payment details go directly to the authorized processor; the workflow receives a tokenized reference.' },
+    { id: 'secure', aliases: ['payment', 'integrates', 'what-it-is-not'], no: '03', label: 'TRUST HAS AN ARCHITECTURE', title: 'Connected.', accent: 'With clear boundaries.', body: 'Hotel Companion complements the PMS, payment processor and hotel systems where supported connections have been verified. Otherwise, the hotel team confirms reservations, payments and fulfillment.', tone: 'night', presentation: 'cards', items: [
+      { label: 'ACCESS', title: 'Role-based control.', body: 'Authentication, permissions and accountable ownership around sensitive knowledge.' }, { label: 'DATA', title: 'The customer remains in control.', body: 'Organizational knowledge stays the customer’s asset and is used to deliver the service.' }, { label: 'PAYMENTS', title: 'Processor-first handling.', body: 'Where a payment connection is verified, card details go to the approved processor. Without that connection, the hotel team handles payment.' },
     ], link: { href: '/trust', label: 'Open the Trust Center' } },
     { id: 'operational-intel', aliases: ['commercial-intel', 'enterprise-outcomes'], no: '04', label: 'SEE ACROSS THE PORTFOLIO', title: 'Local signals.', accent: 'Leadership visibility.', body: 'Conversation reveals where guests ask, where teams recover and where useful demand is accumulating.', tone: 'cocoa', presentation: 'cards', items: [
       { label: 'SERVICE', title: 'Demand and friction by property.', body: 'See recurring needs, waits and recovery patterns without losing local context.' }, { label: 'COMMERCIAL', title: 'Intent before it disappears.', body: 'Direct-booking, upgrade and ancillary signals can be reviewed across the group.' }, { label: 'KNOWLEDGE', title: 'Gaps become an operating agenda.', body: 'Repeated unanswered questions show where approved knowledge or service needs attention.' },
     ] },
-    { id: 'deploy', aliases: ['grow'], no: '05', label: 'VALUE BEFORE INTEGRATION', title: 'Initial value in 1–3 weeks.', accent: 'Integrations staged to your stack.', body: 'A verified property and destination knowledge base, priority guest journeys and team workflows go live first. PMS, POS and payment connections follow; timing depends on API access, provider requirements and approvals.', tone: 'paper', presentation: 'flow', items: [
-      { title: 'Initial value', body: 'Property and destination knowledge are verified and made live.' }, { title: 'Priority journeys', body: 'Guest conversations and team workflows begin delivering value.' }, { title: 'System integrations', body: 'PMS, POS and payment connections follow in stages.' }, { title: 'Technical discovery', body: 'Access, provider requirements and approvals determine timing.' },
+    { id: 'deploy', aliases: ['grow'], no: '05', label: 'VALUE BEFORE INTEGRATION', title: 'Start with an agreed scope.', accent: 'Integrations staged to your stack.', body: 'Start with verified property knowledge and agreed guest journeys. Launch timing is set after scoping; any PMS, POS or payment connections require provider access, validation and approvals.', tone: 'paper', presentation: 'flow', items: [
+      { title: 'Initial value', body: 'Property and destination knowledge are verified and made live.' }, { title: 'Priority journeys', body: 'Guest conversations and team workflows begin delivering value.' }, { title: 'System integrations', body: 'Supported PMS, POS and payment connections are scoped and verified separately.' }, { title: 'Technical discovery', body: 'Access, provider requirements and approvals determine timing.' },
     ], note: 'INITIAL SCOPE AND SYSTEM TIMING ARE CONFIRMED DURING TECHNICAL DISCOVERY', link: { href: '/contact#founding', label: 'See the founding pilot' } },
   ],
   closing: { id: 'enterprise-final-cta', eyebrow: 'PORTFOLIO WORKING SESSION', title: 'Keep the hotels distinct.', accent: 'Make the intelligence coherent.', body: 'Bring one property, one shared standard and one measure. We will map the governed path between them.', primary: 'Discuss your portfolio', primaryHref: '/demo', secondary: 'Trust Center', secondaryHref: '/trust' },
@@ -307,14 +307,14 @@ const enterpriseEs: EditorialPageCopy = {
     { ...enterpriseEn.sections[1], label: 'CONOCIMIENTO CON RESPONSABLES', title: 'Un activo vivo.', accent: 'Nunca un banco de respuestas sin control.', body: 'Publicación, permisos y responsabilidad forman parte de cómo cambia el conocimiento.', items: [
       { label: 'RESPONSABILIDAD', title: 'Cada dominio tiene un equipo responsable.', body: 'Marca, propiedad y departamentos pueden mantenerse distintos.' }, { label: 'APROBACIÓN', title: 'Los cambios siguen la revisión de la organización.', body: 'Borrador, aprobación, publicación y retiro con visibilidad.' }, { label: 'PERMISO', title: 'El acceso sigue el rol y el alcance.', body: 'Cada persona ve y cambia solo lo que le corresponde.' }, { label: 'HISTORIAL', title: 'Los cambios importantes son revisables.', body: 'Versiones y auditoría sostienen la confianza operativa.' },
     ] },
-    { ...enterpriseEn.sections[2], label: 'LA CONFIANZA TIENE ARQUITECTURA', title: 'Conectado.', accent: 'Con límites claros.', body: 'Hotel Companion complementa PMS, procesador de pagos y sistemas hoteleros mediante conexiones gobernadas. No los reemplaza, y los datos brutos de tarjeta no entran a Hotel Companion.', items: [
-      { label: 'ACCESO', title: 'Control basado en roles.', body: 'Autenticación, permisos y responsabilidad alrededor del conocimiento sensible.' }, { label: 'DATOS', title: 'El cliente mantiene el control.', body: 'El conocimiento organizacional sigue siendo su activo y se usa para prestar el servicio.' }, { label: 'PAGOS', title: 'El procesador recibe primero.', body: 'Los datos van directo al procesador autorizado; el flujo recibe una referencia tokenizada.' },
+    { ...enterpriseEn.sections[2], label: 'LA CONFIANZA TIENE ARQUITECTURA', title: 'Conectado.', accent: 'Con límites claros.', body: 'Hotel Companion complementa PMS, procesador de pagos y sistemas hoteleros donde se han verificado conexiones compatibles. En los demás casos, el equipo del hotel confirma reservas, pagos y cumplimiento.', items: [
+      { label: 'ACCESO', title: 'Control basado en roles.', body: 'Autenticación, permisos y responsabilidad alrededor del conocimiento sensible.' }, { label: 'DATOS', title: 'El cliente mantiene el control.', body: 'El conocimiento organizacional sigue siendo su activo y se usa para prestar el servicio.' }, { label: 'PAGOS', title: 'El procesador recibe primero.', body: 'Donde se verifica una conexión de pago, los datos de tarjeta van al procesador aprobado. Sin esa conexión, el equipo del hotel gestiona el pago.' },
     ], link: { href: '/trust', label: 'Abrir el Centro de Confianza' } },
     { ...enterpriseEn.sections[3], label: 'MIRA TODO EL PORTAFOLIO', title: 'Señales locales.', accent: 'Visibilidad para dirección.', body: 'La conversación revela qué piden los huéspedes, dónde recuperan los equipos y dónde se acumula demanda útil.', items: [
       { label: 'SERVICIO', title: 'Demanda y fricción por propiedad.', body: 'Observa necesidades, esperas y recuperación sin perder contexto local.' }, { label: 'COMERCIAL', title: 'Intención antes de desaparecer.', body: 'Las señales de reserva directa, mejora y adicionales pueden revisarse en el grupo.' }, { label: 'CONOCIMIENTO', title: 'Los vacíos se vuelven agenda operativa.', body: 'Las preguntas sin respuesta muestran dónde debe mejorar el conocimiento o servicio.' },
     ] },
-    { ...enterpriseEn.sections[4], label: 'VALOR ANTES DE LA INTEGRACIÓN', title: 'Valor inicial en 1–3 semanas.', accent: 'Integraciones por etapas para tu stack.', body: 'Una base de conocimiento verificada de la propiedad y el destino, los recorridos prioritarios del huésped y los flujos del equipo entran en operación primero. Las conexiones con PMS, POS y pagos siguen por etapas; el plazo depende del acceso a APIs, los requisitos de los proveedores y sus aprobaciones.', items: [
-      { title: 'Valor inicial', body: 'El conocimiento de la propiedad y el destino se verifica y entra en operación.' }, { title: 'Recorridos prioritarios', body: 'Las conversaciones del huésped y los flujos del equipo empiezan a generar valor.' }, { title: 'Integraciones de sistemas', body: 'Las conexiones con PMS, POS y pagos siguen por etapas.' }, { title: 'Descubrimiento técnico', body: 'El acceso, los requisitos y las aprobaciones determinan el plazo.' },
+    { ...enterpriseEn.sections[4], label: 'VALOR ANTES DE LA INTEGRACIÓN', title: 'Empieza con un alcance acordado.', accent: 'Integraciones por etapas para tu stack.', body: 'Empieza con conocimiento verificado del hotel y recorridos acordados del huésped. El plazo se fija después de definir el alcance; las conexiones con PMS, POS o pagos requieren acceso, validación y aprobaciones.', items: [
+      { title: 'Valor inicial', body: 'El conocimiento de la propiedad y el destino se verifica y entra en operación.' }, { title: 'Recorridos prioritarios', body: 'Las conversaciones del huésped y los flujos del equipo empiezan a generar valor.' }, { title: 'Integraciones de sistemas', body: 'Las conexiones compatibles con PMS, POS y pagos se definen y verifican por separado.' }, { title: 'Descubrimiento técnico', body: 'El acceso, los requisitos y las aprobaciones determinan el plazo.' },
     ], note: 'EL ALCANCE INICIAL Y LOS PLAZOS DE SISTEMAS SE CONFIRMAN DURANTE EL DESCUBRIMIENTO TÉCNICO', link: { href: '/contact#founding', label: 'Ver el piloto fundador' } },
   ],
   closing: { ...enterpriseEn.closing, eyebrow: 'SESIÓN DE PORTAFOLIO', title: 'Conserva distintos los hoteles.', accent: 'Haz coherente la inteligencia.', body: 'Trae una propiedad, un estándar compartido y una medida. Mapearemos la ruta gobernada entre ellos.', primary: 'Conversemos sobre tu portafolio', secondary: 'Centro de Confianza' },
@@ -394,7 +394,7 @@ const companyEn: EditorialPageCopy = {
       { label: 'FOUNDER & CEO', title: 'Eduardo Vertiz', body: 'Vision, product strategy, enterprise architecture and organizational intelligence.' }, { label: 'CO-FOUNDER · ENTERPRISE STRATEGY', title: 'Omar Rosario', body: 'Hospitality partnerships, luxury experiences and strategic growth.' }, { label: 'STRATEGIC PARTNERSHIPS', title: 'Yadir Sánchez-Cuevas', body: 'Enterprise technology, partnerships and capital formation.' }, { label: 'SYSTEMS & IMPLEMENTATION', title: 'Luis Sierra', body: 'Enterprise architecture, AI integration and complex implementation.' }, { label: 'PROJECTS & PARTNERSHIPS', title: 'Juan Pablo Rojas Ramírez', body: 'Project leadership, partnerships and market development.' }, { label: 'AI ENGINEERING', title: 'Andrés Dapena', body: 'Platform architecture, cloud infrastructure and enterprise systems.' },
     ] },
     { id: 'contact', no: '06', label: 'START A CONVERSATION', title: 'Bring the hotel you know.', accent: 'We will listen first.', tone: 'sand', presentation: 'cards', items: [
-      { label: 'PRODUCT', title: 'See Hotel Companion around a real stay.', body: 'Request a working session tailored to your property.' }, { label: 'FOUNDING HOTEL', title: 'Run the ninety-day proof.', body: 'One property, four agreed measures and a decision at Day 90.' }, { label: 'EMAIL', title: 'sales@axionari.com', body: 'For direct product and partnership conversations.', href: 'mailto:sales@axionari.com' },
+      { label: 'PRODUCT', title: 'See Hotel Companion around a real stay.', body: 'Request a working session tailored to your property.' }, { label: 'FOUNDING HOTEL', title: 'Run an outcome pilot.', body: 'One property, agreed measures and a review date set before launch.' }, { label: 'EMAIL', title: 'sales@axionari.com', body: 'For direct product and partnership conversations.', href: 'mailto:sales@axionari.com' },
     ], link: { href: '/contact#founding', label: 'The founding hotel program' } },
   ],
   closing: { id: 'company-final-cta', eyebrow: 'THE INVITATION', title: 'The future of hospitality begins', accent: 'with understanding.', body: 'Let us learn how your hotel welcomes, serves and remembers — then make that intelligence useful across the stay.', primary: 'Request a Demo', primaryHref: '/demo', secondary: 'Contact', secondaryHref: '/contact' },
@@ -423,7 +423,7 @@ const companyEs: EditorialPageCopy = {
       { label: 'FUNDADOR Y CEO', title: 'Eduardo Vertiz', body: 'Visión, estrategia de producto, arquitectura enterprise e inteligencia organizacional.' }, { label: 'COFUNDADOR · ESTRATEGIA', title: 'Omar Rosario', body: 'Alianzas hoteleras, experiencias de lujo y crecimiento estratégico.' }, { label: 'ALIANZAS ESTRATÉGICAS', title: 'Yadir Sánchez-Cuevas', body: 'Tecnología enterprise, alianzas y formación de capital.' }, { label: 'SISTEMAS E IMPLEMENTACIÓN', title: 'Luis Sierra', body: 'Arquitectura enterprise, integración de IA e implementación compleja.' }, { label: 'PROYECTOS Y ALIANZAS', title: 'Juan Pablo Rojas Ramírez', body: 'Liderazgo de proyectos, alianzas y desarrollo de mercado.' }, { label: 'INGENIERÍA DE IA', title: 'Andrés Dapena', body: 'Arquitectura de plataforma, nube y sistemas enterprise.' },
     ] },
     { ...companyEn.sections[5], label: 'INICIA UNA CONVERSACIÓN', title: 'Trae el hotel que conoces.', accent: 'Primero escucharemos.', items: [
-      { label: 'PRODUCTO', title: 'Mira Hotel Companion alrededor de una estancia real.', body: 'Solicita una sesión adaptada a tu propiedad.' }, { label: 'HOTEL FUNDADOR', title: 'Ejecuta la prueba de noventa días.', body: 'Una propiedad, cuatro medidas acordadas y una decisión al Día 90.' }, { label: 'EMAIL', title: 'sales@axionari.com', body: 'Para conversaciones directas de producto y alianzas.', href: 'mailto:sales@axionari.com' },
+      { label: 'PRODUCTO', title: 'Mira Hotel Companion alrededor de una estancia real.', body: 'Solicita una sesión adaptada a tu propiedad.' }, { label: 'HOTEL FUNDADOR', title: 'Realiza un piloto por resultados.', body: 'Una propiedad, medidas acordadas y una fecha de revisión definida antes del lanzamiento.' }, { label: 'EMAIL', title: 'sales@axionari.com', body: 'Para conversaciones directas de producto y alianzas.', href: 'mailto:sales@axionari.com' },
     ], link: { href: '/contact#founding', label: 'El programa para hoteles fundadores' } },
   ],
   closing: { ...companyEn.closing, eyebrow: 'LA INVITACIÓN', title: 'El futuro de la hospitalidad comienza', accent: 'con entendimiento.', body: 'Déjanos aprender cómo recibe, sirve y recuerda tu hotel — y volver útil esa inteligencia en toda la estancia.', primary: 'Solicita una Demo', secondary: 'Contacto' },

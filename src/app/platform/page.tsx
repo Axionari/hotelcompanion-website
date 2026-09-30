@@ -1,13 +1,13 @@
-import NarrativePage from '@/components/editorial/NarrativePage'
+import ExperiencePage from '@/components/experience/ExperiencePages'
 import { createPageMetadata } from '@/lib/siteMetadata'
 
 export const metadata = createPageMetadata({
   title: 'Product',
   description:
-    'One conversation across booking, arrival, service, revenue, and return — grounded in hotel knowledge and carried through to a verified outcome.',
+    'AI voice and text guest service, approved actions, Companion Control and useful guest memory.',
   path: '/platform',
 })
 
 export default function PlatformPage() {
-  return <NarrativePage page="platform" />
+  return <ExperiencePage page="platform" />
 }

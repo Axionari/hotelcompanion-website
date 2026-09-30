@@ -1,4 +1,4 @@
-import NarrativePage from '@/components/editorial/NarrativePage'
+import ExperiencePage from '@/components/experience/ExperiencePages'
 import { createPageMetadata } from '@/lib/siteMetadata'
 
 export const metadata = createPageMetadata({
@@ -9,5 +9,5 @@ export const metadata = createPageMetadata({
 })
 
 export default function CompanyPage() {
-  return <NarrativePage page="company" />
+  return <ExperiencePage page="company" />
 }

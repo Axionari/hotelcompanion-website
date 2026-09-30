@@ -1,0 +1,40 @@
+/* Focused additions to the original editorial homepage. */
+.hc-focused .hc-hero-photo { display: flex; align-items: flex-end; }
+.hc-focused-conversation { position: relative; z-index: 2; width: min(440px, calc(100% - 64px)); margin: 72px auto 38px; }
+.hc-focused-channel-line { margin-top: 27px !important; color: var(--brass); font: 500 .63rem/1.6 var(--mono); letter-spacing: .15em; }
+.hc-focused .hc-questions { padding-block: clamp(62px, 7vw, 96px); }
+.hc-focused .hc-hero h1 { max-width: 9ch; }
+.hc-focused-optional { max-width: 88ch; margin: 36px auto 0 !important; color: var(--cream-70); text-align: center; font-size: .82rem; line-height: 1.6; }
+.hc-focused-revenue { background: var(--deep); color: var(--cream); padding-block: clamp(78px, 9vw, 126px); }
+.hc-focused-revenue .hc-eyebrow, .hc-focused-revenue h2 em { color: var(--peach); }
+.hc-focused-value { margin-top: 44px; }
+.hc-focused-capabilities { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 60px; }
+.hc-focused-capabilities article { border-top: 1px solid var(--hair-night); padding-top: 23px; }
+.hc-focused-capabilities article > span, .hc-focused-package > div > span, .hc-focused-control > div > span { color: var(--peach); font: 500 .65rem/1.5 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+.hc-focused-capabilities h3 { font-size: clamp(1.7rem, 2.5vw, 2.25rem); margin-block: 17px 13px !important; }
+.hc-focused-capabilities p, .hc-focused-package p, .hc-focused-control p { color: var(--cream-70); font-size: 1rem; line-height: 1.65; }
+.hc-focused-package { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 38px; padding: 31px 34px; border: 1px solid rgba(235,187,152,.35); border-radius: 6px; background: linear-gradient(110deg, rgba(211,153,109,.13), transparent); }
+.hc-focused-package h3 { margin-top: 15px !important; font-size: clamp(1.85rem, 3.5vw, 3rem); line-height: 1.08; }
+.hc-focused-package small { display: block; color: var(--cream-55); font-size: .73rem; line-height: 1.6; margin-top: 15px; }
+.hc-focused-control { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; padding: 32px 0; }
+.hc-focused-control h3 { font-size: clamp(1.4rem, 2.3vw, 1.9rem); margin-top: 9px !important; }
+.hc-focused-examples { border-top: 1px solid var(--hair-night); border-bottom: 1px solid var(--hair-night); }
+.hc-focused-examples summary { list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-block: 19px; cursor: pointer; font-size: .92rem; }
+.hc-focused-examples summary::-webkit-details-marker { display: none; }
+.hc-focused-examples summary > span { font-size: 1.4rem; transition: transform .2s ease; }
+.hc-focused-examples[open] summary > span { transform: rotate(45deg); }
+.hc-focused-examples[open] { padding-bottom: 24px; }
+.hc-focused-examples summary:focus-visible { outline: 2px solid var(--peach); outline-offset: 5px; }
+.hc-focused-pilot { max-width: 48ch !important; font-size: 1rem !important; margin-top: 22px !important; }
+.hc-focused-pilot-note { display: block; max-width: 52ch; color: var(--cream-70); font-size: .75rem; line-height: 1.6; margin-top: 20px; }
+@media (max-width: 920px) {
+  .hc-focused-conversation { margin: 70px auto 38px; }
+  .hc-focused .hc-hero-photo { min-height: 0; }
+}
+@media (max-width: 640px) {
+  .hc-focused-conversation { width: calc(100% - 36px); margin: 45px auto 30px; }
+  .hc-focused-capabilities, .hc-focused-package, .hc-focused-control { grid-template-columns: 1fr; gap: 24px; }
+  .hc-focused-package { padding: 26px; }
+  .hc-focused-channel-line { max-width: 36ch; }
+  .hc-focused-capabilities article { padding-top: 20px; }
+}

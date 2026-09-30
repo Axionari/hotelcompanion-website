@@ -7,6 +7,7 @@ const HC = "https://www.hotelcompanion.ai";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  devIndicators: false,
   reactStrictMode: true,
   turbopack: { root: path.resolve(__dirname) },
   images: {
