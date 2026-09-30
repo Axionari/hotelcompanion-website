@@ -59,7 +59,7 @@ const SPANISH_META: Record<string, { title: string; description: string }> = {
   },
   solutions: {
     title: 'Experiencia del huésped',
-    description: 'Teléfono, web y móvil, con voz natural, contexto y una transferencia clara al equipo del hotel. Tablets opcionales.',
+    description: 'Teléfono, web y móvil, con voz natural, contexto y una transferencia clara al equipo del hotel. Tablets en la habitación.',
   },
   enterprise: {
     title: 'Grupos hoteleros',

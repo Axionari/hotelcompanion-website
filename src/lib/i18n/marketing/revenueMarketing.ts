@@ -157,7 +157,7 @@ const en = {
         "body": "Help guests understand rooms, experiences and approved offers while they explore your hotel."
       }
     ],
-    "optional": "WhatsApp can be scoped where supported. In-room tablets are optional; the hotel covers hardware and setup. Channel availability is confirmed before launch."
+    "optional": "WhatsApp can be scoped where supported. In-room tablets offer a dedicated guest experience, with hardware and installation tailored to your property. Channel availability is confirmed before launch."
   },
   "pilot": {
     "eyebrow": "05 · Prove it in your hotel",
@@ -339,7 +339,7 @@ const es: typeof en = {
         "body": "Ayuda al huésped a conocer habitaciones, experiencias y ofertas aprobadas mientras explora tu hotel."
       }
     ],
-    "optional": "WhatsApp puede incluirse donde sea compatible. Las tablets en la habitación son opcionales; el hotel cubre los dispositivos y su instalación. Los canales se confirman antes del lanzamiento."
+    "optional": "WhatsApp puede incluirse donde sea compatible. Las tablets en la habitación ofrecen una experiencia dedicada, con dispositivos e instalación adaptados a tu hotel. Los canales se confirman antes del lanzamiento."
   },
   "pilot": {
     "eyebrow": "05 · Demuéstralo en tu hotel",

@@ -2,7 +2,7 @@ import type { Localized } from '../useCopy'
 
 const en = {
   channelLine: 'VOICE & TEXT · MOBILE & DESKTOP WEB',
-  channelNote: 'Telephone and WhatsApp connections are scoped for your pilot. In-room tablets remain an option, with hardware and setup covered by the hotel.',
+  channelNote: 'Telephone and WhatsApp connections are scoped for your pilot. In-room tablets offer a dedicated guest experience, with hardware and installation tailored to your property.',
   conversation: {
     label: 'Illustrative guest conversation', brand: 'Your hotel', channel: 'Before arrival · Mobile web',
     guest: 'We’re coming back for our anniversary. The ocean-view room, like last time?',
@@ -33,7 +33,7 @@ const en = {
 
 const es: typeof en = {
   channelLine: 'VOZ Y TEXTO · WEB MÓVIL Y COMPUTADORA',
-  channelNote: 'Las conexiones de teléfono y WhatsApp se definen para tu piloto. Las tablets en la habitación siguen siendo una opción, con equipo e instalación a cargo del hotel.',
+  channelNote: 'Las conexiones de teléfono y WhatsApp se definen para tu piloto. Las tablets en la habitación ofrecen una experiencia dedicada, con dispositivos e instalación adaptados a tu hotel.',
   conversation: {
     label: 'Conversación ilustrativa', brand: 'Tu hotel', channel: 'Antes de llegar · Web móvil',
     guest: 'Volvemos para nuestro aniversario. ¿La habitación con vista al mar, como la última vez?',

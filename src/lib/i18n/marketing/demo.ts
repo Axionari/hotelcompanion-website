@@ -102,7 +102,7 @@ const en = {
       },
       {
         q: 'How do guests use it?',
-        a: 'Guests speak or type on mobile and desktop web, opening a link or QR code without installing an app. Telephone and WhatsApp connections are scoped for the pilot. In-room tablets are optional, with hardware and setup covered by the hotel.',
+        a: 'Guests speak or type on mobile and desktop web, opening a link or QR code without installing an app. Telephone and WhatsApp connections are scoped for the pilot. In-room tablets offer a dedicated guest experience, with hardware and installation tailored to your property.',
       },
       {
         q: 'How is this different from a guest messaging platform?',
@@ -230,7 +230,7 @@ const es: typeof en = {
       },
       {
         q: '¿Cómo lo usan los huéspedes?',
-        a: 'El huésped habla o escribe en web móvil o computadora, desde un enlace o QR y sin instalar una aplicación. Teléfono y WhatsApp se definen para el piloto. Las tablets son opcionales, con dispositivos e instalación cubiertos por el hotel.',
+        a: 'El huésped habla o escribe en web móvil o computadora, desde un enlace o QR y sin instalar una aplicación. Teléfono y WhatsApp se definen para el piloto. Las tablets en la habitación ofrecen una experiencia dedicada, con dispositivos e instalación adaptados a tu hotel.',
       },
       {
         q: '¿En qué se diferencia de una plataforma de mensajería para huéspedes?',
