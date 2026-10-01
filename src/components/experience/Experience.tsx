@@ -7,6 +7,7 @@ import { useLang } from '@/lib/i18n/LanguageContext'
 import transcript from './voice-transcript.json'
 import { DemandInsight } from './DemandInsight'
 import { SalesDemoTeaser } from './SalesDemoShowcase'
+import { Sequence, SequenceTabs as Tabs, useSequence } from './Sequence'
 import './experience.css'
 
 export function useWords() { const { lang } = useLang(); return (en: string, es: string) => lang === 'es' ? es : en }
@@ -18,17 +19,7 @@ export function SectionHeading({ eyebrow, title, body, children }: { eyebrow: st
 export function Action({ href='/demo', children, quiet=false }: { href?: string; children: ReactNode; quiet?: boolean }) {
   return <Link href={href} className={`xp-button ${quiet ? 'xp-button-quiet' : ''}`}>{children}<ArrowRight size={17} aria-hidden="true" /></Link>
 }
-export function Tabs({ labels, active, onChange, name }: { labels: string[]; active: number; onChange: (i: number) => void; name: string }) {
-  return <div className="xp-tabs" role="tablist" aria-label={name}>{labels.map((label,i)=><button key={label} id={`${name}-tab-${i}`} role="tab" type="button" aria-selected={active===i} aria-controls={`${name}-panel`} tabIndex={active===i?0:-1} onClick={()=>onChange(i)} onKeyDown={event=>{
-    let next=i
-    if(event.key==='ArrowRight') next=(i+1)%labels.length
-    else if(event.key==='ArrowLeft') next=(i+labels.length-1)%labels.length
-    else if(event.key==='Home') next=0
-    else if(event.key==='End') next=labels.length-1
-    else return
-    event.preventDefault(); onChange(next); document.getElementById(`${name}-tab-${next}`)?.focus()
-  }}>{label}</button>)}</div>
-}
+export { SequenceTabs as Tabs } from './Sequence'
 
 export function Wave({ playing=false }: { playing?: boolean }) {
   return <div className="xp-wave" data-playing={playing} aria-hidden="true">{[12,22,34,18,44,30,52,20,38,54,30,16,44,24,50,36,18,32,48,26,40,18,30,50,26,16,36,22,46,30,18,42].map((height,i)=><i key={i} style={{height,animationDelay:`${i*-.11}s`}} />)}</div>
@@ -121,15 +112,15 @@ export function VoiceSample() {
 }
 
 export function ControlDashboard({ initialTab=0 }: { initialTab?: number }) {
- const t=useWords(), [active,setActive]=useState(initialTab)
+ const t=useWords(), playback=useSequence(5,10000,initialTab), active=playback.active, setActive=playback.select
  const titles=[t('Requests','Solicitudes'),t('Guest context','Contexto'),t('Offers & rules','Ofertas y reglas'),t('Guest demand','Necesidades'),t('Results','Resultados')]
- return <div className="xp-control"><div className="xp-control-header"><span><LayoutDashboard size={17}/> Companion Control</span><small>{t('Illustrative workspace','Espacio ilustrativo')}</small></div><div className="xp-control-layout"><aside className="xp-control-sidebar"><div className="xp-hotel-switch"><span className="xp-hc-symbol">h</span><div>Casa del Mar<small>{t('Property workspace','Espacio del hotel')}</small></div></div><Tabs labels={titles} active={active} onChange={setActive} name="control-view"/><div className="xp-control-sidebar-note"><ShieldCheck size={18}/><span>{t('Your rules. Your team. Your hotel.','Tus reglas. Tu equipo. Tu hotel.')}</span></div></aside><div className="xp-control-content" id="control-view-panel" role="tabpanel" aria-labelledby={`control-view-tab-${active}`} key={active}><div className="xp-control-page-head"><div><Eyebrow>CASA DEL MAR</Eyebrow><h3>{titles[active]}</h3></div><span className="xp-control-avatar">AM</span></div>
+ return <Sequence playback={playback} className="xp-control"><div className="xp-control-header"><span><LayoutDashboard size={17}/> Companion Control</span><small>{t('Illustrative workspace','Espacio ilustrativo')}</small></div><div className="xp-control-layout"><aside className="xp-control-sidebar"><div className="xp-hotel-switch"><span className="xp-hc-symbol">h</span><div>Casa del Mar<small>{t('Property workspace','Espacio del hotel')}</small></div></div><Tabs labels={titles} active={active} onChange={setActive} name="control-view" playback={playback}/><div className="xp-control-sidebar-note"><ShieldCheck size={18}/><span>{t('Your rules. Your team. Your hotel.','Tus reglas. Tu equipo. Tu hotel.')}</span></div></aside><div className="xp-control-content" id="control-view-panel" role="tabpanel" aria-labelledby={`control-view-tab-${active}`} key={active}><div className="xp-control-page-head"><div><Eyebrow>CASA DEL MAR</Eyebrow><h3>{titles[active]}</h3></div><span className="xp-control-avatar">AM</span></div>
  {active===0?<><div className="xp-control-metrics">{[[t('New request','Nueva solicitud'),'01'],[t('In progress','En proceso'),'02'],[t('Ready for review','Por revisar'),'01']].map(([label,value])=><div key={label}><small>{label}</small><strong>{value}</strong></div>)}</div><div className="xp-request-table">{[[t('Extra towels','Toallas extra'),'204',t('Housekeeping','Limpieza'),t('Assigned','Asignada')],[t('Terrace dinner','Cena en terraza'),'118',t('Restaurant','Restaurante'),t('Needs confirmation','Por confirmar')],[t('Airport transfer','Traslado aeropuerto'),'306',t('Front desk','Recepción'),t('In progress','En proceso')]].map(([request,room,team,status],i)=><div className="xp-request-row" key={request}><span className="xp-request-icon">{i===0?<Check size={16}/>:i===1?<Heart size={16}/>:<Phone size={16}/>}</span><div><b>{request}</b><small>{t('Room','Habitación')} {room} · {team}</small></div><span>{status}</span><ChevronRight size={14}/></div>)}</div><div className="xp-control-note"><MessageCircle size={17}/>{t('The team receives the request and the conversation context.','El equipo recibe la solicitud y el contexto de la conversación.')}</div></>:
  active===1?<div className="xp-memory-workspace"><div className="xp-guest-profile"><span className="xp-profile-avatar">JL</span><h4>Jamie L.</h4><p>{t('Current stay · Room 204','Estancia actual · Habitación 204')}</p><span className="xp-badge">{t('Preferences shared by guest','Preferencias compartidas')}</span></div><div className="xp-memory-list">{[[t('Trip occasion','Motivo del viaje'),t('Anniversary','Aniversario')],[t('Room preference','Habitación preferida'),t('Quiet area · Ocean view','Zona tranquila · Vista al mar')],[t('Dining preference','Preferencia gastronómica'),t('Vegetarian options','Opciones vegetarianas')],[t('Use next time?','¿Usar en otra visita?'),t('Only with guest permission','Solo con permiso del huésped')]].map(([key,value])=><div key={key}><small>{key}</small><strong>{value}</strong><Check size={15}/></div>)}</div></div>:
  active===2?<><div className="xp-offer-rule"><div className="xp-offer-photo" style={{backgroundImage:'url(/assets/ui/suite-garden.webp)'}}/><div><span className="xp-badge">{t('HOTEL-APPROVED OFFER','OFERTA APROBADA')}</span><h4>{t('A balcony for morning coffee','Un balcón para el café')}</h4><p>{t('Private balcony · Garden-facing room','Balcón privado · Habitación hacia el jardín')}</p></div></div><div className="xp-rule-grid">{[[t('When it fits','Cuándo encaja'),t('Expressed interest in a balcony','Interés expresado en un balcón')],[t('Protect the margin','Proteger el margen'),t('Approved supplement + margin floor','Suplemento aprobado + margen mínimo')],[t('Respect the guest','Respetar al huésped'),t('No offer after a decline or complaint','Sin ofertas tras rechazos o quejas')],[t('Confirm fulfilment','Confirmar ejecución'),t('Verify the feature for the full stay','Verificar el detalle para toda la estancia')]].map(([key,value])=><div key={key}><ShieldCheck size={17}/><small>{key}</small><strong>{value}</strong></div>)}</div></>:
  active===3?<DemandInsight compact/>:
  <><div className="xp-results-title"><span>{t('Additional contribution','Contribución adicional')}</span><strong>$3,000<small>{t('Example, not a forecast','Ejemplo, no pronóstico')}</small></strong></div><div className="xp-result-bars">{[32,48,43,67,52,82,74,96].map((height,i)=><div key={i}><span style={{height:`${height}%`,animationDelay:`${i*.06}s`}}/></div>)}</div><div className="xp-results-foot"><span>{t('Completed sales, costs and refunds','Ventas completadas, costos y devoluciones')}</span><span>{t('Compared with an agreed baseline','Comparadas con una base acordada')}</span></div></>}
- </div></div></div>
+ </div></div></Sequence>
 }
 
 export function SetupExplorer() {

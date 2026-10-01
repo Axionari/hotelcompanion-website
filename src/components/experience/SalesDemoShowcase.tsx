@@ -2,6 +2,8 @@
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import { CheckCheck, Heart, Mic, Pause, Play } from 'lucide-react'
+import { Sequence, SequenceTabs, useSequence } from './Sequence'
+import { ValueScene } from './ValueScene'
 import { useLang } from '@/lib/i18n/LanguageContext'
 
 const views={
@@ -71,6 +73,6 @@ export function SalesDemoTeaser(){
  </div>
 }
 export function SalesDemoShowcase(){
- const {lang}=useLang(),t=(en:string,es:string)=>lang==='es'?es:en,[active,setActive]=useState(0),view=views[lang][active]
- return <section className="hc-gallery" id="guest-companion"><div className="xp-wrap"><div className="hc-chapter-heading"><p className="xp-eyebrow">{t('THE GUEST INTERFACE','LA INTERFAZ DEL HUÉSPED')}</p><h2>{t('See the experience.','Conoce la experiencia.')}</h2></div><div className="hc-gallery-tabs" role="tablist" aria-label={t('Explore the guest interface','Explora la interfaz del huésped')}>{views[lang].map((v,i)=><button key={v.id} role="tab" id={`sales-view-${i}`} aria-controls="sales-view-panel" aria-selected={active===i} tabIndex={active===i?0:-1} onClick={()=>setActive(i)} onKeyDown={e=>{const next=e.key==='ArrowRight'?(i+1)%5:e.key==='ArrowLeft'?(i+4)%5:e.key==='Home'?0:e.key==='End'?4:null;if(next!==null){e.preventDefault();setActive(next);document.getElementById(`sales-view-${next}`)?.focus()}}} type="button">{v.label}</button>)}</div><div id="sales-view-panel" role="tabpanel" aria-labelledby={`sales-view-${active}`} className="hc-gallery-screen"><Capture view={view.id} lang={lang}/></div><p className="hc-visual-caption">{t('Actual interface preview · Full presentation by appointment','Vista previa de la interfaz real · Presentación completa con cita')}</p></div></section>
+ const {lang}=useLang(),t=(en:string,es:string)=>lang==='es'?es:en,playback=useSequence(5),active=playback.active,view=views[lang][active]
+ return <section className="hc-gallery" id="guest-companion"><div className="xp-wrap"><div className="hc-chapter-heading"><p className="xp-eyebrow">{t('THE GUEST INTERFACE','LA INTERFAZ DEL HUÉSPED')}</p><h2>{t('See the experience.','Conoce la experiencia.')}</h2></div><Sequence playback={playback} className="hc-gallery-story"><div className="hc-gallery-tabs"><SequenceTabs labels={views[lang].map(v=>v.label)} name="sales-view" active={active} onChange={playback.select} playback={playback}/></div><div key={active} id="sales-view-panel" role="tabpanel" aria-labelledby={`sales-view-tab-${active}`} className="hc-gallery-screen hc-demonstration-screen"><Capture view={view.id} lang={lang}/><ValueScene index={active} kind="gallery"/></div></Sequence><p className="hc-visual-caption">{t('Actual interface preview · Illustrative conversations · Full presentation by appointment','Vista previa real · Conversaciones ilustrativas · Presentación completa con cita')}</p></div></section>
 }

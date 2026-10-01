@@ -5,8 +5,10 @@ import "./interior-editorial.css";
 import "./interior-pages.css";
 import "./site-reading.css";
 import "./mobile-refinement.css";
+import "./motion-polish.css";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 import { LiveDemoModalDeferred } from "@/components/cds/LiveDemoModalDeferred";
+import { PageMotion } from "@/components/experience/PageMotion";
 import { CookieBanner } from "@/components/CookieBanner";
 import { LIVE_DEMO_ENABLED } from "@/lib/flags";
 
@@ -118,6 +120,7 @@ export default function RootLayout({
           {LIVE_DEMO_ENABLED && <LiveDemoModalDeferred />}
           {/* Cookie consent — client-only; renders only while undecided. */}
           <CookieBanner />
+          <PageMotion />
         </LanguageProvider>
       </body>
     </html>

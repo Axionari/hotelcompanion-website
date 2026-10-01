@@ -1,17 +1,18 @@
 'use client'
 
 import Image from 'next/image'
-import { useId, useState } from 'react'
+import { useId } from 'react'
 import { ArrowRight, Check, CheckCheck, Clock3, Headphones, Mic, ShieldCheck, Users } from 'lucide-react'
 import { LocalizedLink as Link } from '@/components/LocalizedLink'
 import { Tabs, useWords } from './Experience'
+import { Sequence, useSequence } from './Sequence'
 import './service-journey.css'
 
 /** A marketing walkthrough, never a live request or an operational control. */
 export function ServiceJourney({ staffPreview = false, combined = false }: { staffPreview?: boolean; combined?: boolean }) {
   const t = useWords()
   const name = `service-${useId().replace(/:/g, '')}`
-  const [active, setActive] = useState(0)
+  const playback = useSequence(4,11000), active = playback.active, setActive = playback.select
   const steps = [
     { label: t('Guest asks', 'El huésped pregunta'), status: t('Requested', 'Solicitado'), title: t('The guest’s words. The useful details.', 'Las palabras del huésped. Los detalles útiles.'), reply: t('I’ll ask the restaurant about a quiet table for two at 8pm, with a vegetarian option.', 'Consultaré al restaurante por una mesa tranquila para dos a las 8pm, con opción vegetariana.'), note: t('An interest becomes a request. It is not a confirmed booking.', 'El interés se convierte en solicitud. Aún no es una reserva confirmada.') },
     { label: t('Team reviews', 'El equipo revisa'), status: t('Awaiting confirmation', 'Por confirmar'), title: t('Your team has the context.', 'Tu equipo tiene el contexto.'), reply: t('Your request is with the restaurant. The time and dietary option still need confirmation.', 'El restaurante tiene tu solicitud. Falta confirmar el horario y la opción alimentaria.'), note: t('The team checks the details and availability before confirming.', 'El equipo revisa detalles y disponibilidad antes de confirmar.') },
@@ -30,9 +31,9 @@ export function ServiceJourney({ staffPreview = false, combined = false }: { sta
   const step = steps[active]
   const title = combined ? t('Balcony upgrade + dinner', 'Mejora con balcón + cena') : t('Dinner for two', 'Cena para dos')
   const guestMessage = combined ? t('A balcony upgrade and a quiet dinner for two at 8? One of us is vegetarian.', '¿Una mejora con balcón y cena tranquila para dos a las 8? Uno es vegetariano.') : t('It’s our anniversary. A quiet dinner for two at 8? One of us is vegetarian.', 'Es nuestro aniversario. ¿Una cena tranquila para dos a las 8? Uno es vegetariano.')
-  return <div className="sj-walkthrough">
-    <Tabs labels={steps.map(s => s.label)} active={active} onChange={setActive} name={name}/>
-    <div id={`${name}-panel`} role="tabpanel" aria-labelledby={`${name}-tab-${active}`} className="sj-scene">
+  return <Sequence playback={playback} className="sj-walkthrough">
+    <Tabs labels={steps.map(s => s.label)} active={active} onChange={setActive} name={name} playback={playback}/>
+    <div key={active} id={`${name}-panel`} role="tabpanel" aria-labelledby={`${name}-tab-${active}`} className="sj-scene">
       <div className="sj-guest">
         <div className="sj-guest-photo"><Image src={combined ? '/assets/ui/suite-garden.webp' : '/assets/ui/dish-3.webp'} alt="" fill sizes="(max-width:800px) 90vw, 440px"/><span>{t('YOUR HOTEL · GUEST COMPANION', 'TU HOTEL · COMPANION DEL HUÉSPED')}</span></div>
         <div className="sj-messages"><p className="sj-guest-message">{guestMessage}</p><div className="sj-reply"><span><Mic size={14}/>{t('Your hotel’s companion', 'El companion de tu hotel')}</span><p>{combined ? combinedReplies[active] : step.reply}</p></div></div>
@@ -48,7 +49,7 @@ export function ServiceJourney({ staffPreview = false, combined = false }: { sta
     <div className="sj-explanation"><h3>{step.title}</h3><p>{step.note}</p></div>
     <p className="sj-caption">{t('Illustrative workflow and sample amounts. Supported actions and team routing are agreed for each hotel.', 'Flujo ilustrativo e importes de ejemplo. Las acciones y rutas al equipo se acuerdan por hotel.')}</p>
     {staffPreview ? <details className="sj-actual-preview"><summary>{t('See the actual staff request screen', 'Ver la pantalla real de solicitudes del equipo')}<ArrowRight size={16}/></summary><p>{t('Product interface with test data; identifiers and timestamps are masked. This example shows a housekeeping request and its staff-controlled status changes.', 'Interfaz del producto con datos de prueba; identificadores y fechas están ocultos. El ejemplo muestra una solicitud de limpieza y sus cambios de estado a cargo del equipo.')}</p><Image src="/assets/operations/staff-request-preview.png" alt={t('Actual staff request interface showing the guest message, history and request update controls with sample data', 'Interfaz real de solicitudes con mensaje, historial y controles de actualización con datos de prueba')} width={768} height={1789} sizes="(max-width:800px) 90vw, 560px"/></details> : <Link href="/solutions#people" className="sj-detail-link">{t('See the staff handoff', 'Conoce la transferencia al equipo')}<ArrowRight size={16}/></Link>}
-  </div>
+  </Sequence>
 }
 
 export function HandoffDetails() {
