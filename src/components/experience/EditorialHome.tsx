@@ -42,7 +42,7 @@ export function EditorialHero(){
 }
 
 export function GuestExperienceStage(){
- const {lang}=useLang(),t=useWords(),playback=useSequence(4),active=playback.active,setActive=playback.select
+ const {lang}=useLang(),t=useWords(),playback=useSequence(4,10000,0,true),active=playback.active,setActive=playback.select
  const features=[
   {label:t('Smart recommendations','Recomendaciones inteligentes'),title:t('The right offer.\nAt the right moment.','La oferta adecuada.\nEn el momento adecuado.'),body:t('Match upgrades and experiences to the guest’s interests. Your hotel sets prices and margins.','Mejoras y experiencias según los intereses del huésped. Tu hotel define precios y márgenes.'),view:'dining',href:'/revenue'},
   {label:t('Memory & context','Memoria y contexto'),title:t('Recommendations\nthat remember.','Recomendaciones\ncon memoria.'),body:t('Carry useful preferences into the next conversation, with guest permission.','Conserva preferencias útiles para la siguiente conversación, con permiso del huésped.'),view:'context',href:'/platform#memory'},

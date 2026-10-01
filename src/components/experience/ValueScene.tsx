@@ -1,6 +1,8 @@
 'use client'
 
 import { Check, Heart, Mic, Sparkles, Users } from 'lucide-react'
+import { useRef } from 'react'
+import { LiveText, TypingIndicator, useConversationMotion } from './ConversationMotion'
 import { useLang } from '@/lib/i18n/LanguageContext'
 
 /** A short illustrative story layered over the real interface preview. */
@@ -24,11 +26,13 @@ export function ValueScene({ index, kind = 'capability' }: { index: number; kind
     [t('Extra towels before dinner, please.', 'Toallas extra antes de cenar, por favor.'),t('Room 204 · Housekeeping', 'Habitación 204 · Limpieza'),t('Request sent with room and timing', 'Solicitud enviada con habitación y horario')],
   ]
   const story = stories[index], Icon = kind === 'capability' && index === 1 ? Heart : kind === 'capability' && index === 2 || kind === 'channel' && index === 0 ? Mic : kind === 'capability' && index === 3 ? Users : Sparkles
+  const scene = useRef<HTMLDivElement>(null)
+  useConversationMotion(scene, story[0], story[1])
   const voice = kind === 'capability' && index === 2 || kind === 'channel' && index === 0
-  return <div className="hc-value-scene" key={`${kind}-${index}-${lang}`}>
-    <div className="hc-value-guest"><span className="hc-value-avatar">G</span><p>{story[0]}</p></div>
+  return <div ref={scene} className="hc-value-scene" key={`${kind}-${index}-${lang}`}>
+    <div className="hc-value-guest"><span className="hc-value-avatar">G</span><p><LiveText text={story[0]} speaker="guest"/></p></div>
     <div className="hc-value-path" aria-hidden="true">{voice ? <span className="hc-value-voice-wave">{[7,13,20,12,25,17,9,22,14,26,11,18,8,21,15,7].map((height,i)=><i key={i} style={{height,animationDelay:`${i*-.08}s`}}/>)}</span> : <><i/><span/><i/></>}</div>
-    <div className="hc-value-response"><span className="hc-value-icon"><Icon size={17}/></span><div><small>HOTEL COMPANION</small><strong>{story[1]}</strong></div></div>
+    <div className="hc-value-response"><span className="hc-value-icon"><Icon size={17}/></span><div><small>HOTEL COMPANION</small><strong className="hc-live-answer"><LiveText text={story[1]} speaker="reply"/><TypingIndicator label={voice?t('Listening…','Escuchando…'):t('Typing…','Escribiendo…')}/></strong></div></div>
     <div className="hc-value-result"><Check size={13}/><span>{story[2]}</span></div>
   </div>
 }

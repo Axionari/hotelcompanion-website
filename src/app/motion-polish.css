@@ -14,7 +14,7 @@
 .hc-sequence-controls button:hover { background:#ebefe6; border-color:#becbb5; }
 .hc-sequence[data-sequence-mode=manual] .hc-sequence-rail > i[data-active=true] { transform:scaleX(1); }
 .hc-sequence[data-sequence-running=false] *, .hc-sequence[data-sequence-running=false] *::before, .hc-sequence[data-sequence-running=false] *::after { animation-play-state:paused!important; }
-.hc-sequence[data-sequence-mode=manual] *, .hc-sequence[data-sequence-mode=manual] *::before, .hc-sequence[data-sequence-mode=manual] *::after { animation:none!important; }
+.hc-sequence[data-sequence-mode=manual]:not([data-animate-selection=true]) *, .hc-sequence[data-sequence-mode=manual]:not([data-animate-selection=true]) *::before, .hc-sequence[data-sequence-mode=manual]:not([data-animate-selection=true]) *::after { animation:none!important; }
 /* Interface previews stay real; the floating conversation shows what HC does. */
 .hc-demonstration-screen { position:relative; isolation:isolate; }
 .hc-value-scene { width:min(340px,calc(100% - 40px)); position:absolute; right:22px; bottom:45px; z-index:2; padding:19px; border:1px solid #fff; border-radius:19px; background:rgba(255,255,252,.97); box-shadow:0 10px 50px #172b1f25,0 1px 6px #172b1f0c; color:#2b3d30; text-align:left; }

@@ -71,6 +71,6 @@ export function SalesDemoTeaser(){
  </div>
 }
 export function SalesDemoShowcase(){
- const {lang}=useLang(),t=(en:string,es:string)=>lang==='es'?es:en,playback=useSequence(5),active=playback.active,view=views[lang][active]
+ const {lang}=useLang(),t=(en:string,es:string)=>lang==='es'?es:en,playback=useSequence(5,10000,0,true),active=playback.active,view=views[lang][active]
  return <section className="hc-gallery" id="guest-companion"><div className="xp-wrap"><div className="hc-chapter-heading"><p className="xp-eyebrow">{t('THE GUEST INTERFACE','LA INTERFAZ DEL HUÉSPED')}</p><h2>{t('See the experience.','Conoce la experiencia.')}</h2></div><Sequence playback={playback} className="hc-gallery-story"><div className="hc-gallery-tabs"><SequenceTabs labels={views[lang].map(v=>v.label)} name="sales-view" active={active} onChange={playback.select} playback={playback}/></div><div key={active} id="sales-view-panel" role="tabpanel" aria-labelledby={`sales-view-tab-${active}`} className="hc-gallery-screen hc-demonstration-screen"><Capture view={view.id} lang={lang}/><ValueScene index={active} kind="gallery"/></div></Sequence><p className="hc-visual-caption">{t('Actual interface preview · Illustrative conversations · Full presentation by appointment','Vista previa real · Conversaciones ilustrativas · Presentación completa con cita')}</p></div></section>
 }

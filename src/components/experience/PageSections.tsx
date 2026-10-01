@@ -32,7 +32,7 @@ export function MemoryPanel() {
 }
 
 export function ChannelStage() {
- const t=useWords(),{lang}=useLang(),playback=useSequence(4),active=playback.active,setActive=playback.select
+ const t=useWords(),{lang}=useLang(),playback=useSequence(4,10000,0,true),active=playback.active,setActive=playback.select
  const channels=[
   {label:t('Telephone','Teléfono'),icon:Phone,title:t('Answer the call. Keep the context.','Responde la llamada. Conserva el contexto.'),body:t('Natural voice conversations for questions, recommendations and supported requests. Routing and transfers are scoped for your hotel.','Conversaciones naturales para preguntas, recomendaciones y solicitudes compatibles. Rutas y transferencias definidas para tu hotel.'),view:'home'},
   {label:t('Desktop web','Web de escritorio'),icon:Monitor,title:t('Your hotel, ready to explore.','Tu hotel, listo para explorar.'),body:t('Help website visitors discover rooms and services through conversation and visual options.','Ayuda a descubrir habitaciones y servicios con conversación y opciones visuales.'),view:'rooms'},
