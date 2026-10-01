@@ -15,13 +15,13 @@ import './editorial-home.css'
 const moments = {
  en: [
   {title:'A reason to add more.',image:'/assets/lux/hotel-companion-hero-v2.webp',ask:'It’s our anniversary. We’d love a special dinner.',reply:'Your hotel’s anniversary offer pairs a terrace dinner with wine. Would you like the price and available times?',result:'Guest occasion → Relevant approved package'},
-  {title:'Keep the opportunity alive.',image:'/assets/ui/dish-1.webp',ask:'The full spa day is too much. We only have an hour.',reply:'There’s a 45-minute treatment that fits. Shall I check the price and availability?',result:'Guest need → Alternative → Recorded outcome'},
+  {title:'Keep the opportunity alive.',image:'/assets/ui/spa-1.webp',ask:'The full spa day is too much. We only have an hour.',reply:'There’s a 45-minute treatment that fits. Shall I check the price and availability?',result:'Guest need → Alternative → Recorded outcome'},
   {title:'Context makes it personal.',image:'/assets/ui/suite-garden.webp',ask:'We’re coming back. What would you recommend this time?',reply:'You saved a preference for quiet evenings. Would you like to see the private dining options for your dates?',result:'Guest-approved memory → A more relevant recommendation'},
   {title:'Service, around the clock.',image:'/assets/img/company-reception.webp',ask:'Could we have extra towels before dinner?',reply:'I’ve sent your request to housekeeping with the room and timing. I’ll keep you updated.',result:'Guest request → Responsible team'},
  ],
  es: [
   {title:'Una razón para añadir más.',image:'/assets/lux/hotel-companion-hero-v2.webp',ask:'Es nuestro aniversario. Nos gustaría una cena especial.',reply:'La oferta de aniversario del hotel combina una cena en la terraza con vino. ¿Te muestro el precio y los horarios?',result:'Ocasión del huésped → Paquete aprobado relevante'},
-  {title:'Conserva la oportunidad.',image:'/assets/ui/dish-1.webp',ask:'El día completo de spa es demasiado. Solo tenemos una hora.',reply:'Hay un tratamiento de 45 minutos que encaja. ¿Consulto el precio y la disponibilidad?',result:'Necesidad → Alternativa → Resultado registrado'},
+  {title:'Conserva la oportunidad.',image:'/assets/ui/spa-1.webp',ask:'El día completo de spa es demasiado. Solo tenemos una hora.',reply:'Hay un tratamiento de 45 minutos que encaja. ¿Consulto el precio y la disponibilidad?',result:'Necesidad → Alternativa → Resultado registrado'},
   {title:'El contexto lo hace personal.',image:'/assets/ui/suite-garden.webp',ask:'Vamos a volver. ¿Qué nos recomiendas esta vez?',reply:'Guardaste tu preferencia por noches tranquilas. ¿Te muestro las opciones de cena privada para tus fechas?',result:'Memoria autorizada → Una recomendación más relevante'},
   {title:'Atención, a cualquier hora.',image:'/assets/img/company-reception.webp',ask:'¿Podrían traer toallas extra antes de cenar?',reply:'Envié tu solicitud a limpieza con la habitación y el horario. Te mantendré informado.',result:'Solicitud del huésped → Equipo responsable'},
  ],
