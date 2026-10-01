@@ -46,13 +46,15 @@ export function SiteNav({ appearance = 'light' }: { appearance?: 'dark' | 'light
         <Link href="/" className="hc-site-wordmark" onClick={() => setOpen(false)}>Hotel Companion</Link>
         <div className="hc-site-desktop-links">{c.links.map(link => <Link key={link.href} href={link.href} aria-current={pathname === link.href ? "page" : undefined}>{link.label}</Link>)}</div>
         <div className="hc-site-nav-actions">
-          <LanguageToggle />
+          <div className="hc-header-language"><LanguageToggle /></div>
           <Link href="/demo" className="hc-site-demo hc-site-desktop-cta">{c.demo}</Link>
+          <Link href="/demo" className="hc-site-phone-demo">{c.demo}</Link>
           <button ref={toggle} type="button" className="hc-site-menu-toggle" aria-expanded={open} aria-controls="hc-site-mobile-menu" aria-label={open ? c.close : c.open} onClick={() => setOpen(value => !value)}>
             {open ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
           </button>
         </div>
         <div id="hc-site-mobile-menu" className="hc-site-mobile-menu" hidden={!open}>
+          <div className="hc-menu-language"><LanguageToggle onChange={() => setOpen(false)} /></div>
           {c.links.map(link => <Link key={link.href} href={link.href} aria-current={pathname === link.href ? "page" : undefined} onClick={() => setOpen(false)}>{link.label}</Link>)}
           <Link href="/demo" className="hc-site-demo" onClick={() => setOpen(false)}>{c.demo}</Link>
         </div>

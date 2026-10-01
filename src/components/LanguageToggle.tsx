@@ -14,7 +14,7 @@ const LANGS = [
  * Sized to 44px so it matches the CTA it sits beside, which also clears the
  * minimum tap target on mobile.
  */
-export default function LanguageToggle() {
+export default function LanguageToggle({ onChange }: { onChange?: () => void } = {}) {
   const { lang, setLang } = useLang()
   return (
     <div
@@ -34,7 +34,7 @@ export default function LanguageToggle() {
           <button
             key={code}
             type="button"
-            onClick={() => setLang(code)}
+            onClick={() => { setLang(code); onChange?.() }}
             aria-pressed={active}
             aria-label={name}
             style={{

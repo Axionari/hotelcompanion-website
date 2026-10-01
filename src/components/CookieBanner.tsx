@@ -72,7 +72,7 @@ export function CookieBanner() {
   }
 
   return (
-    <div className="cbanner" ref={ref} role="region" aria-label={c.ariaLabel}>
+    <div className="cbanner" data-expanded={expanded} ref={ref} role="region" aria-label={c.ariaLabel}>
       <div className="cbin">
         <p className="cbtext">
           {c.bodyPre}
@@ -103,15 +103,15 @@ export function CookieBanner() {
               {c.save}
             </button>
           ) : (
-            <button type="button" className="cbtn" onClick={() => setExpanded(true)}>
+            <button type="button" className="cbtn cb-customize" onClick={() => setExpanded(true)}>
               {c.customize}
             </button>
           )}
-          <button type="button" className="cbtn" onClick={() => decide({ analytics: false, marketing: false })}>
-            {c.reject}
+          <button type="button" className="cbtn cb-decision" aria-label={c.reject} onClick={() => decide({ analytics: false, marketing: false })}>
+            <span className="cb-desktop-label">{c.reject}</span><span className="cb-phone-label">{c.rejectShort}</span>
           </button>
-          <button type="button" className="cbtn" onClick={() => decide({ analytics: true, marketing: true })}>
-            {c.accept}
+          <button type="button" className="cbtn cb-decision" aria-label={c.accept} onClick={() => decide({ analytics: true, marketing: true })}>
+            <span className="cb-desktop-label">{c.accept}</span><span className="cb-phone-label">{c.acceptShort}</span>
           </button>
         </div>
       </div>

@@ -6,6 +6,7 @@ import "./interior-pages.css";
 import "./site-reading.css";
 import "./mobile-refinement.css";
 import "./motion-polish.css";
+import "./phone-design.css";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 import { LiveDemoModalDeferred } from "@/components/cds/LiveDemoModalDeferred";
 import { PageMotion } from "@/components/experience/PageMotion";

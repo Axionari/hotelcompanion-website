@@ -5,7 +5,7 @@ import { ArrowRight, BookOpen, Check, Mic, ShieldCheck } from 'lucide-react'
 import Image from 'next/image'
 import { LocalizedLink as Link } from '@/components/LocalizedLink'
 import { Action, Eyebrow, useWords } from './Experience'
-import { Sequence, SequenceControls, SequenceRail, useSequence } from './Sequence'
+import { Sequence, SequenceControls, SequenceRail, SequenceTabs, useSequence } from './Sequence'
 import './home-clarity.css'
 
 // Each illustration enters once. The full message remains visible without motion.
@@ -38,8 +38,8 @@ export function OnboardingTimeline() {
   return <section className="hc-onboarding" id="setup" ref={ref} data-ready={ready} aria-labelledby="setup-title">
     <div className="xp-wrap">
       <div className="hc-clarity-heading"><Eyebrow>{t('GETTING STARTED', 'PARA EMPEZAR')}</Eyebrow><h2 id="setup-title">{t('Your first hotel.','Tu primer hotel.')}<br/>{t('Four clear steps.','Cuatro pasos claros.')}</h2></div>
-      <Sequence playback={playback} className="hc-launch-story"><SequenceControls playback={playback}/><ol className="hc-launch-timeline">
-        {steps.map((step, i) => <li key={i} data-active={playback.active===i} style={{ '--step': i } as CSSProperties}>
+      <Sequence playback={playback} className="hc-launch-story"><div className="hc-phone-step-nav"><SequenceTabs labels={steps.map(s=>s.title)} active={playback.active} onChange={playback.select} name="launch-phone" playback={playback}/></div><SequenceControls playback={playback}/><ol className="hc-launch-timeline">
+        {steps.map((step, i) => <li key={i} data-active={playback.active===i} id={playback.active===i?"launch-phone-panel":undefined} aria-labelledby={playback.active===i?`launch-phone-tab-${i}`:undefined} style={{ '--step': i } as CSSProperties}>
           <div className="hc-step-mark"><button type="button" onClick={()=>playback.select(i)} aria-label={step.title} aria-pressed={playback.active===i}>0{i + 1}</button><SequenceRail active={playback.active===i}/></div>
           <div key={`${i}-${playback.active===i}`} className={`hc-step-art hc-step-art-${i}`} aria-hidden="true">
             {i === 0 ? <div className="hc-knowledge-sheet"><div className="hc-sheet-photo"><Image src="/assets/lux/hotel-companion-hero-v2.webp" alt="" fill sizes="155px"/></div><div className="hc-sheet-name"><BookOpen size={13}/>{t('Your hotel','Tu hotel')}</div><i/><i/><div className="hc-sheet-tags"><span>{t('Services','Servicios')}</span><span>{t('Prices','Precios')}</span></div><span className="hc-sheet-stamp"><Check size={14}/></span></div>

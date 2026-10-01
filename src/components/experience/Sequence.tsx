@@ -96,7 +96,17 @@ export function SequenceRail({ active }: { active: boolean }) {
 }
 
 export function SequenceTabs({ labels, active, onChange, name, playback }: { labels: string[]; active: number; onChange: (i: number) => void; name: string; playback?: SequencePlayback }) {
-  return <div className={playback ? "hc-sequence-navigation" : undefined}><div className="xp-tabs" role="tablist" aria-label={name}>{labels.map((label,i)=><button key={label} id={`${name}-tab-${i}`} role="tab" type="button" aria-selected={active===i} aria-controls={`${name}-panel`} tabIndex={active===i?0:-1} onClick={()=>onChange(i)} onKeyDown={event=>{
+  const strip = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const list = strip.current
+    if (!list || !window.matchMedia('(max-width:700px)').matches) return
+    const tab = list.querySelector<HTMLElement>('[aria-selected="true"]')
+    if (!tab) return
+    const left = tab.offsetLeft - list.offsetLeft - (list.clientWidth - tab.clientWidth) / 2
+    // Scroll only the tab strip, never the page or the visitor's reading position.
+    list.scrollTo({ left, behavior: window.matchMedia('(prefers-reduced-motion:reduce)').matches ? 'auto' : 'smooth' })
+  }, [active])
+  return <div className={playback ? "hc-sequence-navigation" : undefined}><div ref={strip} className="xp-tabs" role="tablist" aria-label={name}>{labels.map((label,i)=><button key={label} id={`${name}-tab-${i}`} role="tab" type="button" aria-selected={active===i} aria-controls={`${name}-panel`} tabIndex={active===i?0:-1} onClick={()=>onChange(i)} onKeyDown={event=>{
     let next=i
     if(event.key==='ArrowRight') next=(i+1)%labels.length
     else if(event.key==='ArrowLeft') next=(i+labels.length-1)%labels.length

@@ -4,18 +4,16 @@ import { useEffect, useRef, useState } from 'react'
 import { CheckCheck, Heart, Mic, Pause, Play } from 'lucide-react'
 import { Sequence, SequenceTabs, useSequence } from './Sequence'
 import { ValueScene } from './ValueScene'
+import { ProductCapture } from './ProductCapture'
 import { useLang } from '@/lib/i18n/LanguageContext'
 
 const views={
  en:[{id:'home',label:'Welcome',title:'Your hotel. Beautifully presented.',body:'A guest experience shaped around the hotel’s identity, with rooms, dining, wellness and a voice companion close at hand.'},{id:'rooms',label:'Rooms & suites',title:'A room worth discovering.',body:'Explore the room browsing interface, with rich photography and useful details. See the full reservation journey in a scheduled presentation.'},{id:'dining',label:'Dining',title:'A table. A tasting. A reason to stay.',body:'The dining experience makes the hotel’s services easy to discover and discuss with the companion.'},{id:'wellness',label:'Wellness',title:'A little time for yourself.',body:'Spa and wellness options are presented as part of the guest experience, with useful details and a natural next step.'},{id:'context',label:'Continuity',title:'The conversation carries forward.',body:'The returning-guest demonstration opens with previous messages and arrival context, instead of starting from a blank conversation.'}],
  es:[{id:'home',label:'Bienvenida',title:'Tu hotel. Presentado con cuidado.',body:'Una experiencia con la identidad del hotel, habitaciones, gastronomía, bienestar y un companion de voz siempre a mano.'},{id:'rooms',label:'Habitaciones',title:'Una habitación para descubrir.',body:'Explora la interfaz de habitaciones, con fotografías y detalles útiles. Conoce el recorrido completo de reservas en una presentación agendada.'},{id:'dining',label:'Gastronomía',title:'Una mesa. Un sabor. Una razón para quedarse.',body:'La experiencia gastronómica facilita descubrir los servicios del hotel y conversar sobre ellos con el companion.'},{id:'wellness',label:'Bienestar',title:'Un momento para ti.',body:'Opciones de spa y bienestar como parte de la experiencia, con detalles útiles y un siguiente paso natural.'},{id:'context',label:'Continuidad',title:'La conversación continúa.',body:'La demostración de regreso incluye mensajes previos y contexto de llegada, en lugar de empezar una conversación en blanco.'}]
 }
-export function guestCapture(view:string,lang:'en'|'es') {
- const refreshed=view!=='context'
- return `/assets/experience/sales-desktop-${view}${refreshed?'-v2':''}${lang==='es'?'-es':''}.${refreshed?'webp':'jpg'}`
-}
+export { guestCapture } from './ProductCapture'
 function Capture({view,lang,priority=false}:{view:string;lang:'en'|'es';priority?:boolean}){
- return <Image loading={priority?undefined:"lazy"} className="xp-sales-capture" key={`${view}-${lang}`} src={guestCapture(view,lang)} alt={lang==='es'?`Interfaz real de la demo de Hotel Companion: ${views.es.find(v=>v.id===view)?.label}`:`Actual Hotel Companion sales demo interface: ${views.en.find(v=>v.id===view)?.label}`} width={1024} height={768} priority={priority} sizes="(max-width:800px) 90vw, 850px"/>
+ return <ProductCapture priority={priority} className="xp-sales-capture" key={`${view}-${lang}`} view={view} lang={lang} alt={lang==='es'?`Interfaz real de la demo de Hotel Companion: ${views.es.find(v=>v.id===view)?.label}`:`Actual Hotel Companion sales demo interface: ${views.en.find(v=>v.id===view)?.label}`} />
 }
 const journeys = {
  en: [

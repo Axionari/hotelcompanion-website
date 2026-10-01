@@ -1,0 +1,317 @@
+/* A phone edition, not a miniature desktop. These rules only affect <=700px.
+   Desktop composition and the shared footer's content stay consistent. */
+:root .hc-site-phone-demo, :root .hc-menu-language, :root .hc-phone-step-nav, :root .hc-transcript-toggle, :root .cb-phone-label { display:none; }
+:root .hc-product-capture { display:block; }
+@media(max-width:700px) {
+  :root { --hc-phone-gutter:24px; }
+  :root .xp-site :is(.xp-wrap), :root .eh-home .xp-wrap, :root .hc-inner .xp-wrap { width:calc(100% - var(--hc-phone-gutter)*2); }
+  :root .xp-site :is(h1,h2,h3),:root .hc-demo-copy h1 { text-wrap:balance; }
+  :root .xp-site p { text-wrap:pretty; }
+  :root .xp-site .xp-eyebrow { font-size:10px; letter-spacing:.12em; line-height:1.6; }
+  :root .eh-home .eh-section, :root .hc-inner .hc-chapter { padding-block:64px; }
+  :root .eh-home .xp-section-head, :root .hc-chapter-heading { text-align:left; margin-bottom:28px; }
+  :root .eh-home .xp-section-head h2, :root .hc-chapter-heading h2, :root .hc-clarity-heading h2 { font-size:clamp(30px,8.4vw,37px); line-height:1.13; letter-spacing:-.045em; }
+  :root .eh-home .xp-section-head > div > p:not(.xp-eyebrow), :root .hc-chapter-heading p { font-size:15px; line-height:1.65; margin:16px 0 0; }
+  :root .hc-inner .hc-page-intro { text-align:left; padding:42px 0 30px; }
+  :root .hc-inner .hc-page-intro h1 { font-size:clamp(33px,9.4vw,43px); line-height:1.09; margin:16px 0 20px; }
+  :root .hc-inner .hc-page-intro > p { font-size:16px; line-height:1.6; margin:0; }
+  :root .xp-inline-link { font-size:13px; }
+  :root .xp-site .xp-button { min-height:48px; font-size:14px; padding:14px 20px; }
+
+  /* A quieter masthead, with languages in the menu and a visible conversion path. */
+  :root .hc-site-header, :root .hc-site-nav { height:64px; }
+  :root .hc-site-nav { width:calc(100% - 36px); gap:8px; }
+  :root .hc-site-wordmark { font-size:16px; }
+  :root .hc-site-nav-actions { gap:7px; }
+  :root .hc-header-language { display:none; }
+  :root .hc-site-phone-demo { display:flex; align-items:center; min-height:44px; color:#94502f; font-size:11px; font-weight:500; white-space:nowrap; }
+  :root .hc-site-menu-toggle { border:0; border-radius:50%; width:44px; height:44px; }
+  :root .hc-site-mobile-menu:not([hidden]) { top:64px; left:-18px; right:-18px; padding:18px 24px 28px; max-height:calc(100dvh - 64px); background:#fbfaf7; }
+  :root .hc-site-mobile-menu > a { font-size:22px; font-weight:400; letter-spacing:-.025em; padding:14px 0; border-bottom:1px solid #e9e7df; }
+  :root .hc-site-mobile-menu > a[aria-current=page] { color:#a95129; }
+  :root .hc-site-mobile-menu > .hc-site-demo { font-size:15px; margin-top:20px; padding:14px 20px; border-radius:28px; border:0; color:#fff; }
+  :root .hc-menu-language { display:flex; justify-content:flex-end; padding-bottom:10px; }
+
+  /* Photography and one complete conversation share a stable, legible hero. */
+  :root .eh-home .eh-hero-inner { width:calc(100% - 48px); padding:48px 0 25px; gap:30px; }
+  :root .eh-hero-copy .xp-eyebrow { max-width:270px; margin-bottom:20px!important; font-size:9px; }
+  :root .eh-home .eh-hero-copy h1 { font-size:clamp(43px,12.1vw,57px); line-height:1.02; }
+  :root .eh-hero-copy > p:not(.xp-eyebrow) { font-size:15px; line-height:1.65; margin-top:23px; }
+  :root .eh-hero-actions { margin-top:24px; gap:8px 16px; }
+  :root .eh-hero-actions .xp-button { min-height:48px; font-size:13px; }
+  :root .eh-hero-actions > a:not(.xp-button) { font-size:12px; gap:8px; }
+  :root .eh-hero-conversation { background:#17271ac9; border:1px solid #ffffff20; border-radius:20px; padding:20px; min-height:295px; backdrop-filter:blur(12px); }
+  :root .eh-moment-title { font-size:20px; margin-bottom:16px!important; }
+  :root .eh-guest-line { margin-left:18px; padding:12px 14px; border-color:#ffffff26; box-shadow:none; }
+  :root .eh-companion-line { padding:14px; margin-top:10px; box-shadow:none; }
+  :root .eh-hero-conversation p:not(.eh-moment-title):not(.eh-moment-result) { font-size:13px; line-height:1.55; }
+  :root .eh-moment-result { font-size:10px; margin-top:14px!important; }
+  :root .eh-hero-shade { background:linear-gradient(180deg,#15251db3,#15251d8c 42%,#17251cf2); }
+  :root .eh-hero-bottom { gap:12px; border:0; padding:0; }
+  :root .eh-hero-bottom > span { font-size:10px; flex-basis:100%; color:#d9e1d2; }
+  :root .eh-hero-controls { flex:1; }
+  :root .eh-hero-progress { flex-basis:auto; gap:4px; }
+  :root .eh-hero-progress > span { width:20px; }
+  :root .eh-hero-caption { display:none; }
+
+  /* One swipeable row replaces the dense tab grid. The active label follows
+     the automatic story; native touch scrolling and keyboard access remain. */
+  :root .hc-sequence .hc-sequence-navigation { display:flex; flex-wrap:nowrap; align-items:center; gap:8px; margin:0 0 24px; }
+  :root .hc-sequence .hc-sequence-navigation > .xp-tabs,
+  :root .hc-inner .xp-control-sidebar .hc-sequence-navigation > .xp-tabs,
+  :root .hc-gallery-story .hc-sequence-navigation > .xp-tabs { position:relative; display:flex; flex-direction:row; flex-wrap:nowrap; justify-content:flex-start; flex:1; flex-basis:auto; overflow-x:auto; overscroll-behavior-x:contain; scrollbar-width:none; gap:18px; padding:0; margin:0!important; border:0; }
+  :root .hc-sequence .xp-tabs::-webkit-scrollbar { display:none; }
+  :root .hc-sequence .hc-sequence-navigation .xp-tabs > button,
+  :root .hc-inner .xp-control-sidebar .hc-sequence-navigation .xp-tabs > button { width:auto; flex:0 0 auto; display:flex; justify-content:flex-start; white-space:nowrap; min-height:48px; font-size:13px; gap:7px; padding:10px 0 15px!important; }
+  :root .hc-sequence .hc-sequence-navigation .hc-sequence-number { font-size:10px; }
+  :root .hc-sequence .hc-sequence-navigation > .hc-sequence-controls { margin:0; gap:0; }
+  :root .hc-sequence-navigation > .hc-sequence-controls > span { display:none; }
+  :root .hc-sequence .hc-sequence-controls button { background:#ffffff85; }
+  :root .hc-sequence-rail { height:2px; }
+  :root .hc-gallery-tabs { margin-bottom:0!important; }
+
+  /* Art-directed phone captures show a readable real card, rather than a full
+     dashboard scaled to illegible size. One source is downloaded per device. */
+  :root .hc-product-capture { overflow:hidden; border-radius:14px; background:#ede9df; }
+  :root .hc-product-capture img, :root .eh-product-screen .hc-product-capture img { display:block; width:100%; height:315px; object-fit:cover; object-position:center top; border:0; border-radius:0; box-shadow:none; }
+  :root .hc-product-capture[data-view=home] img { height:330px; object-position:top; }
+  :root .hc-product-capture[data-view=context] img { height:310px; }
+  :root .hc-gallery-screen { border:0; background:transparent; box-shadow:none; overflow:visible; }
+  :root .eh-guest-stage-grid { gap:24px; }
+  :root .eh-guest-stage-copy h3 { font-size:27px; line-height:1.17; }
+  :root .eh-guest-stage-copy p { font-size:14px; line-height:1.65; margin-top:12px; }
+  :root .eh-guest-stage-copy .xp-inline-link { margin-top:8px; }
+  :root .hc-demonstration-screen { padding:0; }
+  :root .hc-demonstration-screen .hc-value-scene { width:calc(100% - 24px); margin:-25px auto 0; z-index:2; padding:16px; border-radius:16px; background:#fffefa; border:1px solid #e2e4d8; box-shadow:0 10px 30px #203c2510; }
+  :root .hc-value-scene .hc-value-guest p, :root .hc-value-scene .hc-value-response strong { font-size:13px; }
+  :root .hc-value-scene .hc-value-result { font-size:11px; }
+  :root .eh-product-screen > small, :root .hc-visual-caption { font-size:10px; line-height:1.6; margin-top:16px; }
+  :root .eh-commercial { gap:26px; padding-block:12px 60px; }
+  :root .eh-commercial-art { height:310px; border-radius:16px; }
+  :root .eh-commercial-message { left:24px; bottom:24px; }
+  :root .eh-commercial-message > p { font-size:26px; margin-top:10px; }
+  :root .eh-commercial-copy h2 { font-size:34px; }
+  :root .eh-commercial-copy > p:not(.xp-eyebrow) { margin-top:18px; font-size:15px; line-height:1.65; }
+  :root .eh-commercial-proof { margin-top:20px; gap:9px; }
+
+  /* The real voice sample stays prominent. Longer dialogue is a choice. */
+  :root .xp-voice-sample { gap:24px; }
+  :root .eh-home .xp-voice-art, :root .hc-inner .xp-voice-art { padding:22px; border-radius:18px; }
+  :root .xp-voice-center { padding:24px 0 18px; gap:16px; }
+  :root .xp-large-orb { width:64px; height:64px; }
+  :root .xp-voice-heading { font-size:12px; line-height:1.5; }
+  :root .xp-voice-art > small { font-size:10px; }
+  :root .eh-home .xp-voice-transcript h3, :root .hc-inner .xp-voice-transcript h3 { font-size:30px; margin-bottom:14px; }
+  :root .hc-inner .xp-voice-transcript { padding:0 20px 22px; }
+  :root .hc-voice-lines[data-expanded=false] > button:nth-child(n+3) { display:none; }
+  :root .xp-voice-transcript .hc-voice-lines button { padding:10px 0; margin:0; }
+  :root .xp-voice-transcript .hc-voice-lines button p { font-size:14px; line-height:1.6; }
+  :root .xp-voice-transcript .hc-transcript-toggle { display:flex; align-items:center; justify-content:space-between; font-size:13px; color:#496443; padding:14px 0; border-radius:0; border:0; border-top:1px solid #dfe4d6; margin-top:10px; }
+  :root .hc-transcript-toggle[aria-expanded=true] svg { transform:rotate(45deg); }
+
+  /* Vertical illustrations use one active story instead of three/four tiny
+     cards. Every step remains accessible through the same progress tabs. */
+  :root .hc-phone-step-nav { display:block; }
+  :root .hc-launch-story > .hc-sequence-controls, :root .hc-memory-story > .hc-sequence-controls { display:none; }
+  :root .hc-launch-story .hc-launch-timeline { display:block; margin:0; }
+  :root .hc-launch-timeline > li:not([data-active=true]), :root .hc-memory-moments > li:not([data-active=true]) { display:none; }
+  :root .hc-launch-timeline > li { padding:24px!important; border:1px solid #e4e6dc!important; border-radius:20px; background:#fbfaf6; min-height:330px; }
+  :root .hc-launch-timeline .hc-step-mark { display:none; }
+  :root .hc-launch-timeline .hc-step-art { height:160px; margin:0 0 20px; opacity:1; }
+  :root .hc-launch-timeline h3 { font-size:24px; }
+  :root .hc-launch-timeline li > p { max-width:100%; font-size:14px; line-height:1.65; margin-top:10px; }
+  :root .hc-knowledge-sheet { width:155px; }
+  :root .hc-approved-card, :root .hc-launch-report { width:170px; padding:15px; }
+  :root .hc-test-conversation { width:190px; }
+  :root .hc-test-guest { font-size:10px; }
+  :root .hc-onboarding, :root .hc-inner .hc-onboarding { padding-block:64px; }
+  :root .hc-clarity-heading { margin-bottom:28px; }
+  :root .hc-timeline-foot { margin-top:24px; padding-top:18px; gap:8px; }
+  :root .hc-timeline-foot p { font-size:12px; }
+  :root .hc-memory-profile { width:100%; margin:0 0 24px; padding:20px; border-radius:16px; box-shadow:none; }
+  :root .hc-memory-moments { display:block; }
+  :root .hc-memory-moments > li { padding:0!important; border:0; text-align:left; background:transparent!important; }
+  :root .hc-memory-step { display:none; }
+  :root .hc-memory-moments img { height:185px; margin-bottom:16px; border-radius:16px; }
+  :root .hc-memory-moments h3 { font-size:23px; margin-bottom:10px; }
+  :root .hc-memory-moments p { max-width:100%; margin:0; font-size:15px; min-height:48px; }
+
+  /* Recognizable software, orderly grid. No floating logos or large gaps. */
+  :root .hc-logo-connections, :root .hc-inner .hc-logo-connections { padding-block:56px; }
+  :root .hc-logo-stage { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:22px 8px; min-height:0; }
+  :root .hc-logo-copy { position:static; grid-column:1/-1; background:transparent; margin-bottom:10px; text-align:left; }
+  :root .hc-logo-copy h2 { font-size:34px; }
+  :root .hc-logo-copy > p:not(.xp-eyebrow) { max-width:100%; font-size:14px; margin:16px 0 22px; }
+  :root .hc-system-logo { position:static; width:auto; gap:10px; }
+  :root .hc-system-logo > div { width:58px; height:58px; border-radius:15px; box-shadow:0 4px 10px #2d3b2908; }
+  :root .hc-system-logo img { width:42px; height:42px; }
+  :root .hc-system-logo span { font-size:10px; line-height:1.4; min-height:28px; }
+  :root .hc-connection-method { width:calc(100% - 48px); margin-top:24px; font-size:13px; }
+  :root .hc-connection-method summary { min-height:48px; justify-content:space-between; padding:14px 0; }
+  :root .hc-connection-method p { padding-inline:0; }
+
+  /* Guest and team views become a compact continuous conversation. */
+  :root .sj-scene { gap:12px; }
+  :root .sj-guest, :root .sj-team { border-radius:16px; box-shadow:none; }
+  :root .sj-guest-photo { height:90px; }
+  :root .sj-messages { padding:18px; gap:12px; }
+  :root .sj-guest-message { font-size:14px; padding:13px 15px; margin-left:18px; }
+  :root .sj-reply { margin-right:10px; padding:14px; }
+  :root .sj-reply p { font-size:14px; line-height:1.6; }
+  :root .sj-team { min-height:0; padding:20px; }
+  :root .sj-team h3 { font-size:25px; margin-top:20px; }
+  :root .sj-request-facts { margin-block:14px; gap:10px; }
+  :root .sj-context { padding:14px; }
+  :root .sj-explanation { min-height:90px; margin-top:24px; }
+  :root .sj-caption { font-size:10px; }
+  :root .xp-control-layout { min-height:0; }
+  :root .xp-control-sidebar { padding:10px 16px; }
+  :root .xp-control-sidebar .hc-sequence-navigation { margin-bottom:0; }
+  :root .xp-control-sidebar .hc-sequence-controls { margin-top:0; padding:0; }
+  :root .hc-inner .xp-control-content { padding:22px 18px; min-height:430px; }
+  :root .xp-control-header { padding:16px 18px; }
+  :root .xp-control-header small { font-size:9px; }
+  :root .xp-control-metrics { gap:6px; }
+  :root .xp-control-metrics > div { padding:12px 9px; }
+  :root .xp-control-metrics small { font-size:10px; line-height:1.4; min-height:28px; }
+  :root .xp-control-metrics strong { font-size:27px; }
+  :root .xp-request-row { display:grid; grid-template-columns:28px 1fr 14px; row-gap:5px; padding:14px 0; }
+  :root .xp-request-row > div { min-width:0; }
+  :root .xp-request-row b { font-size:13px; line-height:1.5; }
+  :root .xp-request-row small { font-size:11px; line-height:1.5; }
+  :root .xp-request-row > span:nth-last-child(2) { grid-column:2; grid-row:auto; justify-self:start; font-size:10px; padding:4px 8px; }
+  :root .xp-request-row > svg { grid-column:3; grid-row:1; }
+  :root .xp-memory-list strong, :root .xp-rule-grid strong { font-size:12px; line-height:1.5; }
+  :root .xp-rule-grid { gap:8px; }
+  :root .xp-rule-grid > div { padding:12px; }
+  :root .xp-memory-list small, :root .xp-rule-grid small { font-size:10px; line-height:1.4; }
+  :root .xp-control-note { font-size:12px; }
+  :root .xp-results-foot { font-size:11px; line-height:1.6; }
+
+  :root .hc-channel-stage > div[role=tabpanel] { min-height:0; gap:24px; }
+  :root .hc-channel-copy { text-align:left; margin:0; }
+  :root .hc-channel-copy > svg { margin:0; }
+  :root .hc-channel-copy h3 { font-size:27px; margin:14px 0; }
+  :root .hc-channel-copy p { font-size:15px; line-height:1.65; }
+  :root .hc-channel-device .hc-channel-mobile { width:100%; border:0; border-radius:16px; }
+  :root .hc-channel-mobile > img { width:100%; max-height:390px; object-fit:cover; object-position:top; }
+  :root .hc-channel-screen { box-shadow:none; border:0; }
+  :root .hc-channel-screen > img { height:260px; object-fit:cover; object-position:top; }
+  :root .hc-phone-scene { padding:24px 16px; border-radius:20px; }
+  :root .hc-phone-scene .hc-value-scene { width:100%; }
+  :root .hc-channel-device .hc-value-scene, :root .hc-channel-preview .hc-value-scene { width:calc(100% - 24px); margin:-18px auto 0; }
+  :root .hc-recovery-scene { gap:20px; }
+  :root .hc-recovery-conversation { padding:0; }
+  :root .hc-recovery-conversation > span:first-child { margin:0; }
+  :root .hc-recovery-conversation h3 { font-size:27px; margin:16px 0; }
+  :root .hc-recovery-conversation p { font-size:15px; line-height:1.65; }
+  :root .hc-recovery-conversation > span:last-child { display:none; }
+  :root .hc-recovered-offer > img { height:210px; }
+  :root .hc-recovered-offer > div { padding:20px; }
+  :root .hc-recovered-offer h3 { font-size:23px; }
+  :root .hc-story-image { aspect-ratio:1.3; }
+  :root .hc-photo-story { gap:26px; }
+  :root .hc-story-copy { padding:0; }
+  :root .hc-story-copy h3 { font-size:29px; margin-bottom:16px; }
+  :root .hc-story-copy > p { font-size:15px; line-height:1.65; }
+  :root .hc-page-details { margin-top:26px; }
+  :root .hc-page-details summary { padding:18px 0; font-size:14px; gap:16px; }
+  :root .hc-page-details p { font-size:14px; line-height:1.75; }
+  :root .hc-property-gallery { gap:24px; }
+  :root .hc-property-gallery img { height:210px; }
+  :root .hc-property-gallery figcaption { font-size:16px; margin-block:12px; }
+  :root .hc-contribution-numbers { display:block; margin-block:16px; }
+  :root .hc-contribution-numbers > div { display:flex; align-items:center; justify-content:space-between; flex-direction:row-reverse; gap:20px; text-align:left; padding:18px 0; border-bottom:1px solid #e1e5d8; }
+  :root .hc-contribution-numbers strong { font-size:32px; flex-shrink:0; }
+  :root .hc-contribution-numbers span { font-size:13px; margin:0; max-width:180px; }
+  :root .hc-contribution-numbers [data-total=true] { padding:20px 14px; margin-top:12px; }
+  :root .hc-focused-pilot { padding-block:64px; text-align:left; }
+  :root .hc-focused-pilot h2, :root .hc-inner .hc-focused-pilot h2 { font-size:34px; }
+  :root .hc-focused-pilot .xp-wrap > p:not(.xp-eyebrow) { font-size:15px; line-height:1.65; margin-top:20px; }
+  :root .hc-focused-pilot-actions { align-items:flex-start; flex-direction:column; gap:12px; margin-top:24px; }
+  :root .hc-focused-pilot small { font-size:11px; line-height:1.65; max-width:none; margin-top:20px; }
+
+  /* Reading, library and inquiry pages use the same phone measure. */
+  :root .hc-library-toolbar { gap:10px; align-items:start; }
+  :root .hc-library-toolbar select { font-size:14px; max-width:190px; min-height:44px; }
+  :root .hc-library-toolbar label { flex-wrap:wrap; }
+  :root .hc-library-grid { gap:30px; }
+  :root .hc-library-grid img { height:210px; }
+  :root .hc-demo-intro { width:calc(100% - 48px); padding:40px 0!important; gap:28px!important; }
+  :root .hc-demo-copy h1 { font-size:36px!important; }
+  :root .hc-demo-lead { font-size:16px!important; }
+  :root .hc-demo-photo { height:180px; }
+  :root .hc-demo-card { padding:24px 18px; }
+  :root .hc-demo-field label { font-size:14px; }
+  :root .hc-demo-faq { width:calc(100% - 48px); padding:24px 0 60px!important; }
+  :root .ed-legal-hero, :root .ed-article-hero { padding:42px 0 28px!important; }
+  :root .ed-legal-hero h1, :root .ed-article-hero h1 { font-size:35px!important; }
+  :root .ed-legal-body h2, :root .ed-article-body h2 { font-size:26px!important; }
+  :root .ed-article-body p, :root .ed-legal-body p { font-size:16px!important; line-height:1.75!important; }
+
+  /* All pages retain one shared footer, with readable two-column navigation. */
+  :root .hc-site-footer-inner { width:calc(100% - 48px); padding:48px 0 24px; }
+  :root .hc-site-footer-top { gap:30px; }
+  :root .hc-site-footer-links { grid-template-columns:1fr 1fr; gap:24px; }
+  :root .hc-site-footer .hc-site-footer-links h2 { font-size:12px; margin-bottom:8px; }
+  :root .hc-site-footer-links li { font-size:13px; }
+  :root .hc-site-footer-links > div:last-child { grid-column:1/-1; }
+  :root .hc-site-footer-links > div:last-child ul { grid-template-columns:1fr 1fr; gap:0 24px; }
+  :root .hc-site-footer-grand { margin-top:32px; font-size:10vw; }
+  :root .hc-site-footer-bottom { display:grid; grid-template-columns:1fr auto; gap:4px 16px; align-items:center; }
+  :root .hc-site-footer-bottom p:first-child { grid-column:1/-1; }
+  :root .hc-site-footer-bottom :is(p,a) { font-size:11px; }
+
+  /* Compact, equally accessible cookie choices, including rejection. */
+  :root .cbanner { background:#fffefa; color:#2b3b2d; border-color:#e4e6dd; box-shadow:0 -5px 30px #24392712; padding:14px 20px calc(10px + env(safe-area-inset-bottom,0px)); }
+  :root .cbin { display:block; }
+  :root .cbtext { font-size:12px; line-height:1.55; color:#66705f; }
+  :root .cbtext a { color:#925332; }
+  :root .cbrow { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:10px 0 0; }
+  :root .cbrow .cbtn { border:1px solid #d6decb; color:#344b35; padding:8px; font-size:12px; font-weight:500; border-radius:12px; }
+  :root .cbrow .cb-customize { grid-column:1/-1; grid-row:2; border:0; text-decoration:underline; text-underline-offset:3px; min-height:44px; padding:6px; }
+  :root .cbrow .cb-decision { background:#f0f3e9; }
+  :root .cb-phone-label { display:inline; }
+  :root .cb-desktop-label { display:none; }
+  :root .cbopts { gap:12px; padding:14px 0; }
+  :root .cbopt { font-size:13px; color:#344b35; min-height:36px; }
+  :root .cbopt em { color:#6c7c62; font-size:8px; }
+}
+@media(max-width:360px) {
+  :root { --hc-phone-gutter:20px; }
+  :root .hc-site-nav { width:calc(100% - 28px); }
+  :root .hc-site-mobile-menu:not([hidden]) { left:-14px; right:-14px; }
+  :root .hc-site-wordmark { font-size:15px; }
+  :root .hc-site-phone-demo { font-size:10px; }
+  :root .eh-home .eh-hero-inner { width:calc(100% - 40px); }
+  :root .eh-home .eh-hero-copy h1 { font-size:42px; }
+  :root .eh-hero-actions > a:not(.xp-button) { flex-basis:100%; }
+  :root .hc-product-capture img, :root .eh-product-screen .hc-product-capture img { height:280px; }
+  :root .hc-system-logo > div { width:52px; height:52px; }
+  :root .hc-system-logo img { width:38px; height:38px; }
+  :root .hc-site-footer-inner { width:calc(100% - 40px); }
+}
+@media(max-width:700px) {
+  :root .xp-site { padding-top:0; }
+  :root .hc-product-capture img, :root .eh-product-screen .hc-product-capture img { height:350px; }
+  :root .hc-demonstration-screen .hc-value-scene { margin-top:-10px; }
+}
+@media(max-width:360px) {
+  :root .hc-product-capture img, :root .eh-product-screen .hc-product-capture img { height:300px; }
+}
+@media(max-width:700px) {
+  :root .xp-site { margin-top:0; }
+}
+:root .hc-phone-copy { display:none; }
+@media(max-width:700px) {
+  :root .hc-desktop-copy { display:none; }
+  :root .hc-phone-copy { display:inline; }
+}
+@media(max-width:700px) {
+  /* A scrolling tab row must never determine the dashboard's content width. */
+  :root .xp-control-layout { grid-template-columns:minmax(0,1fr); }
+  :root .xp-control-sidebar { min-width:0; }
+  :root .xp-control-content { width:100%; overflow-wrap:anywhere; }
+  :root .xp-control-note { align-items:flex-start; }
+  :root .xp-control-note svg { flex-shrink:0; }
+}
