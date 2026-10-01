@@ -1,12 +1,14 @@
 'use client'
 
 import Image from 'next/image'
-import { ArrowLeft, ArrowRight, Check, Heart, Mic, Pause, Play } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Heart, Pause, Play } from 'lucide-react'
 import { LocalizedLink as Link } from '@/components/LocalizedLink'
 import { useLang } from '@/lib/i18n/LanguageContext'
 import { Action, Eyebrow, Tabs, useWords } from './Experience'
 import { Sequence, useSequence } from './Sequence'
 import { ValueScene } from './ValueScene'
+import { ConversationThread } from './ConversationThread'
+import { conversationStory } from './conversation-stories'
 import { ProductCapture } from './ProductCapture'
 import './editorial-home.css'
 
@@ -27,22 +29,22 @@ const moments = {
 
 export function EditorialHero(){
  const {lang}=useLang(),t=useWords()
- const {attach:heroRef,...playback}=useSequence(4,10000), active=playback.active, paused=playback.paused
- const moment=moments[lang][active]
+ const {attach:heroRef,...playback}=useSequence(4,18000,0,true), active=playback.active, paused=playback.paused
+ const moment=moments[lang][active], story=conversationStory('capability',[0,2,1,3][active],lang)
  function move(direction:number){playback.select((active+direction+4)%4)}
- return <section className="eh-hero" data-paused={paused} ref={heroRef} data-sequence-mode={playback.manual?'manual':'auto'} aria-label={t('Hotel Companion in a guest’s day','Hotel Companion en el día del huésped')}>
+ return <section className="eh-hero hc-sequence" data-sequence-duration={playback.duration} data-animate-selection="true" data-paused={paused} ref={heroRef} data-sequence-mode={playback.manual?'manual':'auto'} aria-label={t('Hotel Companion in a guest’s day','Hotel Companion en el día del huésped')}>
   <div className="eh-hero-photo" key={moment.image}><Image src={moment.image} fill sizes="100vw" priority={active===0} loading="eager" alt=""/></div>
   <div className="eh-hero-shade"/>
   <div className="eh-hero-inner">
    <div className="eh-hero-copy"><Eyebrow>{t('TURN GUEST INTEREST INTO HOTEL REVENUE.','CONVIERTE INTERÉS EN INGRESOS PARA TU HOTEL.')}</Eyebrow><h1>{t('Smarter offers.','Mejores ofertas.')}<br/>{t('More revenue.','Más ingresos.')}</h1><p><span className="hc-desktop-copy">{t('Turn guest conversations into relevant upgrades, experiences and packages. Natural voice, useful memory and 24/7 service—with your hotel controlling the offers.','Convierte conversaciones en mejoras, experiencias y paquetes relevantes. Voz natural, memoria útil y atención 24/7, con tu hotel al mando de las ofertas.')}</span><span className="hc-phone-copy">{t('Turn guest conversations into upgrades and experiences. Natural voice, useful memory and 24/7 service. Your hotel sets the rules.','Convierte conversaciones en mejoras y experiencias. Voz natural, memoria útil y atención 24/7. Tu hotel define las reglas.')}</span></p><div className="eh-hero-actions"><Action>{t('Request a demo','Solicita una demo')}</Action><Link href="#guest-experience">{t('Explore the experience','Explora la experiencia')}<ArrowRight size={16}/></Link></div></div>
-   <div className="eh-hero-conversation" key={`${lang}-${active}`}><p className="eh-moment-title">{moment.title}</p><div className="eh-guest-line"><p>{moment.ask}</p></div><div className="eh-companion-line"><span><Mic size={15}/>{t('Your hotel’s companion','El companion de tu hotel')}</span><p>{moment.reply}</p></div><p className="eh-moment-result"><Check size={14}/>{moment.result}</p></div>
+   <div className="eh-hero-conversation" key={`${lang}-${active}`}><p className="eh-moment-title">{moment.title}</p><ConversationThread messages={story.messages} outcome={story.outcome} voice={active===1}/></div>
    <div className="eh-hero-bottom"><span>{t('Telephone · Web & mobile · In-Room Tablets','Teléfono · Web y móvil · Tablets en la habitación')}</span><div className="eh-hero-controls"><button type="button" onClick={()=>move(-1)} aria-label={t('Previous guest example','Ejemplo anterior')}><ArrowLeft size={16}/></button>{!playback.reduced && <button type="button" onClick={playback.toggle} aria-label={paused?t('Resume guest examples','Reanudar ejemplos'):t('Pause guest examples','Pausar ejemplos')}>{paused?<Play size={15}/>:<Pause size={15}/>}</button>}<button type="button" onClick={()=>move(1)} aria-label={t('Next guest example','Siguiente ejemplo')}><ArrowRight size={16}/></button><span>0{active+1} / 04</span></div><div className="eh-hero-progress" aria-hidden="true">{moments[lang].map((_,i)=><span key={i}><i data-active={active===i}/></span>)}</div></div>
   </div><small className="eh-hero-caption">{t('Illustrative guest scenarios','Escenarios ilustrativos')}</small>
  </section>
 }
 
 export function GuestExperienceStage(){
- const {lang}=useLang(),t=useWords(),playback=useSequence(4,10000,0,true),active=playback.active,setActive=playback.select
+ const {lang}=useLang(),t=useWords(),playback=useSequence(4,18000,0,true),active=playback.active,setActive=playback.select
  const features=[
   {label:t('Smart recommendations','Recomendaciones inteligentes'),title:t('The right offer.\nAt the right moment.','La oferta adecuada.\nEn el momento adecuado.'),body:t('Match upgrades and experiences to the guest’s interests. Your hotel sets prices and margins.','Mejoras y experiencias según los intereses del huésped. Tu hotel define precios y márgenes.'),view:'dining',href:'/revenue'},
   {label:t('Memory & context','Memoria y contexto'),title:t('Recommendations\nthat remember.','Recomendaciones\ncon memoria.'),body:t('Carry useful preferences into the next conversation, with guest permission.','Conserva preferencias útiles para la siguiente conversación, con permiso del huésped.'),view:'context',href:'/platform#memory'},

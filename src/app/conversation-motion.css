@@ -1,36 +1,81 @@
-/* Character-by-character conversations share the walkthrough's visible clock.
-   All copy is complete without JS and with reduced motion. Text measures keep
-   cards stable while the visible ink is being composed. */
+/* The transcript is the visual: four real turns, a choice and a resolution.
+   Reserved measures keep the scene steady while characters appear. */
 :root .hc-live-text { display:block; position:relative; }
 :root .hc-live-measure { visibility:hidden; display:block; }
 :root .hc-live-ink { display:block; position:absolute; inset:0; }
-:root .hc-live-answer { position:relative; }
-:root .hc-chat-typing { display:none; }
-:root .hc-status-pending { display:none; }
+:root .hc-chat-typing, :root .hc-status-pending { display:none; }
+:root .hc-value-scene { width:min(410px,calc(100% - 36px)); padding:20px; border-radius:22px; background:rgba(255,254,250,.98); border-color:#e4e7de; }
+:root .hc-conversation-thread { text-align:left; color:#2c4034; min-width:0; }
+:root .hc-thread-header { display:flex; align-items:center; gap:8px; padding-bottom:16px; margin-bottom:16px; border-bottom:1px solid #e6e9e0; font-size:12px; font-weight:500; }
+:root .hc-thread-symbol { width:25px; height:25px; display:grid; place-items:center; background:#eaf0e3; color:#55704a; border-radius:50%; flex-shrink:0; }
+:root .hc-thread-header small { margin:0 0 0 auto; color:#87907f; font-size:10px; font-weight:400; line-height:1.3; }
+:root .hc-thread-messages { list-style:none; display:flex; flex-direction:column; gap:12px; padding:0; margin:0; }
+:root .hc-thread-message { max-width:92%; width:fit-content; margin:0; font-size:13px; line-height:1.5; letter-spacing:-.01em; }
+:root .hc-thread-message[data-role=guest] { align-self:flex-end; }
+:root .hc-thread-message[data-role=companion] { align-self:flex-start; }
+:root .hc-thread-bubble { position:relative; padding:11px 14px; border-radius:15px 15px 15px 4px; background:#eef2e8; }
+:root [data-role=guest] .hc-thread-bubble { border-radius:15px 15px 4px 15px; background:#2c4435; color:#fffef7; }
+:root .hc-thread-outcome { display:flex; align-items:center; gap:7px; margin:16px 0 0; padding-top:13px; border-top:1px solid #e6e9e0; color:#6d815d; font-size:11px; line-height:1.4; }
+:root .hc-thread-outcome svg { flex-shrink:0; }
+:root .hc-phone-scene .hc-value-scene { width:min(410px,100%); margin-top:24px; }
+:root .hc-channel-device .hc-value-scene { width:min(350px,60%); padding:20px; }
+:root .hc-recovery-conversation { padding:0; }
+:root .hc-recovery-conversation .hc-conversation-thread { background:#fffefa; border:1px solid #e0e5d9; border-radius:22px; padding:24px; }
+:root .hc-recovery-conversation .hc-thread-message { font-size:14px; }
+:root .sj-messages { display:block; padding:24px; }
+:root .sj-messages .hc-thread-message { font-size:14px; }
+:root .sj-guest-photo { height:110px; }
 @media(prefers-reduced-motion:no-preference) {
-  :root [data-conversation-motion=true] :is(.hc-value-guest,.hc-value-path,.hc-value-response,.hc-value-result,.sj-guest-message,.sj-reply,.sj-team,.sj-bridge,.sj-context,.sj-request-facts,.sj-staff-action,.sj-outcome,.sj-component-statuses) {
-    animation:none!important;
-    transition:opacity .28s ease,transform .28s cubic-bezier(.2,.7,.2,1);
-  }
-  :root [data-conversation-motion=true][data-guest-visible=false] :is(.hc-value-guest,.sj-guest-message),
-  :root [data-conversation-motion=true][data-reply-visible=false] :is(.hc-value-response,.hc-value-path,.sj-reply),
-  :root [data-conversation-motion=true][data-outcome-visible=false] :is(.hc-value-result,.sj-staff-action),
+  :root [data-thread-motion=true] .hc-thread-message, :root [data-thread-motion=true] .hc-thread-outcome,
+  :root [data-conversation-motion=true] :is(.sj-team,.sj-bridge,.sj-context,.sj-request-facts,.sj-staff-action,.sj-outcome,.sj-component-statuses) { animation:none!important; transition:opacity .3s ease,transform .3s cubic-bezier(.2,.7,.2,1); }
+  :root [data-thread-motion=true] .hc-thread-message[data-visible=false],
+  :root [data-thread-motion=true][data-complete=false] .hc-thread-outcome,
+  :root [data-conversation-motion=true][data-outcome-visible=false] .sj-staff-action,
   :root [data-conversation-motion=true][data-team-visible=false] :is(.sj-team,.sj-bridge),
   :root [data-conversation-motion=true][data-team-context=false] .sj-context,
   :root [data-conversation-motion=true][data-team-facts=false] :is(.sj-request-facts,.sj-outcome,.sj-component-statuses) { opacity:0; transform:translateY(7px); }
-  :root [data-conversation-motion=true][data-reply-writing=false] [data-conversation-text=reply] { visibility:hidden; }
-  :root [data-conversation-motion=true][data-reply-writing=false] .hc-chat-typing { display:flex; position:absolute; inset:0; align-items:center; gap:8px; color:#7a8c71; font-size:10px; font-weight:400; }
+  :root [data-thread-motion=true] [data-typing=true] .hc-live-ink { visibility:hidden; }
+  :root [data-thread-motion=true] [data-typing=true] .hc-chat-typing { display:flex; position:absolute; inset:11px 14px; align-items:center; gap:8px; color:#7a8c71; font-size:10px; }
   :root .hc-chat-dots { display:inline-flex; align-items:center; gap:3px; flex-shrink:0; }
   :root .hc-chat-dots i { width:4px; height:4px; border-radius:50%; background:#779269; animation:hc-chat-dot 1.05s infinite ease-in-out!important; }
   :root .hc-sequence[data-sequence-running=false] .hc-chat-dots i { animation-play-state:paused!important; }
   :root .hc-chat-dots i:nth-child(2) { animation-delay:.14s!important; }
   :root .hc-chat-dots i:nth-child(3) { animation-delay:.28s!important; }
-  :root [data-conversation-motion=true][data-guest-writing=true] [data-conversation-text=guest]::after { content:''; display:inline-block; width:1px; height:1em; background:currentColor; vertical-align:-.1em; margin-left:2px; opacity:.65; }
   :root [data-conversation-motion=true][data-status-visible=false] .hc-status-final { display:none; }
   :root [data-conversation-motion=true][data-status-visible=false] .hc-status-pending { display:inline; }
   :root .hc-sequence[data-animate-selection=true][data-sequence-mode=manual] .hc-sequence-rail > i[data-active=true] { transform:scaleX(var(--sequence-progress)); }
   @keyframes hc-chat-dot { 0%,70%,100% { transform:translateY(0); opacity:.4; } 35% { transform:translateY(-3px); opacity:1; } }
 }
 @media(max-width:700px) {
-  :root .hc-chat-typing { font-size:10px; }
+  :root .hc-demonstration-screen .hc-value-scene, :root .hc-channel-device .hc-value-scene, :root .hc-channel-preview .hc-value-scene { position:relative; inset:auto; width:calc(100% - 20px); padding:18px; margin:-10px auto 0; }
+  :root .hc-thread-header { margin-bottom:14px; padding-bottom:14px; }
+  :root .hc-thread-messages { gap:10px; }
+  :root .hc-thread-message, :root .sj-messages .hc-thread-message, :root .hc-recovery-conversation .hc-thread-message { font-size:14px; max-width:94%; }
+  :root .hc-thread-bubble { padding:11px 13px; }
+  :root .hc-phone-scene .hc-value-scene { width:100%; padding:18px; }
+  :root .sj-messages { padding:18px; }
+  :root .sj-guest-photo { height:90px; }
+  :root .hc-recovery-conversation .hc-conversation-thread { padding:18px; border-radius:18px; }
+}
+/* The opening conversation shares the hero's photography and quiet glass. */
+:root .eh-hero-conversation .hc-thread-header { color:#fffdf6; border-color:#ffffff28; }
+:root .eh-hero-conversation .hc-thread-header small { color:#d8dfcf; }
+:root .eh-hero-conversation .hc-thread-symbol { background:#ffffff20; color:#e8eedc; }
+:root .eh-hero-conversation .hc-thread-message { font-size:14px; }
+:root .eh-hero-conversation [data-role=guest] .hc-thread-bubble { background:#ffffff15; border:1px solid #ffffff30; color:#fffdf7; backdrop-filter:blur(8px); }
+:root .eh-hero-conversation [data-role=companion] .hc-thread-bubble { background:#fffdf4; color:#304336; }
+:root .eh-hero-conversation .hc-thread-outcome { border-color:#ffffff28; color:#e0e8d4; }
+:root .eh-hero[data-animate-selection=true][data-sequence-mode=manual] .eh-hero-progress i[data-active=true] { transform:scaleX(var(--sequence-progress)); }
+@media(max-width:700px) {
+  :root .eh-hero-conversation { min-height:0; }
+  :root .eh-hero-conversation .hc-thread-message { font-size:13px; }
+}
+@media(min-width:701px) {
+  :root .eh-guest-stage-grid { grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr); }
+  :root .eh-product-screen { width:100%; }
+  :root .eh-product-screen .hc-product-capture img { min-height:455px; object-fit:cover; object-position:top left; }
+  :root .hc-channel-preview .hc-channel-screen { min-height:450px; }
+}
+@media(min-width:701px) and (max-width:800px) {
+  :root .eh-guest-stage-grid { grid-template-columns:1fr; }
 }

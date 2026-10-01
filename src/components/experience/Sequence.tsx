@@ -57,7 +57,7 @@ export function useSequence(count: number, duration = 10000, initial = 0, animat
       update()
     }, { threshold: .12 })
     // Watch the illustration rather than starting the clock while only its heading is visible.
-    observer.observe(element.querySelector('.hc-value-scene') || element.querySelector('.sj-scene') || element.querySelector('[role="tabpanel"]') || element)
+    observer.observe(element.querySelector('.hc-value-scene') || element.querySelector('.sj-scene') || element.querySelector('.hc-conversation-thread') || element.querySelector('[role="tabpanel"]') || element)
     const focusIn = (event: FocusEvent) => { focused = reading(event.target as Element); update() }
     const focusOut = (event: FocusEvent) => { focused = reading(event.relatedTarget as Element | null); update() }
     element.addEventListener('focusin', focusIn)

@@ -152,7 +152,7 @@
  .hc-logo-connections[data-ready=true] .hc-connection-loom path { stroke-dasharray:600; animation:hc-connect 1.8s .3s both; }
  .hc-logo-connections[data-ready=true] .hc-connection-loom path:nth-child(even) { animation-delay:.7s; }
  .eh-hero[data-sequence-running=false] * { animation-play-state:paused!important; }
- .eh-hero[data-sequence-mode=manual] .eh-hero-conversation * { animation:none!important; }
+ .eh-hero[data-sequence-mode=manual]:not([data-animate-selection=true]) .eh-hero-conversation * { animation:none!important; }
 }
 @media(min-width:801px) {
  #guest-experience.eh-section { padding-block:80px; }

@@ -2,12 +2,14 @@
 
 import Image from 'next/image'
 import { useId, type ReactNode } from 'react'
-import { ArrowRight, Check, Clock3, Heart, Mic, Phone, ShieldCheck, Smartphone, Tablet, Monitor, Sparkles } from 'lucide-react'
+import { Check, Heart, Mic, Phone, ShieldCheck, Smartphone, Tablet, Monitor } from 'lucide-react'
 import { useLang } from '@/lib/i18n/LanguageContext'
 import { Action, Eyebrow, Tabs, useWords } from './Experience'
 import { ProductCapture } from './ProductCapture'
 import { Sequence, SequenceControls, SequenceRail, SequenceTabs, useSequence } from './Sequence'
 import { ValueScene } from './ValueScene'
+import { ConversationThread } from './ConversationThread'
+import { conversationStory } from './conversation-stories'
 
 export function PageIntro({eyebrow,title,accent,body}:{eyebrow:string;title:string;accent?:string;body:string}) {
  return <header className="hc-page-intro xp-wrap"><Eyebrow>{eyebrow}</Eyebrow><h1>{title}{accent&&<><br/><span>{accent}</span></>}</h1><p>{body}</p></header>
@@ -32,7 +34,7 @@ export function MemoryPanel() {
 }
 
 export function ChannelStage() {
- const t=useWords(),{lang}=useLang(),playback=useSequence(4,10000,0,true),active=playback.active,setActive=playback.select
+ const t=useWords(),{lang}=useLang(),playback=useSequence(4,18000,0,true),active=playback.active,setActive=playback.select
  const channels=[
   {label:t('Telephone','Teléfono'),icon:Phone,title:t('Answer the call. Keep the context.','Responde la llamada. Conserva el contexto.'),body:t('Natural voice conversations for questions, recommendations and supported requests. Routing and transfers are scoped for your hotel.','Conversaciones naturales para preguntas, recomendaciones y solicitudes compatibles. Rutas y transferencias definidas para tu hotel.'),view:'home'},
   {label:t('Desktop web','Web de escritorio'),icon:Monitor,title:t('Your hotel, ready to explore.','Tu hotel, listo para explorar.'),body:t('Help website visitors discover rooms and services through conversation and visual options.','Ayuda a descubrir habitaciones y servicios con conversación y opciones visuales.'),view:'rooms'},
@@ -44,7 +46,7 @@ export function ChannelStage() {
 }
 
 export function RecoveryStory() {
- const t=useWords(),playback=useSequence(4),active=playback.active,setActive=playback.select
+ const t=useWords(),{lang}=useLang(),playback=useSequence(4,18000,0,true),active=playback.active,setActive=playback.select
  const name=`recovery-${useId().replace(/:/g,'')}`
  const examples=[
   {label:t('Room features','Detalles de la habitación'),ask:t('“A balcony for our morning coffee?”','«¿Un balcón para tomar café por la mañana?»'),reply:t('Explore a garden-facing room with a private balcony. Check the upgrade price and availability for your dates.','Descubre una habitación con balcón privado hacia el jardín. Consulta el precio de la mejora y la disponibilidad para tus fechas.'),offer:t('Your own balcony. A better morning.','Tu propio balcón. Una mejor mañana.'),image:'/assets/ui/suite-garden.webp',tag:t('Matched to the feature the guest wants','El detalle que busca el huésped')},
@@ -52,8 +54,8 @@ export function RecoveryStory() {
   {label:t('Budget mismatch','Otro presupuesto'),ask:t('“Something simpler for dinner?”','«¿Algo más sencillo para cenar?»'),reply:t('An à la carte dinner instead of the tasting menu.','Una cena a la carta en lugar del menú degustación.'),offer:t('Dinner at your own pace','Cena a tu ritmo'),image:'/assets/ui/dish-2.webp',tag:t('An approved alternative','Una alternativa aprobada')},
   {label:t('First choice unavailable','Primera opción no disponible'),ask:t('“Is there a table at 8?”','«¿Hay mesa a las ocho?»'),reply:t('That time is full. Shall we check a later sitting?','Ese horario está lleno. ¿Revisamos un turno más tarde?'),offer:t('A different dinner time','Otro horario para cenar'),image:'/assets/ui/dish-1.webp',tag:t('Check the next available option','Consultar la siguiente opción disponible')},
  ]
- const item=examples[active]
- return <Sequence playback={playback} className="hc-recovery"><Tabs labels={examples.map(e=>e.label)} active={active} onChange={setActive} name={name} playback={playback}/><div key={active} className="hc-recovery-scene" id={`${name}-panel`} role="tabpanel" aria-labelledby={`${name}-tab-${active}`}><div className="hc-recovery-conversation"><span aria-hidden="true">{active===0 ? <Sparkles size={26}/> : <Clock3 size={26}/>}</span><h3>{item.ask}</h3><p>{item.reply}</p><span><ArrowRight size={17}/>{t('Keep the opportunity alive','Conservar la oportunidad')}</span></div><div className="hc-recovered-offer"><Image src={item.image} alt={item.offer} width={700} height={440} sizes="(max-width:800px) 90vw, 500px"/><div><small><Check size={13}/>{item.tag}</small><h3>{item.offer}</h3></div></div></div><small className="hc-visual-caption">{t('Illustrative scenarios. Offers require approved prices, availability and confirmation.','Escenarios ilustrativos. Las ofertas requieren precios aprobados, disponibilidad y confirmación.')}</small></Sequence>
+ const item=examples[active], story=conversationStory('recovery',active,lang)
+ return <Sequence playback={playback} className="hc-recovery"><Tabs labels={examples.map(e=>e.label)} active={active} onChange={setActive} name={name} playback={playback}/><div key={active} className="hc-recovery-scene" id={`${name}-panel`} role="tabpanel" aria-labelledby={`${name}-tab-${active}`}><div className="hc-recovery-conversation"><ConversationThread messages={story.messages} outcome={story.outcome}/></div><div className="hc-recovered-offer"><Image src={item.image} alt={item.offer} width={700} height={440} sizes="(max-width:800px) 90vw, 500px"/><div><small><Check size={13}/>{item.tag}</small><h3>{item.offer}</h3></div></div></div><small className="hc-visual-caption">{t('Illustrative scenarios. Offers require approved prices, availability and confirmation.','Escenarios ilustrativos. Las ofertas requieren precios aprobados, disponibilidad y confirmación.')}</small></Sequence>
 }
 
 export function ContributionExample() {
