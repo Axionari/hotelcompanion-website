@@ -1,0 +1,146 @@
+/* Shared chapters: sage for service, ivory for detail, forest for the offer. */
+:root .hc-inner .hc-page-intro { background: #e8eee4; border-bottom: 1px solid #d5dfd0; }
+:root .hc-inner .hc-chapter { background: #fffdf7; }
+:root .hc-inner .hc-chapter-tint { background: #e8eee4; }
+:root .hc-inner .hc-chapter:has(.sj-walkthrough) { background: #dce6d7; }
+:root .hc-inner :is(.hc-memory-moments li, .hc-principles > div, .hc-principles > article) {
+  background: #fffdf7;
+  border: 1px solid #d5dfd0;
+  border-radius: 20px;
+  padding: 24px;
+}
+:root .hc-inner .hc-memory-moments li > span { background: #fffdf7; }
+:root .hc-inner :is(.hc-photo-story, .hc-recovery-scene, .hc-channel-stage > [role=tabpanel]) {
+  background: #edf1e7;
+  border: 1px solid #d5dfd0;
+  border-radius: 24px;
+  padding: 32px;
+  min-width: 0;
+}
+:root .hc-inner .hc-page-details details {
+  background: #fffdf7;
+  border: 1px solid #d5dfd0;
+  border-radius: 14px;
+  padding-inline: 22px;
+  margin-block: 12px;
+}
+:root .hc-inner .hc-contribution-numbers { gap: 12px; }
+:root .hc-inner .hc-contribution-numbers > div {
+  background: #fffdf7;
+  border: 1px solid #d5dfd0;
+  border-radius: 16px;
+}
+:root .hc-inner .hc-contribution-numbers > [data-total=true] { background: #dce6d7; }
+:root .hc-inner :is(.hc-trust-links a, .hc-contact-options > div) {
+  background: #e8eee4;
+  border: 1px solid #d5dfd0;
+  border-radius: 20px;
+}
+:root .hc-inner .hc-library-toolbar { margin-top: 32px; }
+:root .hc-inner .hc-library-grid > li {
+  background: #fffdf7;
+  border: 1px solid #d5dfd0;
+  border-radius: 22px;
+  overflow: hidden;
+}
+:root .hc-inner .hc-library-grid > li > a > div { padding: 24px; }
+:root .hc-inner .hc-library-grid img { border-radius: 0; }
+:root .hc-demo-page { background: #e8eee4; }
+:root .hc-demo-page .hc-demo-card {
+  background: #fffdf7;
+  border: 1px solid #ccd8c5;
+  border-radius: 24px;
+  box-shadow: 0 16px 40px #243d3008;
+}
+:root .hc-demo-page .hc-demo-faq { background: #fffdf7; }
+:root .hc-demo-page .hc-demo-faq details {
+  background: #edf1e7;
+  border: 1px solid #d5dfd0;
+  border-radius: 14px;
+  padding-inline: 20px;
+  margin-block: 12px;
+}
+:root .ed-page :is(.ed-legal-hero, .ed-article-hero) { background: #e8eee4; }
+:root .ed-page :is(.ed-legal-body, .ed-article-body) { background: #f5f3ec; }
+:root .ed-page :is(.ed-legal-body .ed-legal-measure, .ed-article-body .ed-article-measure) {
+  background: #fffdf7;
+  border: 1px solid #d5dfd0;
+  border-radius: 24px;
+  padding: clamp(24px, 4vw, 48px);
+}
+:root .ed-page .ed-legal-body h2 { border-color: #c9d5c1; color: #263e31; }
+:root .ed-page .ed-next-story { background: #e8eee4; }
+:root .ed-contact .ed-tone-sand { background: #e8eee4; }
+:root .ed-contact :is(.ed-tone-night, .ed-tone-cocoa) { background: #243d30; }
+:root .ed-contact :is(.ed-folio, .ed-contact-notes, .ed-kpi-grid > div) {
+  background: #edf1e7;
+  border: 1px solid #d5dfd0;
+  border-radius: 20px;
+  padding: 28px;
+  color: #263e31;
+}
+@media (max-width: 800px) {
+  :root .hc-inner :is(.hc-photo-story, .hc-recovery-scene, .hc-channel-stage > [role=tabpanel]) { padding: 20px; border-radius: 18px; }
+  :root .ed-page :is(.ed-legal-body .ed-legal-measure, .ed-article-body .ed-article-measure) { padding: 24px 20px; border-radius: 18px; }
+}
+:root .eh-home .eh-guest-stage-grid {
+  background: #e8eee4;
+  border: 1px solid #d5dfd0;
+  border-radius: 28px;
+  padding: 48px;
+  gap: 48px;
+}
+:root .eh-home .eh-guest-stage-copy h3 { color: #263e31; }
+:root .eh-home .eh-guest-stage-copy p { color: #52604f; }
+:root .eh-home .eh-guest-stage .eh-product-screen {
+  background: #fffdf7;
+  border: 1px solid #dce3d6;
+  border-radius: 20px;
+  padding: 18px;
+  min-width: 0;
+}
+:root .eh-home .eh-control-section { background: #dce6d7; }
+:root :is(.eh-home .eh-control-section, .hc-inner) .sj-scene { align-items: stretch; }
+:root :is(.eh-home .eh-control-section, .hc-inner) .sj-guest,
+:root :is(.eh-home .eh-control-section, .hc-inner) .sj-team {
+  background: #fffdf7;
+  border: 1px solid #c6d3bf;
+  border-radius: 24px;
+  box-shadow: 0 12px 32px #263e3108;
+}
+:root :is(.eh-home .eh-control-section, .hc-inner) .sj-team { border-top: 4px solid #597451; }
+:root :is(.eh-home .eh-control-section, .hc-inner) .sj-context { background: #edf1e7; }
+:root :is(.eh-home .eh-control-section, .hc-inner) .sj-caption,
+:root :is(.eh-home .eh-control-section, .hc-inner) .sj-explanation p { color: #4e614a; }
+:root :is(.eh-home .eh-control-section, .hc-inner) .sj-bridge { color: #536d49; align-self: center; }
+:root :is(.eh-home, .hc-inner) .hc-focused-pilot {
+  background: #243d30;
+  color: #fffdf5;
+  padding-block: 100px;
+}
+:root :is(.eh-home, .hc-inner) .hc-focused-pilot h2 { color: #fffdf5; }
+:root :is(.eh-home, .hc-inner) .hc-focused-pilot .xp-eyebrow { color: #e6c9a7; }
+:root :is(.eh-home, .hc-inner) .hc-focused-pilot .xp-wrap > p:not(.xp-eyebrow),
+:root :is(.eh-home, .hc-inner) .hc-focused-pilot small { color: #d8e2d3; }
+:root :is(.eh-home, .hc-inner) .hc-focused-pilot-actions .xp-button {
+  background: #f4dfc4;
+  color: #243d30;
+  border: 1px solid #f4dfc4;
+}
+:root :is(.eh-home, .hc-inner) .hc-focused-pilot-actions .xp-button:hover { background: #fff5e6; }
+:root :is(.eh-home, .hc-inner) .hc-focused-pilot-actions > a:not(.xp-button) { color: #fff1dc; }
+:root :is(.eh-home, .hc-inner) .hc-focused-pilot a:focus-visible { outline: 2px solid #fff1dc; outline-offset: 5px; }
+@media (max-width: 1100px) {
+  :root .eh-home .eh-guest-stage-grid { padding: 32px; gap: 32px; }
+}
+@media (max-width: 800px) {
+  :root .eh-home .eh-guest-stage-grid { padding: 24px; border-radius: 22px; gap: 28px; }
+  :root .eh-home .eh-guest-stage .eh-product-screen { padding: 12px; border-radius: 16px; }
+  :root :is(.eh-home .eh-control-section, .hc-inner) .sj-guest,
+  :root :is(.eh-home .eh-control-section, .hc-inner) .sj-team { border-radius: 18px; }
+  :root :is(.eh-home, .hc-inner) .hc-focused-pilot { padding-block: 72px; }
+}
+@media (max-width: 480px) {
+  :root .eh-home .eh-guest-stage-grid { padding: 20px 16px; }
+  :root .eh-home .eh-guest-stage .eh-product-screen { padding: 8px; }
+}
