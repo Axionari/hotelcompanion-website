@@ -16,7 +16,6 @@ export function SiteFooter() {
             {c.footer.map(group => <div key={group.title}><h2>{group.title}</h2><ul>{group.links.map(link => <li key={link.href}><Link prefetch={false} href={link.href}>{link.label}</Link></li>)}</ul></div>)}
           </div>
         </div>
-        <div className="hc-site-footer-grand" aria-hidden="true">Hotel Companion</div>
         <div className="hc-site-footer-bottom"><p>{c.copyright}</p><p>{c.builtOn} <a href="https://www.axionari.com">Axionari</a></p><Link prefetch={false} href="/accessibility">{c.accessibility}</Link></div>
       </div>
     </footer>

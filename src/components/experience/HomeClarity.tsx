@@ -5,7 +5,6 @@ import { ArrowRight, BookOpen, Check, Mic, ShieldCheck } from 'lucide-react'
 import Image from 'next/image'
 import { LocalizedLink as Link } from '@/components/LocalizedLink'
 import { Action, Eyebrow, useWords } from './Experience'
-import { Sequence, SequenceControls, SequenceRail, SequenceTabs, useSequence } from './Sequence'
 import './home-clarity.css'
 
 // Each illustration enters once. The full message remains visible without motion.
@@ -28,28 +27,28 @@ function useEntrance() {
 }
 
 export function OnboardingTimeline() {
-  const t = useWords(), { ref, ready } = useEntrance(), playback = useSequence(4,8000)
+  const t = useWords()
   const steps = [
     { title: t('Share your hotel', 'Comparte tu hotel'), body: t('Room features, services, prices and guest information.', 'Detalles de habitaciones, servicios, precios e información para huéspedes.') },
     { title: t('Set the rules', 'Define las reglas'), body: t('Approve offers, channels and team responsibilities.', 'Aprueba ofertas, canales y responsables del equipo.') },
     { title: t('Try it together', 'Pruébalo con nosotros'), body: t('Rehearse offers, combined requests and confirmations.', 'Prueba ofertas, solicitudes combinadas y confirmaciones.') },
     { title: t('Launch & measure', 'Lanza y mide'), body: t('Start at one hotel. Review results before expanding.', 'Empieza en un hotel. Revisa resultados antes de ampliar.') },
   ]
-  return <section className="hc-onboarding" id="setup" ref={ref} data-ready={ready} aria-labelledby="setup-title">
+  return <section className="hc-onboarding" id="setup" aria-labelledby="setup-title">
     <div className="xp-wrap">
       <div className="hc-clarity-heading"><Eyebrow>{t('GETTING STARTED', 'PARA EMPEZAR')}</Eyebrow><h2 id="setup-title">{t('Your first hotel.','Tu primer hotel.')}<br/>{t('Four clear steps.','Cuatro pasos claros.')}</h2></div>
-      <Sequence playback={playback} className="hc-launch-story"><div className="hc-phone-step-nav"><SequenceTabs labels={steps.map(s=>s.title)} active={playback.active} onChange={playback.select} name="launch-phone" playback={playback}/></div><SequenceControls playback={playback}/><ol className="hc-launch-timeline">
-        {steps.map((step, i) => <li key={i} data-active={playback.active===i} id={playback.active===i?"launch-phone-panel":undefined} aria-labelledby={playback.active===i?`launch-phone-tab-${i}`:undefined} style={{ '--step': i } as CSSProperties}>
-          <div className="hc-step-mark"><button type="button" onClick={()=>playback.select(i)} aria-label={step.title} aria-pressed={playback.active===i}>0{i + 1}</button><SequenceRail active={playback.active===i}/></div>
-          <div key={`${i}-${playback.active===i}`} className={`hc-step-art hc-step-art-${i}`} aria-hidden="true">
+      <div className="hc-launch-story"><ol className="hc-launch-timeline" id="launch-phone-panel">
+        {steps.map((step, i) => <li key={i} data-active="true" aria-labelledby={`launch-phone-tab-${i}`} style={{ '--step': i } as CSSProperties}>
+          <div className="hc-step-mark" aria-hidden="true"><span>0{i + 1}</span><i/></div>
+          <div className={`hc-step-art hc-step-art-${i}`} aria-hidden="true">
             {i === 0 ? <div className="hc-knowledge-sheet"><div className="hc-sheet-photo"><Image src="/assets/lux/hotel-companion-hero-v2.webp" alt="" fill sizes="155px"/></div><div className="hc-sheet-name"><BookOpen size={13}/>{t('Your hotel','Tu hotel')}</div><i/><i/><div className="hc-sheet-tags"><span>{t('Services','Servicios')}</span><span>{t('Prices','Precios')}</span></div><span className="hc-sheet-stamp"><Check size={14}/></span></div>
             : i === 1 ? <div className="hc-approved-card"><span className="hc-art-icon"><ShieldCheck size={22}/></span><strong>{t('Hotel-approved','Aprobado por el hotel')}</strong><div><span>{t('Offers','Ofertas')}</span><Check size={13}/></div><div><span>{t('Margin rules','Reglas de margen')}</span><Check size={13}/></div></div>
             : i === 2 ? <div className="hc-test-conversation"><div className="hc-test-guest"><Mic size={14}/><span>{t('A dinner for two?','¿Una cena para dos?')}</span></div><div className="hc-test-answer"><span className="hc-test-wave">{[8,15,22,12,28,19,10,23,16,8].map((height,n)=><i key={n} style={{height}}/>)}</span><span className="hc-test-check"><Check size={14}/></span></div><small>{t('Reviewed with your team','Revisado con tu equipo')}</small></div>
             : <div className="hc-launch-report"><div><span>{t('Pilot results','Resultados del piloto')}</span><ArrowRight size={13}/></div><div className="hc-launch-bars">{[30,45,37,62,76,90].map((height,n)=><i key={n} style={{height:`${height}%`,'--bar':n} as CSSProperties}/>)}</div><span className="hc-launch-baseline"/><small>{t('Measure. Review. Expand.','Medir. Revisar. Ampliar.')}</small></div>}
           </div>
-          <h3>{step.title}</h3><p>{step.body}</p>
+          <h3 id={`launch-phone-tab-${i}`}>{step.title}</h3><p>{step.body}</p>
         </li>)}
-      </ol></Sequence>
+      </ol></div>
       <div className="hc-timeline-foot"><p>{t('Launch timing depends on the agreed scope and connections.','El plazo depende del alcance y las conexiones acordadas.')}</p><Link className="xp-inline-link" href="/implementation">{t('See the setup plan','Conoce el plan de implementación')}<ArrowRight size={16}/></Link></div>
     </div>
   </section>

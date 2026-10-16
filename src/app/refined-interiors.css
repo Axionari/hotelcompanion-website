@@ -1,0 +1,403 @@
+/* Purpose-led compositions within the shared Hotel Companion visual system. */
+:root .hc-inner .hc-page-intro[data-has-visual=true] .hc-page-intro-grid {
+  display: grid;
+}
+:root .hc-inner .hc-page-intro-visual,
+:root .hc-inner .hc-page-intro-copy {
+  min-width: 0;
+}
+
+/* Product: the actual interface is the opening visual. */
+:root .hc-inner .hc-page-intro[data-intro-variant=product] {
+  padding-block: 76px 88px;
+}
+:root .hc-inner .hc-page-intro[data-intro-variant=product] .hc-page-intro-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 58px;
+}
+:root .hc-inner .hc-page-intro[data-intro-variant=product] .hc-page-intro-copy {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(260px, .7fr);
+  column-gap: 80px;
+  align-items: end;
+}
+:root .hc-inner .hc-page-intro[data-intro-variant=product] .hc-page-intro-copy > .xp-eyebrow {
+  grid-column: 1 / -1;
+}
+:root .hc-inner .hc-page-intro[data-intro-variant=product] h1 {
+  margin-bottom: 0;
+  max-width: 760px;
+}
+:root .hc-inner .hc-page-intro[data-intro-variant=product] .hc-page-intro-copy > p:not(.xp-eyebrow) {
+  max-width: 410px;
+  padding-bottom: 4px;
+}
+:root .hc-inner .hc-page-intro[data-intro-variant=product] .hc-gallery {
+  padding: 0;
+  scroll-margin-top: 100px;
+}
+:root .hc-inner .hc-page-intro[data-intro-variant=product] .hc-gallery > .xp-wrap {
+  width: 100%;
+  max-width: none;
+}
+:root .hc-inner .hc-page-intro[data-intro-variant=product] .hc-gallery .hc-chapter-heading {
+  margin: 0 0 20px;
+}
+:root .hc-inner .hc-page-intro[data-intro-variant=product] .hc-gallery-screen {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+:root .hc-inner .hc-page-intro[data-intro-variant=product] .hc-gallery-tabs .xp-tabs {
+  justify-content: flex-start;
+}
+:root .hc-inner .hc-page-intro[data-intro-variant=product] .hc-visual-caption {
+  max-width: none;
+  margin: 20px 0 0;
+  text-align: left;
+  color: var(--hc-muted);
+  font-size: 11px;
+}
+
+/* Enterprise: clearly labelled property evidence, shown at a readable scale. */
+:root .hc-inner .hc-page-intro[data-intro-variant=portfolio] .hc-page-intro-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 52px;
+}
+:root .hc-inner .hc-page-intro[data-intro-variant=portfolio] .hc-page-intro-copy {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(260px, .8fr);
+  column-gap: 80px;
+  align-items: end;
+}
+:root .hc-inner .hc-page-intro[data-intro-variant=portfolio] .hc-page-intro-copy > .xp-eyebrow {
+  grid-column: 1 / -1;
+}
+:root .hc-inner .hc-page-intro[data-intro-variant=portfolio] h1 {
+  font-size: clamp(42px, 4.4vw, 64px);
+  margin-bottom: 0;
+}
+:root .hc-inner .hc-page-intro[data-intro-variant=portfolio] .sj-portfolio-preview {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+:root .hc-inner .hc-page-intro[data-intro-variant=portfolio] .sj-portfolio-preview > div {
+  border: 1px solid var(--hc-line);
+  border-radius: var(--hc-radius);
+  background: var(--hc-white);
+  box-shadow: 0 18px 48px #173e3509;
+}
+:root .hc-inner .hc-page-intro[data-intro-variant=portfolio] .sj-preview-label {
+  position: static;
+  display: block;
+  padding: 13px 18px;
+  border-bottom: 1px solid var(--hc-line);
+  border-radius: 0;
+  background: var(--hc-sage);
+  color: var(--hc-forest);
+  box-shadow: none;
+  font-size: 10px;
+  line-height: 1.5;
+  letter-spacing: .03em;
+}
+:root .hc-inner .hc-page-intro[data-intro-variant=portfolio] .sj-portfolio-preview figcaption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 32px;
+  margin: 16px 0 0;
+  max-width: none;
+  color: var(--hc-muted);
+  text-align: left;
+  font-size: 11px;
+  line-height: 1.7;
+}
+:root .hc-inner .hc-page-intro[data-intro-variant=portfolio] .sj-portfolio-preview figcaption p {
+  margin: 0;
+}
+:root .hc-inner .hc-page-intro[data-intro-variant=portfolio] .sj-portfolio-preview figcaption .xp-inline-link {
+  min-height: 44px;
+  margin: 0;
+}
+
+/* The rollout, company and contact openings let the message lead. */
+:root .hc-inner .hc-page-intro:is([data-intro-variant=rollout], [data-intro-variant=statement], [data-intro-variant=contact]) {
+  padding-block: 80px 64px;
+}
+:root .hc-inner .hc-page-intro:is([data-intro-variant=rollout], [data-intro-variant=statement], [data-intro-variant=contact]) .hc-page-intro-copy {
+  max-width: 1020px;
+}
+:root .hc-inner .hc-page-intro:is([data-intro-variant=rollout], [data-intro-variant=statement], [data-intro-variant=contact]) h1 {
+  max-width: 960px;
+  font-size: clamp(48px, 5.4vw, 78px);
+  margin-block: 30px;
+}
+:root .hc-inner .hc-page-intro:is([data-intro-variant=rollout], [data-intro-variant=statement], [data-intro-variant=contact]) .hc-page-intro-copy > p:not(.xp-eyebrow) {
+  max-width: 560px;
+}
+:root .hc-inner .hc-page-intro[data-intro-variant=contact] + .hc-chapter {
+  padding-top: 20px;
+}
+:root .hc-inner .hc-page-intro[data-intro-variant=contact] + .hc-chapter .hc-contact-options {
+  padding-block: 40px 30px;
+}
+
+/* Revenue: a readable calculation with one unmistakable total. */
+:root .hc-inner .hc-contribution {
+  width: 100%;
+  max-width: 960px;
+  margin-inline: auto;
+}
+:root .hc-inner .hc-contribution-ledger {
+  margin: 0;
+  border-top: 1px solid var(--hc-line);
+}
+:root .hc-inner .hc-ledger-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) max-content;
+  gap: 40px;
+  align-items: baseline;
+  padding: 27px 28px;
+  border-bottom: 1px solid var(--hc-line);
+}
+:root .hc-inner .hc-ledger-row dt {
+  color: var(--hc-muted);
+  font-size: 16px;
+  line-height: 1.6;
+}
+:root .hc-inner .hc-ledger-row dd {
+  margin: 0;
+  color: var(--hc-ink);
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+  letter-spacing: -.045em;
+  white-space: nowrap;
+}
+:root .hc-inner .hc-ledger-row[data-total=true] {
+  margin-top: 12px;
+  padding-block: 32px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--hc-forest);
+}
+:root .hc-inner .hc-ledger-row[data-total=true] :is(dt, dd) {
+  color: var(--hc-white);
+}
+:root .hc-inner .hc-ledger-row[data-total=true] dd {
+  font-size: clamp(34px, 3.6vw, 46px);
+}
+:root .hc-inner .hc-contribution > small {
+  margin-top: 20px;
+  color: var(--hc-muted);
+  text-align: left;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+/* Staff evidence comes first; the illustrative walkthrough is optional depth. */
+:root .hc-inner .sj-evidence-layout {
+  max-width: 1120px;
+  margin-inline: auto;
+}
+:root .hc-inner .sj-staff-evidence {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 32px;
+  margin: 0;
+}
+:root .hc-inner .sj-staff-evidence-copy {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0 80px;
+  min-width: 0;
+  max-width: none;
+  align-items: start;
+}
+:root .hc-inner .sj-staff-evidence-copy .xp-eyebrow {
+  grid-column: 1 / -1;
+  margin: 0 0 24px;
+}
+:root .hc-inner .sj-staff-evidence-copy h3 {
+  grid-row: 2 / 4;
+  max-width: 460px;
+  margin: 0;
+  color: var(--hc-ink);
+  font-size: clamp(30px, 3.2vw, 44px);
+  line-height: 1.12;
+  letter-spacing: -.04em;
+}
+:root .hc-inner .sj-staff-evidence-copy > p:not(.xp-eyebrow) {
+  max-width: 500px;
+  margin: 0;
+  color: var(--hc-muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+:root .hc-inner .sj-staff-evidence-copy .xp-inline-link {
+  grid-column: 2;
+  justify-self: start;
+  min-height: 44px;
+  margin-top: 22px;
+}
+:root .hc-inner .sj-staff-evidence-image {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--hc-line);
+  border-radius: var(--hc-radius);
+  background: var(--hc-white);
+  box-shadow: 0 18px 48px #173e3509;
+}
+:root .hc-inner .sj-staff-evidence-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+}
+:root .hc-inner .sj-workflow-details {
+  margin-top: 56px;
+  border-block: 1px solid var(--hc-line);
+}
+:root .hc-inner .sj-workflow-details > summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  min-height: 74px;
+  padding: 22px 0;
+  color: var(--hc-ink);
+  cursor: pointer;
+  list-style: none;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+:root .hc-inner .sj-workflow-details > summary::-webkit-details-marker {
+  display: none;
+}
+:root .hc-inner .sj-workflow-details > summary svg {
+  flex-shrink: 0;
+  transition: transform .2s ease;
+}
+:root .hc-inner .sj-workflow-details[open] > summary svg {
+  transform: rotate(90deg);
+}
+:root .hc-inner .sj-workflow-details > .sj-walkthrough {
+  max-width: none;
+  padding-block: 20px 38px;
+}
+
+@media (max-width: 1100px) {
+  :root .hc-inner .hc-page-intro[data-intro-variant=product] .hc-page-intro-copy,
+  :root .hc-inner .hc-page-intro[data-intro-variant=portfolio] .hc-page-intro-copy,
+  :root .hc-inner .sj-staff-evidence-copy {
+    column-gap: 44px;
+  }
+  :root .hc-inner .hc-page-intro[data-intro-variant=portfolio] .hc-page-intro-grid {
+    gap: 44px;
+  }
+}
+@media (max-width: 800px) {
+  :root .hc-inner .hc-page-intro[data-intro-variant=product],
+  :root .hc-inner .hc-page-intro:is([data-intro-variant=rollout], [data-intro-variant=statement], [data-intro-variant=contact]) {
+    padding-block: 50px 48px;
+  }
+  :root .hc-inner .hc-page-intro[data-intro-variant=product] .hc-page-intro-grid {
+    gap: 38px;
+  }
+  :root .hc-inner .hc-page-intro[data-intro-variant=product] .hc-page-intro-copy,
+  :root .hc-inner .hc-page-intro[data-intro-variant=portfolio] .hc-page-intro-copy {
+    display: block;
+  }
+  :root .hc-inner .hc-page-intro[data-intro-variant=product] h1 {
+    margin-bottom: 24px;
+  }
+  :root .hc-inner .hc-page-intro[data-intro-variant=product] .hc-page-intro-copy > p:not(.xp-eyebrow) {
+    max-width: 540px;
+    padding: 0;
+  }
+  :root .hc-inner .hc-page-intro[data-intro-variant=portfolio] .hc-page-intro-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+  }
+  :root .hc-inner .hc-page-intro[data-intro-variant=portfolio] h1,
+  :root .hc-inner .hc-page-intro:is([data-intro-variant=rollout], [data-intro-variant=statement], [data-intro-variant=contact]) h1 {
+    font-size: clamp(38px, 8.9vw, 60px);
+    margin-block: 24px;
+  }
+  :root .hc-inner .hc-page-intro[data-intro-variant=portfolio] .hc-page-intro-visual {
+    max-width: none;
+  }
+  :root .hc-inner .hc-page-intro[data-intro-variant=contact] + .hc-chapter {
+    padding-top: 0;
+  }
+  :root .hc-inner .hc-page-intro[data-intro-variant=contact] + .hc-chapter .hc-contact-options {
+    padding-block: 34px 0;
+  }
+  :root .hc-inner .hc-ledger-row {
+    gap: 24px;
+    padding: 23px 12px;
+  }
+  :root .hc-inner .hc-ledger-row dt {
+    font-size: 15px;
+  }
+  :root .hc-inner .hc-ledger-row dd {
+    font-size: 29px;
+  }
+  :root .hc-inner .hc-ledger-row[data-total=true] {
+    padding: 26px 16px;
+  }
+  :root .hc-inner .hc-ledger-row[data-total=true] dd {
+    font-size: 35px;
+  }
+  :root .hc-inner .sj-staff-evidence {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 30px;
+  }
+  :root .hc-inner .sj-staff-evidence-copy {
+    display: block;
+    max-width: 560px;
+  }
+  :root .hc-inner .sj-staff-evidence-copy h3 {
+    max-width: 500px;
+    font-size: 34px;
+    margin-bottom: 20px;
+  }
+  :root .hc-inner .sj-workflow-details {
+    margin-top: 38px;
+  }
+  :root .hc-inner .sj-workflow-details > summary {
+    font-size: 15px;
+  }
+}
+@media (max-width: 380px) {
+  :root .hc-inner .hc-ledger-row {
+    gap: 16px;
+    padding-inline: 8px;
+  }
+  :root .hc-inner .hc-ledger-row dt {
+    font-size: 14px;
+  }
+  :root .hc-inner .hc-ledger-row dd {
+    font-size: 26px;
+  }
+  :root .hc-inner .hc-ledger-row[data-total=true] {
+    padding-inline: 12px;
+  }
+  :root .hc-inner .hc-ledger-row[data-total=true] dd {
+    font-size: 31px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root .hc-inner .sj-workflow-details > summary svg {
+    transition: none;
+  }
+}

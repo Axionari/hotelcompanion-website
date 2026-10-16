@@ -10,13 +10,26 @@ import { useCopy } from '@/lib/i18n/useCopy'
 import { siteChromeCopy } from '@/lib/i18n/marketing/siteChrome'
 import './site-chrome.css'
 
-/** The optional appearance prop preserves existing page callers. */
+/** Dark appearance lets the opening photograph extend behind the navigation. */
 export function SiteNav({ appearance = 'light' }: { appearance?: 'dark' | 'light' }) {
   const c = useCopy(siteChromeCopy)
   const pathname = stripLanguagePrefix(usePathname())
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const header = useRef<HTMLElement>(null)
   const toggle = useRef<HTMLButtonElement>(null)
+  useEffect(() => {
+    let previous: boolean | undefined
+    const onScroll = () => {
+      const next = window.scrollY >= 48
+      if (next === previous) return
+      previous = next
+      setScrolled(next)
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [pathname])
   useEffect(() => {
     if (!open) return
     const previousOverflow = document.body.style.overflow
@@ -41,7 +54,7 @@ export function SiteNav({ appearance = 'light' }: { appearance?: 'dark' | 'light
     return () => { document.body.style.overflow = previousOverflow; desktop.removeEventListener('change', onResize); document.removeEventListener('keydown', onKey); document.removeEventListener('pointerdown', onPointer) }
   }, [open])
   return (
-    <header ref={header} className="hc-site-header" data-page-appearance={appearance}>
+    <header ref={header} className="hc-site-header" data-page-appearance={appearance} data-scrolled={scrolled} data-menu-open={open}>
       <nav className="hc-site-nav" aria-label={c.navLabel}>
         <Link href="/" className="hc-site-wordmark" onClick={() => setOpen(false)}>Hotel Companion</Link>
         <div className="hc-site-desktop-links">{c.links.map(link => <Link key={link.href} href={link.href} aria-current={pathname === link.href ? "page" : undefined}>{link.label}</Link>)}</div>

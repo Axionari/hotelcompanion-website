@@ -22,9 +22,9 @@ export function PageMotion() {
           : [element]
         parts.forEach((part, index) => {
           const animation = part.animate([
-            { opacity: .05, transform: 'translateY(16px)' },
+            { opacity: .05, transform: 'translateY(8px)' },
             { opacity: 1, transform: 'translateY(0)' },
-          ], { duration: 750, delay: element.matches('[data-motion-scene]') ? index * 650 : 0, easing: 'cubic-bezier(.22,1,.36,1)', fill: 'backwards' })
+          ], { duration: 500, delay: element.matches('[data-motion-scene]') ? index * 110 : 0, easing: 'cubic-bezier(.22,1,.36,1)', fill: 'backwards' })
           animations.add(animation)
           animation.finished.then(() => animations.delete(animation)).catch(() => animations.delete(animation))
         })
@@ -32,7 +32,7 @@ export function PageMotion() {
     }, { threshold: .08 })
     const elements = document.querySelectorAll<HTMLElement>('main > section, main > header, main > .xp-wrap, main > article, main > div > section, .hc-page-intro, [data-motion-scene], .hc-clarity-heading, .hc-chapter-heading, .xp-section-head')
     const candidates = [...elements].filter(element => {
-      if (element.matches('.eh-hero') || element.closest('.hc-sequence')) return false
+      if (element.matches('.eh-hero, .sg-cover') || element.closest('.hc-sequence')) return false
       if (element.closest('[data-motion-scene]') !== (element.matches('[data-motion-scene]') ? element : null)) return false
       return !element.querySelector('[data-motion-scene]') || element.matches('[data-motion-scene]')
     })

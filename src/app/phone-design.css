@@ -257,7 +257,6 @@
   :root .hc-site-footer-links li { font-size:13px; }
   :root .hc-site-footer-links > div:last-child { grid-column:1/-1; }
   :root .hc-site-footer-links > div:last-child ul { grid-template-columns:1fr 1fr; gap:0 24px; }
-  :root .hc-site-footer-grand { margin-top:32px; font-size:10vw; }
   :root .hc-site-footer-bottom { display:grid; grid-template-columns:1fr auto; gap:4px 16px; align-items:center; }
   :root .hc-site-footer-bottom p:first-child { grid-column:1/-1; }
   :root .hc-site-footer-bottom :is(p,a) { font-size:11px; }

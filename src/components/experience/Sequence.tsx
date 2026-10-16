@@ -4,13 +4,13 @@ import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 import { Pause, Play } from 'lucide-react'
 import { useLang } from '@/lib/i18n/LanguageContext'
 
-/** One clock for the tab, progress rail and scene. No React render per frame. */
+/** Scenes stay complete until the visitor starts the shared playback clock. */
 export function useSequence(count: number, duration = 10000, initial = 0, animateSelection = false) {
   const ref = useRef<HTMLElement>(null)
   const attach = useCallback((element: HTMLElement | null) => { ref.current = element }, [])
   const [active, setActive] = useState(initial)
-  const [paused, setPaused] = useState(false)
-  const [manual, setManual] = useState(false)
+  const [paused, setPaused] = useState(true)
+  const [manual, setManual] = useState(true)
   const [reduced, setReduced] = useState(false)
   const elapsed = useRef(0)
   const [replay, setReplay] = useState(0)
@@ -30,7 +30,7 @@ export function useSequence(count: number, duration = 10000, initial = 0, animat
     let visible = false, focused = reading(document.activeElement), frame = 0, previous = 0
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)')
     const update = () => {
-      const running = visible && !document.hidden && !focused && !paused && (!manual || animateSelection) && !motion.matches
+      const running = visible && !document.hidden && !focused && !paused && !manual && !motion.matches
       element.dataset.sequenceRunning = String(running)
       if (animateSelection) element.dispatchEvent(new CustomEvent('hc-sequence-tick', { detail: elapsed.current }))
       if (running && !frame) { previous = 0; frame = requestAnimationFrame(tick) }
@@ -43,7 +43,6 @@ export function useSequence(count: number, duration = 10000, initial = 0, animat
       element.style.setProperty('--sequence-progress', String(Math.min(elapsed.current / duration, 1)))
       if (animateSelection) element.dispatchEvent(new CustomEvent('hc-sequence-tick', { detail: elapsed.current }))
       if (elapsed.current >= duration) {
-        if (manual && animateSelection) { setPaused(true); return }
         elapsed.current = 0
         element.style.setProperty('--sequence-progress', '0')
         setActive(index => (index + 1) % count)
@@ -74,13 +73,12 @@ export function useSequence(count: number, duration = 10000, initial = 0, animat
   const select = (index: number) => {
     elapsed.current = 0
     ref.current?.style.setProperty('--sequence-progress', '0')
-    if (animateSelection) ref.current?.dispatchEvent(new CustomEvent('hc-sequence-tick', { detail: 0 }))
-    setManual(true); setPaused(!animateSelection); setActive(index); setReplay(value => value + 1)
+    setManual(true); setPaused(true); setActive(index); setReplay(value => value + 1)
   }
   const toggle = () => {
-    if (manual && animateSelection && !paused) { setPaused(true) }
-    else if (manual) {
-      if (elapsed.current >= duration) { elapsed.current = 0; ref.current?.style.setProperty('--sequence-progress', '0') }
+    if (manual) {
+      elapsed.current = 0
+      ref.current?.style.setProperty('--sequence-progress', '0')
       setManual(false); setPaused(false)
     }
     else setPaused(value => !value)
@@ -92,12 +90,15 @@ export type SequencePlayback = ReturnType<typeof useSequence>
 
 export function Sequence({ playback, children, className = '' }: { playback: SequencePlayback; children: ReactNode; className?: string }) {
   const { attach: containerRef, manual, active } = playback
-  return <div ref={containerRef} className={`hc-sequence ${className}`} data-sequence-mode={manual ? 'manual' : 'auto'} data-sequence-active={active} data-sequence-duration={playback.duration} data-animate-selection={playback.animateSelection}>{children}</div>
+  return <div ref={containerRef} className={`hc-sequence ${className}`} data-sequence-mode={manual ? 'manual' : 'auto'} data-sequence-active={active} data-sequence-duration={playback.duration} data-animate-selection={playback.animateSelection && !manual}>{children}</div>
 }
 
 export function SequenceControls({ playback }: { playback: SequencePlayback }) {
-  const { lang } = useLang(), stopped = playback.paused || (playback.manual && !playback.animateSelection)
-  return <div className="hc-sequence-controls"><span aria-hidden="true">{String(playback.active + 1).padStart(2, '0')} <i>/</i> {String(playback.count).padStart(2, '0')}</span>{!playback.reduced && <button type="button" onClick={playback.toggle} aria-label={lang === 'es' ? stopped ? 'Reanudar recorrido automático' : 'Pausar recorrido automático' : stopped ? 'Resume automatic walkthrough' : 'Pause automatic walkthrough'}>{stopped ? <Play size={13}/> : <Pause size={13}/>}</button>}</div>
+  const { lang } = useLang(), stopped = playback.paused || playback.manual
+  const label = lang === 'es'
+    ? playback.manual ? 'Reproducir recorrido automático' : stopped ? 'Reanudar recorrido automático' : 'Pausar recorrido automático'
+    : playback.manual ? 'Play automatic walkthrough' : stopped ? 'Resume automatic walkthrough' : 'Pause automatic walkthrough'
+  return <div className="hc-sequence-controls"><span aria-hidden="true">{String(playback.active + 1).padStart(2, '0')} <i>/</i> {String(playback.count).padStart(2, '0')}</span>{!playback.reduced && <button type="button" onClick={playback.toggle} aria-label={label}>{stopped ? <Play size={13}/> : <Pause size={13}/>}</button>}</div>
 }
 
 export function SequenceRail({ active }: { active: boolean }) {

@@ -38,7 +38,7 @@ export function ServiceJourney({ staffPreview = false, combined = false }: { sta
     t('Yes, please. That sounds perfect.', 'Sí, por favor. Suena perfecto.'),
     active === 0 ? t('Your request is with the hotel team. I’ll confirm once they’ve checked availability.', 'El equipo del hotel tiene tu solicitud. Confirmaré cuando revise disponibilidad.') : combined ? combinedReplies[active] : step.reply,
   ]
-  return <Sequence playback={playback} className="sj-walkthrough">
+  const walkthrough = <Sequence playback={playback} className="sj-walkthrough">
     <Tabs labels={steps.map(s => s.label)} active={active} onChange={setActive} name={name} playback={playback}/>
     <div key={active} id={`${name}-panel`} role="tabpanel" aria-labelledby={`${name}-tab-${active}`} className="sj-scene">
       <div className="sj-guest">
@@ -55,8 +55,28 @@ export function ServiceJourney({ staffPreview = false, combined = false }: { sta
     </div>
     <div className="sj-explanation"><h3>{step.title}</h3><p>{step.note}</p></div>
     <p className="sj-caption">{t('Illustrative workflow and sample amounts. Supported actions and team routing are agreed for each hotel.', 'Flujo ilustrativo e importes de ejemplo. Las acciones y rutas al equipo se acuerdan por hotel.')}</p>
-    {staffPreview ? <details className="sj-actual-preview"><summary>{t('See the actual staff request screen', 'Ver la pantalla real de solicitudes del equipo')}<ArrowRight size={16}/></summary><p>{t('Product interface with test data; identifiers and timestamps are masked. This example shows a housekeeping request and its staff-controlled status changes.', 'Interfaz del producto con datos de prueba; identificadores y fechas están ocultos. El ejemplo muestra una solicitud de limpieza y sus cambios de estado a cargo del equipo.')}</p><Image src="/assets/operations/staff-request-preview.png" alt={t('Actual staff request interface showing the guest message, history and request update controls with sample data', 'Interfaz real de solicitudes con mensaje, historial y controles de actualización con datos de prueba')} width={768} height={1789} sizes="(max-width:800px) 90vw, 560px"/></details> : <Link href="/solutions#people" className="sj-detail-link">{t('See the staff handoff', 'Conoce la transferencia al equipo')}<ArrowRight size={16}/></Link>}
+    {!staffPreview && <Link href="/solutions#people" className="sj-detail-link">{t('See the staff handoff', 'Conoce la transferencia al equipo')}<ArrowRight size={16}/></Link>}
   </Sequence>
+
+  if (!staffPreview) return walkthrough
+
+  return <div className="sj-evidence-layout">
+    <figure className="sj-staff-evidence">
+      <figcaption className="sj-staff-evidence-copy">
+        <p className="xp-eyebrow">COMPANION CONTROL</p>
+        <h3>{t('See the actual staff request screen', 'Ver la pantalla real de solicitudes del equipo')}</h3>
+        <p>{t('Current sales demo with fictional hotel and guest data. A housekeeping request, its assigned team member, status controls and an audit timeline.', 'Demo de ventas actual con datos ficticios de hotel y huéspedes. Una solicitud de limpieza, su responsable, controles de estado y un historial de actividad.')}</p>
+        <a className="xp-inline-link" href="/assets/experience/sales-current-staff-request.jpg" target="_blank" rel="noopener noreferrer">{t('View the full screen', 'Ver la pantalla completa')}<ArrowRight size={16}/></a>
+      </figcaption>
+      <div className="sj-staff-evidence-image">
+        <Image unoptimized src="/assets/experience/sales-current-staff-request.jpg" alt={t('Current sales demo request queue showing a fictional housekeeping request, assigned team member, status controls and audit timeline', 'Cola de solicitudes de la demo actual con una solicitud ficticia de limpieza, responsable, controles de estado e historial')} width={1422} height={1000} sizes="(max-width:800px) 90vw, 1120px"/>
+      </div>
+    </figure>
+    <details className="sj-workflow-details">
+      <summary>{t('Explore the illustrative workflow', 'Explora el flujo ilustrativo')}<ArrowRight size={16}/></summary>
+      {walkthrough}
+    </details>
+  </div>
 }
 
 export function HandoffDetails() {
@@ -70,5 +90,5 @@ export function HandoffDetails() {
 
 export function PortfolioPreview() {
   const t = useWords()
-  return <figure className="sj-portfolio-preview"><div><span className="sj-preview-label">{t('Interface preview · Test data', 'Vista de la interfaz · Datos de prueba')}</span><Image src="/assets/operations/portfolio-preview.png" alt={t('Actual portfolio interface showing property conversations, open requests, stay inquiries and configuration with sample data', 'Interfaz real del portafolio con conversaciones, solicitudes, consultas y configuración con datos de prueba')} width={1280} height={1201} sizes="(max-width:800px) 94vw, 900px"/></div><figcaption>{t('Actual product interface · Test data · Operational counts, not measured revenue results', 'Interfaz real del producto · Datos de prueba · Conteos operativos, no resultados de ingresos')}</figcaption></figure>
+  return <figure className="sj-portfolio-preview"><div><span className="sj-preview-label">{t('Current sales demo · Property operations', 'Demo de ventas actual · Operación del hotel')}</span><Image unoptimized src="/assets/experience/sales-current-operations.jpg" alt={t('Current sales demo House overview for one fictional hotel, with illustrative operating figures and service requests', 'Vista general de un hotel ficticio en la demo actual, con cifras operativas ilustrativas y solicitudes de servicio')} width={1422} height={1000} sizes="(max-width:800px) 94vw, 1280px"/></div><figcaption><p>{t('House overview for one fictional hotel. Demonstration figures, not measured results.', 'Vista general de un hotel ficticio. Cifras de demostración, no resultados medidos.')}</p><a className="xp-inline-link" href="/assets/experience/sales-current-operations.jpg" target="_blank" rel="noopener noreferrer">{t('View the full screen', 'Ver la pantalla completa')}<ArrowRight size={16}/></a></figcaption></figure>
 }

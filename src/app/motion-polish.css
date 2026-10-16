@@ -155,13 +155,9 @@
  .eh-hero[data-sequence-mode=manual]:not([data-animate-selection=true]) .eh-hero-conversation * { animation:none!important; }
 }
 @media(min-width:801px) {
- #guest-experience.eh-section { padding-block:80px; }
  .eh-guest-stage-grid { grid-template-columns:.75fr 1.25fr; gap:55px; }
  .eh-product-screen { max-width:640px; margin-left:auto; }
  .eh-guest-stage .hc-sequence-navigation .xp-tabs { gap:18px; }
- .eh-home #guest-experience .xp-section-head { margin-bottom:30px; }
- .eh-home #guest-experience .xp-section-head h2 { font-size:clamp(38px,3.4vw,49px); }
- .eh-home #guest-experience .xp-section-head > div > p:not(.xp-eyebrow) { margin-top:18px; }
 }
 @media(max-width:800px) {
  .hc-sequence-navigation .xp-tabs { grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px 16px; }
