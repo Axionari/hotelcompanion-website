@@ -1,5 +1,5 @@
 /* Hospitality as the setting. The real product as the evidence. */
-.home.home { margin-top:-64px; background:#f7f8f2; color:#173e35; }
+.home.home { margin-top:-64px; background:#f7f8f2; color:#173e35; color-scheme:only light; }
 .home :is(h1,h2,h3) { font-weight:400; }
 .container { width:min(1280px,calc(100% - 112px)); margin-inline:auto; }
 .cover { position:relative; isolation:isolate; min-height:880px; min-height:max(800px,100svh); color:#fffef9; background:#15251f; }
@@ -123,16 +123,17 @@
 @media(max-width:800px) {
   .container { width:calc(100% - 48px); }
   .cover { min-height:0; }
-  .coverContent { display:block; padding-top:135px; padding-bottom:26px; }
-  .coverCopy h1 { font-size:clamp(45px,10.8vw,78px); letter-spacing:-.055em; }
-  .coverCopy .eyebrow { font-size:9px; max-width:290px; margin-bottom:27px; }
-  .coverCopy .coverLead { margin-top:28px; font-size:15px; max-width:450px; }
+  .coverContent { display:block; padding-top:112px; padding-bottom:26px; }
+  .coverCopy { min-width:0; }
+  .coverCopy h1 { font-size:clamp(2rem,10.5vw,4.875rem); letter-spacing:-.05em; line-height:1.05; white-space:normal; text-wrap:wrap; overflow-wrap:break-word; }
+  .coverCopy .eyebrow { font-size:10px; max-width:290px; margin-bottom:24px; }
+  .coverCopy .coverLead { margin-top:22px; font-size:16px; line-height:1.6; max-width:450px; }
   .desktopCopy { display:none; }
   .phoneCopy { display:inline; }
-  .coverActions { gap:20px; flex-wrap:wrap; margin-top:26px; }
-  .button { min-height:50px; font-size:13px; gap:24px; padding:15px 20px; }
-  .textLink { font-size:12px; }
-  .coverProduct { max-width:190px; margin:48px 0 0 auto; }
+  .coverActions { flex-direction:column; align-items:flex-start; gap:8px; margin-top:24px; }
+  .button { width:min(100%,320px); min-height:50px; font-size:14px; gap:24px; padding:15px 20px; }
+  .textLink { min-height:44px; font-size:14px; }
+  .coverProduct { max-width:190px; margin:32px 0 0 auto; }
   .phoneFrame { padding:4px; border-radius:19px; }
   .phoneFrame img { border-radius:15px; }
   .productLabel { font-size:8px; letter-spacing:.07em; margin-bottom:13px; }
@@ -197,8 +198,7 @@
 }
 @media(max-width:400px) {
   .container { width:calc(100% - 40px); }
-  .coverContent { padding-top:120px; }
-  .coverCopy h1 { font-size:43px; }
+  .coverContent { padding-top:104px; }
   .coverActions { gap:8px 20px; }
   .setupSteps { gap:26px 20px; }
   .setupSteps h3 { font-size:18px; }
