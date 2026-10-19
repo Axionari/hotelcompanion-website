@@ -1,6 +1,12 @@
 @import "tailwindcss";
 @import "./tokens.css";
 
+/* Keep mobile browser text inflation consistent while preserving user zoom. */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 html, body {
   /* v3 Phase 3A: was `hidden`, which turns body into a scroll container and
      silently disables position:sticky (the sun-arc pin). `clip` keeps the

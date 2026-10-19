@@ -10,6 +10,7 @@
   background: rgba(247, 248, 242, .97);
   border-bottom: 1px solid #173e3517;
   font-family: var(--font-sans), Arial, sans-serif;
+  color-scheme: only light;
   backdrop-filter: blur(16px);
   transition: background-color .24s ease;
 }
@@ -237,6 +238,12 @@
   :root .hc-site-header .hc-site-mobile-menu:not([hidden]) { left: -14px; right: -14px; }
   :root .hc-site-footer-inner { width: calc(100% - 40px); }
   :root .hc-demo-page .hc-demo-intro > .hc-demo-card { padding: 25px 20px; }
+}
+
+/* On narrow phones the hero and menu retain the demo action without crowding
+   the wordmark and the 44px menu target into the masthead. */
+@media (max-width: 360px) {
+  :root .hc-site-header .hc-site-phone-demo { display: none; }
 }
 
 /* A quiet, transparent frame over the homepage photograph, then the familiar ivory nav. */
