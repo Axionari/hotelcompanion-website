@@ -5,6 +5,7 @@ import { LocalizedLink as Link } from '@/components/LocalizedLink'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { demoFormCopy } from '@/lib/i18n/marketing/demoForm'
 import { CalendlyInline } from './CalendlyInline'
+import './demo-form.css'
 
 type Status = 'idle' | 'submitting' | 'success' | 'error'
 type Field = 'name' | 'email' | 'hotel' | 'goal'

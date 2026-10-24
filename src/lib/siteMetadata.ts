@@ -26,7 +26,7 @@ export function createPageMetadata({
   const spanishUrl = `${SITE_URL}/es${basePath}`
   const url = lang === 'es' ? spanishUrl : englishUrl
   return {
-    title,
+    title: path === '/' ? { absolute: title } : title,
     description,
     alternates: {
       canonical: url,

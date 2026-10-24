@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { ArrowUpRight, CalendarDays } from 'lucide-react'
 import { SiteNav } from '@/components/site-nav'
 import { SiteFooter } from '@/components/site-footer'
 import { DemoForm } from '@/components/cds/DemoForm'
@@ -33,21 +34,21 @@ export default function DemoClient() {
             </div>
           </header>
           <div className={styles.formPanel}>
-            <h2>{form.title}</h2>
+            <span className={styles.formLabel}>{lang === 'es' ? 'UNA CONVERSACIÓN SOBRE TU HOTEL' : 'A CONVERSATION ABOUT YOUR HOTEL'}</span>
+            <h2>{lang === 'es' ? 'Empecemos por ti.' : 'Let’s start with you.'}</h2>
             <p>{form.intro}</p>
             <DemoForm />
           </div>
           <div className={styles.context}>
-            <div className={styles.photograph}>
-              <Image src="/assets/editorial/hc-boutique-suite-blue-hour.webp" alt={lang === 'es' ? 'Una estancia para descubrir' : 'A stay worth discovering'} fill sizes="(max-width:800px) calc(100vw - 48px), (max-width:1200px) 48vw, 640px" />
-            </div>
-            <details className={styles.agenda} open>
-              <summary>{form.page.agendaTitle}</summary>
-              <ul>{form.page.agenda.map(item => <li key={item}>{item}</li>)}</ul>
-            </details>
-            <p className={styles.note}>{form.page.note}</p>
-            <p className={styles.calendar}>{form.page.calendarLead}<br /><a href={calendarUrl} target="_blank" rel="noopener noreferrer">{form.page.calendarLink} <span aria-hidden="true">↗</span></a></p>
+            <figure className={styles.photograph}>
+              <Image src="/assets/figma/2-4217-imgEditorialPhotograph.webp" alt={lang === 'es' ? 'Una suite abierta a una terraza con vista al mar' : 'A suite opening onto a terrace overlooking the sea'} fill sizes="(max-width:800px) calc(100vw - 48px), (max-width:1200px) 48vw, 640px" priority />
+              <figcaption>{lang === 'es' ? 'Tu hotel. Tus huéspedes. Las posibilidades.' : 'Your hotel. Your guests. The possibilities.'}</figcaption>
+            </figure>
+            <div className={styles.calendar}><CalendarDays size={19} strokeWidth={1.4}/><div><span>{form.page.calendarLead}</span><a href={calendarUrl} target="_blank" rel="noopener noreferrer">{form.page.calendarLink}<ArrowUpRight size={15}/></a></div></div>
           </div>
+        </section>
+        <section className={styles.agenda} aria-label={form.page.agendaTitle}>
+          <div className={styles.agendaInner}><header><p className={styles.eyebrow}>{lang === 'es' ? 'EN LA CONVERSACIÓN' : 'IN OUR CONVERSATION'}</p><h2>{form.page.agendaTitle}</h2><p className={styles.note}>{form.page.note}</p></header><ol>{form.page.agenda.map((item,index)=><li key={item}><span>0{index+1}</span><p>{item}</p></li>)}</ol></div>
         </section>
         <section className={styles.faq} id="faq">
           <div className={styles.faqInner}>

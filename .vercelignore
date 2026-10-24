@@ -4,3 +4,10 @@ node_modules
 *.tsbuildinfo
 AGENTS.md
 **/*.test.*
+reports
+image-review
+handoff
+docs
+.claude
+.github
+*.md

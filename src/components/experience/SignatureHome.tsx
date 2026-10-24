@@ -2,13 +2,14 @@
 
 import Image from 'next/image'
 import { useState } from 'react'
-import { ArrowDown, ArrowRight, ArrowUpRight, Check, Mic } from 'lucide-react'
+import { ArrowDown, ArrowUpRight, Check } from 'lucide-react'
 import { LocalizedLink as Link } from '@/components/LocalizedLink'
 import { useLang } from '@/lib/i18n/LanguageContext'
 import { SiteNav } from '@/components/site-nav'
 import { SiteFooter } from '@/components/site-footer'
-import { useWords, VoiceSample } from './Experience'
+import { useWords } from './Experience'
 import { ProductCapture, guestCapture } from './ProductCapture'
+import { OutcomeDemo } from './OutcomeDemo'
 import { FocusedPilot } from './HomeClarity'
 import { OperatingStory } from './OperatingStory'
 import styles from './signature-home.module.css'
@@ -23,30 +24,44 @@ function SignatureHero() {
         <p className={styles.eyebrow}>{t('TURN GUEST INTEREST INTO HOTEL REVENUE.','CONVIERTE INTERÉS EN INGRESOS PARA TU HOTEL.')}</p>
         <h1 id="signature-title">{t('Smarter offers.','Mejores ofertas.')}<br/>{t('More revenue.','Más ingresos.')}</h1>
         <p className={styles.coverLead}><span className={styles.desktopCopy}>{t('Turn guest conversations into relevant upgrades, experiences and packages. Natural voice, useful memory and 24/7 service—with your hotel controlling the offers.','Convierte conversaciones en mejoras, experiencias y paquetes relevantes. Voz natural, memoria útil y atención 24/7, con tu hotel al mando de las ofertas.')}</span><span className={styles.phoneCopy}>{t('Turn guest conversations into upgrades and experiences. Natural voice, useful memory and 24/7 service. Your hotel sets the rules.','Convierte conversaciones en mejoras y experiencias. Voz natural, memoria útil y atención 24/7. Tu hotel define las reglas.')}</span></p>
-        <div className={styles.coverActions}><Link href="/demo" className={styles.button}>{t('Request a demo','Solicita una demo')}<ArrowUpRight size={18}/></Link><Link href="#guest-experience" className={styles.textLink}>{t('Explore the experience','Explora la experiencia')}<ArrowDown size={17}/></Link></div>
+        <div className={styles.coverActions}><Link href="/demo" className={styles.button}>{t('Plan a pilot','Planea un piloto')}<ArrowUpRight size={18}/></Link><Link href="#outcomes" className={styles.textLink}>{t('See what it changes','Descubre qué cambia')}<ArrowDown size={17}/></Link></div>
       </div>
       <a href="#guest-experience" className={styles.coverProduct} aria-label={t('Explore the current guest experience','Explora la experiencia actual del huésped')}>
         <div className={styles.productLabel}><span>{t('YOUR HOTEL. IN THEIR HANDS.','TU HOTEL. EN SUS MANOS.')}</span><ArrowUpRight size={15}/></div>
         <div className={styles.phoneFrame}><Image src={guestCapture('home',lang,'phone')} alt={t('Current Hotel Companion guest experience on a phone','Experiencia actual del huésped de Hotel Companion en un teléfono')} width={433} height={938} sizes="(max-width:800px) 190px, 234px" unoptimized priority/></div>
         <span className={styles.productNote}>{t('Actual sales demo · Sample hotel','Demo de ventas actual · Hotel de ejemplo')}</span>
       </a>
-      <div className={styles.coverFoot}><p>{t('By handling routine requests, the Companion gives your team more time for personal service.','Al atender solicitudes rutinarias, el Companion deja a tu equipo más tiempo para un servicio personal.')}</p><a href="#hospitality" aria-label={t('Discover a more personal stay','Descubre una estancia más personal')}><span>{t('Discover a more personal stay','Descubre una estancia más personal')}</span><ArrowDown size={17}/></a></div>
+      <div className={styles.coverFoot}><p>{t('By handling routine requests, the Companion gives your team more time for personal service.','Al atender solicitudes rutinarias, el Companion deja a tu equipo más tiempo para un servicio personal.')}</p><span>{t('One companion · four outcomes','Un companion · cuatro resultados')}</span></div>
     </div>
   </section>
 }
 
-function HospitalityStatement() {
-  const t=useWords()
-  const points=[
-    [t('Immediate assistance','Ayuda inmediata'),t('A useful answer in the guest’s language, whenever they need it.','Una respuesta útil en el idioma del huésped, cuando la necesita.')],
-    [t('Thoughtful recommendations','Recomendaciones con sentido'),t('Rooms, dining and experiences that fit the person and the moment.','Habitaciones, gastronomía y experiencias que encajan con la persona y el momento.')],
-    [t('More time for people','Más tiempo para las personas'),t('Less routine work. More personal attention from your team.','Menos tareas rutinarias. Más atención personal de tu equipo.')],
+function OutcomeNavigator() {
+  const t=useWords(),{lang}=useLang()
+  const [selection,setSelection]=useState({index:0,run:0})
+  const active=selection.index
+  const select=(index:number)=>setSelection(previous=>({index,run:previous.run+1}))
+  const outcomes=[
+    {label:t('Direct revenue','Ingresos directos'),title:t('Turn intent into an approved offer.','Convierte intención en una oferta aprobada.'),body:t('Match what the guest asks for with rooms, experiences and services the hotel has chosen to sell.','Relaciona lo que pide el huésped con habitaciones, experiencias y servicios que el hotel ha decidido vender.'),proof:t('Completed sales and additional contribution remain distinct from interest.','Las ventas completadas y la contribución adicional se separan del simple interés.'),view:'rooms',kind:'guest'},
+    {label:t('Guest service','Servicio al huésped'),title:t('Useful answers, whenever guests ask.','Respuestas útiles cuando el huésped pregunta.'),body:t('Natural voice and text help guests find hotel information and take the next step without waiting for the front desk.','Voz y texto naturales ayudan a encontrar información y dar el siguiente paso sin esperar a recepción.'),proof:t('Your approved knowledge and service rules define every answer.','Tu conocimiento aprobado y reglas de servicio definen cada respuesta.'),view:'guest-services',kind:'guest'},
+    {label:t('Team ownership','Responsabilidad del equipo'),title:t('Every request has a clear next step.','Cada solicitud tiene un siguiente paso claro.'),body:t('Conversation context reaches the right hotel team with the status needed to confirm, fulfil or take over.','El contexto llega al equipo adecuado con el estado necesario para confirmar, atender o intervenir.'),proof:t('Guest language follows the verified operational state.','El lenguaje al huésped sigue el estado operativo verificado.'),view:'staff-request',kind:'staff'},
+    {label:t('Guest memory','Memoria del huésped'),title:t('Make the next visit feel familiar.','Haz que la próxima visita se sienta familiar.'),body:t('Recall a previous stay, the experiences enjoyed and the preferences the guest shared. Then let the guest choose what comes next.','Recuerda una estancia anterior, las experiencias disfrutadas y las preferencias compartidas. Después, el huésped decide qué sigue.'),proof:t('Previous arrangements inform the conversation. They are not booked again automatically.','Los planes anteriores orientan la conversación. No se reservan de nuevo automáticamente.'),view:'memory',kind:'memory'},
   ]
-  return <section className={`${styles.statement} ${styles.container}`} id="hospitality">
-    <div className={styles.sectionLine}><span>01 / {t('THE HUMAN SIDE OF HOSPITALITY','EL LADO HUMANO DE LA HOSPITALIDAD')}</span><span>{t('An AI companion. A more personal stay.','Un companion con IA. Una estancia más personal.')}</span></div>
-    <h2>{t('Technology should give hospitality','La tecnología debe devolverle')} <span>{t('back its humanity.','su lado humano a la hospitalidad.')}</span></h2>
-    <div className={styles.principles}>{points.map(([title,body],i)=><div key={title}><span>0{i+1}</span><h3>{title}</h3><p>{body}</p></div>)}</div>
-  </section>
+  const item=outcomes[active]
+  return <section className={styles.outcomes} id="outcomes" aria-labelledby="outcome-title"><div className={styles.container}>
+    <div className={styles.outcomeHeading}><p className={styles.eyebrow}>01 / {t('THE VALUE AT A GLANCE','EL VALOR DE UN VISTAZO')}</p><h2 id="outcome-title">{t('One companion.','Un companion.')}<br/><span>{t('Four hotel outcomes.','Cuatro resultados para el hotel.')}</span></h2><p>{t('Choose an outcome. Watch the Companion turn a guest’s request into the next right action.','Elige un resultado. Mira cómo el Companion convierte una solicitud en la siguiente acción correcta.')}</p></div>
+    <div className={styles.outcomeWorkspace} id="outcome-demo">
+      <div className={styles.outcomeTabs} role="tablist" aria-label={t('Hotel outcomes','Resultados para el hotel')}>{outcomes.map((outcome,index)=><button key={outcome.label} id={`outcome-tab-${index}`} type="button" role="tab" aria-selected={active===index} aria-controls="outcome-panel" tabIndex={active===index?0:-1} onClick={()=>select(index)} onKeyDown={event=>{
+        const direction=['ArrowRight','ArrowDown'].includes(event.key)?1:['ArrowLeft','ArrowUp'].includes(event.key)?-1:0
+        const next=event.key==='Home'?0:event.key==='End'?3:direction?(index+direction+4)%4:null
+        if(next!==null){event.preventDefault();select(next);document.getElementById(`outcome-tab-${next}`)?.focus({preventScroll:true})}
+      }}><span>0{index+1}</span><strong>{outcome.label}</strong><ArrowUpRight size={16}/></button>)}</div>
+      <div className={styles.outcomePanel} id="outcome-panel" role="tabpanel" aria-labelledby={`outcome-tab-${active}`}>
+        <div className={styles.outcomeCopy} key={active}><span>{item.label}</span><h3>{item.title}</h3><p>{item.body}</p><small><Check size={15}/>{item.proof}</small></div>
+        <div className={styles.outcomeVisual}><OutcomeDemo key={`${active}-${selection.run}-${lang}`} outcome={active} lang={lang}/></div>
+      </div>
+    </div>
+  </div></section>
 }
 
 function GuestExhibit() {
@@ -62,7 +77,7 @@ function GuestExhibit() {
     <div className={styles.sectionLine}><span>02 / {t('THE GUEST EXPERIENCE','LA EXPERIENCIA DEL HUÉSPED')}</span><span>{t('Telephone · Web & mobile · In-room tablets','Teléfono · Web y móvil · Tablets en la habitación')}</span></div>
     <div className={styles.exhibitHeading}><h2 id="exhibit-title">{t('Your hotel.','Tu hotel.')}<br/><span>{t('Beautifully connected.','Todo conectado.')}</span></h2><p>{t('One experience for the moments that make a stay. Explore the current product, in your guest’s hands.','Una experiencia para los momentos que hacen una estancia. Explora el producto actual, en manos de tu huésped.')}</p></div>
     <div className={styles.exhibitBody}>
-      <div className={styles.exhibitIndex}><div className={styles.exhibitChoices} aria-label={t('Choose a guest experience','Elige una experiencia del huésped')}>{views.map((view,i)=><button key={view.view} type="button" aria-pressed={active===i} aria-controls="guest-exhibit-screen" onClick={()=>setActive(i)}><span>0{i+1}</span><strong>{view.name}</strong><ArrowUpRight size={16}/></button>)}</div><div className={styles.exhibitDescription} aria-live="polite"><h3>{item.tag}</h3><p>{item.copy}</p><Link href="/platform">{t('Explore the product','Explora el producto')}<ArrowRight size={15}/></Link></div></div>
+      <div className={styles.exhibitIndex}><div className={styles.exhibitChoices} aria-label={t('Choose a guest experience','Elige una experiencia del huésped')}>{views.map((view,i)=><button key={view.view} type="button" aria-pressed={active===i} aria-controls="guest-exhibit-screen" onClick={()=>setActive(i)}><span>0{i+1}</span><strong>{view.name}</strong><ArrowUpRight size={16}/></button>)}</div><div className={styles.exhibitDescription} aria-live="polite"><h3>{item.tag}</h3><p>{item.copy}</p></div></div>
       <div className={styles.exhibitScreen} id="guest-exhibit-screen"><ProductCapture key={`${lang}-${item.view}`} view={item.view} lang={lang} alt={t(`Current Hotel Companion sales demo — ${item.name}`,`Demo de ventas actual de Hotel Companion — ${item.name}`)}/><p className={styles.evidenceNote}>{t('Actual sales demo · Sample hotel · Illustrative data','Demo de ventas actual · Hotel de ejemplo · Datos ilustrativos')}</p></div>
     </div>
   </div></section>
@@ -70,7 +85,7 @@ function GuestExhibit() {
 
 function RevenueInterlude() {
   const t=useWords()
-  return <section className={styles.interlude} id="revenue"><div className={styles.interludePhoto}><Image src="/assets/editorial/hc-anniversary-dining-v1.webp" alt={t('An intimate coastal dining terrace at blue hour, set for two','Una terraza íntima junto al mar al anochecer, preparada para dos')} fill sizes="100vw"/></div><div className={styles.interludeShade}/><div className={`${styles.container} ${styles.interludeContent}`}><span className={styles.eyebrow}>{t('A GUEST’S OCCASION. YOUR HOTEL’S OPPORTUNITY.','UNA OCASIÓN DEL HUÉSPED. UNA OPORTUNIDAD PARA TU HOTEL.')}</span><h2>{t('“Something special','«Algo especial')}<br/>{t('for our anniversary.”','para nuestro aniversario».')}</h2><div className={styles.interludeBottom}><p>{t('Offer what fits. Measure what it adds.','Ofrece lo que encaja. Mide lo que aporta.')}<small>{t('Relevant hotel-approved offers. Completed sales. Verified additional contribution.','Ofertas relevantes aprobadas. Ventas completadas. Contribución adicional verificada.')}</small></p><Link href="/revenue" className={styles.roundLink} aria-label={t('Explore revenue','Explora los ingresos')}><span>{t('Explore revenue','Explora los ingresos')}</span><ArrowUpRight size={24}/></Link></div></div></section>
+  return <section className={styles.interlude} id="revenue"><div className={styles.interludePhoto}><Image src="/assets/editorial/hc-anniversary-dining-v1.webp" alt={t('An intimate coastal dining terrace at blue hour, set for two','Una terraza íntima junto al mar al anochecer, preparada para dos')} fill sizes="100vw"/></div><div className={styles.interludeShade}/><div className={`${styles.container} ${styles.interludeContent}`}><span className={styles.eyebrow}>{t('A GUEST’S OCCASION. YOUR HOTEL’S OPPORTUNITY.','UNA OCASIÓN DEL HUÉSPED. UNA OPORTUNIDAD PARA TU HOTEL.')}</span><h2>{t('“Something special','«Algo especial')}<br/>{t('for our anniversary.”','para nuestro aniversario».')}</h2><div className={styles.interludeBottom}><p>{t('Offer what fits. Measure what it adds.','Ofrece lo que encaja. Mide lo que aporta.')}<small>{t('Relevant hotel-approved offers. Completed sales. Verified additional contribution.','Ofertas relevantes aprobadas. Ventas completadas. Contribución adicional verificada.')}</small></p><span className={styles.interludeMarker}>{t('REVENUE, MADE VISIBLE','INGRESOS VISIBLES')}</span></div></div></section>
 }
 
 function StartAtOneHotel() {
@@ -81,10 +96,10 @@ function StartAtOneHotel() {
     [t('Try it together','Pruébalo con nosotros'),t('Rehearse offers, combined requests and confirmations.','Prueba ofertas, solicitudes combinadas y confirmaciones.')],
     [t('Launch & measure','Lanza y mide'),t('Start at one hotel. Review results before expanding.','Empieza en un hotel. Revisa resultados antes de ampliar.')],
   ]
-  return <section className={`${styles.setup} ${styles.container}`} id="setup"><div className={styles.sectionLine}><span>04 / {t('A CONSIDERED START','UN INICIO BIEN PENSADO')}</span><Link href="/implementation">{t('The setup plan','El plan de implementación')}<ArrowUpRight size={15}/></Link></div><div className={styles.setupHeading}><h2>{t('One hotel first.','Primero, un hotel.')}<br/><span>{t('The next chapter, together.','El siguiente capítulo, juntos.')}</span></h2><p>{t('A defined guest journey, approved rules and a clear way to measure value.','Una experiencia definida, reglas aprobadas y una forma clara de medir valor.')}</p></div><ol className={styles.setupSteps}>{steps.map(([title,body],i)=><li key={title}><span>0{i+1}</span><h3>{title}</h3><p>{body}</p></li>)}</ol><div className={styles.connectionLine}><span><Check size={16}/>{t('Your systems. Your people. Your hotel.','Tus sistemas. Tu gente. Tu hotel.')}</span><p>{t('Connections and launch timing confirmed for your scope.','Conexiones y plazos confirmados según tu alcance.')}</p><Link href="/implementation#connections">{t('How we connect','Cómo nos conectamos')}<ArrowRight size={15}/></Link></div></section>
+  return <section className={`${styles.setup} ${styles.container}`} id="setup"><div className={styles.sectionLine}><span>04 / {t('A CONSIDERED START','UN INICIO BIEN PENSADO')}</span></div><div className={styles.setupHeading}><h2>{t('One hotel first.','Primero, un hotel.')}<br/><span>{t('The next chapter, together.','El siguiente capítulo, juntos.')}</span></h2><p>{t('A defined guest journey, approved rules and a clear way to measure value.','Una experiencia definida, reglas aprobadas y una forma clara de medir valor.')}</p></div><ol className={styles.setupSteps}>{steps.map(([title,body],i)=><li key={title}><span>0{i+1}</span><h3>{title}</h3><p>{body}</p></li>)}</ol><div className={styles.connectionLine}><span><Check size={16}/>{t('Your systems. Your people. Your hotel.','Tus sistemas. Tu gente. Tu hotel.')}</span><p>{t('Connections and launch timing are confirmed for the scope of the pilot.','Las conexiones y los plazos se confirman según el alcance del piloto.')}</p></div></section>
 }
 
 export default function SignatureHome() {
   const t=useWords()
-  return <div className={`xp-site eh-home ${styles.home}`}><a className="xp-skip" href="#main-content">{t('Skip to content','Saltar al contenido')}</a><SiteNav appearance="dark"/><main id="main-content"><SignatureHero/><HospitalityStatement/><GuestExhibit/><RevenueInterlude/><section className={styles.listening}><div className={styles.container}><div className={styles.listeningLabel}><Mic size={16}/>{t('HEAR THE DIFFERENCE','ESCUCHA LA DIFERENCIA')}</div><VoiceSample/></div></section><OperatingStory/><StartAtOneHotel/><div className={styles.closing}><Image src="/assets/lux/hotel-companion-closing-blue-hour-v2.webp" fill sizes="100vw" alt=""/><div className={styles.closingShade}/><FocusedPilot/></div></main><SiteFooter/></div>
+  return <div className={`xp-site eh-home ${styles.home}`}><a className="xp-skip" href="#main-content">{t('Skip to content','Saltar al contenido')}</a><SiteNav appearance="dark"/><main id="main-content"><SignatureHero/><OutcomeNavigator/><GuestExhibit/><RevenueInterlude/><OperatingStory/><StartAtOneHotel/><div className={styles.closing}><Image src="/assets/lux/hotel-companion-closing-blue-hour-v2.webp" fill sizes="100vw" alt=""/><div className={styles.closingShade}/><FocusedPilot/></div></main><SiteFooter/></div>
 }

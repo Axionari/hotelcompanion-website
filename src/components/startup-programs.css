@@ -1,0 +1,82 @@
+.hc-programs {
+  background: #fff;
+  color: #67736a;
+  border-top: 1px solid #e7e9e1;
+  scroll-margin-top: 110px;
+}
+
+.hc-programs-inner {
+  width: min(1296px, calc(100% - 112px));
+  margin: auto;
+  padding-block: 28px 34px;
+}
+
+.hc-programs-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 20px;
+  margin-bottom: 26px;
+}
+
+.hc-programs .hc-programs-heading h2 {
+  margin: 0;
+  color: #67736a;
+  font: 500 10px/1.6 var(--font-sans), sans-serif;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+.hc-programs .hc-programs-heading p {
+  margin: 0;
+  color: #67736a;
+  font: 400 10px/1.6 var(--font-sans), sans-serif;
+}
+
+.hc-programs-logos {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  align-items: center;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hc-program-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 0;
+  height: 40px;
+}
+
+.hc-program-logo img {
+  display: block;
+  width: 100px;
+  height: auto;
+  max-width: 100%;
+  max-height: 40px;
+  object-fit: contain;
+}
+
+.hc-program-logo--nvidia img { width: 106px; }
+.hc-program-logo--google img { width: 108px; }
+.hc-program-logo--claude img { width: 80px; }
+.hc-program-logo--livekit img { width: 84px; }
+.hc-program-logo--elevenlabs img { width: 118px; }
+.hc-program-logo--deepgram img { width: 102px; }
+.hc-program-logo--emprelatam img { width: 122px; }
+.hc-program-logo--boost img { width: 124px; }
+
+@media (max-width: 1100px) {
+  .hc-programs-logos { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 25px 32px; }
+}
+
+@media (max-width: 650px) {
+  .hc-programs { scroll-margin-top: 92px; }
+  .hc-programs-inner { width: calc(100% - 48px); padding-block: 27px 34px; }
+  .hc-programs-heading { display: block; text-align: center; margin-bottom: 25px; }
+  .hc-programs .hc-programs-heading p { margin-top: 7px; }
+  .hc-programs-logos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 21px 28px; }
+}

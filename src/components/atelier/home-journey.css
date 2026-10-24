@@ -1,0 +1,21 @@
+.hj-watch-row { margin-top:auto; padding:8px 34px 20px; }
+.hj-watch { display:inline-flex; align-items:center; gap:10px; padding:12px 0; border:0; background:transparent; color:#193f35; font:500 13px/1.4 var(--font-sans),sans-serif; cursor:pointer; text-align:left; }
+.hj-watch>svg { transition:transform .2s ease; }
+.hj-watch:hover>svg { transform:translateX(4px); }
+.hj-watch:focus-visible,.hj-film-heading button:focus-visible { outline:2px solid #aa8750; outline-offset:5px; }
+.hj-play-icon { width:28px; height:28px; flex:none; border:1px solid #b2bea8; border-radius:50%; display:grid; place-items:center; }
+.hj-play-icon:after { content:''; display:block; width:0; height:0; border-left:6px solid currentColor; border-top:4px solid transparent; border-bottom:4px solid transparent; margin-left:2px; }
+.hj-watch-row>span { display:block; color:#6b796a; font-size:10px; line-height:1.5; margin-left:38px; }
+.at-guest-scene.hj-playing { display:block; min-height:0; background:#f7f7f0; color:#193f35; }
+.hj-film-stage { padding:24px 30px 22px; animation:hj-reveal .3s cubic-bezier(.22,1,.36,1) both; }
+.hj-film-heading { display:flex; justify-content:space-between; align-items:center; gap:22px; margin-bottom:22px; padding-bottom:20px; border-bottom:1px solid #daddd1; }
+.hj-film-heading>div>span { font-size:9px; letter-spacing:.1em; color:#7a745f; }
+.hj-film-heading h3 { font:400 30px/1.15 var(--font-editorial),Georgia,serif; margin:8px 0 0; color:#193f35; }
+.hj-film-heading button { display:inline-flex; gap:9px; align-items:center; border:0; background:transparent; color:#49634e; font:400 12px/1.4 var(--font-sans),sans-serif; padding:10px 0; cursor:pointer; white-space:nowrap; }
+.hj-film-heading button>svg { transform:rotate(180deg); }
+@keyframes hj-reveal { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+@media(max-width:750px) { .hj-watch-row { padding:2px 24px 18px; } .hj-watch { font-size:12px; } .hj-film-stage { padding:19px 14px 17px; } .hj-film-heading { align-items:flex-start; gap:14px; margin-bottom:15px; padding-bottom:14px; } .hj-film-heading h3 { font-size:26px; } .hj-film-heading button { font-size:10px; white-space:normal; max-width:91px; flex:none; padding-top:0; } .hj-film-heading button>svg { flex:none; } }
+@media(prefers-reduced-motion:reduce) { .hj-film-stage { animation:none; } .hj-watch>svg { transition:none; } }
+.hj-playing{scroll-margin-top:100px}
+@media(min-width:751px) and (max-height:800px){.hj-film-stage{padding:16px 24px 15px}.hj-film-heading{margin-bottom:12px;padding-bottom:12px}.hj-film-heading h3{font-size:26px;margin-top:4px}}
+@media(max-width:750px){.hj-playing{scroll-margin-top:88px}}

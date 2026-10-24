@@ -51,7 +51,7 @@ const SPANISH_META: Record<string, { title: string; description: string }> = {
   implementation: { title: 'Implementación y piloto', description: 'Una implementación enfocada con conexiones verificadas, reglas aprobadas y piloto elegible basado en resultados.' },
   '': {
     title: 'Hotel Companion — Mejores ofertas. Más ingresos.',
-    description: 'Convierte conversaciones en ofertas relevantes, compras completadas y contribución adicional medible. Voz, contexto, atención 24/7 y un piloto basado en resultados.',
+    description: 'Un companion inteligente que convierte llamadas, mensajes y consultas web en reservas, mejoras de habitación y experiencias, las 24 horas. Atención más ágil. Más valor en cada estancia.',
   },
   platform: {
     title: 'Producto',

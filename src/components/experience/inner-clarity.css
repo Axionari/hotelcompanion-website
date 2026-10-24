@@ -15,3 +15,5 @@
 /* Four distinct amounts make attribution visible without an explanatory wall. */
 .hc-contribution-numbers{grid-template-columns:repeat(4,minmax(0,1fr))}.hc-contribution-numbers strong{font-size:clamp(30px,3.8vw,48px)}.hc-contribution-numbers span{line-height:1.6;max-width:190px;margin:15px auto 0}.hc-contribution-numbers [data-total=true]{background:#eef2e7;border-radius:14px}
 @media(max-width:800px){.hc-contribution-numbers{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.hc-contribution-numbers>div{border:0;padding:22px 8px}.hc-contribution-numbers strong{font-size:34px}.hc-contribution-numbers span{font-size:12px;max-width:150px}}
+
+.hc-pilot-fee-list{list-style:none;padding:0;margin:0;display:grid;gap:20px;text-align:left}.hc-pilot-fee-list li{display:flex;align-items:flex-start;gap:12px;font-size:16px;line-height:1.6}.hc-pilot-fee-list svg{flex:none;margin-top:4px}

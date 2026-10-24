@@ -98,6 +98,7 @@ export function ChatInterface({ config }: { config: ChatConfig }) {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const messagesRef = useRef<HTMLDivElement>(null);
+  const messageSequence = useRef(0);
   const { skin, cycle } = useTheme();
 
   useEffect(() => {
@@ -112,8 +113,9 @@ export function ChatInterface({ config }: { config: ChatConfig }) {
   async function sendMessage(text: string) {
     if (!text.trim() || isLoading) return;
 
-    const userMsg: Message = { id: `u-${Date.now()}`, role: "user", text };
-    const assistantId = `a-${Date.now() + 1}`;
+    const sequence = ++messageSequence.current;
+    const userMsg: Message = { id: `u-${sequence}`, role: "user", text };
+    const assistantId = `a-${sequence}`;
 
     setMessages((prev) => [
       ...prev,

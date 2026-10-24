@@ -4,7 +4,7 @@ import { createPageMetadata } from '@/lib/siteMetadata'
 export const metadata = createPageMetadata({
   title: 'Contact',
   description:
-    'Contact the Hotel Companion team for a tailored demonstration or a qualified outcome-based pilot.',
+    'Contact the Hotel Companion team for a tailored demonstration or a qualified measured hotel pilot.',
   path: '/contact',
 })
 

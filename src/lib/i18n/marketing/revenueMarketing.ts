@@ -167,7 +167,7 @@ const en = {
     "items": [
       {
         "title": "A pilot tied to outcomes.",
-        "body": "Proposed standard pilot: no upfront software or implementation fee. HC earns an agreed share of verified additional contribution."
+        "body": "An initial setup and integration fee, a minimum monthly platform fee, and a success fee tied to verified additional contribution. Pricing is scoped for each hotel before launch."
       },
       {
         "title": "Your operations set the pace.",
@@ -349,7 +349,7 @@ const es: typeof en = {
     "items": [
       {
         "title": "Un piloto ligado a resultados.",
-        "body": "Propuesta de piloto estándar: sin pago inicial por software o implementación. HC recibe una parte acordada de la contribución adicional verificada."
+        "body": "Una tarifa inicial de configuración e integración, una cuota mensual mínima de plataforma y una comisión ligada a la contribución adicional verificada. Los precios se acuerdan con cada hotel antes de lanzar."
       },
       {
         "title": "Tu operación marca el ritmo.",

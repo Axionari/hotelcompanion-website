@@ -87,10 +87,10 @@ const en = {
     weBring: {
       title: 'WE BRING',
       items: [
-        'Proposed standard pilot: no upfront software or implementation fee',
+        'A pilot with initial setup and integration, a minimum monthly platform fee and a success fee',
         'Property and destination knowledge, verified',
         'Contextual recommendations and hotel-approved deals',
-        'An agreed share of verified additional contribution; connections scoped first',
+        'Hotel-specific pricing and a success fee on verified additional contribution',
       ],
     },
     timeline: [
@@ -198,10 +198,10 @@ const es: typeof en = {
     weBring: {
       title: 'NOSOTROS PONEMOS',
       items: [
-        'Propuesta de piloto estándar: sin pago inicial por software o implementación',
+        'Un piloto con tarifa inicial de configuración e integración, cuota mensual mínima y comisión por resultados',
         'Conocimiento de la propiedad y el destino, verificado',
         'Recomendaciones con contexto y ofertas aprobadas por el hotel',
-        'Parte acordada de la contribución adicional verificada; conexiones definidas antes',
+        'Precios por hotel y una comisión sobre la contribución adicional verificada',
       ],
     },
     timeline: [

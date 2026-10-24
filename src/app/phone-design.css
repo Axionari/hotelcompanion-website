@@ -24,12 +24,12 @@
   :root .hc-site-wordmark { font-size:16px; }
   :root .hc-site-nav-actions { gap:7px; }
   :root .hc-header-language { display:none; }
-  :root .hc-site-phone-demo { display:flex; align-items:center; min-height:44px; color:#94502f; font-size:11px; font-weight:500; white-space:nowrap; }
-  :root .hc-site-menu-toggle { border:0; border-radius:50%; width:44px; height:44px; }
-  :root .hc-site-mobile-menu:not([hidden]) { top:64px; left:-18px; right:-18px; padding:18px 24px 28px; max-height:calc(100dvh - 64px); background:#fbfaf7; }
+  :root .hc-site-phone-demo { display:flex; align-items:center; min-height:44px; color:#193f35; font-size:11px; font-weight:500; white-space:nowrap; }
+  :root .hc-site-menu-toggle { border:0; border-radius:3px; width:44px; height:44px; }
+  :root .hc-site-mobile-menu:not([hidden]) { top:64px; left:-18px; right:-18px; padding:18px 24px max(28px, env(safe-area-inset-bottom)); max-height:calc(100dvh - 64px); background:#f7f5ef; }
   :root .hc-site-mobile-menu > a { font-size:22px; font-weight:400; letter-spacing:-.025em; padding:14px 0; border-bottom:1px solid #e9e7df; }
-  :root .hc-site-mobile-menu > a[aria-current=page] { color:#a95129; }
-  :root .hc-site-mobile-menu > .hc-site-demo { font-size:15px; margin-top:20px; padding:14px 20px; border-radius:28px; border:0; color:#fff; }
+  :root .hc-site-mobile-menu > a[aria-current=page] { color:#193f35; }
+  :root .hc-site-mobile-menu > .hc-site-demo { font-size:15px; margin-top:20px; padding:14px 20px; border-radius:3px; border:0; color:#fff; }
   :root .hc-menu-language { display:flex; justify-content:flex-end; padding-bottom:10px; }
 
   /* Photography and one complete conversation share a stable, legible hero. */

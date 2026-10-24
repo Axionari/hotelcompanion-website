@@ -25,7 +25,7 @@ const en = {
     explore: 'Explore three offer examples',
   },
   pilot: {
-    body: 'Start with one property. Explore a pilot with no upfront software or implementation fee, and an agreed share of verified additional contribution.',
+    body: 'Start with one property. An initial setup and integration fee, a minimum monthly platform fee, and a success fee tied to verified additional contribution. Pricing is scoped for each hotel before launch.',
     primary: 'Explore a pilot',
     note: 'Pilot eligibility, connections, measurement and commercial terms agreed in advance.',
   },
@@ -56,7 +56,7 @@ const es: typeof en = {
     explore: 'Explora tres ejemplos de ofertas',
   },
   pilot: {
-    body: 'Empieza con una propiedad. Explora un piloto sin pago inicial de software ni implementación, con una participación acordada en la contribución adicional verificada.',
+    body: 'Empieza con una propiedad. Una tarifa inicial de configuración e integración, una cuota mensual mínima de plataforma y una comisión ligada a la contribución adicional verificada. Los precios se acuerdan con cada hotel antes de lanzar.',
     primary: 'Explora un piloto',
     note: 'Elegibilidad, conexiones, medición y términos comerciales acordados antes del piloto.',
   },

@@ -1,0 +1,5 @@
+/* The approved home hero stays unchanged. Interior display type uses a little
+   more space between letters; emphasis is a deliberate exception, not a
+   second-line formula. Page-specific sizes and line breaks remain intact. */
+:root .hc-inner h1{letter-spacing:-.015em;font-style:normal}
+:root .hc-inner h2{letter-spacing:-.015em}

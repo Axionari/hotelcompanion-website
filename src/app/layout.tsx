@@ -10,6 +10,7 @@ import "./phone-design.css";
 import "./conversation-motion.css";
 import "./message-panels.css";
 import "./refined-interiors.css";
+import "@/components/atelier/atelier.css";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 import { LiveDemoModalDeferred } from "@/components/cds/LiveDemoModalDeferred";
 import { PageMotion } from "@/components/experience/PageMotion";
@@ -81,7 +82,7 @@ export const metadata: Metadata = {
     siteName: "Hotel Companion",
     title: "Hotel Companion — AI guest service for hotels",
     description:
-      "AI guest service. Relevant hotel offers. A focused outcome-based pilot.",
+      "AI guest service. Relevant hotel offers. A focused measured hotel pilot.",
     url: "https://www.hotelcompanion.ai",
     type: "website",
     images: [{
@@ -95,7 +96,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Hotel Companion — AI guest service for hotels",
     description:
-      "AI guest service. Relevant hotel offers. A focused outcome-based pilot.",
+      "AI guest service. Relevant hotel offers. A focused measured hotel pilot.",
     images: ["https://www.hotelcompanion.ai/og/hotel-companion-og.jpg"],
   },
 };
@@ -113,9 +114,9 @@ export default function RootLayout({
             sync before the client provider hydrates. */}
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.lang=location.pathname==='/es'||location.pathname.startsWith('/es/')?'es-MX':'en-US'" }} />
       </head>
-      <body className={`${fraunces.variable} ${generalSans.variable} ${splineMono.variable} ${instrumentSerif.variable} ${plexMono.variable} font-sans antialiased`}>
+      <body className={`${fraunces.variable} ${generalSans.variable} ${splineMono.variable} ${instrumentSerif.variable} ${plexMono.variable} font-sans antialiased at-review`}>
         <LanguageProvider>
-          <div className="pt-16">{children}</div>
+          <div className="at-page-root">{children}</div>
           {/* Compact screens retain a persistent conversion path; desktop uses
               the always-present masthead CTA. */}
 

@@ -3,6 +3,7 @@
 import { LocalizedLink as Link } from '@/components/LocalizedLink'
 import { useCopy } from '@/lib/i18n/useCopy'
 import { siteChromeCopy } from '@/lib/i18n/marketing/siteChrome'
+import { StartupPrograms } from '@/components/StartupPrograms'
 import './site-chrome.css'
 
 export function SiteFooter() {
@@ -16,6 +17,9 @@ export function SiteFooter() {
             {c.footer.map(group => <div key={group.title}><h2>{group.title}</h2><ul>{group.links.map(link => <li key={link.href}><Link prefetch={false} href={link.href}>{link.label}</Link></li>)}</ul></div>)}
           </div>
         </div>
+      </div>
+      <StartupPrograms />
+      <div className="hc-site-footer-inner hc-site-footer-legal">
         <div className="hc-site-footer-bottom"><p>{c.copyright}</p><p>{c.builtOn} <a href="https://www.axionari.com">Axionari</a></p><Link prefetch={false} href="/accessibility">{c.accessibility}</Link></div>
       </div>
     </footer>

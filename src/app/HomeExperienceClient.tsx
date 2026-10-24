@@ -1,7 +1,7 @@
 'use client'
 
-import SignatureHome from '@/components/experience/SignatureHome'
+import AtelierHome from '@/components/atelier/Home'
 
 export default function HomeExperienceClient() {
-  return <SignatureHome/>
+  return <AtelierHome/>
 }

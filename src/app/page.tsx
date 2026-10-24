@@ -4,7 +4,7 @@ import { createPageMetadata } from '@/lib/siteMetadata'
 export const metadata = createPageMetadata({
   title: 'Hotel Companion — Smarter offers. More revenue.',
   description:
-    'Turn guest conversations into relevant offers, completed purchases and measurable additional contribution. Conversational voice, guest context, 24/7 service and an outcome-based pilot.',
+    'A smart companion that turns calls, messages and web inquiries into bookings, upgrades and experiences, around the clock. Faster guest service. More value from every stay.',
   path: '/',
 })
 
@@ -25,7 +25,7 @@ const structuredData = {
       operatingSystem: 'Web',
       url: 'https://www.hotelcompanion.ai',
       description:
-        'An AI hotel companion that uses conversation and guest-approved context to recommend relevant upgrades, experiences and packages, answer questions and coordinate service requests.',
+        'A smart hotel companion that uses conversation and guest-approved context to recommend relevant upgrades, experiences and packages, answer questions and coordinate service requests.',
       provider: { '@id': 'https://www.hotelcompanion.ai/#organization' },
     },
   ],
