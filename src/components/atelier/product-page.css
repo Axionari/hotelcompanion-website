@@ -184,7 +184,7 @@
 .ap-hero-photo{position:relative;height:clamp(420px,37vw,555px);overflow:hidden;background:#d8d6c8}
 .ap-hero-photo img{object-fit:cover;object-position:58% center;animation:ap-art-arrive .9s cubic-bezier(.2,.7,.2,1) both}
 .ap-hero-art figcaption{display:flex;justify-content:space-between;align-items:center;padding-top:14px;gap:20px;font-size:9px;letter-spacing:.06em;color:var(--ap-muted)}
-.ap-hero-art figcaption i{font:italic 22px/1 var(--font-editorial),serif;color:var(--ap-gold)}
+
 .ap-hero-note{position:absolute;left:-36px;bottom:57px;width:315px;background:#fffefa;padding:25px 28px;box-shadow:0 12px 38px #102e2714;animation:ap-heading-in .7s .15s both}
 .ap-hero-note>span{display:block;font-size:10px;color:var(--ap-muted)}
 .ap-hero-note>p{font:400 34px/1.12 var(--font-editorial),serif;white-space:pre-line;margin:17px 0 21px;letter-spacing:-.02em}

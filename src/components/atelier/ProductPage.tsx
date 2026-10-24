@@ -116,7 +116,7 @@ export default function ProductPage() {
       </div>
       <figure className="ap-hero-art">
         <div className="ap-hero-photo"><Image src={photos.dining} alt={t('An intimate hotel terrace set for dinner by the sea', 'Una terraza de hotel junto al mar, preparada para cenar')} fill priority sizes="(max-width:700px) 100vw, 50vw"/></div>
-        <figcaption><span>{t('HOSPITALITY, IN EVERY DETAIL', 'HOSPITALIDAD EN CADA DETALLE')}</span><i>hc.</i></figcaption>
+        <figcaption><span>{t('HOSPITALITY, IN EVERY DETAIL', 'HOSPITALIDAD EN CADA DETALLE')}</span></figcaption>
         <div className="ap-hero-note"><span>{t('A wish becomes a possibility.', 'Un deseo se convierte en posibilidad.')}</span><p>{t('“Somewhere special\nfor dinner tonight?”', '«¿Un lugar especial\npara cenar esta noche?»')}</p><div><i/>{t('Understood. Recommended. Taken care of.', 'Entendido. Recomendado. Atendido.')}</div></div>
       </figure>
     </header>
