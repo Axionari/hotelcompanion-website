@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { ArrowDown, ArrowRight, ArrowUpRight, Building2, Check, CreditCard, Fingerprint, Layers3, LockKeyhole, ShieldCheck, Users } from 'lucide-react'
 import { LocalizedLink as Link } from '@/components/LocalizedLink'
-import { Button, Closing, Label, SectionHead, photos, useText } from './Atelier'
+import { Button, Label, SectionHead, photos, useText } from './Atelier'
 import './enterprise-page.css'
 
 export default function EnterprisePage() {
@@ -79,8 +79,8 @@ export default function EnterprisePage() {
       <div className="at-wrap at-enterprise-rollout-layout"><div className="at-enterprise-rollout-intro"><Label>{t('One hotel first', 'Un hotel primero')}</Label><h2>{t('Prove it at one hotel.', 'Valídalo en un hotel.')}<br/><span>{t('Then make it a standard.', 'Después, conviértelo en estándar.')}</span></h2><p>{t('Build the first launch around useful guest and team experiences. Let the results guide the next property.', 'Diseña el primer lanzamiento alrededor de experiencias útiles para huéspedes y equipos. Deja que los resultados guíen al siguiente hotel.')}</p><figure><Image src={photos.group} alt={t('A considered welcome begins at one hotel', 'Una bienvenida cuidada empieza en un hotel')} fill sizes="(max-width:750px) 90vw, 40vw"/></figure></div><div className="at-enterprise-rollout-plan">
 
       <ol className="at-enterprise-rollout-steps">{rollout.map(step=><li key={step.number}><div className="at-enterprise-rollout-label"><span>{step.number}</span><span>{step.label}</span></div><h3>{step.title}</h3><p>{step.body}</p><strong>{step.detail}</strong></li>)}</ol>
+      <div className="at-rollout-action"><Button>{t('Plan your first property', 'Planea tu primer hotel')}</Button></div>
       </div></div>
     </section>
-    <Closing/>
   </div>
 }

@@ -7,6 +7,7 @@ The approved Figma visual system now spans the English and Spanish marketing sit
 - Preserve “Smarter offers. More revenue.” and introduce the smart companion in the hero.
 - Explain the initial setup and integration fee, minimum monthly platform fee, and success fee tied to verified additional contribution. Individual pricing remains part of client discovery.
 - Include hotel and destination knowledge in the initial 1–3 week launch scope; system connections follow in stages.
+- Reserve the dark commercial finale for Home. Product uses a compact invitation; Guest experience and Hotel groups place actions in their existing final sections; Revenue keeps its measurement CTA; Resources concludes with its library.
 - Place the compact, non-linked startup program logos above the final copyright, Axionari and accessibility row.
 - Correct the Spanish homepage title and bilingual search descriptions.
 

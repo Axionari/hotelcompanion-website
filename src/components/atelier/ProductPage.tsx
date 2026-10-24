@@ -7,7 +7,7 @@ import { useLang } from '@/lib/i18n/LanguageContext'
 import { LocalizedLink as Link } from '@/components/LocalizedLink'
 import { OutcomeDemo } from '@/components/experience/OutcomeDemo'
 import { guestCapture } from '@/components/experience/ProductCapture'
-import { Closing, Label, SectionHead, Wave, photos, useText } from './Atelier'
+import { Button, Label, SectionHead, Wave, photos, useText } from './Atelier'
 import './product-page.css'
 
 const featureIds = ['voice', 'recommendations', 'memory', 'team-control', 'connections'] as const
@@ -122,6 +122,6 @@ export default function ProductPage() {
     </header>
     <FeatureExplorer/>
     <EveryChannel/>
-    <Closing/>
+    <section className="at-context-close at-wrap" id="pilot"><div><h2>{t('See Hotel Companion at your hotel.', 'Descubre Hotel Companion en tu hotel.')}</h2><p>{t('Your channels, your offers and your team’s workflows, brought together.', 'Tus canales, tus ofertas y los flujos de tu equipo, conectados.')}</p></div><Button>{t('Request a demo', 'Solicita una demo')}</Button></section>
   </div>
 }

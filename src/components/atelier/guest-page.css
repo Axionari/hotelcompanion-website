@@ -78,7 +78,7 @@
 .ag-channels h3>svg{order:1;color:#6e7f65;flex:none}
 .ag-channels article>div{flex:1}
 .ag-channels p{font-size:12px;line-height:1.75;color:var(--at-muted);max-width:355px}
-.ag-care{display:grid;grid-template-columns:1.2fr 1fr;gap:80px;align-items:center;border-top:1px solid #cbd3c3;padding-top:32px;margin-top:60px}
+.ag-care{display:grid;grid-template-columns:1.2fr 1fr;column-gap:80px;row-gap:24px;align-items:center;border-top:1px solid #cbd3c3;padding-top:32px;margin-top:60px}
 .ag-care>div{display:flex;align-items:center;gap:22px}
 .ag-care>div>svg{color:var(--at-gold);flex:none}
 .ag-care h3{max-width:440px;font-size:31px;line-height:1.18}

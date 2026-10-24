@@ -9,7 +9,6 @@ import type { EssayMeta } from '@/lib/library'
 import { articleVisuals } from '@/lib/i18n/marketing/articleVisuals'
 import { ExperienceFrame } from '@/components/experience/ExperiencePages'
 import { useWords } from '@/components/experience/Experience'
-import { SignatureClosing } from '@/components/experience/SignatureSections'
 import styles from './resources.module.css'
 
 export interface ResourcesContent { essays: EssayMeta[]; categories: string[] }
@@ -63,7 +62,6 @@ export default function ResourcesClient({ content }: { content: Localized<Resour
           ))}
         </ol>
       </section>
-      <SignatureClosing />
       </div>
     </ExperienceFrame>
   )

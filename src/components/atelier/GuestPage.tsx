@@ -6,7 +6,7 @@ import { ArrowRight, ArrowUpRight, Bookmark, MessageCircle, Phone, Tablet, Users
 import { useLang } from '@/lib/i18n/LanguageContext'
 import { OutcomeDemo } from '@/components/experience/OutcomeDemo'
 import { guestCapture } from '@/components/experience/ProductCapture'
-import { Closing, Label, photos, useText } from './Atelier'
+import { Button, Label, photos, useText } from './Atelier'
 import './guest-page.css'
 
 type JourneySelection = { index: number; run: number }
@@ -94,7 +94,7 @@ function GuestAccess() {
   return <section className="ag-access" id="channels"><div className="at-wrap">
     <div className="ag-access-grid"><figure className="ag-access-visual"><div className="ag-access-photo"><Image src={photos.group} alt={t('A welcoming hotel lounge', 'Un acogedor salón de hotel')} fill sizes="(max-width:750px) 90vw, 42vw"/></div><div className="ag-access-phone"><Image src={guestCapture('home', lang, 'phone')} alt={t('Hotel Companion on a guest’s phone', 'Hotel Companion en el teléfono del huésped')} width={433} height={938} sizes="(max-width:750px) 165px, 205px"/></div><figcaption>{t('Your hotel. Within reach.', 'Tu hotel. Al alcance.')}</figcaption></figure>
     <div className="ag-access-heading"><Label>{t('Easy to begin', 'Fácil de empezar')}</Label><h2>{t('A familiar', 'Una forma familiar')}<br/><span>{t('way in.', 'de entrar.')}</span></h2><p>{t('The guest chooses how to ask. The companion keeps the next step clear.', 'El huésped elige cómo preguntar. El companion hace claro el siguiente paso.')}</p><div className="ag-channels">{channels.map(({ Icon, title, body }, index) => <article key={title}><span>0{index + 1}</span><div><h3><Icon size={18} strokeWidth={1.4} aria-hidden="true"/>{title}</h3><p>{body}</p></div></article>)}</div></div></div>
-    <div className="ag-care"><div><Users size={24} strokeWidth={1.4} aria-hidden="true"/><h3>{t('Your people remain part of the welcome.', 'Tu equipo sigue siendo parte de la bienvenida.')}</h3></div><p>{t('When a person is needed, the request and its context reach the team. Guests get a clear next step; your people have what they need to help.', 'Cuando se necesita una persona, la solicitud y su contexto llegan al equipo. El huésped conoce el siguiente paso y tu gente tiene lo necesario para ayudar.')}</p></div>
+    <div className="ag-care"><div><Users size={24} strokeWidth={1.4} aria-hidden="true"/><h3>{t('Your people remain part of the welcome.', 'Tu equipo sigue siendo parte de la bienvenida.')}</h3></div><p>{t('When a person is needed, the request and its context reach the team. Guests get a clear next step; your people have what they need to help.', 'Cuando se necesita una persona, la solicitud y su contexto llegan al equipo. El huésped conoce el siguiente paso y tu gente tiene lo necesario para ayudar.')}</p><div className="ag-care-action"><Button>{t('Bring this experience to your guests', 'Lleva esta experiencia a tus huéspedes')}</Button></div></div>
   </div></section>
 }
 
@@ -114,6 +114,5 @@ export default function GuestPage() {
     <StayJourney selection={selection} onChoose={choose}/>
     <section className="ag-remember at-wrap"><div className="ag-remember-photos"><div className="ag-remember-dining"><Image src={photos.dining} alt={t('An intimate dinner overlooking the sea', 'Una cena íntima con vista al mar')} fill sizes="(max-width:750px) 80vw, 42vw"/></div><div className="ag-remember-detail"><Image src={photos.anniversary} alt="" fill sizes="(max-width:750px) 35vw, 18vw"/></div><span>{t('The details are the difference.', 'Los detalles hacen la diferencia.')}</span></div><div className="ag-remember-copy"><Label>{t('When the guest returns', 'Cuando el huésped regresa')}</Label><h2>{t('Some things', 'Hay detalles que')}<br/><span>{t('stay with you.', 'se quedan contigo.')}</span></h2><p>{t('The room they loved. The dinner they still talk about. The treatment that helped them unwind. A completed stay gives the next conversation somewhere meaningful to begin.', 'La habitación que les encantó. La cena que aún recuerdan. El tratamiento que les ayudó a descansar. Una estancia completada le da a la próxima conversación un punto de partida significativo.')}</p><div className="ag-memory-thread"><span>{t('A previous stay', 'Una estancia anterior')}</span><ArrowRight size={16}/><span>{t('A personal new beginning', 'Un nuevo comienzo personal')}</span></div><button className="ag-inline-watch" type="button" onClick={() => watch(2)}>{t('Watch the return visit', 'Ve la próxima visita')}<ArrowUpRight size={16}/></button></div></section>
     <GuestAccess/>
-    <Closing/>
   </div>
 }

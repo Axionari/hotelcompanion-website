@@ -10,4 +10,4 @@ handoff
 docs
 .claude
 .github
-*.md
+/*.md

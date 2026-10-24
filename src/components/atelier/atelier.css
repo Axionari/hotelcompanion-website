@@ -46,3 +46,14 @@
 @media(min-width:751px) and (max-height:800px){.at-hero{padding-block:30px 35px;min-height:0}.at-hero-photo{height:calc(100svh - 180px);min-height:420px;max-height:560px}.at-hero-copy{padding-block:15px}.at-hero-copy>p:not(.at-label){font-size:16px;margin:25px 0;max-width:490px}.at-hero-copy .at-label{margin-bottom:23px!important}.at-hero-copy>small{margin-top:20px}.at-hero-conversation{bottom:55px}}
 
 .at-pilot-terms>.at-text-link{margin-top:20px;color:#e4d2b3;font-size:12px}
+
+/* Interior pages conclude in their own context; the dark finale belongs to Home. */
+.at-context-close{scroll-margin-top:100px;display:flex;align-items:center;justify-content:space-between;gap:40px;padding-block:48px;border-top:1px solid var(--at-line,#d5dbcf)}
+.at-context-close h2{font-size:clamp(34px,3.2vw,44px);line-height:1.1;max-width:650px}
+.at-context-close p{font-size:14px;line-height:1.7;color:var(--at-muted,#69786e);max-width:590px;margin:16px 0 0}
+.at-context-close>.at-button{flex-shrink:0}
+.at-rollout-action{margin-top:28px}
+.ag-care-action{grid-column:2}
+.ag-care-action .at-button{white-space:normal;text-align:left;line-height:1.5}
+.ag-care-action .at-button svg{flex-shrink:0}
+@media(max-width:750px){.at-context-close{align-items:flex-start;flex-direction:column;gap:25px;padding-block:40px}.at-context-close h2{font-size:36px}.at-context-close p{font-size:14px}.ag-care-action{grid-column:1}.at-rollout-action{margin-top:24px}}

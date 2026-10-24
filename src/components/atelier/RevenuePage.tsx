@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { ArrowDown, Check, RotateCcw } from 'lucide-react'
 import { ContributionExample, Details, RecoveryStory } from '@/components/experience/PageSections'
 import { DemandInsight } from '@/components/experience/DemandInsight'
-import { Button, Closing, Label, SectionHead, photos, useText } from './Atelier'
+import { Button, Label, SectionHead, photos, useText } from './Atelier'
 import './revenue-page.css'
 
 export default function RevenuePage() {
@@ -44,6 +44,5 @@ export default function RevenuePage() {
       <div className="at-revenue-economics-intro"><Label>{t('The economics', 'Los resultados económicos')}</Label><h2>{t('Revenue is the start.', 'Los ingresos son el inicio.')}<br/><span>{t('Contribution is the measure.', 'La contribución es la medida.')}</span></h2><p>{t('Measure additional contribution before HC fees: completed sales, less delivery costs and the contribution expected without HC.', 'Mide la contribución adicional antes de las tarifas de HC: ventas completadas, menos costos del servicio y la contribución esperada sin HC.')}</p><div className="at-revenue-measure"><span>{t('AGREED BEFORE LAUNCH', 'ACORDADO ANTES DE LANZAR')}</span><p>{t('Eligible outcomes. Source records. Costs. A comparison both teams can review.', 'Resultados elegibles. Registros de origen. Costos. Una comparación que ambos equipos puedan revisar.')}</p></div><Button>{t('Discuss your pilot', 'Hablemos de tu piloto')}</Button></div>
       <ContributionExample/>
     </div></section>
-    <Closing/>
   </div>
 }
