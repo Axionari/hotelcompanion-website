@@ -12,7 +12,7 @@ export function SiteFooter() {
     <footer className="hc-site-footer">
       <div className="hc-site-footer-inner">
         <div className="hc-site-footer-top">
-          <div className="hc-site-footer-brand"><Link prefetch={false} href="/">Hotel Companion</Link><p>{c.signature}</p><span>{c.footerSummary}</span></div>
+          <div className="hc-site-footer-brand"><Link prefetch={false} href="/" className="hc-site-wordmark" aria-label="Hotel Companion"><span className="hc-site-logo" aria-hidden="true">HOTEL<br/>COMPANION<span>·</span></span></Link><p>{c.signature}</p><span>{c.footerSummary}</span></div>
           <div className="hc-site-footer-links">
             {c.footer.map(group => <div key={group.title}><h2>{group.title}</h2><ul>{group.links.map(link => <li key={link.href}><Link prefetch={false} href={link.href}>{link.label}</Link></li>)}</ul></div>)}
           </div>

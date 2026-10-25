@@ -123,7 +123,9 @@
   height: 34px;
   flex: 0 0 auto;
   place-items: center;
-  border: 1px solid rgba(213, 120, 69, .52);
+  border: 0;
+  border-radius: 8px;
+  overflow: hidden;
   color: var(--thread-accent-soft);
   font-family: var(--font-editorial), Georgia, serif;
   font-size: .85rem;

@@ -27,7 +27,7 @@ function ConnectionStory() {
   return <div className="ap-connections">
     <div className="ap-connection-inputs"><span><MessageCircle size={17}/>{t('Guest conversation', 'Conversación del huésped')}</span><span><Bookmark size={17}/>{t('Useful context', 'Contexto útil')}</span><span><Check size={17}/>{t('Your hotel’s rules', 'Las reglas de tu hotel')}</span></div>
     <ArrowDown className="ap-connector" size={23}/>
-    <div className="ap-connection-hub"><span className="at-seal">hc</span><h3>Hotel Companion</h3><p>{t('The right next step, with the context to take it.', 'El siguiente paso, con el contexto para darlo.')}</p></div>
+    <div className="ap-connection-hub"><span className="at-seal at-brand-seal" aria-hidden="true"><Image src="/icon.svg" alt="" width={33} height={33}/></span><h3>Hotel Companion</h3><p>{t('The right next step, with the context to take it.', 'El siguiente paso, con el contexto para darlo.')}</p></div>
     <div className="ap-connection-branches">
       <div><ArrowDown size={22}/><Users size={24}/><h4>{t('Your people', 'Tu equipo')}</h4><p>{t('Requests reach the right team. Ownership, updates and resolution stay together.', 'Las solicitudes llegan al equipo indicado. Responsables, avances y resolución permanecen juntos.')}</p></div>
       <div><ArrowDown size={22}/><Globe2 size={24}/><h4>{t('Your systems', 'Tus sistemas')}</h4><p>{t('PMS, POS and payment connections support the actions agreed for your hotel.', 'Las conexiones PMS, POS y pagos respaldan las acciones acordadas para tu hotel.')}</p></div>

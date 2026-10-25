@@ -1,6 +1,7 @@
 'use client'
 
 import { useId } from 'react'
+import Image from 'next/image'
 import { useLang } from '@/lib/i18n/LanguageContext'
 import styles from './PlatformThread.module.css'
 
@@ -147,7 +148,7 @@ export function PlatformThread({ className = '' }: PlatformThreadProps) {
       <div className={styles.workspace}>
         <header className={styles.chrome}>
           <div className={styles.productMark}>
-            <span className={styles.monogram} aria-hidden="true">HC</span>
+            <span className={styles.monogram} aria-hidden="true"><Image src="/icon.svg" alt="" width={34} height={34}/></span>
             <span><strong>{c.product}</strong><small>{c.mode}</small></span>
           </div>
           <div className={styles.property}>{c.property}</div>
