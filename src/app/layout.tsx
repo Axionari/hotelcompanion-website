@@ -78,12 +78,12 @@ export const metadata: Metadata = {
     template: "%s · Hotel Companion",
   },
   description:
-    "Help guests get answers, request service and discover relevant dining, wellness and upgrades during their stay. Available 24/7 by phone or web, with your hotel in control.",
+    "From the first question to the next stay: reservations, relevant recommendations and guest service, 24/7 by phone or web. More value from every stay.",
   openGraph: {
     siteName: "Hotel Companion",
     title: "Hotel Companion — Smarter offers. More revenue.",
     description:
-      "Help guests get answers, request service and discover relevant dining, wellness and upgrades during their stay. Available 24/7 by phone or web, with your hotel in control.",
+      "From the first question to the next stay: reservations, relevant recommendations and guest service, 24/7 by phone or web. More value from every stay.",
     url: "https://www.hotelcompanion.ai",
     type: "website",
     images: [getSocialImage()],
@@ -92,7 +92,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Hotel Companion — Smarter offers. More revenue.",
     description:
-      "Help guests get answers, request service and discover relevant dining, wellness and upgrades during their stay. Available 24/7 by phone or web, with your hotel in control.",
+      "From the first question to the next stay: reservations, relevant recommendations and guest service, 24/7 by phone or web. More value from every stay.",
     images: [{ url: getSocialImage().url, alt: getSocialImage().alt }],
   },
 };

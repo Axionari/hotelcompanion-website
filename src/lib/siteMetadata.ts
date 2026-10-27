@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 const SITE_URL = 'https://www.hotelcompanion.ai'
 export function getSocialImage(lang: 'en' | 'es' = 'en') {
   return {
-    url: `${SITE_URL}/og/hotel-companion-smarter-offers-${lang}.png?v=wordmark-20261025`,
+    url: `${SITE_URL}/og/hotel-companion-guest-journey-${lang}.png?v=20261027`,
     width: 1200,
     height: 630,
     type: 'image/png',

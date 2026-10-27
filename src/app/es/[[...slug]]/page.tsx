@@ -51,7 +51,7 @@ const SPANISH_META: Record<string, { title: string; description: string }> = {
   implementation: { title: 'Implementación y piloto', description: 'Una implementación enfocada con conexiones verificadas, reglas aprobadas y piloto elegible basado en resultados.' },
   '': {
     title: 'Hotel Companion — Mejores ofertas. Más ingresos.',
-    description: 'Durante su estancia, ayuda al huésped a resolver dudas, solicitar servicios y descubrir gastronomía, bienestar y mejoras relevantes. Disponible las 24 horas por teléfono o web, con tu hotel al mando.',
+    description: 'Desde la primera consulta hasta la próxima visita: reservas, recomendaciones relevantes y atención al huésped, las 24 horas por teléfono o web. Más valor en cada estancia.',
   },
   platform: {
     title: 'Producto',
@@ -187,7 +187,7 @@ const spanishHomeSchema = {
       operatingSystem: 'Web',
       url: 'https://www.hotelcompanion.ai/es',
       inLanguage: 'es-MX',
-      description: 'Una capa de inteligencia hotelera que conecta reservas, llegadas, servicio, ingresos y memoria del huésped en una sola conversación.',
+      description: 'Desde la primera consulta hasta la próxima visita, Hotel Companion ayuda a tus huéspedes a resolver dudas, reservar y disfrutar más de lo que ofrece tu hotel. Disponible las 24 horas por teléfono o desde la web, recomienda mejoras de habitación, gastronomía y experiencias según sus intereses, y canaliza las solicitudes al equipo indicado para ofrecer una atención más personal y generar más ingresos en cada estancia.',
       provider: { '@id': 'https://www.hotelcompanion.ai/#organization' },
     },
   ],
