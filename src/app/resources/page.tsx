@@ -5,7 +5,7 @@ import { createPageMetadata } from '@/lib/siteMetadata'
 export const metadata = createPageMetadata({
   title: 'Resources',
   description:
-    'Insights for the Future of Hospitality. Essays on guest intelligence, AI, operational excellence, and the future of hospitality — written for hotel leaders.',
+    'Practical guides to better guest service, more profitable stays and a measured first deployment, written for hotel leaders.',
   path: '/resources',
 })
 

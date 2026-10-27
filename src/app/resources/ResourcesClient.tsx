@@ -27,8 +27,8 @@ export default function ResourcesClient({ content }: { content: Localized<Resour
       <div className={`hc-signature-journal ${styles.journal}`}>
       <header className={`${styles.container} ${styles.masthead}`}>
         <div className={styles.mastheadCopy}>
-          <div className={styles.mastheadLine}><p>{t('THE HC JOURNAL', 'EL JOURNAL DE HC')}</p></div>
-          <div className={styles.mastheadTitle}><h1>{t('Ideas for better', 'Ideas para una mejor')} <span>{t('hospitality.', 'hospitalidad.')}</span></h1><p>{t('A practical perspective on guest experience, hotel revenue and the thoughtful use of AI.', 'Una perspectiva práctica sobre la experiencia del huésped, los ingresos del hotel y el uso atento de la IA.')}</p></div>
+          <div className={styles.mastheadLine}><p>{t('THE HOTEL COMPANION JOURNAL', 'EL JOURNAL DE HOTEL COMPANION')}</p></div>
+          <div className={styles.mastheadTitle}><h1>{t('Ideas for better', 'Ideas para una mejor')} <span>{t('hospitality.', 'hospitalidad.')}</span></h1><p>{t('Practical decisions for better guest service, more profitable stays and a measured first deployment.', 'Decisiones prácticas para atender mejor, crear estancias más rentables y empezar con un despliegue medible.')}</p></div>
         </div>
         <figure className={styles.mastheadPhoto}><Image src="/assets/editorial/hc-caribbean-lobby.webp" alt={t('An open hotel lobby looking toward the sea', 'Un lobby abierto con vista al mar')} fill priority sizes="(max-width:750px) 100vw, 40vw"/><figcaption><span>{t('FOR HOTEL LEADERS', 'PARA LÍDERES HOTELEROS')}</span><i>{t('A more considered stay.', 'Una estancia más atenta.')}</i></figcaption></figure>
       </header>

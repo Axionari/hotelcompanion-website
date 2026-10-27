@@ -13,7 +13,7 @@ export default function ContactPage() {
       <div className="at-contact-copy">
         <Label>{t('Let’s talk', 'Conversemos')}</Label>
         <h1>{t('Bring us', 'Cuéntanos')}<br/><span>{t('your hotel.', 'de tu hotel.')}</span></h1>
-        <p>{t('The experience you want to create. The opportunity you want to capture. Let’s find the right place to begin.', 'La experiencia que quieres crear. La oportunidad que quieres aprovechar. Encontremos el mejor lugar para empezar.')}</p>
+        <p>{t('Tell us where guests or your team meet friction. We’ll explore one useful journey, the connections it needs and how you would measure its value.', 'Cuéntanos dónde encuentran fricción tus huéspedes o tu equipo. Exploremos un recorrido útil, las conexiones necesarias y cómo medir su valor.')}</p>
         <div className="at-contact-sales" id="sales"><div><span>{t('Sales & pilots', 'Ventas y pilotos')}</span><h2>{t('A presentation shaped around you.', 'Una presentación pensada para ti.')}</h2></div><Button>{t('Request a demo', 'Solicita una demo')}</Button><a href="mailto:sales@axionari.com">sales@axionari.com<ArrowUpRight size={16} aria-hidden="true"/></a></div>
         <div className="at-contact-support" id="support"><div><span>{t('Already working with HC?', '¿Ya trabajas con HC?')}</span><h2>{t('Your team is here.', 'Tu equipo está aquí.')}</h2></div><a href="mailto:support@axionari.com">support@axionari.com<ArrowUpRight size={16} aria-hidden="true"/></a></div>
       </div>

@@ -54,10 +54,10 @@ export const privacyEs: LegalDoc = {
     },
     { type: 'p', text: 'No vendemos información personal.' },
 
-    { type: 'h2', text: 'Inteligencia Artificial' },
+    { type: 'h2', text: 'Sistemas Inteligentes' },
     {
       type: 'p',
-      text: 'Hotel Companion usa inteligencia artificial para ayudar a las organizaciones a entender las necesidades de los huéspedes, coordinar operaciones y mejorar la hospitalidad.',
+      text: 'Hotel Companion usa sistemas inteligentes para ayudar a las organizaciones a entender las necesidades de los huéspedes, coordinar operaciones y mejorar la hospitalidad.',
     },
     {
       type: 'p',
@@ -217,10 +217,10 @@ export const termsEs: LegalDoc = {
     },
     { type: 'p', text: 'El Cliente sigue siendo responsable de las decisiones tomadas usando la plataforma.' },
 
-    { type: 'h2', text: 'Inteligencia Artificial' },
+    { type: 'h2', text: 'Sistemas Inteligentes' },
     {
       type: 'p',
-      text: 'Hotel Companion usa inteligencia artificial para asistir con la comunicación, las recomendaciones, la coordinación de flujos de trabajo y la inteligencia organizacional.',
+      text: 'Hotel Companion usa sistemas inteligentes para asistir con la comunicación, las recomendaciones, la coordinación de flujos de trabajo y la inteligencia organizacional.',
     },
     {
       type: 'p',
@@ -550,7 +550,7 @@ export const securityEs: LegalDoc = {
       text: 'La seguridad está integrada en nuestro ciclo de vida de desarrollo de software. Nuestras prácticas de ingeniería incluyen: revisiones de código; gestión de dependencias; pruebas continuas; monitoreo de seguridad; remediación de vulnerabilidades; pipelines de despliegue seguros.',
     },
 
-    { type: 'h2', text: 'Seguridad de la Inteligencia Artificial' },
+    { type: 'h2', text: 'Seguridad de los sistemas inteligentes' },
     { type: 'p', text: 'La IA introduce nuevas oportunidades—y nuevas responsabilidades.' },
     {
       type: 'p',
@@ -611,7 +611,7 @@ export const securityEs: LegalDoc = {
 
 export const responsibleAiEs: LegalDoc = {
   eyebrow: 'CONFIANZA · IA RESPONSABLE',
-  title: 'La inteligencia artificial debería hacer la hospitalidad más humana—no menos.',
+  title: 'La tecnología inteligente debería hacer la hospitalidad más humana.',
   intro: [
     'En Hotel Companion, la IA existe para ayudar a las organizaciones a entender a los huéspedes, preservar el conocimiento, coordinar operaciones y apoyar mejores decisiones.',
     'Nuestra filosofía es simple: la IA debería potenciar a las personas, no reemplazarlas.',
@@ -696,7 +696,7 @@ export const responsibleAiEs: LegalDoc = {
     },
 
     { type: 'h2', text: 'Nuestro Compromiso' },
-    { type: 'p', text: 'Creemos que el futuro de la hospitalidad no es artificial.' },
+    { type: 'p', text: 'Creemos en una hospitalidad más personal.' },
     {
       type: 'p',
       text: 'Es más humano que nunca—apoyado por una inteligencia que ayuda a cada persona a dar lo mejor de sí.',

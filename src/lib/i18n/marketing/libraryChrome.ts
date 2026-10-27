@@ -8,7 +8,7 @@ const en = {
   seriesEndLine: 'Every conversation leads somewhere.',
   explore: 'EXPLORE THE LIBRARY',
   allResources: 'All resources',
-  cta: 'Book a Demo',
+  cta: 'Request a hotel demo',
 }
 
 const es: typeof en = {
@@ -18,7 +18,7 @@ const es: typeof en = {
   seriesEndLine: 'Cada conversación lleva a algún lugar.',
   explore: 'EXPLORA LA BIBLIOTECA',
   allResources: 'Todos los recursos',
-  cta: 'Agenda una Demo',
+  cta: 'Solicita una demo',
 }
 
 export const libraryChrome: Localized<typeof en> = { en, es }

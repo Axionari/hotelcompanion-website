@@ -50,8 +50,8 @@ const SPANISH_META: Record<string, { title: string; description: string }> = {
   revenue: { title: 'Ingresos', description: 'Recomendaciones con contexto, paquetes aprobados y contribución adicional medible para hoteles.' },
   implementation: { title: 'Implementación y piloto', description: 'Una implementación enfocada con conexiones verificadas, reglas aprobadas y piloto elegible basado en resultados.' },
   '': {
-    title: 'Hotel Companion — Mejores ofertas. Más ingresos.',
-    description: 'Un companion inteligente que convierte llamadas, mensajes y consultas web en reservas, mejoras de habitación y experiencias, las 24 horas. Atención más ágil. Más valor en cada estancia.',
+    title: 'Hotel Companion — Más venta directa. Mejor atención.',
+    description: 'Ayuda a más huéspedes a reservar directamente y preparar su estancia. Atención las 24 horas, solicitudes claras para tu equipo y un piloto medible para tu hotel.',
   },
   platform: {
     title: 'Producto',
@@ -67,7 +67,7 @@ const SPANISH_META: Record<string, { title: string; description: string }> = {
   },
   resources: {
     title: 'Recursos',
-    description: 'Ideas para el futuro de la hospitalidad. Ensayos sobre inteligencia del huésped, IA, excelencia operativa y el futuro hotelero, escritos para sus líderes.',
+    description: 'Guías prácticas para atender mejor al huésped, crear estancias más rentables y evaluar un primer despliegue medible.',
   },
   company: {
     title: 'Compañía',
@@ -91,7 +91,7 @@ const SPANISH_META: Record<string, { title: string; description: string }> = {
   },
   'responsible-ai': {
     title: 'IA responsable',
-    description: 'La inteligencia artificial debe hacer la hospitalidad más humana, no menos. Nuestros principios para construir IA responsablemente.',
+    description: 'Principios para usar sistemas inteligentes con supervisión humana, privacidad y responsabilidad en la hospitalidad.',
   },
   accessibility: {
     title: 'Accesibilidad',

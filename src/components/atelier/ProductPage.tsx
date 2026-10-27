@@ -110,7 +110,7 @@ export default function ProductPage() {
       <div className="ap-hero-copy">
         <Label>{t('The product, thoughtfully connected', 'El producto, conectado con intención')}</Label>
         <h1>{t('One companion.', 'Un companion.')}<br/>{t('The whole stay.', 'Toda la estancia.')}</h1>
-        <p>{t('From a guest’s first question to their next visit. Turn natural conversations into relevant offers, personal service and clear next steps for your team.', 'De la primera pregunta del huésped a su próxima visita. Convierte conversaciones naturales en ofertas relevantes, servicio personal y siguientes pasos claros para tu equipo.')}</p>
+        <p>{t('Help guests complete the next step, from a direct-booking enquiry to a service request or return visit. Your team keeps the context, approvals and follow-through.', 'Ayuda al huésped a dar el siguiente paso, desde una consulta de reserva directa hasta una solicitud o una nueva visita. Tu equipo conserva el contexto, las aprobaciones y el seguimiento.')}</p>
         <div className="ap-hero-actions"><Link className="at-button" href="#recommendations">{t('Explore the product', 'Explora el producto')}<ArrowDown size={16}/></Link><Link className="at-text-link" href="#channels">{t('Every way in', 'Todos los canales')}<ArrowUpRight size={16}/></Link></div>
         <div className="ap-hero-footnote"><span>01—05</span><p>{t('Five capabilities. One considered experience.', 'Cinco capacidades. Una experiencia bien pensada.')}</p></div>
       </div>

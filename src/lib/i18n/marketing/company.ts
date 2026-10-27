@@ -75,7 +75,7 @@ const en = {
         location: 'Medellín, Colombia',
         bio:
           'Andrés leads the engineering and technical architecture behind Hotel Companion and Axionari’s AI platform. He designs the scalable, secure, and resilient systems that let organizational intelligence operate reliably across enterprise environments.',
-        skills: ['Artificial Intelligence', 'Software Architecture', 'Cybersecurity', 'Cloud Infrastructure', 'Enterprise Systems'],
+        skills: ['Intelligent Systems', 'Software Architecture', 'Cybersecurity', 'Cloud Infrastructure', 'Enterprise Systems'],
       },
     ],
   },
@@ -253,7 +253,7 @@ const es: typeof en = {
         location: 'Medellín, Colombia',
         bio:
           'Andrés lidera la ingeniería y la arquitectura técnica detrás de Hotel Companion y la plataforma de IA de Axionari. Diseña los sistemas escalables, seguros y resilientes que permiten que la inteligencia organizacional opere de forma confiable en entornos empresariales.',
-        skills: ['Inteligencia Artificial', 'Arquitectura de Software', 'Ciberseguridad', 'Infraestructura en la Nube', 'Sistemas Empresariales'],
+        skills: ['Sistemas Inteligentes', 'Arquitectura de Software', 'Ciberseguridad', 'Infraestructura en la Nube', 'Sistemas Empresariales'],
       },
     ],
   },

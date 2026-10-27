@@ -29,12 +29,12 @@ const en = {
   page: {
     eyebrow: 'Hotel Companion',
     title: 'See what it could do for your hotel.',
-    body: 'See how smarter recommendations and hotel-approved offers work through voice, text and guest context—and how a pilot measures additional contribution.',
+    body: 'Tell us what you want to improve: direct enquiries, relevant upgrades or a recurring service gap. See the guest journey, the team’s next step and what a pilot would need to prove.',
     agendaTitle: 'What we’ll cover',
     agenda: [
-      'Explore recommendations, approved packages and alternatives that capture guest interest.',
-      'Try voice and text conversations with guest context and memory.',
-      'Define a pilot, the connections it needs and how to measure results.',
+      'Follow one guest from enquiry to a completed next step, with relevant recommendations.',
+      'See how the team receives context, keeps approvals and follows service through.',
+      'Agree the first use case, required connections and a baseline for commercial and service results.',
     ],
     note: 'No purchase commitment. We’ll agree the scope and commercial terms before a pilot.',
     calendarLead: 'Prefer to choose a time?',
@@ -71,12 +71,12 @@ const es: typeof en = {
   page: {
     eyebrow: 'Hotel Companion',
     title: 'Descubre qué puede aportar a tu hotel.',
-    body: 'Conoce las recomendaciones y ofertas aprobadas por voz y texto, con contexto del huésped, y cómo el piloto mide la contribución adicional.',
+    body: 'Cuéntanos qué quieres mejorar: consultas directas, mejoras relevantes o una falla recurrente de servicio. Veremos el recorrido, la acción del equipo y qué debe demostrar el piloto.',
     agendaTitle: 'Qué veremos',
     agenda: [
-      'Explora recomendaciones, paquetes aprobados y alternativas que aprovechan el interés del huésped.',
-      'Prueba conversaciones por voz y texto con contexto y memoria del huésped.',
-      'Define un piloto, las conexiones necesarias y cómo medir resultados.',
+      'Sigue a un huésped de la consulta al siguiente paso, con recomendaciones relevantes.',
+      'Ve cómo el equipo recibe contexto, conserva aprobaciones y da seguimiento al servicio.',
+      'Define el primer caso, las conexiones y una base para medir resultados comerciales y de servicio.',
     ],
     note: 'Sin compromiso de compra. Acordaremos el alcance y las condiciones comerciales antes de un piloto.',
     calendarLead: '¿Prefieres elegir un horario?',

@@ -4,7 +4,7 @@ import { createPageMetadata } from '@/lib/siteMetadata'
 export const metadata = createPageMetadata({
   title: 'Product',
   description:
-    'AI voice and text guest service, approved actions, Companion Control and useful guest memory.',
+    'Help guests act through voice, text and visual controls. Keep approved offers, team ownership and guest context together across the stay.',
   path: '/platform',
 })
 

@@ -48,10 +48,10 @@ const privacyEn: LegalDoc = {
     },
     { type: 'p', text: 'We do not sell personal information.' },
 
-    { type: 'h2', text: 'Artificial Intelligence' },
+    { type: 'h2', text: 'Intelligent Systems' },
     {
       type: 'p',
-      text: 'Hotel Companion uses artificial intelligence to help organizations understand guest needs, coordinate operations, and improve hospitality.',
+      text: 'Hotel Companion uses intelligent systems to help organizations understand guest needs, coordinate operations, and improve hospitality.',
     },
     {
       type: 'p',
@@ -188,10 +188,10 @@ const termsEn: LegalDoc = {
     },
     { type: 'p', text: 'The Customer remains responsible for decisions made using the platform.' },
 
-    { type: 'h2', text: 'Artificial Intelligence' },
+    { type: 'h2', text: 'Intelligent Systems' },
     {
       type: 'p',
-      text: 'Hotel Companion uses artificial intelligence to assist with communication, recommendations, workflow coordination, and organizational intelligence.',
+      text: 'Hotel Companion uses intelligent systems to assist with communication, recommendations, workflow coordination, and organizational intelligence.',
     },
     { type: 'p', text: 'AI-generated responses are intended to support—not replace—professional judgment.' },
     {
@@ -497,7 +497,7 @@ const securityEn: LegalDoc = {
       text: 'Security is integrated into our software development lifecycle. Our engineering practices include: Code reviews; Dependency management; Continuous testing; Security monitoring; Vulnerability remediation; Secure deployment pipelines.',
     },
 
-    { type: 'h2', text: 'Artificial Intelligence Security' },
+    { type: 'h2', text: 'Security for Intelligent Systems' },
     { type: 'p', text: 'AI introduces new opportunities—and new responsibilities.' },
     {
       type: 'p',
@@ -558,7 +558,7 @@ const securityEn: LegalDoc = {
 
 const responsibleAiEn: LegalDoc = {
   eyebrow: 'TRUST · RESPONSIBLE AI',
-  title: 'Artificial intelligence should make hospitality more human—not less.',
+  title: 'Intelligent systems should make hospitality more human—not less.',
   intro: [
     'At Hotel Companion, AI exists to help organizations understand guests, preserve knowledge, coordinate operations, and support better decisions.',
     'Our philosophy is simple: AI should augment people, not replace them.',
@@ -640,7 +640,7 @@ const responsibleAiEn: LegalDoc = {
     },
 
     { type: 'h2', text: 'Our Commitment' },
-    { type: 'p', text: 'We believe the future of hospitality is not artificial.' },
+    { type: 'p', text: 'We believe the future of hospitality should feel personal.' },
     {
       type: 'p',
       text: 'It is more human than ever—supported by intelligence that helps every person perform at their best.',

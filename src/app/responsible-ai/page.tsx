@@ -5,7 +5,7 @@ import { createPageMetadata } from '@/lib/siteMetadata'
 export const metadata = createPageMetadata({
   title: 'Responsible AI',
   description:
-    'Artificial intelligence should make hospitality more human—not less. Our principles for building AI responsibly.',
+    'Intelligent systems should make hospitality more human—not less. Our principles for building AI responsibly.',
   path: '/responsible-ai',
 })
 

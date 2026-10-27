@@ -106,11 +106,11 @@ const en = {
       },
       {
         q: 'How is this different from a guest messaging platform?',
-        a: 'Messaging tools move words between people. Hotel Companion turns those conversations into operational intelligence — context that routes the work and reaches every department. The conversation is the input, not the product.',
+        a: 'Follow one request through the product: the guest explores or chooses an option, the team receives the context, and the status stays visible. Recommendations and actions follow the offers, permissions and connections agreed for your hotel.',
       },
       {
         q: 'Does it replace our systems or our staff?',
-        a: 'Neither. It sits above the systems you already run and resolves the routine so your team is free for the moments that matter.',
+        a: 'It supports your team and works with the systems included in the agreed scope. We confirm supported actions, human handoffs and system access before enabling a journey.',
       },
       {
         q: 'How long does implementation take?',
@@ -118,7 +118,7 @@ const en = {
       },
       {
         q: 'Is guest information secure?',
-        a: 'Yes. Encryption, role-based access, and privacy-first governance are foundational principles of Companion OS.',
+        a: 'We review the data, permissions, retention and supported controls for your deployment before launch. Our trust center explains the published policies; technical discovery confirms the configuration your hotel needs.',
       },
       {
         q: 'Is this only for luxury hotels?',
@@ -234,11 +234,11 @@ const es: typeof en = {
       },
       {
         q: '¿En qué se diferencia de una plataforma de mensajería para huéspedes?',
-        a: 'Las herramientas de mensajería mueven palabras entre personas. Hotel Companion convierte esas conversaciones en inteligencia operativa — contexto que enruta el trabajo y llega a cada departamento. La conversación es el insumo, no el producto.',
+        a: 'Sigue una solicitud en el producto: el huésped explora o elige, el equipo recibe el contexto y el estado sigue visible. Las recomendaciones y acciones respetan las ofertas, permisos y conexiones acordados para tu hotel.',
       },
       {
         q: '¿Reemplaza nuestros sistemas o a nuestro personal?',
-        a: 'Ninguno de los dos. Se coloca por encima de los sistemas que ya operas y resuelve lo rutinario para que tu equipo quede libre para los momentos que importan.',
+        a: 'Apoya a tu equipo y trabaja con los sistemas incluidos en el alcance. Confirmamos acciones compatibles, transferencias a personas y accesos antes de activar un recorrido.',
       },
       {
         q: '¿Cuánto tarda la implementación?',
@@ -246,7 +246,7 @@ const es: typeof en = {
       },
       {
         q: '¿La información del huésped es segura?',
-        a: 'Sí. El cifrado, el acceso por roles y una gobernanza centrada en la privacidad son principios fundamentales de Companion OS.',
+        a: 'Antes de lanzar revisamos datos, permisos, retención y controles del despliegue. El centro de confianza reúne las políticas publicadas; la revisión técnica confirma la configuración que necesita tu hotel.',
       },
       {
         q: '¿Es solo para hoteles de lujo?',

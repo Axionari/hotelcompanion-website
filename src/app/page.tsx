@@ -2,9 +2,9 @@ import HomeExperienceClient from './HomeExperienceClient'
 import { createPageMetadata } from '@/lib/siteMetadata'
 
 export const metadata = createPageMetadata({
-  title: 'Hotel Companion — Smarter offers. More revenue.',
+  title: 'Hotel Companion — More direct revenue. A better stay.',
   description:
-    'A smart companion that turns calls, messages and web inquiries into bookings, upgrades and experiences, around the clock. Faster guest service. More value from every stay.',
+    'Help more guests book directly, choose relevant upgrades and arrange their stay. Around-the-clock assistance, clear team handoffs and a measured pilot for your hotel.',
   path: '/',
 })
 

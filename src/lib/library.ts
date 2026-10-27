@@ -8,7 +8,7 @@ export type EssayCategory =
   | 'Guest Experience'
   | 'Revenue Growth'
   | 'Hotel Operations'
-  | 'Artificial Intelligence'
+  | 'Intelligent Systems'
   | 'Voice Technology'
   | 'Companion OS'
 
@@ -34,7 +34,7 @@ export const CATEGORY_ORDER: EssayCategory[] = [
   'Guest Experience',
   'Revenue Growth',
   'Hotel Operations',
-  'Artificial Intelligence',
+  'Intelligent Systems',
   'Voice Technology',
   'Companion OS',
 ]
