@@ -6,7 +6,7 @@ import { siteChromeCopy } from '@/lib/i18n/marketing/siteChrome'
 import { StartupPrograms } from '@/components/StartupPrograms'
 import './site-chrome.css'
 
-export function SiteFooter() {
+export function SiteFooter({ showPrograms = true }: { showPrograms?: boolean }) {
   const c = useCopy(siteChromeCopy)
   return (
     <footer className="hc-site-footer">
@@ -18,7 +18,7 @@ export function SiteFooter() {
           </div>
         </div>
       </div>
-      <StartupPrograms />
+      {showPrograms && <StartupPrograms />}
       <div className="hc-site-footer-inner hc-site-footer-legal">
         <div className="hc-site-footer-bottom"><p>{c.copyright}</p><p>{c.builtOn} <a href="https://www.axionari.com">Axionari</a></p><Link prefetch={false} href="/accessibility">{c.accessibility}</Link></div>
       </div>

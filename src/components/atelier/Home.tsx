@@ -5,6 +5,7 @@ import { HomeValueBenchmarks } from './HomeValueBenchmarks'
 import { ArrowDown, ArrowUpRight } from 'lucide-react'
 import { SiteNav } from '@/components/site-nav'
 import { SiteFooter } from '@/components/site-footer'
+import { StartupPrograms } from '@/components/StartupPrograms'
 import { LocalizedLink as Link } from '@/components/LocalizedLink'
 import { Benefits, Button, Closing, ControlSection, Conversation, GuestShowcase, Label, SetupSection, Wave, photos, useText } from './Atelier'
 
@@ -15,10 +16,11 @@ export default function AtelierHome(){const t=useText();return <div className="a
  </section>
  <Benefits/>
  <GuestShowcase/>
+ <StartupPrograms featured/>
  <section className="at-anniversary at-section at-wrap" id="revenue"><figure><div className="at-anniversary-photo"><Image src={photos.anniversary} alt={t('A thoughtfully set hotel table for an anniversary dinner','Una mesa preparada para una cena de aniversario')} fill sizes="(max-width:750px) 100vw, 45vw"/></div><figcaption><span>{t('A guest’s occasion. A hotel’s opportunity.','Una ocasión del huésped. Una oportunidad del hotel.')}</span></figcaption></figure><div><Label>{t('Revenue with relevance','Ingresos con relevancia')}</Label><h2>{t('“Something special','«Algo especial')}<br/>{t('for our anniversary.”','para nuestro aniversario».')}</h2><p className="at-lead">{t('A relevant recommendation can make the stay more memorable and more valuable. Start with what the guest wants.','Una recomendación relevante puede mejorar la estancia y hacerla más valiosa. Parte de lo que busca el huésped.')}</p><ol className="at-step-list">{[[t('Listen for what matters','Escucha lo que importa'),t('A celebration, a preference, a reason for the stay.','Una celebración, una preferencia, una razón para viajar.')],[t('Recommend what fits','Recomienda lo que encaja'),t('Rooms, dining and experiences your hotel has chosen to offer.','Habitaciones, gastronomía y experiencias que tu hotel elige ofrecer.')],[t('Measure what it adds','Mide lo que aporta'),t('Completed sales and additional contribution after costs.','Ventas completadas y contribución adicional después de costos.')]].map(([title,body],i)=><li key={title}><span>0{i+1}</span><div><h3>{title}</h3><p>{body}</p></div></li>)}</ol><Link href="/revenue" className="at-text-link">{t('Explore the revenue opportunity','Explora la oportunidad de ingresos')}<ArrowUpRight size={16}/></Link></div></section>
  <HomeValueBenchmarks/>
  <section className="at-home-voice at-sage"><div className="at-wrap"><div><Label>{t('Say it naturally. Or simply type.','Dilo naturalmente. O escribe.')}</Label><h2>{t('A conversation that keeps the thread.','Una conversación que mantiene el hilo.')}</h2></div><Wave/><Link href="/platform#voice" className="at-text-link">{t('Discover voice & text','Descubre voz y texto')}<ArrowUpRight size={16}/></Link></div></section>
  <ControlSection/>
  <section className="at-group-teaser"><div className="at-wrap"><Image src={photos.group} width={440} height={290} sizes="(max-width:750px) 100vw, 30vw" alt={t('A distinctive hotel with its own character','Un hotel con identidad propia')}/><div><Label>{t('For hotels and hotel groups','Para hoteles y grupos hoteleros')}</Label><h2>{t('One hotel first.','Primero, un hotel.')}<br/><em>{t('Then, the bigger picture.','Después, una visión más amplia.')}</em></h2><p>{t('Give leaders a common view of service and commercial results. Each property keeps its character, approved offers and local team ownership.','Dale al grupo una visión común del servicio y los resultados comerciales. Cada hotel conserva su identidad, sus ofertas y sus responsables locales.')}</p><Link href="/enterprise" className="at-text-link">{t('Explore Hotel Companion for groups','Explora Hotel Companion para grupos')}<ArrowUpRight size={16}/></Link></div></div></section>
  <SetupSection/><Closing/>
- </main><SiteFooter/></div>}
+ </main><SiteFooter showPrograms={false}/></div>}
