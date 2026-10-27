@@ -50,8 +50,8 @@ const SPANISH_META: Record<string, { title: string; description: string }> = {
   revenue: { title: 'Ingresos', description: 'Recomendaciones con contexto, paquetes aprobados y contribución adicional medible para hoteles.' },
   implementation: { title: 'Implementación y piloto', description: 'Una implementación enfocada con conexiones verificadas, reglas aprobadas y piloto elegible basado en resultados.' },
   '': {
-    title: 'Hotel Companion — Más venta directa. Mejor atención.',
-    description: 'Ayuda a más huéspedes a reservar directamente y preparar su estancia. Atención las 24 horas, solicitudes claras para tu equipo y un piloto medible para tu hotel.',
+    title: 'Hotel Companion — Mejores ofertas. Más ingresos.',
+    description: 'Durante su estancia, ayuda al huésped a resolver dudas, solicitar servicios y descubrir gastronomía, bienestar y mejoras relevantes. Disponible las 24 horas por teléfono o web, con tu hotel al mando.',
   },
   platform: {
     title: 'Producto',
