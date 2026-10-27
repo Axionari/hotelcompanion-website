@@ -1,8 +1,8 @@
 'use client'
-import {useEffect,useRef,useState} from 'react'
+import {useEffect,useRef,useState,type MouseEvent} from 'react'
 import {ArrowUpRight,AudioLines,Bookmark,ChevronDown,Menu,Network,Sparkles,Users,X} from 'lucide-react'
 import {usePathname} from 'next/navigation'
-import {stripLanguagePrefix} from '@/lib/i18n/paths'
+import {localizeHref,stripLanguagePrefix} from '@/lib/i18n/paths'
 import {LocalizedLink as Link} from '@/components/LocalizedLink'
 import LanguageToggle from '@/components/LanguageToggle'
 import {useCopy} from '@/lib/i18n/useCopy'
@@ -21,6 +21,14 @@ export function SiteNav({appearance='light'}:{appearance?:'light'|'dark'}){
  {name:t('Team control','Control del equipo'),body:t('Every request has a next step.','Cada solicitud tiene un siguiente paso.'),id:'team-control',icon:Users},
  {name:t('Connections','Conexiones'),body:t('Your people, systems and standards.','Tus personas, sistemas y estándares.'),id:'connections',icon:Network}]
  const close=()=>{setOpen(false);setProduct(false)}
+ const goHome=(event:MouseEvent<HTMLAnchorElement>)=>{
+  close()
+  // Keep new-tab/window clicks native; a normal click always reloads at the top.
+  if(event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return
+  event.preventDefault()
+  window.scrollTo({top:0,left:0,behavior:'instant'})
+  window.location.assign(event.currentTarget.href)
+ }
  useEffect(()=>{const key=(ev:KeyboardEvent)=>{if(open&&ev.key==='Tab'){const items=Array.from(header.current?.querySelectorAll<HTMLElement>('a[href],button:not([disabled])')??[]).filter(item=>item.offsetParent!==null);const first=items[0],last=items[items.length-1];if(ev.shiftKey&&document.activeElement===first){ev.preventDefault();last?.focus()}else if(!ev.shiftKey&&document.activeElement===last){ev.preventDefault();first?.focus()}}if(ev.key==='Escape'){if(product){setProduct(false);productToggle.current?.focus()}else{setOpen(false);toggle.current?.focus()}}};const outside=(ev:PointerEvent)=>{if(!header.current?.contains(ev.target as Node))close()};document.addEventListener('keydown',key);document.addEventListener('pointerdown',outside);return()=>{document.removeEventListener('keydown',key);document.removeEventListener('pointerdown',outside)}},[product,open])
  useEffect(()=>{
   if(!open)return
@@ -33,7 +41,7 @@ export function SiteNav({appearance='light'}:{appearance?:'light'|'dark'}){
  },[open])
  return <header ref={header} className="hc-site-header" data-page-appearance={appearance} data-menu-open={open} onBlur={e=>{if(!e.currentTarget.contains(e.relatedTarget))setProduct(false)}}>
  <nav className="hc-site-nav" aria-label={c.navLabel}>
- <Link href="/" className="hc-site-wordmark" onClick={close} aria-label="Hotel Companion home"><span className="hc-site-logo" aria-hidden="true">HOTEL<br/>COMPANION<span>·</span></span></Link>
+ <a href={localizeHref('/',lang)} className="hc-site-wordmark" onClick={goHome} aria-label={t('Hotel Companion home','Hotel Companion — inicio')}><span className="hc-site-logo" aria-hidden="true">HOTEL<br/>COMPANION<span>·</span></span></a>
  <div className="hc-site-desktop-links"><div className="hc-product-nav" onMouseEnter={()=>setProduct(true)}><Link href="/platform" aria-current={path==='/platform'?'page':undefined} onClick={close}>{c.links[0].label}</Link><button ref={productToggle} type="button" aria-label={t('Explore product features','Explorar funciones del producto')} aria-expanded={product} aria-controls="hc-product-menu" onClick={()=>setProduct(v=>!v)}><ChevronDown size={12}/></button></div>{c.links.slice(1).map(link=><Link key={link.href} href={link.href} aria-current={path===link.href?'page':undefined} onClick={close} onMouseEnter={()=>setProduct(false)}>{link.label}</Link>)}</div>
  <div className="hc-site-nav-actions"><div className="hc-header-language"><LanguageToggle/></div><Link href="/demo" className="hc-site-demo hc-site-desktop-cta" onClick={close}>{c.demo}<ArrowUpRight size={15}/></Link><button ref={toggle} type="button" className="hc-site-menu-toggle" aria-label={open?c.close:c.open} aria-expanded={open} aria-controls="hc-site-mobile-menu" onClick={()=>setOpen(v=>!v)}>{open?<X size={22}/>:<Menu size={22}/>}</button></div>
  </nav>
