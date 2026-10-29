@@ -11,6 +11,7 @@ import "./conversation-motion.css";
 import "./message-panels.css";
 import "./refined-interiors.css";
 import "@/components/atelier/atelier.css";
+import "./atelier-mobile.css";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 import { LiveDemoModalDeferred } from "@/components/cds/LiveDemoModalDeferred";
 import { PageMotion } from "@/components/experience/PageMotion";

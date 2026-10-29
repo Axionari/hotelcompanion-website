@@ -1,0 +1,151 @@
+/* Mobile editorial rhythm. Scoped to marketing copy, never the embedded product UI. */
+@media (max-width: 750px) {
+  body.at-review {
+    --at-mobile-title: clamp(2.625rem, 11.5vw, 3.125rem);
+    --at-mobile-heading: clamp(2rem, 8.75vw, 2.375rem);
+    --at-mobile-subheading: clamp(1.625rem, 7vw, 1.875rem);
+    --at-mobile-section: 64px;
+  }
+
+  body.at-review :is(
+    .at-hero h1, .ap-hero-copy h1, .ag-hero h1,
+    .at-revenue-hero h1, .at-enterprise-hero h1,
+    .at-company-intro h1, .at-implementation-intro h1, .at-contact-copy h1
+  ) {
+    font-size: var(--at-mobile-title);
+    line-height: 1.08;
+    letter-spacing: -.015em;
+    text-wrap: balance;
+    overflow-wrap: break-word;
+  }
+
+  body.at-review :is(
+    .at-section-head h2, .at-anniversary h2, .at-group-teaser h2,
+    .at-closing h2, .at-memory h2, .at-context-close h2,
+    .ap-feature-heading h2, .ag-journey-intro h2,
+    .ag-remember-copy h2, .ag-access-heading h2,
+    .at-revenue-package-copy h2, .at-revenue-economics-intro h2,
+    .at-enterprise-governance-intro > h2, .at-enterprise-rollout-intro h2,
+    .at-company-belief-content > h2, .at-company-contact h2,
+    .at-integration-intro h2, .at-pilot-details h2, .at-implementation-close h2,
+    .at-commercial .at-commercial-heading h2
+  ) {
+    font-size: var(--at-mobile-heading);
+    line-height: 1.12;
+    letter-spacing: -.012em;
+    text-wrap: balance;
+    overflow-wrap: break-word;
+  }
+
+  body.at-review .ap-feature-heading h2 { white-space: normal; }
+
+  body.at-review :is(
+    .at-home-voice h2, .at-pilot-terms h3, .ag-care h3,
+    .at-enterprise-governance-list h3, .at-enterprise-insight > h3,
+    .at-enterprise-memory > h3, .at-enterprise-rollout-steps h3,
+    .at-integration-milestone h3, .at-contact-sales h2, .at-contact-support h2
+  ) {
+    font-size: var(--at-mobile-subheading);
+    line-height: 1.18;
+    text-wrap: balance;
+  }
+
+  /* Section boundaries are more generous than the space inside a single idea. */
+  body.at-review :is(
+    .at-section, .at-guest, .at-voice, .ag-journey, .ag-remember, .ag-access,
+    .at-revenue-packages, .at-enterprise-rollout, .at-company-belief,
+    .at-integration-spread, .at-pilot-details, .at-commercial
+  ) { padding-block: var(--at-mobile-section); }
+
+  body.at-review :is(
+    .at-home-voice, .at-group-teaser, .at-context-close,
+    .at-company-contact, .at-implementation-close
+  ) { padding-block: 52px; }
+
+  body.at-review .at-closing { padding-block: 72px; }
+  body.at-review .at-benefits { padding-block: 32px 56px; gap: 28px; }
+  body.at-review .at-revenue-value-line { padding-block: 36px 44px; }
+
+  body.at-review :is(
+    .at-hero, .ap-hero, .ag-hero, .at-revenue-hero,
+    .at-enterprise-hero, .at-company-hero, .at-implementation-hero,
+    .at-contact-welcome
+  ) { padding-block: 36px 56px; }
+
+  body.at-review :is(
+    .ap-hero, .ag-hero, .at-revenue-hero, .at-implementation-hero,
+    .at-contact-welcome
+  ) { row-gap: 40px; }
+
+  body.at-review :is(
+    .at-anniversary, .at-control-grid, .at-split, .at-memory,
+    .at-group-teaser > .at-wrap, .ag-remember, .ag-access-grid,
+    .at-revenue-packages > .at-wrap, .at-revenue-economics > .at-wrap,
+    .at-enterprise-governance, .at-enterprise-boundary-grid
+  ) { row-gap: 40px; }
+
+  body.at-review .at-section-head { gap: 24px; margin-bottom: 36px; }
+  body.at-review .at-label { margin-bottom: 20px !important; font-size: 11px !important; line-height: 1.6; }
+  body.at-review .at-hero .at-label { margin-bottom: 22px !important; font-size: 10px !important; }
+  body.at-review .at-hero-art { margin-top: 28px; }
+
+  body.at-review :is(
+    .at-hero-copy > p:not(.at-label), .ap-hero-copy > p:not(.at-label),
+    .ag-hero-copy > p:not(.at-label), .at-revenue-hero-copy > p:not(.at-label),
+    .at-enterprise-hero-summary > p, .at-company-intro-copy > p,
+    .at-implementation-intro > p:not(.at-label), .at-contact-copy > p:not(.at-label),
+    .at-section-head > p, .at-lead
+  ) { font-size: 16px; line-height: 1.75; }
+
+  body.at-review :is(
+    .at-benefits p, .at-step-list p, .at-group-teaser p:not(.at-label),
+    .at-setup-steps p, .ag-journey-intro > p, .ag-story-heading p,
+    .ag-remember-copy > p:not(.at-label), .ag-access-heading > p:not(.at-label),
+    .ag-channels p, .ag-care > p, .at-enterprise-governance-list p,
+    .at-enterprise-insight > p, .at-enterprise-memory > p,
+    .at-enterprise-rollout-intro > p:not(.at-label), .at-enterprise-rollout-steps p,
+    .at-company-principles p, .at-company-bio > p,
+    .at-launch-timeline p, .at-integration-milestone p,
+    .at-implementation-close p:not(.at-label)
+  ) { font-size: 14px; line-height: 1.8; }
+
+  /* Compact labels remain legible; small controls retain generous touch areas. */
+  body.at-review :is(
+    .at-image-caption, .ag-hero-visual figcaption > span,
+    .at-enterprise-hero-photo figcaption > span, .at-enterprise-map-caption,
+    .at-enterprise-map-local, .at-enterprise-map-brand > div > span,
+    .at-enterprise-map > figcaption, .at-enterprise-rollout-label,
+    .at-company-image-caption > span, .at-launch-caption > span,
+    .at-integration-milestone small, .hc-program-feature-caption
+  ) { font-size: 10px; line-height: 1.6; }
+
+  body.at-review :is(.at-enterprise-map-caption, .at-enterprise-map-local) { flex-wrap: wrap; }
+  body.at-review .at-company-image-caption { align-items: flex-start; flex-wrap: wrap; }
+  body.at-review .at-company-image-caption > i { white-space: normal; }
+  body.at-review .at-pilot-questions summary { min-height: 52px; }
+  body.at-review .at-pilot-questions details > p { font-size: 14px; }
+  body.at-review .at-button { min-height: 48px; padding: 14px 18px; font-size: 14px; line-height: 1.5; gap: 18px; }
+  body.at-review .at-button > svg { flex-shrink: 0; }
+  body.at-review .at-text-link { min-height: 44px; font-size: 13px; }
+  body.at-review .at-contact-sales > a:not(.at-button) { min-height: 44px; }
+  body.at-review .hc-demo-field :is(input:not([type=checkbox]):not([type=radio]), textarea, select) { font-size: 16px; min-height: 48px; }
+  body.at-review .hc-programs-featured h2 { font: 400 12px/1.6 var(--font-sans), sans-serif; }
+}
+
+@media (max-width: 480px) {
+  /* Reading a step should not require a narrow column beside the next step. */
+  body.at-review :is(.at-setup-steps, .at-launch-timeline) { grid-template-columns: 1fr; gap: 30px; }
+  body.at-review .at-setup-steps h3 { margin-block: 16px 12px; }
+  body.at-review .at-launch-timeline p { min-height: 0; }
+  body.at-review .at-launch-timeline i { max-width: none; }
+  body.at-review .at-launch-note { grid-template-columns: 1fr; gap: 0; }
+  body.at-review .at-launch-note > :is(strong, p, small) { grid-column: 1; grid-row: auto; }
+  body.at-review .at-launch-note > strong { font-size: 44px; margin-top: 12px; }
+  body.at-review .at-launch-note > p { margin-top: 18px; font-size: 14px; }
+  body.at-review .at-launch-note > small { margin-top: 10px; font-size: 11px; }
+  body.at-review .at-launch-caption { align-items: flex-start; flex-wrap: wrap; }
+  body.at-review .at-launch-caption > i { white-space: normal; }
+  body.at-review .at-actions { column-gap: 20px; row-gap: 10px; }
+  body.at-review .at-contact-sales { grid-template-columns: 1fr; gap: 14px; }
+  body.at-review .at-contact-support { display: block; }
+}
