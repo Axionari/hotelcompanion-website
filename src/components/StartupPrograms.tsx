@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import Image from 'next/image'
 import { useCopy } from '@/lib/i18n/useCopy'
 import './startup-programs.css'
@@ -9,14 +8,10 @@ const copy = {
   en: {
     title: 'Startup programs & accelerators',
     description: 'Axionari, the company behind Hotel Companion.',
-    pause: 'Pause animation',
-    resume: 'Resume animation',
   },
   es: {
     title: 'Programas de startups y aceleradoras',
     description: 'Axionari, la empresa detrás de Hotel Companion.',
-    pause: 'Pausar animación',
-    resume: 'Reanudar animación',
   },
 }
 
@@ -33,10 +28,9 @@ const programs = [
 
 export function StartupPrograms({ featured = false }: { featured?: boolean }) {
   const c = useCopy(copy)
-  const [paused, setPaused] = useState(false)
   if (featured) {
     return (
-      <section className="hc-programs-featured" id="startup-programs" aria-labelledby="hc-programs-title" data-paused={paused}>
+      <section className="hc-programs-featured" id="startup-programs" aria-labelledby="hc-programs-title">
         <h2 id="hc-programs-title">{c.title}</h2>
         <div className="hc-programs-window" tabIndex={0} role="region" aria-labelledby="hc-programs-title">
           <div className="hc-programs-track" id="hc-programs-track">
@@ -52,9 +46,6 @@ export function StartupPrograms({ featured = false }: { featured?: boolean }) {
             ))}
           </div>
         </div>
-        <button className="hc-programs-motion" type="button" onClick={() => setPaused(value => !value)} aria-label={paused ? c.resume : c.pause} title={paused ? c.resume : c.pause} aria-controls="hc-programs-track">
-          {paused ? <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m5 3 7 5-7 5Z" fill="currentColor" /></svg> : <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3v10M11 3v10" stroke="currentColor" strokeWidth="2" /></svg>}
-        </button>
       </section>
     )
   }

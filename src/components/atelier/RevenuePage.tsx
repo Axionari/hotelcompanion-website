@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { DiningSelectionVisual, RecommendationVisual } from '@/components/proposal/TargetedVisuals'
 import { ArrowDown, Check, RotateCcw } from 'lucide-react'
 import { ContributionExample, Details, RecoveryStory } from '@/components/experience/PageSections'
 import { DemandInsight } from '@/components/experience/DemandInsight'
@@ -25,12 +26,12 @@ export default function RevenuePage() {
 
     <section className="at-revenue-recommendations at-section at-wrap" id="recommendations">
       <SectionHead label={t('Capture the opportunity', 'Aprovecha la oportunidad')} title={<>{t('An offer that fits.', 'Una oferta que encaja.')}<br/><span>{t('A reason to say yes.', 'Una razón para decir sí.')}</span></>} body={t('Listen to what matters, then make the next option useful. A different feature, a shorter treatment or another time can keep an opportunity open.', 'Escucha lo que importa y ofrece una alternativa útil. Otro detalle, un tratamiento más corto u otro horario pueden mantener abierta una oportunidad.')}/>
-      <div className="at-revenue-recovery"><RecoveryStory/></div>
+      <div className="at-revenue-recovery"><RecoveryStory renderOffer={item => <RecommendationVisual {...item}/>}/></div>
       <Details items={[{q:t('What makes a recommendation relevant?', '¿Qué hace relevante una recomendación?'),a:t('Start with the guest’s expressed needs. Match them to verified room features and hotel-approved services, prices and availability. Included benefits and past purchases stay out of sales prompts. Respect declines and pause offers during complaints. Confirm a specific room feature before promising it.', 'Parte de lo que expresa el huésped. Relaciónalo con detalles verificados y servicios, precios y disponibilidad aprobados. Los beneficios incluidos y compras anteriores no se vuelven a ofrecer. Respeta los rechazos y pausa las ofertas durante quejas. Confirma un detalle específico antes de prometerlo.')} ]}/>
     </section>
 
     <section className="at-revenue-packages" id="packages"><div className="at-wrap">
-      <figure><Image src={photos.dining} alt={t('A thoughtfully prepared hotel dining experience', 'Una experiencia gastronómica cuidadosamente preparada')} fill sizes="(max-width:750px) 100vw, 42vw"/><figcaption>{t('Considered, not pushed.', 'Pensado, sin presionar.')}</figcaption></figure>
+      <DiningSelectionVisual/>
       <div className="at-revenue-package-copy"><Label>{t('Hotel-approved offers', 'Ofertas aprobadas por tu hotel')}</Label><h2>{t('Dinner for two.', 'Cena para dos.')}<br/><span>{t('A wine to match.', 'El vino adecuado.')}</span></h2><p>{t('Bring relevant services together in a package your hotel can deliver. Keep the price, availability and margin in your hands.', 'Reúne servicios relevantes en un paquete que tu hotel pueda ofrecer. Mantén el precio, la disponibilidad y el margen en tus manos.')}</p><ul><li><Check size={16}/>{t('Your services. Your pricing.', 'Tus servicios. Tus precios.')}</li><li><Check size={16}/>{t('Offers shaped by guest intent.', 'Ofertas según lo que busca el huésped.')}</li><li><Check size={16}/>{t('Included benefits stay included.', 'Los beneficios incluidos siguen incluidos.')}</li></ul><div className="at-revenue-return"><RotateCcw size={22} strokeWidth={1.4}/><div><span>{t('A reason to return', 'Una razón para volver')}</span><h3>{t('A credit toward the next stay.', 'Un crédito para la próxima estancia.')}</h3><p>{t('An optional benefit after an eligible purchase. Your hotel sets the terms and redemption limits; its cost stays in the contribution calculation.', 'Un beneficio opcional después de una compra elegible. Tu hotel define condiciones y límites; su costo se incluye en el cálculo de contribución.')}</p></div></div></div>
     </div></section>
 

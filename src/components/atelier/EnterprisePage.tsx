@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { TeamOwnershipVisual } from '@/components/proposal/TargetedVisuals'
 import { ArrowDown, ArrowRight, ArrowUpRight, Building2, Check, CreditCard, Fingerprint, Layers3, LockKeyhole, ShieldCheck, Users } from 'lucide-react'
 import { LocalizedLink as Link } from '@/components/LocalizedLink'
 import { Button, Label, SectionHead, photos, useText } from './Atelier'
@@ -56,7 +57,7 @@ export default function EnterprisePage() {
         <Label>{t('Group control. Local ownership.', 'Control del grupo. Responsabilidad local.')}</Label>
         <h2>{t('Keep the standard.', 'Conserva el estándar.')}<br/>{t('Know who owns it.', 'Conoce al responsable.')}</h2>
         <p>{t('The group sets the direction. Each property keeps the context and accountability to deliver it.', 'El grupo marca la dirección. Cada hotel conserva el contexto y la responsabilidad para llevarla a la práctica.')}</p>
-        <figure className="at-enterprise-governance-photo"><Image src={photos.anniversary} alt={t('An individual room, shaped by its own setting', 'Una habitación con la identidad de su entorno')} fill sizes="(max-width:750px) 90vw, 40vw"/></figure>
+        <TeamOwnershipVisual/>
 
       </div>
       <div className="at-enterprise-governance-list">{governance.map(({icon:Icon,title,body},index)=><article key={title}><div><Icon size={21} strokeWidth={1.4} aria-hidden="true"/><span>0{index+1}</span></div><h3>{title}</h3><p>{body}</p></article>)}</div>

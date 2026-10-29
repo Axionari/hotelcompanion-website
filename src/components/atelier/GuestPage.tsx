@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { JourneyContext } from '@/components/proposal/TargetedVisuals'
 import { useId, useRef, useState, type KeyboardEvent } from 'react'
 import { ArrowRight, ArrowUpRight, Bookmark, MessageCircle, Phone, Tablet, Users } from 'lucide-react'
 import { useLang } from '@/lib/i18n/LanguageContext'
@@ -77,7 +78,7 @@ function StayJourney({ selection, onChoose }: { selection: JourneySelection; onC
       </div>
 
       <div className="ag-story-panel" id={`${id}-panel`} role="tabpanel" aria-labelledby={`${id}-stage-${selection.index}`} tabIndex={0}>
-        <div className="ag-story-copy"><div className="ag-story-heading"><h2>{current.title}</h2><p>{current.body}</p></div><ol className="ag-thread" aria-label={t('The steps in this journey', 'Los pasos de esta experiencia')}>{current.steps.map((step, index) => <li key={step}><span>0{index + 1}</span>{step}{index < current.steps.length - 1 && <ArrowRight size={16} aria-hidden="true"/>}</li>)}</ol></div>
+        <div className="ag-story-copy"><div className="ag-story-heading"><h2>{current.title}</h2><p>{current.body}</p></div><ol className="ag-thread" aria-label={t('The steps in this journey', 'Los pasos de esta experiencia')}>{current.steps.map((step, index) => <li key={step}><span>0{index + 1}</span>{step}{index < current.steps.length - 1 && <ArrowRight size={16} aria-hidden="true"/>}</li>)}</ol><JourneyContext stage={selection.index}/></div>
         <div className="ag-film"><OutcomeDemo key={`${current.outcome}-${selection.run}-${lang}`} outcome={current.outcome} lang={lang}/></div>
       </div>
     </div>

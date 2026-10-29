@@ -1,18 +1,19 @@
 'use client'
 
 import Image from 'next/image'
+import { HomeBookingVisual } from '@/components/proposal/TargetedVisuals'
 import { HomeValueBenchmarks } from './HomeValueBenchmarks'
 import { ArrowDown, ArrowUpRight } from 'lucide-react'
 import { SiteNav } from '@/components/site-nav'
 import { SiteFooter } from '@/components/site-footer'
 import { StartupPrograms } from '@/components/StartupPrograms'
 import { LocalizedLink as Link } from '@/components/LocalizedLink'
-import { Benefits, Button, Closing, ControlSection, Conversation, GuestShowcase, Label, SetupSection, Wave, photos, useText } from './Atelier'
+import { Benefits, Button, Closing, ControlSection, GuestShowcase, Label, SetupSection, Wave, photos, useText } from './Atelier'
 
 export default function AtelierHome(){const t=useText();return <div className="at-site"><a className="xp-skip" href="#main-content">{t('Skip to content','Saltar al contenido')}</a><SiteNav/><main id="main-content">
  <section className="at-hero at-wrap" aria-labelledby="home-title">
   <div className="at-hero-copy"><Label>{t('The opportunity in every stay','La oportunidad en cada estancia')}</Label><h1 id="home-title">{t('Smarter offers.','Mejores ofertas.')}<br/>{t('More revenue.','Más ingresos.')}</h1><p>{t('From the first question to the next stay, Hotel Companion helps guests get answers, make reservations and enjoy more of what your hotel offers. Available 24/7 by phone or web, it recommends relevant upgrades, dining and experiences, and connects service requests to the right team—helping you deliver more personal service and earn more from every stay.','Desde la primera consulta hasta la próxima visita, Hotel Companion ayuda a tus huéspedes a resolver dudas, reservar y disfrutar más de lo que ofrece tu hotel. Disponible las 24 horas por teléfono o desde la web, recomienda mejoras de habitación, gastronomía y experiencias según sus intereses, y canaliza las solicitudes al equipo indicado para ofrecer una atención más personal y generar más ingresos en cada estancia.')}</p><div className="at-actions"><Button>{t('Request a demo','Solicita una demo')}</Button><Link href="#guest-experience" className="at-text-link">{t('Meet your companion','Conoce a tu companion')}<ArrowDown size={17}/></Link></div><small>{t('Your brand. Your team in control. No app download.','Tu marca. Tu equipo al mando. Sin descargar una app.')}</small></div>
-  <div className="at-hero-art"><div className="at-hero-photo"><Image src={photos.hero} alt={t('A quiet coastal suite opening onto a sunlit terrace','Una suite tranquila junto al mar con una terraza soleada')} fill priority sizes="(max-width:750px) 100vw, 50vw"/></div><div className="at-hero-conversation"><Conversation compact scenario={1}/></div><div className="at-image-caption"><span>{t('A better stay begins with a conversation.','Una mejor estancia empieza con una conversación.')}</span></div></div>
+  <HomeBookingVisual/>
  </section>
  <Benefits/>
  <GuestShowcase/>
