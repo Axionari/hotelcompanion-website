@@ -1,3 +1,0 @@
-local run 1: perf 84 · a11y 97 · seo 100 · simulated LCP 4.6 s · observed LCP 142 ms
-local run 2: perf 84 · a11y 97 · seo 100 · simulated LCP 4.6 s · observed LCP 129 ms
-local run 3: perf 84 · a11y 97 · seo 100 · simulated LCP 4.6 s · observed LCP 136 ms
